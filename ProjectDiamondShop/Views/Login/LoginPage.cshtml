@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/Content/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/Views/SignUp/css/StyleSheet1.css" />
     <style>
         .container {
             width: 100%;
@@ -82,7 +81,7 @@
                 margin-right: 10px;
             }
 
-        .signup-container {
+        .login-container {
             padding: 20px;
             margin-top: 100px;
             width: 30%;
@@ -109,7 +108,7 @@
             width: 100%;
         }
 
-        .btn-signup-spacing {
+        .btn-login-spacing {
             margin-top: 10px;
         }
 
@@ -152,8 +151,8 @@
                                 }
                                 else
                                 {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
+                                    <li><a href="#">@Url.Action("Index", "SignUp")</a> </li>
+                                    <li><a href="@Url.Action("LoginPage", "Login")">Login</a> </li>
                                 }
                             }
                         </ul>
@@ -162,40 +161,27 @@
             </div>
         </div>
 
-        <!---signup page--->
+        <!---Login page--->
 
-        <div class="signup-container">
-            <h2 class="center-text">Sign Up</h2>
-            <label class="col-xs-11">User Name:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtUname" runat="server" Class="form-control" placeholder="Enter Your User Name"></asp:TextBox>
-            </div>
-
-            <label class="col-xs-11">Password:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Class="form-control" placeholder="Enter Your Password"></asp:TextBox>
-            </div>
-
-            <label class="col-xs-11">Confirm Password:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtCPass" runat="server" TextMode="Password" Class="form-control" placeholder="Enter Your Confirm Password"></asp:TextBox>
-            </div>
-
-            <label class="col-xs-11">Your Full Name:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtName" runat="server" Class="form-control" placeholder="Enter Your Name"></asp:TextBox>
-            </div>
-
-            <label class="col-xs-11">Email:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtEmail" runat="server" Class="form-control" placeholder="Enter Your Email"></asp:TextBox>
+        <div class="login-container">
+            <h2 class="center-text">Login</h2>
+            <div class="form-group" id="loginForm">
+                <div class="input-group col-xs-11">
+                    <label for="username">User Name:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Your User Name" required>
+                </div>
+                <div class="input-group col-xs-11">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Your Password" required>
+                </div>
             </div>
             <div class="col-xs-11">
-                <asp:Button ID="txtsignup" Class="btn btn-success btn-signup-spacing" runat="server" Text="Sign UP" OnClick="txtsignup_Click" />
-                <asp:Label ID="lblMsg" runat="server">Sign Up</asp:Label>
+                <asp:Button ID="txtlogin" Class="btn btn-success btn-login-spacing" runat="server" Text="Login" OnClick="txtlogin_Click" />
+                <asp:Label ID="lblMsg" runat="server">Login</asp:Label>
             </div>
         </div>
-        <!---signup page end--->
+
+        <!---Login page end--->
         <!---Footer Contents Start here---->
         <footer class="footer-pos">
             <hr />
@@ -211,3 +197,4 @@
     </form>
 </body>
 </html>
+

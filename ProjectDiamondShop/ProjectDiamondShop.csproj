@@ -117,6 +117,47 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Image\Introlmage\1.55-ratio-pear-1.jpg" />
+    <Content Include="Image\Introlmage\1.89-ratio-pear.jpg" />
+    <Content Include="Image\Introlmage\Baguette1.png" />
+    <Content Include="Image\Introlmage\Baguette2.png" />
+    <Content Include="Image\Introlmage\Baguette3.png" />
+    <Content Include="Image\Introlmage\baguettes.png" />
+    <Content Include="Image\Introlmage\cushion.png" />
+    <Content Include="Image\Introlmage\cushion1.png" />
+    <Content Include="Image\Introlmage\cushion2.png" />
+    <Content Include="Image\Introlmage\emerald.png" />
+    <Content Include="Image\Introlmage\emerald1.jpg" />
+    <Content Include="Image\Introlmage\heart.png" />
+    <Content Include="Image\Introlmage\heart1.jpeg" />
+    <Content Include="Image\Introlmage\heart2.jpg" />
+    <Content Include="Image\Introlmage\hinh 3 %281%29.jpeg" />
+    <Content Include="Image\Introlmage\hình 4.jpg" />
+    <Content Include="Image\Introlmage\hình.jpg" />
+    <Content Include="Image\Introlmage\marquise.png" />
+    <Content Include="Image\Introlmage\marquise1.png" />
+    <Content Include="Image\Introlmage\marquise2.png" />
+    <Content Include="Image\Introlmage\marquise3.png" />
+    <Content Include="Image\Introlmage\marquise4.jpg" />
+    <Content Include="Image\Introlmage\oval.jpg" />
+    <Content Include="Image\Introlmage\oval1.jpg" />
+    <Content Include="Image\Introlmage\oval2.jpg" />
+    <Content Include="Image\Introlmage\pear-shape-ratios.png" />
+    <Content Include="Image\Introlmage\pear.jpg" />
+    <Content Include="Image\Introlmage\pear1.jpg" />
+    <Content Include="Image\Introlmage\Princess.jpg" />
+    <Content Include="Image\Introlmage\Princess1.png" />
+    <Content Include="Image\Introlmage\princess2.jpg" />
+    <Content Include="Image\Introlmage\princess3.jpg" />
+    <Content Include="Image\Introlmage\princess4.jpg" />
+    <Content Include="Image\Introlmage\princess5.jpg" />
+    <Content Include="Image\Introlmage\radiant.jpg" />
+    <Content Include="Image\Introlmage\radiant1.jpg" />
+    <Content Include="Image\Introlmage\radiant3-blue.jpg" />
+    <Content Include="Image\Introlmage\Radiant4.png" />
+    <Content Include="Image\Introlmage\radiant5.jpg" />
+    <Content Include="Image\Introlmage\Trillion.png" />
+    <Content Include="Image\Introlmage\trillion1.png" />
     <Content Include="Image\HomePage\BannerSlider\kc1.jpg" />
     <Content Include="Image\HomePage\BannerSlider\kc2.jpg" />
     <Content Include="Image\HomePage\BannerSlider\kc3.jpg" />
@@ -146,28 +187,6 @@
     <Content Include="Image\HomePage\DiamondShape\Round.png" />
     <Content Include="Image\HomePage\DiamondShape\Trillion.png" />
     <Content Include="Image\HomePage\Logo\SafeIcon.jpg" />
-    <Content Include="Image\IntroImage\1.55-ratio-pear-1.jpg" />
-    <Content Include="Image\IntroImage\1.89-ratio-pear.jpg" />
-    <Content Include="Image\IntroImage\cushion.png" />
-    <Content Include="Image\IntroImage\cushion1.png" />
-    <Content Include="Image\IntroImage\cushion2.png" />
-    <Content Include="Image\IntroImage\heart.png" />
-    <Content Include="Image\IntroImage\heart1.jpeg" />
-    <Content Include="Image\IntroImage\heart2.jpg" />
-    <Content Include="Image\IntroImage\hinh 3 %281%29.jpeg" />
-    <Content Include="Image\IntroImage\hình 4.jpg" />
-    <Content Include="Image\IntroImage\hình.jpg" />
-    <Content Include="Image\IntroImage\oval.jpg" />
-    <Content Include="Image\IntroImage\oval1.jpg" />
-    <Content Include="Image\IntroImage\oval2.jpg" />
-    <Content Include="Image\IntroImage\pear-shape-ratios.png" />
-    <Content Include="Image\IntroImage\pear.jpg" />
-    <Content Include="Image\IntroImage\pear1.jpg" />
-    <Content Include="Image\IntroImage\radiant.jpg" />
-    <Content Include="Image\IntroImage\radiant1.jpg" />
-    <Content Include="Image\IntroImage\radiant3-blue.jpg" />
-    <Content Include="Image\IntroImage\Radiant4.png" />
-    <Content Include="Image\IntroImage\radiant5.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -185,12 +204,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroduceController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,7 +224,13 @@
     <Content Include="Views\Introduce\Pear.cshtml" />
     <Content Include="Views\Introduce\Cushion.cshtml" />
     <Content Include="Views\Introduce\Radiant.cshtml" />
-    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Login\LoginPage.cshtml" />
+    <Content Include="Views\Introduce\Asscher.cshtml" />
+    <Content Include="Views\Introduce\Baguette.cshtml" />
+    <Content Include="Views\Introduce\Emerald.cshtml" />
+    <Content Include="Views\Introduce\Marquise.cshtml" />
+    <Content Include="Views\Introduce\Princess.cshtml" />
+    <Content Include="Views\Introduce\Trillion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -216,6 +240,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
