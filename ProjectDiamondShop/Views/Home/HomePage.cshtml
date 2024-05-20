@@ -1,0 +1,383 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="/Content/Custome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-lg-4 {
+            margin-bottom: 10px;
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: slateblue;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+            .dropdown-menu .divider {
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Custom CSS for Diamond Search icons */
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        /* Custom CSS for Search button */
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .container.w-100 d-block text-center mb- {
+            font-size: 12px;
+        }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                            <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                            <li><a href="#">Login</a> </li>
+                                    }
+                                }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!---image slider--->
+            <div class="container center">
+                <h2>Carousel Example</h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc1.jpg" alt="Destination 1" style="width: 100%;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc2.jpg" alt="Destination 2" style="width: 100%;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!---image slider end--->
+
+        </div>
+        <!---Middle Contents start---->
+        <hr />
+        <div class="container center ">
+            @{
+                var diamonds = new[]
+                {
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Round.jpg", Title = "Round Diamond", Description = "The round cut diamond is the most popular diamond shape, representing approximately 75% of all diamonds sold. Due to the mechanics of its shape, the round diamond is generally superior to fancy diamond shapes at the proper reflection of light... et cetera.", ActionUrl = Url.Action("Round", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Cushion.jpg", Title = "Cushion Diamond", Description = "A cushion cut diamond is a combination of a more modern and round brilliant cut pattern diamond with a classic, old mine facet pattern diamond cut. This type of diamond typically has a soft square or even rectangular shape, all with curved edges... et cetera.", ActionUrl = Url.Action("Cushion", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Heart.jpg", Title = "Heart Diamond", Description = "A heart diamond is a classic yet romantic choice to celebrate an engagement. Instead of the geometric shapes typically associated with diamonds used in engagement ring styles, heart diamonds go beyond beauty and bridge into the symbolic...et cetera.", ActionUrl = Url.Action("Heart", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Oval.jpg", Title = "Oval Diamond", Description = "Oval cut diamonds, with their elongated and graceful design, have surged in popularity, thanks in part to celebrities like Blake Lively and Hailey Bieber. Offering a unique blend of classic round brilliance and a distinctive shape...et cetera.", ActionUrl = Url.Action("Oval", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Radiant.jpg", Title = "Radiant Diamond", Description = "The radiant cut diamond is a dazzling choice, known for its brilliant sparkle compared to other square/rectangular cuts. Its unique design not only provides a larger appearance compared to its actual carat weight but also ensures durability...et cetera.", ActionUrl = Url.Action("Radiant", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Pear.jpg", Title = "Pear Diamond", Description = "Pear shaped diamonds are trending for all the right reasons. These diamonds feature stunning curves that meet at a point, creating a teardrop shape while unique faceting that allows for maximum, scintillating sparkle...et cetera.", ActionUrl = Url.Action("Pear", "Introduce") },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Asscher.png", Title = "Asscher Diamond", Description = "The Asscher cut diamond is a distinctive choice, characterized by its square shape with deep, layered facets. While it shares some similarities with the emerald cut, its unique octagonal design sets it apart. There are two primary variations: the standard Asscher and... et cetera.", ActionUrl = "#" },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Marquise.jpg", Title = "Marquise Diamond", Description = "The marquise cut diamond, with its elongated and pointed ends, offers a distinctive and elegant appearance. The marquise cut’s unique shape not only maximizes carat weight, making the diamond appear larger, but also flatters the finger with its elongated design... et cetera.", ActionUrl = "#" },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Princess.jpg", Title = "Princess Diamond", Description = "Princess cut diamonds appear square from the face-up, but are shaped like inverted pyramids with two to four chevron patterns on the underside of the cut. They are the second most sought-after diamond in engagement rings only behind round brilliant cut diamonds...et cetera.", ActionUrl = "#" },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Trillion.jpg", Title = "Trillion Diamond", Description = "The Trillion Cut Diamond is triangular shape with rounded or pointed corners and features between 31 to 50 facets. Originally designed to make the most out of flawed or irregularly-shaped rough diamonds, the Trillion Cut...et cetera.", ActionUrl = "#" },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Baguette.jpg", Title = "Baguette Diamond", Description = "A Baguette diamond is a thin, elongated, rectangular-shaped diamond. Baguettes have 14 facets, much less than traditional diamond cuts, which will usually have more than 50. They are usually small, and thus often used as side stones...et cetera.", ActionUrl = "#" },
+        new { ImageSrc = "/Image/HomePage/DiamondInfo/Emerald.jpg", Title = "Emerald Diamond", Description = "Emerald cut diamonds typically have of 57 facets and are distinguished by their elongated, rectangular shape and unique step cuts, creating a ‘hall of mirrors effect. While generally not as brilliant they usually appear larger than other shapes...et cetera.", ActionUrl = "#" }
+    };
+            }
+
+            <div class="row">
+                @foreach (var diamond in diamonds)
+                {
+                    <div class="col-lg-4">
+                        <img class="img-circle" src="@diamond.ImageSrc" alt="thumb" width="140" height="140" />
+                        <h2>@diamond.Title</h2>
+                        <p class="decription">
+                            @diamond.Description
+                        </p>
+                        <p><a class="btn btn-default" href="@diamond.ActionUrl" role="button">View More &raquo;</a></p>
+                    </div>
+                }
+            </div>
+
+
+            <!--- Diamond Search-->
+            @{
+                var diamondShapes = new[]
+                {
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Round.png", Name = "Round" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Princess.png", Name = "Princess" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Emerald.png", Name = "Emerald" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Asscher.png", Name = "Asscher" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Radiant.png", Name = "Radiant" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Oval.png", Name = "Oval" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Marquise.png", Name = "Marquise" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Pear.png", Name = "Pear" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Cushion.png", Name = "Cushion" },
+        new { ImageSrc = "/Image/HomePage/DiamondShape/Heart.png", Name = "Heart" }
+    };
+            }
+
+            <div class="container" data-pagebuilder="section-container">
+                <div class="row" data-pagebuilder="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12" data-widget-type="default" data-pagebuilder="column">
+                        <!-- Widget -->
+                        <div class="widget pt-20 pb-20" data-pagebuilder="widget" data-widget-index="1">
+                            <h2 class="w-100 d-block text-center h2 mb-4" data-widget-element="widgetHeader" data-pagebuilder="element">DIAMOND SEARCH</h2>
+                            <p class="w-100 d-block text-center mb-" data-widget-element="widgetParagraph" data-pagebuilder="element">Diamonds come in many different shapes and cuts, each with its own style and story. Start your own story with your own diamond.</p>
+                            <div class="diamond-search-icons">
+                                @foreach (var diamondShape in diamondShapes)
+                                {
+                                    <figure class="p">
+                                        <img src="@diamondShape.ImageSrc" alt="@diamondShape.Name" />
+                                        <figcaption>@diamondShape.Name</figcaption>
+                                    </figure>
+                                }
+                            </div>
+                            <p><a class="search-button" href="#" role="button">Search</a></p>
+                            <span class="w-100 d-block text-center"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End diamond Search-->
+
+        </div>
+
+        
+
+        <!---Middle Contents End---->
+        <!---Footer Contents Start here---->
+        <hr />
+        <footer>
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+            </div>
+        </footer>
+
+        <!---Footer Contents End---->
+
+    </form>
+
+</body>
+
+</html>

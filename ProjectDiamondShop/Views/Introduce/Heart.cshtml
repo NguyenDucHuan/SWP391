@@ -1,0 +1,357 @@
+﻿<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="text-center">H Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    While not as prevalent in engagement rings as other shapes, the heart-shaped diamond is certainly a unique emblem of love and affection.
+                    This distinctive shape is best showcased in larger diamonds, ensuring its romantic silhouette is clearly visible.
+                    The heart shaped diamond is based on the round brilliant cut and typically has 56 to 58 facets, with six to eight facets making up the diamond’s pavilion.
+                    Heart shaped diamonds are generally 15 to 20% cheaper than other diamonds.
+                    There is an even larger gap compared to round cut diamonds.
+                    For example a one carat diamond will cost $2,300, significantly less than other shapes.
+                    When considering a heart-shaped diamond, it’s crucial to focus on its symmetry, ensuring both halves mirror each other perfectly.
+                    Remember, while the heart shape is undeniably romantic, its beauty lies in its precise cut and proportions.
+                    We’ll help guide you towards the perfect heart shaped diamond in this article.
+                </p>
+                <h1>The Heart Shaped Diamond</h1>
+                <p class="decription">
+                    A timeless symbol of love, a heart shaped diamond is a unique, special alternative to the more common diamond cuts.
+                    More than two thirds of all diamonds sold on the market are round brilliants.
+                    In contrast, heart shaped diamonds make up only a tiny fraction of the total number of diamonds sold every year, making a heart shaped diamond a unique, rare and special choice.
+                </p>
+                <img src="~/Image/IntroImage/heart.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <p>
+                    Heart shaped diamonds are used in a variety of jewelry pieces, from pendants to bracelets and more.
+                    However, diamonds of this type are most commonly used as a center stone in a diamond engagement ring.
+                    Diamonds with a heart shape date back to the 16th century, with the first truly well-known heart shaped diamond ring given as a gift of friendship from Mary Queen of Scots to Queen Elizabeth in 1562.
+                </p>
+                <p>
+                    More recently, heart shaped diamond engagement rings have been spotted on celebrities such as Nicki Minaj and Lady Gaga, who sported a giant heart-shaped diamond pavé ring when she was engaged to Taylor Kinney.
+                    In the last few years, auction house Christie’s attracted attention when it announced it would auction one of the largest heart shaped diamonds online — a stunning 24.45 carat, D color, internally flawless heart shaped diamond valued at an estimated $2.55 million.
+                </p>
+                <h2 class="wp-block-heading">Heart Shaped Diamonds – Price</h2>
+                <p>
+                    Heart shaped diamonds are generally 15 to 20% cheaper than round cut diamonds of similar cut, clarity, color and carat weight.
+                    This means that you can generally get a larger diamond if you opt for a heart shape over a round brilliant cut.
+                    Just like with any other diamond shape, pricing for heart shaped diamonds can vary hugely based on the four Cs — cut, color, clarity and carat weight.
+                </p>
+                <p>
+                    For example, <a aria-label=" (opens in a new tab)" href="https://www.jamesallen.com/loose-diamonds/heart-shaped/1.01-carat-j-color-si1-clarity-sku-11493355?a_aid=dmnd1357&amp;data1=37294" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">this 1.02 carat J color, SI1 heart shaped diamond from James Allen</a> is available for $2,070. For a diamond of the same size with higher color and clarity grades, <a aria-label=" (opens in a new tab)" rel="noreferrer noopener nofollow external sponsored" href="https://www.jamesallen.com/loose-diamonds/heart-shaped/1.03-carat-d-color-if-clarity-sku-5885951?a_aid=dmnd1357&amp;data1=37294" target="_blank" data-wpel-link="advanced" title="" class="external-link">you could spend as much as $9,110</a>
+                    Apply the advice mentioned above, as well as the tips in our guide to <a href="https://www.diamonds.pro/education/diamond-buying-guide/" data-wpel-link="internal">buying a diamond</a>, and you’ll be able to get the largest, high quality diamond without going over your budget.
+                </p>
+                <img src="~/Image/IntroImage/heart2.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+            </div>
+            <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Heart Shaped Diamond – Color</h2>
+            <p>
+                The diamond color grades used by the GIA range from D to Z, with a D grade indicating that a diamond is completely clear and colorless. At the other end of the scale, a Z grade identifies a diamond with an obvious, clearly visible yellow or brown tint.
+                Heart shaped diamonds are a modified version of the round brilliant cut. Because they reflect lots of light, the color of a heart shaped diamond is harder to distinguish than it is in a diamond with a large table, such as an Emerald or Asscher cut.
+                This means that there’s no need to choose a flawless color grade. Doing so will only increase the price you pay for the diamond, without having any noticeable impact on how it looks when viewed with the naked eye.
+                When it comes to heart shaped diamonds, there’s no one-size-fits-all color grade that offers the best value for money. Instead, it’s best to pick a color grade based on the type of metal you plan to use for the diamond’s setting.
+                For a white gold or platinum setting, we generally recommend choosing a diamond that has a color grade of H or better.
+                For example, <a href="https://www.bluenile.com/diamond-details/18495371?a_aid=dmnd1357&amp;data1=37294" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">this 1.01 carat H color, VS1 heart shaped diamond from Blue Nile</a> is available for $4,820. It looks colorless in <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-white-gold-item-194386?a_aid=dmnd1357&amp;data1=37294" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this 14k white gold solitaire setting</a>. Together, the diamond and ring cost a total of $5,320.
+                Compare that to <a href="https://www.bluenile.com/diamond-details/18535869?a_aid=dmnd1357&amp;data1=37294" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this 1.00 carat E color, VS1 heart shaped diamond also from Blue Nile</a> Aside from its color grade, this diamond has the same specifications as the one above. It’s priced at $5,710 loose and $6,210 in the same setting as above — a $890 difference.
+                Instead of spending this extra $2,984 on something you’ll never notice, you can either keep it to spend on something else, or use it to choose a diamond with a higher carat weight.
+                For a yellow or rose gold setting, a lower color grade is okay. In general, we recommend the J color grade or better for solitaire settings.
+                Diamonds in these color grades have a slight yellow tint, but look clear when contrasted with metals like yellow and rose gold.
+            </p>
+            <img src="~/Image/IntroImage/heart1.jpeg" alt="Destination 4" style="width: 50%;margin-left:210px;" />
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+
+

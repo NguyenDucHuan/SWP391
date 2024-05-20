@@ -1,0 +1,386 @@
+﻿
+
+<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .container center img {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="text-center">Round Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    The round-cut diamond is renowned for its unmatched brilliance and timeless appeal.
+                    Round brilliant cut diamonds have either 57 or 58 facets and the symmetrical design ensures maximum light reflection.
+                    This is why two-thirds of diamond shoppers select a round cut.
+                    Round diamonds are typically the most expensive diamond shape.
+                    When buying a round diamond focus on well cut H-J color and VS2-SI2 clarity to maximize value.
+                    For example, a one carat round diamond (H color, VS2 clarity) will cost $4,000.
+                </p>
+                <h1>What is a Round Cut Diamond?</h1>
+                <p class="decription">
+                    As the most popular diamond shape, the round cut diamond represents a large majority of all diamonds sold. In fact, data from diamond vendors suggests that around two thirds of consumers opt for the round cut when choosing a diamond.
+                    “Round-cut diamonds continue to be the most popular shape in most states, accounting for 66% of nationwide orders, [Blue Nile] said last week.” Rapaport.com
+                    The round brilliant cut boasts 58 facets (including the culet) and offers exceptional white light reflection, also known as brilliance. With a classic, timeless appearance, round brilliant cuts are often used in engagement rings, necklaces and other fine jewelry pieces. This 1 carat stone from James Allen is a stunning example of a round brilliant cut.
+                    In 1919, Marcel Tolkowsky created a surge of interest in the round cut diamond by publishing his work, “Diamond Design: A Study of the Reflection and Refraction of Light in Diamond” which highlighted the ideal cut aspects of a round brilliant. Since Tolkowsky’s influence, the round cut has remained the most common diamond cut.
+                </p>
+                <img src="/Image/IntroImage/hình 4.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <h2 class="wp-block-heading">Key Features of a Round Cut Diamond</h2>
+                <p class="decription">
+                    Here are some of the most noticeable features of round cut diamonds, including the proportions of an excellent cut round diamond.
+                </p>
+                <ul class="custom-list">
+                    <li>58 facets</li>
+                    <li>Round, symmetrical shape (length-width ratio of 1-1.01)</li>
+                    <li>Table % of 55-59</li>
+                    <li>Depth % of 60.1-62.6</li>
+                    <li>Thin to slightly thick girdle</li>
+                    <li>No culet</li>
+                </ul>
+                <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">Why Are Round Diamond Engagement Rings So Popular?</h2>
+                <p class="decription">
+                    Round cut diamonds are the most popular diamond shape. In fact, they make up between two thirds and 75% of all diamonds sold, and about 60% of all engagement rings.
+                </p>
+                <p class="decription">Here are the main reasons round cut diamonds are highly sought after for engagement rings:</p>
+                <ul>
+                    <li>
+                        <h3>Beauty:</h3>
+                        Round cut diamonds are exceptional.
+                        They’re cut with 58 facets that all reflect light back to your eyes.
+                        For over 100 years, diamond cutters have been perfecting the process for cutting round diamonds.
+                        The result: gorgeous gemstones with a classic appearance.
+                        <br />
+                    </li>
+                    <li>
+                        <h3>Brilliance:</h3>
+                        Brilliance is what makes a diamond sparkle. It’s the amount of white light that reflects off of the diamond’s table to your eyes.
+                        The ideal cut aspects of a round diamond provide more brilliance than any other shape.
+                        That’s why a well-cut round diamond, like the stone in
+                        this 1.50 carat solitaire ring from James Allen, is an absolute eye-catcher.
+                        <br />
+                    </li>
+                    <li>
+                        <h3>Fire: </h3>
+                        A diamond’s fire refers to the amount of colored light that is dispersed by the diamond.
+                        This colored reflection gives a diamond character and beauty.
+                        When a round diamond has an exceptional cut, it showcases a tremendous amount of fire.
+                        <br />
+                    </li>
+                    <li>
+                        <h3>Versatility:</h3>
+                        Because the round brilliant boasts a classic design, it complements many styles, from modern round cut diamond rings to vintage engagement rings.
+                        Round cut stones are often chosen for side stones as well, like a three-stone ring, or a pavé setting.
+                        <br />
+                    </li>
+                    <li>
+                        <h3>Timeless Appearance:</h3>
+                        Round-shaped diamonds have been in style for centuries.
+                        With their beautiful facets and elegance, a round cut ring is a classic choice that will be cherished and handed down for generations.
+                    </li>
+                </ul>
+                <p class="decription">A large part of the beauty and brilliance of the round brilliant cut comes from its unique facet pattern, which provides incredible light performance. As the GIA explains:</p>
+                <div class="wp-block-ub-styled-box ub-styled-box ub-notification-box" id="ub-styled-box-74add2f2-143b-47b4-8d04-a80b5fee53a6">
+                    <p id="ub-styled-box-notification-content-">
+                        “The crown facets, consisting of 8 bezels, 8 stars, and 16 upper halves, gather and disperse light to create brightness, fire, and a scintillating pattern of light and dark. The pavilion facets, consisting of 16 lower halves, 8 mains, and an optional culet, reflect the light back through the crown to the viewer’s eye. All of these facets work together creating each diamond’s unique appearance.”
+                        <a href="https://www.gia.edu/diamond-cut/diamond-cut-anatomy-round-brilliant" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Gemological Institute of America (GIA)</a>
+                    </p>
+                </div>
+                <img src="/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 4" style="width: 50%;margin:auto;" />
+            </div>
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>

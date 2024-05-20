@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="text-center">Radiant Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    The radiant cut diamond is a dazzling choice, known for its brilliant sparkle compared to other square/rectangular cuts.
+                    Its unique design not only provides a larger appearance compared to its actual carat weight but also ensures durability.
+                    When considering a radiant cut, it’s vital to focus on its quality and proportions to truly capture its radiant essence.
+                    Everything else being equal, a well-cut radiant can be almost as brilliant as a round diamond but cost significantly less.
+                    A radiant cut diamond offers outstanding brilliance and durability. For color, we recommend an H or better, and for clarity, we suggest an SI1 or an SI2.
+                    When it comes to cut quality and other diamond details, this article will answer all your radiant cut questions.
+                    If you follow our guidelines a one carat radiant cut will cost $2,900.
+                </p>
+                <img src="~/Image/IntroImage/radiant.jpg" alt="Destination 4" style="width: 50%;margin:auto;height:auto;" />
+                <h1>What is a Radiant Cut Diamond?</h1>
+                <p class="decription">
+                    Popular since the 1980s, the radiant cut diamond lives up to its name: it is impressively radiant and brilliant.
+                    Henry Grossbard designed the radiant cut in 1977 in pursuit of combining the finest elements of the round brilliant cut and the emerald cut.
+                    The radiant cut diamond owes its brilliance to the 70 facets found in its pavilion and crown.
+                    The precision of each facet offers immense brilliance and fire.
+                    The radiant cut’s brilliance is surpassed only by the round brilliant cut.
+                    This makes the radiant cut an excellent choice for an engagement ring that sparkles with brilliance and fire.
+                    With carefully beveled corners, Radiants have substantial durability against chips and breakage, making it an excellent choice for those with an active lifestyle.
+                    This feature also allows the Radiant to be paired alongside both square and rounded diamonds, like in
+                    <a href="https://www.jamesallen.com/diamond-rings/radiant-cut-engagement-rings/1.03-carat-channel-set-engagement-ring-1667037&amp;a_aid=dmnd1357?data1=20542" target="_blank" rel="noopener noreferrer nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">this 1.0 carat radiant in a 14K white gold channel setting from James Allen</a>
+                </p>
+                <img src="~/Image/IntroImage/radiant1.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <h2 class="wp-block-heading">Radiant Cut Diamonds: Pros and Cons</h2>
+                <p class="decription">
+                    Like other <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, radiant cut diamonds have their own unique range of advantages and disadvantages.
+                    It is a unique cut that puts a little flair on your traditional ring.
+                    Even some celebrities have chosen to go the radiant cut route, such as Christina Haack’s stunner as <a href="https://hollywoodlife.com/2021/09/20/christina-haack-engaged-joshua-hall-diamond-ring-photo/" data-wpel-link="external" target="_blank" rel="external noopener">reported by Hollywood Life</a>
+                </p>
+                <p>
+                    <b>Pros</b>
+                    of the radiant cut include the following:
+                </p>
+                <p>
+                    <b>Excellent brilliance, fire and sparkle</b>
+                    Although the radiant cut isn’t quite as brilliant as the round brilliant cut, it’s not very far behind.
+                    Because of the 70 facets in its pavilion and crown, the radiant cut offers impressive brilliance and fire.
+                    This makes the radiant cut a great choice if you want a non-round diamond with a beautiful sparkle.
+                </p>
+                <p>
+                    <b>Larger perceived size than other diamond shapes</b>
+                    The radiant cut is well known for looking larger than most of the other diamonds of the same carat weight, giving it some extra presence on your fiancé-to-be’s finger.
+                    The face-up area of the radiant cut is actually slightly smaller than that of a round brilliant cut diamond of an equal carat weight.
+                    However, the radiant cut’s long diagonal measurement tricks the eye and makes it look larger than it really is.
+                </p>
+                <img src="~/Image/IntroImage/radiant3-blue.jpg" alt="Destination 4" style="width: 100%;margin:auto;" />
+
+                <h2 class="wp-block-heading" id="Radiant-Cut-Diamond---Quality">Radiant Cut Diamond – Quality</h2>
+                <img src="~/Image/IntroImage/Radiant4.png" alt="Destination 4" style="width: 50%;margin-top: 60px;margin-left: -194px;" />
+                <p>
+                    Radiant diamonds are created with a modified brilliant cut facet pattern for both the pavilion and crown, giving this diamond its high level of brilliance (the amount of white light reflected back to the eye or ‘sparkle’).
+                    Because <a href="https://www.diamonds.pro/education/cuts/" data-wpel-link="internal">diamond cut</a> is vital to any diamond’s beauty, especially the radiant diamond, a careful eye must be used when considering stones for purchase.
+                    The <a href="https://www.diamonds.pro/education/gia-certification/" data-wpel-link="internal">GIA</a> only grades cut quality for round brilliant diamonds.
+                    A GIA certificate for a radiant cut will not include a cut grade and is therefore not indicative of how the diamond truly looks.
+                    If you’re comparing loose radiant diamonds, make sure they’re evaluated carefully by your eyes and, ideally, <a class="cta-ask-form" href="#">the eyes of a professional.</a>
+                    As a rough guideline, we offer suggestions for evaluating a Radiant Diamond’s Cut.
+                </p>
+                <h3 class="wp-block-heading">Radiant Cut Diamond – Cut Guide</h3>
+                <img src="~/Image/IntroImage/radiant5.jpg" alt="Destination 4" style="width: 40%;margin-top: 60px;" />
+                <p>
+                    Be sure to also look at the corners of a radiant, ensuring they are even and not too wide—or too narrow.
+                    The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty.
+                </p>
+            </div>
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+
+

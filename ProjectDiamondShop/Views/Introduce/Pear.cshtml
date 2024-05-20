@@ -1,0 +1,379 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="text-center">Pear Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    The pear-shaped diamond, often referred to as a teardrop, combines the best of both round and marquise diamond shapes. When choosing a pear-shaped diamond, it’s essential to consider its length-to-width ratio and be mindful of the “bow-tie” effect, which can appear in the center of the diamond. Pear shaped diamonds are less expensive than popular diamond shapes like round or princess cuts and have more visible surface area than many other shapes, which lets you save by purchasing a lower-carat diamond without sacrificing visible size.
+                    A one carat pear shaped (based on our recommendations) will cost about $3,600 which is cheaper than a 1 carat round diamond but will look larger once set.
+                    Its unique silhouette, reminiscent of a droplet, offers a blend of elegance and brilliance.
+                    While it’s not the most common choice, its elongated form can make fingers appear more slender.
+                    We go over those details, and more, in depth in this article to help you find the perfect pear shaped diamond.
+                </p>
+                <h1>What is a Pear Shaped Diamond?</h1>
+                <p class="decription">
+                    A pear shaped diamond, also commonly called pear cut diamond or teardrop diamond, is a brilliant-cut diamond, cut in the shape of a pear or teardrop (hence the name).
+                    Pear cut or pear shaped diamonds have an elongated shape, much like a marquise or oval cut.
+                    In a pear cut diamond, one end is rounded (like an oval cut), and the other ends in a point (like a marquise diamond).
+                </p>
+                <p>
+                    This results in pear shaped diamonds’ unique appearance, making for one-of-a-kind engagement rings, or other pieces of jewelry.
+                    Engagement rings set with pear shape diamonds are great for making the wearer’s finger appear longer and slimmer.
+                    A pear shaped diamond can vary in its exact shape. Some pear shapes are more elongated, while others are shorter and stubbier.
+                    The length to width ratio of a pear shaped diamond generally falls between 1.5 and 2.0.
+                    Each person may have their own preference for L/W ratio in a pear shape diamond, however the optimal ratio is usually somewhere between 1.55 and 1.75.
+                </p>
+                <img src="~/Image/IntroImage/pear.jpg" alt="Destination 4" style="width: 100%;margin:auto" />
+                <h2 class="wp-block-heading">The Pear Shape – A Classic Beauty</h2>
+                <p class="decription">
+                    While pear shapes are certainly not among the most popular shapes these days, I must confess that I am personally a lover of this shape.
+                    I can’t put my finger on the particular aspect of this shape that I love, but I have a feeling I know what it is.
+                    You see, the <b>vast</b> majority of pear shapes out there are absolute junk.
+                    I know when I go online to help readers who are looking for pear shapes, I can look through 20-30 stones before I find one with a nice cut.
+                    A teardrop cut diamond, which is also commonly referred to as a pear shape, is a classic look when done right.
+                    Pointed on one end and rounded on the other, a nice pear shape can have an unparalleled shine.
+                    It’s just a matter of picking the right cut and setting, which we’ll help you within this article.
+                <p>
+                    <h2 class="wp-block-heading" id="Pear-Shape-Length-to-Width-Ratio">Pear Shape: Length to Width Ratio</h2>
+                    <img src="~/Image/IntroImage/pear-shape-ratios.png" alt="Destination 4" style="width: 100%;margin:auto" />
+                <p>
+                    On of the most common way pear shapes are miscut is with an out of balance length to width ratio.
+                    Most people find that they prefer pear shapes with a length to width ratio of about 1.55 to about 1.75.
+                    As you can see in the diagram to the right, both of these ratios look natural for the shape whereas the stone that has a 2.0 L/W ratio looks out of whack.
+                    Where you fall between 1.55 and 1.75 is really a matter of personal preference.
+                    Lets take a look at some real life examples:
+                </p>
+                <img src="~/Image/IntroImage/pear1.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <p>
+                    <b>Unbecoming Ratios</b><br />
+                    As you can see in the picture above, an L/W ratio of 1.47 already looks way too short and stubby for a pear shape.
+                    This stone looks like a slightly stretched out round shape – not what you’d like to see in a pear.
+                <p />
+                <img src="~/Image/IntroImage/1.89-ratio-pear.jpg" alt="Destination 4" style="width: 60%;margin-left:205px;" />
+                <p>In the picture here, you can see the opposite extreme. This stone has an L/W ratio of 1.89 which is way too long for a pear shape.</p>
+                <p>
+                    <b>Beautiful Examples</b><br />
+                    And finally, Goldilocks, we’ve come to the stones that fit just right.
+                    To the left and right you can see beautiful examples of stones that are at opposite ends of the acceptable range of L/W.
+                    Where your preferences lie between these two boundaries is just a matter of what shape speaks to your tastes.
+                <p />
+                <img src="~/Image/IntroImage/1.55-ratio-pear-1.jpg" alt="Destination 4" style="width: 60%;margin-left:205px;" />
+                <p>
+                    <b>Straight vs. Curvy Pear Shapes</b><br />
+                <p>
+                    While the length-to-width ratio is something that you can calculate yourself by viewing the diamond’s measurements on the certificate, the silhouette of the stone is not something you can figure out on paper alone.
+                    How the diamond is shaped, strictly in 2-dimensional terms, is really one of the most important aspects of a pear shape.
+                    This is the case, particularly with pear shapes (and perhaps heart shapes as well), over and above all other shapes.
+                </p>
+                </p>
+                <p>
+                    <b>Unique Asymmetry</b><br />
+                <p>
+                    WThe reason is simply that the pear shape’s silhouette is its signature.
+                    Think about it – every other shape is a basic symmetrical geometric shape.
+                    Only the pear shape has this unique asymmetrical shape with a different top and bottom.
+                    So how the stone makes its way from the round end to the point is what this shape is all about.
+                </p>
+                </p>
+
+            </div>
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+
+
+

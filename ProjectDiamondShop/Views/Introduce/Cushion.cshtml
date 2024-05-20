@@ -1,0 +1,360 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container ">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+
+                    <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                        <span>
+                            <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                        </span>
+                        <span>The Diamond Shop</span>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                        <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                        <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                        <li><a href="#">Blog</a> </li>
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="#">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                <li><a href="#">Login</a> </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <h2 class="text-center">Cushion Diamond Story</h2>
+
+        <div class="container center">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    The cushion cut diamond, gaining immense popularity over recent years, characterized by its soft square or rectangular shape with rounded edges, reminiscent of a pillow.
+                    Understanding the nuances between standard and modified cushion cuts, as well as their distinct appearances, is crucial for an informed purchase.
+                    When shopping for a cushion cut diamond, a general guideline is to stick with a depth and table under 70%.
+                    Cushion cuts also retain color more than other shapes, so look for an H color or better when the diamond is set in platinum, white gold, or silver.
+                    A one carat cushion cut costs $2,500 based of our quality recommendation.
+                    We’ll discuss all the nuances of cushion cut diamonds and how to navigate the 4 Cs to find the perfect balance of quality and value.
+                </p>
+                <h1>What is a Cushion Cut Diamond?</h1>
+                <p class="decription">
+                    A cushion cut diamond is a combination of a more modern and round brilliant cut pattern diamond with a classic, old mine facet pattern diamond cut.
+                    This type of diamond typically has a soft square or even rectangular shape, all with curved edges.
+                    Simply put, a cushion cut diamond combines a square cut with rounded corners, giving it an appearance similar to a pillow.
+                    This is where the “cushion cut” name comes from.
+                    Here’s an example of a stunning cushion cut from Blue Nile’s collection.
+                    Cushion cut diamonds are often purchased for engagement rings.
+                    They’re also commonly used in some fashion pieces.
+                    The price of a cushion cut diamond is typically significantly less than the cost of a round brilliant diamond.
+                    However, due to increasing popularity of cushion cut diamond rings, these prices may vary and rise significantly.
+                </p>
+                <img src="~/Image/IntroImage/cushion2.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <h2 class="wp-block-heading">Key Features of a Cushion Cut Diamond</h2>
+                <p class="decription">
+                    Here are some of the distinctive features that you’ll notice from a cushion cut diamond.
+                </p>
+                <ul class="custom-list">
+                    <li>Square or rectangular shape</li>
+                    <li>Rounded edges</li>
+                    <li>Brilliant cut style (similar to round brilliant and princess cut diamonds)</li>
+                    <li>Vintage, antique look and feel</li>
+                    <li>Numerous style choices (square vs. rectangular, standard vs. modified, “chunky” vs. “crushed ice”)</li>
+                </ul>
+                <img src="~/Image/IntroImage/cushion.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">How to Choose a Cushion Cut Diamond</h2>
+                <p class="decription">
+                    Looking for a cushion cut? Below, I’ve covered the key factors to look for when buying or comparing cushion cut diamonds, from color to clarity.
+                </p>
+                <h3 class="wp-block-heading">Cushion Diamond Color</h3>
+                <p>
+                    Cushion cuts are one of the worst shapes when it comes to retaining <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color</a>
+                    (or one of the best, if you’re a manufacturer of fancy color diamonds).Cushion cuts are one of the worst shapes when it comes to retaining diamond color (or one of the best, if you’re a manufacturer of fancy color diamonds).
+                    Cushions and radiants are the two most common diamond shapes in the fancy color diamond market. These shapes are on the opposite end of the spectrum from rounds, which are the best at masking their color.
+                    For this reason, I recommend my readers sticking with H or better when buying a cushion cut unless it will be set in yellow or rose gold (in which case, you can go down to J or K).
+                    <a href="https://www.diamonds.pro/education/h-color-diamonds/" data-wpel-link="internal">H color diamond</a> is a good value option. It’s also one of the more popular choices thanks to its balance in price when compared to the natural diamond color. You’ll notice a significant price jump between each color grade, with H falling somewhere in the middle.
+                    Although H diamonds aren’t completely colorless, they are “near colorless” and only have a very slight yellow tint. Almost no one will notice this difference, especially if the diamond is set in rose or yellow gold.
+                </p>
+                <h3 class="wp-block-heading">Cushion Diamond Clarity</h3>
+                <p>
+                    Regarding <a href="https://www.diamonds.pro/education/clarity/" data-wpel-link="internal">diamond clarity</a>, a cushion cut can be a bit tricky.
+                    Firstly, it’s important to note whether you’re looking to buy a crushed-ice cushion or an “antique” cushion.
+                    The reason is simply that the crushed-ice look, in any shape diamond, is generally a very good hider of inclusions.
+                    Additionally, if you’re looking to buy a marquise or pear shape diamond, it’s always best if the inclusions are in the corners as they’ll be very heavily masked by the crushed-ice that’s typically found in the corners of these shapes.
+                    Of course, you’ll only know what kind of cushion look you’ll be buying if you can see a picture of the diamond in question – so it’s already a given that you’d be able to inspect the diamond’s clarity as well.
+                    Therefore, like always, shoot for the lowest clarity you can find that’s still eye-clean.
+                </p>
+                <img src="~/Image/IntroImage/cushion1.png" alt="Destination 4" style="width: 50%;margin:auto" />
+            </div>
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+
