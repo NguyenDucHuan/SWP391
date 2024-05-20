@@ -1,0 +1,350 @@
+﻿<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>The Diamond Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+            .row.decription {
+                margin-top: 10px;
+            }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: black;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 400px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3,
+            .dropdown-menu .col-md-3,
+            .dropdown-menu .divider {
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .slide-content {
+            position: relative;
+            text-align: center;
+        }
+
+            .slide-content p {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .col-md-3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .diamond-search-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .diamond-search-icons figure {
+                margin: 0;
+            }
+
+                .diamond-search-icons figure img {
+                    width: 50px;
+                    height: 50px;
+                }
+
+            .diamond-search-icons figcaption {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+        .search-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: azure;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+
+        .slide-wrapper {
+            position: relative;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+            .carousel-control .glyphicon {
+                color: crimson;
+            }
+
+        .left.carousel-control {
+            left: 10px;
+        }
+
+        .right.carousel-control {
+            right: 10px;
+        }
+
+        .decription {
+            text-align: justify;
+        }
+
+        .spacer {
+            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+        }
+
+        .content.decription p {
+            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
+            text-align: justify;
+        }
+
+        .custom-list li {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+
+                        </button>
+
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <h2 class="text-center">Oval Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Code thêm phần bài viết ở đây-->
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription">
+                    An oval cut diamond provides excellent brilliance, durability and style.
+                    We recommend an H color or better and an SI1 or SI2 for clarity for this diamond shape.
+                    However, it’s crucial to be mindful of the ‘bowtie effect’ in oval diamonds, a potential dark area in the diamond’s center.
+                    If you follow our recommendations laid out in this article, you will get the best oval cut diamond for your buck.
+                    For example, a nice one carat oval cut will cost you $3,200.
+                    Oval cut diamonds, with their elongated and graceful design, have surged in popularity, thanks in part to celebrities like Blake Lively and <a href="https://www.vogue.com.au/fashion/trends/the-biggest-celebrity-engagement-rings-ever/image-gallery/085da20117c110a218d7ba21bc404e78" data-wpel-link="external" target="_blank" rel="external noopener">Hailey Bieber</a>.
+                    Offering a unique blend of classic round brilliance and a distinctive shape, oval diamonds appear larger than their actual carat weight and often come at a more affordable price than round diamonds.
+                    Their elongated design not only enhances finger aesthetics but also provides a modern twist to traditional diamond cuts.
+                    This article will cover everything you need to know to find the perfect oval cut for whichever style you are looking for.
+                </p>
+
+                <h1>The Oval Cut Diamond</h1>
+                <p class="decription">
+                    Bursting with brilliance and fire, an oval cut diamond is exquisite and unique. The oval is considered a “fancy” shape; the elongated design makes it appear larger than other shapes of the same carat weight.
+                    For example, a 1ct oval cut looks quite large in a halo setting. But a <a href="https://www.diamonds.pro/education/1-carat-diamond-ring/" data-wpel-link="internal">1 carat</a> round diamond in a similar setting would look slightly smaller.
+                    The slender body of the oval diamond creates a beautiful, elongated look. It often makes the hand and fingers appear slimmer. The diamond’s shape has no sharp corners, so it’s less prone to chipping.
+                    If you enjoy a rounded design but want a stone with more character, an oval diamond makes a stunning choice. In addition, oval diamonds are almost always priced lower than round brilliants.
+                </p>
+                <img src="~/Image/IntroImage/oval1.jpg" alt="Destination 4" style="width: 100%;" />
+                <h2 class="wp-block-heading">History of the Oval Cut Diamond</h2>
+                <p>
+                    Oval shaped diamonds have been popular for centuries.
+                    The earliest oval diamonds date back to the 1300s, though they aren’t described by name in literature until the 1800s.
+                    According to <a href="https://www.diamonds.net/News/NewsItem.aspx?ArticleID=2309&amp;ArticleTitle=Fancy+Shape+Series--Oval" data-wpel-link="external" target="_blank" rel="external noopener">Rapaport</a>, in the early 1960’s, a Russian diamond cutter named <a href="https://www.ehudlaniado.com/home/index.php/news/entry/the-amazing-story-of" data-wpel-link="external" target="_blank" rel="external noopener">Lazare Kaplan</a> perfected the oval cut process.
+                    He had a knack for turning undesirable rough stones into gorgeous diamonds. His technique significantly improved the brilliance of the oval diamond.
+                    The process that Kaplan pioneered is what diamond cutters use to create oval cut stones today.
+                    The <a href="https://www.jamesallen.com/diamond-rings/oval-cut-engagement-rings/1.01-carat-pave-engagement-ring-1888758?a_aid=dmnd1357&amp;data1=19382" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">oval diamond</a> consistently ranks as one of the most popular diamond shapes..
+                </p>
+            </div>
+            <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Oval Cut Diamond – Color</h2>
+            <p>
+                Color is graded by the GIA on a <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color scale</a> from D to Z.
+                When a diamond has a Z Color grade, it means the diamond contains an easily noticeable brown or yellow tint.
+                On the other end of the scale, the D grade represents the most colorless a diamond can be.
+                While it’s usually impossible to see <a href="https://www.jamesallen.com/education/diamonds/4cs-color/?a_aid=dmnd1357&amp;data1=19382" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">the difference between two color grades</a>, the difference in price can be significant.
+                As it is difficult to notice the differences between color grades with the naked eye, we recommend focusing on how the color appears to you.
+            </p>
+            <p>
+                As a general guideline, we recommend an H color or better for oval cut diamonds.
+                This ensures your stone will look white in a <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">white gold or platinum</a> setting.
+                If you’re setting your diamond in <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">yellow gold or rose gold</a>, feel free to drop down to a J or K to save money or to buy a larger stone.
+                If you want to ensure you’re getting an oval diamond that appears clear to the naked eye and maintains an excellent price point, <a class="cta-ask-form" href="#">reach out to our experts</a> and we’ll be happy to help.
+            </p>
+            <img src="~/Image/IntroImage/oval2.jpg" alt="Destination 4" style="width: 50%;margin-left:210px;height:400px;" />
+        </div>
+        <footer>
+            <hr />
+            <div class="container text-center">
+                <p><a href="#">Back To Top</a></p>
+                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                <p>
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                </p>
+
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+
+
+
