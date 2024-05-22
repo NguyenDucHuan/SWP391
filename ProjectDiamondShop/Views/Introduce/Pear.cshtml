@@ -218,15 +218,14 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
@@ -249,28 +248,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/IntroImage/hình.jpg" alt="Destination 1" style="width: 100%;">
+                                    <img src="~/Image/SlideDiamond/pear.jpg" alt="Destination 1" style="width: 100%; height: 300px">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 2" style="width: 100%;">
+                                    <img src="~/Image/SlideDiamond/pear.png" alt="Destination 2" style="width: 100%; height: 300px">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="/Image/HomePage/BannerSlider/kc3.jpg" alt="Destination 3" style="width: 100%;">
+                                    <img src="~/Image/SlideDiamond/pear1.jpg" alt="Destination 3" style="width: 100%; height: 300px">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/HomePage/BannerSlider/kc4.jpg" alt="Destination 4" style="width: 100%;">
+                                    <img src="~/Image/SlideDiamond/pear2.jpg" alt="Destination 4" style="width: 100%; height: 300px">
                                 </a>
                             </div>
                         </div>
@@ -352,7 +351,7 @@
                     How the diamond is shaped, strictly in 2-dimensional terms, is really one of the most important aspects of a pear shape.
                     This is the case, particularly with pear shapes (and perhaps heart shapes as well), over and above all other shapes.
                 </p>
-                </p>
+
                 <p>
                     <b>Unique Asymmetry</b><br />
                 <p>
@@ -361,7 +360,7 @@
                     Only the pear shape has this unique asymmetrical shape with a different top and bottom.
                     So how the stone makes its way from the round end to the point is what this shape is all about.
                 </p>
-                </p>
+
 
             </div>
         </div>

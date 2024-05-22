@@ -207,21 +207,20 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                            <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                            <li><a href="#">Login</a> </li>
-                                    }
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            }
+
                         </ul>
                     </div>
                 </div>
             </div>
-
             <!---image slider--->
             <div class="container center">
                 <h2>Carousel Example</h2>
@@ -359,7 +358,7 @@
 
         </div>
 
-        
+
 
         <!---Middle Contents End---->
         <!---Footer Contents Start here---->
@@ -377,7 +376,37 @@
         <!---Footer Contents End---->
 
     </form>
-
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Welcome, <span id="userName"></span>!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var successMessage = '@ViewBag.SuccessMessage';
+            var userName = '@ViewBag.UserName';
+            if (successMessage) {
+                $('#userName').text(userName);
+                $('#loginSuccessModal').modal('show');
+                $('#modalOkButton').click(function() {
+                    window.location.href = '@Url.Action("Index", "Home")';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

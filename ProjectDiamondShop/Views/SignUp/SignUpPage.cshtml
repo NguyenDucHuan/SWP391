@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -117,10 +116,23 @@
             text-align: center;
             margin-top: -12px;
         }
+
+        .password-container {
+            position: relative;
+        }
+
+        .show-password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="post" action="@Url.Action("Register", "SignUp")">
+        @Html.AntiForgeryToken()
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container ">
@@ -142,19 +154,18 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li class="active"><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
@@ -166,33 +177,35 @@
 
         <div class="signup-container">
             <h2 class="center-text">Sign Up</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <label class="col-xs-11">User Name:</label>
             <div class="col-xs-11">
-                <asp:TextBox ID="txtUname" runat="server" Class="form-control" placeholder="Enter Your User Name"></asp:TextBox>
+                <input type="text" id="txtUname" name="txtUname" class="form-control" placeholder="Enter Your User Name" value="@ViewBag.UserName" />
             </div>
 
             <label class="col-xs-11">Password:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Class="form-control" placeholder="Enter Your Password"></asp:TextBox>
+            <div class="col-xs-11 password-container">
+                <input type="password" id="txtPass" name="txtPass" class="form-control" placeholder="Enter Your Password" />
+                <span class="glyphicon glyphicon-eye-open show-password-toggle" onclick="togglePasswordVisibility('txtPass')"></span>
             </div>
 
             <label class="col-xs-11">Confirm Password:</label>
-            <div class="col-xs-11">
-                <asp:TextBox ID="txtCPass" runat="server" TextMode="Password" Class="form-control" placeholder="Enter Your Confirm Password"></asp:TextBox>
+            <div class="col-xs-11 password-container">
+                <input type="password" id="txtCPass" name="txtCPass" class="form-control" placeholder="Enter Your Confirm Password" />
+                <span class="glyphicon glyphicon-eye-open show-password-toggle" onclick="togglePasswordVisibility('txtCPass')"></span>
             </div>
 
             <label class="col-xs-11">Your Full Name:</label>
             <div class="col-xs-11">
-                <asp:TextBox ID="txtName" runat="server" Class="form-control" placeholder="Enter Your Name"></asp:TextBox>
+                <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Enter Your Name" value="@ViewBag.FullName" />
             </div>
 
             <label class="col-xs-11">Email:</label>
             <div class="col-xs-11">
-                <asp:TextBox ID="txtEmail" runat="server" Class="form-control" placeholder="Enter Your Email"></asp:TextBox>
+                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="Enter Your Email" value="@ViewBag.Email" />
             </div>
             <div class="col-xs-11">
-                <asp:Button ID="txtsignup" Class="btn btn-success btn-signup-spacing" runat="server" Text="Sign UP" OnClick="txtsignup_Click" />
-                <asp:Label ID="lblMsg" runat="server">Sign Up</asp:Label>
+                <input type="submit" id="txtsignup" class="btn btn-success btn-signup-spacing" value="Sign Up" />
             </div>
         </div>
         <!---signup page end--->
@@ -209,5 +222,15 @@
         </footer>
         <!---Footer Contents End---->
     </form>
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            var field = document.getElementById(fieldId);
+            if (field.type === "password") {
+                field.type = "text";
+            } else {
+                field.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>
