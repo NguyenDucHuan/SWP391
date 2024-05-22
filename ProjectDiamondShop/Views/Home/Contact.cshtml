@@ -15,7 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Contact</title>
-    <style>        .container {
+    <style>
+        .container {
             width: 100%;
             max-width: 960px;
             margin: 0 auto;
@@ -116,24 +117,23 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                            <li ><a href="@Url.Action("About", "Home")">About</a> </li >
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li class="active"><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="SignUp.aspx">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        </form>
+    </form>
 </body>
 </html>

@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -97,7 +100,6 @@
             color: #333;
         }
 
-
         .col-xs-11 {
             display: block;
             margin: 0 auto;
@@ -109,7 +111,8 @@
         }
 
         .btn-login-spacing {
-            margin-top: 10px;
+            margin-top: -5px;
+            margin-left: -15px;
         }
 
         .center-text {
@@ -119,17 +122,17 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="post" action="@Url.Action("Authenticate", "Login")">
+        @Html.AntiForgeryToken()
         <div>
             <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container ">
+                <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-
                         </button>
 
                         <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
@@ -141,19 +144,18 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="#">@Url.Action("Index", "SignUp")</a> </li>
-                                    <li><a href="@Url.Action("LoginPage", "Login")">Login</a> </li>
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li class="active"><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
@@ -165,19 +167,19 @@
 
         <div class="login-container">
             <h2 class="center-text">Login</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group" id="loginForm">
                 <div class="input-group col-xs-11">
                     <label for="username">User Name:</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Your User Name" required>
+                    <input type="text" class="form-control" id="username" name="username" value="@ViewBag.UserName" placeholder="Enter Your User Name" required>
                 </div>
                 <div class="input-group col-xs-11">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Your Password" required>
+                    <input type="password" class="form-control" id="password" name="password" value="@ViewBag.Password" placeholder="Enter Your Password" required>
                 </div>
             </div>
             <div class="col-xs-11">
-                <asp:Button ID="txtlogin" Class="btn btn-success btn-login-spacing" runat="server" Text="Login" OnClick="txtlogin_Click" />
-                <asp:Label ID="lblMsg" runat="server">Login</asp:Label>
+                <input type="submit" id="btnLogin" class="btn btn-success btn-login-spacing" value="Login" />
             </div>
         </div>
 
@@ -197,4 +199,3 @@
     </form>
 </body>
 </html>
-

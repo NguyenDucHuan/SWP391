@@ -187,6 +187,54 @@
     <Content Include="Image\HomePage\DiamondShape\Round.png" />
     <Content Include="Image\HomePage\DiamondShape\Trillion.png" />
     <Content Include="Image\HomePage\Logo\SafeIcon.jpg" />
+    <Content Include="Image\SlideDiamond\asscher.jpg" />
+    <Content Include="Image\SlideDiamond\asscher1.jpg" />
+    <Content Include="Image\SlideDiamond\asscher2.jpg" />
+    <Content Include="Image\SlideDiamond\asscher3.jpg" />
+    <Content Include="Image\SlideDiamond\baguette.png" />
+    <Content Include="Image\SlideDiamond\baguette1.png" />
+    <Content Include="Image\SlideDiamond\baguette2.png" />
+    <Content Include="Image\SlideDiamond\baguette3.png" />
+    <Content Include="Image\SlideDiamond\cushion.png" />
+    <Content Include="Image\SlideDiamond\cushion1.jpg" />
+    <Content Include="Image\SlideDiamond\cushion2.png" />
+    <Content Include="Image\SlideDiamond\cushion3.jpg" />
+    <Content Include="Image\SlideDiamond\emerald.jpg" />
+    <Content Include="Image\SlideDiamond\emerald1.png" />
+    <Content Include="Image\SlideDiamond\emerald2.jpg" />
+    <Content Include="Image\SlideDiamond\emerald4.jpg" />
+    <Content Include="Image\SlideDiamond\heart1.png" />
+    <Content Include="Image\SlideDiamond\heart2.png" />
+    <Content Include="Image\SlideDiamond\heart3.png" />
+    <Content Include="Image\SlideDiamond\heart4.jpg" />
+    <Content Include="Image\SlideDiamond\marquise.jpg" />
+    <Content Include="Image\SlideDiamond\marquise2.jpg" />
+    <Content Include="Image\SlideDiamond\marquise3.jpg" />
+    <Content Include="Image\SlideDiamond\merquise1.png" />
+    <Content Include="Image\SlideDiamond\oval1.jpg" />
+    <Content Include="Image\SlideDiamond\oval2.jpg" />
+    <Content Include="Image\SlideDiamond\oval3.jpg" />
+    <Content Include="Image\SlideDiamond\oval4.jpg" />
+    <Content Include="Image\SlideDiamond\pear.jpg" />
+    <Content Include="Image\SlideDiamond\pear.png" />
+    <Content Include="Image\SlideDiamond\pear1.jpg" />
+    <Content Include="Image\SlideDiamond\pear2.jpg" />
+    <Content Include="Image\SlideDiamond\princess.jpg" />
+    <Content Include="Image\SlideDiamond\princess1.jpg" />
+    <Content Include="Image\SlideDiamond\princess2.jpg" />
+    <Content Include="Image\SlideDiamond\princess3.jpg" />
+    <Content Include="Image\SlideDiamond\radiant.png" />
+    <Content Include="Image\SlideDiamond\radiant1.jpg" />
+    <Content Include="Image\SlideDiamond\radiant2.jpg" />
+    <Content Include="Image\SlideDiamond\radiant3.png" />
+    <Content Include="Image\SlideDiamond\round.jpg" />
+    <Content Include="Image\SlideDiamond\round1.jpg" />
+    <Content Include="Image\SlideDiamond\round2.jpg" />
+    <Content Include="Image\SlideDiamond\round4.jpg" />
+    <Content Include="Image\SlideDiamond\trillion1.jpg" />
+    <Content Include="Image\SlideDiamond\trillion2.jpg" />
+    <Content Include="Image\SlideDiamond\trillion3.jpg" />
+    <Content Include="Image\SlideDiamond\trillion4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -209,6 +257,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,13 +273,15 @@
     <Content Include="Views\Introduce\Pear.cshtml" />
     <Content Include="Views\Introduce\Cushion.cshtml" />
     <Content Include="Views\Introduce\Radiant.cshtml" />
-    <Content Include="Views\Login\LoginPage.cshtml" />
     <Content Include="Views\Introduce\Asscher.cshtml" />
     <Content Include="Views\Introduce\Baguette.cshtml" />
     <Content Include="Views\Introduce\Emerald.cshtml" />
     <Content Include="Views\Introduce\Marquise.cshtml" />
     <Content Include="Views\Introduce\Princess.cshtml" />
     <Content Include="Views\Introduce\Trillion.cshtml" />
+    <Content Include="Views\Login\LoginPage.cshtml">
+      <BrowseToURL>~/Login/index</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,7 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>

@@ -172,7 +172,7 @@
         }
 
         .spacer {
-            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
+            height: 50px; /* Điều chỉnh chiều cao theo nhu cầu */
         }
 
         .content.decription p {
@@ -214,15 +214,14 @@
                             <li class="active"><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
