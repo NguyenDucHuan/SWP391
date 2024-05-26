@@ -209,6 +209,7 @@
                             <li><a href="#">Blog</a> </li>
                             @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
                             {
+                                <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
                                 <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
                             }
                             else

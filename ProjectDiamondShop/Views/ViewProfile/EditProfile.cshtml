@@ -1,0 +1,272 @@
+﻿@model ProjectDiamondShop.Models.User
+
+@{
+    Layout = null;
+    ViewBag.Title = "Edit Profile";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Edit Profile - The Diamond Shop</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="/Content/Custome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: slateblue;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu {
+            width: 300px;
+        }
+
+            .dropdown-menu li a {
+                font-size: 12px;
+            }
+
+            .dropdown-menu h3 {
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+
+            .dropdown-menu .col-md-3 {
+                border-right: 1px solid #ddd;
+                padding-right: 20px;
+            }
+
+                .dropdown-menu .col-md-3:last-child {
+                    border-right: none;
+                }
+
+            .dropdown-menu .divider {
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .navbar-brand span:first-child {
+                margin-right: 10px;
+            }
+
+        .edit-profile-container {
+            padding: 20px;
+            margin-top: 100px;
+            max-width: 400px;
+            width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 2px solid #ccc;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            background-color: skyblue;
+            color: #333;
+        }
+
+        .col-xs-11 {
+            display: block;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .btn-edit-profile-spacing {
+            margin-top: 10px;
+        }
+
+        .center-text {
+            text-align: center;
+            margin-top: -12px;
+        }
+
+        .change-button {
+            margin-left: 10px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .spacer {
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="form1" runat="server" method="post" action="@Url.Action("EditProfile", "ViewProfile")">
+            @Html.AntiForgeryToken()
+            <div>
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                                <span>
+                                    <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                                </span>
+                                <span>The Diamond Shop</span>
+                            </a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                                <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                                <li><a href="#">Blog</a> </li>
+                                @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                                {
+                                    <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                    <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                    <li class="active"><a href="@Url.Action("Index", "Login")">Login</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Page -->
+            <div class="edit-profile-container">
+                <h2 class="center-text">Edit Profile</h2>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label for="UserID">User ID</label>
+                    <input type="text" id="UserID" class="form-control" value="@ViewBag.OriginalUserID" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input type="text" id="UserName" class="form-control" value="@ViewBag.UserName" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="FullName">Full Name</label>
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @readonly = "readonly", @id = "FullName" })
+                    <span class="change-button" data-target="#FullName">Change</span>
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @readonly = "readonly", @id = "Email" })
+                    <span class="change-button" data-target="#Email">Change</span>
+                </div>
+                <div class="form-group">
+                    <label for="OldPassword">Old Password</label>
+                    <input type="password" id="OldPassword" name="oldPassword" class="form-control" />
+                    @Html.ValidationMessage("OldPassword", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="NewPassword">New Password</label>
+                    <input type="password" id="NewPassword" name="newPassword" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update Profile" class="btn btn-primary btn-edit-profile-spacing" />
+                </div>
+            </div>
+
+            <!-- Footer Contents Start Here -->
+
+            <footer class="footer-pos">
+                <div class="spacer"></div>
+                <hr />
+                <div class="container text-center">
+                    <p><a href="#">Back To Top</a></p>
+                    <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+                    <p>
+                        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                    </p>
+                </div>
+            </footer>
+            <!-- Footer Contents End Here -->
+            <!-- Success Modal -->
+            <div class="modal fade" id="updateSuccessModal" tabindex="-1" role="dialog" aria-labelledby="updateSuccessModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateSuccessModalLabel">Profile Update Success</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your profile has been updated successfully!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            $(document).ready(function() {
+                // Enable editing on change button click
+                $('.change-button').click(function() {
+                    var target = $(this).data('target');
+                    $(target).prop('readonly', false);
+                });
+
+                var successMessage = '@ViewBag.SuccessMessage';
+                var userName = '@ViewBag.UserName';
+                if (successMessage) {
+                    $('#updateSuccessModal').modal('show');
+                    $('#modalOkButton').click(function() {
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    });
+                }
+            });
+            </script>
+        </form>
+    </div>
+</body>
+</html>

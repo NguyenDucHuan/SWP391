@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -71,11 +72,12 @@ namespace ProjectDiamondShop.Controllers
             }
 
             // Check if user name already exists
+            string hashedUserName = HashUserName(userName);
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand checkUserName = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE userID = @UserID", conn);
-                checkUserName.Parameters.AddWithValue("@UserID", HashUserID(userName));
+                SqlCommand checkUserName = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE userName = @UserName", conn);
+                checkUserName.Parameters.AddWithValue("@UserName", hashedUserName);
                 int userNameExists = (int)checkUserName.ExecuteScalar();
 
                 if (userNameExists > 0)
@@ -132,17 +134,19 @@ namespace ProjectDiamondShop.Controllers
 
             // Hash password
             string hashedPassword = HashPassword(password);
-            // Hash user ID
-            string hashedUserID = HashUserID(userName);
+
+            // Create random userID
+            string userId = GenerateRandomUserId();
 
             // Create new user
             User newUser = new User
             {
-                UserID = hashedUserID, // Sử dụng userName đã băm làm UserID
+                UserID = userId,
+                UserName = hashedUserName,
                 FullName = fullName,
                 Email = email,
-                Password = hashedPassword, // Lưu mật khẩu đã băm
-                RoleID = 1, // Assuming default role ID for user
+                Password = hashedPassword,
+                RoleID = 1,
                 Status = true
             };
 
@@ -152,11 +156,12 @@ namespace ProjectDiamondShop.Controllers
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand insertUser = new SqlCommand("INSERT INTO tblUsers (userID, fullName, email, password, roleID, status, bonusPoint) VALUES (@UserID, @FullName, @Email, @Password, @RoleID, @Status, @BonusPoint)", conn);
+                    SqlCommand insertUser = new SqlCommand("INSERT INTO tblUsers (userID, userName, fullName, email, password, roleID, status, bonusPoint) VALUES (@UserID, @UserName, @FullName, @Email, @Password, @RoleID, @Status, @BonusPoint)", conn);
                     insertUser.Parameters.AddWithValue("@UserID", newUser.UserID);
+                    insertUser.Parameters.AddWithValue("@UserName", newUser.UserName);
                     insertUser.Parameters.AddWithValue("@FullName", newUser.FullName);
                     insertUser.Parameters.AddWithValue("@Email", newUser.Email);
-                    insertUser.Parameters.AddWithValue("@Password", newUser.Password); // Lưu mật khẩu đã băm
+                    insertUser.Parameters.AddWithValue("@Password", newUser.Password);
                     insertUser.Parameters.AddWithValue("@RoleID", newUser.RoleID);
                     insertUser.Parameters.AddWithValue("@Status", newUser.Status);
                     insertUser.Parameters.AddWithValue("@BonusPoint", newUser.BonusPoint.HasValue ? (object)newUser.BonusPoint.Value : DBNull.Value);
@@ -191,22 +196,30 @@ namespace ProjectDiamondShop.Controllers
                 {
                     builder.Append(b.ToString("x2"));
                 }
-                return builder.ToString().Substring(0,32); // Trả về toàn bộ chuỗi băm 32 kí tự đầu
+                return builder.ToString().Substring(0, 32);
             }
         }
 
-        private string HashUserID(string userID)
+        private string HashUserName(string userName)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userID));
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userName));
                 StringBuilder builder = new StringBuilder();
                 foreach (byte b in bytes)
                 {
                     builder.Append(b.ToString("x2"));
                 }
-                return builder.ToString().Substring(0,32); // Trả về toàn bộ chuỗi băm 32 kí tự đầu
+                return builder.ToString().Substring(0, 32);
             }
+        }
+
+        private string GenerateRandomUserId()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 6)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

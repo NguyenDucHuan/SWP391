@@ -25,24 +25,24 @@ namespace ProjectDiamondShop.Controllers
             string userName = Request.Form["username"];
             string password = Request.Form["password"];
 
-            // Hash the UserID and Password
-            string hashedUserID = HashUserID(userName);
+            // Hash the password and username
             string hashedPassword = HashPassword(password);
+            string hashedUserName = HashUserName(userName);
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE userID = @UserID AND password = @Password", conn);
-                cmd.Parameters.AddWithValue("@UserID", hashedUserID);
+                SqlCommand cmd = new SqlCommand("SELECT userID FROM tblUsers WHERE userName = @UserName AND password = @Password", conn);
+                cmd.Parameters.AddWithValue("@UserName", hashedUserName);
                 cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
-                int userExists = (int)cmd.ExecuteScalar();
+                string userId = cmd.ExecuteScalar() as string;
 
-                if (userExists > 0)
+                if (!string.IsNullOrEmpty(userId))
                 {
                     // Authentication successful
-                    Session["UserID"] = hashedUserID;
-                    Session["UserName"] = userName;
+                    Session["UserID"] = userId; // Lưu UserID đã băm vào Session
+                    Session["UserName"] = userName; // Lưu UserName gốc vào Session
                     Session["IsAuthenticated"] = true;
                     TempData["SuccessMessage"] = "Login successful!";
                     TempData["UserName"] = userName;
@@ -59,6 +59,12 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -69,28 +75,22 @@ namespace ProjectDiamondShop.Controllers
                 {
                     builder.Append(b.ToString("x2"));
                 }
-                return builder.ToString().Substring(0, 32); 
+                return builder.ToString().Substring(0, 32);
             }
         }
 
-        private string HashUserID(string userID)
+        private string HashUserName(string userName)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userID));
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userName));
                 StringBuilder builder = new StringBuilder();
                 foreach (byte b in bytes)
                 {
                     builder.Append(b.ToString("x2"));
                 }
-                return builder.ToString().Substring(0, 32); 
+                return builder.ToString().Substring(0, 32);
             }
-        }
-
-        public ActionResult Logout()
-        {
-            Session.Clear();
-            return RedirectToAction("Index", "Home");
         }
     }
 }
