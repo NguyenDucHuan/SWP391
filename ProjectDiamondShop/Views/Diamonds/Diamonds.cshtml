@@ -1,0 +1,179 @@
+﻿@model List<ProjectDiamondShop.Models.Diamond>
+@{
+    ViewBag.Title = "Diamonds";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+<style>
+    select {
+        width: 150px;
+    }
+
+        select option {
+            padding: 5px;
+        }
+</style>
+<link href="~/Content/ProductCss/style.css" rel="stylesheet" />
+<link href="~/Content/ProductCss/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/ProductCss/owl.theme.default.min.css" rel="stylesheet" />
+<link href="~/Content/ProductCss/animate.css" rel="stylesheet" />
+<link href="~/Content/ProductCss/linearicons.css" rel="stylesheet" />
+<link href="~/Content/ProductCss/SliderMaxMin.css" rel="stylesheet" />
+@{
+    // Danh sách clarity
+    List<string> clarities = new List<string>() { "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "SI3", "I1", "I2", "I3" };
+
+    // Danh sách cut
+    List<string> cuts = new List<string>() { "Excellent", "Very Good", "Good", "Fair", "Poor", "Ideal"};
+
+    // Danh sách color
+    List<string> colors = new List<string>() { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    // Danh sách shapes
+    List<string> shapes = new List<string>(){"Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear"}
+;
+
+}
+
+<div class="container" style="margin-top:50px;">
+    @using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <label for="SearchTerm">Search Term:</label>
+            <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" />
+        </div>
+        //Clarity
+        <div>
+            <label for="Clarity">Clarity:</label>
+            <select id="Clarity" name="Clarity">
+                <option value="">-- All --</option>
+                @foreach (var clarity in clarities)
+                {
+                    <option value="@clarity" @(clarity == ViewBag.SelectedClarity ? "selected" : "")>@clarity</option>
+                }
+
+            </select>
+        </div>
+        // Cut
+        <div>
+            <label for="Cut">Cut:</label>
+            <select id="Cut" name="Cut">
+                <option value="">-- All --</option>
+                @foreach (var cut in cuts)
+                {
+                    <option value="@cut" @(cut == ViewBag.SelectedCut ? "selected" : "")>@cut</option>
+                }
+
+
+            </select>
+        </div>
+        //Color
+        <div>
+            <label for="Color">Color:</label>
+            <select id="Color" name="Color">
+                <option value="">-- All --</option>
+                
+                @foreach (var color in colors)
+                {
+                    <option value="@color" @(color == ViewBag.SelectedColor ? "selected" : "")>@color</option>
+                }
+
+
+            </select>
+        </div>
+        //Shape
+        <div class="">
+            <label for="Shape">Shape:</label>
+            <select id="Shape" name="Shape">
+                <option value="">-- All --</option>
+                @foreach (var shape in shapes)
+                {
+                    
+                    <option value="@shape" @(shape == ViewBag.SelectedShape ? "selected" : "")>@shape</option>
+                }
+
+
+            </select>
+        </div>
+        //Price
+        <div id="PriceDiv">
+            <div class="range_container">
+                <div class="sliders_control">
+                    <input id="fromSlider" type="range" value="@ViewBag.minPrice" min="1" max="99999" step="1" />
+                    <input id="toSlider" type="range" value="@ViewBag.maxPrice" min="1" max="99999" step="1" />
+                </div>
+                <div class="form_control">
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">MinPrice</div>
+                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minPrice" min="1" max="99999" step="1" name="MinPrice" />
+                    </div>
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">MaxPrice</div>
+                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxPrice" min="1" max="99999" step="1" name="MaxPrice" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        //Carat Weight
+        <div id="CaratDiv">
+            <div class="range_container">
+                <div class="sliders_control">
+                    <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" />
+                    <input id="toSlider" type="range" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" />
+                </div>
+                <div class="form_control">
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">Min Carat</div>
+                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" name="MinCaratWeight" />
+                    </div>
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">Max Carat</div>
+                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" name="MaxCaratWeight" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit">Filter</button>
+        @*<button type="reset">Reset</button>*@ //nếu muốn để reset button cần phải làm js để cài lại giá trị range để nó ko bị lỗi hình ảnh 
+    }
+</div>
+<section id="new-arrivals" class="new-arrivals">
+    <div class="container">
+        <div class="new-arrivals-content">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    string[] imagepart = item.diamondImagePath.Split('|');
+                    <div class="col-md-3 col-sm-4">
+                        <div class="single-new-arrival">
+                            <div class="single-new-arrival-bg">
+                                <img src="@imagepart[0]" alt="new-arrivals images" style="width:100% ">
+                                <div class="single-new-arrival-bg-overlay"></div>
+                                @*<div class="sale bg-1">
+                                        <p>sale</p>
+                                    </div>*@
+                                <div class="new-arrival-cart">
+                                    <p>
+                                        <span class="lnr lnr-cart"></span>
+                                        <a href="#">add <span>to </span> cart</a>
+                                    </p>
+                                    <p class="arrival-review pull-right">
+                                        <span class="lnr lnr-heart"></span>
+                                        <span class="lnr lnr-frame-expand"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <h4 style=" height: 40px"><a href="#">@item.diamondName</a></h4>
+                            <p class="arrival-product-price">$@item.diamondPrice</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div><!--/.container-->
+</section><!--/.new-arrivals-->
+<script src="~/Scripts/ProductJs/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="~/Scripts/ProductJs/bootstrap.min.js"></script>
+<script src="~/Scripts/ProductJs/jquery.js"></script>
+<script src="~/Scripts/ProductJs/SliderMaxMin.js"></script>

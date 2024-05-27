@@ -106,6 +106,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custome.css" />
+    <Content Include="Content\ProductCss\animate.css" />
+    <Content Include="Content\ProductCss\bootstrap.min.css" />
+    <Content Include="Content\ProductCss\font-awesome.min.css" />
+    <Content Include="Content\ProductCss\fontawesome-webfont.svg" />
+    <Content Include="Content\ProductCss\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\ProductCss\Linearicons-Free.svg" />
+    <Content Include="Content\ProductCss\linearicons.css" />
+    <Content Include="Content\ProductCss\owl.theme.default.min.css" />
+    <Content Include="Content\ProductCss\style.css" />
+    <Content Include="Content\ProductCss\SliderMaxMin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -116,7 +126,44 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\ProductCss\fontawesome-webfont.eot" />
+    <Content Include="Content\ProductCss\fontawesome-webfont.ttf" />
+    <Content Include="Content\ProductCss\fontawesome-webfont.woff" />
+    <Content Include="Content\ProductCss\fontawesome-webfont.woff2" />
+    <Content Include="Content\ProductCss\FontAwesome.otf" />
+    <Content Include="Content\ProductCss\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\ProductCss\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\ProductCss\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\ProductCss\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\ProductCss\Linearicons-Free.eot" />
+    <Content Include="Content\ProductCss\Linearicons-Free.ttf" />
+    <Content Include="Content\ProductCss\Linearicons-Free.woff" />
+    <Content Include="Content\ProductCss\Linearicons-Free.woff2" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Image\DiamondDTO\Certificates\CER01.jpg" />
+    <Content Include="Image\DiamondDTO\Certificates\CER02.jpg" />
+    <Content Include="Image\DiamondDTO\Certificates\CER03.jpg" />
+    <Content Include="Image\DiamondDTO\Certificates\CER04.jpg" />
+    <Content Include="Image\DiamondDTO\Certificates\CER05.jpg" />
+    <Content Include="Image\DiamondDTO\Certificates\CER06.jpg" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia1A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia1B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia1C.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia2A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia2B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia2C.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia3A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia3B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia3C.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia4A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia4B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia4C.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia5A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia5B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia5C.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia6A.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia6B.png" />
+    <Content Include="Image\DiamondDTO\Diamonds\dia6C.png" />
     <Content Include="Image\Introlmage\1.55-ratio-pear-1.jpg" />
     <Content Include="Image\Introlmage\1.89-ratio-pear.jpg" />
     <Content Include="Image\Introlmage\Baguette1.png" />
@@ -239,6 +286,11 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\ProductJs\bootstrap.min.js" />
+    <Content Include="Scripts\ProductJs\custom.js" />
+    <Content Include="Scripts\ProductJs\feather.min.js" />
+    <Content Include="Scripts\ProductJs\SliderMaxMin.js" />
+    <Content Include="Scripts\ProductJs\jquery.js" />
     <Content Include="Views\SignUp\css\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\HomePage.cshtml">
@@ -250,6 +302,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DiamondsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroduceController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -258,8 +311,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Diamond.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DiamondRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -284,6 +339,10 @@
       <BrowseToURL>~/Login/index</BrowseToURL>
     </Content>
     <Content Include="Views\ViewProfile\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Diamonds\Diamonds.cshtml">
+      <BrowseToURL>~/diamonds/index</BrowseToURL>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -293,7 +352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
