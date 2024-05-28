@@ -638,3 +638,34 @@ C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectD
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
