@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\TERM5\\SWP391\\SWP391\\",
+  "WorkspaceRootPath": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\swp391\\projectdiamondshop\\views\\introduce\\asscher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\asscher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\thu nghiem\\projectdiamondshop\\views\\forgotpassword\\enterresetcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\enterresetcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\swp391\\projectdiamondshop\\views\\introduce\\baguette.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\baguette.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\thu nghiem\\projectdiamondshop\\views\\forgotpassword\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\thu nghiem\\projectdiamondshop\\views\\forgotpassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\thu nghiem\\projectdiamondshop\\views\\login\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\login\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 210,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Asscher.cshtml",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
-              "ToolTip": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
-              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
-              "ViewState": "AQIAACABAAAAAAAAAAAAADcBAAAmAAAA",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\Index.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\Index.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\Index.cshtml",
+              "ViewState": "AQIAADQAAAAAAAAAAAAcwDkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-28T08:23:46.495Z",
+              "WhenOpened": "2024-05-28T14:13:08.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\Login\\LoginPage.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Login\\LoginPage.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\Login\\LoginPage.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Login\\LoginPage.cshtml",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAFQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-28T14:10:46.04Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Baguette.cshtml",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
-              "ToolTip": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
-              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
-              "ViewState": "AQIAAPYAAAAAAAAAAAAAAA0AAAAUAAAA",
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "ViewState": "AQIAABgAAAAAAAAAAAAswDkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-28T08:22:49.182Z",
+              "WhenOpened": "2024-05-28T14:13:20.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EnterResetCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Thu nghiem\\ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAcwDkAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-28T14:12:54.819Z",
               "EditorCaption": ""
             }
           ]

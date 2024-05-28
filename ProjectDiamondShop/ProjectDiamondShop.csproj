@@ -353,6 +353,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DiamondsController.cs" />
+    <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroduceController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -393,6 +394,9 @@
     <Content Include="Views\Introduce\Radiant.cshtml" />
     <Content Include="Views\Introduce\Round.cshtml" />
     <Content Include="Views\Introduce\Trillion.cshtml" />
+    <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
+    <Content Include="Views\ForgotPassword\Index.cshtml" />
+    <Content Include="Views\ForgotPassword\ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
