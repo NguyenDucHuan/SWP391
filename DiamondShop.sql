@@ -192,11 +192,11 @@ CREATE TABLE [dbo].[tblWarranty](
 
 --Insert Role
 INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES 
-( 1 , 'user'),
-( 2 , 'admin'),
-( 3 , 'manager'),
-( 4 , 'deliverystaff'),
-( 5 , 'salestaff');
+( 1 , 'User'),
+( 2 , 'Admin'),
+( 3 , 'Manager'),
+( 4 , 'Deliverystaff'),
+( 5 , 'Salestaff');
 --Insert Shape
 
 INSERT INTO [dbo].[tblDiamonds] ([diamondName], [diamondPrice], [diamondDescription], [caratWeight],[clarityID], [cutID],  [colorID], [shapeID],[diamondImagePath],[status]) VALUES 

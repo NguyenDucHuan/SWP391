@@ -95,7 +95,7 @@
             flex-direction: column;
             justify-content: center;
             border: 2px solid #ccc;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 14px rgba(0,0,0,0.5);
             border-radius: 10px;
             background-color: skyblue;
             color: #333;
@@ -119,6 +119,9 @@
         .center-text {
             text-align: center;
             margin-top: -12px;
+        }
+        .forgot{
+            text-align:center;
         }
     </style>
 </head>
@@ -179,8 +182,11 @@
                     <input type="password" class="form-control" id="password" name="password" value="@ViewBag.Password" placeholder="Enter Your Password" required>
                 </div>
             </div>
-            <div class="col-xs-11">
+            <div class="col-xs-11 login">
                 <input type="submit" id="btnLogin" class="btn btn-success btn-login-spacing" value="Login" />
+            </div>
+            <div class="form-group forgot">
+                <a href="@Url.Action("Index", "ForgotPassword")">Forgot Password?</a>
             </div>
         </div>
 
