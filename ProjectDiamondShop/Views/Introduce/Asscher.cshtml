@@ -218,14 +218,15 @@
                         <li><a href="@Url.Action("About", "Home")">About</a> </li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                         <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="#">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                <li><a href="#">Login</a> </li>
+                            }
                         }
                     </ul>
                 </div>
@@ -233,7 +234,7 @@
         </div>
 
         <div class="spacer"></div>
-        <h2 class="text-center">Asscher Diamond Story</h2>
+        <h2 class="text-center" style="margin-top: 48px;">Asscher Diamond Story</h2>
 
         <div class="container center">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -248,28 +249,29 @@
                     <div class="item active">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/asscher.jpg" alt="Destination 1" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/asscherring.jpg" alt="Destination 1" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/asscher1.jpg" alt="Destination 2" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/asscherring1.jpg" alt="Destination 2" style="width: 100%;" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        8
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/asscherring2.jpg" alt="Destination 3" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/asscher2.jpg" alt="Destination 3" style="width: 100%; height: 300px" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/asscher3.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                <img src="~/Image/SlideDiamond/asscherring3.jpg" alt="Destination 4" style="width: 100%;">
                             </a>
                         </div>
                     </div>
@@ -289,7 +291,7 @@
         <!--Code thêm phần bài viết ở đây-->
         <div class="container center ">
             <div class="row ">
-                <p class="decription">
+                <p class="decription justify">
                     The Asscher cut diamond is a distinctive choice, characterized by its square shape with deep, layered facets.
                     While it shares some similarities with the emerald cut, its unique octagonal design sets it apart.
                     There are two primary variations: the standard Asscher and the Royal Asscher.
@@ -299,7 +301,7 @@
                     Below we discuss everything you need to find yourself the perfect asscher cut diamond.
                 </p>
                 <h1>What is an Asscher Cut Diamond?</h1>
-                <p class="decription">
+                <p class="decription justify">
                     <b>Unique Features of Asscher Diamonds</b>
                     The straight-edged facets of the asscher diamond (like <a href="https://www.jamesallen.com/loose-diamonds/asscher-cut/1.01-carat-h-color-vvs2-clarity-sku-11345403?a_aid=dmnd1357&amp;data1=1665" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this gorgeous 1ct from James Allen</a>) give it a unique, clean look.
                     Sometimes referred to as a “square emerald”, both shapes carry a signature point of difference to brilliant cuts, with their features reminiscent of the Art Deco era.
@@ -317,13 +319,13 @@
                     <li>Vintage, antique look and feel</li>
                     <li>Numerous style choices (square vs. rectangular, standard vs. modified, “chunky” vs. “crushed ice”)</li>
                 </ul>
-                <img src="Diamond_Img/cushion.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/cushion.png" alt="Destination 4" style="width: 50%;margin:auto" />
                 <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">How to Choose a Cushion Cut Diamond</h2>
-                <p class="decription">
+                <p class="decription justify">
                     Looking for a cushion cut? Below, I’ve covered the key factors to look for when buying or comparing cushion cut diamonds, from color to clarity.
                 </p>
                 <h3 class="wp-block-heading">Cushion Diamond Color</h3>
-                <p>
+                <p class="decription justify">
                     Cushion cuts are one of the worst shapes when it comes to retaining <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color</a>
                     (or one of the best, if you’re a manufacturer of fancy color diamonds).Cushion cuts are one of the worst shapes when it comes to retaining diamond color (or one of the best, if you’re a manufacturer of fancy color diamonds).
                     Cushions and radiants are the two most common diamond shapes in the fancy color diamond market. These shapes are on the opposite end of the spectrum from rounds, which are the best at masking their color.
@@ -332,7 +334,7 @@
                     Although H diamonds aren’t completely colorless, they are “near colorless” and only have a very slight yellow tint. Almost no one will notice this difference, especially if the diamond is set in rose or yellow gold.
                 </p>
                 <h3 class="wp-block-heading">Cushion Diamond Clarity</h3>
-                <p>
+                <p class="decription justify">
                     Regarding <a href="https://www.diamonds.pro/education/clarity/" data-wpel-link="internal">diamond clarity</a>, a cushion cut can be a bit tricky.
                     Firstly, it’s important to note whether you’re looking to buy a crushed-ice cushion or an “antique” cushion.
                     The reason is simply that the crushed-ice look, in any shape diamond, is generally a very good hider of inclusions.

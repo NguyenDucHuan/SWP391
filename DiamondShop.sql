@@ -200,17 +200,17 @@ INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES
 --Insert Shape
 
 INSERT INTO [dbo].[tblDiamonds] ([diamondName], [diamondPrice], [diamondDescription], [caratWeight],[clarityID], [cutID],  [colorID], [shapeID],[diamondImagePath],[status]) VALUES 
-('1.01 Carat Round Diamond',4080,'This 1.01 round H diamond is sold exclusively.', 1.01,'VS2','Excellent','H', 'Round','~/Image/diamond/dia1A.jpg|~/Image/DiamondDTO/Diamonds/dia1B.png|~/Image/DiamondDTO/Diamonds/dia1C.png',1 ),
-('1.00 Carat Princess Diamond',2400,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','H', 'Princess','~/Image/diamond/dia2A.jpg|~/Image/DiamondDTO/Diamonds/dia2B.png|~/Image/DiamondDTO/Diamonds/dia2C.png',1),
-('2.08 Carat Cushion Modified Diamond',11190,'This 2.08 cushion modified H diamond is sold exclusively.',2.08,'VS1','Ideal','H', 'Cushion','~/Image/diamond/dia3A.jpg|~/Image/DiamondDTO/Diamonds/dia3B.png|~/Image/DiamondDTO/Diamonds/dia3C.png',1),
-('2.51 Carat Emerald Diamond',23490,'This 2.51 Carat Emerald Diamond is sold exclusive. ',2.51,'VS1','Ideal','H', 'Emerald','~/Image/diamond/dia4A.jpg|~/Image/DiamondDTO/Diamonds/dia4B.png|~/Image/DiamondDTO/Diamonds/dia4C.png',1),
-('2.50 Carat Oval Diamond',24630,'2.50 Carat Oval Diamond is sold exclusive.',2.50,'VS2','Ideal','G', 'Oval','~/Image/diamond/dia5A.jpg|~/Image/DiamondDTO/Diamonds/dia5B.png|~/Image/DiamondDTO/Diamonds/dia5C.png',1),
-('1.81 Carat Radiant Diamond',12480,'1.81 Carat Radiant Diamond is sold eclusive',1.81,'VS2','Ideal','H', 'Radiant','~/Image/diamond/dia6A.jpg|~/Image/DiamondDTO/Diamonds/dia6B.png|~/Image/DiamondDTO/Diamonds/dia6C.png',1)
+('1.01 Carat Round Diamond',4080,'This 1.01 round H diamond is sold exclusively.', 1.01,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia1A.png|/Image/DiamondDTO/Diamonds/dia1B.png|/Image/DiamondDTO/Diamonds/dia1C.png',1 ),
+('1.00 Carat Princess Diamond',2400,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','H', 'Princess','/Image/DiamondDTO/Diamonds/dia2A.png|/Image/DiamondDTO/Diamonds/dia2B.png|/Image/DiamondDTO/Diamonds/dia2C.png',1),
+('2.08 Carat Cushion Modified Diamond',11190,'This 2.08 cushion modified H diamond is sold exclusively.',2.08,'VS1','Ideal','H', 'Cushion','/Image/DiamondDTO/Diamonds/dia3A.png|/Image/DiamondDTO/Diamonds/dia3B.png|/Image/DiamondDTO/Diamonds/dia3C.png',1),
+('2.51 Carat Emerald Diamond',23490,'This 2.51 Carat Emerald Diamond is sold exclusive. ',2.51,'VS1','Ideal','H', 'Emerald','/Image/DiamondDTO/Diamonds/dia4A.png|/Image/DiamondDTO/Diamonds/dia4B.png|/Image/DiamondDTO/Diamonds/dia4C.png',1),
+('2.50 Carat Oval Diamond',24630,'2.50 Carat Oval Diamond is sold exclusive.',2.50,'VS2','Ideal','G', 'Oval','/Image/DiamondDTO/Diamonds/dia5A.png|/Image/DiamondDTO/Diamonds/dia5B.png|/Image/DiamondDTO/Diamonds/dia5C.png',1),
+('1.81 Carat Radiant Diamond',12480,'1.81 Carat Radiant Diamond is sold eclusive',1.81,'VS2','Ideal','H', 'Radiant','/Image/DiamondDTO/Diamonds/dia6A.png|/Image/DiamondDTO/Diamonds/dia6B.png|/Image/DiamondDTO/Diamonds/dia6C.png',1)
 ;
 INSERT INTO [dbo].[tblCertificate] ([diamondID], [certificateNumber], [issueDate], [certifyingAuthority], [cerImagePath]) VALUES 
-    (1, 'CERT000001', '2024-05-26', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg'),
-    (2, 'CERT000002', '2024-05-27', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg'),
-    (3, 'CERT000003', '2024-05-28', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg'),
-    (4, 'CERT000004', '2024-05-29', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg'),
-    (5, 'CERT000005', '2024-05-30', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg'),
-    (6, 'CERT000006', '2024-04-30', 'GIA', '~/Image/DiamondDTO/Certificates/CER01.jpg');
+    (1, 'CERT000001', '2024-05-26', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),
+    (2, 'CERT000002', '2024-05-27', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),
+    (3, 'CERT000003', '2024-05-28', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),
+    (4, 'CERT000004', '2024-05-29', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),
+    (5, 'CERT000005', '2024-05-30', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),
+    (6, 'CERT000006', '2024-04-30', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg');

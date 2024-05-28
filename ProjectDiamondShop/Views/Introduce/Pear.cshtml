@@ -218,14 +218,15 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -233,7 +234,7 @@
             </div>
 
             <div class="spacer"></div>
-            <h2 class="text-center">Pear Diamond Story</h2>
+            <h2 class="text-center" style="margin-top: 48px;">Pear Diamond Story</h2>
 
             <div class="container center">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -248,28 +249,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/pear.jpg" alt="Destination 1" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/pearring.jpg" alt="Destination 1" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/pear.png" alt="Destination 2" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/pearring1.jpg" alt="Destination 2" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/pear1.jpg" alt="Destination 3" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/pearring2.jpg" alt="Destination 3" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/pear2.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/pearring3.jpg" alt="Destination 4" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
@@ -302,14 +303,14 @@
                     Pear cut or pear shaped diamonds have an elongated shape, much like a marquise or oval cut.
                     In a pear cut diamond, one end is rounded (like an oval cut), and the other ends in a point (like a marquise diamond).
                 </p>
-                <p>
+                <p class="decription justify">
                     This results in pear shaped diamonds’ unique appearance, making for one-of-a-kind engagement rings, or other pieces of jewelry.
                     Engagement rings set with pear shape diamonds are great for making the wearer’s finger appear longer and slimmer.
                     A pear shaped diamond can vary in its exact shape. Some pear shapes are more elongated, while others are shorter and stubbier.
                     The length to width ratio of a pear shaped diamond generally falls between 1.5 and 2.0.
                     Each person may have their own preference for L/W ratio in a pear shape diamond, however the optimal ratio is usually somewhere between 1.55 and 1.75.
                 </p>
-                <img src="~/Image/IntroImage/pear.jpg" alt="Destination 4" style="width: 100%;margin:auto" />
+                <img src="~/Image/Introlmage/pear.jpg" alt="Destination 4" style="width: 100%;margin:auto" />
                 <h2 class="wp-block-heading">The Pear Shape – A Classic Beauty</h2>
                 <p class="decription">
                     While pear shapes are certainly not among the most popular shapes these days, I must confess that I am personally a lover of this shape.
@@ -321,40 +322,43 @@
                     It’s just a matter of picking the right cut and setting, which we’ll help you within this article.
                 <p>
                     <h2 class="wp-block-heading" id="Pear-Shape-Length-to-Width-Ratio">Pear Shape: Length to Width Ratio</h2>
-                    <img src="~/Image/IntroImage/pear-shape-ratios.png" alt="Destination 4" style="width: 100%;margin:auto" />
-                <p>
+                    <img src="~/Image/Introlmage/pear-shape-ratios.png" alt="Destination 4" style="width: 100%;margin:auto" />
+                <p class="decription justify">
                     On of the most common way pear shapes are miscut is with an out of balance length to width ratio.
                     Most people find that they prefer pear shapes with a length to width ratio of about 1.55 to about 1.75.
                     As you can see in the diagram to the right, both of these ratios look natural for the shape whereas the stone that has a 2.0 L/W ratio looks out of whack.
                     Where you fall between 1.55 and 1.75 is really a matter of personal preference.
                     Lets take a look at some real life examples:
                 </p>
-                <img src="~/Image/IntroImage/pear1.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
-                <p>
+                <img src="~/Image/Introlmage/pear1.png" alt="Destination 4" style="width: 100%;margin:auto" />
+
+                <p class="decription justify">
                     <b>Unbecoming Ratios</b><br />
                     As you can see in the picture above, an L/W ratio of 1.47 already looks way too short and stubby for a pear shape.
                     This stone looks like a slightly stretched out round shape – not what you’d like to see in a pear.
                 <p />
-                <img src="~/Image/IntroImage/1.89-ratio-pear.jpg" alt="Destination 4" style="width: 60%;margin-left:205px;" />
-                <p>In the picture here, you can see the opposite extreme. This stone has an L/W ratio of 1.89 which is way too long for a pear shape.</p>
-                <p>
+
+                <img src="~/Image/Introlmage/1.89-ratio-pear.jpg" alt="Destination 4" style="width: 100%;margin:auto" />
+
+                <p class="decription justify">In the picture here, you can see the opposite extreme. This stone has an L/W ratio of 1.89 which is way too long for a pear shape.</p>
+                <p class="decription justify">
                     <b>Beautiful Examples</b><br />
                     And finally, Goldilocks, we’ve come to the stones that fit just right.
                     To the left and right you can see beautiful examples of stones that are at opposite ends of the acceptable range of L/W.
                     Where your preferences lie between these two boundaries is just a matter of what shape speaks to your tastes.
                 <p />
-                <img src="~/Image/IntroImage/1.55-ratio-pear-1.jpg" alt="Destination 4" style="width: 60%;margin-left:205px;" />
+                <img src="~/Image/Introlmage/1.55-ratio-pear-1.jpg" alt="Destination 4" style="width: 60%; display: block; margin: auto;" />
+
                 <p>
                     <b>Straight vs. Curvy Pear Shapes</b><br />
-                <p>
+                <p class="decription justify">
                     While the length-to-width ratio is something that you can calculate yourself by viewing the diamond’s measurements on the certificate, the silhouette of the stone is not something you can figure out on paper alone.
                     How the diamond is shaped, strictly in 2-dimensional terms, is really one of the most important aspects of a pear shape.
                     This is the case, particularly with pear shapes (and perhaps heart shapes as well), over and above all other shapes.
                 </p>
-
-                <p>
+                <p class="decription justify">
                     <b>Unique Asymmetry</b><br />
-                <p>
+
                     WThe reason is simply that the pear shape’s silhouette is its signature.
                     Think about it – every other shape is a basic symmetrical geometric shape.
                     Only the pear shape has this unique asymmetrical shape with a different top and bottom.

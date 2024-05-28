@@ -194,97 +194,98 @@
 <body>
     <form id="form1" runat="server">
         <div>
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container ">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container ">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
 
-                    </button>
+                        </button>
 
-                    <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                        <span>
-                            <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                        </span>
-                        <span>The Diamond Shop</span>
+                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                            </span>
+                            <span>The Diamond Shop</span>
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
+                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
+                            <li><a href="#">Blog</a> </li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacer"></div>
+            <h2 class="text-center" style="margin-top: 48px;">Princess Diamond Story</h2>
+
+            <div class="container center">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/SlideDiamond/princessring.jpg" alt="Destination 1" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/SlideDiamond/princessring1.jpg" alt="Destination 2" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/SlideDiamond/princessring2.jpg" alt="Destination 3" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-wrapper">
+                                <a href="#">
+                                    <img src="~/Image/SlideDiamond/princessring3.jpg" alt="Destination 4" style="width: 100%;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                        <li><a href="@Url.Action("About", "Home")">About</a> </li>
-                        <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
-                        <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                        }
-                    </ul>
-                </div>
             </div>
         </div>
-
-        <div class="spacer"></div>
-        <h2 class="text-center">Princess Diamond Story</h2>
-
-        <div class="container center">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/princess.jpg" alt="Destination 1" style="width: 100%; height: 300px">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/princess1.jpg" alt="Destination 2" style="width: 100%; height: 300px">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/princess2.jpg" alt="Destination 3" style="width: 100%; height: 300px">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/princess3.jpg" alt="Destination 4" style="width: 100%; height: 300px">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-</div>
 
         <!--Code thêm phần bài viết ở đây-->
         <div class="container center ">
@@ -298,47 +299,47 @@
                     If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
                 </p>
                 <h2 class="wp-block-heading" id="Princess-Diamond-Engagement-Rings---Becoming-More-Popular">Princess Diamond Engagement Rings – Becoming More Popular</h2>
-                <p>
+                <p class="decription justify">
                     More and more people are choosing a princess cut over a round brilliant for their engagement rings.
                     According to Wikipedia’s article on diamond cut, the modern princess cut was first introduced in 1960 by A.
                     Nagy of London.
                 </p>
                 <img src="~/Image/Introlmage/Princess.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
-                <p>
+                <p class="decription justify">
                     The princess cut is universally regarded as the runner-up to the round brilliant in today’s market.
                     According to the chart from Jogia Diamonds’ blog that we refer to in our article about <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, a full 23% of searches on their site are for princess cuts.
                 </p>
-                <p>
+                <p class="decription justify">
                     That’s still a far cry from the 64% for round brilliants, but consider that the second runner-up was the emerald cut with only 3% of searches.
                     The princess cut is squarely in 2nd place.
                 </p>
                 <h2 class="wp-block-heading" id="How-to-Choose-the-Best-Diamond-for-a-Princess-Cut-Engagement-Ring">How to Choose the Best Diamond for a Princess Cut Engagement Ring</h2>
                 <img src="~/Image/Introlmage/Princess1.png" alt="Destination 4" style="width: 30%;margin:auto" />
-                <p>Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
-                <p>To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
-                <p>Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
+                <p class="decription justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
+                <p class="decription justify">o find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
+                <p class="decription justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
                 <h2 class="wp-block-heading">The Right Price for a Princess Diamond Ring</h2>
-                <p>The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
+                <p class="decription justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
                 <h2 class="wp-block-heading" id="Best-Setting-for-a-Princess-Diamond-Ring">Best Setting for a Princess Diamond Ring</h2>
-                <p>
+                <p class="decription justify">
                     The best ring settings for princess diamond rings are the channel and four-prong settings—such as a solitaire or three-stone ring.
                     With a princess cut’s pointed edges, it’s important to ensure the corners don’t get chipped or damaged.
                     A channel set or four-prong offers protection without masking the diamond’s beauty.
                 </p>
-                <p>Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
-                <p>
+                <p class="decription justify">Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
+                <p class="decription justify">
                     <b>Solitaire</b><br />
                     A solitaire setting allows the princess cut to take center stage and the maximum light to enter.
                     This classic solitaire from James Allen is a prime example of a princess cut engagement ring that makes a statement.
                 </p>
                 <img src="~/Image/Introlmage/princess2.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
-                <p>
+                <p class="decription justify">
                     <b>Channel Set</b><br />
                     A channel setting offers security to princess cuts. If you are looking for a beautiful choice, this 1/4 carat channel engagement ring from Blue Nile.
                 </p>
                 <img src="~/Image/Introlmage/princess3.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
 
-                <p>
+                <p class="decription justify">
                     <b>Halo</b><br />
                     Halo engagement rings feature smaller diamonds that surround the center stone, making it appear even larger. Here is a platinum petite halo ring from James Allen.
                 </p>

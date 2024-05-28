@@ -1,6 +1,6 @@
 ﻿function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#151542', controlSlider);
     if (from > to) {
         fromSlider.value = to;
         fromInput.value = to;
@@ -11,7 +11,7 @@
 
 function controlToInput(toSlider, fromInput, toInput, controlSlider) {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#151542', controlSlider);
     setToggleAccessible(toInput);
     if (from <= to) {
         toSlider.value = to;
@@ -23,7 +23,7 @@ function controlToInput(toSlider, fromInput, toInput, controlSlider) {
 
 function controlFromSlider(fromSlider, toSlider, fromInput) {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#151542', toSlider);
     if (from > to) {
         fromSlider.value = to;
         fromInput.value = to;
@@ -34,7 +34,7 @@ function controlFromSlider(fromSlider, toSlider, fromInput) {
 
 function controlToSlider(fromSlider, toSlider, toInput) {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#151542', toSlider);
     setToggleAccessible(toSlider);
     if (from <= to) {
         toSlider.value = to;
@@ -80,7 +80,7 @@ function attachControlHandlers(divId) {
     const toSlider = div.querySelector('#toSlider');
     const fromInput = div.querySelector('#fromInput');
     const toInput = div.querySelector('#toInput');
-
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#151542', toSlider);
     fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
     toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
     fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
