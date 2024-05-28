@@ -38,9 +38,9 @@
     @using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <div class="form-group col-lg-4" >
-            <label for="SearchTerm">Search Term:</label>    
-            <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" class="form-control"/>
+        <div class="form-group ">
+            <label for="SearchTerm">Search Term:</label>
+            <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" class="form-control" />
         </div>
         //Clarity
         <div class="form-group col-lg-4">
@@ -67,12 +67,31 @@
 
             </select>
         </div>
+        //Price
+        <div id="PriceDiv" class="col-lg-4">
+            <div class="range_container">
+                <div class="sliders_control">
+                    <input id="fromSlider" type="range" value="@ViewBag.minPrice" min="1" max="99999" step="1" />
+                    <input id="toSlider" type="range" value="@ViewBag.maxPrice" min="1" max="99999" step="1" />
+                </div>
+                <div class="form_control">
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">MinPrice</div>
+                        <span style="font-size:12px;">$</span><input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minPrice" min="1" max="99999" step="1" name="MinPrice" />
+                    </div>
+                    <div class="form_control_container">
+                        <div class="form_control_container__time">MaxPrice</div>
+                        <span style="font-size:12px;">$</span><input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxPrice" min="1" max="99999" step="1" name="MaxPrice" />
+                    </div>
+                </div>
+            </div>
+        </div>
         //Color
         <div class="form-group col-lg-4">
             <label for="Color">Color:</label>
             <select id="Color" name="Color" class="form-control">
                 <option value="">-- All --</option>
-                
+
                 @foreach (var color in colors)
                 {
                     <option value="@color" @(color == ViewBag.SelectedColor ? "selected" : "")>@color</option>
@@ -82,59 +101,40 @@
             </select>
         </div>
         //Shape
-        <div class="form-group" class="col-lg-4">
+        <div class="form-group col-lg-4">
             <label for="Shape">Shape:</label>
             <select id="Shape" name="Shape" class="form-control">
                 <option value="">-- All --</option>
                 @foreach (var shape in shapes)
                 {
-                    
+
                     <option value="@shape" @(shape == ViewBag.SelectedShape ? "selected" : "")>@shape</option>
                 }
 
 
             </select>
         </div>
-        //Price
-        <div id="PriceDiv" class="col-lg-4"> 
-            <div class="range_container">
-                <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="@ViewBag.minPrice" min="1" max="99999" step="1" />
-                    <input id="toSlider" type="range" value="@ViewBag.maxPrice" min="1" max="99999" step="1" />
-                </div>
-                <div class="form_control">
-                    <div class="form_control_container">
-                        <div class="form_control_container__time">MinPrice</div>
-                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minPrice" min="1" max="99999" step="1" name="MinPrice" />
-                    </div>
-                    <div class="form_control_container">
-                        <div class="form_control_container__time">MaxPrice</div>
-                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxPrice" min="1" max="99999" step="1" name="MaxPrice" />
-                    </div>
-                </div>
-            </div>
-        </div>
         //Carat Weight
         <div id="CaratDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" />
-                    <input id="toSlider" type="range" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" />
+                    <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="10" step="0.01" />
+                    <input id="toSlider" type="range" value="@ViewBag.maxCaratWeight" min="0.5" max="10" step="0.01" />
                 </div>
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time">Min Carat</div>
-                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" name="MinCaratWeight" />
+                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minCaratWeight" min="0.5" max="10" step="0.01" name="MinCaratWeight" />
                     </div>
                     <div class="form_control_container">
                         <div class="form_control_container__time">Max Carat</div>
-                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" name="MaxCaratWeight" />
+                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxCaratWeight" min="0.5" max="10" step="0.01" name="MaxCaratWeight" />
                     </div>
                 </div>
             </div>
         </div>
         <button type="submit">Filter</button>
-        @*<button type="reset">Reset</button>*@ //nếu muốn để reset button cần phải làm js để cài lại giá trị range để nó ko bị lỗi hình ảnh 
+        @*<button type="reset">Reset</button>*@//nếu muốn để reset button cần phải làm js để cài lại giá trị range để nó ko bị lỗi hình ảnh
     }
 </div>
 <section id="new-arrivals" class="new-arrivals">

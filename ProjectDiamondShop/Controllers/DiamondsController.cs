@@ -15,7 +15,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.minPrice = 1;
             ViewBag.maxPrice = 99999;
             ViewBag.minCaratWeight = 0.5;
-            ViewBag.maxCaratWeight = 5;
+            ViewBag.maxCaratWeight = 10;
             DiamondRepository diamondRepository = new DiamondRepository(connectionString);
             List<Diamond> diamonds = diamondRepository.GetFilteredDiamonds("","","","","",null,null,null,null);
             return View("Diamonds", diamonds);
