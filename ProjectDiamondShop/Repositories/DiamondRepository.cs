@@ -34,7 +34,6 @@ namespace ProjectDiamondShop.Repositories
                         {
                             while (reader.Read())
                             {
-                                double weight = reader.GetDouble(reader.GetOrdinal("caratWeight"));
                                 Diamond diamond = new Diamond
                                 {
                                     diamondID = reader.GetInt32(reader.GetOrdinal("diamondID")),

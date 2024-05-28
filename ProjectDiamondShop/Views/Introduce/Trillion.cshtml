@@ -218,14 +218,15 @@
                         <li><a href="@Url.Action("About", "Home")">About</a> </li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                         <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="#">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                <li><a href="#">Login</a> </li>
+                            }
                         }
                     </ul>
                 </div>
@@ -233,7 +234,7 @@
         </div>
 
         <div class="spacer"></div>
-        <h2 class="text-center">Trillion Diamond Story</h2>
+        <h2 class="text-center" style="margin-top: 48px;">Trillion Diamond Story</h2>
 
         <div class="container center">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -248,28 +249,28 @@
                     <div class="item active">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/trillion1.jpg" alt="Destination 1" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/trillionring.jpg" alt="Destination 1" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/trillion2.jpg" alt="Destination 2" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/trillionring1.jpg" alt="Destination 2" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/trillion3.jpg" alt="Destination 3" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/trillionring2.jpg" alt="Destination 3" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/trillion4.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                <img src="~/Image/SlideDiamond/trillionring3.jpg" alt="Destination 4" style="width: 100%;">
                             </a>
                         </div>
                     </div>
@@ -289,7 +290,7 @@
         <!--Code thêm phần bài viết ở đây-->
         <div class="container center ">
             <div class="row ">
-                <p class="decription">
+                <p class="decription justify">
                     The Trillion Cut Diamond is triangular shape with rounded or pointed corners and features between 31 to 50 facets.
                     Originally designed to make the most out of flawed or irregularly-shaped rough diamonds, the Trillion Cut has evolved into a highly sought-after style for those looking to make a unique and modern statement.
                     The cut makes a dazzling choice for both solitaire settings and as side stones.
@@ -298,65 +299,68 @@
                     The cut also works incredibly well in contemporary and innovative designs.
                     However, this cut has less brilliance compared to round or princess cuts, and its pointed edges can be prone to chipping if not set correctly.
                 </p>
-                <p>
+                <p class="decription justify">
                     <b>Bottom Line Recommendation:&nbsp;</b>
                     Trillion cut diamonds are uncommon as the center stone in an engagement ring but can look stunning as diamond accents in a three-stone diamond ring.
                     Because trillion cut diamonds are typically accent diamonds, there’s less of a need to focus on cut, clarity and color than with a center diamond.
                     In general, it’s best to look for diamonds that are eye-clean and appear colorless in relation to their setting.
                 </p>
-                <p>
+                <p class="decription justify">
                     As always, we recommend buying trillion cut diamond jewelry from a reputable vendor.
                     <a href="https://www.jamesallen.com/?a_aid=dmnd1357&amp;data1=413785" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">James Allen</a> and <a href="https://www.leibish.com/#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">Leibish &amp; Co.</a> both stock a reasonable range of engagement ring settings with trillion cut diamonds, all with excellent images and very competitive pricing.
                 </p>
                 <h2 class="wp-block-heading" id="h-what-is-a-trillion-cut-diamond">What is a Trillion Cut Diamond?</h2>
-                <p>
+                <p class="decription justify">
                     A trillion cut diamond, also referred to as a trilliant cut, is a diamond that’s cut into a triangular shape.
                     A typical trillion cut diamond will have three sides of equal length, with a flat table at its surface.&nbsp;
                 </p>
-                <p>The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.&nbsp;</p>
-                <p>Unlike most diamond shapes, the trillion cut is more commonly used for side-stone diamonds than for center stones. For example, <a href="https://rapaport.com/news/18ct-diamond-smashes-estimate-at-bonhams/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">this incredible 18.04 carat diamond ring sold by Bonhams</a> featured trillion cut diamond accents, further enhancing the beauty of the center diamond.</p>
-                <p>
+                <p class="decription justify">The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.&nbsp;</p>
+                <p class="decription justify">Unlike most diamond shapes, the trillion cut is more commonly used for side-stone diamonds than for center stones. For example, <a href="https://rapaport.com/news/18ct-diamond-smashes-estimate-at-bonhams/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">this incredible 18.04 carat diamond ring sold by Bonhams</a> featured trillion cut diamond accents, further enhancing the beauty of the center diamond.</p>
+                <p class="decription justify">
                     However, although trillion cut diamonds are popular as side stones, you can also find engagement rings that feature a trillion cut diamond as the center stone.
                     Below, we’ve gone into more detail on the shape and appearance of the trillion cut, as well as the history of this diamond shape.
                     We’ve also shared our recommendations for purchasing an engagement ring with trillion cut diamond accents.
                 </p>
                 <h2 class="wp-block-heading" id="h-trillion-cut-diamond-the-basics">Trillion Cut Diamond: The Basics</h2>
 
-                <p class="decription">
-                    <img src="~/Image/Introlmage/Trillion.png" alt="Destination 4" style="width: 50%;margin-left:260px;" />
+                <p class="decription justify">
+                    <div class="container center">
+                        <img src="~/Image/Introlmage/Trillion.png" alt="Destination 4" style="width: 100%;margin:auto;" />
+                    </div>
+
                 </p>
-                <<p>
+                <p class="decription justify">
                     The trillion cut diamond is triangular, with three equal sides. Like the round brilliant cut, a trillion cut diamond has a flat table.
                     The trillion cut is known for having impressive brilliance, great fire and an eye-catching, modern appearance.&nbsp;
                 </p>
-                <p>
+                <p class="decription justify">
                     Like other diamonds derived from the brilliant, trillion cut diamonds do a good job of hiding color and inclusions.
                     When cut to a high standard, a trillion cut diamond can look absolutely stunning, either as a center stone or as an accent diamond.&nbsp;
                 </p>
-                <p>Trillion cut diamonds can differ in cut and shape depending on whether they’re intended for use as center or accent stones.</p>
-                <p>
+                <p class="decription justify">Trillion cut diamonds can differ in cut and shape depending on whether they’re intended for use as center or accent stones.</p>
+                <p class="decription justify">
                     When a trillion cut diamond is intended to be used as a center diamond in a solitaire ring, it will typically be cut to have 50 facets.
                     Center trillion diamonds will also usually have a light curve or convex shape to maximize the diamond’s perceived size.
                 </p>
-                <p>When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.&nbsp;</p>
+                <p class="decription justify">When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.&nbsp;</p>
                 <p>
                     Thanks to its long sides, a trillion cut diamond can often appear to be larger than its true carat weight.
                     The trillion cut, as we know it today, was trademarked by the Henry Meyer Diamond Company of New York in the 1960s as the “trilliant” cut. However, early trillion cut diamonds are believed to have been cut in Amsterdam as long ago as the 19th century.
                 </p>
                 <img src="~/Image/Introlmage/trillion1.png" alt="Destination 4" style="width: 40%;margin:auto;" />
-                <p>
+                <p class="decription justify">
                     The trilliant name comes from the diamond’s shape — a combination of the words “triangle” and “brilliant.”
                     Over the years, numerous variations of the trillion cut have been produced, often with different shapes and facet counts.
                     Because of the variation in cut between different trillion cut diamonds, it’s important to pay close attention to photos when you’re comparing diamonds in this cut.
                 </p>
                 <h2 class="wp-block-heading" id="h-trillion-cut-diamonds-price">Trillion Cut Diamonds: Price</h2>
-                <p>
+                <p class="decription justify">
                     Like other diamond shapes, trillion cut diamonds can vary hugely in price based on their color, clarity, cut quality and carat weight.
                     Diamond prices increase exponentially with size, meaning you’ll pay significantly more per carat if you’re looking for a particularly large diamond.
                     Since most trillion cut diamonds are part of a setting, the price can vary based on the type of setting, the number of diamonds and the total carat weight.
                 </p>
                 <h2 class="wp-block-heading" id="h-are-trillion-cut-diamonds-rare">Are Trillion Cut Diamonds Rare?</h2>
-                <p>
+                <p class="decription justify">
                     Trillion cut diamonds are quite rare, especially as center stones.
                     Few jewelry stores keep trillion cut diamonds in stock, with the notable exception of trillion cut diamonds used as accent stones in three-stone engagement rings.
                 </p>

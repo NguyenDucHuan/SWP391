@@ -217,14 +217,15 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -232,7 +233,7 @@
             </div>
 
             <div class="spacer"></div>
-            <h2 class="text-center">Radiant Diamond Story</h2>
+            <h2 class="text-center" style="margin-top: 48px;">Radiant Diamond Story</h2>
 
             <div class="container center">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -247,28 +248,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/radiant.png" alt="Destination 1" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/radiantring.jpg" alt="Destination 1" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/radiant1.jpg" alt="Destination 2" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/radiantring1.jpg" alt="Destination 2" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/radiant2.jpg" alt="Destination 3" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/radiantring2.jpg" alt="Destination 3" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/radiant3.png" alt="Destination 4" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/radiantring3.jpg" alt="Destination 4" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
@@ -297,7 +298,7 @@
                     When it comes to cut quality and other diamond details, this article will answer all your radiant cut questions.
                     If you follow our guidelines a one carat radiant cut will cost $2,900.
                 </p>
-                <img src="~/Image/IntroImage/radiant.jpg" alt="Destination 4" style="width: 50%;margin:auto;height:auto;" />
+                <img src="~/Image/Introlmage/radiant.jpg" alt="Destination 4" style="width: 50%;margin:auto;height:auto;" />
                 <h1>What is a Radiant Cut Diamond?</h1>
                 <p class="decription">
                     Popular since the 1980s, the radiant cut diamond lives up to its name: it is impressively radiant and brilliant.
@@ -310,7 +311,7 @@
                     This feature also allows the Radiant to be paired alongside both square and rounded diamonds, like in
                     <a href="https://www.jamesallen.com/diamond-rings/radiant-cut-engagement-rings/1.03-carat-channel-set-engagement-ring-1667037&amp;a_aid=dmnd1357?data1=20542" target="_blank" rel="noopener noreferrer nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">this 1.0 carat radiant in a 14K white gold channel setting from James Allen</a>
                 </p>
-                <img src="~/Image/IntroImage/radiant1.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/radiant1.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
                 <h2 class="wp-block-heading">Radiant Cut Diamonds: Pros and Cons</h2>
                 <p class="decription">
                     Like other <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, radiant cut diamonds have their own unique range of advantages and disadvantages.
@@ -321,23 +322,23 @@
                     <b>Pros</b>
                     of the radiant cut include the following:
                 </p>
-                <p>
+                <p class="decription justify">
                     <b>Excellent brilliance, fire and sparkle</b>
                     Although the radiant cut isn’t quite as brilliant as the round brilliant cut, it’s not very far behind.
                     Because of the 70 facets in its pavilion and crown, the radiant cut offers impressive brilliance and fire.
                     This makes the radiant cut a great choice if you want a non-round diamond with a beautiful sparkle.
                 </p>
-                <p>
+                <p class="decription justify">
                     <b>Larger perceived size than other diamond shapes</b>
                     The radiant cut is well known for looking larger than most of the other diamonds of the same carat weight, giving it some extra presence on your fiancé-to-be’s finger.
                     The face-up area of the radiant cut is actually slightly smaller than that of a round brilliant cut diamond of an equal carat weight.
                     However, the radiant cut’s long diagonal measurement tricks the eye and makes it look larger than it really is.
                 </p>
-                <img src="~/Image/IntroImage/radiant3-blue.jpg" alt="Destination 4" style="width: 100%;margin:auto;" />
+                <img src="~/Image/Introlmage/radiant3-blue.jpg" alt="Destination 4" style="width: 100%;margin:auto;" />
 
                 <h2 class="wp-block-heading" id="Radiant-Cut-Diamond---Quality">Radiant Cut Diamond – Quality</h2>
-                <img src="~/Image/IntroImage/Radiant4.png" alt="Destination 4" style="width: 50%;margin-top: 60px;margin-left: -194px;" />
-                <p>
+                <img src="~/Image/Introlmage/Radiant4.png" alt="Destination 4" style="width: 80%; margin:auto;" />
+                <p class="decription justify">
                     Radiant diamonds are created with a modified brilliant cut facet pattern for both the pavilion and crown, giving this diamond its high level of brilliance (the amount of white light reflected back to the eye or ‘sparkle’).
                     Because <a href="https://www.diamonds.pro/education/cuts/" data-wpel-link="internal">diamond cut</a> is vital to any diamond’s beauty, especially the radiant diamond, a careful eye must be used when considering stones for purchase.
                     The <a href="https://www.diamonds.pro/education/gia-certification/" data-wpel-link="internal">GIA</a> only grades cut quality for round brilliant diamonds.
@@ -346,10 +347,10 @@
                     As a rough guideline, we offer suggestions for evaluating a Radiant Diamond’s Cut.
                 </p>
                 <h3 class="wp-block-heading">Radiant Cut Diamond – Cut Guide</h3>
-                <img src="~/Image/IntroImage/radiant5.jpg" alt="Destination 4" style="width: 40%;margin-top: 60px;" />
-                <p>
+                <img src="~/Image/Introlmage/radiant5.jpg" alt="Destination 4" style="width: 80%; margin:auto;" />
+                <p class="decription justify">
                     Be sure to also look at the corners of a radiant, ensuring they are even and not too wide—or too narrow.
-                    The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty.
+                    The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty
                 </p>
             </div>
         </div>
@@ -364,6 +365,7 @@
 
             </div>
         </footer>
+
     </form>
 </body>
 </html>

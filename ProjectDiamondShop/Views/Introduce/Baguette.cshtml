@@ -218,14 +218,15 @@
                         <li><a href="@Url.Action("About", "Home")">About</a> </li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                         <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="#">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                <li><a href="#">Login</a> </li>
+                            }
                         }
                     </ul>
                 </div>
@@ -233,7 +234,7 @@
         </div>
 
         <div class="spacer"></div>
-        <h2 class="text-center">Baguette Diamond Story</h2>
+        <h2 class="text-center" style="margin-top: 48px;">Baguette Diamond Story</h2>
 
         <div class="container center">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -248,28 +249,28 @@
                     <div class="item active">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/baguette.png" alt="Destination 1" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/baguette.jpg" alt="Destination 1" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/baguette1.png" alt="Destination 2" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/baguette1.jpg" alt="Destination 2" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/baguette2.png" alt="Destination 3" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/baguette2.jpg" alt="Destination 3" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/baguette3.png" alt="Destination 4" style="width: 100%; height: 300px">
+                                <img src="~/Image/SlideDiamond/baguette3.jpg" alt="Destination 4" style="width: 100%;">
                             </a>
                         </div>
                     </div>
@@ -289,7 +290,7 @@
         <!--Code thêm phần bài viết ở đây-->
         <div class="container center ">
             <div class="row ">
-                <p class="decription">
+                <p class="decription justify">
                     A Baguette diamond is a thin, elongated, rectangular-shaped diamond.
                     Baguettes can be almost square in shape, but are more commonly long and thin, often around 5:1 in length to width.
                     Baguette diamonds can have straight edges in a perfect rectangle, or tapered edges that angle in.
@@ -297,31 +298,31 @@
                     The corners are perfectly square, which is the biggest difference between baguettes and similar cuts, like the emerald cut.
                     Baguettes have 14 facets, much less than traditional diamond cuts, which will usually have more than 50.
                     They are usually small, and thus often used as side stones for engagement rings, or for eternity rings or wedding rings.
-                    <img src="~/Image/Introlmage/baguettes.png" alt="Destination 4" style="width: 50%;margin-left:240px;" />
+                    <img src="~/Image/Introlmage/baguettes.png" alt="Destination 4" style="width: 100%; margin:auto;" />
                 </p>
 
                 <h2 class="wp-block-heading" id="h-what-are-baguette-diamonds">What Are Baguette Diamonds?</h2>
-                <p>
+                <p class="decription justify">
                     Baguettes are part of the step cut family, which also includes emerald and asscher cuts.
                     One of the distinguishing features of step cut diamonds is the straight, clearly-defined facets.
                     This gives diamonds like baguettes a very different appearance to round cut diamonds, with less sparkle and brilliance.
                 </p>
-                <p>While almost all baguettes are step cuts, it is possible to get hybrid brilliant cut baguettes. These have more facets and as a result, have much more dazzling brilliance, as you can see from <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/tapered-brilliant-baguette-diamond-engagement-ring-in-platinum-1-2-ct-tw-item-194281?a_aid=dmnd1357&amp;data1=42026" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this tapered brilliant baguette three-stone ring on Blue Nile</a>.&nbsp;</p>
-                <p>A ring set with brilliant-cut baguettes will come at a much higher price, due not only to the baguette itself, but the higher quality center stone needed to draw attention.</p>
+                <p class="decription justify">While almost all baguettes are step cuts, it is possible to get hybrid brilliant cut baguettes. These have more facets and as a result, have much more dazzling brilliance, as you can see from <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/tapered-brilliant-baguette-diamond-engagement-ring-in-platinum-1-2-ct-tw-item-194281?a_aid=dmnd1357&amp;data1=42026" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this tapered brilliant baguette three-stone ring on Blue Nile</a>.&nbsp;</p>
+                <p class="decription justify">A ring set with brilliant-cut baguettes will come at a much higher price, due not only to the baguette itself, but the higher quality center stone needed to draw attention.</p>
                 <h2 class="wp-block-heading" id="h-baguette-vs-emerald-cut-diamond">Baguette vs. Emerald Cut Diamond</h2>
-                <p>The difference between baguette and emerald cut diamonds is the number of facets and a small difference in shape.</p>
-                <p>Baguette cuts have 14 facets, while an Emerald cut has 58 facets.</p>
-                <p>
+                <p class="decription justify">The difference between baguette and emerald cut diamonds is the number of facets and a small difference in shape.</p>
+                <p class="decription justify">Baguette cuts have 14 facets, while an Emerald cut has 58 facets.</p>
+                <p class="decription justify">
                     While both cuts can have a similar elongated, rectangular shape, baguette cuts have square corners, while emerald cuts have diagonal corners.
                     Baguettes are longer and narrower than emerald cuts.
                 </p>
-                <p>Typically baguette cuts will be sold in lower carat weights than emerald cuts, as they are not often used as center stones, like the emerald or <a href="https://www.diamonds.pro/education/asscher-cut/" data-wpel-link="internal">asscher cut</a>. Jewelry utilizing smaller diamonds like mellee or baguettes have surged in popularity lately. “Most luxury brands seem to be confident that sales [of diamond bands] will be good, and have already placed orders for mellee diamonds for the coming six months” as&nbsp;<a href="https://rapaport.com/analysis/in-shaky-market-small-diamonds-are-winning/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">reported by Rapaport</a> referring to smaller diamond sales.</p>
-                <p>
+                <p class="decription justify">Typically baguette cuts will be sold in lower carat weights than emerald cuts, as they are not often used as center stones, like the emerald or <a href="https://www.diamonds.pro/education/asscher-cut/" data-wpel-link="internal">asscher cut</a>. Jewelry utilizing smaller diamonds like mellee or baguettes have surged in popularity lately. “Most luxury brands seem to be confident that sales [of diamond bands] will be good, and have already placed orders for mellee diamonds for the coming six months” as&nbsp;<a href="https://rapaport.com/analysis/in-shaky-market-small-diamonds-are-winning/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">reported by Rapaport</a> referring to smaller diamond sales.</p>
+                <p class="decription justify">
                     The lower number of facets on a baguette means they provide much less shine than an emerald, and imperfections on the diamond are easier to notice.
                     This is why they’re preferred as smaller, “accent” diamonds, used to complement a center stone of <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">any shape</a>.
                 </p>
                 <h2 class="wp-block-heading" id="h-baguette-engagement-ring-settings">Baguette Engagement Ring Settings</h2>
-                <p>
+                <p class="decription justify">
                     Baguette diamonds make great choices for side stones in a <a href="https://www.diamonds.pro/education/three-stone-diamond-rings/" data-wpel-link="internal">three-stone setting</a>.
                     The perfect stone and setting will accentuate the center stone and produce a beautiful engagement ring.
                 </p>
@@ -330,33 +331,33 @@
                     It’s also common for tapered baguettes used in this style of ring, with the narrow end pointing away from the center stone.
                 </p>
                 <h3 class="wp-block-heading" id="h-three-stone-baguette-rings">Three-Stone Baguette Rings</h3>
-                <p>
+                <p class="decription justify">
                     A tapered baguette diamond is a beautiful way to add extra shine to a ring without taking away from the center stone. <br />
                     <br />One of the most popular styles is a three-stone setting with tapered baguettes next to an emerald cut.
                     Rings such as <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/tapered-baguette-diamond-engagement-ring-in-14k-rose-gold-1-6-ct-tw-item-192868?a_aid=dmnd1357&amp;data1=42026" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this</a>
                     feature perfectly matched step cut diamonds in the emerald and baguette cuts that complement each other beautifully.
-                    <img src="~/Image/Introlmage/Baguette1.png" alt="Destination 4" style="width: 50%;margin-left:240px;" />
+                    <img src="~/Image/Introlmage/Baguette1.png" alt="Destination 4" style="width: 100%; margin:auto;" />
                 </p>
                 <h3 class="wp-block-heading" id="h-channel-set-baguette-rings">Channel Set Baguette Rings</h3>
                 <p>
                     Baguette diamonds make perfect accents for channel set rings.
                     This setting, with small diamonds set into the metal leading up to the center stone, is a clean and sophisticated look.
                     As an example, see this channel set ring from James Allen with straight baguettes set end-to-end halfway along the band, which gives a brilliant overall shine.
-                    <img src="~/Image/Introlmage/Baguette2.png" alt="Destination 4" style="width: 50%;margin-left:240px;" />
+                    <img src="~/Image/Introlmage/Baguette2.png" alt="Destination 4" style="width: 100%; margin:auto;" />
                 </p>
                 <h3 class="wp-block-heading" id="h-vintage-baguette-rings">Vintage Baguette Rings</h3>
-                <p>
+                <p class="decription justify">
                     Baguettes are great additions to extravagant vintage settings.
                     For rings with a lot of round diamonds, baguettes add variety and can take the ring to a new level.
                     See this hexagon baguette ring from Blue Nile, with a collection of straight baguettes surrounding the center diamond.
-                    <img src="~/Image/Introlmage/Baguette3.png" alt="Destination 4" style="width: 50%;margin-left:240px;" />
+                    <img src="~/Image/Introlmage/Baguette3.png" alt="Destination 4" style="width: 100%; margin:auto;" />
                 </p>
-                <p>
+                <p class="decription justify">
                     Even more extravagant is this stunning baguette halo ring from Blue Nile.
                     Baguettes are set around the center stone, punctuated by round accent diamonds, for a show-stopping look.
                 </p>
                 <h2 class="wp-block-heading" id="h-are-baguette-diamonds-expensive">Are Baguette Diamonds Expensive</h2>
-                <p>
+                <p class="decription justify">
                     Baguette diamonds are often less expensive than other diamond cuts.
                     The price per carat for a baguette diamond is likely to be less than, say, a round brilliant, or an emerald cut, as lower-quality cuts are used.
                     Baguettes are graded on the 4 C’s, as with any diamond. So prices can vary depending on a stone’s grade.

@@ -1,6 +1,4 @@
-﻿
-
-<
+﻿<
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -220,14 +218,15 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -250,28 +249,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/round.jpg" alt="Destination 1" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/roundring.jpg" alt="Destination 1" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/round1.jpg" alt="Destination 2" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/roundring1.jpg" alt="Destination 2" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/round2.jpg" alt="Destination 3" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/roundring2.jpg" alt="Destination 3" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/round4.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/roundring3.jpg" alt="Destination 4" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
@@ -306,7 +305,7 @@
                     The round brilliant cut boasts 58 facets (including the culet) and offers exceptional white light reflection, also known as brilliance. With a classic, timeless appearance, round brilliant cuts are often used in engagement rings, necklaces and other fine jewelry pieces. This 1 carat stone from James Allen is a stunning example of a round brilliant cut.
                     In 1919, Marcel Tolkowsky created a surge of interest in the round cut diamond by publishing his work, “Diamond Design: A Study of the Reflection and Refraction of Light in Diamond” which highlighted the ideal cut aspects of a round brilliant. Since Tolkowsky’s influence, the round cut has remained the most common diamond cut.
                 </p>
-                <img src="/Image/IntroImage/hình 4.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="/Image/Introlmage/hình 4.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
                 <h2 class="wp-block-heading">Key Features of a Round Cut Diamond</h2>
                 <p class="decription">
                     Here are some of the most noticeable features of round cut diamonds, including the proportions of an excellent cut round diamond.
@@ -327,47 +326,59 @@
                 <ul>
                     <li>
                         <h3>Beauty:</h3>
-                        Round cut diamonds are exceptional.
-                        They’re cut with 58 facets that all reflect light back to your eyes.
-                        For over 100 years, diamond cutters have been perfecting the process for cutting round diamonds.
-                        The result: gorgeous gemstones with a classic appearance.
+                        <p class="decription justify">
+                            Round cut diamonds are exceptional.
+                            They’re cut with 58 facets that all reflect light back to your eyes.
+                            For over 100 years, diamond cutters have been perfecting the process for cutting round diamonds.
+                            The result: gorgeous gemstones with a classic appearance.
+                        </p>
                         <br />
                     </li>
                     <li>
                         <h3>Brilliance:</h3>
-                        Brilliance is what makes a diamond sparkle. It’s the amount of white light that reflects off of the diamond’s table to your eyes.
-                        The ideal cut aspects of a round diamond provide more brilliance than any other shape.
-                        That’s why a well-cut round diamond, like the stone in
-                        this 1.50 carat solitaire ring from James Allen, is an absolute eye-catcher.
+                        <p class="decription justify">
+                            Brilliance is what makes a diamond sparkle. It’s the amount of white light that reflects off of the diamond’s table to your eyes.
+                            The ideal cut aspects of a round diamond provide more brilliance than any other shape.
+                            That’s why a well-cut round diamond, like the stone in
+                            this 1.50 carat solitaire ring from James Allen, is an absolute eye-catcher.
+                        </p>
                         <br />
                     </li>
                     <li>
                         <h3>Fire: </h3>
-                        A diamond’s fire refers to the amount of colored light that is dispersed by the diamond.
-                        This colored reflection gives a diamond character and beauty.
-                        When a round diamond has an exceptional cut, it showcases a tremendous amount of fire.
+                        <p class="decription justify">
+                            A diamond’s fire refers to the amount of colored light that is dispersed by the diamond.
+                            This colored reflection gives a diamond character and beauty.
+                            When a round diamond has an exceptional cut, it showcases a tremendous amount of fire.
+                        </p>
                         <br />
                     </li>
                     <li>
                         <h3>Versatility:</h3>
-                        Because the round brilliant boasts a classic design, it complements many styles, from modern round cut diamond rings to vintage engagement rings.
-                        Round cut stones are often chosen for side stones as well, like a three-stone ring, or a pavé setting.
+                        <p class="decription justify">
+                            Because the round brilliant boasts a classic design, it complements many styles, from modern round cut diamond rings to vintage engagement rings.
+                            Round cut stones are often chosen for side stones as well, like a three-stone ring, or a pavé setting.
+                        </p>
                         <br />
                     </li>
                     <li>
                         <h3>Timeless Appearance:</h3>
-                        Round-shaped diamonds have been in style for centuries.
-                        With their beautiful facets and elegance, a round cut ring is a classic choice that will be cherished and handed down for generations.
+                        <p class="decription justify">
+                            Round-shaped diamonds have been in style for centuries.
+                            With their beautiful facets and elegance, a round cut ring is a classic choice that will be cherished and handed down for generations.
+                        </p>
+
                     </li>
                 </ul>
-                <p class="decription">A large part of the beauty and brilliance of the round brilliant cut comes from its unique facet pattern, which provides incredible light performance. As the GIA explains:</p>
+                <p class="decription justify">A large part of the beauty and brilliance of the round brilliant cut comes from its unique facet pattern, which provides incredible light performance. As the GIA explains:</p>
                 <div class="wp-block-ub-styled-box ub-styled-box ub-notification-box" id="ub-styled-box-74add2f2-143b-47b4-8d04-a80b5fee53a6">
-                    <p id="ub-styled-box-notification-content-">
+                    <p id="ub-styled-box-notification-content-" class="decription justify">
                         “The crown facets, consisting of 8 bezels, 8 stars, and 16 upper halves, gather and disperse light to create brightness, fire, and a scintillating pattern of light and dark. The pavilion facets, consisting of 16 lower halves, 8 mains, and an optional culet, reflect the light back through the crown to the viewer’s eye. All of these facets work together creating each diamond’s unique appearance.”
                         <a href="https://www.gia.edu/diamond-cut/diamond-cut-anatomy-round-brilliant" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Gemological Institute of America (GIA)</a>
                     </p>
                 </div>
-                <img src="/Image/IntroImage/hinh 3 (1).jpeg" alt="Destination 4" style="width: 50%;margin:auto;" />
+
+                <img src="/Image/Introlmage/round.png" alt="Destination 4" style="width: 50%;margin:auto;" />
             </div>
         </div>
         <footer>

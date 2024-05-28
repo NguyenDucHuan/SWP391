@@ -218,14 +218,15 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -248,28 +249,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/oval1.jpg" alt="Destination 1" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/ovalring.jpg" alt="Destination 1" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/oval2.jpg" alt="Destination 2" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/ovalring1.jpg" alt="Destination 2" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/oval3.jpg" alt="Destination 3" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/ovalring2.jpg" alt="Destination 3" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/oval4.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/ovalring3.jpg" alt="Destination 4" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
@@ -289,7 +290,7 @@
         <!--Code thêm phần bài viết ở đây-->
         <div class="container center ">
             <div class="row ">
-                <p class="decription">
+                <p class="decription justify">
                     An oval cut diamond provides excellent brilliance, durability and style.
                     We recommend an H color or better and an SI1 or SI2 for clarity for this diamond shape.
                     However, it’s crucial to be mindful of the ‘bowtie effect’ in oval diamonds, a potential dark area in the diamond’s center.
@@ -302,15 +303,15 @@
                 </p>
 
                 <h1>The Oval Cut Diamond</h1>
-                <p class="decription">
+                <p class="decription justify">
                     Bursting with brilliance and fire, an oval cut diamond is exquisite and unique. The oval is considered a “fancy” shape; the elongated design makes it appear larger than other shapes of the same carat weight.
                     For example, a 1ct oval cut looks quite large in a halo setting. But a <a href="https://www.diamonds.pro/education/1-carat-diamond-ring/" data-wpel-link="internal">1 carat</a> round diamond in a similar setting would look slightly smaller.
                     The slender body of the oval diamond creates a beautiful, elongated look. It often makes the hand and fingers appear slimmer. The diamond’s shape has no sharp corners, so it’s less prone to chipping.
                     If you enjoy a rounded design but want a stone with more character, an oval diamond makes a stunning choice. In addition, oval diamonds are almost always priced lower than round brilliants.
                 </p>
-                <img src="~/Image/IntroImage/oval1.jpg" alt="Destination 4" style="width: 100%;" />
+                <img src="~/Image/Introlmage/oval1.jpg" alt="Destination 4" style="width: 100%;" />
                 <h2 class="wp-block-heading">History of the Oval Cut Diamond</h2>
-                <p>
+                <p class="decription justify>
                     Oval shaped diamonds have been popular for centuries.
                     The earliest oval diamonds date back to the 1300s, though they aren’t described by name in literature until the 1800s.
                     According to <a href="https://www.diamonds.net/News/NewsItem.aspx?ArticleID=2309&amp;ArticleTitle=Fancy+Shape+Series--Oval" data-wpel-link="external" target="_blank" rel="external noopener">Rapaport</a>, in the early 1960’s, a Russian diamond cutter named <a href="https://www.ehudlaniado.com/home/index.php/news/entry/the-amazing-story-of" data-wpel-link="external" target="_blank" rel="external noopener">Lazare Kaplan</a> perfected the oval cut process.
@@ -320,20 +321,20 @@
                 </p>
             </div>
             <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Oval Cut Diamond – Color</h2>
-            <p>
+            <p class="decription justify container center">
                 Color is graded by the GIA on a <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color scale</a> from D to Z.
                 When a diamond has a Z Color grade, it means the diamond contains an easily noticeable brown or yellow tint.
                 On the other end of the scale, the D grade represents the most colorless a diamond can be.
                 While it’s usually impossible to see <a href="https://www.jamesallen.com/education/diamonds/4cs-color/?a_aid=dmnd1357&amp;data1=19382" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">the difference between two color grades</a>, the difference in price can be significant.
                 As it is difficult to notice the differences between color grades with the naked eye, we recommend focusing on how the color appears to you.
             </p>
-            <p>
+            <p class="decription justify container center">
                 As a general guideline, we recommend an H color or better for oval cut diamonds.
                 This ensures your stone will look white in a <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">white gold or platinum</a> setting.
                 If you’re setting your diamond in <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">yellow gold or rose gold</a>, feel free to drop down to a J or K to save money or to buy a larger stone.
                 If you want to ensure you’re getting an oval diamond that appears clear to the naked eye and maintains an excellent price point, <a class="cta-ask-form" href="#">reach out to our experts</a> and we’ll be happy to help.
             </p>
-            <img src="~/Image/IntroImage/oval2.jpg" alt="Destination 4" style="width: 50%;margin-left:210px;height:400px;" />
+            <img src="~/Image/Introlmage/oval2.jpg" alt="Destination 4" style="display: block; margin: 0 auto; width: 50%;" />
         </div>
         <footer>
             <hr />

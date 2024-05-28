@@ -34,18 +34,18 @@
 
 }
 
-<div class="container" style="margin-top:50px;">
+<div class="container center-block" style="margin-top:50px;">
     @using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <div>
-            <label for="SearchTerm">Search Term:</label>
-            <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" />
+        <div class="form-group col-lg-4" >
+            <label for="SearchTerm">Search Term:</label>    
+            <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" class="form-control"/>
         </div>
         //Clarity
-        <div>
+        <div class="form-group col-lg-4">
             <label for="Clarity">Clarity:</label>
-            <select id="Clarity" name="Clarity">
+            <select id="Clarity" name="Clarity" class="form-control">
                 <option value="">-- All --</option>
                 @foreach (var clarity in clarities)
                 {
@@ -55,9 +55,9 @@
             </select>
         </div>
         // Cut
-        <div>
+        <div class="form-group col-lg-4">
             <label for="Cut">Cut:</label>
-            <select id="Cut" name="Cut">
+            <select id="Cut" name="Cut" class="form-control">
                 <option value="">-- All --</option>
                 @foreach (var cut in cuts)
                 {
@@ -68,9 +68,9 @@
             </select>
         </div>
         //Color
-        <div>
+        <div class="form-group col-lg-4">
             <label for="Color">Color:</label>
-            <select id="Color" name="Color">
+            <select id="Color" name="Color" class="form-control">
                 <option value="">-- All --</option>
                 
                 @foreach (var color in colors)
@@ -82,9 +82,9 @@
             </select>
         </div>
         //Shape
-        <div class="">
+        <div class="form-group" class="col-lg-4">
             <label for="Shape">Shape:</label>
-            <select id="Shape" name="Shape">
+            <select id="Shape" name="Shape" class="form-control">
                 <option value="">-- All --</option>
                 @foreach (var shape in shapes)
                 {
@@ -96,7 +96,7 @@
             </select>
         </div>
         //Price
-        <div id="PriceDiv">
+        <div id="PriceDiv" class="col-lg-4"> 
             <div class="range_container">
                 <div class="sliders_control">
                     <input id="fromSlider" type="range" value="@ViewBag.minPrice" min="1" max="99999" step="1" />
@@ -115,7 +115,7 @@
             </div>
         </div>
         //Carat Weight
-        <div id="CaratDiv">
+        <div id="CaratDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
                     <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" />

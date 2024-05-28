@@ -218,14 +218,15 @@
                             <li><a href="@Url.Action("About", "Home")">About</a> </li>
                             <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                             <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                            @{ if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="#">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                    <li><a href="#">Login</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -248,28 +249,28 @@
                         <div class="item active">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/heart1.png" alt="Destination 1" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/heartring.jpg" alt="Destination 1" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/heart2.png" alt="Destination 2" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/heartring1.jpg" alt="Destination 2" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/heart3.png" alt="Destination 3" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/heartring2.jpg" alt="Destination 3" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="slide-wrapper">
                                 <a href="#">
-                                    <img src="~/Image/SlideDiamond/heart4.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                    <img src="~/Image/SlideDiamond/heartring3.jpg" alt="Destination 4" style="width: 100%;">
                                 </a>
                             </div>
                         </div>
@@ -301,35 +302,35 @@
                     We’ll help guide you towards the perfect heart shaped diamond in this article.
                 </p>
                 <h1>The Heart Shaped Diamond</h1>
-                <p class="decription">
+                <p class="decription justify">
                     A timeless symbol of love, a heart shaped diamond is a unique, special alternative to the more common diamond cuts.
                     More than two thirds of all diamonds sold on the market are round brilliants.
                     In contrast, heart shaped diamonds make up only a tiny fraction of the total number of diamonds sold every year, making a heart shaped diamond a unique, rare and special choice.
                 </p>
-                <img src="~/Image/IntroImage/heart.png" alt="Destination 4" style="width: 50%;margin:auto" />
-                <p>
+                <img src="~/Image/Introlmage/heart.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <p class="decription justify">
                     Heart shaped diamonds are used in a variety of jewelry pieces, from pendants to bracelets and more.
                     However, diamonds of this type are most commonly used as a center stone in a diamond engagement ring.
                     Diamonds with a heart shape date back to the 16th century, with the first truly well-known heart shaped diamond ring given as a gift of friendship from Mary Queen of Scots to Queen Elizabeth in 1562.
                 </p>
-                <p>
+                <p class="decription justify">
                     More recently, heart shaped diamond engagement rings have been spotted on celebrities such as Nicki Minaj and Lady Gaga, who sported a giant heart-shaped diamond pavé ring when she was engaged to Taylor Kinney.
                     In the last few years, auction house Christie’s attracted attention when it announced it would auction one of the largest heart shaped diamonds online — a stunning 24.45 carat, D color, internally flawless heart shaped diamond valued at an estimated $2.55 million.
                 </p>
                 <h2 class="wp-block-heading">Heart Shaped Diamonds – Price</h2>
-                <p>
+                <p class="decription justify">
                     Heart shaped diamonds are generally 15 to 20% cheaper than round cut diamonds of similar cut, clarity, color and carat weight.
                     This means that you can generally get a larger diamond if you opt for a heart shape over a round brilliant cut.
                     Just like with any other diamond shape, pricing for heart shaped diamonds can vary hugely based on the four Cs — cut, color, clarity and carat weight.
                 </p>
-                <p>
+                <p class="decription justify">
                     For example, <a aria-label=" (opens in a new tab)" href="https://www.jamesallen.com/loose-diamonds/heart-shaped/1.01-carat-j-color-si1-clarity-sku-11493355?a_aid=dmnd1357&amp;data1=37294" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">this 1.02 carat J color, SI1 heart shaped diamond from James Allen</a> is available for $2,070. For a diamond of the same size with higher color and clarity grades, <a aria-label=" (opens in a new tab)" rel="noreferrer noopener nofollow external sponsored" href="https://www.jamesallen.com/loose-diamonds/heart-shaped/1.03-carat-d-color-if-clarity-sku-5885951?a_aid=dmnd1357&amp;data1=37294" target="_blank" data-wpel-link="advanced" title="" class="external-link">you could spend as much as $9,110</a>
                     Apply the advice mentioned above, as well as the tips in our guide to <a href="https://www.diamonds.pro/education/diamond-buying-guide/" data-wpel-link="internal">buying a diamond</a>, and you’ll be able to get the largest, high quality diamond without going over your budget.
                 </p>
-                <img src="~/Image/IntroImage/heart2.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/heart2.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
             </div>
             <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Heart Shaped Diamond – Color</h2>
-            <p>
+            <p class="decription justify container center">
                 The diamond color grades used by the GIA range from D to Z, with a D grade indicating that a diamond is completely clear and colorless. At the other end of the scale, a Z grade identifies a diamond with an obvious, clearly visible yellow or brown tint.
                 Heart shaped diamonds are a modified version of the round brilliant cut. Because they reflect lots of light, the color of a heart shaped diamond is harder to distinguish than it is in a diamond with a large table, such as an Emerald or Asscher cut.
                 This means that there’s no need to choose a flawless color grade. Doing so will only increase the price you pay for the diamond, without having any noticeable impact on how it looks when viewed with the naked eye.
@@ -341,7 +342,7 @@
                 For a yellow or rose gold setting, a lower color grade is okay. In general, we recommend the J color grade or better for solitaire settings.
                 Diamonds in these color grades have a slight yellow tint, but look clear when contrasted with metals like yellow and rose gold.
             </p>
-            <img src="~/Image/IntroImage/heart1.jpeg" alt="Destination 4" style="width: 50%;margin-left:210px;" />
+            <img src="~/Image/Introlmage/heart1.jpeg" alt="Destination 4" style="display: block; margin: 0 auto; width: 50%;" />
         </div>
         <footer>
             <hr />

@@ -218,14 +218,15 @@
                         <li><a href="@Url.Action("About", "Home")">About</a> </li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
                         <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="#">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
+                                <li><a href="#">Login</a> </li>
+                            }
                         }
                     </ul>
                 </div>
@@ -233,7 +234,7 @@
         </div>
 
         <div class="spacer"></div>
-        <h2 class="text-center">Marquise Diamond Story</h2>
+        <h2 class="text-center" style="margin-top: 48px;">Marquise Diamond Story</h2>
 
         <div class="container center">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -248,28 +249,28 @@
                     <div class="item active">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/marquise.jpg" alt="Destination 1" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/marquisering.jpg" alt="Destination 1" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/merquise1.png" alt="Destination 2" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/marquisering1.jpg" alt="Destination 2" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/marquise2.jpg" alt="Destination 3" style="width: 100%; height: 300px" />
+                                <img src="~/Image/SlideDiamond/marquisering2.jpg" alt="Destination 3" style="width: 100%;" />
                             </a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="slide-wrapper">
                             <a href="#">
-                                <img src="~/Image/SlideDiamond/marquise3.jpg" alt="Destination 4" style="width: 100%; height: 300px">
+                                <img src="~/Image/SlideDiamond/marquisering3.jpg" alt="Destination 4" style="width: 100%;">
                             </a>
                         </div>
                     </div>
@@ -330,7 +331,7 @@
                     To represent how various marquise diamonds appear—depending on their length to width ratio—we’ve included three examples.
                 </p>
                 <img src="~/Image/Introlmage/marquise2.png" alt="Destination 4" style="width: 100%;margin:auto" />
-                <p>
+                <p class=" = decription justify">
                     The marquise with a ratio of 1.75 is slightly stockier and may offer a bit more durability than those with the higher ratios.
                     The 1.95 diamond is more slender and maintains ample stability. The diamond with a 2.15 ratio is further elongated and may have slightly less durability than the others.
                     Overall, no marquise shape is fundamentally better than another. Choose what most appeals to you and ensure the diamond is well cut and well set in the jewelry.
@@ -338,17 +339,17 @@
                     Symmetry is critical, as even the slightest difference can take away from the stone’s beauty and elegance.
                 </p>
                 <h2 class="wp-block-heading" id="Bowtie-Effect-in-Marquise-Diamonds">Bowtie Effect in Marquise Diamonds</h2>
-                <p>
+                <p class=" = decription justify">
                     Due to their elegant and elongated shape, nearly all marquise diamonds contain a bowtie effect.
                     The dark space, referred to as the bowtie, stretches across the diamond’s center and can impact the beauty of the stone.
                     Bowtie severity differs across marquise diamonds.
                     In some cases, the bowtie is noticeable to the naked eye, while other times it’s nearly invisible.
                 </p>
-                <p>
+                <p class=" = decription justify">
                     Look for a marquise diamond without a dominant bowtie, as this will detract from the magnificence of your stone.
                     We highly recommend a diamond expert review any marquise before purchase.
                 </p>
-                <p>In the images below, notice the significant difference between a bowtie and non-bowtie diamond.</p>
+                <p class=" = decription justify">In the images below, notice the significant difference between a bowtie and non-bowtie diamond.</p>
                 <img src="~/Image/Introlmage/marquise3.png" alt="Destination 4" style="width: 100%;margin:auto" />
                 <h2 class="wp-block-heading">Size and Carat Weight Comparison</h2>
                 <p>Imagining how big certain carat weight is can be difficult. We decided to make it easy for everybody and made this side by side comparison to a US quarter.</p>
