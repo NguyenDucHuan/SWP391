@@ -8,24 +8,90 @@
     <link rel="stylesheet" href="/Content/bootstrap.min.css" />
     <style>
         .container {
-            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .order-details {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .total-amount {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .order-details h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .btn-container a {
+                margin: 0 5px;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Order Details</h2>
-        <p><strong>Order ID:</strong> @Model.OrderID</p>
-        <p><strong>Customer ID:</strong> @Model.CustomerID</p>
-        <p><strong>Delivery Staff ID:</strong> @Model.DeliveryStaffID</p>
-        <p><strong>Total Money:</strong> @Model.TotalMoney</p>
-        <p><strong>Status:</strong> @Model.Status</p>
-        <p><strong>Address:</strong> @Model.Address</p>
-        <p><strong>Phone:</strong> @Model.Phone</p>
-        <p><strong>Sale Date:</strong> @Model.SaleDate</p>
-        <br />
-        <a href="@Url.Action("UpdateOrderStatus", "SaleStaff", new { orderId = Model.OrderID })" class="btn btn-primary">Update Status</a>
-        <a href="@Url.Action("Index", "SaleStaff")" class="btn btn-secondary">Back to Sale Staff</a>
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <div class="form-group">
+                <label for="orderID">Order ID</label>
+                <input type="text" class="form-control" id="orderID" value="@Model.OrderID" readonly />
+            </div>
+            <div class="form-group">
+                <label for="customerID">Customer ID</label>
+                <input type="text" class="form-control" id="customerID" value="@Model.CustomerID" readonly />
+            </div>
+            <div class="form-group">
+                <label for="deliveryStaffID">Delivery Staff ID</label>
+                <input type="text" class="form-control" id="deliveryStaffID" value="@Model.DeliveryStaffID" readonly />
+            </div>
+            <div class="form-group">
+                <label for="totalMoney">Total Money</label>
+                <input type="text" class="form-control total-amount" id="totalMoney" value="@Model.TotalMoney" readonly />
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" class="form-control" id="status" value="@Model.Status" readonly />
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" value="@Model.Address" readonly />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" value="@Model.Phone" readonly />
+            </div>
+            <div class="form-group">
+                <label for="saleDate">Sale Date</label>
+                <input type="text" class="form-control" id="saleDate" value="@Model.SaleDate" readonly />
+            </div>
+            <div class="btn-container">
+                <a href="@Url.Action("UpdateOrderStatus", "SaleStaff", new { orderId = Model.OrderID })" class="btn btn-primary">Update Status</a>
+                <a href="@Url.Action("Index", "SaleStaff")" class="btn btn-secondary">Back to Sale Staff</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
