@@ -357,14 +357,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroduceController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SaleStaffController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\ViewProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Diamond.cs" />
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DiamondRepository.cs" />
@@ -399,9 +397,6 @@
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <Content Include="Views\ForgotPassword\Index.cshtml" />
     <Content Include="Views\ForgotPassword\ResetPassword.cshtml" />
-    <Content Include="Views\SaleStaff\Index.cshtml" />
-    <Content Include="Views\SaleStaff\UpdateOrderStatus.cshtml" />
-    <Content Include="Views\SaleStaff\ViewOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -411,7 +406,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

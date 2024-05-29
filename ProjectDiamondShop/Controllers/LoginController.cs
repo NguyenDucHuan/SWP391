@@ -32,34 +32,25 @@ namespace ProjectDiamondShop.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT userID, roleID FROM tblUsers WHERE userName = @UserName AND password = @Password", conn);
+                SqlCommand cmd = new SqlCommand("SELECT userID FROM tblUsers WHERE userName = @UserName AND password = @Password", conn);
                 cmd.Parameters.AddWithValue("@UserName", hashedUserName);
                 cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                string userId = cmd.ExecuteScalar() as string;
+
+                if (!string.IsNullOrEmpty(userId))
                 {
-                    string userId = reader["userID"].ToString();
-                    int roleId = Convert.ToInt32(reader["roleID"]);
-
-                    Session["UserID"] = userId;
-                    Session["UserName"] = userName;
-                    Session["RoleID"] = roleId;
+                    // Authentication successful
+                    Session["UserID"] = userId; // Lưu UserID đã băm vào Session
+                    Session["UserName"] = userName; // Lưu UserName gốc vào Session
                     Session["IsAuthenticated"] = true;
-
-                    if (roleId == 5)
-                    {
-                        return RedirectToAction("Index", "SaleStaff");
-                    }
-                    else
-                    {
-                        TempData["SuccessMessage"] = "Login successful!";
-                        TempData["UserName"] = userName;
-                        return RedirectToAction("Index", "Home");
-                    }
+                    TempData["SuccessMessage"] = "Login successful!";
+                    TempData["UserName"] = userName;
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    // Authentication failed
                     ModelState.AddModelError("", "Invalid user name or password.");
                     ViewBag.UserName = userName;
                     ViewBag.Password = password;
