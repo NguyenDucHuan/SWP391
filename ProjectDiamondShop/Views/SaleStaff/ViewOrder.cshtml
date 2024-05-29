@@ -1,0 +1,31 @@
+﻿@model ProjectDiamondShop.Models.Order
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> @Model.OrderID</p>
+        <p><strong>Customer ID:</strong> @Model.CustomerID</p>
+        <p><strong>Delivery Staff ID:</strong> @Model.DeliveryStaffID</p>
+        <p><strong>Total Money:</strong> @Model.TotalMoney</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Address:</strong> @Model.Address</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Sale Date:</strong> @Model.SaleDate</p>
+        <br />
+        <a href="@Url.Action("UpdateOrderStatus", "SaleStaff", new { orderId = Model.OrderID })" class="btn btn-primary">Update Status</a>
+        <a href="@Url.Action("Index", "SaleStaff")" class="btn btn-secondary">Back to Sale Staff</a>
+    </div>
+</body>
+</html>

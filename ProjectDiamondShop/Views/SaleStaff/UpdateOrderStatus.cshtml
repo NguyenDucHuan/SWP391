@@ -1,0 +1,101 @@
+﻿@model ProjectDiamondShop.Models.Order
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Update Order Status</title>
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        .status-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+            .status-progress div {
+                text-align: center;
+            }
+
+                .status-progress div span {
+                    display: block;
+                }
+
+            .status-progress .circle {
+                width: 30px;
+                height: 30px;
+                background-color: lightgray;
+                border-radius: 50%;
+                margin: auto;
+            }
+
+            .status-progress .completed {
+                background-color: green;
+            }
+
+            .status-progress .line {
+                flex-grow: 1;
+                height: 5px;
+                background-color: lightgray;
+                margin: 0 10px;
+            }
+
+            .status-progress .completed-line {
+                background-color: green;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Order Status</h2>
+        <div class="status-progress">
+            <div>
+                <div class="circle @(Model.Status == "Order Placed" || Model.Status == "Paid" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed" : "")"></div>
+                <span>Order Placed</span>
+            </div>
+            <div class="line @(Model.Status == "Paid" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed-line" : "")"></div>
+            <div>
+                <div class="circle @(Model.Status == "Paid" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed" : "")"></div>
+                <span>Paid</span>
+            </div>
+            <div class="line @(Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed-line" : "")"></div>
+            <div>
+                <div class="circle @(Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed" : "")"></div>
+                <span>Shipped to Carrier</span>
+            </div>
+            <div class="line @(Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed-line" : "")"></div>
+            <div>
+                <div class="circle @(Model.Status == "In Delivery" || Model.Status == "Delivered" ? "completed" : "")"></div>
+                <span>In Delivery</span>
+            </div>
+            <div class="line @(Model.Status == "Delivered" ? "completed-line" : "")"></div>
+            <div>
+                <div class="circle @(Model.Status == "Delivered" ? "completed" : "")"></div>
+                <span>Delivered</span>
+            </div>
+        </div>
+        <form action="@Url.Action("UpdateStatus", "SaleStaff")" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+            <div class="form-group">
+                <label for="status">Update Status</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="Order Placed">Order Placed</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Shipped to Carrier">Shipped to Carrier</option>
+                    <option value="In Delivery">In Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Status</button>
+        </form>
+        <br />
+        <a href="@Url.Action("ViewOrder", "SaleStaff", new { orderId = ViewBag.OrderId })" class="btn btn-secondary">Back to View Order</a>
+    </div>
+</body>
+</html>
