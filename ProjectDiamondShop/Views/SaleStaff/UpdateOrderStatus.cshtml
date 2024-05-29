@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/Content/bootstrap.min.css" />
     <style>
         .container {
-            margin-top: 50px;
+            margin-top: 20px;
         }
 
         .status-progress {
@@ -20,6 +20,7 @@
 
             .status-progress div {
                 text-align: center;
+                position: relative;
             }
 
                 .status-progress div span {
@@ -48,6 +49,40 @@
             .status-progress .completed-line {
                 background-color: green;
             }
+
+        .timeline {
+            list-style-type: none;
+            position: relative;
+        }
+
+            .timeline:before {
+                content: '';
+                background: #d4d9df;
+                display: inline-block;
+                position: absolute;
+                left: 29px;
+                width: 2px;
+                height: 100%;
+                z-index: 400;
+            }
+
+            .timeline > li {
+                margin: 20px 0;
+                padding-left: 40px;
+            }
+
+                .timeline > li:before {
+                    content: '';
+                    background: white;
+                    border: 3px solid #22c0e8;
+                    display: inline-block;
+                    position: absolute;
+                    border-radius: 50%;
+                    left: 20px;
+                    width: 20px;
+                    height: 20px;
+                    z-index: 400;
+                }
     </style>
 </head>
 <body>
@@ -81,21 +116,53 @@
         </div>
         <form action="@Url.Action("UpdateStatus", "SaleStaff")" method="post">
             @Html.AntiForgeryToken()
-            <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+            <input type="hidden" name="orderId" value="@Model.OrderID" />
             <div class="form-group">
                 <label for="status">Update Status</label>
                 <select class="form-control" id="status" name="status">
-                    <option value="Order Placed">Order Placed</option>
-                    <option value="Paid">Paid</option>
-                    <option value="Shipped to Carrier">Shipped to Carrier</option>
-                    <option value="In Delivery">In Delivery</option>
-                    <option value="Delivered">Delivered</option>
+                    @{
+                        var roleId = (int)Session["RoleID"];
+                        if (roleId == 4)
+                        {
+                            <option value="Shipped to Carrier">Shipped to Carrier</option>
+                            <option value="In Delivery">In Delivery</option>
+                            <option value="Delivered">Delivered</option>
+                        }
+                        else if (roleId == 5)
+                        {
+                            <option value="Order Placed">Order Placed</option>
+                            <option value="Paid">Paid</option>
+                        }
+                    }
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Update Status</button>
         </form>
         <br />
-        <a href="@Url.Action("ViewOrder", "SaleStaff", new { orderId = ViewBag.OrderId })" class="btn btn-secondary">Back to View Order</a>
+        <ul class="timeline">
+            @if (ViewBag.StatusUpdates != null)
+            {
+                foreach (var update in ViewBag.StatusUpdates)
+                {
+                    <li>
+                        <p><strong>@update.Key:</strong> @update.Value.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                    </li>
+                }
+            }
+        </ul>
+        <br />
+        <a href="@Url.Action((int)Session["RoleID"] == 4 ? "Index" : "ViewOrder", (int)Session["RoleID"] == 4 ? "DeliveryStaff" : "SaleStaff")" class="btn btn-secondary">
+            @if ((int)Session["RoleID"] == 4)
+            {
+                <span>Back to Delivery Staff</span>
+            }
+            else if ((int)Session["RoleID"] == 5)
+            {
+                <span>Back to View Order</span>
+            }
+        </a>
+
+
     </div>
 </body>
 </html>

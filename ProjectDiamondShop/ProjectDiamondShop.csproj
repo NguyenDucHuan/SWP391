@@ -352,6 +352,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DeliveryStaffController.cs" />
     <Compile Include="Controllers\DiamondsController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -399,9 +400,10 @@
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <Content Include="Views\ForgotPassword\Index.cshtml" />
     <Content Include="Views\ForgotPassword\ResetPassword.cshtml" />
-    <Content Include="Views\SaleStaff\Index.cshtml" />
     <Content Include="Views\SaleStaff\UpdateOrderStatus.cshtml" />
     <Content Include="Views\SaleStaff\ViewOrder.cshtml" />
+    <Content Include="Views\SaleStaff\SaleStaff.cshtml" />
+    <Content Include="Views\DeliveryStaff\DeliveryStaff.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

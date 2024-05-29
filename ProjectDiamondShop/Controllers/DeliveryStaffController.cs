@@ -7,58 +7,28 @@ using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
 {
-    public class SaleStaffController : Controller
+    public class DeliveryStaffController : Controller
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        // GET: SaleStaff
+        // GET: DeliveryStaff
         public ActionResult Index()
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 5)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 4)
             {
                 return RedirectToAction("Index", "Home");
             }
 
             List<Order> orders = GetOrders();
-            return View("SaleStaff", orders); // Sử dụng View SaleStaff.cshtml
-        }
-
-        // Process Order
-        [HttpPost]
-        public ActionResult Process(string orderId)
-        {
-            UpdateOrderStatus(orderId, "Preparing");
-            return RedirectToAction("Index");
-        }
-
-        // View Order Details
-        public ActionResult ViewOrder(string orderId)
-        {
-            if (string.IsNullOrEmpty(orderId))
-            {
-                return RedirectToAction("Index", "SaleStaff");
-            }
-
-            Order order = GetOrderDetails(orderId);
-            if (order == null)
-            {
-                return RedirectToAction("Index", "SaleStaff");
-            }
-
-            return View(order);
+            return View("DeliveryStaff", orders); // Sử dụng View DeliveryStaff.cshtml
         }
 
         // Update Order Status
         [HttpPost]
         public ActionResult UpdateStatus(string orderId, string status)
         {
-            if (string.IsNullOrEmpty(orderId))
-            {
-                return RedirectToAction("Index", "SaleStaff");
-            }
-
             UpdateOrderStatus(orderId, status);
-            return RedirectToAction("ViewOrder", new { orderId });
+            return RedirectToAction("UpdateOrderStatus", new { orderId });
         }
 
         // Get Update Status Page
@@ -66,7 +36,7 @@ namespace ProjectDiamondShop.Controllers
         {
             var order = GetOrderDetails(orderId);
             ViewBag.OrderId = orderId;
-            return View(order);
+            return View("~/Views/SaleStaff/UpdateOrderStatus.cshtml", order); // Sử dụng View UpdateOrderStatus.cshtml trong thư mục SaleStaff
         }
 
         private List<Order> GetOrders()
