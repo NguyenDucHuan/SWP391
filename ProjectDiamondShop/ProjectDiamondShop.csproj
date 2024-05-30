@@ -410,6 +410,7 @@
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Order\UpdateOrderDetails.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Diamonds\ViewDiamond.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
