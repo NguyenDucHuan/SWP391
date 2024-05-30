@@ -47,6 +47,7 @@ namespace ProjectDiamondShop.Controllers
                     Session["RoleID"] = roleId;
                     Session["IsAuthenticated"] = true;
 
+                    // Chuyển hướng người dùng đến trang danh sách đơn hàng của họ
                     if (roleId == 5)
                     {
                         return RedirectToAction("Index", "SaleStaff");

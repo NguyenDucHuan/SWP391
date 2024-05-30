@@ -52,7 +52,7 @@
                                 <input type="hidden" name="orderId" value="@order.OrderID" />
                                 <button type="submit" class="btn btn-warning">Process</button>
                             </form>
-                            <a href="@Url.Action("ViewOrder", "SaleStaff", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
+                            <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
                         </td>
                     </tr>
                 }
@@ -63,4 +63,3 @@
     </div>
 </body>
 </html>
-
