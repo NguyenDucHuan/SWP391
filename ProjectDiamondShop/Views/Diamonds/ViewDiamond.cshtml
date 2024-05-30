@@ -1,0 +1,54 @@
+﻿@model ProjectDiamondShop.Models.Diamond
+
+@{
+    ViewBag.Title = "Diamond Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<link href="~/Content/ProductCss/linearicons.css" rel="stylesheet" />
+<div class="container" style="margin-top:39px;">
+    <a href="@Url.Action("Index", "Diamonds")" style="text-decoration: none; color: #151542; padding-bottom:5px;"><span class="lnr lnr-exit"></span>Back to Gallery</a>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="mainImageContainer" style="width: 100%; max-width: 500px; height: 400px; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #f8f8f8; margin-bottom: 20px;">
+                <img id="mainImage" src="@Model.diamondImagePath.Split('|')[0]" alt="@Model.diamondName" class="img-responsive" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="thumbnail-container" style="display: flex; flex-wrap: wrap;">
+                @foreach (var imagePath in Model.diamondImagePath.Split('|').Select((value, index) => new { value, index }))
+                {
+                    <button class="thumbnail-button" data-image="@imagePath.value" style="border:none; background:none; margin: 5px; padding: 0;">
+                        <img src="@imagePath.value" alt="@Model.diamondName @imagePath.index" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                    </button>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 style="color: #151542; font-size:39px; font-family: Cambria, Geneva, Verdana, sans-serif; margin:auto">@Model.diamondName</h2>
+            <p>@Model.diamondDescription</p>
+            <p><strong>Price:</strong> $@Model.diamondPrice</p>
+            <p><strong>Clarity:</strong> @Model.clarityID</p>
+            <p><strong>Cut:</strong> @Model.cutID</p>
+            <p><strong>Color:</strong> @Model.colorID</p>
+            <p><strong>Carat Weight:</strong> @Model.caratWeight</p>
+            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+            {
+                @Html.Hidden("diamondID", Model.diamondID)
+                @Html.Hidden("diamondName", Model.diamondName)
+                @Html.Hidden("diamondPrice", Model.diamondPrice)
+                <span class="lnr lnr-cart" style="color: #f0f0f0;"></span><input type="submit" class="transparent-button" value="Add to Cart" />
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".thumbnail-button").click(function () {
+                var newImage = $(this).data('image');
+                $("#mainImage").attr('src', newImage);
+            });
+        });
+    </script>
+}

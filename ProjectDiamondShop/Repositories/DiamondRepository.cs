@@ -28,7 +28,7 @@ namespace ProjectDiamondShop.Repositories
                 {
                     coon.Open();
                     String getAllQuerry = "SELECT * FROM [dbo].[tblDiamonds]";
-                    using (SqlCommand command = new SqlCommand(getAllQuerry,coon))
+                    using (SqlCommand command = new SqlCommand(getAllQuerry, coon))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -40,13 +40,13 @@ namespace ProjectDiamondShop.Repositories
                                     diamondName = reader.GetString(reader.GetOrdinal("diamondName")),
                                     diamondPrice = reader.GetDecimal(reader.GetOrdinal("diamondPrice")),
                                     diamondDescription = reader.GetString(reader.GetOrdinal("diamondDescription")),
-                                    caratWeight =(float)reader.GetDouble(reader.GetOrdinal("caratWeight")),
+                                    caratWeight = (float)reader.GetDouble(reader.GetOrdinal("caratWeight")),
                                     clarityID = reader.GetString(reader.GetOrdinal("clarityID")),
                                     cutID = reader.GetString(reader.GetOrdinal("cutID")),
                                     colorID = reader.GetString(reader.GetOrdinal("colorID")),
                                     shapeID = reader.GetString(reader.GetOrdinal("shapeID")),
                                     diamondImagePath = reader.GetString(reader.GetOrdinal("diamondImagePath")),
-                                    status = false
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
                                 };
                                 diamonds.Add(diamond);
                             }
@@ -62,15 +62,61 @@ namespace ProjectDiamondShop.Repositories
             return diamonds;
         }
 
-        public List<Diamond> GetFilteredDiamonds(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight)
+        public Diamond GetDiamond(int diamondId)
         {
-            List<Diamond> diamonds = new List<Diamond>();
-            try 
+            Diamond diamondOut = null; // Khởi tạo giá trị ban đầu của diamondOut là null
+            try
             {
                 using (SqlConnection coon = new SqlConnection(connectionString))
                 {
                     coon.Open();
-                    String query = "SELECT * FROM [dbo].[tblDiamonds] WHERE 1=1";
+                    // Sử dụng parameterized query để tránh SQL Injection
+                    String getDiamondQuery = "SELECT * FROM [dbo].[tblDiamonds] WHERE diamondID = @diamondId";
+                    using (SqlCommand command = new SqlCommand(getDiamondQuery, coon))
+                    {
+                        command.Parameters.AddWithValue("@diamondId", diamondId); // Thêm parameter vào query
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Khởi tạo diamondOut chỉ khi có kết quả trả về từ truy vấn
+                                diamondOut = new Diamond
+                                {
+                                    diamondID = reader.GetInt32(reader.GetOrdinal("diamondID")),
+                                    diamondName = reader.GetString(reader.GetOrdinal("diamondName")),
+                                    diamondPrice = reader.GetDecimal(reader.GetOrdinal("diamondPrice")),
+                                    diamondDescription = reader.GetString(reader.GetOrdinal("diamondDescription")),
+                                    caratWeight = (float)reader.GetDouble(reader.GetOrdinal("caratWeight")),
+                                    clarityID = reader.GetString(reader.GetOrdinal("clarityID")),
+                                    cutID = reader.GetString(reader.GetOrdinal("cutID")),
+                                    colorID = reader.GetString(reader.GetOrdinal("colorID")),
+                                    shapeID = reader.GetString(reader.GetOrdinal("shapeID")),
+                                    diamondImagePath = reader.GetString(reader.GetOrdinal("diamondImagePath")),
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            return diamondOut;
+        }
+
+        public List<Diamond> GetFilteredDiamonds(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy)
+        {
+            List<Diamond> diamonds = new List<Diamond>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM [dbo].[tblDiamonds] WHERE 1=1";
+
+                    // Add filter conditions
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
                         query += " AND diamondName LIKE @searchTerm";
@@ -107,8 +153,30 @@ namespace ProjectDiamondShop.Repositories
                     {
                         query += " AND caratWeight <= @maxCaratWeight";
                     }
-                    using (SqlCommand command = new SqlCommand(query, coon))
+
+                    // Add sorting condition
+                    switch (sortBy)
                     {
+                        case "Price (Low to High)":
+                            query += " ORDER BY diamondPrice ASC";
+                            break;
+                        case "Price (High to Low)":
+                            query += " ORDER BY diamondPrice DESC";
+                            break;
+                        case "Carat Weight (Low to High)":
+                            query += " ORDER BY caratWeight ASC";
+                            break;
+                        case "Carat Weight (High to Low)":
+                            query += " ORDER BY caratWeight DESC";
+                            break;
+                        default:
+                            query += " ORDER BY diamondID"; // Default sorting by ID
+                            break;
+                    }
+
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        // Set parameter values
                         if (!string.IsNullOrEmpty(searchTerm))
                         {
                             command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
@@ -145,10 +213,11 @@ namespace ProjectDiamondShop.Repositories
                         {
                             command.Parameters.AddWithValue("@maxCaratWeight", maxCaratWeight.Value);
                         }
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read()) {
-                                double weight = reader.GetDouble(reader.GetOrdinal("caratWeight"));
+                            while (reader.Read())
+                            {
                                 Diamond diamond = new Diamond
                                 {
                                     diamondID = reader.GetInt32(reader.GetOrdinal("diamondID")),
@@ -161,18 +230,20 @@ namespace ProjectDiamondShop.Repositories
                                     colorID = reader.GetString(reader.GetOrdinal("colorID")),
                                     shapeID = reader.GetString(reader.GetOrdinal("shapeID")),
                                     diamondImagePath = reader.GetString(reader.GetOrdinal("diamondImagePath")),
-                                    status = false
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
                                 };
                                 diamonds.Add(diamond);
                             }
                         }
                     }
                 }
-            }catch (SqlException ex) 
-            { 
-                Console.WriteLine(ex.Message); 
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             return diamonds;
         }
-        }
+
+    }
 }

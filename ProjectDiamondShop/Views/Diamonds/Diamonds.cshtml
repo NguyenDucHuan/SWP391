@@ -12,10 +12,17 @@
             padding: 5px;
         }
 
-    .sut {
-        display: flex;
-        justify-content: center;
+    .transparent-button {
+        background: transparent;
+        border: none;
+        color: white; /* Màu văn bản trắng */
+        transition: color 0.3s; /* Hiệu ứng chuyển đổi màu văn bản */
+        cursor: pointer;
     }
+
+        .transparent-button:hover {
+            color: #f0f0f0; /* Khi hover vào nút, màu văn bản sáng lên */
+        }
 </style>
 <link href="~/Content/ProductCss/style.css" rel="stylesheet" />
 <link href="~/Content/ProductCss/bootstrap.min.css" rel="stylesheet" />
@@ -36,18 +43,21 @@
 
     // Danh sách shapes
     List<string> shapes = new List<string>() { "Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear" };
+
+    List<string> sortOptions = new List<string>() { "Price (Low to High)", "Price (High to Low)", "Carat Weight (Low to High)", "Carat Weight (High to Low)" };
+    ViewBag.SortOptions = new SelectList(sortOptions, ViewBag.SelectedSort);
 }
 
-<div class="container center-block" style="margin-top:50px;">
-    @using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group col-lg-12">
+@using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container center-block" style="margin-top:50px;">
+        <div class="form-group">
             <label for="SearchTerm">Search Term:</label>
             <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" class="form-control" />
         </div>
         <!-- Clarity -->
-        <div class="form-group col-lg-6">
+        <div class="form-group col-lg-4">
             <label for="Clarity">Clarity:</label>
             <select id="Clarity" name="Clarity" class="form-control">
                 <option value="">-- All --</option>
@@ -58,7 +68,7 @@
             </select>
         </div>
         <!-- Cut -->
-        <div class="form-group col-lg-6">
+        <div class="form-group col-lg-4">
             <label for="Cut">Cut:</label>
             <select id="Cut" name="Cut" class="form-control">
                 <option value="">-- All --</option>
@@ -68,30 +78,8 @@
                 }
             </select>
         </div>
-        <!-- Color -->
-        <div class="form-group col-lg-6">
-            <label for="Color">Color:</label>
-            <select id="Color" name="Color" class="form-control">
-                <option value="">-- All --</option>
-                @foreach (var color in colors)
-                {
-                    <option value="@color" @(color == ViewBag.SelectedColor ? "selected" : "")>@color</option>
-                }
-            </select>
-        </div>
-        <!-- Shape -->
-        <div class="form-group Shape col-lg-6">
-            <label for="Shape">Shape:</label>
-            <select id="Shape" name="Shape" class="form-control">
-                <option value="">-- All --</option>
-                @foreach (var shape in shapes)
-                {
-                    <option value="@shape" @(shape == ViewBag.SelectedShape ? "selected" : "")>@shape</option>
-                }
-            </select>
-        </div>
         <!-- Price -->
-        <div id="PriceDiv" class="col-lg-6">
+        <div id="PriceDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
                     <input id="fromSlider" type="range" value="@ViewBag.minPrice" min="1" max="99999" step="1" />
@@ -109,29 +97,59 @@
                 </div>
             </div>
         </div>
+        <!-- Color -->
+        <div class="form-group col-lg-4">
+            <label for="Color">Color:</label>
+            <select id="Color" name="Color" class="form-control">
+                <option value="">-- All --</option>
+                @foreach (var color in colors)
+                {
+                    <option value="@color" @(color == ViewBag.SelectedColor ? "selected" : "")>@color</option>
+                }
+            </select>
+        </div>
+        <!-- Shape -->
+        <div class="form-group col-lg-4">
+            <label for="Shape">Shape:</label>
+            <select id="Shape" name="Shape" class="form-control">
+                <option value="">-- All --</option>
+                @foreach (var shape in shapes)
+                {
+                    <option value="@shape" @(shape == ViewBag.SelectedShape ? "selected" : "")>@shape</option>
+                }
+            </select>
+        </div>
         <!-- Carat Weight -->
-        <div id="CaratDiv" class="col-lg-6">
+        <div id="CaratDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" />
-                    <input id="toSlider" type="range" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" />
+                    <input id="fromSlider" type="range" value="@ViewBag.minCaratWeight" min="0.5" max="10" step="0.01" />
+                    <input id="toSlider" type="range" value="@ViewBag.maxCaratWeight" min="0.5" max="10" step="0.01" />
                 </div>
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time">Min Carat</div>
-                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minCaratWeight" min="0.5" max="5" step="0.01" name="MinCaratWeight" />
+                        <input class="form_control_container__time__input" type="number" id="fromInput" value="@ViewBag.minCaratWeight" min="0.5" max="10" step="0.01" name="MinCaratWeight" />
                     </div>
                     <div class="form_control_container">
                         <div class="form_control_container__time">Max Carat</div>
-                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxCaratWeight" min="0.5" max="5" step="0.01" name="MaxCaratWeight" />
+                        <input class="form_control_container__time__input" type="number" id="toInput" value="@ViewBag.maxCaratWeight" min="0.5" max="10" step="0.01" name="MaxCaratWeight" />
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit">Filter</button>
-        @*<button type="reset">Reset</button>*@ <!-- nếu muốn để reset button cần phải làm js để cài lại giá trị range để nó ko bị lỗi hình ảnh -->
-    }
-</div>
+
+    </div>
+    <div class="container row center-block">
+        @*Sort by + tập dùng method in ASP.NET MVC*@
+        <button type="submit" class="btn btn-primary col-lg-1" style="background-color: #151542; float:right;">Filter</button>
+        @*<button type="submit" id="btn-reset-clean-content" class="btn btn-secondary col-lg-1" style="float:right; margin-right: 10px;">Reset</button>*@
+        <a class="btn btn-secondary" href="@Url.Action("Index", "Diamonds")" style="background-color: #151542; color:aliceblue; float:right; margin-right: 10px;">Reset</a>
+        <div class="form-group col-lg-4" style="float:right;">
+            @Html.DropDownList("SortBy", (SelectList)ViewBag.SortOptions, new { @class = "form-control" })
+        </div>
+    </div>
+}
 
 <section id="new-arrivals" class="new-arrivals">
     <div class="container">
@@ -141,23 +159,27 @@
                 {
                     string[] imagepart = item.diamondImagePath.Split('|');
                     <div class="col-md-3 col-sm-4">
-                        <div class="single-new-arrival">
-                            <div class="single-new-arrival-bg">
-                                <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
-                                <div class="single-new-arrival-bg-overlay"></div>
-                                <div class="new-arrival-cart">
-                                    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
-                                    {
-                                        @Html.Hidden("diamondID", item.diamondID)
-                                        @Html.Hidden("diamondName", item.diamondName)
-                                        @Html.Hidden("diamondPrice", item.diamondPrice)
-                                        <input type="submit" value="Add to Cart" />
-                                    }
+                        <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
+                            <div class="single-new-arrival">
+                                <div class="single-new-arrival-bg">
+                                    <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
+                                    <div class="single-new-arrival-bg-overlay"></div>
+                                    <div class="new-arrival-cart">
+                                        <div class="arrival-review pull-right">
+                                            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("diamondID", item.diamondID)
+                                                @Html.Hidden("diamondName", item.diamondName)
+                                                @Html.Hidden("diamondPrice", item.diamondPrice)
+                                                <span class="lnr lnr-cart" style="color: #f0f0f0;"></span><input type="submit" class="transparent-button" value="Add to Cart" />
+                                            }
+                                            </div>
+                                    </div>
                                 </div>
+                                <h4 style="height: 40px"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
+                                <p class="arrival-product-price">$@item.diamondPrice</p>
                             </div>
-                            <h4 style="height: 40px"><a href="#">@item.diamondName</a></h4>
-                            <p class="arrival-product-price">$@item.diamondPrice</p>
-                        </div>
+                        </a>
                     </div>
                 }
             </div>
