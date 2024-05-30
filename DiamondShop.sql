@@ -122,9 +122,9 @@ CREATE TABLE  [dbo].[tblComment](
 CREATE TABLE  [dbo].[tblOrder](
 	[orderID] [NVARCHAR](50) NOT NULL,
     [customerID] [NVARCHAR](50) NOT NULL,
-	[deliveryStaffID] [NVARCHAR](50) NOT NULL,
+	[deliveryStaffID] [NVARCHAR](50) NULL,
     [totalMoney] [FLOAT] NOT NULL,
-	[status] [BIT] DEFAULT '1',
+	[status] [NVARCHAR](50) DEFAULT 'NOT READY',
 	[address] [NVARCHAR](100) NOT NULL,
 	[phone] [NVARCHAR](50) NOT NULL,
 	[saleDate] DATETIME NOT NULL,
@@ -135,6 +135,10 @@ CREATE TABLE  [dbo].[tblOrder](
     CONSTRAINT [FK_tblOrder_tblUsers_1] FOREIGN KEY ([customerID]) REFERENCES dbo.tblUsers ([userID]),
     CONSTRAINT [FK_tblOrder_tblUsers_2] FOREIGN KEY ([deliveryStaffID]) REFERENCES dbo.tblUsers ([userID])
 	);
+
+	ALTER TABLE tblOrder
+ALTER COLUMN deliveryStaffID NVARCHAR(50) NULL;
+
 --Bảng transition -- Done
 CREATE TABLE [dbo].[tblTransaction](
     [transactionID] INT IDENTITY(1,1) NOT NULL,
@@ -188,15 +192,28 @@ CREATE TABLE [dbo].[tblWarranty](
     CONSTRAINT [FK_tblWarranty_tblOrderItem] FOREIGN KEY ([orderID], [diamondID]) REFERENCES dbo.tblOrderItem ([orderID], [diamondID]) ON DELETE CASCADE,
     CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [diamondID])
 );
+--Date Update Status
+USE DiamondShopManagement;
+
+CREATE TABLE [dbo].[tblOrderStatusUpdates](
+    [updateID] INT IDENTITY(1,1) NOT NULL,
+    [orderID] NVARCHAR(50) NOT NULL,
+    [status] NVARCHAR(50) NOT NULL,
+    [updateTime] DATETIME NOT NULL,
+    CONSTRAINT [PK_tblOrderStatusUpdates] PRIMARY KEY CLUSTERED (
+        [updateID] ASC
+    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+    CONSTRAINT [FK_tblOrderStatusUpdates_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE
+);
 
 
 --Insert Role
 INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES 
-( 1 , 'User'),
-( 2 , 'Admin'),
-( 3 , 'Manager'),
-( 4 , 'Deliverystaff'),
-( 5 , 'Salestaff');
+( 1 , 'user'),
+( 2 , 'admin'),
+( 3 , 'manager'),
+( 4 , 'deliverystaff'),
+( 5 , 'salestaff');
 --Insert Shape
 
 INSERT INTO [dbo].[tblDiamonds] ([diamondName], [diamondPrice], [diamondDescription], [caratWeight],[clarityID], [cutID],  [colorID], [shapeID],[diamondImagePath],[status]) VALUES 

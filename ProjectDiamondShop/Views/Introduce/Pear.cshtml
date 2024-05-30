@@ -214,19 +214,20 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
-                            <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><a href="@Url.Action("About", "Home")">About</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
+                            <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+                                <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>
