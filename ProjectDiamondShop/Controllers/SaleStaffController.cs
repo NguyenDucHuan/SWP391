@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Net;
 using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
@@ -23,78 +24,28 @@ namespace ProjectDiamondShop.Controllers
             return View("SaleStaff", orders); // Sử dụng View SaleStaff.cshtml
         }
 
-        // Process Order
         [HttpPost]
         public ActionResult Process(string orderId)
         {
+            if (string.IsNullOrEmpty(orderId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
+            }
+
             UpdateOrderStatus(orderId, "Preparing");
             return RedirectToAction("Index");
         }
 
-        // View Order Details
-        public ActionResult ViewOrder(string orderId)
+        public ActionResult UpdateOrderDetails(string orderId)
         {
             if (string.IsNullOrEmpty(orderId))
             {
-                return RedirectToAction("Index", "SaleStaff");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
             }
 
-            Order order = GetOrderDetails(orderId);
-            if (order == null)
-            {
-                return RedirectToAction("Index", "SaleStaff");
-            }
-
-            return View(order);
-        }
-
-        // Update Order Status
-        [HttpPost]
-        public ActionResult UpdateStatus(string orderId, string status)
-        {
-            if (string.IsNullOrEmpty(orderId))
-            {
-                return RedirectToAction("Index", "SaleStaff");
-            }
-
-            UpdateOrderStatus(orderId, status);
-            return RedirectToAction("ViewOrder", new { orderId });
-        }
-
-        // Get Update Status Page
-        public ActionResult UpdateOrderStatus(string orderId)
-        {
             var order = GetOrderDetails(orderId);
-            ViewBag.OrderId = orderId;
+            ViewBag.StatusUpdates = GetStatusUpdates(orderId); // Lấy danh sách cập nhật trạng thái
             return View(order);
-        }
-
-        private List<Order> GetOrders()
-        {
-            List<Order> orders = new List<Order>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    orders.Add(new Order
-                    {
-                        OrderID = reader["orderID"].ToString(),
-                        CustomerID = reader["customerID"].ToString(),
-                        DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                        TotalMoney = Convert.ToDouble(reader["totalMoney"]),
-                        Status = reader["status"].ToString(),
-                        Address = reader["address"].ToString(),
-                        Phone = reader["phone"].ToString(),
-                        SaleDate = Convert.ToDateTime(reader["saleDate"])
-                    });
-                }
-            }
-
-            return orders;
         }
 
         private Order GetOrderDetails(string orderId)
@@ -135,7 +86,61 @@ namespace ProjectDiamondShop.Controllers
                 cmd.Parameters.AddWithValue("@Status", status);
                 cmd.Parameters.AddWithValue("@OrderID", orderId);
                 cmd.ExecuteNonQuery();
+
+                // Insert into tblOrderStatusUpdates
+                SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
+                cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
+                cmdInsert.Parameters.AddWithValue("@Status", status);
+                cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+                cmdInsert.ExecuteNonQuery();
             }
+        }
+
+        private List<KeyValuePair<string, DateTime>> GetStatusUpdates(string orderId)
+        {
+            List<KeyValuePair<string, DateTime>> updates = new List<KeyValuePair<string, DateTime>>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT status, updateTime FROM tblOrderStatusUpdates WHERE orderID = @OrderID ORDER BY updateTime", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    updates.Add(new KeyValuePair<string, DateTime>(reader["status"].ToString(), Convert.ToDateTime(reader["updateTime"])));
+                }
+            }
+
+            return updates;
+        }
+
+        private List<Order> GetOrders()
+        {
+            List<Order> orders = new List<Order>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder", conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    orders.Add(new Order
+                    {
+                        OrderID = reader["orderID"].ToString(),
+                        CustomerID = reader["customerID"].ToString(),
+                        DeliveryStaffID = reader["deliveryStaffID"].ToString(),
+                        TotalMoney = Convert.ToDouble(reader["totalMoney"]),
+                        Status = reader["status"].ToString(),
+                        Address = reader["address"].ToString(),
+                        Phone = reader["phone"].ToString(),
+                        SaleDate = Convert.ToDateTime(reader["saleDate"])
+                    });
+                }
+            }
+
+            return orders;
         }
     }
 }

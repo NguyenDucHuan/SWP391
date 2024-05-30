@@ -47,7 +47,7 @@
                         <td>@order.TotalMoney</td>
                         <td>@order.Status</td>
                         <td>
-                            <a href="@Url.Action("UpdateOrderStatus", "DeliveryStaff", new { orderId = order.OrderID })" class="btn btn-info">Update Status</a>
+                            <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">Update Status</a>
                         </td>
                     </tr>
                 }
