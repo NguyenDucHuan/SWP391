@@ -14,7 +14,7 @@ namespace ProjectDiamondShop.Controllers
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         // GET: SaleStaff
-        public ActionResult Index()
+        public ActionResult Index(string searchOrderId)
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 5)
             {
@@ -22,7 +22,7 @@ namespace ProjectDiamondShop.Controllers
             }
 
             var saleStaffID = Session["UserID"].ToString();
-            List<Order> orders = GetOrders(saleStaffID);
+            List<Order> orders = GetOrders(saleStaffID, searchOrderId);
             return View("SaleStaff", orders);
         }
 
@@ -135,7 +135,7 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
-        private List<Order> GetOrders(string saleStaffID)
+        private List<Order> GetOrders(string saleStaffID, string searchOrderId)
         {
             List<Order> orders = new List<Order>();
 
@@ -144,6 +144,13 @@ namespace ProjectDiamondShop.Controllers
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE saleStaffID = @SaleStaffID", conn);
                 cmd.Parameters.AddWithValue("@SaleStaffID", saleStaffID);
+
+                if (!string.IsNullOrEmpty(searchOrderId))
+                {
+                    cmd.CommandText += " AND orderID LIKE @OrderID";
+                    cmd.Parameters.AddWithValue("@OrderID", "%" + searchOrderId + "%");
+                }
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {

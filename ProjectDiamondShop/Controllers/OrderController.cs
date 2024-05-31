@@ -57,7 +57,7 @@ namespace ProjectDiamondShop.Controllers
                 try
                 {
                     // Lưu thông tin đơn hàng
-                    SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, @saleStaffID)", conn, transaction);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, NULL)", conn, transaction);
                     cmd.Parameters.AddWithValue("@orderID", orderId);
                     cmd.Parameters.AddWithValue("@customerID", userID);
                     cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
@@ -204,18 +204,48 @@ namespace ProjectDiamondShop.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@Status", status);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.ExecuteNonQuery();
+                SqlTransaction transaction = conn.BeginTransaction();
 
-                // Insert into tblOrderStatusUpdates
-                SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
-                cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
-                cmdInsert.Parameters.AddWithValue("@Status", status);
-                cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                cmdInsert.ExecuteNonQuery();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn, transaction);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    cmd.ExecuteNonQuery();
+
+                    // Insert into tblOrderStatusUpdates
+                    SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn, transaction);
+                    cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
+                    cmdInsert.Parameters.AddWithValue("@Status", status);
+                    cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+                    cmdInsert.ExecuteNonQuery();
+
+                    // Update delivery staff status if the order status is "In Delivery" or "Delivered"
+                    if (status == "In Delivery")
+                    {
+                        UpdateUserStatus(conn, transaction, orderId, false);
+                    }
+                    else if (status == "Delivered")
+                    {
+                        UpdateUserStatus(conn, transaction, orderId, true);
+                    }
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Error occurred while updating order status: " + ex.Message);
+                }
             }
+        }
+
+        private void UpdateUserStatus(SqlConnection conn, SqlTransaction transaction, string orderId, bool status)
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE tblUsers SET status = @Status WHERE userID = (SELECT deliveryStaffID FROM tblOrder WHERE orderID = @OrderID)", conn, transaction);
+            cmd.Parameters.AddWithValue("@Status", status);
+            cmd.Parameters.AddWithValue("@OrderID", orderId);
+            cmd.ExecuteNonQuery();
         }
 
         private List<KeyValuePair<string, DateTime>> GetStatusUpdates(string orderId)
