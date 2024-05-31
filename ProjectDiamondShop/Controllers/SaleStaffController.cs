@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -20,8 +21,9 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<Order> orders = GetOrders();
-            return View("SaleStaff", orders); // Sử dụng View SaleStaff.cshtml
+            var saleStaffID = Session["UserID"].ToString();
+            List<Order> orders = GetOrders(saleStaffID);
+            return View("SaleStaff", orders);
         }
 
         [HttpPost]
@@ -32,7 +34,13 @@ namespace ProjectDiamondShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
             }
 
-            UpdateOrderStatus(orderId, "Preparing");
+            var currentStatus = GetCurrentStatus(orderId);
+            if (currentStatus != "Order Placed")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid status transition");
+            }
+
+            UpdateOrderStatus(orderId, "Prepare goods");
             return RedirectToAction("Index");
         }
 
@@ -55,7 +63,7 @@ namespace ProjectDiamondShop.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE orderID = @OrderID", conn);
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE orderID = @OrderID", conn);
                 cmd.Parameters.AddWithValue("@OrderID", orderId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -65,6 +73,7 @@ namespace ProjectDiamondShop.Controllers
                         OrderID = reader["orderID"].ToString(),
                         CustomerID = reader["customerID"].ToString(),
                         DeliveryStaffID = reader["deliveryStaffID"].ToString(),
+                        SaleStaffID = reader["saleStaffID"].ToString(),
                         TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                         Status = reader["status"].ToString(),
                         Address = reader["address"].ToString(),
@@ -115,14 +124,26 @@ namespace ProjectDiamondShop.Controllers
             return updates;
         }
 
-        private List<Order> GetOrders()
+        private string GetCurrentStatus(string orderId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                return cmd.ExecuteScalar()?.ToString();
+            }
+        }
+
+        private List<Order> GetOrders(string saleStaffID)
         {
             List<Order> orders = new List<Order>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder", conn);
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE saleStaffID = @SaleStaffID", conn);
+                cmd.Parameters.AddWithValue("@SaleStaffID", saleStaffID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -131,6 +152,7 @@ namespace ProjectDiamondShop.Controllers
                         OrderID = reader["orderID"].ToString(),
                         CustomerID = reader["customerID"].ToString(),
                         DeliveryStaffID = reader["deliveryStaffID"].ToString(),
+                        SaleStaffID = reader["saleStaffID"].ToString(),
                         TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                         Status = reader["status"].ToString(),
                         Address = reader["address"].ToString(),

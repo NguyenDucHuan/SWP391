@@ -122,7 +122,8 @@ CREATE TABLE  [dbo].[tblComment](
 CREATE TABLE  [dbo].[tblOrder](
 	[orderID] [NVARCHAR](50) NOT NULL,
     [customerID] [NVARCHAR](50) NOT NULL,
-	[deliveryStaffID] [NVARCHAR](50) NULL,
+	[deliveryStaffID] [NVARCHAR](50) ,
+	[saleStaffID] [NVARCHAR](50) ,
     [totalMoney] [FLOAT] NOT NULL,
 	[status] [NVARCHAR](50) DEFAULT 'NOT READY',
 	[address] [NVARCHAR](100) NOT NULL,

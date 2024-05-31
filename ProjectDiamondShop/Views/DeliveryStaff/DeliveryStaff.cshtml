@@ -21,11 +21,45 @@
             border: 1px solid black;
             text-align: center;
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .header h2 {
+                flex-grow: 1;
+                text-align: center;
+            }
+
+        .logout-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+            .logout-button:hover {
+                background-color: #45a049;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Delivery Staff Orders</h2>
+        <div class="header">
+            <h2>Delivery Staff Orders</h2>
+            <form action="@Url.Action("Logout", "Login")" method="post" style="margin: 0;">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -53,8 +87,6 @@
                 }
             </tbody>
         </table>
-        <br />
-        <a href="@Url.Action("Index", "Login")" class="btn btn-secondary">Back to Login</a>
     </div>
 </body>
 </html>

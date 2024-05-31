@@ -19,18 +19,20 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<Order> orders = GetOrders();
-            return View("DeliveryStaff", orders); // Sử dụng View DeliveryStaff.cshtml
+            var deliveryStaffID = Session["UserID"].ToString();
+            List<Order> orders = GetOrders(deliveryStaffID);
+            return View("DeliveryStaff", orders);
         }
 
-        private List<Order> GetOrders()
+        private List<Order> GetOrders(string deliveryStaffID)
         {
             List<Order> orders = new List<Order>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder", conn);
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE deliveryStaffID = @DeliveryStaffID", conn);
+                cmd.Parameters.AddWithValue("@DeliveryStaffID", deliveryStaffID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -39,6 +41,7 @@ namespace ProjectDiamondShop.Controllers
                         OrderID = reader["orderID"].ToString(),
                         CustomerID = reader["customerID"].ToString(),
                         DeliveryStaffID = reader["deliveryStaffID"].ToString(),
+                        SaleStaffID = reader["saleStaffID"].ToString(),
                         TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                         Status = reader["status"].ToString(),
                         Address = reader["address"].ToString(),
