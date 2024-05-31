@@ -9,23 +9,16 @@
     <style>
         .container {
             margin-top: 50px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid black;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
             .header h2 {
@@ -50,6 +43,52 @@
             .logout-button:hover {
                 background-color: #45a049;
             }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .search-container input[type="text"] {
+                width: 300px;
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .search-container button {
+                padding: 10px 20px;
+                border: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+                .search-container button:hover {
+                    background-color: #45a049;
+                }
+
+        .order-table-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px; /* Set the height to a fixed value */
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -60,38 +99,46 @@
                 <button type="submit" class="logout-button">Logout</button>
             </form>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Customer ID</th>
-                    <th>Delivery Staff ID</th>
-                    <th>Total Money</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var order in Model)
-                {
+        <div class="search-container">
+            <form action="@Url.Action("Index", "SaleStaff")" method="get">
+                <input type="text" name="searchOrderId" placeholder="Search by Order ID" value="@Request.QueryString["searchOrderId"]" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="order-table-container">
+            <table>
+                <thead>
                     <tr>
-                        <td>@order.OrderID</td>
-                        <td>@order.CustomerID</td>
-                        <td>@order.DeliveryStaffID</td>
-                        <td>@order.TotalMoney</td>
-                        <td>@order.Status</td>
-                        <td>
-                            <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="orderId" value="@order.OrderID" />
-                                <button type="submit" class="btn btn-warning" @(order.Status != "Order Placed" ? "disabled" : "")>Process</button>
-                            </form>
-                            <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
-                        </td>
+                        <th>Order ID</th>
+                        <th>Customer ID</th>
+                        <th>Delivery Staff ID</th>
+                        <th>Total Money</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderID</td>
+                            <td>@order.CustomerID</td>
+                            <td>@order.DeliveryStaffID</td>
+                            <td>@order.TotalMoney</td>
+                            <td>@order.Status</td>
+                            <td>
+                                <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="orderId" value="@order.OrderID" />
+                                    <button type="submit" class="btn btn-warning" @(order.Status != "Order Placed" ? "disabled" : "")>Process</button>
+                                </form>
+                                <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
