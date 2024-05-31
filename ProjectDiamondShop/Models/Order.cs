@@ -7,6 +7,7 @@ namespace ProjectDiamondShop.Models
         public string OrderID { get; set; }
         public string CustomerID { get; set; }
         public string DeliveryStaffID { get; set; }
+        public string SaleStaffID { get; set; }  // New Property
         public double TotalMoney { get; set; }
         public string Status { get; set; }
         public string Address { get; set; }

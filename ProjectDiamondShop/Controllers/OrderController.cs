@@ -12,7 +12,7 @@ namespace ProjectDiamondShop.Controllers
 {
     public class OrderController : Controller
     {
-        private const string DEFAULT_ORDER_STATUS = "NOT READY";
+        private const string DEFAULT_ORDER_STATUS = "Order Placed";
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         private string GetUserID()
@@ -57,7 +57,7 @@ namespace ProjectDiamondShop.Controllers
                 try
                 {
                     // Lưu thông tin đơn hàng
-                    SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate,deliveryStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL)", conn, transaction);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, @saleStaffID)", conn, transaction);
                     cmd.Parameters.AddWithValue("@orderID", orderId);
                     cmd.Parameters.AddWithValue("@customerID", userID);
                     cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
@@ -92,6 +92,7 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
         }
+
         public ActionResult UpdateOrderDetails(string orderId)
         {
             if (string.IsNullOrEmpty(orderId))
@@ -112,8 +113,60 @@ namespace ProjectDiamondShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID and Status are required");
             }
 
-            UpdateOrderStatus(orderId, status);
+            var roleId = (int)Session["RoleID"];
+            var validStatus = GetValidStatus(orderId, roleId, status);
+
+            if (validStatus == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid status transition");
+            }
+
+            UpdateOrderStatus(orderId, validStatus);
             return RedirectToAction("UpdateOrderDetails", new { orderId });
+        }
+
+        private string GetValidStatus(string orderId, int roleId, string status)
+        {
+            var statusOrder = new List<string>
+            {
+                "Order Placed",
+                "Prepare goods",
+                "Shipped to Carrier",
+                "In Delivery",
+                "Delivered",
+                "Paid"
+            };
+
+            var currentStatus = GetCurrentStatus(orderId);
+            var currentIndex = statusOrder.IndexOf(currentStatus);
+            var newIndex = statusOrder.IndexOf(status);
+
+            if (newIndex != currentIndex + 1)
+            {
+                return null; // Invalid transition: status can't skip or move backwards
+            }
+
+            if (roleId == 5 && (newIndex == 1 || newIndex == 2 || newIndex == 5))
+            {
+                return status; // Sale staff can only update to "Prepare goods", "Shipped to Carrier", "Paid"
+            }
+            else if (roleId == 4 && (newIndex == 3 || newIndex == 4))
+            {
+                return status; // Delivery staff can only update to "In Delivery", "Delivered"
+            }
+
+            return null;
+        }
+
+        private string GetCurrentStatus(string orderId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                return cmd.ExecuteScalar()?.ToString();
+            }
         }
 
         private Order GetOrderDetails(string orderId)
@@ -123,7 +176,7 @@ namespace ProjectDiamondShop.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE orderID = @OrderID", conn);
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE orderID = @OrderID", conn);
                 cmd.Parameters.AddWithValue("@OrderID", orderId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -133,6 +186,7 @@ namespace ProjectDiamondShop.Controllers
                         OrderID = reader["orderID"].ToString(),
                         CustomerID = reader["customerID"].ToString(),
                         DeliveryStaffID = reader["deliveryStaffID"].ToString(),
+                        SaleStaffID = reader["saleStaffID"].ToString(),
                         TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                         Status = reader["status"].ToString(),
                         Address = reader["address"].ToString(),
