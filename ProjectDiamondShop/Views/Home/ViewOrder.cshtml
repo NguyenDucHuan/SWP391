@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "View Orders";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                border: 1px solid black;
+                text-align: center;
+            }
+
+        .btn-info {
+            color: white;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+            .btn-info:hover {
+                color: white;
+                background-color: #31b0d5;
+                border-color: #269abc;
+            }
+
+        .nav-buttons {
+            margin-bottom: 20px;
+        }
+
+            .nav-buttons .btn-group {
+                display: flex;
+                justify-content: center;
+            }
+
+        .section {
+            display: none;
+        }
+
+            .section.active {
+                display: block;
+            }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mt-4">View Orders</h2>
+
+        <div class="nav-buttons">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" onclick="showSection('currentOrders')">Current Orders</button>
+                <button type="button" class="btn btn-primary" onclick="showSection('orderHistory')">Order History</button>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">HomePage</a>
+            </div>
+        </div>
+
+        <div id="currentOrders" class="section active">
+            <h3>Current Orders</h3>
+            <input type="text" id="searchCurrentOrders" class="form-control mb-3" onkeyup="searchTable('currentOrdersTable', 'searchCurrentOrders', 0)" placeholder="Search for orders by OrderID..">
+            <div class="table-container">
+                <table id="currentOrdersTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Delivery Staff ID</th>
+                            <th>Total Money</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in ViewBag.CurrentOrders)
+                        {
+                            <tr>
+                                <td>@order.OrderID</td>
+                                <td>@order.CustomerID</td>
+                                <td>@order.DeliveryStaffID</td>
+                                <td>@order.TotalMoney</td>
+                                <td>@order.Status</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="orderHistory" class="section">
+            <h3>Order History</h3>
+            <input type="text" id="searchHistoryOrders" class="form-control mb-3" onkeyup="searchTable('historyOrdersTable', 'searchHistoryOrders', 0)" placeholder="Search for orders by OrderID..">
+            <div class="table-container">
+                <table id="historyOrdersTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Delivery Staff ID</th>
+                            <th>Total Money</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in ViewBag.HistoryOrders)
+                        {
+                            <tr>
+                                <td>@order.OrderID</td>
+                                <td>@order.CustomerID</td>
+                                <td>@order.DeliveryStaffID</td>
+                                <td>@order.TotalMoney</td>
+                                <td>@order.Status</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchTable(tableId, searchId, columnIndex) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById(searchId);
+            filter = input.value.toUpperCase();
+            table = document.getElementById(tableId);
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td")[columnIndex];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

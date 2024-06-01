@@ -1,8 +1,6 @@
-﻿@model ProjectDiamondShop.Models.Order
+﻿@model ProjectDiamondShop.Models.ViewOrderViewModel
 @{
     var roleId = (int)Session["RoleID"];
-    var buttonText = roleId == 5 ? "SaleStaff" : "DeliveryStaff";
-    var returnUrl = roleId == 5 ? Url.Action("Index", "SaleStaff") : Url.Action("Index", "DeliveryStaff");
 }
 
 <!DOCTYPE html>
@@ -17,7 +15,6 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            position: relative;
         }
 
         .box {
@@ -123,33 +120,37 @@
                 border-radius: 4px;
             }
 
-        .action-buttons {
+        .back-button {
+            margin-left: 10px;
+            text-align: center;
+        }
+
+        .button-container {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            align-items: center;
         }
 
-        .back-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
+        .hidden {
+            display: none;
+        }
+
+        .back-button button {
             display: inline-block;
+            padding: 10px 20px;
             font-size: 16px;
-            margin: 4px 2px;
+            font-weight: bold;
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 20px;
             cursor: pointer;
-            border-radius: 12px;
-        }
-
-            .back-button:hover {
-                background-color: #45a049;
-            }
-
-        h2 {
             text-align: center;
         }
+
+            .back-button button:hover {
+                background-color: darkgreen;
+            }
     </style>
 </head>
 <body>
@@ -158,99 +159,135 @@
             <h2>Update Order Status</h2>
             <div class="status-progress">
                 <div>
-                    <div class="circle @(Model.Status == "Order Placed" || Model.Status == "Prepare goods" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed" : "")"></div>
+                    <div class="circle @(Model.Order.Status == "Order Placed" || Model.Order.Status == "Preparing Goods" || Model.Order.Status == "Shipped to Carrier" || Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed" : "")"></div>
                     <span>Order Placed</span>
                 </div>
-                <div class="line @(Model.Status == "Prepare goods" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed-line" : "")"></div>
+                <div class="line @(Model.Order.Status == "Preparing Goods" || Model.Order.Status == "Shipped to Carrier" || Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed-line" : "")"></div>
                 <div>
-                    <div class="circle @(Model.Status == "Prepare goods" || Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed" : "")"></div>
-                    <span>Prepare goods</span>
+                    <div class="circle @(Model.Order.Status == "Preparing Goods" || Model.Order.Status == "Shipped to Carrier" || Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed" : "")"></div>
+                    <span>Preparing Goods</span>
                 </div>
-                <div class="line @(Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed-line" : "")"></div>
+                <div class="line @(Model.Order.Status == "Shipped to Carrier" || Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed-line" : "")"></div>
                 <div>
-                    <div class="circle @(Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed" : "")"></div>
+                    <div class="circle @(Model.Order.Status == "Shipped to Carrier" || Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed" : "")"></div>
                     <span>Shipped to Carrier</span>
                 </div>
-                <div class="line @(Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed-line" : "")"></div>
+                <div class="line @(Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed-line" : "")"></div>
                 <div>
-                    <div class="circle @(Model.Status == "In Delivery" || Model.Status == "Delivered" || Model.Status == "Paid" ? "completed" : "")"></div>
+                    <div class="circle @(Model.Order.Status == "In Delivery" || Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed" : "")"></div>
                     <span>In Delivery</span>
                 </div>
-                <div class="line @(Model.Status == "Delivered" || Model.Status == "Paid" ? "completed-line" : "")"></div>
+                <div class="line @(Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed-line" : "")"></div>
                 <div>
-                    <div class="circle @(Model.Status == "Delivered" || Model.Status == "Paid" ? "completed" : "")"></div>
+                    <div class="circle @(Model.Order.Status == "Delivered" || Model.Order.Status == "Paid" ? "completed" : "")"></div>
                     <span>Delivered</span>
                 </div>
-                <div class="line @(Model.Status == "Paid" ? "completed-line" : "")"></div>
+                <div class="line @(Model.Order.Status == "Paid" ? "completed-line" : "")"></div>
                 <div>
-                    <div class="circle @(Model.Status == "Paid" ? "completed" : "")"></div>
+                    <div class="circle @(Model.Order.Status == "Paid" ? "completed" : "")"></div>
                     <span>Paid</span>
                 </div>
             </div>
-            <form action="@Url.Action("UpdateStatus", "Order")" method="post">
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="orderId" value="@Model.OrderID" />
-                <div class="form-group">
-                    <label for="status">Update Status</label>
-                    <select class="form-control" id="status" name="status">
-                        @if (roleId == 5 && (Model.Status == "Order Placed" || Model.Status == "Prepare goods" || Model.Status == "Shipped to Carrier"))
-                        {
-                            <option value="Prepare goods" @(Model.Status == "Order Placed" ? "selected" : "")>Prepare goods</option>
-                            <option value="Shipped to Carrier" @(Model.Status == "Prepare goods" ? "selected" : "")>Shipped to Carrier</option>
-                            <option value="Paid" @(Model.Status == "Delivered" ? "selected" : "")>Paid</option>
-                        }
-                        @if (roleId == 4 && (Model.Status == "Shipped to Carrier" || Model.Status == "In Delivery"))
-                        {
-                            <option value="In Delivery" @(Model.Status == "Shipped to Carrier" ? "selected" : "")>In Delivery</option>
-                            <option value="Delivered" @(Model.Status == "In Delivery" ? "selected" : "")>Delivered</option>
-                        }
-                    </select>
-                </div>
-                <div class="action-buttons">
+            @if (roleId != 1)
+            {
+                <form action="@Url.Action("UpdateStatus", "Order")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="orderId" value="@Model.Order.OrderID" />
+                    <div class="form-group">
+                        <label for="status">Update Status</label>
+                        <select class="form-control" id="status" name="status">
+                            @if (roleId == 4)
+                            {
+                                <option value="In Delivery">In Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                            }
+                            else if (roleId == 5)
+                            {
+                                <option value="Order Placed">Order Placed</option>
+                                <option value="Preparing Goods">Preparing Goods</option>
+                                <option value="Shipped to Carrier">Shipped to Carrier</option>
+                                <option value="Paid">Paid</option>
+                            }
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Update Status</button>
-                    <a href="@returnUrl" class="back-button">@buttonText</a>
-                </div>
-            </form>
+                </form>
+            }
+            <div class="back-button">
+                @if (roleId == 4)
+                {
+                    <form action="@Url.Action("Index", "DeliveryStaff")" method="get">
+                        <button type="submit" class="btn btn-success">Back to DeliveryStaff</button>
+                    </form>
+                }
+                else if (roleId == 5)
+                {
+                    <form action="@Url.Action("Index", "SaleStaff")" method="get">
+                        <button type="submit" class="btn btn-success">Back to SaleStaff</button>
+                    </form>
+                }
+                else if (roleId == 1)
+                {
+                    <form action="@Url.Action("ViewOrders", "Home")" method="get">
+                        <button type="submit" class="btn btn-success">Back to Customer</button>
+                    </form>
+                }
+            </div>
         </div>
 
         <div class="flex-container">
             <div class="box" style="width: 45%;">
+                <h2>Order Items</h2>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="form-group">
+                        <label>Diamond ID:</label>
+                        <p>@item.DiamondID</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Sale Price:</label>
+                        <p>@item.DiamondPrice</p>
+                    </div>
+                }
+            </div>
+
+            <div class="box" style="width: 45%;">
                 <h2>Order Details</h2>
                 <div class="form-group">
                     <label for="orderID">Order ID</label>
-                    <p id="orderID">@Model.OrderID</p>
+                    <p id="orderID">@Model.Order.OrderID</p>
                 </div>
                 <div class="form-group">
                     <label for="customerID">Customer ID</label>
-                    <p id="customerID">@Model.CustomerID</p>
+                    <p id="customerID">@Model.Order.CustomerID</p>
                 </div>
                 <div class="form-group">
                     <label for="deliveryStaffID">Delivery Staff ID</label>
-                    <p id="deliveryStaffID">@Model.DeliveryStaffID</p>
-                </div>
-                <div class="form-group">
-                    <label for="saleStaffID">Sale Staff ID</label>
-                    <p id="saleStaffID">@Model.SaleStaffID</p>
+                    <p id="deliveryStaffID">@Model.Order.DeliveryStaffID</p>
                 </div>
                 <div class="form-group">
                     <label for="totalMoney">Total Money</label>
-                    <p id="totalMoney">@Model.TotalMoney</p>
+                    <p id="totalMoney">@Model.Order.TotalMoney</p>
                 </div>
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <p id="status">@Model.Status</p>
+                    <p id="status">@Model.Order.Status</p>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <p id="address">@Model.Address</p>
+                    <p id="address">@Model.Order.Address</p>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <p id="phone">@Model.Phone</p>
+                    <p id="phone">@Model.Order.Phone</p>
                 </div>
                 <div class="form-group">
                     <label for="saleDate">Sale Date</label>
-                    <p id="saleDate">@Model.SaleDate</p>
+                    <p id="saleDate">@Model.Order.SaleDate</p>
+                </div>
+                <div class="form-group">
+                    <label for="voucherID">Voucher ID</label>
+                    <p id="voucherID">@Model.VoucherID</p>
                 </div>
             </div>
 

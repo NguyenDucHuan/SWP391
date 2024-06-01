@@ -14,6 +14,14 @@ namespace ProjectDiamondShop.Controllers
     {
         private const string DEFAULT_ORDER_STATUS = "Order Placed";
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private static readonly Dictionary<string, string[]> StatusTransitions = new Dictionary<string, string[]>
+        {
+            { "Order Placed", new[] { "Preparing Goods" } },
+            { "Preparing Goods", new[] { "Shipped to Carrier" } },
+            { "Shipped to Carrier", new[] { "In Delivery", "Paid" } },
+            { "In Delivery", new[] { "Delivered" } },
+            { "Delivered", new[] { "Paid" } }
+        };
 
         private string GetUserID()
         {
@@ -93,6 +101,69 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult UpdateStatus(string orderId, string status)
+        {
+            var roleId = (int)Session["RoleID"];
+            string[] validStatuses;
+
+            if (roleId == 4)
+            {
+                validStatuses = new[] { "In Delivery", "Delivered" };
+            }
+            else if (roleId == 5)
+            {
+                validStatuses = new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "Paid" };
+            }
+            else
+            {
+                validStatuses = Array.Empty<string>();
+            }
+
+            if (!validStatuses.Contains(status))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid status update for your role.");
+            }
+
+            var currentStatus = GetCurrentOrderStatus(orderId);
+            if (!StatusTransitions.ContainsKey(currentStatus) || !StatusTransitions[currentStatus].Contains(status))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid status transition.");
+            }
+
+            UpdateOrderStatus(orderId, status);
+            return RedirectToAction("UpdateOrderDetails", new { orderId });
+        }
+
+        private string GetCurrentOrderStatus(string orderId)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                return cmd.ExecuteScalar()?.ToString();
+            }
+        }
+
+        private void UpdateOrderStatus(string orderId, string status)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                cmd.ExecuteNonQuery();
+
+                var cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
+                cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
+                cmdInsert.Parameters.AddWithValue("@Status", status);
+                cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+                cmdInsert.ExecuteNonQuery();
+            }
+        }
+
         public ActionResult UpdateOrderDetails(string orderId)
         {
             if (string.IsNullOrEmpty(orderId))
@@ -100,76 +171,94 @@ namespace ProjectDiamondShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
             }
 
-            var order = GetOrderDetails(orderId);
-            ViewBag.StatusUpdates = GetStatusUpdates(orderId); // Lấy danh sách cập nhật trạng thái
+            var orderDetails = GetOrderDetails(orderId);
+            ViewBag.StatusUpdates = GetStatusUpdates(orderId);
+            return View(orderDetails);
+        }
+
+        private ViewOrderViewModel GetOrderDetails(string orderId)
+        {
+            var orderDetails = new ViewOrderViewModel();
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Load Order Items
+                var cmdOrderItems = new SqlCommand("SELECT diamondID, salePrice FROM tblOrderItem WHERE orderID = @OrderID", conn);
+                cmdOrderItems.Parameters.AddWithValue("@OrderID", orderId);
+                var readerOrderItems = cmdOrderItems.ExecuteReader();
+                while (readerOrderItems.Read())
+                {
+                    orderDetails.Items.Add(new CartItem
+                    {
+                        DiamondID = (int)readerOrderItems["diamondID"],
+                        DiamondPrice = (decimal)readerOrderItems["salePrice"]
+                    });
+                }
+                readerOrderItems.Close();
+
+                // Load Voucher ID
+                var cmdVoucher = new SqlCommand("SELECT voucherID FROM tblVoucherCatch WHERE userID = (SELECT customerID FROM tblOrder WHERE orderID = @OrderID)", conn);
+                cmdVoucher.Parameters.AddWithValue("@OrderID", orderId);
+                orderDetails.VoucherID = cmdVoucher.ExecuteScalar()?.ToString();
+
+                // Load Order Details
+                var cmdOrder = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE orderID = @OrderID", conn);
+                cmdOrder.Parameters.AddWithValue("@OrderID", orderId);
+                var readerOrder = cmdOrder.ExecuteReader();
+                if (readerOrder.Read())
+                {
+                    orderDetails.Order = new Order
+                    {
+                        OrderID = readerOrder["orderID"].ToString(),
+                        CustomerID = readerOrder["customerID"].ToString(),
+                        DeliveryStaffID = readerOrder["deliveryStaffID"].ToString(),
+                        SaleStaffID = readerOrder["saleStaffID"].ToString(),
+                        TotalMoney = Convert.ToDouble(readerOrder["totalMoney"]),
+                        Status = readerOrder["status"].ToString(),
+                        Address = readerOrder["address"].ToString(),
+                        Phone = readerOrder["phone"].ToString(),
+                        SaleDate = Convert.ToDateTime(readerOrder["saleDate"])
+                    };
+                }
+            }
+
+            return orderDetails;
+        }
+
+        private List<KeyValuePair<string, DateTime>> GetStatusUpdates(string orderId)
+        {
+            var updates = new List<KeyValuePair<string, DateTime>>();
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT status, updateTime FROM tblOrderStatusUpdates WHERE orderID = @OrderID ORDER BY updateTime", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    updates.Add(new KeyValuePair<string, DateTime>(reader["status"].ToString(), Convert.ToDateTime(reader["updateTime"])));
+                }
+            }
+
+            return updates;
+        }
+
+        //ViewOrder
+        public ActionResult UpdateStatusDetail(string orderId)
+        {
+            if (string.IsNullOrEmpty(orderId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
+            }
+
+            var order = GetOrderDetail(orderId);
             return View(order);
         }
 
-        [HttpPost]
-        public ActionResult UpdateStatus(string orderId, string status)
-        {
-            if (string.IsNullOrEmpty(orderId) || string.IsNullOrEmpty(status))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID and Status are required");
-            }
-
-            var roleId = (int)Session["RoleID"];
-            var validStatus = GetValidStatus(orderId, roleId, status);
-
-            if (validStatus == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid status transition");
-            }
-
-            UpdateOrderStatus(orderId, validStatus);
-            return RedirectToAction("UpdateOrderDetails", new { orderId });
-        }
-
-        private string GetValidStatus(string orderId, int roleId, string status)
-        {
-            var statusOrder = new List<string>
-            {
-                "Order Placed",
-                "Prepare goods",
-                "Shipped to Carrier",
-                "In Delivery",
-                "Delivered",
-                "Paid"
-            };
-
-            var currentStatus = GetCurrentStatus(orderId);
-            var currentIndex = statusOrder.IndexOf(currentStatus);
-            var newIndex = statusOrder.IndexOf(status);
-
-            if (newIndex != currentIndex + 1)
-            {
-                return null; // Invalid transition: status can't skip or move backwards
-            }
-
-            if (roleId == 5 && (newIndex == 1 || newIndex == 2 || newIndex == 5))
-            {
-                return status; // Sale staff can only update to "Prepare goods", "Shipped to Carrier", "Paid"
-            }
-            else if (roleId == 4 && (newIndex == 3 || newIndex == 4))
-            {
-                return status; // Delivery staff can only update to "In Delivery", "Delivered"
-            }
-
-            return null;
-        }
-
-        private string GetCurrentStatus(string orderId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                return cmd.ExecuteScalar()?.ToString();
-            }
-        }
-
-        private Order GetOrderDetails(string orderId)
+        private Order GetOrderDetail(string orderId)
         {
             Order order = null;
 
@@ -197,74 +286,6 @@ namespace ProjectDiamondShop.Controllers
             }
 
             return order;
-        }
-
-        private void UpdateOrderStatus(string orderId, string status)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn, transaction);
-                    cmd.Parameters.AddWithValue("@Status", status);
-                    cmd.Parameters.AddWithValue("@OrderID", orderId);
-                    cmd.ExecuteNonQuery();
-
-                    // Insert into tblOrderStatusUpdates
-                    SqlCommand cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn, transaction);
-                    cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
-                    cmdInsert.Parameters.AddWithValue("@Status", status);
-                    cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                    cmdInsert.ExecuteNonQuery();
-
-                    // Update delivery staff status if the order status is "In Delivery" or "Delivered"
-                    if (status == "In Delivery")
-                    {
-                        UpdateUserStatus(conn, transaction, orderId, false);
-                    }
-                    else if (status == "Delivered")
-                    {
-                        UpdateUserStatus(conn, transaction, orderId, true);
-                    }
-
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    throw new Exception("Error occurred while updating order status: " + ex.Message);
-                }
-            }
-        }
-
-        private void UpdateUserStatus(SqlConnection conn, SqlTransaction transaction, string orderId, bool status)
-        {
-            SqlCommand cmd = new SqlCommand("UPDATE tblUsers SET status = @Status WHERE userID = (SELECT deliveryStaffID FROM tblOrder WHERE orderID = @OrderID)", conn, transaction);
-            cmd.Parameters.AddWithValue("@Status", status);
-            cmd.Parameters.AddWithValue("@OrderID", orderId);
-            cmd.ExecuteNonQuery();
-        }
-
-        private List<KeyValuePair<string, DateTime>> GetStatusUpdates(string orderId)
-        {
-            List<KeyValuePair<string, DateTime>> updates = new List<KeyValuePair<string, DateTime>>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT status, updateTime FROM tblOrderStatusUpdates WHERE orderID = @OrderID ORDER BY updateTime", conn);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    updates.Add(new KeyValuePair<string, DateTime>(reader["status"].ToString(), Convert.ToDateTime(reader["updateTime"])));
-                }
-            }
-
-            return updates;
         }
     }
 }
