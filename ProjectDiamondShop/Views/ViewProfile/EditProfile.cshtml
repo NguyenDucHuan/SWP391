@@ -50,7 +50,7 @@
         }
 
         .dropdown-menu {
-            width: 300px;
+            max-width: 10px;
         }
 
             .dropdown-menu li a {
@@ -64,7 +64,7 @@
 
             .dropdown-menu .col-md-3 {
                 border-right: 1px solid #ddd;
-                padding-right: 20px;
+                padding-right: 10px;
             }
 
                 .dropdown-menu .col-md-3:last-child {
@@ -134,11 +134,21 @@
         .spacer {
             height: 120px;
         }
+
         .footer-pos {
             position: absolute;
             bottom: 0;
             width: 100%;
         }
+
+        .navbar-nav > li > .dropdown-menu {
+            display: none;
+        }
+
+        .navbar-nav > li:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -171,9 +181,25 @@
                                 <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
                                 @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
                                 {
-                                    <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                    <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                    <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                            <li><a href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                                        </ul>
+                                    </li>
                                 }
                                 else
                                 {

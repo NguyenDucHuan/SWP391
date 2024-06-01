@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
@@ -19,25 +20,24 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var deliveryStaffID = Session["UserID"].ToString();
-            List<Order> orders = GetOrders(deliveryStaffID, searchOrderId);
-            return View("DeliveryStaff", orders);
+            List<Order> orders = GetOrders(searchOrderId);
+            return View("DeliveryStaff", orders); // Sử dụng View DeliveryStaff.cshtml
         }
 
-        private List<Order> GetOrders(string deliveryStaffID, string searchOrderId)
+        private List<Order> GetOrders(string searchOrderId)
         {
             List<Order> orders = new List<Order>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE deliveryStaffID = @DeliveryStaffID", conn);
-                cmd.Parameters.AddWithValue("@DeliveryStaffID", deliveryStaffID);
+                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE deliveryStaffID = @DeliveryStaffID" +
+                    (string.IsNullOrEmpty(searchOrderId) ? "" : " AND orderID LIKE @SearchOrderId"), conn);
 
+                cmd.Parameters.AddWithValue("@DeliveryStaffID", Session["UserID"].ToString());
                 if (!string.IsNullOrEmpty(searchOrderId))
                 {
-                    cmd.CommandText += " AND orderID LIKE @OrderID";
-                    cmd.Parameters.AddWithValue("@OrderID", "%" + searchOrderId + "%");
+                    cmd.Parameters.AddWithValue("@SearchOrderId", "%" + searchOrderId + "%");
                 }
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -48,7 +48,6 @@ namespace ProjectDiamondShop.Controllers
                         OrderID = reader["orderID"].ToString(),
                         CustomerID = reader["customerID"].ToString(),
                         DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                        SaleStaffID = reader["saleStaffID"].ToString(),
                         TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                         Status = reader["status"].ToString(),
                         Address = reader["address"].ToString(),
