@@ -56,6 +56,10 @@ namespace ProjectDiamondShop.Controllers
                     {
                         return RedirectToAction("Index", "DeliveryStaff");
                     }
+                    else if (roleId == 3) // Vai trò Manager
+                    {
+                        return RedirectToAction("Index", "Manager");
+                    }
                     else
                     {
                         TempData["SuccessMessage"] = "Login successful!";

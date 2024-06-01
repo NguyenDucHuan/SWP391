@@ -1,0 +1,322 @@
+﻿@model ProjectDiamondShop.Models.ManagerViewModel
+
+@{
+    ViewBag.Title = "Manager Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .section {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .table thead th {
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .btn-group {
+            margin-bottom: 20px;
+        }
+
+        .wide-column {
+            min-width: 150px;
+        }
+
+        .spinner-border {
+            display: none;
+            width: 3rem;
+            height: 3rem;
+            border-width: .3rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mt-4">Manager Dashboard</h2>
+
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" onclick="showSection('orders')">Orders</button>
+            <button type="button" class="btn btn-primary" onclick="showSection('diamonds')">Diamonds</button>
+            <button type="button" class="btn btn-primary" onclick="showSection('saleStaff')">Sale Staff</button>
+            <button type="button" class="btn btn-primary" onclick="showSection('deliveryStaff')">Delivery Staff</button>
+            <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary">Create Voucher</a>
+        </div>
+
+        <div id="chart" class="section">
+            <h3>Revenue Chart</h3>
+            <canvas id="revenueChart" width="400" height="200"></canvas>
+        </div>
+
+        <div id="orders" class="section" style="display:none;">
+            <h3>Orders</h3>
+            <input type="text" id="searchOrders" class="form-control mb-3" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
+            <div class="table-container">
+                <table id="ordersTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th class="wide-column">Sale Staff</th>
+                            <th class="wide-column">Delivery Staff</th>
+                            <th>Total Money</th>
+                            <th class="wide-column">Status</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Sale Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@order.OrderID</td>
+                                <td>@order.CustomerID</td>
+                                <td>
+                                    <select class="form-control sale-staff-select" data-order-id="@order.OrderID">
+                                        <option value="">Default</option>
+                                        @foreach (var staff in Model.SaleStaff)
+                                        {
+                                            <option value="@staff.UserID" @(order.SaleStaffID == staff.UserID ? "selected" : "")>@staff.FullName (@staff.UserID)</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control delivery-staff-select" data-order-id="@order.OrderID">
+                                        <option value="">Default</option>
+                                        @foreach (var staff in Model.DeliveryStaff)
+                                        {
+                                            <option value="@staff.UserID" @(order.DeliveryStaffID == staff.UserID ? "selected" : "")>@staff.FullName (@staff.UserID)</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td>@order.TotalMoney</td>
+                                <td>
+                                    <select class="form-control status-select" data-order-id="@order.OrderID">
+                                        <option value="Order Placed" @(order.Status == "Order Placed" ? "selected" : "")>Order Placed</option>
+                                        <option value="Preparing Goods" @(order.Status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
+                                        <option value="Shipped to Carrier" @(order.Status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
+                                        <option value="In Delivery" @(order.Status == "In Delivery" ? "selected" : "")>In Delivery</option>
+                                        <option value="Delivered" @(order.Status == "Delivered" ? "selected" : "")>Delivered</option>
+                                        <option value="Paid" @(order.Status == "Paid" ? "selected" : "")>Paid</option>
+                                    </select>
+                                </td>
+                                <td>@order.Address</td>
+                                <td>@order.Phone</td>
+                                <td>@order.SaleDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
+        </div>
+
+        <div id="diamonds" class="section" style="display:none;">
+            <h3>Diamonds</h3>
+            <input type="text" id="searchDiamonds" class="form-control mb-3" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds by DiamondID..">
+            <div class="table-container">
+                <table id="diamondsTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Carat Weight</th>
+                            <th>clarity</th>
+                            <th>Cut</th>
+                            <th>Color</th>
+                            <th>Shape</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var diamond in Model.Diamonds)
+                        {
+                            <tr>
+                                <td>@diamond.diamondID</td>
+                                <td>@diamond.diamondName</td>
+                                <td>@diamond.diamondPrice</td>
+                                <td>@diamond.diamondDescription</td>
+                                <td>@diamond.caratWeight</td>
+                                <td>@diamond.clarityID</td>
+                                <td>@diamond.cutID</td>
+                                <td>@diamond.colorID</td>
+                                <td>@diamond.shapeID</td>
+                                <td>@diamond.status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="saleStaff" class="section" style="display:none;">
+            <h3>Sale Staff</h3>
+            <input type="text" id="searchSaleStaff" class="form-control mb-3" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
+            <div class="table-container">
+                <table id="saleStaffTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.SaleStaff)
+                        {
+                            <tr>
+                                <td>@user.UserID</td>
+                                <td>@user.UserName</td>
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="deliveryStaff" class="section" style="display:none;">
+            <h3>Delivery Staff</h3>
+            <input type="text" id="searchDeliveryStaff" class="form-control mb-3" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
+            <div class="table-container">
+                <table id="deliveryStaffTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.DeliveryStaff)
+                        {
+                            <tr>
+                                <td>@user.UserID</td>
+                                <td>@user.UserName</td>
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function searchTable(tableId, searchId, columnIndex) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById(searchId);
+            filter = input.value.toUpperCase();
+            table = document.getElementById(tableId);
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td")[columnIndex];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var ctx = document.getElementById('revenueChart').getContext('2d');
+            var revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
+                    datasets: [{
+                        label: 'Revenue',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        function updateOrders() {
+            var orderUpdates = [];
+
+            $('.status-select').each(function() {
+                var orderId = $(this).data('order-id');
+                var status = $(this).val();
+                if (status) {
+                    orderUpdates.push({ orderId: orderId, status: status });
+                }
+            });
+
+            var ajaxRequests = [];
+
+            orderUpdates.forEach(orderUpdate => {
+                ajaxRequests.push($.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateOrderStatus", "Manager")',
+                    data: {
+                        orderId: orderUpdate.orderId,
+                        newStatus: orderUpdate.status
+                    }
+                }));
+            });
+
+                alert('Update successful');
+
+        }
+    </script>
+</body>
+</html>

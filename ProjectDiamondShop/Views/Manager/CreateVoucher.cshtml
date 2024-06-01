@@ -1,0 +1,42 @@
+﻿@model ProjectDiamondShop.Models.Voucher
+
+@{
+    ViewBag.Title = "Create Voucher";
+}
+
+<h2>Create Voucher</h2>
+
+@using (Html.BeginForm("CreateVoucher", "Manager", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartTime, "Start Time")
+        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndTime, "End Time")
+        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discount, "Discount")
+        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, "Quantity")
+        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        <label for="assignTo">Assign to</label>
+        <select id="assignTo" name="assignTo" class="form-control">
+            <option value="all">All Users</option>
+            @* You can add options for specific users dynamically *@
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Voucher</button>
+}
