@@ -56,7 +56,7 @@ namespace ProjectDiamondShop.Controllers
                     {
                         return RedirectToAction("Index", "DeliveryStaff");
                     }
-                    else if (roleId == 3) // Vai trò Manager
+                    else if (roleId == 3) 
                     {
                         return RedirectToAction("Index", "Manager");
                     }

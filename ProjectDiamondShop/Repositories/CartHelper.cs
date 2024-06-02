@@ -47,7 +47,6 @@ namespace ProjectDiamondShop.Repositories
             {
                 cart.Items.Add(item);
             }
-            // If the item already exists, do nothing since each diamond is unique.
             SaveCart(context, userID, cart);
         }
 

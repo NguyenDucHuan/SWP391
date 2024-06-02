@@ -59,6 +59,7 @@
             <button type="button" class="btn btn-primary" onclick="showSection('saleStaff')">Sale Staff</button>
             <button type="button" class="btn btn-primary" onclick="showSection('deliveryStaff')">Delivery Staff</button>
             <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary">Create Voucher</a>
+            <a href="@Url.Action("Logout", "Login")" class="btn btn-danger">Logout</a>
         </div>
 
         <div id="chart" class="section">
@@ -78,7 +79,7 @@
                             <th class="wide-column">Sale Staff</th>
                             <th class="wide-column">Delivery Staff</th>
                             <th>Total Money</th>
-                            <th class="wide-column">Status</th>
+                            <th>Status</th>
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Sale Date</th>
@@ -109,16 +110,7 @@
                                     </select>
                                 </td>
                                 <td>@order.TotalMoney</td>
-                                <td>
-                                    <select class="form-control status-select" data-order-id="@order.OrderID">
-                                        <option value="Order Placed" @(order.Status == "Order Placed" ? "selected" : "")>Order Placed</option>
-                                        <option value="Preparing Goods" @(order.Status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
-                                        <option value="Shipped to Carrier" @(order.Status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
-                                        <option value="In Delivery" @(order.Status == "In Delivery" ? "selected" : "")>In Delivery</option>
-                                        <option value="Delivered" @(order.Status == "Delivered" ? "selected" : "")>Delivered</option>
-                                        <option value="Paid" @(order.Status == "Paid" ? "selected" : "")>Paid</option>
-                                    </select>
-                                </td>
+                                <td>@order.Status</td>
                                 <td>@order.Address</td>
                                 <td>@order.Phone</td>
                                 <td>@order.SaleDate</td>
@@ -127,7 +119,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="updateStaff()">Update</button>
         </div>
 
         <div id="diamonds" class="section" style="display:none;">
@@ -142,7 +134,7 @@
                             <th>Price</th>
                             <th>Description</th>
                             <th>Carat Weight</th>
-                            <th>clarity</th>
+                            <th>Clarity</th>
                             <th>Cut</th>
                             <th>Color</th>
                             <th>Shape</th>
@@ -168,6 +160,7 @@
                     </tbody>
                 </table>
             </div>
+            <a href="@Url.Action("AddDiamond", "Manager")" class="btn btn-primary mt-3">Add New Diamond</a>
         </div>
 
         <div id="saleStaff" class="section" style="display:none;">
@@ -290,31 +283,62 @@
             });
         });
 
-        function updateOrders() {
-            var orderUpdates = [];
+        function updateStaff() {
+            var saleStaffUpdates = [];
+            var deliveryStaffUpdates = [];
+            var orders = [];
 
-            $('.status-select').each(function() {
+            $('.sale-staff-select').each(function() {
                 var orderId = $(this).data('order-id');
-                var status = $(this).val();
-                if (status) {
-                    orderUpdates.push({ orderId: orderId, status: status });
+                var staffId = $(this).val();
+                if (staffId) {
+                    saleStaffUpdates.push({ orderId: orderId, staffId: staffId });
+                    orders.push(orderId);
+                }
+            });
+
+            $('.delivery-staff-select').each(function() {
+                var orderId = $(this).data('order-id');
+                var staffId = $(this).val();
+                if (staffId) {
+                    deliveryStaffUpdates.push({ orderId: orderId, staffId: staffId });
+                    if (!orders.includes(orderId)) {
+                        orders.push(orderId);
+                    }
                 }
             });
 
             var ajaxRequests = [];
 
-            orderUpdates.forEach(orderUpdate => {
-                ajaxRequests.push($.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("UpdateOrderStatus", "Manager")',
-                    data: {
-                        orderId: orderUpdate.orderId,
-                        newStatus: orderUpdate.status
-                    }
-                }));
+            orders.forEach(orderId => {
+                var saleStaffUpdate = saleStaffUpdates.find(u => u.orderId === orderId);
+                var deliveryStaffUpdate = deliveryStaffUpdates.find(u => u.orderId === orderId);
+
+                if (saleStaffUpdate) {
+                    ajaxRequests.push($.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("AssignStaff", "Manager")',
+                        data: {
+                            orderId: orderId,
+                            staffId: saleStaffUpdate.staffId,
+                            staffType: 'sale'
+                        }
+                    }));
+                }
+                if (deliveryStaffUpdate) {
+                    ajaxRequests.push($.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("AssignStaff", "Manager")',
+                        data: {
+                            orderId: orderId,
+                            staffId: deliveryStaffUpdate.staffId,
+                            staffType: 'delivery'
+                        }
+                    }));
+                }
             });
 
-                alert('Update successful');
+            alert('Update successful');  // Show alert immediately
 
         }
     </script>

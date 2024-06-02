@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -12,7 +15,6 @@ namespace ProjectDiamondShop.Controllers
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        // GET: Manager
         public ActionResult Index()
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
@@ -35,8 +37,77 @@ namespace ProjectDiamondShop.Controllers
             return View(model);
         }
 
+        public ActionResult CreateVoucher()
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(new Voucher());
+        }
+
         [HttpPost]
-        public ActionResult UpdateOrderStatus(string orderId, string newStatus)
+        public ActionResult CreateVoucher(Voucher voucher, string assignTo)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string voucherID = GenerateUniqueVoucherID(conn);
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO tblVoucher (voucherID, startTime, endTime, discount, quantity, status) VALUES (@VoucherID, @StartTime, @EndTime, @Discount, @Quantity, 1);", conn);
+                cmd.Parameters.AddWithValue("@VoucherID", voucherID);
+                cmd.Parameters.AddWithValue("@StartTime", voucher.StartTime);
+                cmd.Parameters.AddWithValue("@EndTime", voucher.EndTime);
+                cmd.Parameters.AddWithValue("@Discount", voucher.Discount);
+                cmd.Parameters.AddWithValue("@Quantity", voucher.Quantity);
+                cmd.ExecuteNonQuery();
+
+                if (assignTo == "all")
+                {
+                    SqlCommand cmdAll = new SqlCommand("INSERT INTO tblVoucherCatch (voucherID, userID) SELECT @VoucherID, userID FROM tblUsers", conn);
+                    cmdAll.Parameters.AddWithValue("@VoucherID", voucherID);
+                    cmdAll.ExecuteNonQuery();
+                }
+                else
+                {
+                    SqlCommand cmdUser = new SqlCommand("INSERT INTO tblVoucherCatch (voucherID, userID) VALUES (@VoucherID, @UserID)", conn);
+                    cmdUser.Parameters.AddWithValue("@VoucherID", voucherID);
+                    cmdUser.Parameters.AddWithValue("@UserID", assignTo);
+                    cmdUser.ExecuteNonQuery();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private string GenerateUniqueVoucherID(SqlConnection conn)
+        {
+            string voucherID;
+            Random random = new Random();
+            do
+            {
+                voucherID = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+            } while (VoucherIDExists(conn, voucherID));
+            return voucherID;
+        }
+
+        private bool VoucherIDExists(SqlConnection conn, string voucherID)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblVoucher WHERE voucherID = @VoucherID", conn);
+            cmd.Parameters.AddWithValue("@VoucherID", voucherID);
+            int count = (int)cmd.ExecuteScalar();
+            return count > 0;
+        }
+
+        [HttpPost]
+        public ActionResult AssignStaff(string orderId, string staffId, string staffType)
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
             {
@@ -46,52 +117,120 @@ namespace ProjectDiamondShop.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-
-                // Kiểm tra trạng thái hiện tại của đơn hàng
-                SqlCommand cmdCheckStatus = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
-                cmdCheckStatus.Parameters.AddWithValue("@OrderID", orderId);
-                var currentStatus = cmdCheckStatus.ExecuteScalar()?.ToString();
-
-                // Đảm bảo trạng thái được cập nhật tuần tự
-                if (!IsValidStatusTransition(currentStatus, newStatus))
-                {
-                    return new HttpStatusCodeResult(400, "Invalid status transition");
-                }
-
-                // Cập nhật trạng thái mới và lưu thời gian cập nhật
-                SqlCommand cmdUpdateStatus = new SqlCommand("UPDATE tblOrder SET status = @NewStatus WHERE orderID = @OrderID", conn);
-                cmdUpdateStatus.Parameters.AddWithValue("@NewStatus", newStatus);
-                cmdUpdateStatus.Parameters.AddWithValue("@OrderID", orderId);
-                cmdUpdateStatus.ExecuteNonQuery();
-
-                // Lưu thời gian cập nhật trạng thái
-                SqlCommand cmdLogStatusUpdate = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
-                cmdLogStatusUpdate.Parameters.AddWithValue("@OrderID", orderId);
-                cmdLogStatusUpdate.Parameters.AddWithValue("@Status", newStatus);
-                cmdLogStatusUpdate.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                cmdLogStatusUpdate.ExecuteNonQuery();
+                string column = staffType == "sale" ? "saleStaffID" : "deliveryStaffID";
+                SqlCommand cmd = new SqlCommand($"UPDATE tblOrder SET {column} = @StaffID WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                cmd.Parameters.AddWithValue("@StaffID", staffId);
+                cmd.ExecuteNonQuery();
             }
 
             return new HttpStatusCodeResult(200);
         }
 
-        private bool IsValidStatusTransition(string currentStatus, string newStatus)
+        public ActionResult AddDiamond()
         {
-            var statusOrder = new List<string>
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
             {
-                "Order Placed",
-                "Preparing Goods",
-                "Shipped to Carrier",
-                "In Delivery",
-                "Delivered",
-                "Paid"
-            };
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
 
-            var currentIndex = statusOrder.IndexOf(currentStatus);
-            var newIndex = statusOrder.IndexOf(newStatus);
+        [HttpPost]
+        public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            // Trạng thái mới phải lớn hơn trạng thái hiện tại
-            return newIndex > currentIndex;
+            if (ModelState.IsValid)
+            {
+                string diamondImagePaths = "";
+                string certificateImagePath = "";
+
+                // Get the next available diamond image number
+                int nextImageNumber = GetNextDiamondImageNumber();
+
+                // Save diamond images
+                if (diamondImageA != null && diamondImageA.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}A.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageA.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                if (diamondImageB != null && diamondImageB.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}B.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageB.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                if (diamondImageC != null && diamondImageC.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}C.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageC.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                diamondImagePaths = diamondImagePaths.TrimEnd('|');
+
+                // Save certificate image
+                if (certificateImage != null && certificateImage.ContentLength > 0)
+                {
+                    string fileName = $"CER{nextImageNumber:D2}.jpg";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Certificates"), fileName);
+                    certificateImage.SaveAs(path);
+                    certificateImagePath = $"/Image/DiamondDTO/Certificates/{fileName}";
+                }
+
+                // Insert diamond into database
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO tblDiamonds (diamondName, diamondPrice, diamondDescription, caratWeight, clarityID, cutID, colorID, shapeID, diamondImagePath, status) OUTPUT INSERTED.diamondID VALUES (@diamondName, @diamondPrice, @diamondDescription, @caratWeight, @clarityID, @cutID, @colorID, @shapeID, @diamondImagePath, 1);", conn);
+                    cmd.Parameters.AddWithValue("@diamondName", model.diamondName);
+                    cmd.Parameters.AddWithValue("@diamondPrice", model.diamondPrice);
+                    cmd.Parameters.AddWithValue("@diamondDescription", model.diamondDescription);
+                    cmd.Parameters.AddWithValue("@caratWeight", model.caratWeight);
+                    cmd.Parameters.AddWithValue("@clarityID", model.clarityID);
+                    cmd.Parameters.AddWithValue("@cutID", model.cutID);
+                    cmd.Parameters.AddWithValue("@colorID", model.colorID);
+                    cmd.Parameters.AddWithValue("@shapeID", model.shapeID);
+                    cmd.Parameters.AddWithValue("@diamondImagePath", diamondImagePaths);
+
+                    int diamondID = (int)cmd.ExecuteScalar();
+
+                    // Insert certificate into database
+                    SqlCommand certCmd = new SqlCommand("INSERT INTO tblCertificate (diamondID, certificateNumber, issueDate, certifyingAuthority, cerImagePath) VALUES (@diamondID, @certificateNumber, @issueDate, @certifyingAuthority, @cerImagePath);", conn);
+                    certCmd.Parameters.AddWithValue("@diamondID", diamondID);
+                    certCmd.Parameters.AddWithValue("@certificateNumber", model.CertificateNumber);
+                    certCmd.Parameters.AddWithValue("@issueDate", model.IssueDate);
+                    certCmd.Parameters.AddWithValue("@certifyingAuthority", model.CertifyingAuthority);
+                    certCmd.Parameters.AddWithValue("@cerImagePath", certificateImagePath);
+                    certCmd.ExecuteNonQuery();
+                }
+
+                TempData["SuccessMessage"] = "Diamond added successfully!";
+                return RedirectToAction("AddDiamond");
+            }
+
+            return View(model);
+        }
+
+        private int GetNextDiamondImageNumber()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(diamondID), 0) FROM tblDiamonds", conn);
+                int maxDiamondID = (int)cmd.ExecuteScalar();
+                return maxDiamondID + 1;
+            }
         }
 
         private List<Order> GetOrders()
