@@ -207,6 +207,12 @@ CREATE TABLE [dbo].[tblOrderStatusUpdates](
     CONSTRAINT [FK_tblOrderStatusUpdates_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE
 );
 
+	ALTER TABLE tblOrder
+ADD saleStaffID NVARCHAR(50) NULL;
+
+ALTER TABLE tblOrder
+ADD CONSTRAINT FK_tblOrder_SaleStaff
+FOREIGN KEY (saleStaffID) REFERENCES tblUsers(userID);
 
 --Insert Role
 INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES 

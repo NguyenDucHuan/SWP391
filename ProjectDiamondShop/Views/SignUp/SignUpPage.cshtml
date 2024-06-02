@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>The Diamond Shop</title>
@@ -11,110 +14,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Views/SignUp/css/StyleSheet1.css" />
     <style>
-        .container {
-            width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .col-md-4 {
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        h3 {
-            margin-top: 0;
-            color: slateblue;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        .dropdown-menu {
-            width: 300px;
-        }
-
-            .dropdown-menu li a {
-                font-size: 12px;
-            }
-
-            .dropdown-menu h3 {
-                font-size: 14px;
-                margin-bottom: 2px;
-            }
-
-            .dropdown-menu .col-md-3 {
-                border-right: 1px solid #ddd;
-                padding-right: 20px;
-            }
-
-                .dropdown-menu .col-md-3:last-child {
-                    border-right: none;
-                }
-
-            .dropdown-menu .divider {
-                margin-top: 2px;
-                margin-bottom: 2px;
-            }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .navbar-brand span:first-child {
-                margin-right: 10px;
-            }
-
         .signup-container {
-            padding: 20px;
+            padding: 30px;
             margin-top: 100px;
             max-width: 400px;
-            width: 80vw;
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 2px solid #ccc;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            border: 1px solid #ccc;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
-            background-color: skyblue;
+            background-color: #f5f5f5;
             color: #333;
         }
 
+            .signup-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #333;
+            }
 
-        .col-xs-11 {
-            display: block;
-            margin: 0 auto;
-            max-width: 300px;
-        }
-
-        .form-control {
-            width: 100%;
-        }
-
-        .btn-signup-spacing {
-            margin-top: 10px;
-        }
-
-        .center-text {
-            text-align: center;
-            margin-top: -12px;
+        .form-group {
+            margin-bottom: 15px;
         }
 
         .password-container {
@@ -123,106 +44,58 @@
 
         .show-password-toggle {
             position: absolute;
-            top: 50%;
-            right: 20px;
+            top: calc(50% + 10px);
+            right: 15px;
             transform: translateY(-50%);
             cursor: pointer;
+        }
+
+        .btn-signup-spacing {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server" method="post" action="@Url.Action("Register", "SignUp")">
         @Html.AntiForgeryToken()
-        <div>
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container ">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-
-                        </button>
-
-                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                            <span>
-                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                            </span>
-                            <span>The Diamond Shop</span>
-                        </a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li><a href="@Url.Action("About", "Home")">About</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
-                            <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!---signup page--->
-
         <div class="signup-container">
-            <h2 class="center-text">Sign Up</h2>
+            <h2>Sign Up</h2>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <label class="col-xs-11">User Name:</label>
-            <div class="col-xs-11">
-                <input type="text" id="txtUname" name="txtUname" class="form-control" placeholder="Enter Your User Name" value="@ViewBag.UserName" />
+
+            <div class="form-group">
+                <label for="txtUname">User Name:</label>
+                <input type="text" id="txtUname" name="txtUname" class="form-control" placeholder="Enter Your User Name" value="@ViewBag.UserName" required />
             </div>
 
-            <label class="col-xs-11">Password:</label>
-            <div class="col-xs-11 password-container">
-                <input type="password" id="txtPass" name="txtPass" class="form-control" placeholder="Enter Your Password" />
+            <div class="form-group password-container">
+                <label for="txtPass">Password:</label>
+                <input type="password" id="txtPass" name="txtPass" class="form-control" placeholder="Enter Your Password" required />
                 <span class="glyphicon glyphicon-eye-open show-password-toggle" onclick="togglePasswordVisibility('txtPass')"></span>
             </div>
 
-            <label class="col-xs-11">Confirm Password:</label>
-            <div class="col-xs-11 password-container">
-                <input type="password" id="txtCPass" name="txtCPass" class="form-control" placeholder="Enter Your Confirm Password" />
+            <div class="form-group password-container">
+                <label for="txtCPass">Confirm Password:</label>
+                <input type="password" id="txtCPass" name="txtCPass" class="form-control" placeholder="Enter Your Confirm Password" required />
                 <span class="glyphicon glyphicon-eye-open show-password-toggle" onclick="togglePasswordVisibility('txtCPass')"></span>
             </div>
 
-            <label class="col-xs-11">Your Full Name:</label>
-            <div class="col-xs-11">
-                <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Enter Your Name" value="@ViewBag.FullName" />
+            <div class="form-group">
+                <label for="txtName">Your Full Name:</label>
+                <input type="text" id="txtName" name="txtName" class="form-control" placeholder="Enter Your Name" value="@ViewBag.FullName" required />
             </div>
 
-            <label class="col-xs-11">Email:</label>
-            <div class="col-xs-11">
-                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="Enter Your Email" value="@ViewBag.Email" />
+            <div class="form-group">
+                <label for="txtEmail">Email:</label>
+                <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="Enter Your Email" value="@ViewBag.Email" required />
             </div>
-            <div class="col-xs-11">
+
+            <div class="form-group">
                 <input type="submit" id="txtsignup" class="btn btn-success btn-signup-spacing" value="Sign Up" />
             </div>
         </div>
         <!---signup page end--->
-        <!---Footer Contents Start here---->
-        <footer class="footer-pos">
-            <hr />
-            <div class="container text-center">
-                <p><a href="#">Back To Top</a></p>
-                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                <p>
-                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
-                </p>
-            </div>
-        </footer>
-        <!---Footer Contents End---->
     </form>
     <script>
         function togglePasswordVisibility(fieldId) {

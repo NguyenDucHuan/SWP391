@@ -127,11 +127,6 @@
                             <td>@order.TotalMoney</td>
                             <td>@order.Status</td>
                             <td>
-                                <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="orderId" value="@order.OrderID" />
-                                    <button type="submit" class="btn btn-warning" @(order.Status != "Order Placed" ? "disabled" : "")>Process</button>
-                                </form>
                                 <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
                             </td>
                         </tr>
