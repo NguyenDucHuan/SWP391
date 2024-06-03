@@ -40,8 +40,9 @@ public class CartController : Controller
             DiamondPrice = diamondPrice
         };
         CartHelper.AddToCart(HttpContext, userID, cartItem);
-        return RedirectToAction("Index", "Diamonds"); // Redirect to the diamonds listing page or any other page instead of cart
+        return RedirectToAction("Index", "Diamonds");
     }
+
 
     [HttpPost]
     public ActionResult RemoveFromCart(int diamondID)
