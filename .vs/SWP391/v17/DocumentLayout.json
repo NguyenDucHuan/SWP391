@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "D:\\TERM5\\SWP391\\SWP391\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|D:\\TERM5\\SWP391\\SWP391\\projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\swp391\\projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\order\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\swp391\\projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|D:\\TERM5\\SWP391\\SWP391\\projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\models\\voucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\swp391\\projectdiamondshop\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|D:\\TERM5\\SWP391\\SWP391\\projectdiamondshop\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
@@ -30,11 +30,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAOUAAAAAAAAAAAAAwCoBAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T22:17:38.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
@@ -46,8 +67,7 @@
               "RelativeToolTip": "ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
               "ViewState": "AQIAABsAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-03T09:22:41.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T09:22:41.402Z"
             },
             {
               "$type": "Document",
@@ -59,8 +79,7 @@
               "RelativeToolTip": "ProjectDiamondShop\\Models\\Voucher.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T00:58:46.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T00:58:46.05Z"
             },
             {
               "$type": "Document",
@@ -77,19 +96,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "ViewState": "AQIAAI8BAAAAAAAAAAAowLgBAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T22:17:38.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "CreateOrder.cshtml",
               "DocumentMoniker": "D:\\TERM5\\SWP391\\SWP391\\ProjectDiamondShop\\Views\\Order\\CreateOrder.cshtml",
@@ -98,8 +104,7 @@
               "RelativeToolTip": "ProjectDiamondShop\\Views\\Order\\CreateOrder.cshtml",
               "ViewState": "AQIAAD8AAAAAAAAAAAAAAFcAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-02T22:17:02.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T22:17:02.803Z"
             }
           ]
         }
