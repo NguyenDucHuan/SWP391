@@ -1,7 +1,9 @@
 ﻿using ProjectDiamondShop.Models;
 using ProjectDiamondShop.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
@@ -10,19 +12,34 @@ namespace ProjectDiamondShop.Controllers
     {
         // GET: Diamonds
         private static readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 12)
         {
             ViewBag.minPrice = 1;
             ViewBag.maxPrice = 99999;
             ViewBag.minCaratWeight = 0.5;
             ViewBag.maxCaratWeight = 10;
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.SelectedShape = "";
+            ViewBag.SelectedColor = "";
+            ViewBag.SelectedCut = "";
+            ViewBag.SelectedClarity = "";
+            ViewBag.SelectedSort = "";
+
             DiamondRepository diamondRepository = new DiamondRepository(connectionString);
             List<Diamond> diamonds = diamondRepository.GetFilteredDiamonds("", "", "", "", "", null, null, null, null, null);
-            return View("Diamonds", diamonds);
+
+            int totalDiamonds = diamonds.Count;
+            ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
+
+            List<Diamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            return View("Diamonds", diamondsForPage);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Fillter(string sortBy)
+        public ActionResult Fillter(string sortBy, int page = 1, int pageSize = 12)
         {
             string searchTerm = Request.Form["SearchTerm"];
             string clarity = Request.Form["Clarity"];
@@ -58,14 +75,20 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedColor = color;
             ViewBag.SelectedCut = cut;
             ViewBag.SelectedClarity = clarity;
-            ViewBag.SelectedSort = sortBy; // Set the selected sort option in ViewBag
+            ViewBag.SelectedSort = sortBy;
 
             DiamondRepository diamondRepository = new DiamondRepository(connectionString);
             List<Diamond> filteredDiamonds = diamondRepository.GetFilteredDiamonds(
                 searchTerm, clarity, cut, color, shape, minPrice, maxPrice, minCaratWeight, maxCaratWeight, sortBy);
-            return View("Diamonds", filteredDiamonds);
-        }
 
+            int totalDiamonds = filteredDiamonds.Count;
+            ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
+            ViewBag.CurrentPage = page;
+
+            List<Diamond> diamondsForPage = filteredDiamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            return View("Diamonds", diamondsForPage);
+        }
 
         public ActionResult ViewDiamond(int id)
         {

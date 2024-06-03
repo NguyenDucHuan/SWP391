@@ -122,8 +122,8 @@ CREATE TABLE  [dbo].[tblComment](
 CREATE TABLE  [dbo].[tblOrder](
 	[orderID] [NVARCHAR](50) NOT NULL,
     [customerID] [NVARCHAR](50) NOT NULL,
-	[deliveryStaffID] [NVARCHAR](50) ,
-	[saleStaffID] [NVARCHAR](50) ,
+	[deliveryStaffID] [NVARCHAR](50) NULL,
+	[saleStaffID] [NVARCHAR](50) NULL,
     [totalMoney] [FLOAT] NOT NULL,
 	[status] [NVARCHAR](50) DEFAULT 'NOT READY',
 	[address] [NVARCHAR](100) NOT NULL,
@@ -134,11 +134,11 @@ CREATE TABLE  [dbo].[tblOrder](
         [orderID] ASC
     ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
     CONSTRAINT [FK_tblOrder_tblUsers_1] FOREIGN KEY ([customerID]) REFERENCES dbo.tblUsers ([userID]),
-    CONSTRAINT [FK_tblOrder_tblUsers_2] FOREIGN KEY ([deliveryStaffID]) REFERENCES dbo.tblUsers ([userID])
+    CONSTRAINT [FK_tblOrder_tblUsers_2] FOREIGN KEY ([deliveryStaffID]) REFERENCES dbo.tblUsers ([userID]),
+	CONSTRAINT [FK_tblOrder_tblUsers_3] FOREIGN KEY ([saleStaffID]) REFERENCES dbo.tblUsers ([userID])
 	);
 
-	ALTER TABLE tblOrder
-ALTER COLUMN deliveryStaffID NVARCHAR(50) NULL;
+--	ALTER TABLE tblOrder ALTER COLUMN deliveryStaffID NVARCHAR(50) NULL;
 
 --B?ng transition -- Done
 CREATE TABLE [dbo].[tblTransaction](
@@ -194,7 +194,6 @@ CREATE TABLE [dbo].[tblWarranty](
     CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [diamondID])
 );
 --Date Update Status
-USE DiamondShopManagement;
 
 CREATE TABLE [dbo].[tblOrderStatusUpdates](
     [updateID] INT IDENTITY(1,1) NOT NULL,
@@ -207,12 +206,9 @@ CREATE TABLE [dbo].[tblOrderStatusUpdates](
     CONSTRAINT [FK_tblOrderStatusUpdates_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE
 );
 
-	ALTER TABLE tblOrder
-ADD saleStaffID NVARCHAR(50) NULL;
+--ALTER TABLE tblOrder ADD saleStaffID NVARCHAR(50) NULL;
 
-ALTER TABLE tblOrder
-ADD CONSTRAINT FK_tblOrder_SaleStaff
-FOREIGN KEY (saleStaffID) REFERENCES tblUsers(userID);
+--ALTER TABLE tblOrder ADD CONSTRAINT FK_tblOrder_SaleStaff FOREIGN KEY (saleStaffID) REFERENCES tblUsers(userID);
 
 --Insert Role
 INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES 

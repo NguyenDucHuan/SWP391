@@ -15,16 +15,18 @@
     .transparent-button {
         background: transparent;
         border: none;
-        color: white; /* Màu văn bản trắng */
-        transition: color 0.3s; /* Hiệu ứng chuyển đổi màu văn bản */
+        color: white;
+        transition: color 0.3s;
         cursor: pointer;
     }
 
         .transparent-button:hover {
-            color: #f0f0f0; /* Khi hover vào nút, màu văn bản sáng lên */
+            color: #f0f0f0;
         }
 </style>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/ProductCss/style.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/ProductCss/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/ProductCss/owl.theme.default.min.css" rel="stylesheet" />
 <link href="~/Content/ProductCss/animate.css" rel="stylesheet" />
@@ -32,18 +34,10 @@
 <link href="~/Content/ProductCss/SliderMaxMin.css" rel="stylesheet" />
 
 @{
-    // Danh sách clarity
     List<string> clarities = new List<string>() { "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "SI3", "I1", "I2", "I3" };
-
-    // Danh sách cut
     List<string> cuts = new List<string>() { "Excellent", "Very Good", "Good", "Fair", "Poor", "Ideal" };
-
-    // Danh sách color
     List<string> colors = new List<string>() { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-
-    // Danh sách shapes
     List<string> shapes = new List<string>() { "Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear" };
-
     List<string> sortOptions = new List<string>() { "Price (Low to High)", "Price (High to Low)", "Carat Weight (Low to High)", "Carat Weight (High to Low)" };
     ViewBag.SortOptions = new SelectList(sortOptions, ViewBag.SelectedSort);
 }
@@ -56,7 +50,6 @@
             <label for="SearchTerm">Search Term:</label>
             <input type="text" id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" class="form-control" />
         </div>
-        <!-- Clarity -->
         <div class="form-group col-lg-4">
             <label for="Clarity">Clarity:</label>
             <select id="Clarity" name="Clarity" class="form-control">
@@ -67,7 +60,6 @@
                 }
             </select>
         </div>
-        <!-- Cut -->
         <div class="form-group col-lg-4">
             <label for="Cut">Cut:</label>
             <select id="Cut" name="Cut" class="form-control">
@@ -78,7 +70,6 @@
                 }
             </select>
         </div>
-        <!-- Price -->
         <div id="PriceDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
@@ -97,7 +88,6 @@
                 </div>
             </div>
         </div>
-        <!-- Color -->
         <div class="form-group col-lg-4">
             <label for="Color">Color:</label>
             <select id="Color" name="Color" class="form-control">
@@ -108,7 +98,6 @@
                 }
             </select>
         </div>
-        <!-- Shape -->
         <div class="form-group col-lg-4">
             <label for="Shape">Shape:</label>
             <select id="Shape" name="Shape" class="form-control">
@@ -119,7 +108,6 @@
                 }
             </select>
         </div>
-        <!-- Carat Weight -->
         <div id="CaratDiv" class="col-lg-4">
             <div class="range_container">
                 <div class="sliders_control">
@@ -138,55 +126,108 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="container row center-block">
-        @*Sort by + tập dùng method in ASP.NET MVC*@
         <button type="submit" class="btn btn-primary col-lg-1" style="background-color: #151542; float:right;">Filter</button>
-        @*<button type="submit" id="btn-reset-clean-content" class="btn btn-secondary col-lg-1" style="float:right; margin-right: 10px;">Reset</button>*@
         <a class="btn btn-secondary" href="@Url.Action("Index", "Diamonds")" style="background-color: #151542; color:aliceblue; float:right; margin-right: 10px;">Reset</a>
         <div class="form-group col-lg-4" style="float:right;">
             @Html.DropDownList("SortBy", (SelectList)ViewBag.SortOptions, new { @class = "form-control" })
         </div>
     </div>
-}
 
-<section id="new-arrivals" class="new-arrivals">
-    <div class="container">
-        <div class="new-arrivals-content">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    string[] imagepart = item.diamondImagePath.Split('|');
-                    <div class="col-md-3 col-sm-4">
-                        <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
-                            <div class="single-new-arrival">
-                                <div class="single-new-arrival-bg">
-                                    <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
-                                    <div class="single-new-arrival-bg-overlay"></div>
-                                    <div class="new-arrival-cart">
-                                        <div class="arrival-review pull-right">
-                                            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
-                                            {
-                                                @Html.Hidden("diamondID", item.diamondID)
-                                                @Html.Hidden("diamondName", item.diamondName)
-                                                @Html.Hidden("diamondPrice", item.diamondPrice)
-                                                <span class="lnr lnr-cart" style="color: #f0f0f0;"></span><input type="submit" class="transparent-button" value="Add to Cart" />
-                                            }
+    <section id="new-arrivals" class="new-arrivals">
+        <div class="container">
+            <div class="new-arrivals-content">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        string[] imagepart = item.diamondImagePath.Split('|');
+                        <div class="col-md-3 col-sm-4">
+                            <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
+                                <div class="single-new-arrival">
+                                    <div class="single-new-arrival-bg">
+                                        <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
+                                        <div class="single-new-arrival-bg-overlay"></div>
+                                        <div class="new-arrival-cart">
+                                            <div class="arrival-review pull-right">
+                                                @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                                                {
+                                                    @Html.Hidden("diamondID", item.diamondID)
+                                                    @Html.Hidden("diamondName", item.diamondName)
+                                                    @Html.Hidden("diamondPrice", item.diamondPrice)
+                                                    <span class="lnr lnr-cart" style="color: #f0f0f0;"></span><input type="submit" class="transparent-button" value="Add to Cart" />
+                                                }
                                             </div>
+                                        </div>
                                     </div>
+                                    <h4 style="height: 40px"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
+                                    <p class="arrival-product-price">$@item.diamondPrice</p>
                                 </div>
-                                <h4 style="height: 40px"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
-                                <p class="arrival-product-price">$@item.diamondPrice</p>
-                            </div>
-                        </a>
-                    </div>
-                }
+                            </a>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+        int startPage = Math.Max(1, ViewBag.CurrentPage - 2);
+        int endPage = Math.Min(ViewBag.NumOfPage, ViewBag.CurrentPage + 2);
+
+
+    <div class="container">
+        <ul class="pagination row">
+            @using (Html.BeginForm("Fillter", "Diamonds", FormMethod.Post, new { id = "paginationForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="page" id="pageNumber" value="" />
+                <input type="hidden" name="SearchTerm" value="@ViewBag.SearchTerm" />
+                <input type="hidden" name="Clarity" value="@ViewBag.SelectedClarity" />
+                <input type="hidden" name="Cut" value="@ViewBag.SelectedCut" />
+                <input type="hidden" name="Color" value="@ViewBag.SelectedColor" />
+                <input type="hidden" name="Shape" value="@ViewBag.SelectedShape" />
+                <input type="hidden" name="MinPrice" value="@ViewBag.minPrice" />
+                <input type="hidden" name="MaxPrice" value="@ViewBag.maxPrice" />
+                <input type="hidden" name="MinCaratWeight" value="@ViewBag.minCaratWeight" />
+                <input type="hidden" name="MaxCaratWeight" value="@ViewBag.maxCaratWeight" />
+                if (ViewBag.CurrentPage > 3)
+                {
+                    <li class="page-item col-lg-2">
+                        <button type="button" class="btn btn-link" onclick="setPageValue(1);"><span class="lnr lnr-chevron-left"> </span></button>
+                    </li>
+                }
+                for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item col-lg-1 @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <button type="button" class="btn btn-link @(i == ViewBag.CurrentPage ? "selected" : "")" onclick="setPageValue(@i);">@i</button>
+                    </li>
+                }
+                if (ViewBag.CurrentPage < ViewBag.NumOfPage - 5)
+                {
+                    <li class="page-item col-lg-1">
+                        <button type="button" class="btn btn-link" onclick="setPageValue(@ViewBag.NumOfPage);">Last</button>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <script>
+        function setPageValue(page) {
+            document.getElementById("pageNumber").value = page;
+            document.getElementById("paginationForm").submit();
+        }
+    </script>
+    <script>
+        function setPageValue(page) {
+            document.getElementById("pageNumber").value = page;
+            document.getElementById("paginationForm").submit();
+        }
+    </script>
+
+    @Html.Hidden("CurrentPage", (int)ViewBag.CurrentPage)
+    @Html.Hidden("PageSize", 12)
+}
 
 <script src="~/Scripts/ProductJs/custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
