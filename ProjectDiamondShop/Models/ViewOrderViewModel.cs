@@ -10,5 +10,7 @@ namespace ProjectDiamondShop.Models
         public Order Order { get; set; }
         public List<CartItem> Items { get; set; } = new List<CartItem>();
         public string VoucherID { get; set; }
+        public int typePayment { get; set; }
+
     }
 }
