@@ -14,126 +14,74 @@
 <h2 style="text-align:center;">Create Order</h2>
 
 <div class="container" style="max-width: 500px; margin: 0 auto; border: 1px solid black; padding: 20px;">
-    @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+    <div id="noteSection" style="display: none;" class="alert alert-info" role="alert" style="text-align: center;">
+        <strong>Please note:</strong> You will need to pay a 20% deposit before placing your order. Deposit amount: <span id="depositAmount"></span>
+    </div>
 
-        <table class="table table-bordered">
-            <thead>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Diamond Name</th>
+                <th>Diamond Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
                 <tr>
-                    <th>Diamond Name</th>
-                    <th>Diamond Price</th>
+                    <td>@item.DiamondName</td>
+                    <td>@item.DiamondPrice</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Items)
-                {
-                    <tr>
-                        <td>@item.DiamondName</td>
-                        <td>@item.DiamondPrice</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 
-        <div class=" form-group">
-            @* api bản đồ địa lí vn *@
-            @*<select class="form-control" id="city" aria-label=".form-select-sm">
-                    <option value="" selected>Chọn tỉnh thành</option>
-                </select>
-
-                <select class="form-control" id="district" aria-label=".form-select-sm">
-                    <option value="" selected>Chọn quận huyện</option>
-                </select>
-
-                <select class="form-control" id="ward" aria-label=".form-select-sm">
-                    <option value="" selected>Chọn phường xã</option>
-                </select>*@ 
-            <label for="Address">Address:</label>
-            <input type="text" id="Address" name="address" class="form-control" placeholder="Enter Address" required />
-        </div>
-        <div class="form-group">
-            <label for="Phone">Phone:</label>
-            <input type="text" id="Phone" name="phone" class="form-control" placeholder="Enter Phone" required />
-        </div>
-        <div class="form-group">
-            <label for="Total">Total:</label>
-            <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => i.DiamondPrice)" disabled />
-        </div>
-        <div class="form-group">
-            <label>Hình thức thanh toán</label>
-            <select class="form-control" name="TypePayment" id="drTypePayment">
-                <option value="1" selected>COD</option>
-                <option value="2">Chuyển khoản</option>
-            </select>
-        </div>
-        <div class="form-group" id="load_form_payment" style="display:none;">
-            <h4> <label>Chọn phương thức thanh toán:</label><br /></h4>
-            <h5>Cách 1: Chuyển hướng sang VNPAY chọn phương thức thanh toán</h5>
-            <label><input type="radio" name="TypePaymentVN" value="0" checked /> Cổng thanh toán VNPAYQR </label>
-            <h5>Cách 2: Tách phương thức thanh toán tại site của Merchant</h5>
-            <label><input type="radio" name="TypePaymentVN" value="1" /> Thanh toán qua ứng dụng hỗ trợ VNPAYQR </label><br />
-            <label><input type="radio" name="TypePaymentVN" value="2" /> ATM-Tài khoản ngân hàng nội địa </label><br />
-            <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế </label><br />
-        </div>
-        <button type="submit" class="btn btn-primary" onclick="">Create Order</button>
-    }
-
+    <div class="form-group">
+        <label for="Address">Address:</label>
+        <input type="text" id="Address" name="address" class="form-control" placeholder="Enter Address" required />
+        <div id="addressError" style="color: red; display: none;">Please enter your address.</div>
+    </div>
+    <div class="form-group">
+        <label for="Phone">Phone:</label>
+        <input type="text" id="Phone" name="phone" class="form-control" placeholder="Enter Phone" required />
+        <div id="phoneError" style="color: red; display: none;">Please enter your phone number.</div>
+    </div>
+    <div class="form-group">
+        <label for="Total">Total:</label>
+        <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => i.DiamondPrice)" disabled />
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('body').on('change', '#drTypePayment', function () {
-            var type = $(this).val();
-            $('#load_form_payment').hide();
-            if (type == "2") {
-                $('#load_form_payment').show();
-            }
-        });
-    });
-</script>
-@* js for api  *@
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script>
-    var citis = document.getElementById("city");
-    var districts = document.getElementById("district");
-    var wards = document.getElementById("ward");
-    var Parameter = {
-        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-        method: "GET",
-        responseType: "application/json",
-    };
-    var promise = axios(Parameter);
-    promise.then(function (result) {
-        renderCity(result.data);
-    });
+    function validateForm() {
+        var address = document.getElementById("Address").value;
+        var phone = document.getElementById("Phone").value;
 
-    function renderCity(data) {
-        for (const x of data) {
-            citis.options[citis.options.length] = new Option(x.Name, x.Id);
+        // Kiểm tra xem address và phone có được điền đầy đủ hay không
+        if (address.trim() === "") {
+            document.getElementById("addressError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("addressError").style.display = "none";
         }
-        citis.onchange = function () {
-            district.length = 1;
-            ward.length = 1;
-            if (this.value != "") {
-                const result = data.filter(n => n.Id === this.value);
 
-                for (const k of result[0].Districts) {
-                    district.options[district.options.length] = new Option(k.Name, k.Id);
-                }
-            }
-        };
-        district.onchange = function () {
-            ward.length = 1;
-            const dataCity = data.filter((n) => n.Id === citis.value);
-            if (this.value != "") {
-                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+        if (phone.trim() === "") {
+            document.getElementById("phoneError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("phoneError").style.display = "none";
+        }
 
-                for (const w of dataWards) {
-                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
-                }
-            }
-        };
+        var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", ""));
+        var depositAmount = totalPrice * 0.2; // Tính toán số tiền cần đặt cọc (20%)
+        document.getElementById("depositAmount").innerText = "$" + depositAmount.toFixed(2);
+
+        // Hiển thị phần note khi nhấp vào nút "Create Order"
+        document.getElementById("noteSection").style.display = "block";
+
+        var paypalLink = "/order/PaymentWithPayPal?address=" + address + "&phone=" + phone;
+        window.location.href = paypalLink;
+        return false;
     }
-
-</script>*@
+</script>
