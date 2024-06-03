@@ -1229,3 +1229,5 @@ C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamon
 C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
 C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
 C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.xml

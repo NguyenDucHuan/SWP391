@@ -13,6 +13,14 @@
 
 <h2 style="text-align:center;">Create Order</h2>
 
+@{ 
+    double totalMoney = 0;
+    foreach(var item in Model.Items)
+    {
+        totalMoney +=(double)item.DiamondPrice;
+    }
+}
+
 <div class="container" style="max-width: 500px; margin: 0 auto; border: 1px solid black; padding: 20px;">
     @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
     {
@@ -48,7 +56,7 @@
 
                 <select class="form-control" id="ward" aria-label=".form-select-sm">
                     <option value="" selected>Chọn phường xã</option>
-                </select>*@ 
+                </select>*@
             <label for="Address">Address:</label>
             <input type="text" id="Address" name="address" class="form-control" placeholder="Enter Address" required />
         </div>
@@ -58,7 +66,7 @@
         </div>
         <div class="form-group">
             <label for="Total">Total:</label>
-            <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => i.DiamondPrice)" disabled />
+            <input type="text" class="form-control" id="Total" value="$@totalMoney" disabled />
         </div>
         <div class="form-group">
             <label>Hình thức thanh toán</label>
@@ -77,6 +85,7 @@
             <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế </label><br />
         </div>
         <button type="submit" class="btn btn-primary" onclick="">Create Order</button>
+        <a href="/Order/PaymentWithPayPal" class="btn btn-primary" style="float: left; margin-right:10px;">Paypal Payment </a>
     }
 
 </div>
