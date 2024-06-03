@@ -373,6 +373,7 @@
     <Compile Include="Models\Diamond.cs" />
     <Compile Include="Models\ManagerViewModel.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderUpdateModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewOrderViewModel.cs" />
     <Compile Include="Models\Voucher.cs" />
@@ -429,6 +430,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Payments\" />
+    <Folder Include="Views\OrderUpdateModel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

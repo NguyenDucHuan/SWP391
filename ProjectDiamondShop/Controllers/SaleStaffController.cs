@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
@@ -22,37 +21,7 @@ namespace ProjectDiamondShop.Controllers
             }
 
             List<Order> orders = GetOrders(searchOrderId);
-            return View("SaleStaff", orders);
-        }
-
-
-        private string GetCurrentOrderStatus(string orderId)
-        {
-            using (var conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                return cmd.ExecuteScalar()?.ToString();
-            }
-        }
-
-        private void UpdateOrderStatus(string orderId, string status)
-        {
-            using (var conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@Status", status);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.ExecuteNonQuery();
-
-                var cmdInsert = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
-                cmdInsert.Parameters.AddWithValue("@OrderID", orderId);
-                cmdInsert.Parameters.AddWithValue("@Status", status);
-                cmdInsert.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                cmdInsert.ExecuteNonQuery();
-            }
+            return View("SaleStaff", orders); // Sử dụng View SaleStaff.cshtml
         }
 
         private List<Order> GetOrders(string searchOrderId)
@@ -90,5 +59,35 @@ namespace ProjectDiamondShop.Controllers
 
             return orders;
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Process(string orderId)
+        {
+            if (string.IsNullOrEmpty(orderId))
+            {
+                TempData["UpdateMessage"] = "Order ID is required.";
+                return RedirectToAction("Index");
+            }
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
+                cmd.Parameters.AddWithValue("@Status", "Preparing Goods");
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                cmd.ExecuteNonQuery();
+
+                // Log trạng thái cập nhật
+                SqlCommand logCmd = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
+                logCmd.Parameters.AddWithValue("@OrderID", orderId);
+                logCmd.Parameters.AddWithValue("@Status", "Preparing Goods");
+                logCmd.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+                logCmd.ExecuteNonQuery();
+            }
+
+            TempData["UpdateMessage"] = "Order updated successfully.";
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProjectDiamondShop.Models.ViewOrderViewModel
+
+@{
     ViewBag.Title = "View Orders";
 }
 
@@ -92,7 +94,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in ViewBag.CurrentOrders)
+                        @foreach (var order in Model.CurrentOrders)
                         {
                             <tr>
                                 <td>@order.OrderID</td>
@@ -126,7 +128,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in ViewBag.HistoryOrders)
+                        @foreach (var order in Model.HistoryOrders)
                         {
                             <tr>
                                 <td>@order.OrderID</td>
