@@ -1,10 +1,4 @@
-﻿@model ProjectDiamondShop.Models.ManagerViewModel
-
-@{
-    ViewBag.Title = "Manager Dashboard";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,11 +41,27 @@
             transform: translate(-50%, -50%);
             z-index: 1050;
         }
+
+        #updateSuccessMessage {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #updateErrorMessage {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container text-center">
         <h2 class="mt-4">Manager Dashboard</h2>
+
+        <div id="updateSuccessMessage" class="alert" style="display:none;"></div>
 
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary" onclick="showSection('orders')">Orders</button>
@@ -79,29 +89,31 @@
                             <th class="wide-column">Sale Staff</th>
                             <th class="wide-column">Delivery Staff</th>
                             <th>Total Money</th>
-                            <th>Status</th>
+                            <th class="wide-column">Status</th>
                             <th>Address</th>
                             <th>Phone</th>
                             <th>Sale Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in Model.Orders)
+                        @for (int i = 0; i < Model.Orders.Count; i++)
                         {
+                            var order = Model.Orders[i];
                             <tr>
                                 <td>@order.OrderID</td>
                                 <td>@order.CustomerID</td>
                                 <td>
-                                    <select class="form-control sale-staff-select" data-order-id="@order.OrderID">
+                                    <select class="form-control" name="orderUpdates[@i].SaleStaffID">
                                         <option value="">Default</option>
                                         @foreach (var staff in Model.SaleStaff)
                                         {
                                             <option value="@staff.UserID" @(order.SaleStaffID == staff.UserID ? "selected" : "")>@staff.FullName (@staff.UserID)</option>
                                         }
                                     </select>
+                                    <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.OrderID" />
                                 </td>
                                 <td>
-                                    <select class="form-control delivery-staff-select" data-order-id="@order.OrderID">
+                                    <select class="form-control" name="orderUpdates[@i].DeliveryStaffID">
                                         <option value="">Default</option>
                                         @foreach (var staff in Model.DeliveryStaff)
                                         {
@@ -110,7 +122,16 @@
                                     </select>
                                 </td>
                                 <td>@order.TotalMoney</td>
-                                <td>@order.Status</td>
+                                <td>
+                                    <select class="form-control" name="orderUpdates[@i].Status">
+                                        <option value="Order Placed" @(order.Status == "Order Placed" ? "selected" : "")>Order Placed</option>
+                                        <option value="Preparing Goods" @(order.Status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
+                                        <option value="Shipped to Carrier" @(order.Status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
+                                        <option value="In Delivery" @(order.Status == "In Delivery" ? "selected" : "")>In Delivery</option>
+                                        <option value="Delivered" @(order.Status == "Delivered" ? "selected" : "")>Delivered</option>
+                                        <option value="Paid" @(order.Status == "Paid" ? "selected" : "")>Paid</option>
+                                    </select>
+                                </td>
                                 <td>@order.Address</td>
                                 <td>@order.Phone</td>
                                 <td>@order.SaleDate</td>
@@ -119,7 +140,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="btn btn-primary mt-3" onclick="updateStaff()">Update</button>
+            <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
         </div>
 
         <div id="diamonds" class="section" style="display:none;">
@@ -134,7 +155,7 @@
                             <th>Price</th>
                             <th>Description</th>
                             <th>Carat Weight</th>
-                            <th>Clarity</th>
+                            <th>clarity</th>
                             <th>Cut</th>
                             <th>Color</th>
                             <th>Shape</th>
@@ -160,7 +181,6 @@
                     </tbody>
                 </table>
             </div>
-            <a href="@Url.Action("AddDiamond", "Manager")" class="btn btn-primary mt-3">Add New Diamond</a>
         </div>
 
         <div id="saleStaff" class="section" style="display:none;">
@@ -283,64 +303,49 @@
             });
         });
 
-        function updateStaff() {
-            var saleStaffUpdates = [];
-            var deliveryStaffUpdates = [];
-            var orders = [];
+        function updateOrders() {
+    var orderUpdates = [];
 
-            $('.sale-staff-select').each(function() {
-                var orderId = $(this).data('order-id');
-                var staffId = $(this).val();
-                if (staffId) {
-                    saleStaffUpdates.push({ orderId: orderId, staffId: staffId });
-                    orders.push(orderId);
-                }
-            });
+    $('#ordersTable tbody tr').each(function () {
+        var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
+        var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
+        var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
+        var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
 
-            $('.delivery-staff-select').each(function() {
-                var orderId = $(this).data('order-id');
-                var staffId = $(this).val();
-                if (staffId) {
-                    deliveryStaffUpdates.push({ orderId: orderId, staffId: staffId });
-                    if (!orders.includes(orderId)) {
-                        orders.push(orderId);
-                    }
-                }
-            });
+        orderUpdates.push({
+            OrderID: orderId,
+            SaleStaffID: saleStaffId,
+            DeliveryStaffID: deliveryStaffId,
+            Status: status
+        });
+    });
 
-            var ajaxRequests = [];
-
-            orders.forEach(orderId => {
-                var saleStaffUpdate = saleStaffUpdates.find(u => u.orderId === orderId);
-                var deliveryStaffUpdate = deliveryStaffUpdates.find(u => u.orderId === orderId);
-
-                if (saleStaffUpdate) {
-                    ajaxRequests.push($.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("AssignStaff", "Manager")',
-                        data: {
-                            orderId: orderId,
-                            staffId: saleStaffUpdate.staffId,
-                            staffType: 'sale'
-                        }
-                    }));
-                }
-                if (deliveryStaffUpdate) {
-                    ajaxRequests.push($.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("AssignStaff", "Manager")',
-                        data: {
-                            orderId: orderId,
-                            staffId: deliveryStaffUpdate.staffId,
-                            staffType: 'delivery'
-                        }
-                    }));
-                }
-            });
-
-            alert('Update successful');  // Show alert immediately
-
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("UpdateOrders", "Manager")',
+        contentType: 'application/json',
+        data: JSON.stringify(orderUpdates),
+        success: function (response) {
+            if (response.success) {
+                $('#updateSuccessMessage').text(response.message).removeClass('alert-danger').addClass('alert-success').show().delay(3000).fadeOut();
+            } else {
+                $('#updateSuccessMessage').text(response.message).removeClass('alert-success').addClass('alert-danger').show().delay(3000).fadeOut();
+            }
+        },
+        error: function (xhr, status, error) {
+            $('#updateSuccessMessage').text("Update failed: " + xhr.responseText).removeClass('alert-success').addClass('alert-danger').show().delay(3000).fadeOut();
         }
+    });
+}
+
+$(document).ready(function() {
+    var updateMessage = '@TempData["UpdateMessage"]';
+    if (updateMessage) {
+        $('#updateSuccessMessage').text(updateMessage).show().delay(3000).fadeOut();
+    }
+});
+
+
     </script>
 </body>
 </html>

@@ -33,30 +33,43 @@ namespace ProjectDiamondShop.Controllers
         public ActionResult ViewOrders()
         {
             var userID = Session["UserID"]?.ToString();
-            var roleID = Session["RoleID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
                 return RedirectToAction("Index", "Login");
             }
 
-            var currentOrders = GetOrdersByStatus(userID, new[] { "Order Placed", "Paid", "Shipped to Carrier", "In Delivery" });
-            var historyOrders = GetOrdersByStatus(userID, new[] { "Delivered", "Returned" });
+            var currentOrders = GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
+            var historyOrders = GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);
 
-            ViewBag.CurrentOrders = currentOrders;
-            ViewBag.HistoryOrders = historyOrders;
-            ViewBag.RoleID = roleID;
+            var model = new ViewOrderViewModel
+            {
+                CurrentOrders = currentOrders,
+                HistoryOrders = historyOrders,
+                RoleID = Convert.ToInt32(Session["RoleID"])
+            };
 
-            return View("ViewOrder");
+            return View("ViewOrder", model);
         }
 
-        private List<Order> GetOrdersByStatus(string userID, string[] statuses)
+
+        private List<Order> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
         {
             var orders = new List<Order>();
 
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var query = "SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE customerID = @CustomerID AND status IN (" + string.Join(",", statuses.Select(s => $"'{s}'")) + ")";
+                var query = @"
+        SELECT orderID, customerID, deliveryStaffID, saleStaffID, totalMoney, status, address, phone, saleDate 
+        FROM tblOrder 
+        WHERE customerID = @CustomerID 
+        AND status IN (" + string.Join(",", statuses.Select(s => $"'{s}'")) + @")";
+
+                if (!isHistory)
+                {
+                    query += " OR (deliveryStaffID IS NULL OR saleStaffID IS NULL)";
+                }
+
                 using (var cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@CustomerID", userID);
@@ -69,8 +82,8 @@ namespace ProjectDiamondShop.Controllers
                             {
                                 OrderID = reader["orderID"].ToString(),
                                 CustomerID = reader["customerID"].ToString(),
-                                DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                                SaleStaffID = reader["saleStaffID"].ToString(),
+                                DeliveryStaffID = reader["deliveryStaffID"] != DBNull.Value ? reader["deliveryStaffID"].ToString() : null,
+                                SaleStaffID = reader["saleStaffID"] != DBNull.Value ? reader["saleStaffID"].ToString() : null,
                                 TotalMoney = Convert.ToDouble(reader["totalMoney"]),
                                 Status = reader["status"].ToString(),
                                 Address = reader["address"].ToString(),
@@ -84,5 +97,6 @@ namespace ProjectDiamondShop.Controllers
 
             return orders;
         }
+
     }
 }

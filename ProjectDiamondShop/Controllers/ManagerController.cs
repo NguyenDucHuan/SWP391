@@ -350,11 +350,105 @@ namespace ProjectDiamondShop.Controllers
 
             return revenueData;
         }
-    }
 
-    public class RevenueData
+        [HttpPost]
+        public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            foreach (var update in orderUpdates)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    try
+                    {
+                        // Cập nhật SaleStaffID
+                        SqlCommand cmdSaleStaff = new SqlCommand("UPDATE tblOrder SET saleStaffID = @SaleStaffID WHERE orderID = @OrderID", conn);
+                        cmdSaleStaff.Parameters.AddWithValue("@SaleStaffID", update.SaleStaffID ?? (object)DBNull.Value);
+                        cmdSaleStaff.Parameters.AddWithValue("@OrderID", update.OrderID);
+                        cmdSaleStaff.ExecuteNonQuery();
+
+                        // Cập nhật DeliveryStaffID
+                        SqlCommand cmdDeliveryStaff = new SqlCommand("UPDATE tblOrder SET deliveryStaffID = @DeliveryStaffID WHERE orderID = @OrderID", conn);
+                        cmdDeliveryStaff.Parameters.AddWithValue("@DeliveryStaffID", update.DeliveryStaffID ?? (object)DBNull.Value);
+                        cmdDeliveryStaff.Parameters.AddWithValue("@OrderID", update.OrderID);
+                        cmdDeliveryStaff.ExecuteNonQuery();
+
+                        // Cập nhật Status
+                        if (!string.IsNullOrEmpty(update.Status))
+                        {
+                            string currentStatus = GetCurrentOrderStatus(update.OrderID, conn);
+
+                            // Nếu trạng thái mới giống như trạng thái hiện tại thì không cần kiểm tra chuyển đổi trạng thái
+                            if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
+                            {
+                                return Json(new { success = false, message = $"Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
+                            }
+
+                            SqlCommand cmdStatus = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
+                            cmdStatus.Parameters.AddWithValue("@Status", update.Status);
+                            cmdStatus.Parameters.AddWithValue("@OrderID", update.OrderID);
+                            cmdStatus.ExecuteNonQuery();
+
+                            SqlCommand cmdLogStatusUpdate = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
+                            cmdLogStatusUpdate.Parameters.AddWithValue("@OrderID", update.OrderID);
+                            cmdLogStatusUpdate.Parameters.AddWithValue("@Status", update.Status);
+                            cmdLogStatusUpdate.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
+                            cmdLogStatusUpdate.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return Json(new { success = false, message = $"Error updating order {update.OrderID}: {ex.Message}" });
+                    }
+                }
+            }
+
+            return Json(new { success = true, message = "Update Successful" });
+        }
+
+        private string GetCurrentOrderStatus(string orderId, SqlConnection conn)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
+            cmd.Parameters.AddWithValue("@OrderID", orderId);
+            return cmd.ExecuteScalar()?.ToString();
+        }
+
+        private bool IsValidStatusTransition(string currentStatus, string newStatus)
+        {
+            var statusOrder = new List<string>
     {
-        public string Date { get; set; }
-        public double Revenue { get; set; }
+        "Order Placed",
+        "Preparing Goods",
+        "Shipped to Carrier",
+        "In Delivery",
+        "Delivered",
+        "Paid"
+    };
+
+            var currentIndex = statusOrder.IndexOf(currentStatus);
+            var newIndex = statusOrder.IndexOf(newStatus);
+
+            // Trạng thái mới phải lớn hơn trạng thái hiện tại
+            return newIndex > currentIndex;
+        }
+
+        public class RevenueData
+        {
+            public string Date { get; set; }
+            public double Revenue { get; set; }
+        }
+        public class OrderUpdateModel
+        {
+            public string OrderID { get; set; }
+            public string SaleStaffID { get; set; }
+            public string DeliveryStaffID { get; set; }
+            public string Status { get; set; }
+        }
     }
 }

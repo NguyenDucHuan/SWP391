@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ProjectDiamondShop.Models
 {
@@ -11,6 +12,6 @@ namespace ProjectDiamondShop.Models
         public List<CartItem> Items { get; set; } = new List<CartItem>();
         public string VoucherID { get; set; }
         public int typePayment { get; set; }
-
+        public List<KeyValuePair<string, DateTime>> StatusUpdates { get; set; } // Thêm thuộc tính này
     }
 }

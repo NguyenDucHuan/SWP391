@@ -89,6 +89,20 @@
             border: 1px solid black;
             text-align: center;
         }
+
+        #updateSuccessMessage {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #updateErrorMessage {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +119,10 @@
                 <button type="submit">Search</button>
             </form>
         </div>
+        @if (TempData["UpdateMessage"] != null)
+        {
+            <div id="updateSuccessMessage">@TempData["UpdateMessage"]</div>
+        }
         <div class="order-table-container">
             <table>
                 <thead>
@@ -125,8 +143,13 @@
                             <td>@order.CustomerID</td>
                             <td>@order.DeliveryStaffID</td>
                             <td>@order.TotalMoney</td>
-                            <td>@order.Status</td>
+                            <td class="order-status">@order.Status</td>
                             <td>
+                                <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="orderId" value="@order.OrderID" />
+                                    <button type="submit" class="btn btn-warning" @(order.Status != "Order Placed" ? "disabled" : "")>Process</button>
+                                </form>
                                 <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
                             </td>
                         </tr>
