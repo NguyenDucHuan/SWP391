@@ -17,7 +17,7 @@ namespace ProjectDiamondShop.Controllers
     {
         private const string DEFAULT_ORDER_STATUS = "Order Place";
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private const decimal discountPercentage = 0.8m;
         private string GetUserID()
         {
             if (Session["UserID"] == null)
@@ -431,15 +431,15 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
+                decimal discountedPrice = item.DiamondPrice * (1 - discountPercentage);
                 itemList.items.Add(new Item()
                 {
                     name = item.DiamondName,
                     currency = "USD",
-                    price = item.DiamondPrice.ToString("F2"), // Format price to 2 decimal places
+                    price = discountedPrice.ToString("F2"), // Format price to 2 decimal places
                     quantity = "1",
                     sku = item.DiamondID.ToString()
                 });
-                totalMoney += item.DiamondPrice;
             }
 
             var payer = new Payer()
@@ -453,17 +453,19 @@ namespace ProjectDiamondShop.Controllers
                 return_url = redirectUrl
             };
 
+            decimal discountedSubtotal = cart.Items.Sum(i => i.DiamondPrice * (1 - discountPercentage));
+
             var details = new Details()
             {
                 tax = "0.00",
                 shipping = "0.00",
-                subtotal = totalMoney.ToString("F2") // Ensure subtotal is correctly formatted
+                subtotal = discountedSubtotal.ToString("F2")
             };
 
             var amount = new Amount()
             {
                 currency = "USD",
-                total = totalMoney.ToString("F2"), // Total must be the sum of tax, shipping, and subtotal
+                total = discountedSubtotal.ToString("F2"),
                 details = details
             };
 

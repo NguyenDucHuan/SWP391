@@ -1311,3 +1311,5 @@ D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.xml
