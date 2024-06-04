@@ -37,5 +37,4 @@ namespace ProjectDiamondShop.Models.Payments
             return apiContext;
         }
     }
-
 }
