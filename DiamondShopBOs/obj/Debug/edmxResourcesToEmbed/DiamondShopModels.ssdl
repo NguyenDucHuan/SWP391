@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCertificate">
+    <Key>
+      <PropertyRef Name="certificateID" />
+    </Key>
+    <Property Name="certificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="diamondID" Type="int" Nullable="false" />
+    <Property Name="certificateNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="issueDate" Type="date" Nullable="false" />
+    <Property Name="certifyingAuthority" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="cerImagePath" Type="nvarchar" MaxLength="512" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblChat">
+    <Key>
+      <PropertyRef Name="chatID" />
+    </Key>
+    <Property Name="chatID" Type="int" Nullable="false" />
+    <Property Name="chatDetail" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="senderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="receiverID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblComment">
+    <Key>
+      <PropertyRef Name="commentID" />
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="diamondID" />
+    </Key>
+    <Property Name="commentID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="diamondID" Type="int" Nullable="false" />
+    <Property Name="commond" Type="nvarchar" MaxLength="50" />
+    <Property Name="rating" Type="int" />
+  </EntityType>
+  <EntityType Name="tblDiamonds">
+    <Key>
+      <PropertyRef Name="diamondID" />
+    </Key>
+    <Property Name="diamondID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="diamondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="diamondPrice" Type="money" Nullable="false" />
+    <Property Name="diamondDescription" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="caratWeight" Type="float" Nullable="false" />
+    <Property Name="clarityID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="cutID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="colorID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="shapeID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="diamondImagePath" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="status" Type="bit" />
+    <Property Name="type" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblNotification">
+    <Key>
+      <PropertyRef Name="notificationID" />
+    </Key>
+    <Property Name="notificationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userID" Type="nvarchar" MaxLength="50" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="detail" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" />
+    <Property Name="resetCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="bonusPoint" Type="int" />
+  </EntityType>
+  <EntityType Name="tblVoucher">
+    <Key>
+      <PropertyRef Name="voucherID" />
+    </Key>
+    <Property Name="voucherID" Type="int" Nullable="false" />
+    <Property Name="startTime" Type="datetime" Nullable="false" />
+    <Property Name="endTime" Type="datetime" Nullable="false" />
+    <Property Name="discount" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DiamondShopManagement.dbo.tblVoucherCatch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblVoucherCatch">
+    <Key>
+      <PropertyRef Name="voucherID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="voucherID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblCertificate_tblDiamonds">
+    <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblCertificate" Type="Self.tblCertificate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDiamonds">
+        <PropertyRef Name="diamondID" />
+      </Principal>
+      <Dependent Role="tblCertificate">
+        <PropertyRef Name="diamondID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblChat_tblUsers_receiver">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblChat">
+        <PropertyRef Name="receiverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblChat_tblUsers_sender">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblChat">
+        <PropertyRef Name="senderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblComment_tblDiamonds">
+    <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblDiamonds">
+        <PropertyRef Name="diamondID" />
+      </Principal>
+      <Dependent Role="tblComment">
+        <PropertyRef Name="diamondID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblComment_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblComment">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblNotification_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblNotification" Type="Self.tblNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblNotification">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsers_tblRole">
+    <End Role="tblRole" Type="Self.tblRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRole">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="tblUsers">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVoucherCatch_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblVoucherCatch" Type="Self.tblVoucherCatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="tblVoucherCatch">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVoucherCatch_tblVoucher">
+    <End Role="tblVoucher" Type="Self.tblVoucher" Multiplicity="1" />
+    <End Role="tblVoucherCatch" Type="Self.tblVoucherCatch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblVoucher">
+        <PropertyRef Name="voucherID" />
+      </Principal>
+      <Dependent Role="tblVoucherCatch">
+        <PropertyRef Name="voucherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DiamondShopManagementModelStoreContainer">
+    <EntitySet Name="tblCertificate" EntityType="Self.tblCertificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblChat" EntityType="Self.tblChat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblComment" EntityType="Self.tblComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDiamonds" EntityType="Self.tblDiamonds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblNotification" EntityType="Self.tblNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblVoucher" EntityType="Self.tblVoucher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblVoucherCatch" EntityType="Self.tblVoucherCatch" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblVoucherCatch].[voucherID] AS [voucherID], 
+    [tblVoucherCatch].[userID] AS [userID]
+    FROM [dbo].[tblVoucherCatch] AS [tblVoucherCatch]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tblCertificate_tblDiamonds" Association="Self.FK_tblCertificate_tblDiamonds">
+      <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+      <End Role="tblCertificate" EntitySet="tblCertificate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblChat_tblUsers_receiver" Association="Self.FK_tblChat_tblUsers_receiver">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblChat" EntitySet="tblChat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblChat_tblUsers_sender" Association="Self.FK_tblChat_tblUsers_sender">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblChat" EntitySet="tblChat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblComment_tblDiamonds" Association="Self.FK_tblComment_tblDiamonds">
+      <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+      <End Role="tblComment" EntitySet="tblComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblComment_tblUsers" Association="Self.FK_tblComment_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblComment" EntitySet="tblComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblNotification_tblUsers" Association="Self.FK_tblNotification_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblNotification" EntitySet="tblNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsers_tblRole" Association="Self.FK_tblUsers_tblRole">
+      <End Role="tblRole" EntitySet="tblRole" />
+      <End Role="tblUsers" EntitySet="tblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVoucherCatch_tblUsers" Association="Self.FK_tblVoucherCatch_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblVoucherCatch" EntitySet="tblVoucherCatch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVoucherCatch_tblVoucher" Association="Self.FK_tblVoucherCatch_tblVoucher">
+      <End Role="tblVoucher" EntitySet="tblVoucher" />
+      <End Role="tblVoucherCatch" EntitySet="tblVoucherCatch" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

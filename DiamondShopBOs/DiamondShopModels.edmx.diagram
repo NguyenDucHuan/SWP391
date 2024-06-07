@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87ddf8a84b5b49a0be44580a2f26378a" Name="Diagram1">
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblCertificate" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblChat" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblComment" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblDiamond" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblNotification" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblRole" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblUser" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondShopManagementModel.tblVoucher" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblCertificate_tblDiamonds" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblChat_tblUsers_receiver" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblChat_tblUsers_sender" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblComment_tblDiamonds" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblComment_tblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblNotification_tblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.FK_tblUsers_tblRole" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondShopManagementModel.tblVoucherCatch" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

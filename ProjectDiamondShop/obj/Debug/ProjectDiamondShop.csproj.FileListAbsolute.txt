@@ -1313,3 +1313,17 @@ D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.xml
 C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.dll
 C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopServices.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopServices.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config

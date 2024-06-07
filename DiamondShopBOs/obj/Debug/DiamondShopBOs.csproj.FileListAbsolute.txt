@@ -1,0 +1,12 @@
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.xml
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
