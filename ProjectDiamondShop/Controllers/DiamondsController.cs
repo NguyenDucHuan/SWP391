@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
+using DiamondShopServices.JewelrySettingService;
+using DiamondShopServices.AccentStoneService;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -12,9 +15,22 @@ namespace ProjectDiamondShop.Controllers
     {
         // GET: Diamonds
         private readonly IDiamondService diamondService = null;
+        private readonly IAccentStoneService accentStoneService = null;
+        private readonly IJewelrySettingService jewelrySettingService = null;
         public DiamondsController()
         {
-            diamondService = new DiamondService();
+            if (diamondService == null)
+            {
+                diamondService = new DiamondService();
+            }
+            if (jewelrySettingService == null)
+            {
+                jewelrySettingService = new JewelrySettingService();
+            }
+            if (accentStoneService == null)
+            {
+                accentStoneService = new AccentStoneService();
+            }
         }
         public ActionResult Index(int page = 1, int pageSize = 12)
         {
@@ -30,11 +46,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedClarity = "";
             ViewBag.SelectedSort = "";
 
-            //DiamondRepository diamondRepository = new DiamondRepository(connectionString);
-            //List<Diamond> diamonds = diamondRepository.GetFilteredDiamonds("", "", "", "", "", null, null, null, null, null);
-
-            List<tblDiamond> diamonds = diamondService.Filter("", "", "", "", "", null, null, null, null, "Price (Low to High)", "");
-
+            List<tblDiamond> diamonds = diamondService.Filter("", "", "", "", "", null, null, null, null, "Price (Low to High)");
 
             int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
@@ -85,7 +97,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedClarity = clarity;
             ViewBag.SelectedSort = sortBy;
 
-            List<tblDiamond> diamonds = diamondService.Filter(searchTerm, clarity, cut, color, shape, minPrice, maxPrice, minCaratWeight, maxCaratWeight, sortBy, "Natural");
+            List<tblDiamond> diamonds = diamondService.Filter(searchTerm, clarity, cut, color, shape, minPrice, maxPrice, minCaratWeight, maxCaratWeight, sortBy);
 
             int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
@@ -99,8 +111,15 @@ namespace ProjectDiamondShop.Controllers
         public ActionResult ViewDiamond(int id)
         {
             tblDiamond diamond = diamondService.GetDiamondById(id);
+            List<tblAccentStone> accentStones = accentStoneService.GetAllStones();
+            List<tblSetting> settings = jewelrySettingService.GetSettingAllList();
+
+            ViewBag.AccentStones = accentStones;
+            ViewBag.Settings = settings;
+
             return View(diamond);
         }
+
     }
 
 }

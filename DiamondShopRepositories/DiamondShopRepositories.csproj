@@ -41,9 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccentStoneRepository\AccentStoneRepository.cs" />
+    <Compile Include="AccentStoneRepository\IAccentStoneRepository.cs" />
+    <Compile Include="CookieCartRepository\CartRepository.cs" />
+    <Compile Include="CookieCartRepository\ICartRepository.cs" />
+    <Compile Include="CookieCartRepository\IItemCartRepository.cs" />
+    <Compile Include="CookieCartRepository\ItemCartRepository.cs" />
     <Compile Include="DiamondRepository.cs" />
     <Compile Include="IDiamondRepository.cs" />
+    <Compile Include="JewelrySettingRepository\IJewelrySettingRepository.cs" />
+    <Compile Include="JewelrySettingRepository\JewelrySettingRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRepository\UserRepository.cs" />
+    <Compile Include="UserRepository\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiamondShopBOs\DiamondShopBOs.csproj">
@@ -54,6 +64,9 @@
       <Project>{A0226AF6-0F27-485C-9526-2F4E132C27DE}</Project>
       <Name>DiamondShopDAOs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

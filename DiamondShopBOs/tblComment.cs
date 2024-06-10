@@ -17,7 +17,7 @@ namespace DiamondShopBOs
         public string commentID { get; set; }
         public string userID { get; set; }
         public int diamondID { get; set; }
-        public string commond { get; set; }
+        public string comment { get; set; }
         public Nullable<int> rating { get; set; }
     
         public virtual tblDiamond tblDiamond { get; set; }

@@ -1,4 +1,6 @@
-﻿using ProjectDiamondShop.Models;
+﻿using DiamondShopBOs;
+using DiamondShopServices.UserService;
+using ProjectDiamondShop.Models;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -11,7 +13,11 @@ namespace ProjectDiamondShop.Controllers
     public class ViewProfileController : Controller
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private readonly IUserService service = null;
+        public ViewProfileController()
+        {
+            service = new UserService();
+        }
         [HttpGet]
         public ActionResult EditProfile()
         {
@@ -26,7 +32,7 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            User user = GetUserById(userId);
+            tblUser user = service.GetUserById(userId);
             if (user == null)
             {
                 return HttpNotFound("User not found");
@@ -36,12 +42,12 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.OriginalUserID = Session["UserID"] as string;
             ViewBag.UserName = Session["UserName"] as string; // Lấy UserName gốc từ Session
 
-            return View(user);
+            return View( user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile(User model, string oldPassword, string newPassword)
+        public ActionResult EditProfile(tblUser model, string oldPassword, string newPassword)
         {
             if (Session["IsAuthenticated"] == null || !(bool)Session["IsAuthenticated"])
             {
@@ -54,7 +60,7 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            User user = GetUserById(userId);
+            tblUser user = service.GetUserById(userId);
             if (user == null)
             {
                 return HttpNotFound("User not found");
@@ -68,23 +74,29 @@ namespace ProjectDiamondShop.Controllers
                     ModelState.AddModelError("OldPassword", "Old password is incorrect.");
                     return View(model);
                 }
-                user.Password = HashPassword(newPassword);
+                user.password = HashPassword(newPassword);
             }
 
             // Update fields if they have changed
-            if (!string.IsNullOrEmpty(model.FullName) && model.FullName != user.FullName)
+            if (!string.IsNullOrEmpty(model.fullName) && model.fullName != user.fullName)
             {
-                user.FullName = model.FullName;
+                user.fullName = model.fullName;
             }
 
-            if (!string.IsNullOrEmpty(model.Email) && model.Email != user.Email)
+            if (!string.IsNullOrEmpty(model.email) && model.email != user.email)
             {
-                user.Email = model.Email;
+                user.email = model.email;
+            }
+            try
+            {
+                service.UpdateUser(userId, user);
+                ViewBag.SuccessMessage = "Profile updated successfully!";
+                ViewBag.UserName = Session["UserName"] as string;
+            }
+            catch (Exception ex)
+            {
             }
 
-            UpdateUser(user);
-            ViewBag.SuccessMessage = "Profile updated successfully!";
-            ViewBag.UserName = Session["UserName"] as string; // Lấy UserName gốc từ Session
             return View(user);
         }
 
@@ -116,33 +128,33 @@ namespace ProjectDiamondShop.Controllers
             return null;
         }
 
-        private void UpdateUser(User user)
+        private void UpdateUser(tblUser user)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand updateUser = new SqlCommand("UPDATE tblUsers SET fullName = @FullName, email = @Email, password = @Password, roleID = @RoleID, status = @Status, bonusPoint = @BonusPoint WHERE userID = @UserID", conn);
-                updateUser.Parameters.AddWithValue("@UserID", user.UserID);
-                updateUser.Parameters.AddWithValue("@FullName", user.FullName);
-                updateUser.Parameters.AddWithValue("@Email", user.Email);
-                updateUser.Parameters.AddWithValue("@Password", user.Password);
-                updateUser.Parameters.AddWithValue("@RoleID", user.RoleID);
-                updateUser.Parameters.AddWithValue("@Status", user.Status);
-                updateUser.Parameters.AddWithValue("@BonusPoint", user.BonusPoint.HasValue ? (object)user.BonusPoint.Value : DBNull.Value);
-                updateUser.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
-        private bool ValidateOldPassword(string userId, string oldPassword)
+        private bool ValidateOldPassword(string userId, string NewPassword)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand getUser = new SqlCommand("SELECT password FROM tblUsers WHERE userID = @UserID", conn);
-                getUser.Parameters.AddWithValue("@UserID", userId);
-                string storedPassword = (string)getUser.ExecuteScalar();
-                return storedPassword == HashPassword(oldPassword);
+                tblUser user = service.GetUserById(userId);
+                if (user.password.Contains(NewPassword))
+                {
+                    return false;
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return true;
         }
 
         private string HashPassword(string password)

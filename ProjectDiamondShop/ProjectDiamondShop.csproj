@@ -403,7 +403,6 @@
     <Content Include="Views\Login\LoginPage.cshtml">
       <BrowseToURL>~/Login/index</BrowseToURL>
     </Content>
-    <Content Include="Views\ViewProfile\EditProfile.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Diamonds\Diamonds.cshtml">
       <BrowseToURL>~/diamonds/index</BrowseToURL>
@@ -420,8 +419,6 @@
     <Content Include="Views\Introduce\Radiant.cshtml" />
     <Content Include="Views\Introduce\Round.cshtml" />
     <Content Include="Views\Introduce\Trillion.cshtml" />
-    <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
-    <Content Include="Views\ForgotPassword\Index.cshtml" />
     <Content Include="Views\ForgotPassword\ResetPassword.cshtml" />
     <Content Include="Views\SaleStaff\SaleStaff.cshtml" />
     <Content Include="Views\DeliveryStaff\DeliveryStaff.cshtml" />
@@ -434,6 +431,9 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Order\FailureView.cshtml" />
     <Content Include="Views\Order\SuccessView.cshtml" />
+    <Content Include="Views\ViewProfile\EditProfile.cshtml" />
+    <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
+    <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -452,6 +452,10 @@
     <ProjectReference Include="..\DiamondShopBOs\DiamondShopBOs.csproj">
       <Project>{9a0dcb91-6072-4ed3-a948-31fcbee56793}</Project>
       <Name>DiamondShopBOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiamondShopDAOs\DiamondShopDAOs.csproj">
+      <Project>{a0226af6-0f27-485c-9526-2f4e132c27de}</Project>
+      <Name>DiamondShopDAOs</Name>
     </ProjectReference>
     <ProjectReference Include="..\DiamondShopServices\DiamondShopServices.csproj">
       <Project>{fb2d25c1-4bd9-4b54-87a0-7c52983f53d2}</Project>

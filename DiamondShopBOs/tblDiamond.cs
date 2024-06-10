@@ -19,6 +19,7 @@ namespace DiamondShopBOs
         {
             this.tblCertificates = new HashSet<tblCertificate>();
             this.tblComments = new HashSet<tblComment>();
+            this.tblItems = new HashSet<tblItem>();
         }
     
         public int diamondID { get; set; }
@@ -32,11 +33,13 @@ namespace DiamondShopBOs
         public string shapeID { get; set; }
         public string diamondImagePath { get; set; }
         public Nullable<bool> status { get; set; }
-        public string type { get; set; }
+        public int quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCertificate> tblCertificates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblComment> tblComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblItem> tblItems { get; set; }
     }
 }

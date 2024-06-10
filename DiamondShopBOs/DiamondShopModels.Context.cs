@@ -25,13 +25,21 @@ namespace DiamondShopBOs
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tblAccentStone> tblAccentStones { get; set; }
         public virtual DbSet<tblCertificate> tblCertificates { get; set; }
         public virtual DbSet<tblChat> tblChats { get; set; }
         public virtual DbSet<tblComment> tblComments { get; set; }
         public virtual DbSet<tblDiamond> tblDiamonds { get; set; }
+        public virtual DbSet<tblItem> tblItems { get; set; }
         public virtual DbSet<tblNotification> tblNotifications { get; set; }
+        public virtual DbSet<tblOrder> tblOrders { get; set; }
+        public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
+        public virtual DbSet<tblOrderStatusUpdate> tblOrderStatusUpdates { get; set; }
         public virtual DbSet<tblRole> tblRoles { get; set; }
+        public virtual DbSet<tblSetting> tblSettings { get; set; }
+        public virtual DbSet<tblTransaction> tblTransactions { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblVoucher> tblVouchers { get; set; }
+        public virtual DbSet<tblWarranty> tblWarranties { get; set; }
     }
 }

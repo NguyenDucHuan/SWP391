@@ -5,12 +5,18 @@ using System.Linq;
 using System;
 using System.Web.Mvc;
 using System.Configuration;
+using DiamondShopServices;
 
 namespace ProjectDiamondShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly IDiamondService service = null;
+        public HomeController()
+        {
+            service = new DiamondService();
+        }
         public ActionResult Index()
         {
             if (TempData["SuccessMessage"] != null)

@@ -27,7 +27,8 @@ namespace DiamondShopDAOs
         }
         public tblDiamond UpdateDiamond(int id, tblDiamond diamond)
         {
-            var inDiamond = GetDiamondById(id);
+            var Entity = new DiamondShopManagementEntities();
+            var inDiamond = Entity.tblDiamonds.Where(d => d.diamondID == id).FirstOrDefault();
             if (inDiamond != null)
             {
                 inDiamond.diamondID = diamond.diamondID;
@@ -39,27 +40,20 @@ namespace DiamondShopDAOs
                 inDiamond.cutID = diamond.cutID;
                 inDiamond.clarityID = diamond.clarityID;
                 inDiamond.colorID = diamond.colorID;
-                using (diamondShopManagementEntities)
-                {
-                    diamondShopManagementEntities.Entry(inDiamond).State = EntityState.Modified;
-                    diamondShopManagementEntities.SaveChanges();
-                }
-                return inDiamond;
+
             }
-            else
-            {
-                throw new ArgumentException("Not Exisis diamond"); // Nên Sử dụng try catch để tạo giỏ hứng thông báo 
-            }
+            Entity.SaveChanges();
+            return inDiamond;
         }
         public void AddNewDiamond(tblDiamond newDiamond)
         {
-            using (diamondShopManagementEntities)
+            using (var diamondShopManagementEntities = new DiamondShopManagementEntities())
             {
                 diamondShopManagementEntities.tblDiamonds.Add(newDiamond);
                 diamondShopManagementEntities.SaveChanges();
             }
         }
-        public List<tblDiamond> Filter(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy, string type)
+        public List<tblDiamond> Filter(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy)
         {
             var query = diamondShopManagementEntities.tblDiamonds.AsQueryable();
 
@@ -82,10 +76,6 @@ namespace DiamondShopDAOs
             if (!String.IsNullOrEmpty(shape))
             {
                 query = query.Where(d => d.shapeID.Contains(shape));
-            }
-            if (!String.IsNullOrEmpty(type))
-            {
-                query = query.Where(d => d.type.Contains(type));
             }
             if (minPrice.HasValue)
             {
