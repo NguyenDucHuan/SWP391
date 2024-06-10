@@ -23,12 +23,15 @@ namespace DiamondShopDAOs
         public tblDiamond GetDiamondById(int id)
         {
             var diamond = diamondShopManagementEntities.tblDiamonds.FirstOrDefault(d => d.diamondID == id);
+            if (diamond == null)
+            {
+                throw new Exception($"Diamond with ID {id} not found");
+            }
             return diamond;
         }
         public tblDiamond UpdateDiamond(int id, tblDiamond diamond)
         {
-            var Entity = new DiamondShopManagementEntities();
-            var inDiamond = Entity.tblDiamonds.Where(d => d.diamondID == id).FirstOrDefault();
+            var inDiamond = diamondShopManagementEntities.tblDiamonds.Where(d => d.diamondID == id).FirstOrDefault();
             if (inDiamond != null)
             {
                 inDiamond.diamondID = diamond.diamondID;
@@ -41,17 +44,14 @@ namespace DiamondShopDAOs
                 inDiamond.clarityID = diamond.clarityID;
                 inDiamond.colorID = diamond.colorID;
 
+                diamondShopManagementEntities.SaveChanges();
             }
-            Entity.SaveChanges();
             return inDiamond;
         }
         public void AddNewDiamond(tblDiamond newDiamond)
         {
-            using (var diamondShopManagementEntities = new DiamondShopManagementEntities())
-            {
-                diamondShopManagementEntities.tblDiamonds.Add(newDiamond);
-                diamondShopManagementEntities.SaveChanges();
-            }
+            diamondShopManagementEntities.tblDiamonds.Add(newDiamond);
+            diamondShopManagementEntities.SaveChanges();
         }
         public List<tblDiamond> Filter(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy)
         {

@@ -20,7 +20,9 @@ namespace DiamondShopDAOs.CookieCartDAO
         public decimal diamondPrice { get; set; }
         public decimal? settingPrice { get; set; }
         public decimal? accentStonePrice { get; set; }
-
+        public string DiamondName { get; set; }
+        public string imagePath { get; set; }
+        public string decription { get; set; }
         public ItemCartDAO()
         {
             if (diamondDAO == null)
@@ -37,18 +39,47 @@ namespace DiamondShopDAOs.CookieCartDAO
             }
         }
 
-        public ItemCartDAO(int settingID, int accentStoneID, int diamondID)
+        public ItemCartDAO(int settingID, int accentStoneID, int diamondID) : this()
         {
             this.diamondID = diamondID;
-            this.diamondPrice = diamondDAO.GetDiamondById(diamondID).diamondPrice;
+            var diamond = diamondDAO.GetDiamondById(diamondID);
+            if (diamond != null)
+            {
+                this.diamondPrice = diamond.diamondPrice;
+                this.DiamondName = diamond.diamondName;
+            }
+            else
+            {
+                throw new Exception("Diamond not found");
+            }
+
             if (settingID != 0 && accentStoneID != 0)
             {
                 this.settingID = settingID;
-                tblSetting tblSetting = jewelrySettingDAO.GetSettingByID(settingID);
-                this.settingPrice = tblSetting.priceTax;
-                this.quantityAccent = tblSetting.quantityStones;
+                var tblSetting = jewelrySettingDAO.GetSettingByID(settingID);
+                if (tblSetting != null)
+                {
+                    this.settingPrice = tblSetting?.priceTax;
+                    this.quantityAccent = tblSetting?.quantityStones;
+                    this.imagePath = tblSetting?.imagePath + "|" + diamond.diamondImagePath;
+                    this.decription = tblSetting?.description;
+                }
+                else
+                {
+                    throw new Exception("Setting not found");
+                }
+
                 this.accentStoneID = accentStoneID;
-                this.accentStonePrice = accentStoneDAO.GetAccentStone(accentStoneID).price;
+                var accentStone = accentStoneDAO.GetAccentStone(accentStoneID);
+                if (accentStone != null)
+                {
+                    this.accentStonePrice = accentStone.price;
+                }
+                else
+                {
+                    throw new Exception("Accent stone not found");
+                }
+
             }
             else
             {
@@ -56,6 +87,8 @@ namespace DiamondShopDAOs.CookieCartDAO
                 this.settingPrice = null;
                 this.accentStoneID = null;
                 this.accentStonePrice = null;
+                imagePath = diamond.diamondImagePath;
+                decription = diamond.diamondDescription;
             }
         }
     }

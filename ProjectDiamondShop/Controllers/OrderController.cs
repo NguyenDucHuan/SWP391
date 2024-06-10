@@ -39,7 +39,6 @@ namespace ProjectDiamondShop.Controllers
             var cart = CartHelper.GetCart(HttpContext, userID);
             return View("CreateOrder", cart);
         }
-
         [HttpPost]
         public ActionResult SaveOrder(string address, string phone)
         {
@@ -49,9 +48,7 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Login");
             }
             var cart = CartHelper.GetCart(HttpContext, userID);
-
             string orderId = Guid.NewGuid().ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -63,20 +60,19 @@ namespace ProjectDiamondShop.Controllers
                     SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, NULL)", conn, transaction);
                     cmd.Parameters.AddWithValue("@orderID", orderId);
                     cmd.Parameters.AddWithValue("@customerID", userID);
-                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
+                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.diamondPrice));
                     cmd.Parameters.AddWithValue("@status", DEFAULT_ORDER_STATUS);
                     cmd.Parameters.AddWithValue("@address", address);
                     cmd.Parameters.AddWithValue("@phone", phone);
                     cmd.Parameters.AddWithValue("@saleDate", DateTime.Now);
                     cmd.ExecuteNonQuery();
-
                     // Lưu thông tin chi tiết đơn hàng
                     foreach (var item in cart.Items)
                     {
                         SqlCommand cmdItem = new SqlCommand("INSERT INTO tblOrderItem (orderID, diamondID, salePrice) VALUES (@orderID, @diamondID, @salePrice)", conn, transaction);
                         cmdItem.Parameters.AddWithValue("@orderID", orderId);
-                        cmdItem.Parameters.AddWithValue("@diamondID", item.DiamondID);
-                        cmdItem.Parameters.AddWithValue("@salePrice", item.DiamondPrice);
+                        cmdItem.Parameters.AddWithValue("@diamondID", item.diamondID);
+                        cmdItem.Parameters.AddWithValue("@salePrice", item.diamondPrice);
                         cmdItem.ExecuteNonQuery();
                     }
 
@@ -377,7 +373,7 @@ namespace ProjectDiamondShop.Controllers
                     SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, NULL)", conn, transaction);
                     cmd.Parameters.AddWithValue("@orderID", orderId);
                     cmd.Parameters.AddWithValue("@customerID", userID);
-                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
+                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.diamondPrice));
                     cmd.Parameters.AddWithValue("@status", DEFAULT_ORDER_STATUS);
                     cmd.Parameters.AddWithValue("@address", address);
                     cmd.Parameters.AddWithValue("@phone", phone);
@@ -387,8 +383,8 @@ namespace ProjectDiamondShop.Controllers
                     {
                         SqlCommand cmdItem = new SqlCommand("INSERT INTO tblOrderItem (orderID, diamondID, salePrice) VALUES (@orderID, @diamondID, @salePrice)", conn, transaction);
                         cmdItem.Parameters.AddWithValue("@orderID", orderId);
-                        cmdItem.Parameters.AddWithValue("@diamondID", item.DiamondID);
-                        cmdItem.Parameters.AddWithValue("@salePrice", item.DiamondPrice);
+                        cmdItem.Parameters.AddWithValue("@diamondID", item.diamondID);
+                        cmdItem.Parameters.AddWithValue("@salePrice", item.diamondPrice);
                         cmdItem.ExecuteNonQuery();
                     }
 
@@ -431,14 +427,14 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
-                decimal discountedPrice = item.DiamondPrice * (1 - discountPercentage);
+                decimal discountedPrice = item.diamondPrice * (1 - discountPercentage);
                 itemList.items.Add(new Item()
                 {
                     name = item.DiamondName,
                     currency = "USD",
                     price = discountedPrice.ToString("F2"), // Format price to 2 decimal places
                     quantity = "1",
-                    sku = item.DiamondID.ToString()
+                    sku = item.diamondID.ToString()
                 });
             }
 
@@ -453,7 +449,7 @@ namespace ProjectDiamondShop.Controllers
                 return_url = redirectUrl
             };
 
-            decimal discountedSubtotal = cart.Items.Sum(i => i.DiamondPrice * (1 - discountPercentage));
+            decimal discountedSubtotal = cart.Items.Sum(i => i.diamondPrice * (1 - discountPercentage));
 
             var details = new Details()
             {

@@ -36,7 +36,8 @@
             @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "add-to-cart-form" }))
             {
                 @Html.Hidden("diamondID", Model.diamondID)
-                <!-- Removed the hidden fields for accentStoneID and settingID -->
+                @Html.Hidden("accentStoneID", null, new { id = "accentStoneID" })
+                @Html.Hidden("settingID", null, new { id = "settingID" })
                 <button type="button" id="add-to-cart-button" class="transparent-button">
                     <span class="lnr lnr-cart" style="color: #f0f0f0;"></span>Add to Cart
                 </button>
