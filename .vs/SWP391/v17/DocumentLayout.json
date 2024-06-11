@@ -1,30 +1,62 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\TERM5\\SWP391\\d\\SWP391\\",
+  "WorkspaceRootPath": "C:\\Users\\nguye\\Desktop\\Clone\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term5\\swp391\\d\\swp391\\projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\nguye\\Desktop\\Clone\\projectdiamondshop\\views\\deliverystaff\\deliverystaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\deliverystaff\\deliverystaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM5\\SWP391\\d\\SWP391\\diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\nguye\\Desktop\\Clone\\projectdiamondshop\\views\\salestaff\\salestaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\salestaff\\salestaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|D:\\TERM5\\SWP391\\d\\SWP391\\diamondshopbos\\diamondshopmodels.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\diamondshopmodels.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\nguye\\Desktop\\Clone\\projectdiamondshop\\controllers\\salestaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\salestaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM5\\SWP391\\d\\SWP391\\diamondshopdaos\\daos\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM5\\SWP391\\d\\SWP391\\diamondshopdaos\\daos\\orderitemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopdaos\\daos\\orderitemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\orderitemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|D:\\TERM5\\SWP391\\d\\SWP391\\diamondshopbos\\tblitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\tblitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\controllers\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopbos\\diamondshopmodels.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\diamondshopmodels.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\nguye\\Desktop\\Clone\\projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopbos\\diamondshopmodels.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\diamondshopmodels.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopbos\\diamondshopmodels.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\diamondshopmodels.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopbos\\tbluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A0DCB91-6072-4ED3-A948-31FCBEE56793}|DiamondShopBOs\\DiamondShopBOs.csproj|solutionrelative:diamondshopbos\\tbluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\nguye\\Desktop\\Clone\\projectdiamondshop\\controllers\\deliverystaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\deliverystaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,86 +66,187 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderItemDAO.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
+              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
+              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwBcAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T11:07:31.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DiamondShopModels.Context.tt",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.Context.tt",
+              "RelativeDocumentMoniker": "DiamondShopBOs\\DiamondShopModels.Context.tt",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.Context.tt",
+              "RelativeToolTip": "DiamondShopBOs\\DiamondShopModels.Context.tt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-06-11T11:15:50.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "tblUser.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\tblUser.cs",
+              "RelativeDocumentMoniker": "DiamondShopBOs\\tblUser.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\tblUser.cs",
+              "RelativeToolTip": "DiamondShopBOs\\tblUser.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAswCcAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T11:14:25.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SignUpController.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\SignUpController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\SignUpController.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\SignUpController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\SignUpController.cs",
+              "ViewState": "AQIAAKUAAAAAAAAAAAAkwBAAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T11:10:32.723Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DiamondShopModels.Context.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopBOs\\DiamondShopModels.Context.cs",
-              "RelativeDocumentMoniker": "DiamondShopBOs\\DiamondShopModels.Context.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopBOs\\DiamondShopModels.Context.cs",
-              "RelativeToolTip": "DiamondShopBOs\\DiamondShopModels.Context.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAADwv0UAAAAxAAAA",
+              "Title": "SaleStaffController.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\SaleStaffController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\SaleStaffController.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\SaleStaffController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\SaleStaffController.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAgwDQAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T00:40:35.048Z",
+              "WhenOpened": "2024-06-11T09:31:57.762Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ItemDAO.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAlwD0AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T00:27:32.456Z",
+              "Title": "SaleStaff.cshtml",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\SaleStaff\\SaleStaff.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\SaleStaff\\SaleStaff.cshtml",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\SaleStaff\\SaleStaff.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\SaleStaff\\SaleStaff.cshtml",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAiwIYAAABxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T09:32:42.059Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\OrderController.cs",
-              "ViewState": "AQIAAGsBAAAAAAAAAADwv4gBAAA2AAAA",
+              "Title": "DeliveryStaff.cshtml",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAiwH8AAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T09:30:16.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DiamondShopModels.Context.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.Context.cs",
+              "RelativeDocumentMoniker": "DiamondShopBOs\\DiamondShopModels.Context.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.Context.cs",
+              "RelativeToolTip": "DiamondShopBOs\\DiamondShopModels.Context.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T00:27:32.463Z",
+              "WhenOpened": "2024-06-11T11:15:55.052Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "tblItem.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopBOs\\tblItem.cs",
-              "RelativeDocumentMoniker": "DiamondShopBOs\\tblItem.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopBOs\\tblItem.cs",
-              "RelativeToolTip": "DiamondShopBOs\\tblItem.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAwwCUAAAAAAAAA",
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T00:26:34.38Z"
+              "WhenOpened": "2024-06-11T11:34:31.036Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "OrderItemDAO.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
-              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
-              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\OrderItemDAO.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAlwEUAAAAIAAAA",
+              "Title": "ItemDAO.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwCYAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T22:46:12.763Z"
+              "WhenOpened": "2024-06-11T11:07:31.165Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "OrderDAO.cs",
-              "DocumentMoniker": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\OrderDAO.cs",
-              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\OrderDAO.cs",
-              "ToolTip": "D:\\TERM5\\SWP391\\d\\SWP391\\DiamondShopDAOs\\DAOs\\OrderDAO.cs",
-              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\OrderDAO.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAlwDIAAAAJAAAA",
+              "DocumentIndex": 8,
+              "Title": "DiamondShopModels.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.edmx",
+              "RelativeDocumentMoniker": "DiamondShopBOs\\DiamondShopModels.edmx",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopBOs\\DiamondShopModels.edmx [Diagram1]",
+              "RelativeToolTip": "DiamondShopBOs\\DiamondShopModels.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-06-11T10:50:12.587Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "ViewState": "AQIAAG8CAAAAAAAAAAAiwHoCAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-11T10:29:32.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAApwDEAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T22:16:17.645Z",
+              "WhenOpened": "2024-06-11T10:05:13.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DeliveryStaffController.cs",
+              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\DeliveryStaffController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\DeliveryStaffController.cs",
+              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\DeliveryStaffController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\DeliveryStaffController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:02:01.312Z",
               "EditorCaption": ""
             }
           ]

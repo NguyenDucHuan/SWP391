@@ -1,135 +1,194 @@
-﻿using ProjectDiamondShop.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Text;
+using System.Web.Mvc;
+using DiamondShopBOs;
 
 namespace ProjectDiamondShop.Controllers
 {
     public class ManagerController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private DiamondShopManagementEntities db = new DiamondShopManagementEntities();
 
         public ActionResult Index()
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var model = new ManagerViewModel
-            {
-                Orders = GetOrders(),
-                Diamonds = GetDiamonds(),
-                SaleStaff = GetSaleStaff(),
-                DeliveryStaff = GetDeliveryStaff()
-            };
+            ViewBag.Orders = GetOrders();
+            ViewBag.Diamonds = GetDiamonds();
+            ViewBag.SaleStaff = GetSaleStaff();
+            ViewBag.DeliveryStaff = GetDeliveryStaff();
+            ViewBag.Users = (int)Session["RoleID"] == 2 ? GetUsers() : null;
 
             var revenueData = GetRevenueData();
             ViewBag.RevenueLabels = revenueData.Select(r => r.Date).ToList();
             ViewBag.RevenueData = revenueData.Select(r => r.Revenue).ToList();
 
-            return View(model);
-        }
-
-        public ActionResult CreateVoucher()
-        {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if ((int)Session["RoleID"] == 2)
             {
-                return RedirectToAction("Index", "Home");
+                var registrationData = GetRegistrationData();
+                ViewBag.RegistrationLabels = registrationData.Select(r => r.Date).ToList();
+                ViewBag.RegistrationData = registrationData.Select(r => r.Registrations).ToList();
             }
 
-            return View(new Voucher());
+            return View();
+        }
+
+        private List<tblUser> GetUsers()
+        {
+            return db.tblUsers.Where(u => u.roleID == 1).ToList();
+        }
+
+        private List<RegistrationData> GetRegistrationData()
+        {
+            return db.tblUsers
+                .Where(u => u.roleID == 1)
+                .GroupBy(u => u.createDate)
+                .Select(g => new RegistrationData
+                {
+                    Date = g.Key.ToString("yyyy-MM-dd"),
+                    Registrations = g.Count()
+                }).OrderBy(r => r.Date).ToList();
+        }
+
+        private List<tblOrder> GetOrders()
+        {
+            return db.tblOrders.ToList();
+        }
+
+        private List<tblDiamond> GetDiamonds()
+        {
+            return db.tblDiamonds.ToList();
+        }
+
+        private List<tblUser> GetSaleStaff()
+        {
+            return GetUsersByRole(5);
+        }
+
+        private List<tblUser> GetDeliveryStaff()
+        {
+            return GetUsersByRole(4);
+        }
+
+        private List<tblUser> GetUsersByRole(int roleID)
+        {
+            return db.tblUsers.Where(u => u.roleID == roleID).ToList();
+        }
+
+        private List<RevenueData> GetRevenueData()
+        {
+            var data = db.tblOrders
+                .Where(o => o.saleDate != null)
+                .GroupBy(o => System.Data.Entity.DbFunctions.TruncateTime(o.saleDate))
+                .Select(g => new
+                {
+                    Date = g.Key,
+                    Revenue = g.Sum(o => (double?)o.totalMoney) ?? 0
+                })
+                .OrderBy(r => r.Date)
+                .ToList()
+                .Select(x => new RevenueData
+                {
+                    Date = x.Date.Value.ToString("yyyy-MM-dd"),
+                    Revenue = x.Revenue
+                }).ToList();
+
+            return data;
+        }
+
+
+        [HttpPost]
+        public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2))
+            {
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            bool isAdmin = (int)Session["RoleID"] == 2;
+
+            foreach (var update in orderUpdates)
+            {
+                var order = db.tblOrders.FirstOrDefault(o => o.orderID == update.OrderID);
+                if (order != null)
+                {
+                    order.saleStaffID = update.SaleStaffID;
+                    order.deliveryStaffID = update.DeliveryStaffID;
+
+                    if (!string.IsNullOrEmpty(update.Status))
+                    {
+                        string currentStatus = order.status;
+
+                        if (!isAdmin && currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
+                        {
+                            return Json(new { success = false, message = $"Update Error: Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
+                        }
+
+                        order.status = update.Status;
+
+                        db.tblOrderStatusUpdates.Add(new tblOrderStatusUpdate
+                        {
+                            orderID = order.orderID,
+                            status = update.Status,
+                            updateTime = DateTime.Now
+                        });
+                    }
+                }
+            }
+
+            db.SaveChanges();
+
+            return Json(new { success = true, message = "Update Successful" });
+        }
+
+        private bool IsValidStatusTransition(string currentStatus, string newStatus)
+        {
+            var statusOrder = new List<string>
+            {
+                "Order Placed",
+                "Preparing Goods",
+                "Shipped to Carrier",
+                "In Delivery",
+                "Delivered",
+                "Paid"
+            };
+
+            var currentIndex = statusOrder.IndexOf(currentStatus);
+            var newIndex = statusOrder.IndexOf(newStatus);
+
+            return newIndex > currentIndex;
         }
 
         [HttpPost]
-        public ActionResult CreateVoucher(Voucher voucher, string assignTo)
+        public JsonResult ToggleUserStatus(string userId, bool status)
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            try
             {
-                return RedirectToAction("Index", "Home");
-            }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string voucherID = GenerateUniqueVoucherID(conn);
-
-                SqlCommand cmd = new SqlCommand("INSERT INTO tblVoucher (voucherID, startTime, endTime, discount, quantity, status) VALUES (@VoucherID, @StartTime, @EndTime, @Discount, @Quantity, 1);", conn);
-                cmd.Parameters.AddWithValue("@VoucherID", voucherID);
-                cmd.Parameters.AddWithValue("@StartTime", voucher.StartTime);
-                cmd.Parameters.AddWithValue("@EndTime", voucher.EndTime);
-                cmd.Parameters.AddWithValue("@Discount", voucher.Discount);
-                cmd.Parameters.AddWithValue("@Quantity", voucher.Quantity);
-                cmd.ExecuteNonQuery();
-
-                if (assignTo == "all")
+                var user = db.tblUsers.FirstOrDefault(u => u.userID == userId);
+                if (user != null)
                 {
-                    SqlCommand cmdAll = new SqlCommand("INSERT INTO tblVoucherCatch (voucherID, userID) SELECT @VoucherID, userID FROM tblUsers", conn);
-                    cmdAll.Parameters.AddWithValue("@VoucherID", voucherID);
-                    cmdAll.ExecuteNonQuery();
+                    user.status = status;
+                    db.SaveChanges();
                 }
-                else
-                {
-                    SqlCommand cmdUser = new SqlCommand("INSERT INTO tblVoucherCatch (voucherID, userID) VALUES (@VoucherID, @UserID)", conn);
-                    cmdUser.Parameters.AddWithValue("@VoucherID", voucherID);
-                    cmdUser.Parameters.AddWithValue("@UserID", assignTo);
-                    cmdUser.ExecuteNonQuery();
-                }
+
+                return Json(new { success = true });
             }
-
-            return RedirectToAction("Index");
-        }
-
-        private string GenerateUniqueVoucherID(SqlConnection conn)
-        {
-            string voucherID;
-            Random random = new Random();
-            do
+            catch (Exception ex)
             {
-                voucherID = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6)
-                    .Select(s => s[random.Next(s.Length)]).ToArray());
-            } while (VoucherIDExists(conn, voucherID));
-            return voucherID;
-        }
-
-        private bool VoucherIDExists(SqlConnection conn, string voucherID)
-        {
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblVoucher WHERE voucherID = @VoucherID", conn);
-            cmd.Parameters.AddWithValue("@VoucherID", voucherID);
-            int count = (int)cmd.ExecuteScalar();
-            return count > 0;
-        }
-
-        [HttpPost]
-        public ActionResult AssignStaff(string orderId, string staffId, string staffType)
-        {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
-            {
-                return new HttpStatusCodeResult(403);
+                return Json(new { success = false, message = ex.Message });
             }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                string column = staffType == "sale" ? "saleStaffID" : "deliveryStaffID";
-                SqlCommand cmd = new SqlCommand($"UPDATE tblOrder SET {column} = @StaffID WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.Parameters.AddWithValue("@StaffID", staffId);
-                cmd.ExecuteNonQuery();
-            }
-
-            return new HttpStatusCodeResult(200);
         }
 
-        public ActionResult AddDiamond()
+        public ActionResult CreateStaffAccount()
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -137,305 +196,136 @@ namespace ProjectDiamondShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateStaffAccount(string userName, string password, string confirmPassword, string fullName, string email, int roleId)
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            if (ModelState.IsValid)
+            if (roleId != 3 && roleId != 4 && roleId != 5)
             {
-                string diamondImagePaths = "";
-                string certificateImagePath = "";
-
-                // Get the next available diamond image number
-                int nextImageNumber = GetNextDiamondImageNumber();
-
-                // Save diamond images
-                if (diamondImageA != null && diamondImageA.ContentLength > 0)
-                {
-                    string fileName = $"dia{nextImageNumber}A.png";
-                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
-                    diamondImageA.SaveAs(path);
-                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
-                }
-
-                if (diamondImageB != null && diamondImageB.ContentLength > 0)
-                {
-                    string fileName = $"dia{nextImageNumber}B.png";
-                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
-                    diamondImageB.SaveAs(path);
-                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
-                }
-
-                if (diamondImageC != null && diamondImageC.ContentLength > 0)
-                {
-                    string fileName = $"dia{nextImageNumber}C.png";
-                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
-                    diamondImageC.SaveAs(path);
-                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
-                }
-
-                diamondImagePaths = diamondImagePaths.TrimEnd('|');
-
-                // Save certificate image
-                if (certificateImage != null && certificateImage.ContentLength > 0)
-                {
-                    string fileName = $"CER{nextImageNumber:D2}.jpg";
-                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Certificates"), fileName);
-                    certificateImage.SaveAs(path);
-                    certificateImagePath = $"/Image/DiamondDTO/Certificates/{fileName}";
-                }
-
-                // Insert diamond into database
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO tblDiamonds (diamondName, diamondPrice, diamondDescription, caratWeight, clarityID, cutID, colorID, shapeID, diamondImagePath, status) OUTPUT INSERTED.diamondID VALUES (@diamondName, @diamondPrice, @diamondDescription, @caratWeight, @clarityID, @cutID, @colorID, @shapeID, @diamondImagePath, 1);", conn);
-                    cmd.Parameters.AddWithValue("@diamondName", model.diamondName);
-                    cmd.Parameters.AddWithValue("@diamondPrice", model.diamondPrice);
-                    cmd.Parameters.AddWithValue("@diamondDescription", model.diamondDescription);
-                    cmd.Parameters.AddWithValue("@caratWeight", model.caratWeight);
-                    cmd.Parameters.AddWithValue("@clarityID", model.clarityID);
-                    cmd.Parameters.AddWithValue("@cutID", model.cutID);
-                    cmd.Parameters.AddWithValue("@colorID", model.colorID);
-                    cmd.Parameters.AddWithValue("@shapeID", model.shapeID);
-                    cmd.Parameters.AddWithValue("@diamondImagePath", diamondImagePaths);
-
-                    int diamondID = (int)cmd.ExecuteScalar();
-
-                    // Insert certificate into database
-                    SqlCommand certCmd = new SqlCommand("INSERT INTO tblCertificate (diamondID, certificateNumber, issueDate, certifyingAuthority, cerImagePath) VALUES (@diamondID, @certificateNumber, @issueDate, @certifyingAuthority, @cerImagePath);", conn);
-                    certCmd.Parameters.AddWithValue("@diamondID", diamondID);
-                    certCmd.Parameters.AddWithValue("@certificateNumber", model.CertificateNumber);
-                    certCmd.Parameters.AddWithValue("@issueDate", model.IssueDate);
-                    certCmd.Parameters.AddWithValue("@certifyingAuthority", model.CertifyingAuthority);
-                    certCmd.Parameters.AddWithValue("@cerImagePath", certificateImagePath);
-                    certCmd.ExecuteNonQuery();
-                }
-
-                TempData["SuccessMessage"] = "Diamond added successfully!";
-                return RedirectToAction("AddDiamond");
+                ModelState.AddModelError("", "Invalid role selected.");
+                return View();
             }
 
-            return View(model);
-        }
+            bool hasErrors = false;
 
-        private int GetNextDiamondImageNumber()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(diamondID), 0) FROM tblDiamonds", conn);
-                int maxDiamondID = (int)cmd.ExecuteScalar();
-                return maxDiamondID + 1;
+                ModelState.AddModelError("RequiredFields", "All fields are required.");
+                hasErrors = true;
             }
-        }
 
-        private List<Order> GetOrders()
-        {
-            List<Order> orders = new List<Order>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, saleStaffID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                ModelState.AddModelError("PasswordRequired", "Password and Confirm Password are required.");
+                hasErrors = true;
+            }
+            else if (password != confirmPassword)
+            {
+                ModelState.AddModelError("PasswordMismatch", "Passwords do not match.");
+                hasErrors = true;
+            }
+            else
+            {
+                if (!Regex.IsMatch(password, @"[a-z]"))
                 {
-                    orders.Add(new Order
+                    ModelState.AddModelError("PasswordLowercase", "Password must contain at least one lowercase letter.");
+                    hasErrors = true;
+                }
+
+                if (!Regex.IsMatch(password, @"[A-Z]"))
+                {
+                    ModelState.AddModelError("PasswordUppercase", "Password must contain at least one uppercase letter.");
+                    hasErrors = true;
+                }
+
+                if (!Regex.IsMatch(password, @"[\W_]"))
+                {
+                    ModelState.AddModelError("PasswordSpecialChar", "Password must contain at least one special character.");
+                    hasErrors = true;
+                }
+            }
+
+            string hashedUserName = HashUserName(userName);
+            if (db.tblUsers.Any(u => u.userName == hashedUserName))
+            {
+                ModelState.AddModelError("DuplicateUserName", "User name already exists.");
+                hasErrors = true;
+            }
+
+            if (db.tblUsers.Any(u => u.email == email))
+            {
+                ModelState.AddModelError("DuplicateEmail", "Email already exists.");
+                hasErrors = true;
+            }
+
+            if (hasErrors)
+            {
+                ViewBag.UserName = userName;
+                ViewBag.FullName = fullName;
+                ViewBag.Email = email;
+                ViewBag.RoleID = roleId;
+
+                var prioritizedErrors = new[] { "RequiredFields", "PasswordRequired", "PasswordMismatch", "PasswordLowercase", "PasswordUppercase", "PasswordSpecialChar", "DuplicateUserName", "DuplicateEmail" };
+                foreach (var key in prioritizedErrors)
+                {
+                    if (ModelState.ContainsKey(key) && ModelState[key].Errors.Count > 0)
                     {
-                        OrderID = reader["orderID"].ToString(),
-                        CustomerID = reader["customerID"].ToString(),
-                        SaleStaffID = reader["saleStaffID"].ToString(),
-                        DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                        TotalMoney = Convert.ToDouble(reader["totalMoney"]),
-                        Status = reader["status"].ToString(),
-                        Address = reader["address"].ToString(),
-                        Phone = reader["phone"].ToString(),
-                        SaleDate = Convert.ToDateTime(reader["saleDate"])
-                    });
-                }
-            }
-
-            return orders;
-        }
-
-        private List<Diamond> GetDiamonds()
-        {
-            List<Diamond> diamonds = new List<Diamond>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM tblDiamonds", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    diamonds.Add(new Diamond
-                    {
-                        diamondID = Convert.ToInt32(reader["diamondID"]),
-                        diamondName = reader["diamondName"].ToString(),
-                        diamondPrice = Convert.ToDecimal(reader["diamondPrice"]),
-                        diamondDescription = reader["diamondDescription"].ToString(),
-                        caratWeight = Convert.ToSingle(reader["caratWeight"]),
-                        clarityID = reader["clarityID"].ToString(),
-                        cutID = reader["cutID"].ToString(),
-                        colorID = reader["colorID"].ToString(),
-                        shapeID = reader["shapeID"].ToString(),
-                        diamondImagePath = reader["diamondImagePath"].ToString(),
-                        status = Convert.ToBoolean(reader["status"])
-                    });
-                }
-            }
-
-            return diamonds;
-        }
-
-        private List<User> GetSaleStaff()
-        {
-            return GetUsersByRole(5);
-        }
-
-        private List<User> GetDeliveryStaff()
-        {
-            return GetUsersByRole(4);
-        }
-
-        private List<User> GetUsersByRole(int roleID)
-        {
-            List<User> users = new List<User>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT userID, userName, fullName, email, status FROM tblUsers WHERE roleID = @RoleID", conn);
-                cmd.Parameters.AddWithValue("@RoleID", roleID);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    users.Add(new User
-                    {
-                        UserID = reader["userID"].ToString(),
-                        UserName = reader["userName"].ToString(),
-                        FullName = reader["fullName"].ToString(),
-                        Email = reader["email"].ToString(),
-                        Status = Convert.ToBoolean(reader["status"])
-                    });
-                }
-            }
-
-            return users;
-        }
-
-        private List<RevenueData> GetRevenueData()
-        {
-            List<RevenueData> revenueData = new List<RevenueData>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT CONVERT(VARCHAR, saleDate, 23) as Date, SUM(totalMoney) as Revenue FROM tblOrder GROUP BY CONVERT(VARCHAR, saleDate, 23) ORDER BY Date", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    revenueData.Add(new RevenueData
-                    {
-                        Date = reader["Date"].ToString(),
-                        Revenue = Convert.ToDouble(reader["Revenue"])
-                    });
-                }
-            }
-
-            return revenueData;
-        }
-
-        [HttpPost]
-        public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
-        {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
-            {
-                return Json(new { success = false, message = "Permission Denied." });
-            }
-
-            foreach (var update in orderUpdates)
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    try
-                    {
-                        // Cập nhật SaleStaffID
-                        SqlCommand cmdSaleStaff = new SqlCommand("UPDATE tblOrder SET saleStaffID = @SaleStaffID WHERE orderID = @OrderID", conn);
-                        cmdSaleStaff.Parameters.AddWithValue("@SaleStaffID", update.SaleStaffID ?? (object)DBNull.Value);
-                        cmdSaleStaff.Parameters.AddWithValue("@OrderID", update.OrderID);
-                        cmdSaleStaff.ExecuteNonQuery();
-
-                        // Cập nhật DeliveryStaffID
-                        SqlCommand cmdDeliveryStaff = new SqlCommand("UPDATE tblOrder SET deliveryStaffID = @DeliveryStaffID WHERE orderID = @OrderID", conn);
-                        cmdDeliveryStaff.Parameters.AddWithValue("@DeliveryStaffID", update.DeliveryStaffID ?? (object)DBNull.Value);
-                        cmdDeliveryStaff.Parameters.AddWithValue("@OrderID", update.OrderID);
-                        cmdDeliveryStaff.ExecuteNonQuery();
-
-                        // Cập nhật Status
-                        if (!string.IsNullOrEmpty(update.Status))
-                        {
-                            string currentStatus = GetCurrentOrderStatus(update.OrderID, conn);
-
-                            // Nếu trạng thái mới giống như trạng thái hiện tại thì không cần kiểm tra chuyển đổi trạng thái
-                            if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
-                            {
-                                return Json(new { success = false, message = $"Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
-                            }
-
-                            SqlCommand cmdStatus = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
-                            cmdStatus.Parameters.AddWithValue("@Status", update.Status);
-                            cmdStatus.Parameters.AddWithValue("@OrderID", update.OrderID);
-                            cmdStatus.ExecuteNonQuery();
-
-                            SqlCommand cmdLogStatusUpdate = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
-                            cmdLogStatusUpdate.Parameters.AddWithValue("@OrderID", update.OrderID);
-                            cmdLogStatusUpdate.Parameters.AddWithValue("@Status", update.Status);
-                            cmdLogStatusUpdate.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                            cmdLogStatusUpdate.ExecuteNonQuery();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        return Json(new { success = false, message = $"Error updating order {update.OrderID}: {ex.Message}" });
+                        ModelState.AddModelError("", ModelState[key].Errors[0].ErrorMessage);
+                        break;
                     }
                 }
+                return View();
             }
 
-            return Json(new { success = true, message = "Update Successful" });
+            string hashedPassword = HashPassword(password);
+            string userId = GenerateRandomUserId();
+
+            var newUser = new tblUser
+            {
+                userID = userId,
+                userName = hashedUserName,
+                fullName = fullName,
+                email = email,
+                password = hashedPassword,
+                roleID = roleId,
+                status = true,
+                resetCode = null
+            };
+
+            db.tblUsers.Add(newUser);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Manager");
         }
 
-        private string GetCurrentOrderStatus(string orderId, SqlConnection conn)
+        private string HashPassword(string password)
         {
-            SqlCommand cmd = new SqlCommand("SELECT status FROM tblOrder WHERE orderID = @OrderID", conn);
-            cmd.Parameters.AddWithValue("@OrderID", orderId);
-            return cmd.ExecuteScalar()?.ToString();
+            using (var sha256 = new SHA256Managed())
+            {
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hash);
+            }
         }
 
-        private bool IsValidStatusTransition(string currentStatus, string newStatus)
+        private string HashUserName(string userName)
         {
-            var statusOrder = new List<string>
-    {
-        "Order Placed",
-        "Preparing Goods",
-        "Shipped to Carrier",
-        "In Delivery",
-        "Delivered",
-        "Paid"
-    };
+            using (var sha256 = new SHA256Managed())
+            {
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(userName));
+                return Convert.ToBase64String(hash);
+            }
+        }
 
-            var currentIndex = statusOrder.IndexOf(currentStatus);
-            var newIndex = statusOrder.IndexOf(newStatus);
-
-            // Trạng thái mới phải lớn hơn trạng thái hiện tại
-            return newIndex > currentIndex;
+        private string GenerateRandomUserId()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 6)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public class RevenueData
@@ -443,6 +333,13 @@ namespace ProjectDiamondShop.Controllers
             public string Date { get; set; }
             public double Revenue { get; set; }
         }
+
+        public class RegistrationData
+        {
+            public string Date { get; set; }
+            public int Registrations { get; set; }
+        }
+
         public class OrderUpdateModel
         {
             public string OrderID { get; set; }

@@ -71,6 +71,7 @@
     <EntitySetMapping Name="tblItems">
       <EntityTypeMapping TypeName="DiamondShopManagementModel.tblItem">
         <MappingFragment StoreEntitySet="tblItem">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="settingID" ColumnName="settingID" />
           <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
           <ScalarProperty Name="quantityAccent" ColumnName="quantityAccent" />
@@ -78,7 +79,6 @@
           <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />
           <ScalarProperty Name="settingPrice" ColumnName="settingPrice" />
           <ScalarProperty Name="accentStonePrice" ColumnName="accentStonePrice" />
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -177,6 +177,7 @@
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="resetCode" ColumnName="resetCode" />
           <ScalarProperty Name="bonusPoint" ColumnName="bonusPoint" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

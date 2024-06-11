@@ -1,8 +1,6 @@
-﻿using ProjectDiamondShop.Models;
+﻿using DiamondShopBOs;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,7 +8,7 @@ namespace ProjectDiamondShop.Controllers
 {
     public class SaleStaffController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
 
         // GET: SaleStaff
         public ActionResult Index(string searchOrderId)
@@ -20,45 +18,23 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<Order> orders = GetOrders(searchOrderId);
-            return View("SaleStaff", orders); // Sử dụng View SaleStaff.cshtml
+            List<tblOrder> orders = GetOrders(searchOrderId);
+            return View("SaleStaff", orders); // Ensure your view expects IEnumerable<tblOrder>
         }
 
-        private List<Order> GetOrders(string searchOrderId)
+        private List<tblOrder> GetOrders(string searchOrderId)
         {
-            List<Order> orders = new List<Order>();
+            string saleStaffID = Session["UserID"].ToString();
+            var ordersQuery = db.tblOrders.Where(o => o.saleStaffID == saleStaffID);
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (!string.IsNullOrEmpty(searchOrderId))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE saleStaffID = @SaleStaffID" +
-                    (string.IsNullOrEmpty(searchOrderId) ? "" : " AND orderID LIKE @SearchOrderId"), conn);
-
-                cmd.Parameters.AddWithValue("@SaleStaffID", Session["UserID"].ToString());
-                if (!string.IsNullOrEmpty(searchOrderId))
-                {
-                    cmd.Parameters.AddWithValue("@SearchOrderId", "%" + searchOrderId + "%");
-                }
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    orders.Add(new Order
-                    {
-                        OrderID = reader["orderID"].ToString(),
-                        CustomerID = reader["customerID"].ToString(),
-                        DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                        TotalMoney = Convert.ToDouble(reader["totalMoney"]),
-                        Status = reader["status"].ToString(),
-                        Address = reader["address"].ToString(),
-                        Phone = reader["phone"].ToString(),
-                        SaleDate = Convert.ToDateTime(reader["saleDate"])
-                    });
-                }
+                ordersQuery = ordersQuery.Where(o => o.orderID.Contains(searchOrderId));
             }
 
-            return orders;
+            return ordersQuery.ToList();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Process(string orderId)
@@ -69,25 +45,29 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            if (order != null)
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE tblOrder SET status = @Status WHERE orderID = @OrderID", conn);
-                cmd.Parameters.AddWithValue("@Status", "Preparing Goods");
-                cmd.Parameters.AddWithValue("@OrderID", orderId);
-                cmd.ExecuteNonQuery();
+                order.status = "Preparing Goods";
 
-                // Log trạng thái cập nhật
-                SqlCommand logCmd = new SqlCommand("INSERT INTO tblOrderStatusUpdates (orderID, status, updateTime) VALUES (@OrderID, @Status, @UpdateTime)", conn);
-                logCmd.Parameters.AddWithValue("@OrderID", orderId);
-                logCmd.Parameters.AddWithValue("@Status", "Preparing Goods");
-                logCmd.Parameters.AddWithValue("@UpdateTime", DateTime.Now);
-                logCmd.ExecuteNonQuery();
+                var orderStatusUpdate = new tblOrderStatusUpdate
+                {
+                    orderID = orderId,
+                    status = "Preparing Goods",
+                    updateTime = DateTime.Now
+                };
+
+                db.tblOrderStatusUpdates.Add(orderStatusUpdate);
+                db.SaveChanges();
+
+                TempData["UpdateMessage"] = "Order updated successfully.";
+            }
+            else
+            {
+                TempData["UpdateMessage"] = "Order not found.";
             }
 
-            TempData["UpdateMessage"] = "Order updated successfully.";
             return RedirectToAction("Index");
         }
-
     }
 }
