@@ -1,4 +1,6 @@
-﻿using PayPal;
+﻿using DiamondShopBOs;
+using DiamondShopServices.OrderServices;
+using PayPal;
 using PayPal.Api;
 using ProjectDiamondShop.Models;
 using ProjectDiamondShop.Models.Payments;
@@ -17,7 +19,20 @@ namespace ProjectDiamondShop.Controllers
     {
         private const string DEFAULT_ORDER_STATUS = "Order Place";
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private const decimal discountPercentage = 0.8m;
+        private readonly IOrderServices orderServices = null;
+        private readonly IItemService itemService = null;
+        public OrderController()
+        {
+            if (orderServices == null)
+            {
+                orderServices = new OrderServices();
+            }
+            if (itemService == null)
+            {
+                itemService = new ItemService();
+            }
+        }
         private string GetUserID()
         {
             if (Session["UserID"] == null)
@@ -39,7 +54,6 @@ namespace ProjectDiamondShop.Controllers
             var cart = CartHelper.GetCart(HttpContext, userID);
             return View("CreateOrder", cart);
         }
-
         [HttpPost]
         public ActionResult SaveOrder(string address, string phone)
         {
@@ -49,9 +63,7 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Login");
             }
             var cart = CartHelper.GetCart(HttpContext, userID);
-
             string orderId = Guid.NewGuid().ToString();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -63,20 +75,19 @@ namespace ProjectDiamondShop.Controllers
                     SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, NULL)", conn, transaction);
                     cmd.Parameters.AddWithValue("@orderID", orderId);
                     cmd.Parameters.AddWithValue("@customerID", userID);
-                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
+                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.diamondPrice));
                     cmd.Parameters.AddWithValue("@status", DEFAULT_ORDER_STATUS);
                     cmd.Parameters.AddWithValue("@address", address);
                     cmd.Parameters.AddWithValue("@phone", phone);
                     cmd.Parameters.AddWithValue("@saleDate", DateTime.Now);
                     cmd.ExecuteNonQuery();
-
                     // Lưu thông tin chi tiết đơn hàng
                     foreach (var item in cart.Items)
                     {
                         SqlCommand cmdItem = new SqlCommand("INSERT INTO tblOrderItem (orderID, diamondID, salePrice) VALUES (@orderID, @diamondID, @salePrice)", conn, transaction);
                         cmdItem.Parameters.AddWithValue("@orderID", orderId);
-                        cmdItem.Parameters.AddWithValue("@diamondID", item.DiamondID);
-                        cmdItem.Parameters.AddWithValue("@salePrice", item.DiamondPrice);
+                        cmdItem.Parameters.AddWithValue("@diamondID", item.diamondID);
+                        cmdItem.Parameters.AddWithValue("@salePrice", item.diamondPrice);
                         cmdItem.ExecuteNonQuery();
                     }
 
@@ -310,27 +321,20 @@ namespace ProjectDiamondShop.Controllers
         }
         public ActionResult PaymentWithPaypal(string address, string phone, string Cancel = null)
         {
-            //getting the apiContext  
+            // Store address and phone in session
+            // Getting the APIContext
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
             {
-                //A resource representing a Payer that funds a payment Payment Method as paypal  
-                //Payer Id will be returned when payment proceeds or click to pay  
                 string payerId = Request.Params["PayerID"];
                 if (string.IsNullOrEmpty(payerId))
                 {
-                    //this section will be executed first because PayerID doesn't exist  
-                    //it is returned by the create function call of the payment class  
-                    // Creating a payment  
-                    // baseURL is the url on which paypal sendsback the data.  
+                    // Generate a new base URL without address and phone parameters
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/order/PaymentWithPayPal?";
-                    //here we are generating guid for storing the paymentID received in session  
-                    //which will be used in the payment execution  
                     var guid = Convert.ToString((new Random()).Next(100000));
-                    //CreatePayment function gives us the payment approval url  
-                    //on which payer is redirected for paypal account payment  
                     var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
-                    //get links returned from paypal in response to Create function call  
+
+                    // Get the links returned from PayPal in response to the Create function call
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
                     while (links.MoveNext())
@@ -338,20 +342,22 @@ namespace ProjectDiamondShop.Controllers
                         Links lnk = links.Current;
                         if (lnk.rel.ToLower().Trim().Equals("approval_url"))
                         {
-                            //saving the payapalredirect URL to which user will be redirected for payment  
                             paypalRedirectUrl = lnk.href;
                         }
                     }
-                    // saving the paymentID in the key guid  
+
+                    // Save the payment ID in the session
                     Session.Add(guid, createdPayment.id);
+                    TempData["Address"] = address;
+                    TempData["Phone"] = phone;
                     return Redirect(paypalRedirectUrl);
                 }
                 else
                 {
-                    // This function exectues after receving all parameters for the payment  
+                    // This section is executed when the user is redirected back from PayPal after approving the payment
+
                     var guid = Request.Params["guid"];
                     var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
-                    //If executed payment failed then we will show payment failure message to user  
                     if (executedPayment.state.ToLower() != "approved")
                     {
                         return View("FailureView");
@@ -362,49 +368,34 @@ namespace ProjectDiamondShop.Controllers
             {
                 return View("FailureView");
             }
-            //on successful payment, show success page to user.  
+            address = TempData["Address"] as string;
+            phone = TempData["Phone"] as string;
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
-            string orderId = Guid.NewGuid().ToString();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            decimal totalMoney = cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice));
+            decimal paidAmount = totalMoney * discountPercentage;
+            decimal remainingAmount = totalMoney - paidAmount;
+
+            try
             {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
+                // Retrieve address and phone from session
 
-                try
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
+                foreach (var item in cart.Items)
                 {
-                    // Lưu thông tin đơn hàng
-                    SqlCommand cmd = new SqlCommand("INSERT INTO tblOrder (orderID, customerID, totalMoney, status, address, phone, saleDate, deliveryStaffID, saleStaffID) VALUES (@orderID, @customerID, @totalMoney, @status, @address, @phone, @saleDate, NULL, NULL)", conn, transaction);
-                    cmd.Parameters.AddWithValue("@orderID", orderId);
-                    cmd.Parameters.AddWithValue("@customerID", userID);
-                    cmd.Parameters.AddWithValue("@totalMoney", cart.Items.Sum(i => i.DiamondPrice));
-                    cmd.Parameters.AddWithValue("@status", DEFAULT_ORDER_STATUS);
-                    cmd.Parameters.AddWithValue("@address", address);
-                    cmd.Parameters.AddWithValue("@phone", phone);
-                    cmd.Parameters.AddWithValue("@saleDate", DateTime.Now);
-                    cmd.ExecuteNonQuery();
-                    foreach (var item in cart.Items)
-                    {
-                        SqlCommand cmdItem = new SqlCommand("INSERT INTO tblOrderItem (orderID, diamondID, salePrice) VALUES (@orderID, @diamondID, @salePrice)", conn, transaction);
-                        cmdItem.Parameters.AddWithValue("@orderID", orderId);
-                        cmdItem.Parameters.AddWithValue("@diamondID", item.DiamondID);
-                        cmdItem.Parameters.AddWithValue("@salePrice", item.DiamondPrice);
-                        cmdItem.ExecuteNonQuery();
-                    }
-
-                    transaction.Commit();
-
-                    // Xóa giỏ hàng sau khi tạo đơn hàng thành công
-                    CartHelper.ClearCart(HttpContext, userID);
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
+                    itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
                 }
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
+            }
+            CartHelper.ClearCart(HttpContext, userID);
             return View("SuccessView");
         }
+
+
+
         private PayPal.Api.Payment payment;
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
@@ -423,7 +414,6 @@ namespace ProjectDiamondShop.Controllers
             // Create item list and add item objects to it  
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
-            decimal totalMoney = 0;
             var itemList = new ItemList()
             {
                 items = new List<Item>()
@@ -431,17 +421,16 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
+                decimal discountedPrice = (item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage);
                 itemList.items.Add(new Item()
                 {
-                    name = item.DiamondName,
+                    name = item.decription,
                     currency = "USD",
-                    price = item.DiamondPrice.ToString("F2"), // Format price to 2 decimal places
+                    price = discountedPrice.ToString("F2"), // Format price to 2 decimal places
                     quantity = "1",
-                    sku = item.DiamondID.ToString()
+                    sku = item.diamondID.ToString()
                 });
-                totalMoney += item.DiamondPrice;
             }
-
             var payer = new Payer()
             {
                 payment_method = "paypal"
@@ -453,17 +442,16 @@ namespace ProjectDiamondShop.Controllers
                 return_url = redirectUrl
             };
 
+            decimal discountedSubtotal = cart.ToatalCartMoney() * (1 - discountPercentage);
             var details = new Details()
             {
-                tax = "0.00",
-                shipping = "0.00",
-                subtotal = totalMoney.ToString("F2") // Ensure subtotal is correctly formatted
+                subtotal = discountedSubtotal.ToString("F2")
             };
 
             var amount = new Amount()
             {
                 currency = "USD",
-                total = totalMoney.ToString("F2"), // Total must be the sum of tax, shipping, and subtotal
+                total = discountedSubtotal.ToString("F2"),
                 details = details
             };
 
@@ -511,7 +499,7 @@ namespace ProjectDiamondShop.Controllers
                     Console.WriteLine("DebugId: " + error.debug_id);
                 }
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

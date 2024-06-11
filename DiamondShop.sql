@@ -1,278 +1,298 @@
-USE master;
+--USE master;
 
-CREATE DATABASE [DiamondShopManagement] 
+--CREATE DATABASE [DiamondShopManagement] 
 
 USE [DiamondShopManagement] 
---b?ng role
+
+-- B?ng vai trò
 CREATE TABLE [dbo].[tblRole](
-	[roleID] [INT] NOT NULL,
-	[roleName] [NVARCHAR](20) NOT NULL,
-	CONSTRAINT [PK_tblRole] PRIMARY KEY CLUSTERED (
-	[roleID]  ASC
-	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
-	) ;
---bang users
-CREATE TABLE [dbo].[tblUsers](
-	[userID] [NVARCHAR](50) NOT NULL,
-	[userName] [NVARCHAR](50) NOT NULL UNIQUE ,
-	[fullName] [NVARCHAR](50)NOT NULL,
-	[email] [NVARCHAR](50) UNIQUE NOT NULL,
-	[password] [NVARCHAR](50) NOT NULL,
-	[roleID] [INT] NOT NULL,
-	[status] [BIT] DEFAULT '1',
-	[resetCode] NVARCHAR(10),
-	[bonusPoint] [INT] null,
-	CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED (
-	[userID] ASC
-	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
-	CONSTRAINT [FK_tblUsers_tblRole] FOREIGN KEY ([roleID]) REFERENCES dbo.tblRole ([roleID]) ON DELETE CASCADE,
-	) ;
-	-- bang voucher
-CREATE TABLE [dbo].[tblVoucher](
-    [voucherID] [int] NOT NULL,
-    [startTime] DATETIME NOT NULL,
-	[endTime] DATETIME NOT NULL,
-	[discount] [INT],
-	[quantity] [int],
-    [status] [BIT] DEFAULT '1',
-    CONSTRAINT [PK_tblVoucher] PRIMARY KEY CLUSTERED 
-    (
-        [voucherID] ASC
-    ) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+    [roleID] INT NOT NULL,
+    [roleName] NVARCHAR(20) NOT NULL,
+    CONSTRAINT [PK_tblRole] PRIMARY KEY CLUSTERED ([roleID] ASC)
 );
--- b?ng s? h?u voucher
+
+-- B?ng ng??i dùng
+CREATE TABLE [dbo].[tblUsers](
+    [userID] NVARCHAR(50) NOT NULL,
+    [userName] NVARCHAR(50) NOT NULL UNIQUE,
+    [fullName] NVARCHAR(50) NOT NULL,
+    [email] NVARCHAR(50) UNIQUE NOT NULL,
+    [password] NVARCHAR(50) NOT NULL,
+    [roleID] INT NOT NULL,
+    [status] BIT DEFAULT 1,
+    [resetCode] NVARCHAR(10),
+    [bonusPoint] INT NULL,
+    CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED ([userID] ASC),
+    CONSTRAINT [FK_tblUsers_tblRole] FOREIGN KEY ([roleID]) REFERENCES dbo.tblRole ([roleID]) ON DELETE CASCADE
+);
+
+-- B?ng voucher
+CREATE TABLE [dbo].[tblVoucher](
+    [voucherID] INT NOT NULL,
+    [startTime] DATETIME NOT NULL,
+    [endTime] DATETIME NOT NULL,
+    [discount] INT,
+    [quantity] INT,
+    [status] BIT DEFAULT 1,
+    CONSTRAINT [PK_tblVoucher] PRIMARY KEY CLUSTERED ([voucherID] ASC)
+);
+
+-- B?ng s? h?u voucher
 CREATE TABLE [dbo].[tblVoucherCatch](
-	[voucherID] [int] NOT NULL,
-	[userID] [NVARCHAR](50) NOT NULL,
-	CONSTRAINT [FK_tblVoucherCatch_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]),
+    [voucherID] INT NOT NULL,
+    [userID] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_tblVoucherCatch] PRIMARY KEY CLUSTERED ([voucherID] asc, [userID] asc),
+    CONSTRAINT [FK_tblVoucherCatch_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]),
     CONSTRAINT [FK_tblVoucherCatch_tblVoucher] FOREIGN KEY ([voucherID]) REFERENCES dbo.tblVoucher([voucherID])
 );
---chat 
+
+-- B?ng tin nh?n
 CREATE TABLE [dbo].[tblChat](
-	[chatID] INT NOT NULL,
-	[chatDetail] NVARCHAR(512) NOT NULL,
-	[date] DATETIME NOT NULL,
-	[senderID]  NVARCHAR(50) NOT NULL,
-	[receiverID]  NVARCHAR(50) NOT NULL,
-	CONSTRAINT [PK_tblChat] PRIMARY KEY CLUSTERED (
-	[chatID] ASC
-	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
-	CONSTRAINT [FK_tblChat_tblUsers_sender] FOREIGN KEY ([senderID]) REFERENCES dbo.tblUsers ([userID]),
+    [chatID] INT NOT NULL,
+    [chatDetail] NVARCHAR(512) NOT NULL,
+    [date] DATETIME NOT NULL,
+    [senderID] NVARCHAR(50) NOT NULL,
+    [receiverID] NVARCHAR(50) NOT NULL,
+    CONSTRAINT [PK_tblChat] PRIMARY KEY CLUSTERED ([chatID] ASC),
+    CONSTRAINT [FK_tblChat_tblUsers_sender] FOREIGN KEY ([senderID]) REFERENCES dbo.tblUsers ([userID]),
     CONSTRAINT [FK_tblChat_tblUsers_receiver] FOREIGN KEY ([receiverID]) REFERENCES dbo.tblUsers ([userID])
 );
---bang thong bao
+
+-- B?ng thông báo
 CREATE TABLE [dbo].[tblNotification](
-	[notificationID] [NVARCHAR](50) NOT NULL,
-	[userID] [NVARCHAR](50) ,
-	[date] DATETIME NOT NULL,
-	[detail] NVARCHAR(512) NOT NULL, 
-	[status] [BIT] DEFAULT '1',
-	CONSTRAINT [PK_tblNotification] PRIMARY KEY CLUSTERED (
-	[notificationID] ASC
-	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
-	CONSTRAINT [FK_tblNotification_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]),
+    [notificationID] NVARCHAR(50) NOT NULL,
+    [userID] NVARCHAR(50),
+    [date] DATETIME NOT NULL,
+    [detail] NVARCHAR(512) NOT NULL,
+    [status] BIT DEFAULT 1,
+    CONSTRAINT [PK_tblNotification] PRIMARY KEY CLUSTERED ([notificationID] ASC),
+    CONSTRAINT [FK_tblNotification_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID])
 );
--- T?o b?ng kim c??ng
+
+-- B?ng kim c??ng
 CREATE TABLE [dbo].[tblDiamonds](
     [diamondID] INT IDENTITY(1,1) NOT NULL,
     [diamondName] NVARCHAR(50) NOT NULL,
     [diamondPrice] MONEY NOT NULL,
     [diamondDescription] NVARCHAR(512) NOT NULL,
     [caratWeight] FLOAT NOT NULL,
-    [clarityID] NVARCHAR(20) NOT NULL, -- Th?m c?t clarityID
-    [cutID] NVARCHAR(20) NOT NULL, -- Th?m c?t cutID
+    [clarityID] NVARCHAR(20) NOT NULL,
+    [cutID] NVARCHAR(20) NOT NULL,
     [colorID] NVARCHAR(20) NOT NULL,
     [shapeID] NVARCHAR(20) NOT NULL,
     [diamondImagePath] NVARCHAR(512) NOT NULL,
-    [status] BIT DEFAULT '1',
-    CONSTRAINT [PK_Diamonds] PRIMARY KEY CLUSTERED (
-        [diamondID] ASC
-    )
+    [status] BIT DEFAULT 1,
+    [quantity] INT NOT NULL DEFAULT 1,
+    CONSTRAINT [PK_tblDiamonds] PRIMARY KEY CLUSTERED ([diamondID] ASC)
 );
--- b?ng ch?ng ch? -- done
+
+-- B?ng ch?ng ch?
 CREATE TABLE [dbo].[tblCertificate](
     [certificateID] INT IDENTITY(1,1) NOT NULL,
     [diamondID] INT NOT NULL,
     [certificateNumber] NVARCHAR(50) NOT NULL,
     [issueDate] DATE NOT NULL,
     [certifyingAuthority] NVARCHAR(100) NOT NULL,
-	[cerImagePath] NVARCHAR(512) NOT NULL,
-    CONSTRAINT [PK_tblCertificate] PRIMARY KEY CLUSTERED (
-        [certificateID] ASC
-    ),
+    [cerImagePath] NVARCHAR(512) NOT NULL,
+    CONSTRAINT [PK_tblCertificate] PRIMARY KEY CLUSTERED ([certificateID] ASC),
     CONSTRAINT [FK_tblCertificate_tblDiamonds] FOREIGN KEY ([diamondID]) REFERENCES dbo.tblDiamonds ([diamondID]) ON DELETE CASCADE
 );
--- bang comment
-CREATE TABLE  [dbo].[tblComment](
-	[commentID] NVARCHAR(50) NOT NULL,
-    [userID] [NVARCHAR](50) NOT NULL,
+
+-- B?ng bình lu?n
+CREATE TABLE [dbo].[tblComment](
+    [commentID] NVARCHAR(50) NOT NULL,
+    [userID] NVARCHAR(50) NOT NULL,
     [diamondID] INT NOT NULL,
-    [commond] [NVARCHAR](50),
-    [rating] [INT],
-    CONSTRAINT [PK_tblComment] PRIMARY KEY CLUSTERED 
-    (	
-		[commentID] ASC,
-        [userID] ASC,
-        [diamondID] ASC
-    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+    [comment] NVARCHAR(512),
+    [rating] INT,
+    CONSTRAINT [PK_tblComment] PRIMARY KEY CLUSTERED ([commentID] ASC, [userID] ASC, [diamondID] ASC),
     CONSTRAINT [FK_tblComment_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]) ON DELETE CASCADE,
     CONSTRAINT [FK_tblComment_tblDiamonds] FOREIGN KEY ([diamondID]) REFERENCES dbo.tblDiamonds ([diamondID]) ON DELETE CASCADE
-	);
--- bang order
-CREATE TABLE  [dbo].[tblOrder](
-	[orderID] [NVARCHAR](50) NOT NULL,
-    [customerID] [NVARCHAR](50) NOT NULL,
-	[deliveryStaffID] [NVARCHAR](50) NULL,
-	[saleStaffID] [NVARCHAR](50) NULL,
-    [totalMoney] [FLOAT] NOT NULL,
-	[status] [NVARCHAR](50) DEFAULT 'NOT READY',
-	[address] [NVARCHAR](100) NOT NULL,
-	[phone] [NVARCHAR](50) NOT NULL,
-	[saleDate] DATETIME NOT NULL,
-    CONSTRAINT [PK_tblOrder] PRIMARY KEY CLUSTERED 
-    (
-        [orderID] ASC
-    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+);
+
+-- B?ng ??n hàng
+CREATE TABLE [dbo].[tblOrder](
+    [orderID] NVARCHAR(50) NOT NULL,
+    [customerID] NVARCHAR(50) NOT NULL,
+    [deliveryStaffID] NVARCHAR(50) NULL,
+    [saleStaffID] NVARCHAR(50) NULL,
+    [totalMoney] FLOAT NOT NULL,
+    [paidAmount] FLOAT NOT NULL DEFAULT 0,
+    [remainingAmount] AS ([totalMoney] - [paidAmount]),
+    [status] NVARCHAR(50) DEFAULT 'NOT READY',
+    [paymentStatus] NVARCHAR(50) NOT NULL DEFAULT 'Pending',
+    [address] NVARCHAR(100) NOT NULL,
+    [phone] NVARCHAR(50) NOT NULL,
+    [saleDate] DATETIME NOT NULL,
+    CONSTRAINT [PK_tblOrder] PRIMARY KEY CLUSTERED ([orderID] ASC),
     CONSTRAINT [FK_tblOrder_tblUsers_1] FOREIGN KEY ([customerID]) REFERENCES dbo.tblUsers ([userID]),
     CONSTRAINT [FK_tblOrder_tblUsers_2] FOREIGN KEY ([deliveryStaffID]) REFERENCES dbo.tblUsers ([userID]),
-	CONSTRAINT [FK_tblOrder_tblUsers_3] FOREIGN KEY ([saleStaffID]) REFERENCES dbo.tblUsers ([userID])
-	);
+    CONSTRAINT [FK_tblOrder_tblUsers_3] FOREIGN KEY ([saleStaffID]) REFERENCES dbo.tblUsers ([userID])
+);
 
---	ALTER TABLE tblOrder ALTER COLUMN deliveryStaffID NVARCHAR(50) NULL;
-
---B?ng transition -- Done
+-- B?ng giao d?ch
 CREATE TABLE [dbo].[tblTransaction](
     [transactionID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NULL,
     [userID] NVARCHAR(50) NOT NULL,
     [transactionType] NVARCHAR(50) NOT NULL,
     [transactionDate] DATETIME NOT NULL,
-    CONSTRAINT [PK_tblTransaction] PRIMARY KEY CLUSTERED (
-        [transactionID] ASC
-    ) WITH (
-        PAD_INDEX = OFF, 
-        STATISTICS_NORECOMPUTE = OFF, 
-        IGNORE_DUP_KEY = OFF, 
-        ALLOW_ROW_LOCKS = ON, 
-        ALLOW_PAGE_LOCKS = ON
-    ) ON [PRIMARY],
+    [amount] FLOAT NOT NULL,
+    [paymentMethod] NVARCHAR(50) NOT NULL DEFAULT 'PayPal',
+    CONSTRAINT [PK_tblTransaction] PRIMARY KEY CLUSTERED ([transactionID] ASC),
     CONSTRAINT [FK_tblTransaction_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_tblTransaction_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]) ON DELETE CASCADE,
-	CONSTRAINT [UQ_tblTransaction_tblOrder] UNIQUE ([orderID])
+    CONSTRAINT [FK_tblTransaction_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID]) ON DELETE CASCADE
 );
--- bang OrderItem -- Done
+
+
+-- B?ng v? kim c??ng
+CREATE TABLE [dbo].[tblSettings](
+    [settingID] INT IDENTITY(1,1) NOT NULL,
+    [settingType] NVARCHAR(50) NOT NULL,
+    [material] NVARCHAR(50) NOT NULL,
+    [priceTax] MONEY NOT NULL,
+    [quantityStones] INT NOT NULL,
+    [description] NVARCHAR(512),
+    [imagePath] NVARCHAR(512),
+    [status] BIT DEFAULT 1,
+    CONSTRAINT [PK_tblSettings] PRIMARY KEY CLUSTERED ([settingID] ASC)
+);
+-- B?ng kim c??ng ph?
+CREATE TABLE [dbo].[tblAccentStones](
+    [accentStoneID] INT IDENTITY(1,1) NOT NULL,
+    [shape] NVARCHAR(50) NOT NULL,
+    [caratWeight] FLOAT NOT NULL,
+    [clarity] NVARCHAR(20) NOT NULL,
+    [color] NVARCHAR(20) NOT NULL,
+    [price] MONEY NOT NULL,
+    [quantity] INT NOT NULL DEFAULT 0,
+    [imagePath] NVARCHAR(512),
+    [status] BIT DEFAULT 1,
+    CONSTRAINT [PK_tblAccentStones] PRIMARY KEY CLUSTERED ([accentStoneID] ASC)
+);
+-- B?ng l?u s? l??ng kim c??ng ph? c?n thi?t cho m?i v? kim c??ng
+CREATE TABLE [dbo].[tblItem](
+    [ItemID] INT IDENTITY(1,1) NOT NULL,
+	[settingID] INT NULL,
+    [accentStoneID] INT NULL,
+    [quantityAccent] INT NULL,
+	[diamondID] INT NULL,
+	[diamondPrice] MONEY NOT NULL,
+	[settingPrice] MONEY NOT NULL,
+	[accentStonePrice] MONEY NULL,
+	CONSTRAINT [PK_tblItem] PRIMARY KEY CLUSTERED ([ItemID] ASC),
+    CONSTRAINT [FK_tblItem_tblSettings] FOREIGN KEY ([settingID]) REFERENCES [dbo].[tblSettings]([settingID]),
+	CONSTRAINT [FK_tblItem_tblDiamond] FOREIGN KEY ([diamondID]) REFERENCES [dbo].[tblDiamonds]([diamondID]),
+    CONSTRAINT [FK_tblItem_tblAccentStones] FOREIGN KEY ([accentStoneID]) REFERENCES [dbo].[tblAccentStones]([accentStoneID])
+);
+-- B?ng chi ti?t ??n hàng
 CREATE TABLE [dbo].[tblOrderItem](
-	[diamondID] int,
-	[orderID] [NVARCHAR](50) NOT NULL,
-	[salePrice] [MONEY] NOT NULL,
-	CONSTRAINT [PK_tblOrderItem] PRIMARY KEY CLUSTERED 
-    (
-        [orderID] ASC,
-		[diamondID] ASC
-    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-	CONSTRAINT [FK_tblOrderItem_tblOrder] FOREIGN KEY ([orderID]) REFERENCES  dbo.tblOrder ([orderID]) ON DELETE CASCADE,
-	CONSTRAINT [FK_tblOrderItem_tblDiamond] FOREIGN KEY ([diamondID]) REFERENCES  dbo.tblDiamonds([diamondID])
+    [orderID] NVARCHAR(50) NOT NULL,
+	[ItemID] INT NOT NULL,
+    [salePriceItem] MONEY NOT NULL,
+	CONSTRAINT [PK_tblOrderItem] PRIMARY KEY CLUSTERED ([orderID], [ItemID]),
+    CONSTRAINT [FK_tblOrderItem_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE,
+	CONSTRAINT [FK_tblOrderItem_tblItem] FOREIGN KEY ([ItemID]) REFERENCES dbo.tblItem ([ItemID]) ON DELETE CASCADE
 );
--- b?ng phi?u b?o h?nh  --Done
+-- B?ng b?o hành
 CREATE TABLE [dbo].[tblWarranty](
     [warrantyID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NOT NULL,
-    [diamondID] INT NOT NULL,
+    [ItemID] INT NOT NULL,
     [warrantyStartDate] DATETIME NOT NULL,
     [warrantyEndDate] DATETIME NOT NULL,
     [warrantyDetails] NVARCHAR(512) NOT NULL,
-    CONSTRAINT [PK_tblWarranty] PRIMARY KEY CLUSTERED (
-        [warrantyID] ASC
-    ) WITH (
-        PAD_INDEX  = OFF, 
-        STATISTICS_NORECOMPUTE  = OFF, 
-        IGNORE_DUP_KEY = OFF, 
-        ALLOW_ROW_LOCKS  = ON, 
-        ALLOW_PAGE_LOCKS  = ON
-    ) ON [PRIMARY],
-    CONSTRAINT [FK_tblWarranty_tblOrderItem] FOREIGN KEY ([orderID], [diamondID]) REFERENCES dbo.tblOrderItem ([orderID], [diamondID]) ON DELETE CASCADE,
-    CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [diamondID])
+    CONSTRAINT [PK_tblWarranty] PRIMARY KEY CLUSTERED ([warrantyID] ASC),
+    CONSTRAINT [FK_tblWarranty_tblOrderItem] FOREIGN KEY ([orderID], [ItemID]) REFERENCES [dbo].[tblOrderItem]([orderID], [ItemID]) ON DELETE CASCADE,
+    CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [ItemID])
 );
---Date Update Status
-
+-- B?ng c?p nh?t tr?ng thái ??n hàng
 CREATE TABLE [dbo].[tblOrderStatusUpdates](
     [updateID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NOT NULL,
     [status] NVARCHAR(50) NOT NULL,
     [updateTime] DATETIME NOT NULL,
-    CONSTRAINT [PK_tblOrderStatusUpdates] PRIMARY KEY CLUSTERED (
-        [updateID] ASC
-    ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+    CONSTRAINT [PK_tblOrderStatusUpdates] PRIMARY KEY CLUSTERED ([updateID] ASC),
     CONSTRAINT [FK_tblOrderStatusUpdates_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE
 );
 
---ALTER TABLE tblOrder ADD saleStaffID NVARCHAR(50) NULL;
 
---ALTER TABLE tblOrder ADD CONSTRAINT FK_tblOrder_SaleStaff FOREIGN KEY (saleStaffID) REFERENCES tblUsers(userID);
+-- Thêm d? li?u m?u vào b?ng tblRole
+INSERT INTO [dbo].[tblRole] ([roleID], [roleName]) VALUES 
+(1, 'user'),
+(2, 'admin'),
+(3, 'manager'),
+(4, 'deliverystaff'),
+(5, 'salestaff');
 
---Insert Role
-INSERT INTO [dbo].tblRole([roleID],[roleName]) VALUES 
-( 1 , 'user'),
-( 2 , 'admin'),
-( 3 , 'manager'),
-( 4 , 'deliverystaff'),
-( 5 , 'salestaff');
---Insert Shape
+INSERT INTO [dbo].[tblUsers]( [userID] ,[userName] ,[fullName], [email] , [password],[roleID] ) values
+	('SID0000001', 'SaleStaffDe','salestaffDefault','huanndse170396@gmail.com','Huan1401@',5),
+	('SID0000002', 'delistafDe','DelistaffDefault','ddse170396@gmail.com','Huan1401@',4);
 
-INSERT INTO [dbo].[tblDiamonds] ([diamondName], [diamondPrice], [diamondDescription], [caratWeight],[clarityID], [cutID],  [colorID], [shapeID],[diamondImagePath],[status]) VALUES 
-('1.01 Carat Round Diamond',4080,'This 1.01 round H diamond is sold exclusively.', 1.01,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia1A.png|/Image/DiamondDTO/Diamonds/dia1B.png|/Image/DiamondDTO/Diamonds/dia1C.png',1 ),
-('1.00 Carat Princess Diamond',2400,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','H', 'Princess','/Image/DiamondDTO/Diamonds/dia2A.png|/Image/DiamondDTO/Diamonds/dia2B.png|/Image/DiamondDTO/Diamonds/dia2C.png',1),
-('2.08 Carat Cushion Modified Diamond',11190,'This 2.08 cushion modified H diamond is sold exclusively.',2.08,'VS1','Ideal','H', 'Cushion','/Image/DiamondDTO/Diamonds/dia3A.png|/Image/DiamondDTO/Diamonds/dia3B.png|/Image/DiamondDTO/Diamonds/dia3C.png',1),
-('2.51 Carat Emerald Diamond',23490,'This 2.51 Carat Emerald Diamond is sold exclusive. ',2.51,'VS1','Ideal','H', 'Emerald','/Image/DiamondDTO/Diamonds/dia4A.png|/Image/DiamondDTO/Diamonds/dia4B.png|/Image/DiamondDTO/Diamonds/dia4C.png',1),
-('2.50 Carat Oval Diamond',24630,'2.50 Carat Oval Diamond is sold exclusive.',2.50,'VS2','Ideal','G', 'Oval','/Image/DiamondDTO/Diamonds/dia5A.png|/Image/DiamondDTO/Diamonds/dia5B.png|/Image/DiamondDTO/Diamonds/dia5C.png',1),
-('1.81 Carat Radiant Diamond',12480,'1.81 Carat Radiant Diamond is sold eclusive',1.81,'VS2','Ideal','H', 'Radiant','/Image/DiamondDTO/Diamonds/dia6A.png|/Image/DiamondDTO/Diamonds/dia6B.png|/Image/DiamondDTO/Diamonds/dia6C.png',1),
-('1.00 Carat Round Diamond', 4020,'1.00 Carat  Round H Diamond is sold eclusive',1.00,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia7A.png|/Image/DiamondDTO/Diamonds/dia7B.png|/Image/DiamondDTO/Diamonds/dia7C.png',1 ),
-('1.00 Carat Round Diamond', 4240,'1.00 Round H diamond is sold eclusive',1.00,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia8A.png|/Image/DiamondDTO/Diamonds/dia8B.png|/Image/DiamondDTO/Diamonds/dia8C.png',1 ),
-('1.08 Carat Round Diamond', 4370,'1.08 Round H diamond is sold eclusive',1.08,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia9A.png|/Image/DiamondDTO/Diamonds/dia9B.png|/Image/DiamondDTO/Diamonds/dia9C.png',1 ),
-('1.03 Carat Round Diamond', 4440,'1.03 Round H diamond is sold eclusive',1.03,'VS2','Excellent','H', 'Round','/Image/DiamondDTO/Diamonds/dia10A.png|/Image/DiamondDTO/Diamonds/dia10B.png|/Image/DiamondDTO/Diamonds/dia10C.png',1 ),
-('1.02 Carat Princess Diamond',2410,'This 1.02 Carat Princess Diamond is exclusively',1.02,'VS1','Ideal','H', 'Princess','/Image/DiamondDTO/Diamonds/dia11A.png|/Image/DiamondDTO/Diamonds/dia11B.png|/Image/DiamondDTO/Diamonds/dia11C.png',1),
-('1.00 Carat Princess Diamond',2630,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','H', 'Princess','/Image/DiamondDTO/Diamonds/dia12A.png|/Image/DiamondDTO/Diamonds/dia12B.png|/Image/DiamondDTO/Diamonds/dia12C.png',1),
-('1.00 Carat Princess Diamond',2650,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','H', 'Princess','/Image/DiamondDTO/Diamonds/dia13A.png|/Image/DiamondDTO/Diamonds/dia13B.png|/Image/DiamondDTO/Diamonds/dia13C.png',1),
-('1.00 Carat Princess Diamond',2700,'This 1.00 Carat Princess Diamond is exclusively',1.00,'VS2','Ideal','G', 'Princess','/Image/DiamondDTO/Diamonds/dia14A.png|/Image/DiamondDTO/Diamonds/dia14B.png|/Image/DiamondDTO/Diamonds/dia14C.png',1),
-('2.08 Carat Cushion Modified Diamond',11190,'This 2.08 cushion modified H diamond is sold exclusively.',2.08,'VS1','Ideal','H', 'Cushion','/Image/DiamondDTO/Diamonds/dia15A.png|/Image/DiamondDTO/Diamonds/dia15B.png|/Image/DiamondDTO/Diamonds/dia15C.png',1),
-('1.06 Carat Cushion Modified Diamond',5090,'This 1.06 cushion modified G diamond is sold exclusively.',1.06,'VVS1','Ideal','G', 'Cushion','/Image/DiamondDTO/Diamonds/dia16A.png|/Image/DiamondDTO/Diamonds/dia16B.png|/Image/DiamondDTO/Diamonds/dia16C.png',1),
-('1.50 Carat Cushion Modified Diamond',8380,'This 1.50 cushion modified G diamond is sold exclusively.',1.50,'VVS2','Ideal','G', 'Cushion','/Image/DiamondDTO/Diamonds/dia17A.png|/Image/DiamondDTO/Diamonds/dia17B.png|/Image/DiamondDTO/Diamonds/dia17C.png',1),
-('1.83 Carat Cushion Modified Diamond',15760,'This 1.83 cushion modified E diamond is sold exclusively.',1.83,'VVS2','Ideal','E', 'Cushion','/Image/DiamondDTO/Diamonds/dia18A.png|/Image/DiamondDTO/Diamonds/dia18B.png|/Image/DiamondDTO/Diamonds/dia18C.png',1),
-('1.00 Carat Emerald Diamond',2620,'This 1.00 Carat Emerald Diamond is sold exclusive. ',1.00,'VS2','Ideal','H', 'Emerald','/Image/DiamondDTO/Diamonds/dia19A.png|/Image/DiamondDTO/Diamonds/dia19B.png|/Image/DiamondDTO/Diamonds/dia19C.png',1),
-('3.00 Carat Emerald Diamond',38890,'This 3.00 Carat Emerald Diamond is sold exclusive. ',3.00,'VS1','Ideal','H', 'Emerald','/Image/DiamondDTO/Diamonds/dia20A.png|/Image/DiamondDTO/Diamonds/dia20B.png|/Image/DiamondDTO/Diamonds/dia20C.png',1),
-('1.00 Carat Emerald Diamond',2400,'This 1.00 Carat Emerald Diamond is sold exclusive. ',1.00,'VS2','Ideal','H', 'Emerald','/Image/DiamondDTO/Diamonds/dia21A.png|/Image/DiamondDTO/Diamonds/dia21B.png|/Image/DiamondDTO/Diamonds/dia21C.png',1),
-('1.30 Carat Emerald Diamond',6240,'This 1.30 Carat Emerald Diamond is sold exclusive. ',1.30,'VS2','Ideal','F', 'Emerald','/Image/DiamondDTO/Diamonds/dia22A.png|/Image/DiamondDTO/Diamonds/dia22B.png|/Image/DiamondDTO/Diamonds/dia22C.png',1),
-('1.00 Carat Oval Diamond',3190,'1.00 Carat Oval Diamond is sold exclusive.',1.00,'VS2','Excellent','G', 'Oval','/Image/DiamondDTO/Diamonds/dia23A.png|/Image/DiamondDTO/Diamonds/dia23B.png|/Image/DiamondDTO/Diamonds/dia23C.png',1),
-('1.50 Carat Oval Diamond',24630,'1.50 Carat Oval Diamond is sold exclusive.',1.50,'VS2','Ideal','F', 'Oval','/Image/DiamondDTO/Diamonds/dia24A.png|/Image/DiamondDTO/Diamonds/dia24B.png|/Image/DiamondDTO/Diamonds/dia24C.png',1),
-('1.03 Carat Oval Diamond',4640,'1.03 Carat Oval Diamond is sold exclusive.',1.03,'IF','Ideal','H', 'Oval','/Image/DiamondDTO/Diamonds/dia25A.png|/Image/DiamondDTO/Diamonds/dia25B.png|/Image/DiamondDTO/Diamonds/dia25C.png',1),
-('1.04 Carat Oval Diamond',3310,'1.04 Carat Oval Diamond is sold exclusive.',1.04,'SI1','Excellent','G', 'Oval','/Image/DiamondDTO/Diamonds/dia26A.png|/Image/DiamondDTO/Diamonds/dia26B.png|/Image/DiamondDTO/Diamonds/dia26C.png',1),
-('1.02 Carat Radiant Diamond',3010,'1.02 Carat Radiant Diamond is sold exclusive',1.02,'VS2','Excellent','H', 'Radiant','/Image/DiamondDTO/Diamonds/dia27A.png|/Image/DiamondDTO/Diamonds/dia27B.png|/Image/DiamondDTO/Diamonds/dia27C.png',1),
-('1.38 Carat Radiant Diamond',8180,'1.38 Carat Radiant Diamond is sold exclusive',1.38,'IF','Excellent','H', 'Radiant','/Image/DiamondDTO/Diamonds/dia28A.png|/Image/DiamondDTO/Diamonds/dia28B.png|/Image/DiamondDTO/Diamonds/dia28C.png',1),
-('1.50 Carat Radiant Diamond',7840,'1.50 Carat Radiant Diamond is sold exclusive',1.50,'VVS1','Excellent','H', 'Radiant','/Image/DiamondDTO/Diamonds/dia29A.png|/Image/DiamondDTO/Diamonds/dia29B.png|/Image/DiamondDTO/Diamonds/dia29C.png',1),
-('1.55 Carat Radiant Diamond',11010,'1.55 Carat Radiant Diamond is sold exclusive',1.55,'VS1','Excellent','G', 'Radiant','/Image/DiamondDTO/Diamonds/dia30A.png|/Image/DiamondDTO/Diamonds/dia30B.png|/Image/DiamondDTO/Diamonds/dia30C.png',1),
-('1.20 Carat Pear Diamond',8390,'1.20 Carat Pear Diamond is sold exclusive',1.20,'VS1','Excellent','D', 'Pear','/Image/DiamondDTO/Diamonds/dia31A.png|/Image/DiamondDTO/Diamonds/dia31B.png|/Image/DiamondDTO/Diamonds/dia31C.png',1),
-('1.07 Carat Pear Diamond',8390,'1.07 Carat Pear Diamond is sold exclusive',1.07,'IF','Excellent','D', 'Pear','/Image/DiamondDTO/Diamonds/dia32A.png|/Image/DiamondDTO/Diamonds/dia32B.png|/Image/DiamondDTO/Diamonds/dia32C.png',1),
-('1.01 Carat Pear Diamond',4650,'1.20 Carat Pear Diamond is sold exclusive',1.01,'IF','Excellent','E', 'Pear','/Image/DiamondDTO/Diamonds/dia33A.png|/Image/DiamondDTO/Diamonds/dia33B.png|/Image/DiamondDTO/Diamonds/dia33C.png',1),
-('1.00 Carat Pear Diamond',4800,'1.00  Carat Pear Diamond is sold exclusive',1.01,'VS1','Excellent','D', 'Pear','/Image/DiamondDTO/Diamonds/dia34A.png|/Image/DiamondDTO/Diamonds/dia34B.png|/Image/DiamondDTO/Diamonds/dia34C.png',1),
-('1.50 Carat Pear Diamond',9520,'1.50 Carat Pear Diamond is sold exclusive',1.50,'VS2','Excellent','H', 'Pear','/Image/DiamondDTO/Diamonds/dia35A.png|/Image/DiamondDTO/Diamonds/dia35B.png|/Image/DiamondDTO/Diamonds/dia35C.png',1),
-('1.00 Carat Asscher Diamond',2730,'1.00 Carat Asscher Diamond is sold exclusive',1.00,'VVS1','Excellent','H', 'Asscher','/Image/DiamondDTO/Diamonds/dia36A.png|/Image/DiamondDTO/Diamonds/dia36B.png|/Image/DiamondDTO/Diamonds/dia36C.png',1),
-('2.01 Carat Asscher Diamond',13060,'2.01 Carat Asscher Diamond is sold exclusive',2.01,'VS2','Excellent','H', 'Asscher','/Image/DiamondDTO/Diamonds/dia37A.png|/Image/DiamondDTO/Diamonds/dia37B.png|/Image/DiamondDTO/Diamonds/dia37C.png',1),
-('1.90 Carat Asscher Diamond',14370,'1.90 Carat Asscher Diamond is sold exclusive',1.90,'VVS2','Excellent','H', 'Asscher','/Image/DiamondDTO/Diamonds/dia38A.png|/Image/DiamondDTO/Diamonds/dia38B.png|/Image/DiamondDTO/Diamonds/dia38C.png',1),
-('1.70 Carat Asscher Diamond',16900,'1.70 Carat Asscher Diamond is sold exclusive',1.70,'VVS2','Excellent','G', 'Asscher','/Image/DiamondDTO/Diamonds/dia39A.png|/Image/DiamondDTO/Diamonds/dia39B.png|/Image/DiamondDTO/Diamonds/dia39C.png',1),
-('1.65 Carat Asscher Diamond',14290,'1.65 Carat Asscher Diamond is sold exclusive',1.65,'IF','Excellent','G', 'Asscher','/Image/DiamondDTO/Diamonds/dia40A.png|/Image/DiamondDTO/Diamonds/dia40B.png|/Image/DiamondDTO/Diamonds/dia40C.png',1),
-('1.01 Carat Heart Diamond',4180,'1.01 Carat Heart Diamond is sold exclusive',1.01,'VVS2','Excellent','E', 'Asscher','/Image/DiamondDTO/Diamonds/dia41A.png|/Image/DiamondDTO/Diamonds/dia41B.png|/Image/DiamondDTO/Diamonds/dia41C.png',1),
-('1.50 Carat Heart Diamond',7840,'1.50 Carat Heart Diamond is sold exclusive',1.50,'VS2','Excellent','E', 'Asscher','/Image/DiamondDTO/Diamonds/dia42A.png|/Image/DiamondDTO/Diamonds/dia42B.png|/Image/DiamondDTO/Diamonds/dia42C.png',1),
-('1.70 Carat Heart Diamond',10300,'1.70 Carat Heart Diamond is sold exclusive',1.70,'VS2','Excellent','H', 'Asscher','/Image/DiamondDTO/Diamonds/dia43A.png|/Image/DiamondDTO/Diamonds/dia43B.png|/Image/DiamondDTO/Diamonds/dia43C.png',1),
-('1.20 Carat Heart Diamond',6530,'1.20 Carat Heart Diamond is sold exclusive',1.20,'VS2','Excellent','D', 'Asscher','/Image/DiamondDTO/Diamonds/dia44A.png|/Image/DiamondDTO/Diamonds/dia44B.png|/Image/DiamondDTO/Diamonds/dia44C.png',1),
-('1.50 Carat Heart Diamond',9610,'1.50 Carat Heart Diamond is sold exclusive',1.50,'VS1','Excellent','H', 'Asscher','/Image/DiamondDTO/Diamonds/dia45A.png|/Image/DiamondDTO/Diamonds/dia45B.png|/Image/DiamondDTO/Diamonds/dia45C.png',1),
-('1.00 Carat Marquise Diamond',5800,'1.00 Carat Marquise Diamond is sold exclusive',1.00,'VS2','Excellent','F', 'Marquise','/Image/DiamondDTO/Diamonds/dia46A.png|/Image/DiamondDTO/Diamonds/dia46B.png|/Image/DiamondDTO/Diamonds/dia46C.png',1),
-('1.51 Carat Marquise Diamond',11260,'1.51 Carat Marquise Diamond is sold exclusive',1.51,'VS2','Excellent','F', 'Marquise','/Image/DiamondDTO/Diamonds/dia47A.png|/Image/DiamondDTO/Diamonds/dia47B.png|/Image/DiamondDTO/Diamonds/dia47C.png',1),
-('1.70 Carat Marquise Diamond',16620,'1.70 Carat Marquise Diamond is sold exclusive',1.70,'VS1	','Excellent','F', 'Marquise','/Image/DiamondDTO/Diamonds/dia48A.png|/Image/DiamondDTO/Diamonds/dia48B.png|/Image/DiamondDTO/Diamonds/dia48C.png',1),
-('1.20 Carat Marquise Diamond',11270,'1.20 Carat Marquise Diamond is sold exclusive',1.20,'VVS2','Excellent','D', 'Marquise','/Image/DiamondDTO/Diamonds/dia49A.png|/Image/DiamondDTO/Diamonds/dia49B.png|/Image/DiamondDTO/Diamonds/dia49C.png',1),
-('1.62 Carat Marquise Diamond',20020,'1.62 Carat Marquise Diamond is sold exclusive',1.62,'IF','Excellent','D', 'Marquise','/Image/DiamondDTO/Diamonds/dia50A.png|/Image/DiamondDTO/Diamonds/dia50B.png|/Image/DiamondDTO/Diamonds/dia50C.png',1);
+-- Thêm d? li?u m?u vào b?ng tblSettings
+INSERT INTO [dbo].[tblSettings] ([settingType], [material],[priceTax],[quantityStones] , [description], [imagePath]) VALUES 
+('Ring', 'Gold', 500, 10, 'Gold ring setting', '/images/settings/ring_gold.png'),
+('Necklace', 'Silver', 300, 15, 'Silver necklace setting', '/images/settings/necklace_silver.png');
 
+-- Thêm d? li?u m?u vào b?ng tblAccentStones
+INSERT INTO [dbo].[tblAccentStones] ([shape], [caratWeight], [clarity], [color], [price], [quantity], [imagePath]) VALUES 
+('Round', 0.25, 'VS2', 'H', 200, 50, '/images/accentStones/round_0.25.png'),
+('Princess', 0.2, 'VS1', 'G', 180, 40, '/images/accentStones/princess_0.2.png');
 
-
+-- Thêm d? li?u m?u vào b?ng tblDiamonds
+INSERT INTO [dbo].[tblDiamonds] 
+    ([diamondName], [diamondPrice], [diamondDescription], [caratWeight], [clarityID], [cutID], [colorID], [shapeID], [diamondImagePath], [status]) 
+VALUES 
+    ('1.01 Carat Round Diamond', 4080, 'This 1.01 round H diamond is sold exclusively.', 1.01, 'VS2', 'Excellent', 'H', 'Round', '/Image/DiamondDTO/Diamonds/dia1A.png|/Image/DiamondDTO/Diamonds/dia1B.png|/Image/DiamondDTO/Diamonds/dia1C.png', 1),
+    ('1.00 Carat Princess Diamond', 2400, 'This 1.00 Carat Princess Diamond is exclusively', 1.00, 'VS2', 'Ideal', 'H', 'Princess', '/Image/DiamondDTO/Diamonds/dia2A.png|/Image/DiamondDTO/Diamonds/dia2B.png|/Image/DiamondDTO/Diamonds/dia2C.png', 1),
+    ('2.08 Carat Cushion Modified Diamond', 11190, 'This 2.08 cushion modified H diamond is sold exclusively.', 2.08, 'VS1', 'Ideal', 'H', 'Cushion', '/Image/DiamondDTO/Diamonds/dia3A.png|/Image/DiamondDTO/Diamonds/dia3B.png|/Image/DiamondDTO/Diamonds/dia3C.png', 1),
+    ('2.51 Carat Emerald Diamond', 23490, 'This 2.51 Carat Emerald Diamond is sold exclusive.', 2.51, 'VS1', 'Ideal', 'H', 'Emerald', '/Image/DiamondDTO/Diamonds/dia4A.png|/Image/DiamondDTO/Diamonds/dia4B.png|/Image/DiamondDTO/Diamonds/dia4C.png', 1),
+    ('2.50 Carat Oval Diamond', 24630, '2.50 Carat Oval Diamond is sold exclusive.', 2.50, 'VS2', 'Ideal', 'G', 'Oval', '/Image/DiamondDTO/Diamonds/dia5A.png|/Image/DiamondDTO/Diamonds/dia5B.png|/Image/DiamondDTO/Diamonds/dia5C.png', 1),
+    ('1.81 Carat Radiant Diamond', 12480, '1.81 Carat Radiant Diamond is sold exclusive', 1.81, 'VS2', 'Ideal', 'H', 'Radiant', '/Image/DiamondDTO/Diamonds/dia6A.png|/Image/DiamondDTO/Diamonds/dia6B.png|/Image/DiamondDTO/Diamonds/dia6C.png', 1),
+    ('1.00 Carat Round Diamond', 4020, '1.00 Carat Round H Diamond is sold exclusive', 1.00, 'VS2', 'Excellent', 'H', 'Round', '/Image/DiamondDTO/Diamonds/dia7A.png|/Image/DiamondDTO/Diamonds/dia7B.png|/Image/DiamondDTO/Diamonds/dia7C.png', 1),
+    ('1.00 Carat Round Diamond', 4240, '1.00 Round H diamond is sold exclusive', 1.00, 'VS2', 'Excellent', 'H', 'Round', '/Image/DiamondDTO/Diamonds/dia8A.png|/Image/DiamondDTO/Diamonds/dia8B.png|/Image/DiamondDTO/Diamonds/dia8C.png', 1),
+    ('1.08 Carat Round Diamond', 4370, '1.08 Round H diamond is sold exclusive', 1.08, 'VS2', 'Excellent', 'H', 'Round', '/Image/DiamondDTO/Diamonds/dia9A.png|/Image/DiamondDTO/Diamonds/dia9B.png|/Image/DiamondDTO/Diamonds/dia9C.png', 1),
+    ('1.03 Carat Round Diamond', 4440, '1.03 Round H diamond is sold exclusive', 1.03, 'VS2', 'Excellent', 'H', 'Round', '/Image/DiamondDTO/Diamonds/dia10A.png|/Image/DiamondDTO/Diamonds/dia10B.png|/Image/DiamondDTO/Diamonds/dia10C.png', 1),
+    ('1.02 Carat Princess Diamond', 2410, 'This 1.02 Carat Princess Diamond is exclusively', 1.02, 'VS1', 'Ideal', 'H', 'Princess', '/Image/DiamondDTO/Diamonds/dia11A.png|/Image/DiamondDTO/Diamonds/dia11B.png|/Image/DiamondDTO/Diamonds/dia11C.png', 1),
+    ('1.00 Carat Princess Diamond', 2630, 'This 1.00 Carat Princess Diamond is exclusively', 1.00, 'VS2', 'Ideal', 'H', 'Princess', '/Image/DiamondDTO/Diamonds/dia12A.png|/Image/DiamondDTO/Diamonds/dia12B.png|/Image/DiamondDTO/Diamonds/dia12C.png', 1),
+    ('1.00 Carat Princess Diamond', 2650, 'This 1.00 Carat Princess Diamond is exclusively', 1.00, 'VS2', 'Ideal', 'H', 'Princess', '/Image/DiamondDTO/Diamonds/dia13A.png|/Image/DiamondDTO/Diamonds/dia13B.png|/Image/DiamondDTO/Diamonds/dia13C.png', 1),
+    ('1.00 Carat Princess Diamond', 2700, 'This 1.00 Carat Princess Diamond is exclusively', 1.00, 'VS2', 'Ideal', 'G', 'Princess', '/Image/DiamondDTO/Diamonds/dia14A.png|/Image/DiamondDTO/Diamonds/dia14B.png|/Image/DiamondDTO/Diamonds/dia14C.png', 1),
+    ('2.08 Carat Cushion Modified Diamond', 11190, 'This 2.08 cushion modified H diamond is sold exclusively.', 2.08, 'VS1', 'Ideal', 'H', 'Cushion', '/Image/DiamondDTO/Diamonds/dia15A.png|/Image/DiamondDTO/Diamonds/dia15B.png|/Image/DiamondDTO/Diamonds/dia15C.png', 1),
+    ('1.06 Carat Cushion Modified Diamond', 5090, 'This 1.06 cushion modified G diamond is sold exclusively.', 1.06, 'VVS1', 'Ideal', 'G', 'Cushion', '/Image/DiamondDTO/Diamonds/dia16A.png|/Image/DiamondDTO/Diamonds/dia16B.png|/Image/DiamondDTO/Diamonds/dia16C.png', 1),
+    ('1.50 Carat Cushion Modified Diamond', 8380, 'This 1.50 cushion modified G diamond is sold exclusively.', 1.50, 'VVS2', 'Ideal', 'G', 'Cushion', '/Image/DiamondDTO/Diamonds/dia17A.png|/Image/DiamondDTO/Diamonds/dia17B.png|/Image/DiamondDTO/Diamonds/dia17C.png', 1),
+    ('1.83 Carat Cushion Modified Diamond', 15760, 'This 1.83 cushion modified E diamond is sold exclusively.', 1.83, 'VVS2', 'Ideal', 'E', 'Cushion', '/Image/DiamondDTO/Diamonds/dia18A.png|/Image/DiamondDTO/Diamonds/dia18B.png|/Image/DiamondDTO/Diamonds/dia18C.png', 1),
+    ('1.00 Carat Emerald Diamond', 2620, 'This 1.00 Carat Emerald Diamond is sold exclusive.', 1.00, 'VS2', 'Ideal', 'H', 'Emerald', '/Image/DiamondDTO/Diamonds/dia19A.png|/Image/DiamondDTO/Diamonds/dia19B.png|/Image/DiamondDTO/Diamonds/dia19C.png', 1),
+    ('3.00 Carat Emerald Diamond', 38890, 'This 3.00 Carat Emerald Diamond is sold exclusive.', 3.00, 'VS1', 'Ideal', 'G', 'Emerald', '/Image/DiamondDTO/Diamonds/dia20A.png|/Image/DiamondDTO/Diamonds/dia20B.png|/Image/DiamondDTO/Diamonds/dia20C.png', 1),
+    ('1.21 Carat Emerald Diamond', 3620, 'This 1.21 Carat Emerald Diamond is sold exclusive.', 1.21, 'VS1', 'Ideal', 'H', 'Emerald', '/Image/DiamondDTO/Diamonds/dia21A.png|/Image/DiamondDTO/Diamonds/dia21B.png|/Image/DiamondDTO/Diamonds/dia21C.png', 1),
+    ('2.51 Carat Emerald Diamond', 23490, 'This 2.51 Carat Emerald Diamond is sold exclusive.', 2.51, 'VS1', 'Ideal', 'H', 'Emerald', '/Image/DiamondDTO/Diamonds/dia22A.png|/Image/DiamondDTO/Diamonds/dia22B.png|/Image/DiamondDTO/Diamonds/dia22C.png', 1),
+    ('2.01 Carat Emerald Diamond', 29920, 'This 2.01 Carat Emerald Diamond is sold exclusive.', 2.01, 'VS2', 'Ideal', 'G', 'Emerald', '/Image/DiamondDTO/Diamonds/dia23A.png|/Image/DiamondDTO/Diamonds/dia23B.png|/Image/DiamondDTO/Diamonds/dia23C.png', 1),
+    ('2.50 Carat Oval Diamond', 24630, '2.50 Carat Oval Diamond is sold exclusive.', 2.50, 'VS2', 'Ideal', 'G', 'Oval', '/Image/DiamondDTO/Diamonds/dia24A.png|/Image/DiamondDTO/Diamonds/dia24B.png|/Image/DiamondDTO/Diamonds/dia24C.png', 1),
+    ('2.01 Carat Oval Diamond', 29160, '2.01 Carat Oval Diamond is sold exclusive.', 2.01, 'VS2', 'Ideal', 'G', 'Oval', '/Image/DiamondDTO/Diamonds/dia25A.png|/Image/DiamondDTO/Diamonds/dia25B.png|/Image/DiamondDTO/Diamonds/dia25C.png', 1),
+    ('1.81 Carat Radiant Diamond', 12480, '1.81 Carat Radiant Diamond is sold exclusive', 1.81, 'VS2', 'Ideal', 'H', 'Radiant', '/Image/DiamondDTO/Diamonds/dia26A.png|/Image/DiamondDTO/Diamonds/dia26B.png|/Image/DiamondDTO/Diamonds/dia26C.png', 1),
+    ('2.08 Carat Radiant Diamond', 22320, '2.08 Carat Radiant Diamond is sold exclusive', 2.08, 'VS2', 'Ideal', 'H', 'Radiant', '/Image/DiamondDTO/Diamonds/dia27A.png|/Image/DiamondDTO/Diamonds/dia27B.png|/Image/DiamondDTO/Diamonds/dia27C.png', 1),
+    ('2.08 Carat Radiant Diamond', 22320, '2.08 Carat Radiant Diamond is sold exclusive', 2.08, 'VS2', 'Ideal', 'H', 'Radiant', '/Image/DiamondDTO/Diamonds/dia28A.png|/Image/DiamondDTO/Diamonds/dia28B.png|/Image/DiamondDTO/Diamonds/dia28C.png', 1),
+    ('1.00 Carat Heart Diamond', 2200, '1.00 Carat Heart Diamond is sold exclusive.', 1.00, 'VS2', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia29A.png|/Image/DiamondDTO/Diamonds/dia29B.png|/Image/DiamondDTO/Diamonds/dia29C.png', 1),
+    ('2.08 Carat Heart Diamond', 11190, 'This 2.08 Heart H diamond is sold exclusively.', 2.08, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia30A.png|/Image/DiamondDTO/Diamonds/dia30B.png|/Image/DiamondDTO/Diamonds/dia30C.png', 1),
+	('2.51 Carat Heart Diamond', 23490, 'This 2.51 Carat Heart Diamond is sold exclusive.', 2.51, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia31A.png|/Image/DiamondDTO/Diamonds/dia31B.png|/Image/DiamondDTO/Diamonds/dia31C.png', 1),
+    ('1.02 Carat Heart Diamond', 2680, 'This 1.02 Carat Heart Diamond is sold exclusive.', 1.02, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia32A.png|/Image/DiamondDTO/Diamonds/dia32B.png|/Image/DiamondDTO/Diamonds/dia32C.png', 1),
+    ('1.04 Carat Heart Diamond', 2720, 'This 1.04 Carat Heart Diamond is sold exclusive.', 1.04, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia33A.png|/Image/DiamondDTO/Diamonds/dia33B.png|/Image/DiamondDTO/Diamonds/dia33C.png', 1),
+    ('1.03 Carat Heart Diamond', 2730, 'This 1.03 Carat Heart Diamond is sold exclusive.', 1.03, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia34A.png|/Image/DiamondDTO/Diamonds/dia34B.png|/Image/DiamondDTO/Diamonds/dia34C.png', 1),
+    ('1.01 Carat Heart Diamond', 2800, 'This 1.01 Carat Heart Diamond is sold exclusive.', 1.01, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia35A.png|/Image/DiamondDTO/Diamonds/dia35B.png|/Image/DiamondDTO/Diamonds/dia35C.png', 1),
+    ('1.00 Carat Heart Diamond', 2900, 'This 1.00 Carat Heart Diamond is sold exclusive.', 1.00, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia36A.png|/Image/DiamondDTO/Diamonds/dia36B.png|/Image/DiamondDTO/Diamonds/dia36C.png', 1),
+    ('1.00 Carat Heart Diamond', 3200, 'This 1.00 Carat Heart Diamond is sold exclusive.', 1.00, 'VS2', 'Ideal', 'G', 'Heart', '/Image/DiamondDTO/Diamonds/dia37A.png|/Image/DiamondDTO/Diamonds/dia37B.png|/Image/DiamondDTO/Diamonds/dia37C.png', 1),
+    ('2.00 Carat Heart Diamond', 13500, 'This 2.00 Carat Heart Diamond is sold exclusive.', 2.00, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia38A.png|/Image/DiamondDTO/Diamonds/dia38B.png|/Image/DiamondDTO/Diamonds/dia38C.png', 1),
+    ('1.50 Carat Heart Diamond', 9000, 'This 1.50 Carat Heart Diamond is sold exclusive.', 1.50, 'VS1', 'Ideal', 'H', 'Heart', '/Image/DiamondDTO/Diamonds/dia39A.png|/Image/DiamondDTO/Diamonds/dia39B.png|/Image/DiamondDTO/Diamonds/dia39C.png', 1),
+    ('1.02 Carat Marquise Diamond', 2400, 'This 1.02 Carat Marquise Diamond is sold exclusive.', 1.02, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia40A.png|/Image/DiamondDTO/Diamonds/dia40B.png|/Image/DiamondDTO/Diamonds/dia40C.png', 1),
+    ('1.08 Carat Marquise Diamond', 2600, 'This 1.08 Carat Marquise Diamond is sold exclusive.', 1.08, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia41A.png|/Image/DiamondDTO/Diamonds/dia41B.png|/Image/DiamondDTO/Diamonds/dia41C.png', 1),
+    ('1.10 Carat Marquise Diamond', 2700, 'This 1.10 Carat Marquise Diamond is sold exclusive.', 1.10, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia42A.png|/Image/DiamondDTO/Diamonds/dia42B.png|/Image/DiamondDTO/Diamonds/dia42C.png', 1),
+    ('1.12 Carat Marquise Diamond', 2800, 'This 1.12 Carat Marquise Diamond is sold exclusive.', 1.12, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia43A.png|/Image/DiamondDTO/Diamonds/dia43B.png|/Image/DiamondDTO/Diamonds/dia43C.png', 1),
+    ('1.15 Carat Marquise Diamond', 2900, 'This 1.15 Carat Marquise Diamond is sold exclusive.', 1.15, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia44A.png|/Image/DiamondDTO/Diamonds/dia44B.png|/Image/DiamondDTO/Diamonds/dia44C.png', 1),
+    ('1.18 Carat Marquise Diamond', 3000, 'This 1.18 Carat Marquise Diamond is sold exclusive.', 1.18, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia45A.png|/Image/DiamondDTO/Diamonds/dia45B.png|/Image/DiamondDTO/Diamonds/dia45C.png', 1),
+    ('1.21 Carat Marquise Diamond', 3100, 'This 1.21 Carat Marquise Diamond is sold exclusive.', 1.21, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia46A.png|/Image/DiamondDTO/Diamonds/dia46B.png|/Image/DiamondDTO/Diamonds/dia46C.png', 1),
+    ('1.25 Carat Marquise Diamond', 3200, 'This 1.25 Carat Marquise Diamond is sold exclusive.', 1.25, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia47A.png|/Image/DiamondDTO/Diamonds/dia47B.png|/Image/DiamondDTO/Diamonds/dia47C.png', 1),
+    ('1.30 Carat Marquise Diamond', 3300, 'This 1.30 Carat Marquise Diamond is sold exclusive.', 1.30, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia48A.png|/Image/DiamondDTO/Diamonds/dia48B.png|/Image/DiamondDTO/Diamonds/dia48C.png', 1),
+    ('1.35 Carat Marquise Diamond', 3400, 'This 1.35 Carat Marquise Diamond is sold exclusive.', 1.35, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia49A.png|/Image/DiamondDTO/Diamonds/dia49B.png|/Image/DiamondDTO/Diamonds/dia49C.png', 1),
+    ('1.40 Carat Marquise Diamond', 3500, 'This 1.40 Carat Marquise Diamond is sold exclusive.', 1.40, 'VS2', 'Ideal', 'H', 'Marquise', '/Image/DiamondDTO/Diamonds/dia50A.png|/Image/DiamondDTO/Diamonds/dia50B.png|/Image/DiamondDTO/Diamonds/dia50C.png', 1);
 
 INSERT INTO [dbo].[tblCertificate] ([diamondID], [certificateNumber], [issueDate], [certifyingAuthority], [cerImagePath]) VALUES 
     (1, 'CERT000001', '2024-05-26', 'GIA', '/Image/DiamondDTO/Certificates/CER01.jpg'),

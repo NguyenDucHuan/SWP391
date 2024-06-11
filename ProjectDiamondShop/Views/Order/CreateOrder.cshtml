@@ -1,4 +1,4 @@
-﻿@model ProjectDiamondShop.Models.Cart
+﻿@model DiamondShopDAOs.CookieCartDAO.CartDao
 
 @{
     ViewBag.Title = "Create Order";
@@ -19,19 +19,51 @@
     </div>
 
     <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Diamond Name</th>
-                <th>Diamond Price</th>
-            </tr>
-        </thead>
         <tbody>
             @foreach (var item in Model.Items)
             {
-                <tr>
-                    <td>@item.DiamondName</td>
-                    <td>@item.DiamondPrice</td>
-                </tr>
+                if (item.settingID == null)
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.DiamondName</td>
+                        <td>
+                            <strong>Total Price:</strong> @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:30px;" />
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.decription</td>
+                        <td>
+                            <strong>Diamond Name:</strong> @item.DiamondName <br />
+                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:40px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Item Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
+                    </tr>
+                    <tr>
+                        <td>Accent Stone Details:</td>
+                        <td>
+                            Accent Stone ID: @item.accentStoneID <br />
+                            Quantity: @item.quantityAccent <br />
+                            Price: @item.accentStonePrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Diamond Details:</td>
+                        <td>
+                            Name: @item.DiamondName <br />
+                            Price: @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:40px;" />
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -48,9 +80,14 @@
     </div>
     <div class="form-group">
         <label for="Total">Total:</label>
-        <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => i.DiamondPrice)" disabled />
+        <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)))" disabled />
     </div>
     <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
+
+    <form id="paymentForm" action="/order/PaymentWithPayPal" method="post" style="display:none;">
+        <input type="hidden" id="hiddenAddress" name="address" />
+        <input type="hidden" id="hiddenPhone" name="phone" />
+    </form>
 </div>
 
 <script>
@@ -80,8 +117,12 @@
         // Hiển thị phần note khi nhấp vào nút "Create Order"
         document.getElementById("noteSection").style.display = "block";
 
-        var paypalLink = "/order/PaymentWithPayPal?address=" + address + "&phone=" + phone;
-        window.location.href = paypalLink;
+        // Set hidden form fields
+        document.getElementById("hiddenAddress").value = address;
+        document.getElementById("hiddenPhone").value = phone;
+
+        // Submit the hidden form
+        document.getElementById("paymentForm").submit();
         return false;
     }
 </script>

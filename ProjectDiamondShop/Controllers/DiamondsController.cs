@@ -1,17 +1,37 @@
-﻿using ProjectDiamondShop.Models;
-using ProjectDiamondShop.Repositories;
+﻿using DiamondShopServices;
+using DiamondShopBOs;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
+using DiamondShopServices.JewelrySettingService;
+using DiamondShopServices.AccentStoneService;
 
 namespace ProjectDiamondShop.Controllers
 {
     public class DiamondsController : Controller
     {
         // GET: Diamonds
-        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly IDiamondService diamondService = null;
+        private readonly IAccentStoneService accentStoneService = null;
+        private readonly IJewelrySettingService jewelrySettingService = null;
+        public DiamondsController()
+        {
+            if (diamondService == null)
+            {
+                diamondService = new DiamondService();
+            }
+            if (jewelrySettingService == null)
+            {
+                jewelrySettingService = new JewelrySettingService();
+            }
+            if (accentStoneService == null)
+            {
+                accentStoneService = new AccentStoneService();
+            }
+        }
         public ActionResult Index(int page = 1, int pageSize = 12)
         {
             ViewBag.minPrice = 1;
@@ -26,16 +46,16 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedClarity = "";
             ViewBag.SelectedSort = "";
 
-            DiamondRepository diamondRepository = new DiamondRepository(connectionString);
-            List<Diamond> diamonds = diamondRepository.GetFilteredDiamonds("", "", "", "", "", null, null, null, null, null);
+            List<tblDiamond> diamonds = diamondService.Filter("", "", "", "", "", null, null, null, null, "Price (Low to High)");
 
             int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
 
-            List<Diamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -77,25 +97,29 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedClarity = clarity;
             ViewBag.SelectedSort = sortBy;
 
-            DiamondRepository diamondRepository = new DiamondRepository(connectionString);
-            List<Diamond> filteredDiamonds = diamondRepository.GetFilteredDiamonds(
-                searchTerm, clarity, cut, color, shape, minPrice, maxPrice, minCaratWeight, maxCaratWeight, sortBy);
+            List<tblDiamond> diamonds = diamondService.Filter(searchTerm, clarity, cut, color, shape, minPrice, maxPrice, minCaratWeight, maxCaratWeight, sortBy);
 
-            int totalDiamonds = filteredDiamonds.Count;
+            int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
             ViewBag.CurrentPage = page;
 
-            List<Diamond> diamondsForPage = filteredDiamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }
 
         public ActionResult ViewDiamond(int id)
         {
-            DiamondRepository diamondRepository = new DiamondRepository(connectionString);
-            Diamond diamond = diamondRepository.GetDiamond(id);
+            tblDiamond diamond = diamondService.GetDiamondById(id);
+            List<tblAccentStone> accentStones = accentStoneService.GetAllStones();
+            List<tblSetting> settings = jewelrySettingService.GetSettingAllList();
+
+            ViewBag.AccentStones = accentStones;
+            ViewBag.Settings = settings;
+
             return View(diamond);
         }
+
     }
 
 }

@@ -1,9 +1,11 @@
-﻿using ProjectDiamondShop.Models;
+﻿using DiamondShopDAOs.CookieCartDAO;
+using ProjectDiamondShop.Models;
 using ProjectDiamondShop.Repositories;
 using System.Web.Mvc;
 
 public class CartController : Controller
 {
+
     private string GetUserID()
     {
         if (Session["UserID"] == null)
@@ -26,19 +28,14 @@ public class CartController : Controller
     }
 
     [HttpPost]
-    public ActionResult AddToCart(int diamondID, string diamondName, decimal diamondPrice)
+    public ActionResult AddToCart(int settingID, int accentStoneID, int diamondID)
     {
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
             return RedirectToAction("Index", "Login");
         }
-        var cartItem = new CartItem
-        {
-            DiamondID = diamondID,
-            DiamondName = diamondName,
-            DiamondPrice = diamondPrice
-        };
+        var cartItem = new ItemCartDAO(settingID, accentStoneID, diamondID);
         CartHelper.AddToCart(HttpContext, userID, cartItem);
         return RedirectToAction("Index", "Diamonds");
     }

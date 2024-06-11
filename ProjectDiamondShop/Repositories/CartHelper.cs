@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
-using ProjectDiamondShop.Models;
+using DiamondShopDAOs.CookieCartDAO;
 
 namespace ProjectDiamondShop.Repositories
 {
@@ -14,21 +14,21 @@ namespace ProjectDiamondShop.Repositories
             return $"DiamondShopCart_{userID}";
         }
 
-        public static Cart GetCart(HttpContextBase context, string userID)
+        public static CartDao GetCart(HttpContextBase context, string userID)
         {
-            var cart = new Cart();
+            var cart = new CartDao();
             var cartCookieName = GetCartCookieName(userID);
 
             var cartCookie = context.Request.Cookies[cartCookieName];
             if (cartCookie != null && !string.IsNullOrEmpty(cartCookie.Value))
             {
-                cart = JsonConvert.DeserializeObject<Cart>(cartCookie.Value);
+                cart = JsonConvert.DeserializeObject<CartDao>(cartCookie.Value);
             }
 
             return cart;
         }
 
-        public static void SaveCart(HttpContextBase context, string userID, Cart cart)
+        public static void SaveCart(HttpContextBase context, string userID, CartDao cart)
         {
             var cartCookieName = GetCartCookieName(userID);
             var cartCookie = new HttpCookie(cartCookieName)
@@ -39,10 +39,10 @@ namespace ProjectDiamondShop.Repositories
             context.Response.Cookies.Add(cartCookie);
         }
 
-        public static void AddToCart(HttpContextBase context, string userID, CartItem item)
+        public static void AddToCart(HttpContextBase context, string userID, ItemCartDAO item)
         {
             var cart = GetCart(context, userID);
-            var existingItem = cart.Items.FirstOrDefault(i => i.DiamondID == item.DiamondID);
+            var existingItem = cart.Items.FirstOrDefault(i => i.diamondID == item.diamondID);
             if (existingItem == null)
             {
                 cart.Items.Add(item);
@@ -53,7 +53,7 @@ namespace ProjectDiamondShop.Repositories
         public static void RemoveFromCart(HttpContextBase context, string userID, int diamondID)
         {
             var cart = GetCart(context, userID);
-            var itemToRemove = cart.Items.FirstOrDefault(i => i.DiamondID == diamondID);
+            var itemToRemove = cart.Items.FirstOrDefault(i => i.diamondID == diamondID);
             if (itemToRemove != null)
             {
                 cart.Items.Remove(itemToRemove);
@@ -63,7 +63,7 @@ namespace ProjectDiamondShop.Repositories
 
         public static void ClearCart(HttpContextBase context, string userID)
         {
-            var cart = new Cart();
+            var cart = new CartDao();
             SaveCart(context, userID, cart);
         }
     }
