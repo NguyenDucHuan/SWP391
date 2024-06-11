@@ -1,13 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "Manager Dashboard";
+}
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         .section {
             margin-top: 20px;
+            display: none;
         }
 
         .table-container {
@@ -24,6 +31,8 @@
 
         .btn-group {
             margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .wide-column {
@@ -55,29 +64,102 @@
             font-weight: bold;
             margin-top: 20px;
         }
+
+        .signup-container {
+            padding: 20px;
+            margin-top: 10px;
+            max-width: 400px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 2px solid #ccc;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            background-color: #d0e8f2;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .center-text {
+            text-align: center;
+            color: #333;
+        }
+
+        .field-icon {
+            float: right;
+            margin-right: 10px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container text-center">
         <h2 class="mt-4">Manager Dashboard</h2>
 
-        <div id="updateSuccessMessage" class="alert" style="display:none;"></div>
+        <div id="updateSuccessMessage" class="alert alert-success" style="display:none;"></div>
+        <div id="updateErrorMessage" class="alert alert-danger" style="display:none;"></div>
 
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary" onclick="showSection('orders')">Orders</button>
-            <button type="button" class="btn btn-primary" onclick="showSection('diamonds')">Diamonds</button>
-            <button type="button" class="btn btn-primary" onclick="showSection('saleStaff')">Sale Staff</button>
-            <button type="button" class="btn btn-primary" onclick="showSection('deliveryStaff')">Delivery Staff</button>
-            <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary">Create Voucher</a>
-            <a href="@Url.Action("Logout", "Login")" class="btn btn-danger">Logout</a>
+            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('orders')">Orders</button>
+            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('diamonds')">Diamonds</button>
+            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('saleStaff')">Sale Staff</button>
+            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('deliveryStaff')">Delivery Staff</button>
+            @if ((int)Session["RoleID"] == 2)
+            {
+                <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('users')">Users</button>
+                <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('createAccount')">Create Account</button>
+            }
+            <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Create Voucher</a>
+            <a href="@Url.Action("Logout", "Login")" class="btn btn-danger col-12 col-sm-6 col-md-4 col-lg-2 m-1">Logout</a>
         </div>
 
-        <div id="chart" class="section">
-            <h3>Revenue Chart</h3>
-            <canvas id="revenueChart" width="400" height="200"></canvas>
+        <div id="chart" class="section" style="display:block;">
+            @if ((int)Session["RoleID"] == 3)
+            {
+                <div>
+                    <h3>Revenue Chart</h3>
+                    <canvas id="revenueChart" class="w-100"></canvas>
+                </div>
+            }
+            <div class="row">
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <div class="col-12 col-md-6">
+                        <h3>Revenue Chart</h3>
+                        <canvas id="revenueChart" class="w-100"></canvas>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h3>Registration Chart</h3>
+                        <canvas id="registrationChart" class="w-100"></canvas>
+                    </div>
+                }
+            </div>
         </div>
 
-        <div id="orders" class="section" style="display:none;">
+        <div id="orders" class="section">
             <h3>Orders</h3>
             <input type="text" id="searchOrders" class="form-control mb-3" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
             <div class="table-container">
@@ -96,45 +178,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 0; i < Model.Orders.Count; i++)
+                        @for (int i = 0; i < ViewBag.Orders.Count; i++)
                         {
-                            var order = Model.Orders[i];
+                            var order = ViewBag.Orders[i];
                             <tr>
-                                <td>@order.OrderID</td>
-                                <td>@order.CustomerID</td>
+                                <td>@order.orderID</td>
+                                <td>@order.customerID</td>
                                 <td>
                                     <select class="form-control" name="orderUpdates[@i].SaleStaffID">
                                         <option value="">Default</option>
-                                        @foreach (var staff in Model.SaleStaff)
+                                        @foreach (var staff in ViewBag.SaleStaff)
                                         {
-                                            <option value="@staff.UserID" @(order.SaleStaffID == staff.UserID ? "selected" : "")>@staff.FullName (@staff.UserID)</option>
+                                            <option value="@staff.userID" @(order.saleStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
                                         }
                                     </select>
-                                    <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.OrderID" />
+                                    <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.orderID" />
                                 </td>
                                 <td>
                                     <select class="form-control" name="orderUpdates[@i].DeliveryStaffID">
                                         <option value="">Default</option>
-                                        @foreach (var staff in Model.DeliveryStaff)
+                                        @foreach (var staff in ViewBag.DeliveryStaff)
                                         {
-                                            <option value="@staff.UserID" @(order.DeliveryStaffID == staff.UserID ? "selected" : "")>@staff.FullName (@staff.UserID)</option>
+                                            <option value="@staff.userID" @(order.deliveryStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
                                         }
                                     </select>
                                 </td>
-                                <td>@order.TotalMoney</td>
+                                <td>@order.totalMoney</td>
                                 <td>
                                     <select class="form-control" name="orderUpdates[@i].Status">
-                                        <option value="Order Placed" @(order.Status == "Order Placed" ? "selected" : "")>Order Placed</option>
-                                        <option value="Preparing Goods" @(order.Status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
-                                        <option value="Shipped to Carrier" @(order.Status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
-                                        <option value="In Delivery" @(order.Status == "In Delivery" ? "selected" : "")>In Delivery</option>
-                                        <option value="Delivered" @(order.Status == "Delivered" ? "selected" : "")>Delivered</option>
-                                        <option value="Paid" @(order.Status == "Paid" ? "selected" : "")>Paid</option>
+                                        <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
+                                        <option value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
+                                        <option value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
+                                        <option value="In Delivery" @(order.status == "In Delivery" ? "selected" : "")>In Delivery</option>
+                                        <option value="Delivered" @(order.status == "Delivered" ? "selected" : "")>Delivered</option>
+                                        <option value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
                                     </select>
                                 </td>
-                                <td>@order.Address</td>
-                                <td>@order.Phone</td>
-                                <td>@order.SaleDate</td>
+                                <td>@order.address</td>
+                                <td>@order.phone</td>
+                                <td>@order.saleDate</td>
                             </tr>
                         }
                     </tbody>
@@ -143,7 +225,7 @@
             <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
         </div>
 
-        <div id="diamonds" class="section" style="display:none;">
+        <div id="diamonds" class="section">
             <h3>Diamonds</h3>
             <input type="text" id="searchDiamonds" class="form-control mb-3" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds by DiamondID..">
             <div class="table-container">
@@ -155,7 +237,7 @@
                             <th>Price</th>
                             <th>Description</th>
                             <th>Carat Weight</th>
-                            <th>clarity</th>
+                            <th>Clarity</th>
                             <th>Cut</th>
                             <th>Color</th>
                             <th>Shape</th>
@@ -163,7 +245,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var diamond in Model.Diamonds)
+                        @foreach (var diamond in ViewBag.Diamonds)
                         {
                             <tr>
                                 <td>@diamond.diamondID</td>
@@ -183,7 +265,7 @@
             </div>
         </div>
 
-        <div id="saleStaff" class="section" style="display:none;">
+        <div id="saleStaff" class="section">
             <h3>Sale Staff</h3>
             <input type="text" id="searchSaleStaff" class="form-control mb-3" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
             <div class="table-container">
@@ -198,22 +280,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var user in Model.SaleStaff)
+                        @foreach (var user in ViewBag.SaleStaff)
                         {
-                            <tr>
-                                <td>@user.UserID</td>
-                                <td>@user.UserName</td>
-                                <td>@user.FullName</td>
-                                <td>@user.Email</td>
-                                <td>@user.Status</td>
+                            <tr id="user-row-@user.userID">
+                                <td>@user.userID</td>
+                                <td>@user.userName</td>
+                                <td>@user.fullName</td>
+                                <td>@user.email</td>
+                                <td>
+                                    @if ((int)Session["RoleID"] == 2)
+                                    {
+                                        <button class="btn @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
+                                            @(user.status ? "Enable" : "Disable")
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        @user.status
+                                    }
+                                </td>
                             </tr>
                         }
+
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div id="deliveryStaff" class="section" style="display:none;">
+        <div id="deliveryStaff" class="section">
             <h3>Delivery Staff</h3>
             <input type="text" id="searchDeliveryStaff" class="form-control mb-3" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
             <div class="table-container">
@@ -223,23 +317,121 @@
                             <th>User ID</th>
                             <th>User Name</th>
                             <th>Full Name</th>
-                            <th>Email</th>
+                            <th>Email</h>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var user in Model.DeliveryStaff)
+                        @foreach (var user in ViewBag.DeliveryStaff)
                         {
-                            <tr>
-                                <td>@user.UserID</td>
-                                <td>@user.UserName</td>
-                                <td>@user.FullName</td>
-                                <td>@user.Email</td>
-                                <td>@user.Status</td>
+                            <tr id="user-row-@user.userID">
+                                <td>@user.userID</td>
+                                <td>@user.userName</td>
+                                <td>@user.fullName</td>
+                                <td>@user.email</td>
+                                <td>
+                                    @if ((int)Session["RoleID"] == 2)
+                                    {
+                                        <button class="btn @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
+                                            @(user.status ? "Enable" : "Disable")
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        @user.status
+                                    }
+                                </td>
                             </tr>
                         }
+
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        @if ((int)Session["RoleID"] == 2)
+        {
+            <div id="users" class="section">
+                <h3>Users</h3>
+                <input type="text" id="searchUsers" class="form-control mb-3" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users by UserID..">
+                <div class="table-container">
+                    <table id="usersTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in ViewBag.Users)
+                            {
+                                <tr id="user-row-@user.userID">
+                                    <td>@user.userID</td>
+                                    <td>@user.userName</td>
+                                    <td>@user.fullName</td>
+                                    <td>@user.email</td>
+                                    <td>
+                                        @if ((int)Session["RoleID"] == 2)
+                                        {
+                                            <button class="btn @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
+                                                @(user.status ? "Enable" : "Disable")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @user.status
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        <div id="createAccount" class="section" style="display:none;">
+            <div class="signup-container">
+                <h3 class="center-text">Create System Account</h3>
+                @using (Html.BeginForm("CreateStaffAccount", "Manager", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="txtUname">User Name:</label>
+                        <input type="text" class="form-control" id="txtUname" name="userName" placeholder="Enter Your User Name" required />
+                    </div>
+                    <div class="form-group position-relative">
+                        <label for="txtPass">Password:</label>
+                        <input type="password" class="form-control" id="txtPass" name="password" placeholder="Enter Your Password" required />
+                        <span toggle="#txtPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group position-relative">
+                        <label for="txtCPass">Confirm Password:</label>
+                        <input type="password" class="form-control" id="txtCPass" name="confirmPassword" placeholder="Enter Your Confirm Password" required />
+                        <span toggle="#txtCPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtName">Full Name:</label>
+                        <input type="text" class="form-control" id="txtName" name="fullName" placeholder="Enter Your Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email:</label>
+                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Your Email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="roleId">Role:</label>
+                        <select class="form-control" id="roleId" name="roleId" required>
+                            <option value="3">Manager</option>
+                            <option value="5">Sale Staff</option>
+                            <option value="4">Delivery Staff</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                }
             </div>
         </div>
 
@@ -251,6 +443,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script>
         function showSection(sectionId) {
             var sections = document.getElementsByClassName('section');
@@ -280,72 +473,214 @@
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            var ctx = document.getElementById('revenueChart').getContext('2d');
-            var revenueChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
-                    datasets: [{
-                        label: 'Revenue',
-                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+            var roleId = @Html.Raw(Session["RoleID"]);
+
+            var backgroundColors = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ];
+
+            var borderColors = [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ];
+
+            if (roleId == 2) { // Admin
+                var ctx = document.getElementById('revenueChart').getContext('2d');
+                var revenueChart = new Chart(ctx, {
+                    type: 'pie',  // Sử dụng biểu đồ pie cho admin
+                    data: {
+                        labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
+                        datasets: [{
+                            label: 'Revenue',
+                            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
+                            backgroundColor: backgroundColors,
+                            borderColor: borderColors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
                         }
                     }
-                }
-            });
+                });
+
+                var ctx2 = document.getElementById('registrationChart').getContext('2d');
+                var registrationChart = new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationLabels)),
+                        datasets: [{
+                            label: 'Registrations',
+                            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationData)),
+                            backgroundColor: backgroundColors,
+                            borderColor: borderColors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } else if (roleId == 3) { // Manager
+                var ctx = document.getElementById('revenueChart').getContext('2d');
+                var revenueChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
+                        datasets: [{
+                            label: 'Revenue',
+                            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
         });
 
         function updateOrders() {
-    var orderUpdates = [];
+            var orderUpdates = [];
 
-    $('#ordersTable tbody tr').each(function () {
-        var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
-        var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
-        var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
-        var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
+            $('#ordersTable tbody tr').each(function () {
+                var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
+                var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
+                var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
+                var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
 
-        orderUpdates.push({
-            OrderID: orderId,
-            SaleStaffID: saleStaffId,
-            DeliveryStaffID: deliveryStaffId,
-            Status: status
-        });
-    });
+                orderUpdates.push({
+                    OrderID: orderId,
+                    SaleStaffID: saleStaffId,
+                    DeliveryStaffID: deliveryStaffId,
+                    Status: status
+                });
+            });
 
-    $.ajax({
-        type: 'POST',
-        url: '@Url.Action("UpdateOrders", "Manager")',
-        contentType: 'application/json',
-        data: JSON.stringify(orderUpdates),
-        success: function (response) {
-            if (response.success) {
-                $('#updateSuccessMessage').text(response.message).removeClass('alert-danger').addClass('alert-success').show().delay(3000).fadeOut();
-            } else {
-                $('#updateSuccessMessage').text(response.message).removeClass('alert-success').addClass('alert-danger').show().delay(3000).fadeOut();
-            }
-        },
-        error: function (xhr, status, error) {
-            $('#updateSuccessMessage').text("Update failed: " + xhr.responseText).removeClass('alert-success').addClass('alert-danger').show().delay(3000).fadeOut();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateOrders", "Manager")',
+                contentType: 'application/json',
+                data: JSON.stringify(orderUpdates),
+                success: function (response) {
+                    if (response.success) {
+                        $('#updateSuccessMessage').text(response.message).show().delay(3000).fadeOut();
+                        $('#updateErrorMessage').hide();
+                    } else {
+                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                        $('#updateSuccessMessage').hide();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#updateErrorMessage').text("Update failed: " + xhr.responseText).show().delay(3000).fadeOut();
+                    $('#updateSuccessMessage').hide();
+                }
+            });
         }
-    });
-}
 
-$(document).ready(function() {
-    var updateMessage = '@TempData["UpdateMessage"]';
-    if (updateMessage) {
-        $('#updateSuccessMessage').text(updateMessage).show().delay(3000).fadeOut();
-    }
-});
+        $(document).ready(function() {
+            var updateMessage = '@TempData["UpdateMessage"]';
+            if (updateMessage) {
+                $('#updateSuccessMessage').text(updateMessage).show().delay(3000).fadeOut();
+            }
+        });
 
+        function updateUsers() {
+            var userUpdates = [];
+            $('#usersTable tbody tr').each(function () {
+                var userID = $(this).find('td').eq(0).text();
+                var status = $(this).find('select').val() === "true";
 
+                userUpdates.push({
+                    UserID: userID,
+                    Status: status
+                });
+            });
+
+            $.ajax({
+                url: '@Url.Action("UpdateUsers", "Manager")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(userUpdates),
+                success: function (response) {
+                    if (response.success) {
+                        $('#updateSuccessMessage').text(response.message).show();
+                        $('#updateErrorMessage').hide();
+                    } else {
+                        $('#updateErrorMessage').text(response.message).show();
+                        $('#updateSuccessMessage').hide();
+                    }
+                },
+                error: function (response) {
+                    $('#updateErrorMessage').text("An error occurred while updating users.").show();
+                    $('#updateSuccessMessage').hide();
+                }
+            });
+        }
+
+        function toggleStatus(userId, currentStatus) {
+            var newStatus = !currentStatus;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ToggleUserStatus", "Manager")',
+                contentType: 'application/json',
+                data: JSON.stringify({ userId: userId, status: newStatus }),
+                success: function (response) {
+                    if (response.success) {
+                        var btn = $("#user-row-" + userId + " button");
+                        btn.toggleClass('btn-success btn-danger')
+                           .text(newStatus ? "Enable" : "Disable")
+                           .attr("onclick", "toggleStatus('" + userId + "', " + newStatus + ")");
+                    } else {
+                        alert('Failed to update status.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('Failed to update status: ' + error);
+                }
+            });
+        }
+
+        $(document).on('click', '.toggle-password', function () {
+            $(this).toggleClass('fa-eye fa-eye-slash');
+            var input = $($(this).attr('toggle'));
+            if (input.attr('type') == 'password') {
+                input.attr('type', 'text');
+            } else {
+                input.attr('type', 'password');
+            }
+        });
     </script>
 </body>
+
 </html>

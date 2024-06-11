@@ -73,6 +73,7 @@
           <Key>
             <PropertyRef Name="ItemID" />
           </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="settingID" Type="int" />
           <Property Name="accentStoneID" Type="int" />
           <Property Name="quantityAccent" Type="int" />
@@ -80,7 +81,6 @@
           <Property Name="diamondPrice" Type="money" Nullable="false" />
           <Property Name="settingPrice" Type="money" Nullable="false" />
           <Property Name="accentStonePrice" Type="money" />
-          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tblNotification">
           <Key>
@@ -172,6 +172,7 @@
           <Property Name="status" Type="bit" />
           <Property Name="resetCode" Type="nvarchar" MaxLength="10" />
           <Property Name="bonusPoint" Type="int" />
+          <Property Name="createDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="tblVoucher">
           <Key>
@@ -662,6 +663,7 @@
           <Key>
             <PropertyRef Name="ItemID" />
           </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="settingID" Type="Int32" />
           <Property Name="accentStoneID" Type="Int32" />
           <Property Name="quantityAccent" Type="Int32" />
@@ -669,7 +671,6 @@
           <Property Name="diamondPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="settingPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="accentStonePrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="tblAccentStone" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblItem" ToRole="tblAccentStones" />
           <NavigationProperty Name="tblDiamond" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblItem" ToRole="tblDiamonds" />
           <NavigationProperty Name="tblSetting" Relationship="Self.FK_tblItem_tblSettings" FromRole="tblItem" ToRole="tblSettings" />
@@ -780,6 +781,7 @@
           <Property Name="status" Type="Boolean" />
           <Property Name="resetCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="bonusPoint" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="tblChats" Relationship="Self.FK_tblChat_tblUsers_receiver" FromRole="tblUsers" ToRole="tblChat" />
           <NavigationProperty Name="tblChats1" Relationship="Self.FK_tblChat_tblUsers_sender" FromRole="tblUsers" ToRole="tblChat" />
           <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblUsers" FromRole="tblUsers" ToRole="tblComment" />
@@ -1243,6 +1245,7 @@
           <EntitySetMapping Name="tblItems">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblItem">
               <MappingFragment StoreEntitySet="tblItem">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="settingID" ColumnName="settingID" />
                 <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
                 <ScalarProperty Name="quantityAccent" ColumnName="quantityAccent" />
@@ -1250,7 +1253,6 @@
                 <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />
                 <ScalarProperty Name="settingPrice" ColumnName="settingPrice" />
                 <ScalarProperty Name="accentStonePrice" ColumnName="accentStonePrice" />
-                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1349,6 +1351,7 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="resetCode" ColumnName="resetCode" />
                 <ScalarProperty Name="bonusPoint" ColumnName="bonusPoint" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

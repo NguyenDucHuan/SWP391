@@ -11,8 +11,7 @@ namespace DiamondShopBOs
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,25 +27,17 @@ namespace DiamondShopBOs
             this.tblTransactions = new HashSet<tblTransaction>();
             this.tblVouchers = new HashSet<tblVoucher>();
         }
-        [Key]
+    
         public string userID { get; set; }
-        [Required]
         public string userName { get; set; }
-        [Required]
         public string fullName { get; set; }
-        [Required]
-        [EmailAddress]
         public string email { get; set; }
-        [Required]
-        [StringLength(255, MinimumLength = 6)]
         public string password { get; set; }
         public int roleID { get; set; }
         public Nullable<bool> status { get; set; }
         public string resetCode { get; set; }
-
         public Nullable<int> bonusPoint { get; set; }
-
-
+        public DateTime createDate { get; set; } = DateTime.Now;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblChat> tblChats { get; set; }

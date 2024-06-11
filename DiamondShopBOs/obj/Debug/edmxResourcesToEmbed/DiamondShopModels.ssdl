@@ -68,6 +68,7 @@
     <Key>
       <PropertyRef Name="ItemID" />
     </Key>
+    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="settingID" Type="int" />
     <Property Name="accentStoneID" Type="int" />
     <Property Name="quantityAccent" Type="int" />
@@ -75,7 +76,6 @@
     <Property Name="diamondPrice" Type="money" Nullable="false" />
     <Property Name="settingPrice" Type="money" Nullable="false" />
     <Property Name="accentStonePrice" Type="money" />
-    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="tblNotification">
     <Key>
@@ -167,6 +167,7 @@
     <Property Name="status" Type="bit" />
     <Property Name="resetCode" Type="nvarchar" MaxLength="10" />
     <Property Name="bonusPoint" Type="int" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="tblVoucher">
     <Key>
