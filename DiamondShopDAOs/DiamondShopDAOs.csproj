@@ -51,14 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccentStoneDAO.cs" />
+    <Compile Include="DAOs\AccentStoneDAO.cs" />
     <Compile Include="CookieCartDAO\CartDao.cs" />
     <Compile Include="CookieCartDAO\ItemCartDAO.cs" />
-    <Compile Include="DiamondDAO.cs" />
-    <Compile Include="ItemDAO.cs" />
-    <Compile Include="JewelrySettingDAO.cs" />
+    <Compile Include="DAOs\DiamondDAO.cs" />
+    <Compile Include="DAOs\ItemDAO.cs" />
+    <Compile Include="DAOs\JewelrySettingDAO.cs" />
+    <Compile Include="DAOs\OrderDAO.cs" />
+    <Compile Include="DAOs\OrderItemDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserDAO.cs" />
+    <Compile Include="DAOs\UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiamondShopBOs\DiamondShopBOs.csproj">

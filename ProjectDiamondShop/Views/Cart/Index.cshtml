@@ -24,6 +24,10 @@
         .button-group form {
             margin: 0 10px;
         }
+
+    .proImg {
+        max-height: 50px;
+    } 
 </style>
 
 <h2>Your Cart</h2>
@@ -39,14 +43,14 @@
         <tbody>
             @foreach (var item in Model.Items)
             {
-                if (item.settingID == null)
+                if (item.settingID == 0)
                 {
                     string[] imagepart = item.imagePath.Split('|');
                     <tr>
                         <td>@item.DiamondName</td>
                         <td>
                             <strong>Total Price:</strong> @item.diamondPrice <br />
-                            <img src="@imagepart[0]" alt="Diamond Image" />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px"/>
                         </td>
                     </tr>
                 }
@@ -57,12 +61,12 @@
                         <td>@item.decription</td>
                         <td>
                             <strong>Diamond Name:</strong> @item.DiamondName <br />
-                            <img src="@imagepart[0]" alt="Diamond Image" />
+                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:110px" />
                         </td>
                     </tr>
                     <tr>
                         <td>Item Price:</td>
-                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice)</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
                     </tr>
                     <tr>
                         <td>Accent Stone Details:</td>
@@ -77,7 +81,7 @@
                         <td>
                             Name: @item.DiamondName <br />
                             Price: @item.diamondPrice <br />
-                            <img src="@imagepart[1]" alt="Diamond Image" />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px" />
                         </td>
                     </tr>
                 }

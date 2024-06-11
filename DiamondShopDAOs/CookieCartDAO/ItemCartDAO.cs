@@ -13,13 +13,13 @@ namespace DiamondShopDAOs.CookieCartDAO
         private readonly DiamondDAO diamondDAO = null;
         private readonly JewelrySettingDAO jewelrySettingDAO = null;
         private readonly AccentStoneDAO accentStoneDAO = null;
-        public int? settingID { get; set; }
-        public int? accentStoneID { get; set; }
-        public int? quantityAccent { get; set; }
+        public int settingID { get; set; }
+        public int accentStoneID { get; set; }
+        public int quantityAccent { get; set; }
         public int diamondID { get; set; }
         public decimal diamondPrice { get; set; }
-        public decimal? settingPrice { get; set; }
-        public decimal? accentStonePrice { get; set; }
+        public decimal settingPrice { get; set; }
+        public decimal accentStonePrice { get; set; }
         public string DiamondName { get; set; }
         public string imagePath { get; set; }
         public string decription { get; set; }
@@ -59,10 +59,10 @@ namespace DiamondShopDAOs.CookieCartDAO
                 var tblSetting = jewelrySettingDAO.GetSettingByID(settingID);
                 if (tblSetting != null)
                 {
-                    this.settingPrice = tblSetting?.priceTax;
-                    this.quantityAccent = tblSetting?.quantityStones;
-                    this.imagePath = tblSetting?.imagePath + "|" + diamond.diamondImagePath;
-                    this.decription = tblSetting?.description;
+                    this.settingPrice = tblSetting.priceTax;
+                    this.quantityAccent = tblSetting.quantityStones;
+                    this.imagePath = tblSetting.imagePath + "|" + diamond.diamondImagePath;
+                    this.decription = tblSetting.description;
                 }
                 else
                 {
@@ -83,10 +83,10 @@ namespace DiamondShopDAOs.CookieCartDAO
             }
             else
             {
-                this.settingID = null;
-                this.settingPrice = null;
-                this.accentStoneID = null;
-                this.accentStonePrice = null;
+                this.settingID = 0;
+                this.settingPrice = 0;
+                this.accentStoneID = 0;
+                this.accentStonePrice = 0;
                 imagePath = diamond.diamondImagePath;
                 decription = diamond.diamondDescription;
             }
