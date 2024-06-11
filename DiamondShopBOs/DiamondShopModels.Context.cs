@@ -19,17 +19,12 @@ namespace DiamondShopBOs
             : base("name=DiamondShopManagementEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            // Ánh xạ trường createDate đến kiểu datetime trong SQL Server
-            modelBuilder.Entity<tblUser>()
-                .Property(u => u.createDate)
-                .HasColumnType("datetime");
+            throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<tblAccentStone> tblAccentStones { get; set; }
         public virtual DbSet<tblCertificate> tblCertificates { get; set; }
         public virtual DbSet<tblChat> tblChats { get; set; }

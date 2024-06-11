@@ -18,7 +18,7 @@ namespace DiamondShopServices.UserService
         bool CheckDuplicateUserName(String userName);
         bool CheckDuplicateEmail(String email);
         String GetTheLastestUserID();
-        void GenerateResetCode(String email);
+        string GenerateResetCode(String email);
         String GetResetCodeByEmail(String email);
         void ResetPassword(String newPassword, String email, String resetCode);
     }

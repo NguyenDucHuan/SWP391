@@ -37,8 +37,8 @@ namespace DiamondShopBOs
         public Nullable<bool> status { get; set; }
         public string resetCode { get; set; }
         public Nullable<int> bonusPoint { get; set; }
-        public DateTime createDate { get; set; } = DateTime.Now;
-
+        public System.DateTime createDate { get; set; } = DateTime.Now;
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblChat> tblChats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

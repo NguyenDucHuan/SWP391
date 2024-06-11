@@ -31,9 +31,9 @@ namespace DiamondShopRepositories.UserRepository
             return userDAO.CheckDuplicateUserName(userName);
         }
 
-        public void GenerateResetCode(string email)
+        public string GenerateResetCode(string email)
         {
-            userDAO.GenerateResetCode(email);
+           return userDAO.GenerateResetCode(email);
         }
 
         public List<tblUser> GetAllUser()
