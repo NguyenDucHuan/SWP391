@@ -133,3 +133,18 @@ C:\Users\nguye\Desktop\Clone4\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.csproj.C
 C:\Users\nguye\Desktop\Clone4\DiamondShopDAOs\obj\Debug\DiamondS.2D20B1B7.Up2Date
 C:\Users\nguye\Desktop\Clone4\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.dll
 C:\Users\nguye\Desktop\Clone4\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\obj\Debug\DiamondS.2D20B1B7.Up2Date
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopDAOs\obj\Debug\DiamondShopDAOs.pdb

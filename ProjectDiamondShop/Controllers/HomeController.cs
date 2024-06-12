@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using DiamondShopServices.OrderServices;
 using System.Linq;
 using System;
+using DiamondShopBOs;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -38,45 +39,16 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult ViewOrders()
         {
+            
             var userID = Session["UserID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
                 return RedirectToAction("Index", "Login");
             }
-
             var currentOrders = orderServices.GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
             var historyOrders = orderServices.GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);
-
-            var model = new ViewOrderViewModel
-            {
-                CurrentOrders = currentOrders.Select(o => new Order
-                {
-                    OrderID = o.orderID,
-                    CustomerID = o.customerID,
-                    DeliveryStaffID = o.deliveryStaffID,
-                    SaleStaffID = o.saleStaffID,
-                    TotalMoney = o.totalMoney,
-                    Status = o.status,
-                    Address = o.address,
-                    Phone = o.phone,
-                    SaleDate = o.saleDate
-                }).ToList(),
-                HistoryOrders = historyOrders.Select(o => new Order
-                {
-                    OrderID = o.orderID,
-                    CustomerID = o.customerID,
-                    DeliveryStaffID = o.deliveryStaffID,
-                    SaleStaffID = o.saleStaffID,
-                    TotalMoney = o.totalMoney,
-                    Status = o.status,
-                    Address = o.address,
-                    Phone = o.phone,
-                    SaleDate = o.saleDate
-                }).ToList(),
-                RoleID = Convert.ToInt32(Session["RoleID"])
-            };
-
-            return View("ViewOrder", model);
+            OrderViewModel orderViewModel = new OrderViewModel (currentOrders,historyOrders);
+            return View("ViewOrder", orderViewModel);
         }
     }
 }

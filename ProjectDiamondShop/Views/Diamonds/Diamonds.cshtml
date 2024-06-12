@@ -219,7 +219,9 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    string[] imagepart = item.diamondImagePath.Split('|');
+                    if (item.status != false)
+                    {
+                        string[] imagepart = item.diamondImagePath.Split('|');
                     <div class="col-md-3 col-sm-4">
                         <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
                             <div class="single-new-arrival">
@@ -244,6 +246,7 @@
                             </div>
                         </a>
                     </div>
+                    }
                 }
             </div>
         </div>

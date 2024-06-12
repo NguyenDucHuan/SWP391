@@ -388,7 +388,6 @@
     <Compile Include="Models\OrderUpdateModel.cs" />
     <Compile Include="Models\Payment\PaypalConfiguration.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewOrderViewModel.cs" />
     <Compile Include="Models\Voucher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CartHelper.cs" />
@@ -426,7 +425,6 @@
     <Content Include="Views\Order\UpdateOrderDetails.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Diamonds\ViewDiamond.cshtml" />
-    <Content Include="Views\Home\ViewOrder.cshtml" />
     <Content Include="Views\Manager\CreateVoucher.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Order\FailureView.cshtml" />
@@ -434,6 +432,7 @@
     <Content Include="Views\ViewProfile\EditProfile.cshtml" />
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
+    <Content Include="Views\Home\ViewOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

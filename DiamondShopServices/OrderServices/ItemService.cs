@@ -13,6 +13,8 @@ namespace DiamondShopServices.OrderServices
 
         public void CreateItem(string orderID, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice)
         {
+            IDiamondService da = new DiamondService();
+            da.UpdateDiamondStatus(da.GetDiamondById(diamondID), false);
             repository.CreateItem(orderID, settingID, accentStoneID, quantityAccent, diamondID, diamondPrice, settingPrice, accentPrice);
         }
     }

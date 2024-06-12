@@ -133,3 +133,18 @@ C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepos
 C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
 C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
 C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb
