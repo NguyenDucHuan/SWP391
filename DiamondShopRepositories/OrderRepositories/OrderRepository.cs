@@ -6,19 +6,16 @@ namespace DiamondShopRepositories.OrderRepositories
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly OrderDAO orderDAO = null;
+        private readonly OrderDAO orderDAO;
 
         public OrderRepository()
         {
-            if (orderDAO == null)
-            {
-                orderDAO = new OrderDAO();
-            }
+            orderDAO = new OrderDAO();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmont, string address, string phone, string status)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID)
         {
-            return orderDAO.CreateOrder(userID, totalMoney, paidAmount, remainingAmont, address, phone, status);
+            return orderDAO.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status, deliveryStaffID);
         }
 
         public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
@@ -46,5 +43,15 @@ namespace DiamondShopRepositories.OrderRepositories
             return orderDAO.GetOrderStatusUpdates(orderId);
         }
 
+        public List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus)
+        {
+            return orderDAO.GetOrdersByPaymentStatus(userID, paymentStatus);
+        }
+      
+
+        public string GetDeliveryStaffID()
+        {
+            return orderDAO.GetDeliveryStaffID();
+        }
     }
 }

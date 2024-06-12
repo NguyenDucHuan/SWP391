@@ -1,21 +1,22 @@
 ﻿using DiamondShopBOs;
 using DiamondShopRepositories.OrderRepositories;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
 
 namespace DiamondShopServices.OrderServices
 {
     public class OrderServices : IOrderServices
     {
-        private readonly IOrderRepository orderRepository = null;
-
+        private readonly IOrderRepository orderRepository;
+        private readonly DiamondShopManagementEntities _context;
         public OrderServices()
         {
             orderRepository = new OrderRepository();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmont, string address, string phone, string status)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID)
         {
-            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmont, address, phone, status);
+            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status, deliveryStaffID);
         }
 
         public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
@@ -42,5 +43,17 @@ namespace DiamondShopServices.OrderServices
         {
             return orderRepository.GetOrderStatusUpdates(orderId);
         }
+
+        public List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus)
+        {
+            return orderRepository.GetOrdersByPaymentStatus(userID, paymentStatus);
+        }
+
+
+        public string GetDeliveryStaffID()
+        {
+            return orderRepository.GetDeliveryStaffID();
+        }
+
     }
 }

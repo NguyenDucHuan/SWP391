@@ -55,7 +55,6 @@ namespace ProjectDiamondShop.Controllers
             var cart = CartHelper.GetCart(HttpContext, userID);
             return View("CreateOrder", cart);
         }
-        [HttpPost]
         public ActionResult SaveOrder(string address, string phone)
         {
             var userID = GetUserID();
@@ -68,9 +67,12 @@ namespace ProjectDiamondShop.Controllers
             decimal paidAmount = totalMoney * discountPercentage;
             decimal remainingAmount = totalMoney - paidAmount;
 
+            // Lấy ID của nhân viên giao hàng có RoleID = 4
+            var deliveryStaffID = orderServices.GetDeliveryStaffID();
+
             try
             {
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, deliveryStaffID);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
@@ -87,6 +89,53 @@ namespace ProjectDiamondShop.Controllers
                 return View("CreateOrder", cart);
             }
         }
+
+
+
+        public ActionResult ViewOrders()
+        {
+            var userID = GetUserID();
+            if (string.IsNullOrEmpty(userID))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var currentOrders = orderServices.GetOrdersByPaymentStatus(userID, "Pending");
+            var historyOrders = orderServices.GetOrdersByPaymentStatus(userID, "Paid");
+
+            var model = new ViewOrderViewModel
+            {
+                CurrentOrders = currentOrders.Select(o => new ProjectDiamondShop.Models.Order
+                {
+                    OrderID = o.orderID,
+                    CustomerID = o.customerID,
+                    DeliveryStaffID = o.deliveryStaffID,
+                    SaleStaffID = o.saleStaffID,
+                    TotalMoney = o.totalMoney,
+                    Status = o.status,
+                    Address = o.address,
+                    Phone = o.phone,
+                    SaleDate = o.saleDate
+                }).ToList(),
+                HistoryOrders = historyOrders.Select(o => new ProjectDiamondShop.Models.Order
+                {
+                    OrderID = o.orderID,
+                    CustomerID = o.customerID,
+                    DeliveryStaffID = o.deliveryStaffID,
+                    SaleStaffID = o.saleStaffID,
+                    TotalMoney = o.totalMoney,
+                    Status = o.status,
+                    Address = o.address,
+                    Phone = o.phone,
+                    SaleDate = o.saleDate
+                }).ToList(),
+                RoleID = Convert.ToInt32(Session["RoleID"])
+            };
+
+            return View("ViewOrder", model);
+        }
+
+
 
         //public ActionResult UpdateOrderDetails(string orderId)
         //{
@@ -330,7 +379,7 @@ namespace ProjectDiamondShop.Controllers
         }
         public ActionResult PaymentWithPaypal(string address, string phone, string Cancel = null)
         {
-            // Store address and phone in session
+            // Store address and phone in session   
             // Getting the APIContext
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
@@ -388,8 +437,9 @@ namespace ProjectDiamondShop.Controllers
             try
             {
                 // Retrieve address and phone from session
+                var deliveryStaffID = orderServices.GetDeliveryStaffID();
 
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, deliveryStaffID);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
@@ -402,6 +452,7 @@ namespace ProjectDiamondShop.Controllers
             CartHelper.ClearCart(HttpContext, userID);
             return View("SuccessView");
         }
+
 
 
 

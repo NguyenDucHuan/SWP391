@@ -96,6 +96,8 @@
                     <tbody>
                         @foreach (var order in Model.CurrentOrders)
                         {
+                            if (order.Status == "Pending")
+                            {
                             <tr>
                                 <td>@order.OrderID</td>
                                 <td>@order.CustomerID</td>
@@ -106,6 +108,7 @@
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
                                 </td>
                             </tr>
+                            }
                         }
                     </tbody>
                 </table>
