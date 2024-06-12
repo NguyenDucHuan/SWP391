@@ -107,13 +107,19 @@ namespace DiamondShopDAOs
 
             if (!isHistory)
             {
-                orders.AddRange(_context.tblOrders
+                var additionalOrders = _context.tblOrders
                     .Where(o => o.customerID == userID && (o.deliveryStaffID == null || o.saleStaffID == null))
-                    .ToList());
+                    .ToList();
+
+                orders.AddRange(additionalOrders);
             }
 
-            return orders;
+
+            var uniqueOrders = orders.GroupBy(o => o.orderID).Select(g => g.First()).ToList();
+
+            return uniqueOrders;
         }
+
 
         public string GetDeliveryStaffID()
         {

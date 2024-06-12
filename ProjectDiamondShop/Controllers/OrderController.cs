@@ -18,7 +18,7 @@ namespace ProjectDiamondShop.Controllers
 {
     public class OrderController : Controller
     {
-        private const string DEFAULT_ORDER_STATUS = "Order Place";
+        private const string DEFAULT_ORDER_STATUS = "Order Placed";
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private const decimal discountPercentage = 0.8m;
         private readonly IOrderServices orderServices = null;
