@@ -1,8 +1,6 @@
-﻿using ProjectDiamondShop.Models;
+﻿using DiamondShopBOs;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,7 +8,7 @@ namespace ProjectDiamondShop.Controllers
 {
     public class DeliveryStaffController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
 
         // GET: DeliveryStaff
         public ActionResult Index(string searchOrderId)
@@ -20,44 +18,21 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<Order> orders = GetOrders(searchOrderId);
-            return View("DeliveryStaff", orders); // Sử dụng View DeliveryStaff.cshtml
+            List<tblOrder> orders = GetOrders(searchOrderId);
+            return View("DeliveryStaff", orders); // Ensure your view expects IEnumerable<tblOrder>
         }
 
-        private List<Order> GetOrders(string searchOrderId)
+        private List<tblOrder> GetOrders(string searchOrderId)
         {
-            List<Order> orders = new List<Order>();
+            string deliveryStaffID = Session["UserID"].ToString();
+            var ordersQuery = db.tblOrders.Where(o => o.deliveryStaffID == deliveryStaffID);
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (!string.IsNullOrEmpty(searchOrderId))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT orderID, customerID, deliveryStaffID, totalMoney, status, address, phone, saleDate FROM tblOrder WHERE deliveryStaffID = @DeliveryStaffID" +
-                    (string.IsNullOrEmpty(searchOrderId) ? "" : " AND orderID LIKE @SearchOrderId"), conn);
-
-                cmd.Parameters.AddWithValue("@DeliveryStaffID", Session["UserID"].ToString());
-                if (!string.IsNullOrEmpty(searchOrderId))
-                {
-                    cmd.Parameters.AddWithValue("@SearchOrderId", "%" + searchOrderId + "%");
-                }
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    orders.Add(new Order
-                    {
-                        OrderID = reader["orderID"].ToString(),
-                        CustomerID = reader["customerID"].ToString(),
-                        DeliveryStaffID = reader["deliveryStaffID"].ToString(),
-                        TotalMoney = Convert.ToDouble(reader["totalMoney"]),
-                        Status = reader["status"].ToString(),
-                        Address = reader["address"].ToString(),
-                        Phone = reader["phone"].ToString(),
-                        SaleDate = Convert.ToDateTime(reader["saleDate"])
-                    });
-                }
+                ordersQuery = ordersQuery.Where(o => o.orderID.Contains(searchOrderId));
             }
 
-            return orders;
+            return ordersQuery.ToList();
         }
     }
 }

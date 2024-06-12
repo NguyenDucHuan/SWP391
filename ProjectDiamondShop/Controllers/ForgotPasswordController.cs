@@ -32,7 +32,7 @@ namespace ProjectDiamondShop.Controllers
         {
             try
             {
-                string resetCode = userService.GetResetCodeByEmail(email);
+                string resetCode = userService.GenerateResetCode(email);
                 SendResetEmail(email, resetCode);
                 TempData["Email"] = email;
                 TempData["Message"] = "A password reset code has been sent to your email.";
@@ -45,6 +45,7 @@ namespace ProjectDiamondShop.Controllers
 
             return View("ForgotPassword");
         }
+
         [HttpGet]
         [Route("ForgotPassword/EnterResetCode")]
         public ActionResult EnterResetCode()

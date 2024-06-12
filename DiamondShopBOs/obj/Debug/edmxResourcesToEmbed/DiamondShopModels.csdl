@@ -77,6 +77,7 @@
     <Key>
       <PropertyRef Name="ItemID" />
     </Key>
+    <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="settingID" Type="Int32" />
     <Property Name="accentStoneID" Type="Int32" />
     <Property Name="quantityAccent" Type="Int32" />
@@ -84,7 +85,6 @@
     <Property Name="diamondPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="settingPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="accentStonePrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="tblAccentStone" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblItem" ToRole="tblAccentStones" />
     <NavigationProperty Name="tblDiamond" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblItem" ToRole="tblDiamonds" />
     <NavigationProperty Name="tblSetting" Relationship="Self.FK_tblItem_tblSettings" FromRole="tblItem" ToRole="tblSettings" />
@@ -195,6 +195,7 @@
     <Property Name="status" Type="Boolean" />
     <Property Name="resetCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="bonusPoint" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="tblChats" Relationship="Self.FK_tblChat_tblUsers_receiver" FromRole="tblUsers" ToRole="tblChat" />
     <NavigationProperty Name="tblChats1" Relationship="Self.FK_tblChat_tblUsers_sender" FromRole="tblUsers" ToRole="tblChat" />
     <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblUsers" FromRole="tblUsers" ToRole="tblComment" />

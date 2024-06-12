@@ -33,9 +33,9 @@ namespace DiamondShopServices.UserService
             return userRepository.CheckDuplicateUserName(userName);
         }
 
-        public void GenerateResetCode(string email)
+        public string GenerateResetCode(string email)
         {
-            userRepository.GenerateResetCode(email);
+           return userRepository.GenerateResetCode(email);
         }
 
         public List<tblUser> GetAllUser()

@@ -11,7 +11,7 @@ namespace DiamondShopBOs
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class tblItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,8 @@ namespace DiamondShopBOs
         {
             this.tblOrderItems = new HashSet<tblOrderItem>();
         }
-
+    
+        public int ItemID { get; set; }
         public Nullable<int> settingID { get; set; }
         public Nullable<int> accentStoneID { get; set; }
         public Nullable<int> quantityAccent { get; set; }
@@ -27,7 +28,7 @@ namespace DiamondShopBOs
         public decimal diamondPrice { get; set; }
         public decimal settingPrice { get; set; }
         public Nullable<decimal> accentStonePrice { get; set; }
-        public int ItemID { get; set; }
+    
         public virtual tblAccentStone tblAccentStone { get; set; }
         public virtual tblDiamond tblDiamond { get; set; }
         public virtual tblSetting tblSetting { get; set; }

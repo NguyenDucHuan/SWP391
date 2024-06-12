@@ -57,6 +57,10 @@ namespace ProjectDiamondShop.Controllers
                 {
                     return RedirectToAction("Index", "Manager");
                 }
+                else if (loginUser.roleID == 2)
+                {
+                    return RedirectToAction("Index", "Manager");
+                }
                 else
                 {
                     TempData["SuccessMessage"] = "Login successful!";

@@ -25,6 +25,10 @@ CREATE TABLE [dbo].[tblUsers](
     CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED ([userID] ASC),
     CONSTRAINT [FK_tblUsers_tblRole] FOREIGN KEY ([roleID]) REFERENCES dbo.tblRole ([roleID]) ON DELETE CASCADE
 );
+ALTER TABLE tblUsers
+ADD createDate DATETIME NOT NULL DEFAULT GETDATE();
+
+
 
 -- B?ng voucher
 CREATE TABLE [dbo].[tblVoucher](

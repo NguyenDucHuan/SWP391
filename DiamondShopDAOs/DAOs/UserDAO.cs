@@ -156,9 +156,9 @@ namespace DiamondShopDAOs
                 throw new Exception("An error occurred while updating the user.", ex);
             }
         }
-        public void GenerateResetCode(String email)
+        public string GenerateResetCode(string email)
         {
-            String resetCode = "";
+            string resetCode = "";
             using (var rng = new RNGCryptoServiceProvider())
             {
                 byte[] data = new byte[6];
@@ -175,7 +175,9 @@ namespace DiamondShopDAOs
             {
                 throw new Exception("Email not found.");
             }
+            return resetCode;
         }
+
         public String GetResetCodeByEmail(String email)
         {
             String resetCode = diamondShopManagementEntities.tblUsers.Where(d => d.email.Contains(email)).FirstOrDefault().resetCode;

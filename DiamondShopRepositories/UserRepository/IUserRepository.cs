@@ -19,7 +19,7 @@ namespace DiamondShopRepositories.UserRepository
 
         bool CheckDuplicateEmail(string email);
         String GetTheLastestUserID();
-        void GenerateResetCode(String email);
+        string GenerateResetCode(String email);
         String GetResetCodeByEmail(String email);
         void ResetPassword(String newPassword, String email, String resetCode);
     }
