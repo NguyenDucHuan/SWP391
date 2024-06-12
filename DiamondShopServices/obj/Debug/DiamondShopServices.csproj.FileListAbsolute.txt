@@ -168,3 +168,20 @@ C:\Users\huyh6\OneDrive\Desktop\Clone1\DiamondShopServices\obj\Debug\DiamondShop
 C:\Users\huyh6\OneDrive\Desktop\Clone1\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
 C:\Users\huyh6\OneDrive\Desktop\Clone1\DiamondShopServices\obj\Debug\DiamondShopServices.dll
 C:\Users\huyh6\OneDrive\Desktop\Clone1\DiamondShopServices\obj\Debug\DiamondShopServices.pdb
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.pdb
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.pdb
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.dll
+C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.pdb

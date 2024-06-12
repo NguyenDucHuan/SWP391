@@ -42,5 +42,11 @@ namespace DiamondShopServices
         {
             return diamondRepository.UpdateDiamond(id, diamond);
         }
+        public void UpdateDiamondStatus(tblDiamond diamond, bool status)
+        {
+            diamond.status = status;
+            diamondRepository.UpdateDiamond(diamond.diamondID, diamond);
+        }
+
     }
 }

@@ -219,31 +219,33 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
-                    string[] imagepart = item.diamondImagePath.Split('|');
-                    <div class="col-md-3 col-sm-4">
-                        <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
-                            <div class="single-new-arrival">
-                                <div class="single-new-arrival-bg">
-                                    <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
-                                    <div class="single-new-arrival-bg-overlay"></div>
-                                    <div class="new-arrival-cart">
-                                        @*<div class="arrival-review pull-right">
-                                            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
-                                            {
-                                                @Html.Hidden("diamondID", item.diamondID)
-                                                @Html.Hidden("accentStoneID", item.diamondName)
-                                                @Html.Hidden("settingID", item.diamondPrice)
-                                                <span class="lnr lnr-cart" style="color: #f0f0f0;"></span>
-                                                <input type="submit" class="transparent-button" value="Add to Cart" />
-                                            }
-                                        </div>*@
+                    
+                        string[] imagepart = item.diamondImagePath.Split('|');
+                        <div class="col-md-3 col-sm-4">
+                            <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
+                                <div class="single-new-arrival">
+                                    <div class="single-new-arrival-bg">
+                                        <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
+                                        <div class="single-new-arrival-bg-overlay"></div>
+                                        <div class="new-arrival-cart">
+                                            @*<div class="arrival-review pull-right">
+                                                    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                                                    {
+                                                        @Html.Hidden("diamondID", item.diamondID)
+                                                        @Html.Hidden("accentStoneID", item.diamondName)
+                                                        @Html.Hidden("settingID", item.diamondPrice)
+                                                        <span class="lnr lnr-cart" style="color: #f0f0f0;"></span>
+                                                        <input type="submit" class="transparent-button" value="Add to Cart" />
+                                                    }
+                                                </div>*@
+                                        </div>
                                     </div>
+                                    <h4 style="height: 40px"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
+                                    <p class="arrival-product-price">$@item.diamondPrice</p>
                                 </div>
-                                <h4 style="height: 40px"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
-                                <p class="arrival-product-price">$@item.diamondPrice</p>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    
                 }
             </div>
         </div>

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderViewModel.cs" />
     <Compile Include="DiamondShopModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
