@@ -3,15 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\clone1\\projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|c:\\users\\huyh6\\onedrive\\desktop\\clone1\\diamondshopdaos\\daos\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\views\\diamonds\\viewdiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\diamonds\\viewdiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\diamondshopdaos\\daos\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,20 +31,16 @@
       "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\cookiecartdao\\cartdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|c:\\users\\huyh6\\onedrive\\desktop\\clone1\\diamondshoprepositories\\orderrepositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\diamondshoprepositories\\orderrepositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|solutionrelative:diamondshoprepositories\\orderrepositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|c:\\users\\huyh6\\onedrive\\desktop\\clone1\\diamondshoprepositories\\orderrepositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\diamondshoprepositories\\orderrepositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|solutionrelative:diamondshoprepositories\\orderrepositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\views\\order\\updateorderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\order\\updateorderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\projectdiamondshop\\views\\diamonds\\diamonds.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -66,37 +74,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrderRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
-              "RelativeDocumentMoniker": "DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
-              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
-              "RelativeToolTip": "DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAA/wCoAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T14:04:49.013Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IOrderRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
-              "RelativeDocumentMoniker": "DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
-              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
-              "RelativeToolTip": "DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T13:48:58.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ViewDiamond.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "ViewState": "AQIAAI4AAAAAAAAAAAAiwMAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-12T16:35:38.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAiwG8AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-12T16:32:50.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "OrderDAO.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopDAOs\\DAOs\\OrderDAO.cs",
               "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\OrderDAO.cs",
@@ -104,8 +111,7 @@
               "RelativeToolTip": "DiamondShopDAOs\\DAOs\\OrderDAO.cs",
               "ViewState": "AQIAAGMAAAAAAAAAAAAwwGkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T13:40:54.521Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T13:40:54.521Z"
             },
             {
               "$type": "Document",
@@ -115,14 +121,13 @@
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Controllers\\HomeController.cs",
               "RelativeToolTip": "ProjectDiamondShop\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAYwC8AAACYAAAA",
+              "ViewState": "AQIAACIAAAAAAAAAAAA1wC8AAACYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T10:25:15.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T10:25:15.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "ViewOrder.cshtml",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
@@ -130,12 +135,47 @@
               "RelativeToolTip": "ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
               "ViewState": "AQIAAEsAAAAAAAAAAAAAAHIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-12T08:11:41.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T08:11:41.295Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DiamondsController.cs",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAkwKAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:28:06.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
+              "RelativeToolTip": "DiamondShopRepositories\\OrderRepositories\\IOrderRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T13:48:58.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
+              "RelativeToolTip": "DiamondShopRepositories\\OrderRepositories\\OrderRepository.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA/wCoAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T14:04:49.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "CartDao.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopDAOs\\CookieCartDAO\\CartDao.cs",
               "RelativeDocumentMoniker": "DiamondShopDAOs\\CookieCartDAO\\CartDao.cs",
@@ -143,12 +183,11 @@
               "RelativeToolTip": "DiamondShopDAOs\\CookieCartDAO\\CartDao.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T13:40:51.329Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T13:40:51.329Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "UpdateOrderDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Order\\UpdateOrderDetails.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Order\\UpdateOrderDetails.cshtml",
@@ -156,24 +195,11 @@
               "RelativeToolTip": "ProjectDiamondShop\\Views\\Order\\UpdateOrderDetails.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-12T13:38:03.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T13:38:03.259Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DiamondsController.cs",
-              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAgwGkAAABVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T10:28:06.878Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "DiamondService.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopServices\\DiamondService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\DiamondService.cs",
@@ -185,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Diamonds.cshtml",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
@@ -197,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "IDiamondService.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopServices\\IDiamondService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\IDiamondService.cs",
@@ -209,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "IItemService.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopServices\\OrderServices\\IItemService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\OrderServices\\IItemService.cs",
@@ -221,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "OrderServices.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopServices\\OrderServices\\OrderServices.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\OrderServices\\OrderServices.cs",
@@ -233,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "ItemService.cs",
               "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone1\\DiamondShopServices\\OrderServices\\ItemService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\OrderServices\\ItemService.cs",

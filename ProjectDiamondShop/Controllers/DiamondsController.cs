@@ -13,10 +13,10 @@ namespace ProjectDiamondShop.Controllers
 {
     public class DiamondsController : Controller
     {
-        // GET: Diamonds
         private readonly IDiamondService diamondService = null;
         private readonly IAccentStoneService accentStoneService = null;
         private readonly IJewelrySettingService jewelrySettingService = null;
+
         public DiamondsController()
         {
             if (diamondService == null)
@@ -32,6 +32,7 @@ namespace ProjectDiamondShop.Controllers
                 accentStoneService = new AccentStoneService();
             }
         }
+
         public ActionResult Index(int page = 1, int pageSize = 12)
         {
             ViewBag.minPrice = 1;
@@ -51,11 +52,10 @@ namespace ProjectDiamondShop.Controllers
             int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
 
-            List<tblDiamond> diamondsForPage = diamonds.Where(d=>d.status != false).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -103,7 +103,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
             ViewBag.CurrentPage = page;
 
-            List<tblDiamond> diamondsForPage = diamonds.Where(d => d.status != false).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }
@@ -120,6 +120,41 @@ namespace ProjectDiamondShop.Controllers
             return View(diamond);
         }
 
-    }
+        [HttpGet]
+        public JsonResult GetSettings()
+        {
+            var settings = jewelrySettingService.GetSettingAllList();
+            var settingsData = settings.Select(s => new
+            {
+                s.settingID,
+                s.settingType,
+                s.material,
+                s.priceTax,
+                s.quantityStones,
+                s.description,
+                s.imagePath
+            }).ToList();
 
+            return Json(settingsData, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetAccentStones()
+        {
+            var accentStones = accentStoneService.GetAllStones();
+            var accentStonesData = accentStones.Select(a => new
+            {
+                a.accentStoneID,
+                a.shape,
+                a.caratWeight,
+                a.clarity,
+                a.color,
+                a.price,
+                a.quantity,
+                a.imagePath
+            }).ToList();
+
+            return Json(accentStonesData, JsonRequestBehavior.AllowGet);
+        }
+    }
 }
