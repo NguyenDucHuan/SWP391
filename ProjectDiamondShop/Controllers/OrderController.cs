@@ -23,6 +23,8 @@ namespace ProjectDiamondShop.Controllers
         private const decimal discountPercentage = 0.8m;
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
+        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
+
         public OrderController()
         {
             if (orderServices == null)
@@ -306,46 +308,45 @@ namespace ProjectDiamondShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID is required");
             }
 
-            var order = orderServices.GetOrderById(orderId);
-            var orderItems = orderServices.GetOrderItems(orderId);
-            var statusUpdates = orderServices.GetOrderStatusUpdates(orderId);
+            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            var orderItems = db.tblOrderItems.Where(oi => oi.orderID == orderId).ToList();
+            var statusUpdates = db.tblOrderStatusUpdates.Where(su => su.orderID == orderId).OrderBy(su => su.updateTime).ToList();
 
+            ViewBag.Order = order;
+            ViewBag.Items = orderItems;
             ViewBag.StatusUpdates = statusUpdates;
 
-            var viewModel = new ViewOrderViewModel
-            {
-                Order = new Models.Order
-                {
-                    OrderID = order.orderID,
-                    CustomerID = order.customerID,
-                    DeliveryStaffID = order.deliveryStaffID,
-                    SaleStaffID = order.saleStaffID,
-                    TotalMoney = order.totalMoney,
-                    Status = order.status,
-                    Address = order.address,
-                    Phone = order.phone,
-                    SaleDate = order.saleDate
-                },
-                Items = orderItems.Select(oi => new CartItem
-                {
-                    DiamondID = oi.ItemID,
-                    DiamondPrice = (decimal)oi.salePriceItem
-                }).ToList(),
-                StatusUpdates = statusUpdates.Select(su => new KeyValuePair<string, DateTime>(su.status, su.updateTime)).ToList()
-            };
-
-            return View("UpdateOrderDetails", viewModel);
+            return View("UpdateOrderDetails");
         }
 
         [HttpPost]
         public ActionResult UpdateStatus(string orderId, string status)
         {
-            if (string.IsNullOrEmpty(orderId) || !Enum.TryParse(status, out UpdateStatus newStatus))
+            if (Session["RoleID"] == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "You are not authorized to update the status");
+            }
+
+            int roleId = (int)Session["RoleID"];
+            if (roleId != 4 && roleId != 5)
+            {
+                TempData["UpdateMessage"] = "You are not authorized to update the status";
+                return RedirectToAction("UpdateOrderDetails", new { orderId });
+            }
+
+            if (string.IsNullOrEmpty(orderId) || string.IsNullOrEmpty(status))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID and Status are required");
             }
 
-            var currentStatus = orderServices.GetOrderById(orderId).status;
+            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            if (order == null)
+            {
+                TempData["UpdateMessage"] = "Order not found.";
+                return RedirectToAction("UpdateOrderDetails", new { orderId });
+            }
+
+            var currentStatus = order.status;
 
             // Define valid status transitions
             var validTransitions = new Dictionary<string, List<string>>
@@ -357,15 +358,48 @@ namespace ProjectDiamondShop.Controllers
                 { "Delivered", new List<string> { "Paid" } }
             };
 
-            // Check if the transition is valid
-            if (!validTransitions.ContainsKey(currentStatus) || !validTransitions[currentStatus].Contains(newStatus.ToString()))
+            if (!validTransitions.ContainsKey(currentStatus) || !validTransitions[currentStatus].Contains(status))
             {
-                TempData["UpdateMessage"] = "Update Error";
+                TempData["UpdateMessage"] = "Invalid status transition.";
                 return RedirectToAction("UpdateOrderDetails", new { orderId });
             }
 
-            orderServices.UpdateOrderStatus(orderId, newStatus.ToString());
-            TempData["UpdateMessage"] = "Update Successful";
+            // Role-specific status updates
+            if (roleId == 4 && (status == "In Delivery" || status == "Delivered"))
+            {
+                if (!validTransitions[currentStatus].Contains(status))
+                {
+                    TempData["UpdateMessage"] = "Invalid status transition.";
+                    return RedirectToAction("UpdateOrderDetails", new { orderId });
+                }
+            }
+            else if (roleId == 5 && (status == "Order Placed" || status == "Preparing Goods" || status == "Shipped to Carrier" || status == "Paid"))
+            {
+                if (!validTransitions[currentStatus].Contains(status))
+                {
+                    TempData["UpdateMessage"] = "Invalid status transition.";
+                    return RedirectToAction("UpdateOrderDetails", new { orderId });
+                }
+            }
+            else
+            {
+                TempData["UpdateMessage"] = "You are not authorized to update to this status.";
+                return RedirectToAction("UpdateOrderDetails", new { orderId });
+            }
+
+            order.status = status;
+
+            var orderStatusUpdate = new tblOrderStatusUpdate
+            {
+                orderID = orderId,
+                status = status,
+                updateTime = DateTime.Now
+            };
+
+            db.tblOrderStatusUpdates.Add(orderStatusUpdate);
+            db.SaveChanges();
+
+            TempData["UpdateMessage"] = "Order updated successfully.";
             return RedirectToAction("UpdateOrderDetails", new { orderId });
         }
 

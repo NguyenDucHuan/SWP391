@@ -185,7 +185,7 @@
                                 <td>@order.orderID</td>
                                 <td>@order.customerID</td>
                                 <td>
-                                    <select class="form-control" name="orderUpdates[@i].SaleStaffID">
+                                    <select class="form-control saleStaff" name="orderUpdates[@i].SaleStaffID" data-original="@order.saleStaffID">
                                         <option value="">Default</option>
                                         @foreach (var staff in ViewBag.SaleStaff)
                                         {
@@ -195,7 +195,7 @@
                                     <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.orderID" />
                                 </td>
                                 <td>
-                                    <select class="form-control" name="orderUpdates[@i].DeliveryStaffID">
+                                    <select class="form-control deliveryStaff" name="orderUpdates[@i].DeliveryStaffID" data-original="@order.deliveryStaffID">
                                         <option value="">Default</option>
                                         @foreach (var staff in ViewBag.DeliveryStaff)
                                         {
@@ -205,7 +205,7 @@
                                 </td>
                                 <td>@order.totalMoney</td>
                                 <td>
-                                    <select class="form-control" name="orderUpdates[@i].Status">
+                                    <select class="form-control status" name="orderUpdates[@i].Status" data-original="@order.status">
                                         <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
                                         <option value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
                                         <option value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
@@ -482,10 +482,30 @@
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)'
+                'rgba(199, 199, 199, 0.2)',
+                'rgba(83, 102, 255, 0.2)',
+                'rgba(255, 206, 186, 0.2)',
+                'rgba(175, 192, 192, 0.2)',
+                'rgba(53, 102, 155, 0.2)',
+                'rgba(255, 99, 100, 0.2)',
+                'rgba(54, 162, 123, 0.2)',
+                'rgba(255, 206, 130, 0.2)',
+                'rgba(75, 192, 255, 0.2)',
+                'rgba(153, 102, 200, 0.2)',
+                'rgba(255, 159, 110, 0.2)',
+                'rgba(199, 200, 200, 0.2)',
+                'rgba(83, 102, 122, 0.2)',
+                'rgba(255, 206, 132, 0.2)',
+                'rgba(175, 192, 110, 0.2)',
+                'rgba(53, 102, 90, 0.2)',
+                'rgba(255, 99, 190, 0.2)',
+                'rgba(54, 162, 102, 0.2)',
+                'rgba(255, 206, 90, 0.2)',
+                'rgba(75, 192, 132, 0.2)',
+                'rgba(153, 102, 122, 0.2)',
+                'rgba(255, 159, 192, 0.2)',
+                'rgba(199, 199, 130, 0.2)',
+                'rgba(83, 102, 140, 0.2)',
             ];
 
             var borderColors = [
@@ -495,10 +515,30 @@
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)'
+                'rgba(199, 199, 199, 1)',
+                'rgba(83, 102, 255, 1)',
+                'rgba(255, 206, 186, 1)',
+                'rgba(175, 192, 192, 1)',
+                'rgba(53, 102, 155, 1)',
+                'rgba(255, 99, 100, 1)',
+                'rgba(54, 162, 123, 1)',
+                'rgba(255, 206, 130, 1)',
+                'rgba(75, 192, 255, 1)',
+                'rgba(153, 102, 200, 1)',
+                'rgba(255, 159, 110, 1)',
+                'rgba(199, 200, 200, 1)',
+                'rgba(83, 102, 122, 1)',
+                'rgba(255, 206, 132, 1)',
+                'rgba(175, 192, 110, 1)',
+                'rgba(53, 102, 90, 1)',
+                'rgba(255, 99, 190, 1)',
+                'rgba(54, 162, 102, 1)',
+                'rgba(255, 206, 90, 1)',
+                'rgba(75, 192, 132, 1)',
+                'rgba(153, 102, 122, 1)',
+                'rgba(255, 159, 192, 1)',
+                'rgba(199, 199, 130, 1)',
+                'rgba(83, 102, 140, 1)',
             ];
 
             if (roleId == 2) { // Admin
@@ -571,6 +611,9 @@
         });
 
         function updateOrders() {
+            $('#updateSuccessMessage').hide();
+            $('#updateErrorMessage').hide();
+
             var orderUpdates = [];
 
             $('#ordersTable tbody tr').each(function () {
@@ -579,13 +622,24 @@
                 var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
                 var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
 
-                orderUpdates.push({
-                    OrderID: orderId,
-                    SaleStaffID: saleStaffId,
-                    DeliveryStaffID: deliveryStaffId,
-                    Status: status
-                });
+                // Check if the value has changed
+                if (saleStaffId !== $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').data('original') ||
+                    deliveryStaffId !== $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').data('original') ||
+                    status !== $(this).find('select[name^="orderUpdates"][name$=".Status"]').data('original')) {
+
+                    orderUpdates.push({
+                        OrderID: orderId,
+                        SaleStaffID: saleStaffId,
+                        DeliveryStaffID: deliveryStaffId,
+                        Status: status
+                    });
+                }
             });
+
+            if (orderUpdates.length === 0) {
+                $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
+                return;
+            }
 
             $.ajax({
                 type: 'POST',
@@ -594,16 +648,15 @@
                 data: JSON.stringify(orderUpdates),
                 success: function (response) {
                     if (response.success) {
-                        $('#updateSuccessMessage').text(response.message).show().delay(3000).fadeOut();
-                        $('#updateErrorMessage').hide();
+                        $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function() {
+                            window.location.reload();
+                        });
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
-                        $('#updateSuccessMessage').hide();
+                        $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#updateErrorMessage').text("Update failed: " + xhr.responseText).show().delay(3000).fadeOut();
-                    $('#updateSuccessMessage').hide();
+                    $('#updateErrorMessage').text("Update failed: " + xhr.responseText).show().delay(2000).fadeOut();
                 }
             });
         }
@@ -614,39 +667,6 @@
                 $('#updateSuccessMessage').text(updateMessage).show().delay(3000).fadeOut();
             }
         });
-
-        function updateUsers() {
-            var userUpdates = [];
-            $('#usersTable tbody tr').each(function () {
-                var userID = $(this).find('td').eq(0).text();
-                var status = $(this).find('select').val() === "true";
-
-                userUpdates.push({
-                    UserID: userID,
-                    Status: status
-                });
-            });
-
-            $.ajax({
-                url: '@Url.Action("UpdateUsers", "Manager")',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(userUpdates),
-                success: function (response) {
-                    if (response.success) {
-                        $('#updateSuccessMessage').text(response.message).show();
-                        $('#updateErrorMessage').hide();
-                    } else {
-                        $('#updateErrorMessage').text(response.message).show();
-                        $('#updateSuccessMessage').hide();
-                    }
-                },
-                error: function (response) {
-                    $('#updateErrorMessage').text("An error occurred while updating users.").show();
-                    $('#updateSuccessMessage').hide();
-                }
-            });
-        }
 
         function toggleStatus(userId, currentStatus) {
             var newStatus = !currentStatus;

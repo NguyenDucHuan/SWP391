@@ -15,7 +15,7 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult Index()
         {
-            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -47,15 +47,32 @@ namespace ProjectDiamondShop.Controllers
 
         private List<RegistrationData> GetRegistrationData()
         {
-            return db.tblUsers
+            var rawData = db.tblUsers
                 .Where(u => u.roleID == 1)
-                .GroupBy(u => u.createDate)
-                .Select(g => new RegistrationData
+                .GroupBy(u => new { u.createDate.Year, u.createDate.Month, u.createDate.Day })
+                .Select(g => new
                 {
-                    Date = g.Key.ToString("yyyy-MM-dd"),
-                    Registrations = g.Count()
-                }).OrderBy(r => r.Date).ToList();
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    Day = g.Key.Day,
+                    Count = g.Count()
+                })
+                .OrderBy(r => r.Year)
+                .ThenBy(r => r.Month)
+                .ThenBy(r => r.Day)
+                .ToList();
+
+            var registrationData = rawData.Select(x => new RegistrationData
+            {
+                Date = $"{x.Year}-{x.Month.ToString().PadLeft(2, '0')}-{x.Day.ToString().PadLeft(2, '0')}",
+                Registrations = x.Count
+            }).ToList();
+
+            return registrationData;
         }
+
+
+
 
         private List<tblOrder> GetOrders()
         {
@@ -102,7 +119,6 @@ namespace ProjectDiamondShop.Controllers
 
             return data;
         }
-
 
         [HttpPost]
         public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
@@ -249,7 +265,7 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-            string hashedUserName = HashUserName(userName);
+            string hashedUserName = HashString(userName);
             if (db.tblUsers.Any(u => u.userName == hashedUserName))
             {
                 ModelState.AddModelError("DuplicateUserName", "User name already exists.");
@@ -281,7 +297,7 @@ namespace ProjectDiamondShop.Controllers
                 return View();
             }
 
-            string hashedPassword = HashPassword(password);
+            string hashedPassword = HashString(password);
             string userId = GenerateRandomUserId();
 
             var newUser = new tblUser
@@ -302,21 +318,17 @@ namespace ProjectDiamondShop.Controllers
             return RedirectToAction("Index", "Manager");
         }
 
-        private string HashPassword(string password)
+        private string HashString(string str)
         {
-            using (var sha256 = new SHA256Managed())
+            using (SHA256 sha256 = SHA256.Create())
             {
-                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(hash);
-            }
-        }
-
-        private string HashUserName(string userName)
-        {
-            using (var sha256 = new SHA256Managed())
-            {
-                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(userName));
-                return Convert.ToBase64String(hash);
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString().Substring(0, 32);
             }
         }
 
