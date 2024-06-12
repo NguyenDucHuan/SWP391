@@ -92,53 +92,6 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
-
-
-        public ActionResult ViewOrders()
-        {
-            var userID = GetUserID();
-            if (string.IsNullOrEmpty(userID))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-
-            var currentOrders = orderServices.GetOrdersByPaymentStatus(userID, "Pending");
-            var historyOrders = orderServices.GetOrdersByPaymentStatus(userID, "Paid");
-
-            var model = new ViewOrderViewModel
-            {
-                CurrentOrders = currentOrders.Select(o => new ProjectDiamondShop.Models.Order
-                {
-                    OrderID = o.orderID,
-                    CustomerID = o.customerID,
-                    DeliveryStaffID = o.deliveryStaffID,
-                    SaleStaffID = o.saleStaffID,
-                    TotalMoney = o.totalMoney,
-                    Status = o.status,
-                    Address = o.address,
-                    Phone = o.phone,
-                    SaleDate = o.saleDate
-                }).ToList(),
-                HistoryOrders = historyOrders.Select(o => new ProjectDiamondShop.Models.Order
-                {
-                    OrderID = o.orderID,
-                    CustomerID = o.customerID,
-                    DeliveryStaffID = o.deliveryStaffID,
-                    SaleStaffID = o.saleStaffID,
-                    TotalMoney = o.totalMoney,
-                    Status = o.status,
-                    Address = o.address,
-                    Phone = o.phone,
-                    SaleDate = o.saleDate
-                }).ToList(),
-                RoleID = Convert.ToInt32(Session["RoleID"])
-            };
-
-            return View("ViewOrder", model);
-        }
-
-
-
         //public ActionResult UpdateOrderDetails(string orderId)
         //{
         //    if (string.IsNullOrEmpty(orderId))

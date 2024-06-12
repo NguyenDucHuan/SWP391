@@ -120,14 +120,5 @@ namespace DiamondShopDAOs
             var deliveryStaff = _context.tblUsers.FirstOrDefault(u => u.roleID == 4);
             return deliveryStaff?.userID;
         }
-
-        public List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus)
-        {
-            return _context.tblOrders
-                           .Where(o => o.customerID == userID && o.paymentStatus == paymentStatus)
-                           .ToList();
-        }
-
-
     }
 }

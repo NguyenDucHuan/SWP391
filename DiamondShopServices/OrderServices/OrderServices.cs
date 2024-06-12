@@ -44,11 +44,6 @@ namespace DiamondShopServices.OrderServices
             return orderRepository.GetOrderStatusUpdates(orderId);
         }
 
-        public List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus)
-        {
-            return orderRepository.GetOrdersByPaymentStatus(userID, paymentStatus);
-        }
-
 
         public string GetDeliveryStaffID()
         {

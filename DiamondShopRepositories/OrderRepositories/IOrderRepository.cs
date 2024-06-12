@@ -11,7 +11,6 @@ namespace DiamondShopRepositories.OrderRepositories
         List<tblOrderItem> GetOrderItems(string orderId);
         void UpdateOrderStatus(string orderId, string status);
         List<tblOrderStatusUpdate> GetOrderStatusUpdates(string orderId);
-        List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus);
    
         string GetDeliveryStaffID();
     }
