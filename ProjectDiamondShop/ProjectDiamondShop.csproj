@@ -388,7 +388,6 @@
     <Compile Include="Models\OrderUpdateModel.cs" />
     <Compile Include="Models\Payment\PaypalConfiguration.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewOrderViewModel.cs" />
     <Compile Include="Models\Voucher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CartHelper.cs" />

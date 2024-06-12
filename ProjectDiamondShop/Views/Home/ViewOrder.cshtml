@@ -1,4 +1,4 @@
-﻿@model ProjectDiamondShop.Models.ViewOrderViewModel
+﻿﻿@model DiamondShopBOs.OrderViewModel
 
 @{
     ViewBag.Title = "View Orders";
@@ -94,20 +94,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in Model.CurrentOrders)
+                        @foreach (var order in Model.currentOrders)
                         {
-                            if (order.Status == "Pending")
+                            if (order.status.Contains("Order Place"))
                             {
-                            <tr>
-                                <td>@order.OrderID</td>
-                                <td>@order.CustomerID</td>
-                                <td>@order.DeliveryStaffID</td>
-                                <td>@order.TotalMoney</td>
-                                <td>@order.Status</td>
-                                <td>
-                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@order.orderID</td>
+                                    <td>@order.deliveryStaffID</td>
+                                    <td>@order.totalMoney</td>
+                                    <td>@order.status</td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
+                                    </td>
+                                </tr>
                             }
                         }
                     </tbody>
@@ -131,16 +130,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in Model.HistoryOrders)
+                        @foreach (var order in Model.historyOrder)
                         {
                             <tr>
-                                <td>@order.OrderID</td>
-                                <td>@order.CustomerID</td>
-                                <td>@order.DeliveryStaffID</td>
-                                <td>@order.TotalMoney</td>
-                                <td>@order.Status</td>
+                                <td>@order.orderID</td>
+                                <td>@order.customerID</td>
+                                <td>@order.deliveryStaffID</td>
+                                <td>@order.totalMoney</td>
+                                <td>@order.status</td>
                                 <td>
-                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.OrderID })" class="btn btn-info">View Order</a>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
                                 </td>
                             </tr>
                         }
