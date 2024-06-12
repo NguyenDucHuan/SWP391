@@ -1,0 +1,120 @@
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.xml
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.dll
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.xml
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+D:\TERM5\SWP391\d\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb

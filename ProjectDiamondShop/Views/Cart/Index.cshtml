@@ -1,0 +1,145 @@
+﻿@model DiamondShopDAOs.CookieCartDAO.CartDao
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    h2 {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .button-group {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .button-group form {
+            margin: 0 10px;
+        }
+
+    .proImg {
+        max-height: 50px;
+    } 
+</style>
+
+<h2>Your Cart</h2>
+
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Item Information</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                if (item.settingID == 0)
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.DiamondName</td>
+                        <td>
+                            <strong>Total Price:</strong> @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px"/>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.decription</td>
+                        <td>
+                            <strong>Diamond Name:</strong> @item.DiamondName <br />
+                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:110px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Item Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
+                    </tr>
+                    <tr>
+                        <td>Accent Stone Details:</td>
+                        <td>
+                            Accent Stone ID: @item.accentStoneID <br />
+                            Quantity: @item.quantityAccent <br />
+                            Price: @item.accentStonePrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Diamond Details:</td>
+                        <td>
+                            Name: @item.DiamondName <br />
+                            Price: @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px" />
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2">
+                        @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
+                        {
+                            @Html.Hidden("diamondID", item.diamondID)
+                            <input type="submit" value="Remove" class="btn btn-danger" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="button-group">
+        @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
+        {
+            <input type="submit" value="Clear Cart" class="btn btn-warning" />
+        }
+        @using (Html.BeginForm("CreateOrder", "Order", FormMethod.Post))
+        {
+            <input type="submit" value="Check Out" class="btn btn-primary" />
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="emptyCartModal" tabindex="-1" role="dialog" aria-labelledby="emptyCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emptyCartModalLabel">Cart is Empty</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your cart is empty. Please add items to your cart.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="emptyCartOkButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var itemCount = @Model.Items?.Count ?? 0;
+            if (itemCount === 0) {
+                $('#emptyCartModal').modal('show');
+            }
+
+            $('#emptyCartOkButton').click(function () {
+                window.location.href = '@Url.Action("Index", "Diamonds")';
+            });
+        });
+    </script>
+}

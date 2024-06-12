@@ -1,22 +1,8 @@
-﻿
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>The Diamond Shop</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link href="Content/Custome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+﻿@{
+    ViewBag.Title = "Diamond Shop";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
     <style>
-        .container {
-            width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -28,151 +14,13 @@
                 margin-top: 10px;
             }
 
-        .col-md-4 {
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        h3 {
-            margin-top: 0;
-            color: black;
-            font-size: 18px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        .dropdown-menu {
-            width: 400px;
-        }
-
-            .dropdown-menu li a {
-                font-size: 12px;
-            }
-
-            .dropdown-menu h3,
-            .dropdown-menu .col-md-3,
-            .dropdown-menu .divider {
-                margin-bottom: 2px;
-            }
-
-            .dropdown-menu h3 {
-                font-size: 14px;
-            }
-
-            .dropdown-menu .col-md-3 {
-                border-right: 1px solid #ddd;
-                padding-right: 20px;
-            }
-
-                .dropdown-menu .col-md-3:last-child {
-                    border-right: none;
-                }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .navbar-brand span:first-child {
-                margin-right: 10px;
-            }
-
-        .slide-content {
-            position: relative;
-            text-align: center;
-        }
-
-            .slide-content p {
-                position: absolute;
-                top: 75%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-
-        .col-md-3 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .diamond-search-icons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-            .diamond-search-icons figure {
-                margin: 0;
-            }
-
-                .diamond-search-icons figure img {
-                    width: 50px;
-                    height: 50px;
-                }
-
-            .diamond-search-icons figcaption {
-                font-size: 11px;
-                margin-top: 5px;
-            }
-
-        .search-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            color: azure;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-            .search-button:hover {
-                background-color: #0056b3;
-            }
-
-        .slide-wrapper {
-            position: relative;
-        }
-
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0;
-        }
-
-            .carousel-control .glyphicon {
-                color: crimson;
-            }
-
-        .left.carousel-control {
-            left: 10px;
-        }
-
-        .right.carousel-control {
-            right: 10px;
-        }
 
         .decription {
             text-align: justify;
         }
 
         .spacer {
-            height: 50px; /* Điều chỉnh chiều cao theo nhu cầu */
+            height: 5px;
         }
 
         .content.decription p {
@@ -185,49 +33,8 @@
             margin-left: 20px;
         }
     </style>
-</head>
-
-<body>
     <form id="form1" runat="server">
         <div>
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container ">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-
-                        </button>
-
-                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                            <span>
-                                <img src="~/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                            </span>
-                            <span>The Diamond Shop</span>
-                        </a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                            <li class="active"><a href="@Url.Action("About", "Home")">About</a> </li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
-                            <li><a href="@Url.Action("Index", "Diamonds")">Shop</a> </li>
-                            <li><a href="#">Blog</a> </li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="spacer"></div>
             <h2 class="text-center">About</h2>
 
@@ -288,18 +95,4 @@
                     </p>
                 </div>
             </div>
-            <footer>
-                <hr />
-                <div class="container text-center">
-                    <p><a href="#">Back To Top</a></p>
-                    <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                    <p>
-                        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
-                    </p>
-
-                </div>
-            </footer>
     </form>
-</body>
-</html>
-

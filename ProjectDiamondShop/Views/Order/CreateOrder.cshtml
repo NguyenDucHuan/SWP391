@@ -1,0 +1,128 @@
+﻿@model DiamondShopDAOs.CookieCartDAO.CartDao
+
+@{
+    ViewBag.Title = "Create Order";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    h2 {
+        margin-top: 50px;
+        text-align: center;
+    }
+</style>
+
+<h2 style="text-align:center;">Create Order</h2>
+
+<div class="container" style="max-width: 500px; margin: 0 auto; border: 1px solid black; padding: 20px;">
+    <div id="noteSection" style="display: none;" class="alert alert-info" role="alert" style="text-align: center;">
+        <strong>Please note:</strong> You will need to pay a 20% deposit before placing your order. Deposit amount: <span id="depositAmount"></span>
+    </div>
+
+    <table class="table table-bordered">
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                if (item.settingID == null)
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.DiamondName</td>
+                        <td>
+                            <strong>Total Price:</strong> @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:30px;" />
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    string[] imagepart = item.imagePath.Split('|');
+                    <tr>
+                        <td>@item.decription</td>
+                        <td>
+                            <strong>Diamond Name:</strong> @item.DiamondName <br />
+                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:40px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Item Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
+                    </tr>
+                    <tr>
+                        <td>Accent Stone Details:</td>
+                        <td>
+                            Accent Stone ID: @item.accentStoneID <br />
+                            Quantity: @item.quantityAccent <br />
+                            Price: @item.accentStonePrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Diamond Details:</td>
+                        <td>
+                            Name: @item.DiamondName <br />
+                            Price: @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:40px;" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label for="Address">Address:</label>
+        <input type="text" id="Address" name="address" class="form-control" placeholder="Enter Address" required />
+        <div id="addressError" style="color: red; display: none;">Please enter your address.</div>
+    </div>
+    <div class="form-group">
+        <label for="Phone">Phone:</label>
+        <input type="text" id="Phone" name="phone" class="form-control" placeholder="Enter Phone" required />
+        <div id="phoneError" style="color: red; display: none;">Please enter your phone number.</div>
+    </div>
+    <div class="form-group">
+        <label for="Total">Total:</label>
+        <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)))" disabled />
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
+
+    <form id="paymentForm" action="/order/PaymentWithPayPal" method="post" style="display:none;">
+        <input type="hidden" id="hiddenAddress" name="address" />
+        <input type="hidden" id="hiddenPhone" name="phone" />
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var address = document.getElementById("Address").value;
+        var phone = document.getElementById("Phone").value;
+
+        // Kiểm tra xem address và phone có được điền đầy đủ hay không
+        if (address.trim() === "") {
+            document.getElementById("addressError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("addressError").style.display = "none";
+        }
+
+        if (phone.trim() === "") {
+            document.getElementById("phoneError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("phoneError").style.display = "none";
+        }
+
+        var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", ""));
+        var depositAmount = totalPrice * 0.2; // Tính toán số tiền cần đặt cọc (20%)
+        document.getElementById("depositAmount").innerText = "$" + depositAmount.toFixed(2);
+
+        // Hiển thị phần note khi nhấp vào nút "Create Order"
+        document.getElementById("noteSection").style.display = "block";
+
+        // Set hidden form fields
+        document.getElementById("hiddenAddress").value = address;
+        document.getElementById("hiddenPhone").value = phone;
+
+        // Submit the hidden form
+        document.getElementById("paymentForm").submit();
+        return false;
+    }
+</script>

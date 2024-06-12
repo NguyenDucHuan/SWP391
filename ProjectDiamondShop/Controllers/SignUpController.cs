@@ -1,4 +1,6 @@
-﻿using ProjectDiamondShop.Models;
+﻿using DiamondShopBOs;
+using DiamondShopServices.UserService;
+using ProjectDiamondShop.Models;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -12,8 +14,11 @@ namespace ProjectDiamondShop.Controllers
 {
     public class SignUpController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private readonly IUserService userService;
+        public SignUpController()
+        {
+            userService = new UserService();
+        }
         // GET: Sign Up
         public ActionResult Index()
         {
@@ -29,9 +34,7 @@ namespace ProjectDiamondShop.Controllers
             string confirmPassword = Request.Form["txtCPass"];
             string fullName = Request.Form["txtName"];
             string email = Request.Form["txtEmail"];
-
             bool hasErrors = false;
-
             // Validate inputs
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
             {
@@ -72,34 +75,18 @@ namespace ProjectDiamondShop.Controllers
             }
 
             // Check if user name already exists
-            string hashedUserName = HashUserName(userName);
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string hashedUserName = HashString(userName);
+            if (userService.CheckDuplicateUserName(hashedUserName))
             {
-                conn.Open();
-                SqlCommand checkUserName = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE userName = @UserName", conn);
-                checkUserName.Parameters.AddWithValue("@UserName", hashedUserName);
-                int userNameExists = (int)checkUserName.ExecuteScalar();
-
-                if (userNameExists > 0)
-                {
-                    ModelState.AddModelError("DuplicateUserName", "User name already exists.");
-                    hasErrors = true;
-                }
+                ModelState.AddModelError("DuplicateUserName", "User name already exists.");
+                hasErrors = true;
             }
 
             // Check if email already exists
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (userService.CheckDuplicateEmail(email))
             {
-                conn.Open();
-                SqlCommand checkUser = new SqlCommand("SELECT COUNT(*) FROM tblUsers WHERE email = @Email", conn);
-                checkUser.Parameters.AddWithValue("@Email", email);
-                int emailExists = (int)checkUser.ExecuteScalar();
-
-                if (emailExists > 0)
-                {
-                    ModelState.AddModelError("DuplicateEmail", "Email already exists.");
-                    hasErrors = true;
-                }
+                ModelState.AddModelError("DuplicateEmail", "Email already exists.");
+                hasErrors = true;
             }
 
             // If any validation failed, return to the sign-up page with errors
@@ -133,52 +120,31 @@ namespace ProjectDiamondShop.Controllers
             }
 
             // Hash password
-            string hashedPassword = HashPassword(password);
-
+            string hashedPassword = HashString(password);
             // Create random userID
-            string userId = GenerateRandomUserId();
+            string userId = GenerateNextUserId();
 
             // Create new user
-            User newUser = new User
+            tblUser newUser = new tblUser
             {
-                UserID = userId,
-                UserName = hashedUserName,
-                FullName = fullName,
-                Email = email,
-                Password = hashedPassword,
-                RoleID = 1,
-                Status = true
+                userID = userId,
+                userName = hashedUserName,
+                fullName = fullName,
+                email = email,
+                password = hashedPassword,
+                roleID = 1,
+                status = true,
+                resetCode = ""
             };
 
             // Add user to database
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand insertUser = new SqlCommand("INSERT INTO tblUsers (userID, userName, fullName, email, password, roleID, status, bonusPoint) VALUES (@UserID, @UserName, @FullName, @Email, @Password, @RoleID, @Status, @BonusPoint)", conn);
-                    insertUser.Parameters.AddWithValue("@UserID", newUser.UserID);
-                    insertUser.Parameters.AddWithValue("@UserName", newUser.UserName);
-                    insertUser.Parameters.AddWithValue("@FullName", newUser.FullName);
-                    insertUser.Parameters.AddWithValue("@Email", newUser.Email);
-                    insertUser.Parameters.AddWithValue("@Password", newUser.Password);
-                    insertUser.Parameters.AddWithValue("@RoleID", newUser.RoleID);
-                    insertUser.Parameters.AddWithValue("@Status", newUser.Status);
-                    insertUser.Parameters.AddWithValue("@BonusPoint", newUser.BonusPoint.HasValue ? (object)newUser.BonusPoint.Value : DBNull.Value);
-
-                    insertUser.ExecuteNonQuery();
-                }
+                userService.AddUser(newUser);
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                if (ex.Number == 2627 || ex.Number == 2601)
-                {
-                    ModelState.AddModelError("", "User ID or Email already exists.");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "An error occurred while creating the account. Please try again.");
-                }
+                ModelState.AddModelError("", ex.ToString());
                 return View("SignUpPage");
             }
 
@@ -186,11 +152,12 @@ namespace ProjectDiamondShop.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        private string HashPassword(string password)
+
+        private string HashString(string str)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
                 StringBuilder builder = new StringBuilder();
                 foreach (byte b in bytes)
                 {
@@ -200,26 +167,22 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
-        private string HashUserName(string userName)
+        public string GenerateNextUserId()
         {
-            using (SHA256 sha256 = SHA256.Create())
+            string currentId = userService.GetTheLastestUserID();
+            if (string.IsNullOrEmpty(currentId))
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(userName));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString().Substring(0, 32);
+                return "ID0000001";
             }
-        }
 
-        private string GenerateRandomUserId()
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, 6)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            string numericPart = currentId.Substring(2);
+            if (!int.TryParse(numericPart, out int numericValue))
+            {
+                throw new ArgumentException("Invalid numeric part in ID");
+            }
+            numericValue++;
+            string newNumericPart = numericValue.ToString().PadLeft(numericPart.Length, '0');
+            return "ID" + newNumericPart;
         }
     }
 }

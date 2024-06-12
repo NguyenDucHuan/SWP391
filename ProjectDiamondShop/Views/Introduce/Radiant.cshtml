@@ -50,31 +50,31 @@
         }
 
         .dropdown-menu {
-            width: 400px;
+            max-width: 10px;
         }
 
             .dropdown-menu li a {
                 font-size: 12px;
             }
 
-            .dropdown-menu h3,
-            .dropdown-menu .col-md-3,
-            .dropdown-menu .divider {
-                margin-bottom: 2px;
-            }
-
             .dropdown-menu h3 {
                 font-size: 14px;
+                margin-bottom: 2px;
             }
 
             .dropdown-menu .col-md-3 {
                 border-right: 1px solid #ddd;
-                padding-right: 20px;
+                padding-right: 10px;
             }
 
                 .dropdown-menu .col-md-3:last-child {
                     border-right: none;
                 }
+
+            .dropdown-menu .divider {
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
 
         .navbar-brand {
             display: flex;
@@ -187,6 +187,14 @@
         .container center img {
             text-align: justify;
         }
+
+        .navbar-nav > li > .dropdown-menu {
+            display: none;
+        }
+
+        .navbar-nav > li:hover > .dropdown-menu {
+            display: block;
+        }
     </style>
 </head>
 
@@ -213,19 +221,36 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                            <li><a href="@Url.Action("About", "Home")">About</a> </li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
-                            <li><a href="#">Blog</a> </li>
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="#">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a> </li>
-                                    <li><a href="#">Login</a> </li>
-                                }
+                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><a href="@Url.Action("About", "Home")">About</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
+                            <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
+                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                            {
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                        <li><a href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                        <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
                             }
                         </ul>
                     </div>

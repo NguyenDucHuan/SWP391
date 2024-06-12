@@ -482,54 +482,13 @@ D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
-D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
 D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
@@ -638,3 +597,1357 @@ C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectD
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
 C:\Users\huyh6\OneDrive\Desktop\Thu nghiem\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShop\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\ThuNghiem2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+D:\TERM5\SWP391\DiamondShopGit\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone1\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\SWP\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopServices.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopServices.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+D:\TERM5\SWP391\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\huyh6\OneDrive\Desktop\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopServices.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\EntityFramework.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\PayPal.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopServices.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\EntityFramework.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\PayPal.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+D:\TERM5\SWP391\d\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\nguye\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\thinh\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone2\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\nguye\Desktop\Clone new\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\nguye\Desktop\Clone4\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\ProjectDiamondShop.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csc.exe.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csc.rsp
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csi.exe.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\csi.rsp
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.AppContext.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Console.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Http.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Net.Sockets.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.ValueTuple.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\vbc.exe.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\vbc.rsp
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\PayPal.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Http.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Razor.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\PayPal.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Razor.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Deployment.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Webpages.Razor.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Helpers.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Mvc.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\Newtonsoft.Json.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Net.Http.Formatting.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Http.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\System.Web.Http.WebHost.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\bin\DiamondShopRepositories.pdb
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
+C:\Users\tnqt3\Desktop\CodeThinh - Copy\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb

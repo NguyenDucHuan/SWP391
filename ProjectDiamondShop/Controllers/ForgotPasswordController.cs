@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiamondShopServices.UserService;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Net;
@@ -12,12 +13,16 @@ namespace ProjectDiamondShop.Controllers
     public class ForgotPasswordController : Controller
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
+        private readonly IUserService userService = null;
+        public ForgotPasswordController()
+        {
+            userService = new UserService();
+        }
         [HttpGet]
         [Route("ForgotPassword")]
         public ActionResult Index()
         {
-            return View();
+            return View("ForgotPassword");
         }
 
         [HttpPost]
@@ -25,33 +30,20 @@ namespace ProjectDiamondShop.Controllers
         [Route("ForgotPassword/SendResetCode")]
         public ActionResult SendResetCode(string email)
         {
-            // Generate reset code
-            string resetCode = GenerateResetCode();
-
-            // Save reset code in the database
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE tblUsers SET resetCode = @ResetCode WHERE email = @Email", conn);
-                cmd.Parameters.AddWithValue("@ResetCode", resetCode);
-                cmd.Parameters.AddWithValue("@Email", email);
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    // Send reset code email
-                    SendResetEmail(email, resetCode);
-                    TempData["Email"] = email;
-                    TempData["Message"] = "A password reset code has been sent to your email.";
-                    return RedirectToAction("EnterResetCode");
-                }
-                else
-                {
-                    ViewBag.Message = "Email not found.";
-                }
+                string resetCode = userService.GenerateResetCode(email);
+                SendResetEmail(email, resetCode);
+                TempData["Email"] = email;
+                TempData["Message"] = "A password reset code has been sent to your email.";
+                return RedirectToAction("EnterResetCode");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
             }
 
-            return View("Index");
+            return View("ForgotPassword");
         }
 
         [HttpGet]
@@ -62,47 +54,35 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.Message = TempData["Message"];
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("ForgotPassword/EnterResetCode")]
         public ActionResult EnterResetCode(string email, string resetCode)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (resetCode.Contains(userService.GetResetCodeByEmail(email)))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT userID FROM tblUsers WHERE email = @Email AND resetCode = @ResetCode", conn);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@ResetCode", resetCode);
-                string userId = cmd.ExecuteScalar() as string;
-
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    TempData["ResetCode"] = resetCode;
-                    return RedirectToAction("ResetPassword", new { code = resetCode });
-                }
-                else
-                {
-                    ViewBag.Message = "Invalid reset code.";
-                }
+                TempData["ResetCode"] = resetCode;
+                return RedirectToAction("ResetPassword", new { code = resetCode, email = email });
             }
-
+            else
+            {
+                ViewBag.Message = "Invalid reset code.";
+            }
             ViewBag.Email = email;
             return View();
         }
-
         [HttpGet]
         [Route("ForgotPassword/ResetPassword")]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword(string code, string email)
         {
+            ViewBag.Email = email;
             ViewBag.ResetCode = code;
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("ForgotPassword/ResetPassword")]
-        public ActionResult ResetPassword(string code, string newPassword, string confirmPassword)
+        public ActionResult ResetPassword(string code, String email, string newPassword, string confirmPassword)
         {
             if (newPassword != confirmPassword)
             {
@@ -111,38 +91,19 @@ namespace ProjectDiamondShop.Controllers
                 return View();
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT userID FROM tblUsers WHERE resetCode = @ResetCode", conn);
-                cmd.Parameters.AddWithValue("@ResetCode", code);
-                string userId = cmd.ExecuteScalar() as string;
-
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    // Hash new password
-                    string hashedPassword = HashPassword(newPassword);
-
-                    // Update password in the database
-                    cmd = new SqlCommand("UPDATE tblUsers SET password = @Password, resetCode = NULL WHERE userID = @UserID", conn);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                    cmd.Parameters.AddWithValue("@UserID", userId);
-                    cmd.ExecuteNonQuery();
-
-                    // Redirect to login page after successful password reset
-                    TempData["Message"] = "Password has been reset successfully. You can now log in with your new password.";
-                    return RedirectToAction("Index", "Login");
-                }
-                else
-                {
-                    ViewBag.Message = "Invalid reset code.";
-                }
+                userService.ResetPassword(HashPassword(newPassword), email, code);
+                TempData["Message"] = "Password has been reset successfully. You can now log in with your new password.";
+                return RedirectToAction("Index", "Login");
             }
-
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+            }
             ViewBag.ResetCode = code;
             return View();
         }
-
         private void SendResetEmail(string email, string resetCode)
         {
             var message = new MailMessage();
@@ -166,17 +127,6 @@ namespace ProjectDiamondShop.Controllers
                 smtp.Send(message);
             }
         }
-
-        private string GenerateResetCode()
-        {
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                byte[] data = new byte[6];
-                rng.GetBytes(data);
-                return Convert.ToBase64String(data).Substring(0, 6).Replace("/", "").Replace("+", "");
-            }
-        }
-
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

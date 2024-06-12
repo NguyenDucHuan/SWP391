@@ -1,8 +1,6 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +26,7 @@
         }
 
         .dropdown-menu {
-            width: 400px;
+            max-width: 10px;
         }
 
             .dropdown-menu li a {
@@ -42,7 +40,7 @@
 
             .dropdown-menu .col-md-3 {
                 border-right: 1px solid #ddd;
-                padding-right: 20px;
+                padding-right: 10px;
             }
 
                 .dropdown-menu .col-md-3:last-child {
@@ -60,64 +58,91 @@
             justify-content: center;
         }
 
+        .footer-pos {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
             .navbar-brand span:first-child {
                 margin-right: 10px;
             }
+
+        .navbar-nav > li > .dropdown-menu {
+            display: none;
+        }
+
+        .navbar-nav > li:hover > .dropdown-menu {
+            display: block;
+        }
     </style>
 </head>
 <body>
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container ">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
+                    <span>
+                        <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
+                    </span>
+                    <span>The Diamond Shop</span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
+                    <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
+                    @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                    {
 
-                    </button>
-
-                    <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                        <span>
-                            <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                        </span>
-                        <span>The Diamond Shop</span>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="@Url.Action("Index", "Home")">Home</a> </li>
-                        <li><a href="@Url.Action("About", "Home")">About</a> </li>
-                        <li><a href="@Url.Action("Contact", "Home")">Contact US</a> </li>
-                        <li><a href="@Url.Action("Index", "Diamonds")">Shop</a> </li>
-                        <li><a href="#">Blog</a> </li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-                            <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                            <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                        }
-
-                    </ul>
-                </div>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                <li><a href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
+                        <li><a href="@Url.Action("Index", "Login")">Login</a></li>
+                    }
+                </ul>
             </div>
         </div>
-        <hr />
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="container text-center">
-                <p><a href="#">Back To Top</a></p>
-                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                <p>
-                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
-                </p>
-            </div>
-        </footer>
+    </div>
+    <hr />
+    @RenderBody()
+    <hr />
+    <footer>
+        <div class="container text-center">
+            <p><a href="#">Back To Top</a></p>
+            <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+            </p>
+        </div>
+    </footer>
     <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -137,17 +162,18 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var successMessage = '@ViewBag.SuccessMessage';
             var userName = '@ViewBag.UserName';
             if (successMessage) {
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
-                $('#modalOkButton').click(function() {
+                $('#modalOkButton').click(function () {
                     window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
         });
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

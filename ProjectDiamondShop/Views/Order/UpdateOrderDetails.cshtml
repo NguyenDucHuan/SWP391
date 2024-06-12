@@ -1,0 +1,327 @@
+﻿@{
+    var order = ViewBag.Order as DiamondShopBOs.tblOrder;
+    var orderItems = ViewBag.Items as List<DiamondShopBOs.tblOrderItem>;
+    var statusUpdates = ViewBag.StatusUpdates as List<DiamondShopBOs.tblOrderStatusUpdate>;
+    int roleId = (int)Session["RoleID"];
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Order Details and Update Status</title>
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .box {
+            border: 1px solid black;
+            margin: 10px;
+            padding: 20px;
+            width: 80%;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .status-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+            .status-progress div {
+                text-align: center;
+                position: relative;
+            }
+
+                .status-progress div span {
+                    display: block;
+                }
+
+            .status-progress .circle {
+                width: 30px;
+                height: 30px;
+                background-color: lightgray;
+                border-radius: 50%;
+                margin: auto;
+            }
+
+            .status-progress .completed {
+                background-color: green;
+            }
+
+            .status-progress .line {
+                flex-grow: 1;
+                height: 5px;
+                background-color: lightgray;
+                margin: 0 10px;
+            }
+
+            .status-progress .completed-line {
+                background-color: green;
+            }
+
+        .timeline {
+            list-style-type: none;
+            position: relative;
+        }
+
+            .timeline:before {
+                content: '';
+                background: #d4d9df;
+                display: inline-block;
+                position: absolute;
+                left: 29px;
+                width: 2px;
+                height: 100%;
+                z-index: 400;
+            }
+
+            .timeline > li {
+                margin: 20px 0;
+                padding-left: 40px;
+            }
+
+                .timeline > li:before {
+                    content: '';
+                    background: white;
+                    border: 3px solid #22c0e8;
+                    display: inline-block;
+                    position: absolute;
+                    border-radius: 50%;
+                    left: 20px;
+                    width: 20px;
+                    height: 20px;
+                    z-index: 400;
+                }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .form-group p {
+                margin: 0;
+                padding: 8px;
+                background-color: #f7f7f7;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+        .back-button {
+            margin-left: 10px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-button button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .back-button button:hover {
+                background-color: darkgreen;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        @if (TempData["UpdateMessage"] != null)
+        {
+            <div class="alert alert-info">
+                @TempData["UpdateMessage"]
+            </div>
+        }
+
+        <div class="box">
+            <h2>Update Order Status</h2>
+            <div class="status-progress">
+                <div>
+                    <div class="circle @(order.status == "Order Placed" || order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
+                    <span>Order Placed</span>
+                </div>
+                <div class="line @(order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
+                <div>
+                    <div class="circle @(order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
+                    <span>Preparing Goods</span>
+                </div>
+                <div class="line @(order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
+                <div>
+                    <div class="circle @(order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
+                    <span>Shipped to Carrier</span>
+                </div>
+                <div class="line @(order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
+                <div>
+                    <div class="circle @(order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
+                    <span>In Delivery</span>
+                </div>
+                <div class="line @(order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
+                <div>
+                    <div class="circle @(order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
+                    <span>Delivered</span>
+                </div>
+                <div class="line @(order.status == "Paid" ? "completed-line" : "")"></div>
+                <div>
+                    <div class="circle @(order.status == "Paid" ? "completed" : "")"></div>
+                    <span>Paid</span>
+                </div>
+            </div>
+            @if (roleId == 4 || roleId == 5)
+            {
+                <form action="@Url.Action("UpdateStatus", "Order")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="orderId" value="@order.orderID" />
+                    <div class="form-group">
+                        <label for="status">Update Status</label>
+                        <select class="form-control" id="status" name="status">
+                            @if (roleId == 5)
+                            {
+                                <option value="Order Placed">Order Placed</option>
+                                <option value="Preparing Goods">Preparing Goods</option>
+                                <option value="Shipped to Carrier">Shipped to Carrier</option>
+                                <option value="Paid">Paid</option>
+                            }
+                            else if (roleId == 4)
+                            {
+                                <option value="In Delivery">In Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Status</button>
+                </form>
+            }
+            <div class="back-button">
+                @if (roleId == 1)
+                {
+                    <form action="@Url.Action("ViewOrders", "Home")" method="get">
+                        <button type="submit" class="btn btn-success">Back to Customer</button>
+                    </form>
+                }
+                else if (roleId == 4)
+                {
+                    <form action="@Url.Action("Index", "DeliveryStaff")" method="get">
+                        <button type="submit" class="btn btn-success">Back to Delivery Staff</button>
+                    </form>
+                }
+                else if (roleId == 5)
+                {
+                    <form action="@Url.Action("Index", "SaleStaff")" method="get">
+                        <button type="submit" class="btn btn-success">Back to Sale Staff</button>
+                    </form>
+                }
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <div class="box" style="width: 45%;">
+                <h2>Order Items</h2>
+                @foreach (var item in orderItems)
+                {
+                    <div class="form-group">
+                        <label>Item ID:</label>
+                        <p>@item.ItemID</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Sale Price Item:</label>
+                        <p>@item.salePriceItem</p>
+                    </div>
+                }
+            </div>
+
+            <div class="box" style="width: 45%;">
+                <h2>Order Details</h2>
+                <div class="form-group">
+                    <label for="orderID">Order ID</label>
+                    <p id="orderID">@order.orderID</p>
+                </div>
+                <div class="form-group">
+                    <label for="customerID">Customer ID</label>
+                    <p id="customerID">@order.customerID</p>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryStaffID">Delivery Staff ID</label>
+                    <p id="deliveryStaffID">@order.deliveryStaffID</p>
+                </div>
+                <div class="form-group">
+                    <label for="saleStaffID">Sale Staff ID</label>
+                    <p id="saleStaffID">@order.saleStaffID</p>
+                </div>
+                <div class="form-group">
+                    <label for="totalMoney">Total Money</label>
+                    <p id="totalMoney">@order.totalMoney</p>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <p id="status">@order.status</p>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <p id="address">@order.address</p>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <p id="phone">@order.phone</p>
+                </div>
+                <div class="form-group">
+                    <label for="saleDate">Sale Date</label>
+                    <p id="saleDate">@order.saleDate</p>
+                </div>
+            </div>
+
+            <div class="box" style="width: 45%;">
+                <h2>Date Update Status</h2>
+                <ul class="timeline">
+                    @if (statusUpdates != null)
+                    {
+                        foreach (var update in statusUpdates)
+                        {
+                            <li>
+                                <p><strong>@update.status:</strong> @update.updateTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <p>No updates available</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

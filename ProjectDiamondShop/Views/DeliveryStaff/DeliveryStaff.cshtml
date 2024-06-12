@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Delivery Staff Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+            .header h2 {
+                flex-grow: 1;
+                text-align: center;
+            }
+
+        .logout-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+            .logout-button:hover {
+                background-color: #45a049;
+            }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .search-container input[type="text"] {
+                width: 100%;
+                max-width: 300px;
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .search-container button {
+                padding: 10px 20px;
+                border: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+                .search-container button:hover {
+                    background-color: #45a049;
+                }
+
+        .order-table-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px; /* Set the height to a fixed value */
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Delivery Staff Orders</h2>
+            <form action="@Url.Action("Logout", "Login")" method="post" style="margin: 0;">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+        <div class="search-container">
+            <form action="@Url.Action("Index", "DeliveryStaff")" method="get" class="form-inline justify-content-center">
+                <input type="text" name="searchOrderId" class="form-control mb-2 mr-sm-2" placeholder="Search by Order ID" value="@Request.QueryString["searchOrderId"]" />
+                <button type="submit" class="btn btn-success mb-2">Search</button>
+            </form>
+        </div>
+        <div class="order-table-container">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer ID</th>
+                        <th>Delivery Staff ID</th>
+                        <th>Total Money</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Orders != null)
+                    {
+                        foreach (var order in ViewBag.Orders)
+                        {
+                            <tr>
+                                <td>@order.orderID</td>
+                                <td>@order.customerID</td>
+                                <td>@order.deliveryStaffID</td>
+                                <td>@order.totalMoney</td>
+                                <td>@order.status</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6">No orders found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

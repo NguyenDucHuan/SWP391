@@ -1,0 +1,1413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAccentStones">
+          <Key>
+            <PropertyRef Name="accentStoneID" />
+          </Key>
+          <Property Name="accentStoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shape" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="caratWeight" Type="float" Nullable="false" />
+          <Property Name="clarity" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="512" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCertificate">
+          <Key>
+            <PropertyRef Name="certificateID" />
+          </Key>
+          <Property Name="certificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diamondID" Type="int" Nullable="false" />
+          <Property Name="certificateNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="issueDate" Type="date" Nullable="false" />
+          <Property Name="certifyingAuthority" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="cerImagePath" Type="nvarchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblChat">
+          <Key>
+            <PropertyRef Name="chatID" />
+          </Key>
+          <Property Name="chatID" Type="int" Nullable="false" />
+          <Property Name="chatDetail" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="senderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="receiverID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblComment">
+          <Key>
+            <PropertyRef Name="commentID" />
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="diamondID" />
+          </Key>
+          <Property Name="commentID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="diamondID" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="512" />
+          <Property Name="rating" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDiamonds">
+          <Key>
+            <PropertyRef Name="diamondID" />
+          </Key>
+          <Property Name="diamondID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diamondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="diamondPrice" Type="money" Nullable="false" />
+          <Property Name="diamondDescription" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="caratWeight" Type="float" Nullable="false" />
+          <Property Name="clarityID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="cutID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="colorID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="shapeID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="diamondImagePath" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="status" Type="bit" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="settingID" Type="int" />
+          <Property Name="accentStoneID" Type="int" />
+          <Property Name="quantityAccent" Type="int" />
+          <Property Name="diamondID" Type="int" />
+          <Property Name="diamondPrice" Type="money" Nullable="false" />
+          <Property Name="settingPrice" Type="money" Nullable="false" />
+          <Property Name="accentStonePrice" Type="money" />
+        </EntityType>
+        <EntityType Name="tblNotification">
+          <Key>
+            <PropertyRef Name="notificationID" />
+          </Key>
+          <Property Name="notificationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="50" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="detail" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="customerID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="deliveryStaffID" Type="nvarchar" MaxLength="50" />
+          <Property Name="saleStaffID" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalMoney" Type="float" Nullable="false" />
+          <Property Name="paidAmount" Type="float" Nullable="false" />
+          <Property Name="remainingAmount" Type="float" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="paymentStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="saleDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOrderItem">
+          <Key>
+            <PropertyRef Name="orderID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="orderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="salePriceItem" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOrderStatusUpdates">
+          <Key>
+            <PropertyRef Name="updateID" />
+          </Key>
+          <Property Name="updateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="int" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSettings">
+          <Key>
+            <PropertyRef Name="settingID" />
+          </Key>
+          <Property Name="settingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="settingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="material" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="priceTax" Type="money" Nullable="false" />
+          <Property Name="quantityStones" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="512" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="512" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="nvarchar" MaxLength="50" />
+          <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="transactionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="transactionDate" Type="datetime" Nullable="false" />
+          <Property Name="amount" Type="float" Nullable="false" />
+          <Property Name="paymentMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="roleID" Type="int" Nullable="false" />
+          <Property Name="status" Type="bit" />
+          <Property Name="resetCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="bonusPoint" Type="int" />
+          <Property Name="createDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVoucher">
+          <Key>
+            <PropertyRef Name="voucherID" />
+          </Key>
+          <Property Name="voucherID" Type="int" Nullable="false" />
+          <Property Name="startTime" Type="datetime" Nullable="false" />
+          <Property Name="endTime" Type="datetime" Nullable="false" />
+          <Property Name="discount" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblVoucherCatch">
+          <Key>
+            <PropertyRef Name="voucherID" />
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="voucherID" Type="int" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblWarranty">
+          <Key>
+            <PropertyRef Name="warrantyID" />
+          </Key>
+          <Property Name="warrantyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="warrantyStartDate" Type="datetime" Nullable="false" />
+          <Property Name="warrantyEndDate" Type="datetime" Nullable="false" />
+          <Property Name="warrantyDetails" Type="nvarchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCertificate_tblDiamonds">
+          <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCertificate" Type="Self.tblCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblCertificate">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChat_tblUsers_receiver">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblChat">
+              <PropertyRef Name="receiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChat_tblUsers_sender">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblChat">
+              <PropertyRef Name="senderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComment_tblDiamonds">
+          <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblComment">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComment_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblComment">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItem_tblAccentStones">
+          <End Role="tblAccentStones" Type="Self.tblAccentStones" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAccentStones">
+              <PropertyRef Name="accentStoneID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="accentStoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItem_tblDiamond">
+          <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItem_tblSettings">
+          <End Role="tblSettings" Type="Self.tblSettings" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSettings">
+              <PropertyRef Name="settingID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="settingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNotification_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblNotification" Type="Self.tblNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblNotification">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_1">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_2">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="deliveryStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_3">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="saleStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderItem_tblItem">
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItem">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblOrderItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderItem_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblOrderItem">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderStatusUpdates_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderStatusUpdates" Type="Self.tblOrderStatusUpdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblOrderStatusUpdates">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVoucherCatch_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblVoucherCatch" Type="Self.tblVoucherCatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblVoucherCatch">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVoucherCatch_tblVoucher">
+          <End Role="tblVoucher" Type="Self.tblVoucher" Multiplicity="1" />
+          <End Role="tblVoucherCatch" Type="Self.tblVoucherCatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVoucher">
+              <PropertyRef Name="voucherID" />
+            </Principal>
+            <Dependent Role="tblVoucherCatch">
+              <PropertyRef Name="voucherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWarranty_tblOrderItem">
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWarranty" Type="Self.tblWarranty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrderItem">
+              <PropertyRef Name="orderID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblWarranty">
+              <PropertyRef Name="orderID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiamondShopManagementModelStoreContainer">
+          <EntitySet Name="tblAccentStones" EntityType="Self.tblAccentStones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCertificate" EntityType="Self.tblCertificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblChat" EntityType="Self.tblChat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComment" EntityType="Self.tblComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDiamonds" EntityType="Self.tblDiamonds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblItem" EntityType="Self.tblItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNotification" EntityType="Self.tblNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderItem" EntityType="Self.tblOrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderStatusUpdates" EntityType="Self.tblOrderStatusUpdates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSettings" EntityType="Self.tblSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVoucher" EntityType="Self.tblVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVoucherCatch" EntityType="Self.tblVoucherCatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarranty" EntityType="Self.tblWarranty" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCertificate_tblDiamonds" Association="Self.FK_tblCertificate_tblDiamonds">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblCertificate" EntitySet="tblCertificate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChat_tblUsers_receiver" Association="Self.FK_tblChat_tblUsers_receiver">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblChat" EntitySet="tblChat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChat_tblUsers_sender" Association="Self.FK_tblChat_tblUsers_sender">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblChat" EntitySet="tblChat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComment_tblDiamonds" Association="Self.FK_tblComment_tblDiamonds">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblComment" EntitySet="tblComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComment_tblUsers" Association="Self.FK_tblComment_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblComment" EntitySet="tblComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItem_tblAccentStones" Association="Self.FK_tblItem_tblAccentStones">
+            <End Role="tblAccentStones" EntitySet="tblAccentStones" />
+            <End Role="tblItem" EntitySet="tblItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItem_tblDiamond" Association="Self.FK_tblItem_tblDiamond">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblItem" EntitySet="tblItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItem_tblSettings" Association="Self.FK_tblItem_tblSettings">
+            <End Role="tblSettings" EntitySet="tblSettings" />
+            <End Role="tblItem" EntitySet="tblItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNotification_tblUsers" Association="Self.FK_tblNotification_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblNotification" EntitySet="tblNotification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_1" Association="Self.FK_tblOrder_tblUsers_1">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_2" Association="Self.FK_tblOrder_tblUsers_2">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_3" Association="Self.FK_tblOrder_tblUsers_3">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderItem_tblItem" Association="Self.FK_tblOrderItem_tblItem">
+            <End Role="tblItem" EntitySet="tblItem" />
+            <End Role="tblOrderItem" EntitySet="tblOrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderItem_tblOrder" Association="Self.FK_tblOrderItem_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrder" />
+            <End Role="tblOrderItem" EntitySet="tblOrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderStatusUpdates_tblOrder" Association="Self.FK_tblOrderStatusUpdates_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrder" />
+            <End Role="tblOrderStatusUpdates" EntitySet="tblOrderStatusUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblOrder" Association="Self.FK_tblTransaction_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrder" />
+            <End Role="tblTransaction" EntitySet="tblTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblUsers" Association="Self.FK_tblTransaction_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblTransaction" EntitySet="tblTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers_tblRole" Association="Self.FK_tblUsers_tblRole">
+            <End Role="tblRole" EntitySet="tblRole" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVoucherCatch_tblUsers" Association="Self.FK_tblVoucherCatch_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblVoucherCatch" EntitySet="tblVoucherCatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVoucherCatch_tblVoucher" Association="Self.FK_tblVoucherCatch_tblVoucher">
+            <End Role="tblVoucher" EntitySet="tblVoucher" />
+            <End Role="tblVoucherCatch" EntitySet="tblVoucherCatch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWarranty_tblOrderItem" Association="Self.FK_tblWarranty_tblOrderItem">
+            <End Role="tblOrderItem" EntitySet="tblOrderItem" />
+            <End Role="tblWarranty" EntitySet="tblWarranty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAccentStone">
+          <Key>
+            <PropertyRef Name="accentStoneID" />
+          </Key>
+          <Property Name="accentStoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shape" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="caratWeight" Type="Double" Nullable="false" />
+          <Property Name="clarity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="imagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblAccentStones" ToRole="tblItem" />
+        </EntityType>
+        <EntityType Name="tblCertificate">
+          <Key>
+            <PropertyRef Name="certificateID" />
+          </Key>
+          <Property Name="certificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diamondID" Type="Int32" Nullable="false" />
+          <Property Name="certificateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="issueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="certifyingAuthority" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cerImagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblDiamond" Relationship="Self.FK_tblCertificate_tblDiamonds" FromRole="tblCertificate" ToRole="tblDiamonds" />
+        </EntityType>
+        <EntityType Name="tblChat">
+          <Key>
+            <PropertyRef Name="chatID" />
+          </Key>
+          <Property Name="chatID" Type="Int32" Nullable="false" />
+          <Property Name="chatDetail" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="senderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="receiverID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblChat_tblUsers_receiver" FromRole="tblChat" ToRole="tblUsers" />
+          <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblChat_tblUsers_sender" FromRole="tblChat" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblComment">
+          <Key>
+            <PropertyRef Name="commentID" />
+            <PropertyRef Name="userID" />
+            <PropertyRef Name="diamondID" />
+          </Key>
+          <Property Name="commentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diamondID" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="rating" Type="Int32" />
+          <NavigationProperty Name="tblDiamond" Relationship="Self.FK_tblComment_tblDiamonds" FromRole="tblComment" ToRole="tblDiamonds" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblComment_tblUsers" FromRole="tblComment" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblDiamond">
+          <Key>
+            <PropertyRef Name="diamondID" />
+          </Key>
+          <Property Name="diamondID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diamondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diamondPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="diamondDescription" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="caratWeight" Type="Double" Nullable="false" />
+          <Property Name="clarityID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cutID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="colorID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shapeID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diamondImagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCertificates" Relationship="Self.FK_tblCertificate_tblDiamonds" FromRole="tblDiamonds" ToRole="tblCertificate" />
+          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblDiamonds" FromRole="tblDiamonds" ToRole="tblComment" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblDiamonds" ToRole="tblItem" />
+        </EntityType>
+        <EntityType Name="tblItem">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="settingID" Type="Int32" />
+          <Property Name="accentStoneID" Type="Int32" />
+          <Property Name="quantityAccent" Type="Int32" />
+          <Property Name="diamondID" Type="Int32" />
+          <Property Name="diamondPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="settingPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="accentStonePrice" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="tblAccentStone" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblItem" ToRole="tblAccentStones" />
+          <NavigationProperty Name="tblDiamond" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblItem" ToRole="tblDiamonds" />
+          <NavigationProperty Name="tblSetting" Relationship="Self.FK_tblItem_tblSettings" FromRole="tblItem" ToRole="tblSettings" />
+          <NavigationProperty Name="tblOrderItems" Relationship="Self.FK_tblOrderItem_tblItem" FromRole="tblItem" ToRole="tblOrderItem" />
+        </EntityType>
+        <EntityType Name="tblNotification">
+          <Key>
+            <PropertyRef Name="notificationID" />
+          </Key>
+          <Property Name="notificationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="detail" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblNotification_tblUsers" FromRole="tblNotification" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deliveryStaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="saleStaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalMoney" Type="Double" Nullable="false" />
+          <Property Name="paidAmount" Type="Double" Nullable="false" />
+          <Property Name="remainingAmount" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="saleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblOrder" ToRole="tblUsers" />
+          <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblOrder" ToRole="tblUsers" />
+          <NavigationProperty Name="tblUser2" Relationship="Self.FK_tblOrder_tblUsers_3" FromRole="tblOrder" ToRole="tblUsers" />
+          <NavigationProperty Name="tblOrderItems" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrder" ToRole="tblOrderItem" />
+          <NavigationProperty Name="tblOrderStatusUpdates" Relationship="Self.FK_tblOrderStatusUpdates_tblOrder" FromRole="tblOrder" ToRole="tblOrderStatusUpdates" />
+          <NavigationProperty Name="tblTransactions" Relationship="Self.FK_tblTransaction_tblOrder" FromRole="tblOrder" ToRole="tblTransaction" />
+        </EntityType>
+        <EntityType Name="tblOrderItem">
+          <Key>
+            <PropertyRef Name="orderID" />
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="salePriceItem" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="tblItem" Relationship="Self.FK_tblOrderItem_tblItem" FromRole="tblOrderItem" ToRole="tblItem" />
+          <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrderItem" ToRole="tblOrder" />
+          <NavigationProperty Name="tblWarranties" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblOrderItem" ToRole="tblWarranty" />
+        </EntityType>
+        <EntityType Name="tblOrderStatusUpdate">
+          <Key>
+            <PropertyRef Name="updateID" />
+          </Key>
+          <Property Name="updateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderStatusUpdates_tblOrder" FromRole="tblOrderStatusUpdates" ToRole="tblOrder" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUsers_tblRole" FromRole="tblRole" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblSetting">
+          <Key>
+            <PropertyRef Name="settingID" />
+          </Key>
+          <Property Name="settingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="settingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="priceTax" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="quantityStones" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblSettings" FromRole="tblSettings" ToRole="tblItem" />
+        </EntityType>
+        <EntityType Name="tblTransaction">
+          <Key>
+            <PropertyRef Name="transactionID" />
+          </Key>
+          <Property Name="transactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="amount" Type="Double" Nullable="false" />
+          <Property Name="paymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblTransaction_tblOrder" FromRole="tblTransaction" ToRole="tblOrder" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblTransaction_tblUsers" FromRole="tblTransaction" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="resetCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="bonusPoint" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblChats" Relationship="Self.FK_tblChat_tblUsers_receiver" FromRole="tblUsers" ToRole="tblChat" />
+          <NavigationProperty Name="tblChats1" Relationship="Self.FK_tblChat_tblUsers_sender" FromRole="tblUsers" ToRole="tblChat" />
+          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblUsers" FromRole="tblUsers" ToRole="tblComment" />
+          <NavigationProperty Name="tblNotifications" Relationship="Self.FK_tblNotification_tblUsers" FromRole="tblUsers" ToRole="tblNotification" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblUsers" ToRole="tblOrder" />
+          <NavigationProperty Name="tblOrders1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblUsers" ToRole="tblOrder" />
+          <NavigationProperty Name="tblOrders2" Relationship="Self.FK_tblOrder_tblUsers_3" FromRole="tblUsers" ToRole="tblOrder" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK_tblUsers_tblRole" FromRole="tblUsers" ToRole="tblRole" />
+          <NavigationProperty Name="tblTransactions" Relationship="Self.FK_tblTransaction_tblUsers" FromRole="tblUsers" ToRole="tblTransaction" />
+          <NavigationProperty Name="tblVouchers" Relationship="Self.tblVoucherCatch" FromRole="tblUsers" ToRole="tblVoucher" />
+        </EntityType>
+        <EntityType Name="tblVoucher">
+          <Key>
+            <PropertyRef Name="voucherID" />
+          </Key>
+          <Property Name="voucherID" Type="Int32" Nullable="false" />
+          <Property Name="startTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.tblVoucherCatch" FromRole="tblVoucher" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblWarranty">
+          <Key>
+            <PropertyRef Name="warrantyID" />
+          </Key>
+          <Property Name="warrantyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="warrantyStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="warrantyEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="warrantyDetails" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblOrderItem" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblWarranty" ToRole="tblOrderItem" />
+        </EntityType>
+        <Association Name="FK_tblItem_tblAccentStones">
+          <End Role="tblAccentStones" Type="Self.tblAccentStone" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAccentStones">
+              <PropertyRef Name="accentStoneID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="accentStoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCertificate_tblDiamonds">
+          <End Role="tblDiamonds" Type="Self.tblDiamond" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCertificate" Type="Self.tblCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblCertificate">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChat_tblUsers_receiver">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblChat">
+              <PropertyRef Name="receiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblChat_tblUsers_sender">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblChat" Type="Self.tblChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblChat">
+              <PropertyRef Name="senderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComment_tblDiamonds">
+          <End Role="tblDiamonds" Type="Self.tblDiamond" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblComment">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComment_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblComment" Type="Self.tblComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblComment">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItem_tblDiamond">
+          <End Role="tblDiamonds" Type="Self.tblDiamond" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiamonds">
+              <PropertyRef Name="diamondID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="diamondID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItem_tblSettings">
+          <End Role="tblSettings" Type="Self.tblSetting" Multiplicity="0..1" />
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSettings">
+              <PropertyRef Name="settingID" />
+            </Principal>
+            <Dependent Role="tblItem">
+              <PropertyRef Name="settingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderItem_tblItem">
+          <End Role="tblItem" Type="Self.tblItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblItem">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblOrderItem">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNotification_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblNotification" Type="Self.tblNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblNotification">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_1">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_2">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="deliveryStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblUsers_3">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="saleStaffID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderItem_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblOrderItem">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrderStatusUpdates_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblOrderStatusUpdates" Type="Self.tblOrderStatusUpdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblOrderStatusUpdates">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblOrder">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWarranty_tblOrderItem">
+          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblWarranty" Type="Self.tblWarranty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrderItem">
+              <PropertyRef Name="orderID" />
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="tblWarranty">
+              <PropertyRef Name="orderID" />
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUsers_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransaction_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="tblTransaction">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblVoucherCatch">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+          <End Role="tblVoucher" Type="Self.tblVoucher" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DiamondShopManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAccentStones" EntityType="Self.tblAccentStone" />
+          <EntitySet Name="tblCertificates" EntityType="Self.tblCertificate" />
+          <EntitySet Name="tblChats" EntityType="Self.tblChat" />
+          <EntitySet Name="tblComments" EntityType="Self.tblComment" />
+          <EntitySet Name="tblDiamonds" EntityType="Self.tblDiamond" />
+          <EntitySet Name="tblItems" EntityType="Self.tblItem" />
+          <EntitySet Name="tblNotifications" EntityType="Self.tblNotification" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblOrderItems" EntityType="Self.tblOrderItem" />
+          <EntitySet Name="tblOrderStatusUpdates" EntityType="Self.tblOrderStatusUpdate" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+          <EntitySet Name="tblSettings" EntityType="Self.tblSetting" />
+          <EntitySet Name="tblTransactions" EntityType="Self.tblTransaction" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblVouchers" EntityType="Self.tblVoucher" />
+          <EntitySet Name="tblWarranties" EntityType="Self.tblWarranty" />
+          <AssociationSet Name="FK_tblItem_tblAccentStones" Association="Self.FK_tblItem_tblAccentStones">
+            <End Role="tblAccentStones" EntitySet="tblAccentStones" />
+            <End Role="tblItem" EntitySet="tblItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCertificate_tblDiamonds" Association="Self.FK_tblCertificate_tblDiamonds">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblCertificate" EntitySet="tblCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChat_tblUsers_receiver" Association="Self.FK_tblChat_tblUsers_receiver">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblChat" EntitySet="tblChats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblChat_tblUsers_sender" Association="Self.FK_tblChat_tblUsers_sender">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblChat" EntitySet="tblChats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComment_tblDiamonds" Association="Self.FK_tblComment_tblDiamonds">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblComment" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComment_tblUsers" Association="Self.FK_tblComment_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblComment" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItem_tblDiamond" Association="Self.FK_tblItem_tblDiamond">
+            <End Role="tblDiamonds" EntitySet="tblDiamonds" />
+            <End Role="tblItem" EntitySet="tblItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItem_tblSettings" Association="Self.FK_tblItem_tblSettings">
+            <End Role="tblSettings" EntitySet="tblSettings" />
+            <End Role="tblItem" EntitySet="tblItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderItem_tblItem" Association="Self.FK_tblOrderItem_tblItem">
+            <End Role="tblItem" EntitySet="tblItems" />
+            <End Role="tblOrderItem" EntitySet="tblOrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNotification_tblUsers" Association="Self.FK_tblNotification_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblNotification" EntitySet="tblNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_1" Association="Self.FK_tblOrder_tblUsers_1">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_2" Association="Self.FK_tblOrder_tblUsers_2">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblUsers_3" Association="Self.FK_tblOrder_tblUsers_3">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderItem_tblOrder" Association="Self.FK_tblOrderItem_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrders" />
+            <End Role="tblOrderItem" EntitySet="tblOrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrderStatusUpdates_tblOrder" Association="Self.FK_tblOrderStatusUpdates_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrders" />
+            <End Role="tblOrderStatusUpdates" EntitySet="tblOrderStatusUpdates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblOrder" Association="Self.FK_tblTransaction_tblOrder">
+            <End Role="tblOrder" EntitySet="tblOrders" />
+            <End Role="tblTransaction" EntitySet="tblTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWarranty_tblOrderItem" Association="Self.FK_tblWarranty_tblOrderItem">
+            <End Role="tblOrderItem" EntitySet="tblOrderItems" />
+            <End Role="tblWarranty" EntitySet="tblWarranties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers_tblRole" Association="Self.FK_tblUsers_tblRole">
+            <End Role="tblRole" EntitySet="tblRoles" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransaction_tblUsers" Association="Self.FK_tblTransaction_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblTransaction" EntitySet="tblTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="tblVoucherCatch" Association="Self.tblVoucherCatch">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblVoucher" EntitySet="tblVouchers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiamondShopManagementModelStoreContainer" CdmEntityContainer="DiamondShopManagementEntities">
+          <EntitySetMapping Name="tblAccentStones">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblAccentStone">
+              <MappingFragment StoreEntitySet="tblAccentStones">
+                <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
+                <ScalarProperty Name="shape" ColumnName="shape" />
+                <ScalarProperty Name="caratWeight" ColumnName="caratWeight" />
+                <ScalarProperty Name="clarity" ColumnName="clarity" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCertificates">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblCertificate">
+              <MappingFragment StoreEntitySet="tblCertificate">
+                <ScalarProperty Name="certificateID" ColumnName="certificateID" />
+                <ScalarProperty Name="diamondID" ColumnName="diamondID" />
+                <ScalarProperty Name="certificateNumber" ColumnName="certificateNumber" />
+                <ScalarProperty Name="issueDate" ColumnName="issueDate" />
+                <ScalarProperty Name="certifyingAuthority" ColumnName="certifyingAuthority" />
+                <ScalarProperty Name="cerImagePath" ColumnName="cerImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblChats">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblChat">
+              <MappingFragment StoreEntitySet="tblChat">
+                <ScalarProperty Name="chatID" ColumnName="chatID" />
+                <ScalarProperty Name="chatDetail" ColumnName="chatDetail" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="senderID" ColumnName="senderID" />
+                <ScalarProperty Name="receiverID" ColumnName="receiverID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComments">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblComment">
+              <MappingFragment StoreEntitySet="tblComment">
+                <ScalarProperty Name="commentID" ColumnName="commentID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="diamondID" ColumnName="diamondID" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDiamonds">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblDiamond">
+              <MappingFragment StoreEntitySet="tblDiamonds">
+                <ScalarProperty Name="diamondID" ColumnName="diamondID" />
+                <ScalarProperty Name="diamondName" ColumnName="diamondName" />
+                <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />
+                <ScalarProperty Name="diamondDescription" ColumnName="diamondDescription" />
+                <ScalarProperty Name="caratWeight" ColumnName="caratWeight" />
+                <ScalarProperty Name="clarityID" ColumnName="clarityID" />
+                <ScalarProperty Name="cutID" ColumnName="cutID" />
+                <ScalarProperty Name="colorID" ColumnName="colorID" />
+                <ScalarProperty Name="shapeID" ColumnName="shapeID" />
+                <ScalarProperty Name="diamondImagePath" ColumnName="diamondImagePath" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblItems">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblItem">
+              <MappingFragment StoreEntitySet="tblItem">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="settingID" ColumnName="settingID" />
+                <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
+                <ScalarProperty Name="quantityAccent" ColumnName="quantityAccent" />
+                <ScalarProperty Name="diamondID" ColumnName="diamondID" />
+                <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />
+                <ScalarProperty Name="settingPrice" ColumnName="settingPrice" />
+                <ScalarProperty Name="accentStonePrice" ColumnName="accentStonePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNotifications">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblNotification">
+              <MappingFragment StoreEntitySet="tblNotification">
+                <ScalarProperty Name="notificationID" ColumnName="notificationID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="deliveryStaffID" ColumnName="deliveryStaffID" />
+                <ScalarProperty Name="saleStaffID" ColumnName="saleStaffID" />
+                <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
+                <ScalarProperty Name="paidAmount" ColumnName="paidAmount" />
+                <ScalarProperty Name="remainingAmount" ColumnName="remainingAmount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="saleDate" ColumnName="saleDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderItems">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblOrderItem">
+              <MappingFragment StoreEntitySet="tblOrderItem">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="salePriceItem" ColumnName="salePriceItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderStatusUpdates">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblOrderStatusUpdate">
+              <MappingFragment StoreEntitySet="tblOrderStatusUpdates">
+                <ScalarProperty Name="updateID" ColumnName="updateID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSettings">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblSetting">
+              <MappingFragment StoreEntitySet="tblSettings">
+                <ScalarProperty Name="settingID" ColumnName="settingID" />
+                <ScalarProperty Name="settingType" ColumnName="settingType" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="priceTax" ColumnName="priceTax" />
+                <ScalarProperty Name="quantityStones" ColumnName="quantityStones" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTransactions">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblTransaction">
+              <MappingFragment StoreEntitySet="tblTransaction">
+                <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="resetCode" ColumnName="resetCode" />
+                <ScalarProperty Name="bonusPoint" ColumnName="bonusPoint" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVouchers">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblVoucher">
+              <MappingFragment StoreEntitySet="tblVoucher">
+                <ScalarProperty Name="voucherID" ColumnName="voucherID" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarranties">
+            <EntityTypeMapping TypeName="DiamondShopManagementModel.tblWarranty">
+              <MappingFragment StoreEntitySet="tblWarranty">
+                <ScalarProperty Name="warrantyID" ColumnName="warrantyID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="warrantyStartDate" ColumnName="warrantyStartDate" />
+                <ScalarProperty Name="warrantyEndDate" ColumnName="warrantyEndDate" />
+                <ScalarProperty Name="warrantyDetails" ColumnName="warrantyDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblVoucherCatch" TypeName="DiamondShopManagementModel.tblVoucherCatch" StoreEntitySet="tblVoucherCatch">
+            <EndProperty Name="tblUsers">
+              <ScalarProperty Name="userID" ColumnName="userID" />
+            </EndProperty>
+            <EndProperty Name="tblVoucher">
+              <ScalarProperty Name="voucherID" ColumnName="voucherID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
