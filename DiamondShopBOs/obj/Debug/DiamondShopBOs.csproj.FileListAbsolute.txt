@@ -94,3 +94,15 @@ C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.
 C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
 C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
 C:\Users\nguye\Desktop\Clone new\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb

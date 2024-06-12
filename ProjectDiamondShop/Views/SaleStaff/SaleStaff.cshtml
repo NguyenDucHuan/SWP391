@@ -118,22 +118,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var order in ViewBag.Orders)
+                    @if (ViewBag.Orders != null)
+                    {
+                        foreach (var order in ViewBag.Orders)
+                        {
+                            <tr>
+                                <td>@order.orderID</td>
+                                <td>@order.customerID</td>
+                                <td>@order.deliveryStaffID</td>
+                                <td>@order.totalMoney</td>
+                                <td>@order.status</td>
+                                <td>
+                                    <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="orderId" value="@order.orderID" />
+                                        <button type="submit" class="btn btn-warning" @(order.status != "Order Placed" ? "disabled" : "")>Process</button>
+                                    </form>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>@order.orderID</td>
-                            <td>@order.customerID</td>
-                            <td>@order.deliveryStaffID</td>
-                            <td>@order.totalMoney</td>
-                            <td>@order.status</td>
-                            <td>
-                                <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="orderId" value="@order.orderID" />
-                                    <button type="submit" class="btn btn-warning" @(order.status != "Order Placed" ? "disabled" : "")>Process</button>
-                                </form>
-                                <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
-                            </td>
+                            <td colspan="6">No orders found.</td>
                         </tr>
                     }
                 </tbody>

@@ -118,17 +118,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var order in ViewBag.Orders)
+                    @if (ViewBag.Orders != null)
+                    {
+                        foreach (var order in ViewBag.Orders)
+                        {
+                            <tr>
+                                <td>@order.orderID</td>
+                                <td>@order.customerID</td>
+                                <td>@order.deliveryStaffID</td>
+                                <td>@order.totalMoney</td>
+                                <td>@order.status</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
                     {
                         <tr>
-                            <td>@order.orderID</td>
-                            <td>@order.customerID</td>
-                            <td>@order.deliveryStaffID</td>
-                            <td>@order.totalMoney</td>
-                            <td>@order.status</td>
-                            <td>
-                                <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
-                            </td>
+                            <td colspan="6">No orders found.</td>
                         </tr>
                     }
                 </tbody>

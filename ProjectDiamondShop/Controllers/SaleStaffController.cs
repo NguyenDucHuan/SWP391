@@ -19,7 +19,8 @@ namespace ProjectDiamondShop.Controllers
             }
 
             List<tblOrder> orders = GetOrders(searchOrderId);
-            return View("SaleStaff", orders); // Ensure your view expects IEnumerable<tblOrder>
+            ViewBag.Orders = orders; // Sử dụng ViewBag để truyền dữ liệu tới View
+            return View("SaleStaff"); // Ensure your view does not use @model
         }
 
         private List<tblOrder> GetOrders(string searchOrderId)

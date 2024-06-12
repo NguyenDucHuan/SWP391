@@ -118,3 +118,18 @@ C:\Users\nguye\Desktop\Clone new\DiamondShopRepositories\obj\Debug\DiamondShopRe
 C:\Users\nguye\Desktop\Clone new\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
 C:\Users\nguye\Desktop\Clone new\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
 C:\Users\nguye\Desktop\Clone new\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone4\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb
