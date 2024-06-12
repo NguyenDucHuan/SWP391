@@ -96,10 +96,11 @@
                     <tbody>
                         @foreach (var order in Model.currentOrders)
                         {
-                            if (order.status.Contains("Order Place"))
+                            if (order.status.Contains("Order Placed") || order.status.Contains("Preparing Goods")||order.status.Contains("Shipped to Carrier") || order.status.Contains("In Delivery"))
                             {
                                 <tr>
                                     <td>@order.orderID</td>
+                                    <td>@order.customerID</td>
                                     <td>@order.deliveryStaffID</td>
                                     <td>@order.totalMoney</td>
                                     <td>@order.status</td>
