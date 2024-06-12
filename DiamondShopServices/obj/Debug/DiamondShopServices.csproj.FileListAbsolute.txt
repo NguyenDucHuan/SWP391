@@ -117,3 +117,20 @@ C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopServices\obj\Debug\DiamondShopServi
 C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
 C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopServices\obj\Debug\DiamondShopServices.dll
 C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopServices\obj\Debug\DiamondShopServices.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopServices.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopServices.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopBOs.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopBOs.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopRepositories.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\obj\Debug\DiamondShopServices.dll
+C:\Users\nguye\Desktop\Clone new\DiamondShopServices\obj\Debug\DiamondShopServices.pdb

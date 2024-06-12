@@ -1,6 +1,4 @@
-﻿@model IEnumerable<DiamondShopBOs.tblOrder>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -120,7 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var order in Model)
+                    @foreach (var order in ViewBag.Orders)
                     {
                         <tr>
                             <td>@order.orderID</td>
