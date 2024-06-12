@@ -70,3 +70,15 @@ C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.c
 C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
 C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
 C:\Users\huyh6\OneDrive\Desktop\Clone2\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\CodeGitHub\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb

@@ -2,50 +2,42 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace DiamondShopDAOs
 {
     public class OrderDAO
     {
-        private readonly DiamondShopManagementEntities entities = null;
+        private readonly DiamondShopManagementEntities _context;
 
         public OrderDAO()
         {
-            if (entities == null)
-            {
-                entities = new DiamondShopManagementEntities();
-            }
+            _context = new DiamondShopManagementEntities();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmont, string address, string phone, string status)
+   
+
+
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID)
         {
-            tblOrder tblOrder = new tblOrder
+            var order = new tblOrder
             {
                 orderID = GenerateNextOrderId(),
                 customerID = userID,
                 saleStaffID = null,
-                deliveryStaffID = null,
+                deliveryStaffID = deliveryStaffID, // Set delivery staff ID here
                 totalMoney = (double)totalMoney,
                 paidAmount = (double)paidAmount,
-                remainingAmount = (double)remainingAmont,
+                remainingAmount = (double)remainingAmount,
                 address = address,
                 phone = phone,
-                saleDate = DateTime.Now,
+                saleDate = System.DateTime.Now,
                 status = status,
                 paymentStatus = "Pending"
             };
 
-            try
-            {
-                entities.tblOrders.Add(tblOrder);
-                entities.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("create Oreder error");
-            }
-            return tblOrder;
+            _context.tblOrders.Add(order);
+            _context.SaveChanges();
+            return order;
         }
 
         public string GenerateNextOrderId()
@@ -67,51 +59,29 @@ namespace DiamondShopDAOs
 
         public string GetTheLastestOrderID()
         {
-            var allOrder = entities.tblOrders.ToList();
-            var usersWithFormattedId = allOrder.Where(d => Regex.IsMatch(d.orderID, @"^OID\d+$")).ToList();
-            if (!usersWithFormattedId.Any())
-            {
-                return null;
-            }
-            var latestOrder = usersWithFormattedId
-                .OrderByDescending(d => int.Parse(Regex.Match(d.orderID, @"\d+$").Value))
-                .FirstOrDefault();
-            return latestOrder?.orderID;
-        }
-
-        public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
-        {
-            var orders = entities.tblOrders
-                .Where(o => o.customerID == userID && statuses.Contains(o.status))
-                .ToList();
-
-            if (!isHistory)
-            {
-                orders.AddRange(entities.tblOrders
-                    .Where(o => o.customerID == userID && (o.deliveryStaffID == null || o.saleStaffID == null))
-                    .ToList());
-            }
-
-            return orders;
+            var latestOrderId = _context.tblOrders
+                .OrderByDescending(o => o.orderID)
+                .FirstOrDefault()?.orderID;
+            return latestOrderId;
         }
 
         public tblOrder GetOrderById(string orderId)
         {
-            return entities.tblOrders.FirstOrDefault(o => o.orderID == orderId);
+            return _context.tblOrders.FirstOrDefault(o => o.orderID == orderId);
         }
 
         public List<tblOrderItem> GetOrderItems(string orderId)
         {
-            return entities.tblOrderItems.Where(oi => oi.orderID == orderId).ToList();
+            return _context.tblOrderItems.Where(oi => oi.orderID == orderId).ToList();
         }
 
         public void UpdateOrderStatus(string orderId, string status)
         {
-            var order = entities.tblOrders.FirstOrDefault(o => o.orderID == orderId);
+            var order = _context.tblOrders.FirstOrDefault(o => o.orderID == orderId);
             if (order != null)
             {
                 order.status = status;
-                entities.SaveChanges();
+                _context.SaveChanges();
 
                 var statusUpdate = new tblOrderStatusUpdate
                 {
@@ -119,14 +89,45 @@ namespace DiamondShopDAOs
                     status = status,
                     updateTime = DateTime.Now
                 };
-                entities.tblOrderStatusUpdates.Add(statusUpdate);
-                entities.SaveChanges();
+                _context.tblOrderStatusUpdates.Add(statusUpdate);
+                _context.SaveChanges();
             }
         }
 
         public List<tblOrderStatusUpdate> GetOrderStatusUpdates(string orderId)
         {
-            return entities.tblOrderStatusUpdates.Where(su => su.orderID == orderId).OrderBy(su => su.updateTime).ToList();
+            return _context.tblOrderStatusUpdates.Where(su => su.orderID == orderId).OrderBy(su => su.updateTime).ToList();
         }
+
+        public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
+        {
+            var orders = _context.tblOrders
+                .Where(o => o.customerID == userID && statuses.Contains(o.status))
+                .ToList();
+
+            if (!isHistory)
+            {
+                orders.AddRange(_context.tblOrders
+                    .Where(o => o.customerID == userID && (o.deliveryStaffID == null || o.saleStaffID == null))
+                    .ToList());
+            }
+
+            return orders;
+        }
+
+        public string GetDeliveryStaffID()
+        {
+            var deliveryStaff = _context.tblUsers.FirstOrDefault(u => u.roleID == 4);
+            return deliveryStaff?.userID;
+        }
+
+        public List<tblOrder> GetOrdersByPaymentStatus(string userID, string paymentStatus)
+        {
+            return _context.tblOrders
+                           .Where(o => o.customerID == userID && o.paymentStatus == paymentStatus)
+                           .ToList();
+        }
+
+
     }
 }
