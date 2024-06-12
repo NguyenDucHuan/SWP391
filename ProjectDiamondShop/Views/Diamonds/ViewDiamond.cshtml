@@ -1,11 +1,11 @@
 ﻿@model DiamondShopBOs.tblDiamond
-
 @{
     ViewBag.Title = "Diamond Details";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
 <link href="~/Content/ProductCss/linearicons.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
 <div class="container" style="margin-top:39px;">
     <a href="@Url.Action("Index", "Diamonds")" style="text-decoration: none; color: #151542; padding-bottom:5px;">
@@ -36,8 +36,8 @@
             @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "add-to-cart-form" }))
             {
                 @Html.Hidden("diamondID", Model.diamondID)
-                @Html.Hidden("accentStoneID", null, new { id = "accentStoneID" })
-                @Html.Hidden("settingID", null, new { id = "settingID" })
+                @Html.Hidden("accentStoneID", "0", new { id = "accentStoneID" })
+                @Html.Hidden("settingID", "0", new { id = "settingID" })
                 <button type="button" id="add-to-cart-button" class="transparent-button">
                     <span class="lnr lnr-cart" style="color: #f0f0f0;"></span>Add to Cart
                 </button>
@@ -59,18 +59,14 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="accentStone">Accent Stone</label>
-                    <select id="accentStone" class="form-control">
-                        <option value="1">Stone 1</option>
-                        <option value="2">Stone 2</option>
-                        <!-- Add more options as needed -->
+                    <select id="accentStone" class="form-control select2">
+                        <option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="setting">Setting</label>
-                    <select id="setting" class="form-control">
-                        <option value="1">Setting 1</option>
-                        <option value="2">Setting 2</option>
-                        <!-- Add more options as needed -->
+                    <select id="setting" class="form-control select2">
+                        <option value="0" data-image="/path/to/default-image.jpg">No setting</option>
                     </select>
                 </div>
             </div>
@@ -84,9 +80,26 @@
 
 @section Scripts {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('.select2').select2({
+                templateResult: formatState,
+                templateSelection: formatState
+            });
+
+            // Function to format the select2 option with image
+            function formatState(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                var $state = $(
+                    '<span><img src="' + state.element.getAttribute('data-image') + '" class="img-flag" style="width: 20px; height: 20px; margin-right: 10px;" /> ' + state.text + '</span>'
+                );
+                return $state;
+            }
+
             // Change main image when thumbnail is clicked
             $(".thumbnail-button").click(function () {
                 var newImage = $(this).data('image');
@@ -95,13 +108,77 @@
 
             // Open modal when add to cart button is clicked
             $("#add-to-cart-button").click(function () {
+                // Load settings and accent stones
+                loadSettings();
+                loadAccentStones();
+
                 $('#selectionModal').modal('show');
+            });
+
+            // Load settings
+            function loadSettings() {
+                $.ajax({
+                    url: '@Url.Action("GetSettings", "Diamonds")',
+                    type: 'GET',
+                    success: function (data) {
+                        var settingsSelect = $("#setting");
+                        settingsSelect.empty();
+                        settingsSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No setting</option>');
+                        $.each(data, function (index, setting) {
+                            var option = new Option(setting.settingType + " - " + setting.material + " - $" + setting.priceTax, setting.settingID);
+                            $(option).attr('data-image', setting.imagePath);
+                            settingsSelect.append(option);
+                        });
+                        settingsSelect.trigger('change');
+                    },
+                    error: function () {
+                        alert("Failed to load settings.");
+                    }
+                });
+            }
+
+            // Load accent stones
+            function loadAccentStones() {
+                $.ajax({
+                    url: '@Url.Action("GetAccentStones", "Diamonds")',
+                    type: 'GET',
+                    success: function (data) {
+                        var accentStoneSelect = $("#accentStone");
+                        accentStoneSelect.empty();
+                        accentStoneSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>');
+                        $.each(data, function (index, stone) {
+                            var option = new Option(stone.shape + " - " + stone.caratWeight + " carat - $" + stone.price, stone.accentStoneID);
+                            $(option).attr('data-image', stone.imagePath);
+                            accentStoneSelect.append(option);
+                        });
+                        accentStoneSelect.trigger('change');
+                    },
+                    error: function () {
+                        alert("Failed to load accent stones.");
+                    }
+                });
+            }
+
+            // Handle setting selection change
+            $("#setting").change(function () {
+                var setting = $(this).val();
+                if (setting == "0") {
+                    $("#accentStone").val("0").trigger('change').prop('disabled', true);
+                } else {
+                    $("#accentStone").prop('disabled', false);
+                }
             });
 
             // Confirm selection and submit form
             $("#confirm-selection").click(function () {
                 var accentStone = $("#accentStone").val();
                 var setting = $("#setting").val();
+
+                // Ensure accent stone cannot be selected if no setting is selected
+                if (setting == "0" && accentStone != "0") {
+                    alert("You must select a setting before choosing an accent stone.");
+                    return;
+                }
 
                 // Set accentStoneID and settingID in hidden fields
                 $("#accentStoneID").val(accentStone);

@@ -4,109 +4,140 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
 <style>
     h2 {
         margin-top: 50px;
         text-align: center;
     }
 
-    .table th, .table td {
-        text-align: center;
-        vertical-align: middle;
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px; /* giảm padding */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px; /* giảm margin */
+        font-size: 0.9em; /* giảm kích thước chữ */
+        max-width: 800px; /* thêm chiều rộng tối đa */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .cart-item img {
+            max-width: 100px; /* giảm kích thước hình ảnh */
+            margin-right: 10px; /* giảm khoảng cách */
+        }
+
+    .cart-item-details {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-item-info {
+        flex: 1;
+    }
+
+    .cart-item-actions {
+        display: flex;
+        align-items: center;
+    }
+
+        .cart-item-actions input {
+            width: 40px; /* giảm chiều rộng input */
+            text-align: center;
+            margin: 0 5px;
+        }
+
+        .cart-item-actions button {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+        }
+
+    .remove-btn {
+        font-size: 1.5em;
+        color: #ff0000;
+        cursor: pointer;
+    }
+
+    .cart-summary {
+        text-align: right;
+        font-weight: bold;
+        margin-top: 20px;
+        max-width: 800px; /* thêm chiều rộng tối đa */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .button-group {
-        margin-top: 20px;
         display: flex;
         justify-content: center;
+        gap: 10px;
     }
 
-        .button-group form {
-            margin: 0 10px;
-        }
+    .cart-item:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-    .proImg {
-        max-height: 50px;
-    } 
+    .cart-item:nth-child(odd) {
+        background-color: #fff;
+    } background-color: #fff;
+    }
 </style>
 
 <h2>Your Cart</h2>
 
 <div class="container">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Item Information</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
-                if (item.settingID == 0)
-                {
-                    string[] imagepart = item.imagePath.Split('|');
-                    <tr>
-                        <td>@item.DiamondName</td>
-                        <td>
-                            <strong>Total Price:</strong> @item.diamondPrice <br />
-                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px"/>
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    string[] imagepart = item.imagePath.Split('|');
-                    <tr>
-                        <td>@item.decription</td>
-                        <td>
-                            <strong>Diamond Name:</strong> @item.DiamondName <br />
-                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:110px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Item Price:</td>
-                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
-                    </tr>
-                    <tr>
-                        <td>Accent Stone Details:</td>
-                        <td>
-                            Accent Stone ID: @item.accentStoneID <br />
-                            Quantity: @item.quantityAccent <br />
-                            Price: @item.accentStonePrice
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Diamond Details:</td>
-                        <td>
-                            Name: @item.DiamondName <br />
-                            Price: @item.diamondPrice <br />
-                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:110px" />
-                        </td>
-                    </tr>
-                }
-                <tr>
-                    <td colspan="2">
-                        @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
-                        {
-                            @Html.Hidden("diamondID", item.diamondID)
-                            <input type="submit" value="Remove" class="btn btn-danger" />
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @foreach (var item in Model.Items.Select((value, index) => new { value, index }))
+    {
+        <div class="cart-item @(item.index % 2 == 0 ? "even" : "odd")">
+            <img src="@item.value.imagePath.Split('|')[item.value.settingID == 0 ? 0 : 1]" alt="Product Image" />
+            <div class="cart-item-details">
+                <div class="cart-item-info">
+                    <h5>Diamond Name: @item.value.DiamondName</h5>
+                    <p>Diamond Price: $@(item.value.diamondPrice)</p>
+                    @if (item.value.settingID != 0)
+                    {
+                        <p>Setting Name: @item.value.decription</p>
+                        <p>Setting Price: $@item.value.settingPrice</p>
+                    }
+                    @if (item.value.accentStoneID != 0)
+                    {
+                        <p>Accent Stone: @item.value.accentStoneID</p>
+                        <p>Accent Stone Price: $@item.value.accentStonePrice</p>
+                        <p>Accent Stone Quantity: @item.value.quantityAccent</p>
+                    }
+                    <strong>Total Price: $@(item.value.diamondPrice + item.value.settingPrice + item.value.accentStonePrice * item.value.quantityAccent)</strong>
+                </div>
+                <div class="cart-item-actions">
+                    @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
+                    {
+                        @Html.Hidden("diamondID", item.value.diamondID)
+                        <button type="submit" class="btn btn-link remove-btn">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
 
-    <div class="button-group">
-        @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
-        {
-            <input type="submit" value="Clear Cart" class="btn btn-warning" />
-        }
-        @using (Html.BeginForm("CreateOrder", "Order", FormMethod.Post))
-        {
-            <input type="submit" value="Check Out" class="btn btn-primary" />
-        }
+    <div class="cart-summary">
+        <p>Total: $@Model.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
+        <div class="button-group">
+            @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
+            {
+                <input type="submit" value="Clear Cart" class="btn btn-warning mr-2" />
+            }
+            @using (Html.BeginForm("CreateOrder", "Order", FormMethod.Post))
+            {
+                <input type="submit" value="Check Out" class="btn btn-primary ml-2" />
+            }
+        </div>
     </div>
 </div>
 
@@ -130,6 +161,8 @@
 </div>
 
 @section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
             var itemCount = @Model.Items?.Count ?? 0;
