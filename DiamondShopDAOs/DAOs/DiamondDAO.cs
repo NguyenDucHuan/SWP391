@@ -113,5 +113,28 @@ namespace DiamondShopDAOs
             }
             return query.ToList();
         }
+        public void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate)
+        {
+            using (var transaction = diamondShopManagementEntities.Database.BeginTransaction())
+            {
+                try
+                {
+                    diamondShopManagementEntities.tblDiamonds.Add(newDiamond);
+                    diamondShopManagementEntities.SaveChanges();
+
+                    newCertificate.diamondID = newDiamond.diamondID;
+                    diamondShopManagementEntities.tblCertificates.Add(newCertificate);
+                    diamondShopManagementEntities.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
     }
 }
