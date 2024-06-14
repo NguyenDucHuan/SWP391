@@ -15,5 +15,8 @@ namespace DiamondShopServices
         void AddNewDiamond(tblDiamond newDiamond);
         List<tblDiamond> Filter(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy);
         void UpdateDiamondStatus(tblDiamond diamond, bool status);
+        void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate);
+
+
     }
 }

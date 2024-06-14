@@ -44,6 +44,11 @@ namespace DiamondShopRepositories
             return diamondDAO.UpdateDiamond(id, diamond);
         }
 
+        public void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate)
+        {
+            diamondDAO.AddNewDiamond(newDiamond, newCertificate);
+        }
+
 
     }
 }

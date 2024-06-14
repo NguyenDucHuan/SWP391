@@ -229,10 +229,6 @@ INSERT INTO [dbo].[tblRole] ([roleID], [roleName]) VALUES
 (4, 'deliverystaff'),
 (5, 'salestaff');
 
-INSERT INTO [dbo].[tblUsers]( [userID] ,[userName] ,[fullName], [email] , [password],[roleID] ) values
-	('SID0000001', 'SaleStaffDe','salestaffDefault','huanndse170396@gmail.com','Huan1401@',5),
-	('SID0000002', 'delistafDe','DelistaffDefault','ddse170396@gmail.com','Huan1401@',4);
-
 -- Thêm d? li?u m?u vào b?ng tblSettings
 INSERT INTO [dbo].[tblSettings] ([settingType], [material],[priceTax],[quantityStones] , [description], [imagePath]) VALUES 
 ('Ring', 'Gold', 500, 10, 'Gold ring setting', '/images/settings/ring_gold.png'),

@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using DiamondShopServices.JewelrySettingService;
 using DiamondShopServices.AccentStoneService;
+using ProjectDiamondShop.Models;
+using System.IO;
+using System.Web;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -155,6 +158,110 @@ namespace ProjectDiamondShop.Controllers
             }).ToList();
 
             return Json(accentStonesData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddDiamond()
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                string diamondImagePaths = "";
+                string certificateImagePath = "";
+
+                // Get the next available diamond image number
+                int nextImageNumber = GetNextDiamondImageNumber();
+
+                // Save diamond images
+                if (diamondImageA != null && diamondImageA.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}A.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageA.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                if (diamondImageB != null && diamondImageB.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}B.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageB.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                if (diamondImageC != null && diamondImageC.ContentLength > 0)
+                {
+                    string fileName = $"dia{nextImageNumber}C.png";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Diamonds"), fileName);
+                    diamondImageC.SaveAs(path);
+                    diamondImagePaths += $"/Image/DiamondDTO/Diamonds/{fileName}|";
+                }
+
+                diamondImagePaths = diamondImagePaths.TrimEnd('|');
+
+                // Save certificate image
+                if (certificateImage != null && certificateImage.ContentLength > 0)
+                {
+                    string fileName = $"CER{nextImageNumber:D2}.jpg";
+                    string path = Path.Combine(Server.MapPath("~/Image/DiamondDTO/Certificates"), fileName);
+                    certificateImage.SaveAs(path);
+                    certificateImagePath = $"/Image/DiamondDTO/Certificates/{fileName}";
+                }
+
+                // Create Diamond and Certificate objects
+                tblDiamond newDiamond = new tblDiamond
+                {
+                    diamondName = model.diamondName,
+                    diamondPrice = model.diamondPrice,
+                    diamondDescription = model.diamondDescription,
+                    caratWeight = Math.Round(model.caratWeight, 2),
+                    clarityID = model.clarityID,
+                    cutID = model.cutID,
+                    colorID = model.colorID,
+                    shapeID = model.shapeID,
+                    diamondImagePath = diamondImagePaths,
+                    status = true,
+                    quantity = 1 
+                };
+
+                tblCertificate newCertificate = new tblCertificate
+                {
+                    certificateNumber = model.CertificateNumber,
+                    issueDate = model.IssueDate,
+                    certifyingAuthority = model.CertifyingAuthority,
+                    cerImagePath = certificateImagePath
+                };
+
+                diamondService.AddNewDiamond(newDiamond, newCertificate);
+
+                TempData["SuccessMessage"] = "Diamond added successfully!";
+                return RedirectToAction("AddDiamond");
+            }
+
+            return View(model);
+        }
+
+        private int GetNextDiamondImageNumber()
+        {
+            using (var context = new DiamondShopManagementEntities())
+            {
+                return (context.tblDiamonds.Max(d => (int?)d.diamondID) ?? 0) + 1;
+            }
+
+
         }
     }
 }

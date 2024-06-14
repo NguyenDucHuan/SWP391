@@ -47,6 +47,11 @@ namespace DiamondShopServices
             diamond.status = status;
             diamondRepository.UpdateDiamond(diamond.diamondID, diamond);
         }
+        public void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate)
+        {
+            diamondRepository.AddNewDiamond(newDiamond, newCertificate);
+        }
+
 
     }
 }
