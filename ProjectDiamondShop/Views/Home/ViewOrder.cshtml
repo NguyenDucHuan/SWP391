@@ -88,6 +88,8 @@
                             <th>Order ID</th>
                             <th>Customer ID</th>
                             <th>Delivery Staff ID</th>
+                            <th>Paid Money</th>
+                            <th>Remaining Money</th>
                             <th>Total Money</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -96,12 +98,14 @@
                     <tbody>
                         @foreach (var order in Model.currentOrders)
                         {
-                            if (order.status.Contains("Order Placed") || order.status.Contains("Preparing Goods")||order.status.Contains("Shipped to Carrier") || order.status.Contains("In Delivery"))
+                            if (order.status.Contains("Order Placed") || order.status.Contains("Preparing Goods") || order.status.Contains("Shipped to Carrier") || order.status.Contains("In Delivery"))
                             {
                                 <tr>
                                     <td>@order.orderID</td>
                                     <td>@order.customerID</td>
                                     <td>@order.deliveryStaffID</td>
+                                    <td>@order.paidAmount</td>
+                                    <td>@order.remainingAmount</td>
                                     <td>@order.totalMoney</td>
                                     <td>@order.status</td>
                                     <td>
@@ -125,6 +129,8 @@
                             <th>Order ID</th>
                             <th>Customer ID</th>
                             <th>Delivery Staff ID</th>
+                            <th>Paid Money</th>
+                            <th>Remaining Money</th>
                             <th>Total Money</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -137,6 +143,8 @@
                                 <td>@order.orderID</td>
                                 <td>@order.customerID</td>
                                 <td>@order.deliveryStaffID</td>
+                                <td>@order.paidAmount</td>
+                                <td>@order.remainingAmount</td>
                                 <td>@order.totalMoney</td>
                                 <td>@order.status</td>
                                 <td>

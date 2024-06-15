@@ -37,18 +37,15 @@
                 {
                     string[] imagepart = item.imagePath.Split('|');
                     <tr>
-                        <td>@item.decription</td>
+                        <td><strong>Setting Detail</strong></td>
                         <td>
-                            <strong>Diamond Name:</strong> @item.DiamondName <br />
+                            Setting Name: @item.decription <br />
+                            Setting Price: @item.settingPrice <br />
                             <img src="@imagepart[0]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
                     </tr>
                     <tr>
-                        <td>Item Price:</td>
-                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
-                    </tr>
-                    <tr>
-                        <td>Accent Stone Details:</td>
+                        <td><strong>Accent Stone Details:</strong></td>
                         <td>
                             Accent Stone ID: @item.accentStoneID <br />
                             Quantity: @item.quantityAccent <br />
@@ -56,12 +53,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Diamond Details:</td>
+                        <td><strong>Diamond Details:</strong></td>
                         <td>
                             Name: @item.DiamondName <br />
                             Price: @item.diamondPrice <br />
                             <img src="@imagepart[1]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
+                    </tr>
+                    <tr>
+                        <td>Total Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
                     </tr>
                 }
             }

@@ -9,18 +9,276 @@ namespace ProjectDiamondShop.Controllers
     public class IntroduceController : Controller
     {
         // GET: Introduce
-        public ActionResult Round() => View();
-        public ActionResult Heart() => View();
-        public ActionResult Oval() => View();
-        public ActionResult Pear() => View();
-        public ActionResult Cushion() => View();
-        public ActionResult Radiant() => View();
-        public ActionResult Asscher() => View();
-        public ActionResult Baguette() => View();
-        public ActionResult Emerald() => View();
-        public ActionResult Marquise() => View();
-        public ActionResult Princess() => View();
-        public ActionResult Trillion() => View();
+        public ActionResult Round()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
 
+        public ActionResult Heart()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Oval()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Pear()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Cushion()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Radiant()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Asscher()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Baguette()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Emerald()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Marquise()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Princess()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        public ActionResult Trillion()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+
+        private bool IsSaleStaff()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
     }
 }

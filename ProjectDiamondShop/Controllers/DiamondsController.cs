@@ -19,7 +19,22 @@ namespace ProjectDiamondShop.Controllers
         private readonly IDiamondService diamondService = null;
         private readonly IAccentStoneService accentStoneService = null;
         private readonly IJewelrySettingService jewelrySettingService = null;
-
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+        private bool IsSaleStaff()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
         public DiamondsController()
         {
             if (diamondService == null)
@@ -38,6 +53,22 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult Index(int page = 1, int pageSize = 12)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             ViewBag.minPrice = 1;
             ViewBag.maxPrice = 99999;
             ViewBag.minCaratWeight = 0.5;
@@ -113,6 +144,22 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult ViewDiamond(int id)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             tblDiamond diamond = diamondService.GetDiamondById(id);
             List<tblAccentStone> accentStones = accentStoneService.GetAllStones();
             List<tblSetting> settings = jewelrySettingService.GetSettingAllList();

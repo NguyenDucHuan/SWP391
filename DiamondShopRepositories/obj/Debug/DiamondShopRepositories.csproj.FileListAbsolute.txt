@@ -163,3 +163,18 @@ C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopRepositories\obj\Debug\D
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopRepositories.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\DiamondShopDAOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\bin\Debug\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\obj\Debug\DiamondS.D8BD5F48.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\DiamondShopRepositories\obj\Debug\DiamondShopRepositories.pdb

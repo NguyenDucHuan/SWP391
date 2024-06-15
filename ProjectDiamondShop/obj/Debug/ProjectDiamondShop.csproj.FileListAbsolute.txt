@@ -2047,3 +2047,17 @@ C:\Users\tnqt3\Desktop\New folder (3)\SWP391\ProjectDiamondShop\obj\Debug\Projec
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\ProjectDiamondShop\obj\Debug\ProjectD.3096BEF2.Up2Date
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.dll
 C:\Users\tnqt3\Desktop\New folder (3)\SWP391\ProjectDiamondShop\obj\Debug\ProjectDiamondShop.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopDAOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopServices.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone\ProjectDiamondShop\bin\DiamondShopRepositories.pdb

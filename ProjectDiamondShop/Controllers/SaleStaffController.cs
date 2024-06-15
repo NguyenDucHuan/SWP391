@@ -11,6 +11,18 @@ namespace ProjectDiamondShop.Controllers
     public class SaleStaffController : Controller
     {
         private readonly IStaffService _staffService;
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
 
         public SaleStaffController()
         {
@@ -20,6 +32,18 @@ namespace ProjectDiamondShop.Controllers
         // GET: SaleStaff
         public ActionResult Index(string searchOrderId)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 5)
             {
                 return RedirectToAction("Index", "Home");
@@ -35,6 +59,18 @@ namespace ProjectDiamondShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Process(string orderId)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             if (string.IsNullOrEmpty(orderId))
             {
                 TempData["UpdateMessage"] = "Order ID is required.";

@@ -1,22 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\nguye\\Desktop\\Clone\\",
+  "WorkspaceRootPath": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\views\\diamonds\\adddiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\diamonds\\adddiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\nguye\\desktop\\clone\\projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|c:\\users\\nguye\\desktop\\clone\\diamondshopdaos\\daos\\diamonddao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\diamonddao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|c:\\users\\huyh6\\onedrive\\desktop\\clone\\projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,53 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AddDiamond.cshtml",
-              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
-              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
-              "RelativeToolTip": "ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
-              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJ0AAABqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-15T05:54:47.699Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
-              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
-              "RelativeToolTip": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAAAH0AAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-15T05:51:05.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DiamondDAO.cs",
-              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\DiamondDAO.cs",
-              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\DiamondDAO.cs",
-              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\DiamondShopDAOs\\DAOs\\DiamondDAO.cs",
-              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\DiamondDAO.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAswAAAAAAAAAAA",
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\huyh6\\OneDrive\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAADwv3QAAABXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T05:48:38.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DiamondsController.cs",
-              "DocumentMoniker": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "ToolTip": "C:\\Users\\nguye\\Desktop\\Clone\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
-              "ViewState": "AQIAAJcAAAAAAAAAAAAswK4AAABLAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T05:48:17.739Z",
+              "WhenOpened": "2024-06-15T07:34:51.347Z",
               "EditorCaption": ""
             }
           ]
