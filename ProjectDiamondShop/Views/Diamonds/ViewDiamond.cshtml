@@ -23,6 +23,15 @@
                         <img src="@imagePath.value" alt="@Model.diamondName @imagePath.index" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
                     </button>
                 }
+                @if (ViewBag.Certificates != null && ViewBag.Certificates.Count > 0)
+                {
+                    foreach (var certificate in ViewBag.Certificates)
+                    {
+                        <button class="thumbnail-button" data-image="@Url.Content(certificate.cerImagePath)" style="border:none; background:none; margin: 5px; padding: 0;">
+                            <img src="@Url.Content(certificate.cerImagePath)" alt="@certificate.certificateNumber" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                        </button>
+                    }
+                }
             </div>
         </div>
         <div class="col-md-6">
@@ -124,15 +133,9 @@
                         var settingsSelect = $("#setting");
                         settingsSelect.empty();
                         settingsSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No setting</option>');
-                        $.each(data, function (index, setting) {
-                            var option = new Option(setting.settingType + " - " + setting.material + " - $" + setting.priceTax, setting.settingID);
-                            $(option).attr('data-image', setting.imagePath);
-                            settingsSelect.append(option);
+                        $.each(data, function (i, setting) {
+                            settingsSelect.append('<option value="' + setting.settingID + '" data-image="' + setting.imagePath + '">' + setting.settingType + ' - ' + setting.material + '</option>');
                         });
-                        settingsSelect.trigger('change');
-                    },
-                    error: function () {
-                        alert("Failed to load settings.");
                     }
                 });
             }
@@ -146,45 +149,20 @@
                         var accentStoneSelect = $("#accentStone");
                         accentStoneSelect.empty();
                         accentStoneSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>');
-                        $.each(data, function (index, stone) {
-                            var option = new Option(stone.shape + " - " + stone.caratWeight + " carat - $" + stone.price, stone.accentStoneID);
-                            $(option).attr('data-image', stone.imagePath);
-                            accentStoneSelect.append(option);
+                        $.each(data, function (i, accentStone) {
+                            accentStoneSelect.append('<option value="' + accentStone.accentStoneID + '" data-image="' + accentStone.imagePath + '">' + accentStone.shape + ' - ' + accentStone.caratWeight + 'ct</option>');
                         });
-                        accentStoneSelect.trigger('change');
-                    },
-                    error: function () {
-                        alert("Failed to load accent stones.");
                     }
                 });
             }
 
-            // Handle setting selection change
-            $("#setting").change(function () {
-                var setting = $(this).val();
-                if (setting == "0") {
-                    $("#accentStone").val("0").trigger('change').prop('disabled', true);
-                } else {
-                    $("#accentStone").prop('disabled', false);
-                }
-            });
-
-            // Confirm selection and submit form
+            // Confirm selection
             $("#confirm-selection").click(function () {
-                var accentStone = $("#accentStone").val();
-                var setting = $("#setting").val();
-
-                // Ensure accent stone cannot be selected if no setting is selected
-                if (setting == "0" && accentStone != "0") {
-                    alert("You must select a setting before choosing an accent stone.");
-                    return;
-                }
-
-                // Set accentStoneID and settingID in hidden fields
-                $("#accentStoneID").val(accentStone);
-                $("#settingID").val(setting);
-
-                // Submit the form
+                var selectedAccentStoneId = $("#accentStone").val();
+                var selectedSettingId = $("#setting").val();
+                $("#accentStoneID").val(selectedAccentStoneId);
+                $("#settingID").val(selectedSettingId);
+                $('#selectionModal').modal('hide');
                 $("#add-to-cart-form").submit();
             });
         });

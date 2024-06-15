@@ -51,7 +51,10 @@ namespace DiamondShopServices
         {
             diamondRepository.AddNewDiamond(newDiamond, newCertificate);
         }
-
+        public List<tblCertificate> GetCertificatesByDiamondId(int diamondId)
+        {
+            return diamondRepository.GetCertificatesByDiamondId(diamondId);
+        }
 
     }
 }

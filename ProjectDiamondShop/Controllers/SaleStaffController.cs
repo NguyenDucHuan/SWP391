@@ -1,4 +1,6 @@
 ﻿using DiamondShopBOs;
+using DiamondShopServices;
+using DiamondShopServices.StaffServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,12 @@ namespace ProjectDiamondShop.Controllers
 {
     public class SaleStaffController : Controller
     {
-        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
+        private readonly IStaffService _staffService;
+
+        public SaleStaffController()
+        {
+            _staffService = new StaffService();
+        }
 
         // GET: SaleStaff
         public ActionResult Index(string searchOrderId)
@@ -18,22 +25,10 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<tblOrder> orders = GetOrders(searchOrderId);
-            ViewBag.Orders = orders; // Sử dụng ViewBag để truyền dữ liệu tới View
-            return View("SaleStaff"); // Ensure your view does not use @model
-        }
-
-        private List<tblOrder> GetOrders(string searchOrderId)
-        {
             string saleStaffID = Session["UserID"].ToString();
-            var ordersQuery = db.tblOrders.Where(o => o.saleStaffID == saleStaffID);
-
-            if (!string.IsNullOrEmpty(searchOrderId))
-            {
-                ordersQuery = ordersQuery.Where(o => o.orderID.Contains(searchOrderId));
-            }
-
-            return ordersQuery.ToList();
+            List<tblOrder> orders = _staffService.GetOrdersByStaffId(saleStaffID, 5, searchOrderId);
+            ViewBag.Orders = orders;
+            return View("SaleStaff");
         }
 
         [HttpPost]
@@ -46,21 +41,10 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            var order = _staffService.GetOrderById(orderId);
             if (order != null)
             {
-                order.status = "Preparing Goods";
-
-                var orderStatusUpdate = new tblOrderStatusUpdate
-                {
-                    orderID = orderId,
-                    status = "Preparing Goods",
-                    updateTime = DateTime.Now
-                };
-
-                db.tblOrderStatusUpdates.Add(orderStatusUpdate);
-                db.SaveChanges();
-
+                _staffService.UpdateOrderStatus(orderId, "Preparing Goods");
                 TempData["UpdateMessage"] = "Order updated successfully.";
             }
             else

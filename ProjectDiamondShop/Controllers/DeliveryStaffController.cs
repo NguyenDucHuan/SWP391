@@ -1,4 +1,6 @@
 ﻿using DiamondShopBOs;
+using DiamondShopServices;
+using DiamondShopServices.StaffServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,12 @@ namespace ProjectDiamondShop.Controllers
 {
     public class DeliveryStaffController : Controller
     {
-        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
+        private readonly IStaffService _staffService;
+
+        public DeliveryStaffController()
+        {
+            _staffService = new StaffService();
+        }
 
         // GET: DeliveryStaff
         public ActionResult Index(string searchOrderId)
@@ -18,22 +25,10 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<tblOrder> orders = GetOrders(searchOrderId);
-            ViewBag.Orders = orders; // Sử dụng ViewBag để truyền dữ liệu tới View
-            return View("DeliveryStaff"); // Ensure your view does not use @model
-        }
-
-        private List<tblOrder> GetOrders(string searchOrderId)
-        {
             string deliveryStaffID = Session["UserID"].ToString();
-            var ordersQuery = db.tblOrders.Where(o => o.deliveryStaffID == deliveryStaffID);
-
-            if (!string.IsNullOrEmpty(searchOrderId))
-            {
-                ordersQuery = ordersQuery.Where(o => o.orderID.Contains(searchOrderId));
-            }
-
-            return ordersQuery.ToList();
+            List<tblOrder> orders = _staffService.GetOrdersByStaffId(deliveryStaffID, 4, searchOrderId);
+            ViewBag.Orders = orders;
+            return View("DeliveryStaff");
         }
     }
 }

@@ -5,7 +5,7 @@ namespace DiamondShopRepositories.OrderRepositories
 {
     public interface IOrderRepository
     {
-        tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID);
+        tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status);
         List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false);
         tblOrder GetOrderById(string orderId);
         List<tblOrderItem> GetOrderItems(string orderId);

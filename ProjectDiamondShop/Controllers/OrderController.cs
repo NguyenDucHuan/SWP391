@@ -74,7 +74,7 @@ namespace ProjectDiamondShop.Controllers
 
             try
             {
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, deliveryStaffID);
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
@@ -426,7 +426,7 @@ namespace ProjectDiamondShop.Controllers
                 // Retrieve address and phone from session
                 var deliveryStaffID = orderServices.GetDeliveryStaffID();
 
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, deliveryStaffID);
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);

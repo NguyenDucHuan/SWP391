@@ -135,6 +135,11 @@ namespace DiamondShopDAOs
                 }
             }
         }
+        public List<tblCertificate> GetCertificatesByDiamondId(int diamondId)
+        {
+            var certificates = diamondShopManagementEntities.tblCertificates.Where(c => c.diamondID == diamondId).ToList();
+            return certificates;
+        }
 
     }
 }

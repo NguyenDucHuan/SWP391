@@ -14,9 +14,9 @@ namespace DiamondShopServices.OrderServices
             orderRepository = new OrderRepository();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status)
         {
-            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status, deliveryStaffID);
+            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status);
         }
 
         public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)

@@ -13,18 +13,13 @@ namespace DiamondShopDAOs
         {
             _context = new DiamondShopManagementEntities();
         }
-
-   
-
-
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, string deliveryStaffID)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status)
         {
             var order = new tblOrder
             {
                 orderID = GenerateNextOrderId(),
                 customerID = userID,
                 saleStaffID = null,
-                deliveryStaffID = deliveryStaffID, // Set delivery staff ID here
                 totalMoney = (double)totalMoney,
                 paidAmount = (double)paidAmount,
                 remainingAmount = (double)remainingAmount,

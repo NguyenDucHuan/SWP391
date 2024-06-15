@@ -117,10 +117,18 @@
 
 <body>
     <div class="container text-center">
-        <h2 class="mt-4">Manager Dashboard</h2>
+        @if ((int)Session["RoleID"] == 3)
+        {
+            <h2 class="mt-4">Manager Dashboard</h2>
+        }
+        @if ((int)Session["RoleID"] == 2)
+        {
+            <h2 class="mt-4">Admin Dashboard</h2>
+        }
 
-        <div id="updateSuccessMessage" class="alert alert-success" style="display:none;"></div>
-        <div id="updateErrorMessage" class="alert alert-danger" style="display:none;"></div>
+
+        <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
+        <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
 
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('orders')">Orders</button>
@@ -403,7 +411,7 @@
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         <label for="txtUname">User Name:</label>
-                        <input type="text" class="form-control" id="txtUname" name="userName" placeholder="Enter Your User Name" required />
+                        <input type="text" class="form-control" id="txtUname" name="userName" placeholder="Enter Your User Name" value="@TempData["UserName"]" required />
                     </div>
                     <div class="form-group position-relative">
                         <label for="txtPass">Password:</label>
@@ -417,18 +425,18 @@
                     </div>
                     <div class="form-group">
                         <label for="txtName">Full Name:</label>
-                        <input type="text" class="form-control" id="txtName" name="fullName" placeholder="Enter Your Name" required />
+                        <input type="text" class="form-control" id="txtName" name="fullName" placeholder="Enter Your Name" value="@TempData["FullName"]" required />
                     </div>
                     <div class="form-group">
                         <label for="txtEmail">Email:</label>
-                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Your Email" required />
+                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Your Email" value="@TempData["Email"]" required />
                     </div>
                     <div class="form-group">
                         <label for="roleId">Role:</label>
                         <select class="form-control" id="roleId" name="roleId" required>
-                            <option value="3">Manager</option>
-                            <option value="5">Sale Staff</option>
-                            <option value="4">Delivery Staff</option>
+                            <option value="3" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 3 ? "selected" : "")>Manager</option>
+                            <option value="5" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 5 ? "selected" : "")>Sale Staff</option>
+                            <option value="4" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 4 ? "selected" : "")>Delivery Staff</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-success">Sign Up</button>
@@ -473,7 +481,15 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
+        $(document).ready(function () {
+            if ('@TempData["SuccessMessage"]'.length > 0) {
+                $('#updateSuccessMessage').show().delay(3000).fadeOut();
+            }
+
+            if ('@TempData["ErrorMessage"]'.length > 0) {
+                $('#updateErrorMessage').show().delay(3000).fadeOut();
+            }
+
             var roleId = @Html.Raw(Session["RoleID"]);
 
             var backgroundColors = [
@@ -649,11 +665,13 @@
                 data: JSON.stringify(orderUpdates),
                 success: function (response) {
                     if (response.success) {
-                        $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function() {
+                        $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
                             window.location.reload();
                         });
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
+                        $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                            window.location.reload();
+                        });
                     }
                 },
                 error: function (xhr, status, error) {
@@ -662,7 +680,7 @@
             });
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var updateMessage = '@TempData["UpdateMessage"]';
             if (updateMessage) {
                 $('#updateSuccessMessage').text(updateMessage).show().delay(3000).fadeOut();
@@ -680,8 +698,8 @@
                     if (response.success) {
                         var btn = $("#user-row-" + userId + " button");
                         btn.toggleClass('btn-success btn-danger')
-                           .text(newStatus ? "Enable" : "Disable")
-                           .attr("onclick", "toggleStatus('" + userId + "', " + newStatus + ")");
+                            .text(newStatus ? "Enable" : "Disable")
+                            .attr("onclick", "toggleStatus('" + userId + "', " + newStatus + ")");
                     } else {
                         alert('Failed to update status.');
                     }

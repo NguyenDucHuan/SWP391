@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderUpdateModel.cs" />
     <Compile Include="OrderViewModel.cs" />
     <Compile Include="DiamondShopModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -67,6 +68,8 @@
       <DependentUpon>DiamondShopModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationData.cs" />
+    <Compile Include="RevenueData.cs" />
     <Compile Include="tblAccentStone.cs">
       <DependentUpon>DiamondShopModels.tt</DependentUpon>
     </Compile>

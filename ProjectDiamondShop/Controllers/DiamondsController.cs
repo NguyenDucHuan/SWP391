@@ -162,7 +162,7 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult AddDiamond()
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -172,7 +172,7 @@ namespace ProjectDiamondShop.Controllers
         [HttpPost]
         public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
             {
                 return RedirectToAction("Index", "Home");
             }

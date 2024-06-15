@@ -48,7 +48,10 @@ namespace DiamondShopRepositories
         {
             diamondDAO.AddNewDiamond(newDiamond, newCertificate);
         }
-
+        public List<tblCertificate> GetCertificatesByDiamondId(int diamondId)
+        {
+            return diamondDAO.GetCertificatesByDiamondId(diamondId);
+        }
 
     }
 }

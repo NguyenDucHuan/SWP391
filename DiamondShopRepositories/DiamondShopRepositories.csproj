@@ -49,6 +49,8 @@
     <Compile Include="CookieCartRepository\ItemCartRepository.cs" />
     <Compile Include="DiamondRepository.cs" />
     <Compile Include="IDiamondRepository.cs" />
+    <Compile Include="ManagerRepositories\IManagerRepository.cs" />
+    <Compile Include="ManagerRepositories\ManagerRepository.cs" />
     <Compile Include="OrderRepositories\IOrderRepository.cs" />
     <Compile Include="OrderRepositories\ItemRepository.cs" />
     <Compile Include="OrderRepositories\IItemRepository.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="JewelrySettingRepository\JewelrySettingRepository.cs" />
     <Compile Include="OrderRepositories\OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaffRepositories\IStaffRepository.cs" />
+    <Compile Include="StaffRepositories\StaffRepository.cs" />
     <Compile Include="UserRepository\UserRepository.cs" />
     <Compile Include="UserRepository\IUserRepository.cs" />
   </ItemGroup>

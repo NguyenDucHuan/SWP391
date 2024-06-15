@@ -16,6 +16,6 @@ namespace DiamondShopRepositories
         List<tblDiamond> Filter(string searchTerm, string clarity, string cut, string color, string shape, decimal? minPrice, decimal? maxPrice, float? minCaratWeight, float? maxCaratWeight, string sortBy);
         void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate);
 
-
+        List<tblCertificate> GetCertificatesByDiamondId(int diamondId);
     }
 }
