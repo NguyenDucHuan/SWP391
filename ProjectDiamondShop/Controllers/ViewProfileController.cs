@@ -14,6 +14,22 @@ namespace ProjectDiamondShop.Controllers
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private readonly IUserService service = null;
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+        private bool IsSaleStaff()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
         public ViewProfileController()
         {
             service = new UserService();

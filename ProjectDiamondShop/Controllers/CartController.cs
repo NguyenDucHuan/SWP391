@@ -5,7 +5,22 @@ using System.Web.Mvc;
 
 public class CartController : Controller
 {
-
+    private bool IsAdmin()
+    {
+        return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+    }
+    private bool IsSaleStaff()
+    {
+        return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+    }
+    private bool IsDelivery()
+    {
+        return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+    }
+    private bool IsManager()
+    {
+        return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+    }
     private string GetUserID()
     {
         if (Session["UserID"] == null)
@@ -18,6 +33,22 @@ public class CartController : Controller
 
     public ActionResult Index()
     {
+        if (IsAdmin())
+        {
+            return RedirectToAction("Index", "Manager");
+        }
+        if (IsManager())
+        {
+            return RedirectToAction("Index", "Manager");
+        }
+        if (IsSaleStaff())
+        {
+            return RedirectToAction("Index", "SaleStaff");
+        }
+        if (IsDelivery())
+        {
+            return RedirectToAction("Index", "DeliveryStaff");
+        }
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {

@@ -14,6 +14,22 @@ namespace ProjectDiamondShop.Controllers
     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private readonly IUserService userService = null;
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+        private bool IsSaleStaff()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
         public ForgotPasswordController()
         {
             userService = new UserService();
@@ -22,6 +38,22 @@ namespace ProjectDiamondShop.Controllers
         [Route("ForgotPassword")]
         public ActionResult Index()
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             return View("ForgotPassword");
         }
 
@@ -30,6 +62,22 @@ namespace ProjectDiamondShop.Controllers
         [Route("ForgotPassword/SendResetCode")]
         public ActionResult SendResetCode(string email)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             try
             {
                 string resetCode = userService.GenerateResetCode(email);
@@ -75,6 +123,22 @@ namespace ProjectDiamondShop.Controllers
         [Route("ForgotPassword/ResetPassword")]
         public ActionResult ResetPassword(string code, string email)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             ViewBag.Email = email;
             ViewBag.ResetCode = code;
             return View();
@@ -84,6 +148,22 @@ namespace ProjectDiamondShop.Controllers
         [Route("ForgotPassword/ResetPassword")]
         public ActionResult ResetPassword(string code, String email, string newPassword, string confirmPassword)
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             if (newPassword != confirmPassword)
             {
                 ViewBag.Message = "Passwords do not match.";

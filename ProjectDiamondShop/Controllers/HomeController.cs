@@ -16,9 +16,40 @@ namespace ProjectDiamondShop.Controllers
         {
             orderServices = new OrderServices();
         }
-
+        private bool IsAdmin()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
+        }
+        private bool IsSaleStaff()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+        private bool IsDelivery()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
+        }
+        private bool IsManager()
+        {
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
+        }
         public ActionResult Index()
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             if (TempData["SuccessMessage"] != null)
             {
                 ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
@@ -29,17 +60,56 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult Contact()
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             return View();
         }
 
         public ActionResult About()
         {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
             return View();
         }
 
         public ActionResult ViewOrders()
         {
-
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
             var userID = Session["UserID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
