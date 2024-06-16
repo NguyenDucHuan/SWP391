@@ -37,15 +37,18 @@
                 {
                     string[] imagepart = item.imagePath.Split('|');
                     <tr>
-                        <td><strong>Setting Detail</strong></td>
+                        <td>@item.decription</td>
                         <td>
-                            Setting Name: @item.decription <br />
-                            Setting Price: @item.settingPrice <br />
+                            <strong>Diamond Name:</strong> @item.DiamondName <br />
                             <img src="@imagepart[0]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Accent Stone Details:</strong></td>
+                        <td>Item Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
+                    </tr>
+                    <tr>
+                        <td>Accent Stone Details:</td>
                         <td>
                             Accent Stone ID: @item.accentStoneID <br />
                             Quantity: @item.quantityAccent <br />
@@ -53,21 +56,33 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Diamond Details:</strong></td>
+                        <td>Diamond Details:</td>
                         <td>
                             Name: @item.DiamondName <br />
                             Price: @item.diamondPrice <br />
                             <img src="@imagepart[1]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
                     </tr>
-                    <tr>
-                        <td>Total Price:</td>
-                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
-                    </tr>
                 }
             }
         </tbody>
     </table>
+
+    <div class="form-group">
+        <label for="VoucherID">Voucher:</label>
+        <select id="VoucherID" name="voucherID" class="form-control">
+            <option value="">Select Voucher</option>
+            @foreach (var voucher in ViewBag.Vouchers as List<DiamondShopBOs.tblVoucher>)
+            {
+                <option value="@voucher.voucherID" data-discount="@voucher.discount">@voucher.voucherID - @voucher.discount %</option>
+            }
+        </select>
+    </div>
+    <div class="form-group" id="discountSection" style="display:none;">
+        <p>You will get a discount of: $<span id="DiscountAmount"></span></p>
+        <p>Total after discount: $<span id="DiscountedTotal"></span></p>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="applyVoucher()">Add Voucher</button>
 
     <div class="form-group">
         <label for="Address">Address:</label>
@@ -83,18 +98,36 @@
         <label for="Total">Total:</label>
         <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)))" disabled />
     </div>
+
     <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
 
     <form id="paymentForm" action="/order/PaymentWithPayPal" method="post" style="display:none;">
         <input type="hidden" id="hiddenAddress" name="address" />
         <input type="hidden" id="hiddenPhone" name="phone" />
+        <input type="hidden" id="hiddenVoucherID" name="voucherID" />
     </form>
 </div>
 
 <script>
+    function applyVoucher() {
+        var voucherSelect = document.getElementById("VoucherID");
+        var selectedOption = voucherSelect.options[voucherSelect.selectedIndex];
+        var discount = parseFloat(selectedOption.getAttribute("data-discount")) || 0;
+        var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", ""));
+
+        var discountAmount = totalPrice * (discount / 100);
+        var discountedTotal = totalPrice - discountAmount;
+
+        document.getElementById("DiscountAmount").innerText = discountAmount.toFixed(2);
+        document.getElementById("DiscountedTotal").innerText = discountedTotal.toFixed(2);
+
+        document.getElementById("discountSection").style.display = "block";
+    }
+
     function validateForm() {
         var address = document.getElementById("Address").value;
         var phone = document.getElementById("Phone").value;
+        var voucherID = document.getElementById("VoucherID").value;
 
         // Kiểm tra xem address và phone có được điền đầy đủ hay không
         if (address.trim() === "") {
@@ -121,6 +154,7 @@
         // Set hidden form fields
         document.getElementById("hiddenAddress").value = address;
         document.getElementById("hiddenPhone").value = phone;
+        document.getElementById("hiddenVoucherID").value = voucherID;
 
         // Submit the hidden form
         document.getElementById("paymentForm").submit();

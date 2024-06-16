@@ -4,12 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccentStones">
           <Key>
             <PropertyRef Name="accentStoneID" />
           </Key>
           <Property Name="accentStoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accentStonesName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="shape" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="caratWeight" Type="float" Nullable="false" />
           <Property Name="clarity" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -108,6 +109,7 @@
           <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="saleDate" Type="datetime" Nullable="false" />
+          <Property Name="voucherID" Type="int" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
@@ -178,11 +180,12 @@
           <Key>
             <PropertyRef Name="voucherID" />
           </Key>
-          <Property Name="voucherID" Type="int" Nullable="false" />
+          <Property Name="voucherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="startTime" Type="datetime" Nullable="false" />
           <Property Name="endTime" Type="datetime" Nullable="false" />
           <Property Name="discount" Type="int" />
           <Property Name="quantity" Type="int" />
+          <Property Name="targetUserID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="bit" />
         </EntityType>
         <EntityType Name="tblVoucherCatch">
@@ -581,8 +584,7 @@
             <End Role="tblWarranty" EntitySet="tblWarranty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -600,6 +602,7 @@
           <Property Name="imagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblAccentStones" ToRole="tblItem" />
+          <Property Name="accentStonesName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCertificate">
           <Key>
@@ -709,6 +712,7 @@
           <NavigationProperty Name="tblOrderItems" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrder" ToRole="tblOrderItem" />
           <NavigationProperty Name="tblOrderStatusUpdates" Relationship="Self.FK_tblOrderStatusUpdates_tblOrder" FromRole="tblOrder" ToRole="tblOrderStatusUpdates" />
           <NavigationProperty Name="tblTransactions" Relationship="Self.FK_tblTransaction_tblOrder" FromRole="tblOrder" ToRole="tblTransaction" />
+          <Property Name="voucherID" Type="Int32" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
@@ -804,6 +808,7 @@
           <Property Name="quantity" Type="Int32" />
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="tblUsers" Relationship="Self.tblVoucherCatch" FromRole="tblVoucher" ToRole="tblUsers" />
+          <Property Name="targetUserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblWarranty">
           <Key>
@@ -1178,6 +1183,7 @@
           <EntitySetMapping Name="tblAccentStones">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblAccentStone">
               <MappingFragment StoreEntitySet="tblAccentStones">
+                <ScalarProperty Name="accentStonesName" ColumnName="accentStonesName" />
                 <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
                 <ScalarProperty Name="shape" ColumnName="shape" />
                 <ScalarProperty Name="caratWeight" ColumnName="caratWeight" />
@@ -1270,6 +1276,7 @@
           <EntitySetMapping Name="tblOrders">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="voucherID" ColumnName="voucherID" />
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="customerID" ColumnName="customerID" />
                 <ScalarProperty Name="deliveryStaffID" ColumnName="deliveryStaffID" />
@@ -1358,6 +1365,7 @@
           <EntitySetMapping Name="tblVouchers">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblVoucher">
               <MappingFragment StoreEntitySet="tblVoucher">
+                <ScalarProperty Name="targetUserID" ColumnName="targetUserID" />
                 <ScalarProperty Name="voucherID" ColumnName="voucherID" />
                 <ScalarProperty Name="startTime" ColumnName="startTime" />
                 <ScalarProperty Name="endTime" ColumnName="endTime" />

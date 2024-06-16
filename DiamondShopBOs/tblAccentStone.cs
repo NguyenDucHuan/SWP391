@@ -29,6 +29,7 @@ namespace DiamondShopBOs
         public int quantity { get; set; }
         public string imagePath { get; set; }
         public Nullable<bool> status { get; set; }
+        public string accentStonesName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblItem> tblItems { get; set; }

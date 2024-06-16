@@ -122,7 +122,21 @@ namespace DiamondShopDAOs
             _context.tblUsers.Add(user);
             _context.SaveChanges();
         }
+        public void AddVoucher(tblVoucher voucher)
+        {
+            _context.tblVouchers.Add(voucher);
+            _context.SaveChanges();
+        }
 
+        public List<tblVoucher> GetVouchers()
+        {
+            return _context.tblVouchers.ToList();
+        }
+
+        public void SaveVoucherChanges()
+        {
+            _context.SaveChanges();
+        }
 
     }
 }

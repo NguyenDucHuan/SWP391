@@ -13,7 +13,7 @@ namespace DiamondShopDAOs
         {
             _context = new DiamondShopManagementEntities();
         }
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
         {
             var order = new tblOrder
             {
@@ -25,12 +25,27 @@ namespace DiamondShopDAOs
                 remainingAmount = (double)remainingAmount,
                 address = address,
                 phone = phone,
-                saleDate = System.DateTime.Now,
+                saleDate = DateTime.Now,
                 status = status,
-                paymentStatus = "Pending"
+                paymentStatus = "Pending",
+                voucherID = voucherID // Ensure this line assigns the voucherID
             };
 
             _context.tblOrders.Add(order);
+
+            if (voucherID.HasValue)
+            {
+                var voucher = _context.tblVouchers.SingleOrDefault(v => v.voucherID == voucherID.Value);
+                if (voucher != null)
+                {
+                    voucher.quantity -= 1;
+                    if (voucher.quantity < 0)
+                    {
+                        voucher.quantity = 0; // Ensure quantity does not go negative
+                    }
+                }
+            }
+
             _context.SaveChanges();
             return order;
         }
@@ -120,6 +135,17 @@ namespace DiamondShopDAOs
         {
             var deliveryStaff = _context.tblUsers.FirstOrDefault(u => u.roleID == 4);
             return deliveryStaff?.userID;
+        }
+        public List<tblVoucher> GetAvailableVouchers(string userID)
+        {
+            return _context.tblVouchers
+                .Where(v => v.status == true && (v.targetUserID == "All" || v.targetUserID == userID))
+                .ToList();
+        }
+        public tblVoucher ValidateVoucher(int voucherID, string userID)
+        {
+            return _context.tblVouchers
+                .FirstOrDefault(v => v.voucherID == voucherID && v.status == true && (v.targetUserID == "All" || v.targetUserID == userID));
         }
     }
 }

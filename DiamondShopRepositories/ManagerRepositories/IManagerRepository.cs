@@ -21,5 +21,8 @@ namespace DiamondShopRepositories.ManagerRepositories
         void SaveChanges();
         tblUser GetUserById(string userId);
         void AddUser(tblUser user);
+        void AddVoucher(tblVoucher voucher);
+        void SaveVoucherChanges();
+        List<tblVoucher> GetVouchers();
     }
 }

@@ -274,6 +274,73 @@ namespace ProjectDiamondShop.Controllers
             return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+        public ActionResult CreateVoucher()
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+            var users = _managerService.GetUsersByRole(1); // Get users with roleID = 1
+            ViewBag.Users = new SelectList(users, "userID", "userID");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateVoucher(DateTime startTime, DateTime endTime, int discount, int quantity, string targetUserID)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
+            {
+                TempData["ErrorMessage"] = "Unauthorized access.";
+                return RedirectToAction("Index");
+            }
+
+            if (endTime <= startTime)
+            {
+                TempData["ErrorMessage"] = "End time must be after start time.";
+                return RedirectToAction("CreateVoucher");
+            }
+
+            // Đảm bảo targetUserID không null
+            if (string.IsNullOrEmpty(targetUserID))
+            {
+                TempData["ErrorMessage"] = "The targetUserID field is required.";
+                return RedirectToAction("CreateVoucher");
+            }
+
+            var voucher = new tblVoucher
+            {
+                startTime = startTime,
+                endTime = endTime,
+                discount = discount,
+                quantity = quantity,
+                status = true,
+                targetUserID = targetUserID // Đặt giá trị của targetUserID
+            };
+
+            try
+            {
+                _managerService.AddVoucher(voucher);
+                _managerService.SaveChanges();
+                TempData["SuccessMessage"] = "Voucher created successfully.";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
+
+                var fullErrorMessage = string.Join("; ", errorMessages);
+                TempData["ErrorMessage"] = "Validation failed: " + fullErrorMessage;
+            }
+            catch (Exception ex)
+            {
+                var innerExceptionMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                TempData["ErrorMessage"] = "An error occurred while updating the entries: " + innerExceptionMessage;
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -55,42 +56,43 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Login");
             }
             var cart = CartHelper.GetCart(HttpContext, userID);
+            ViewBag.Vouchers = orderServices.GetAvailableVouchers(userID);
             return View("CreateOrder", cart);
         }
-        public ActionResult SaveOrder(string address, string phone)
-        {
-            var userID = GetUserID();
-            if (string.IsNullOrEmpty(userID))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            var cart = CartHelper.GetCart(HttpContext, userID);
-            decimal totalMoney = cart.Items.Sum(i => i.diamondPrice);
-            decimal paidAmount = totalMoney * discountPercentage;
-            decimal remainingAmount = totalMoney - paidAmount;
+        //public ActionResult SaveOrder(string address, string phone)
+        //{
+        //    var userID = GetUserID();
+        //    if (string.IsNullOrEmpty(userID))
+        //    {
+        //        return RedirectToAction("Index", "Login");
+        //    }
+        //    var cart = CartHelper.GetCart(HttpContext, userID);
+        //    decimal totalMoney = cart.Items.Sum(i => i.diamondPrice);
+        //    decimal paidAmount = totalMoney * discountPercentage;
+        //    decimal remainingAmount = totalMoney - paidAmount;
 
-            // Lấy ID của nhân viên giao hàng có RoleID = 4
-            var deliveryStaffID = orderServices.GetDeliveryStaffID();
+        //    // Lấy ID của nhân viên giao hàng có RoleID = 4
+        //    var deliveryStaffID = orderServices.GetDeliveryStaffID();
 
-            try
-            {
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
-                foreach (var item in cart.Items)
-                {
-                    itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
-                }
+        //    try
+        //    {
+        //        tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
+        //        foreach (var item in cart.Items)
+        //        {
+        //            itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
+        //        }
 
-                // Clear the cart after order creation
-                CartHelper.ClearCart(HttpContext, userID);
+        //        // Clear the cart after order creation
+        //        CartHelper.ClearCart(HttpContext, userID);
 
-                return RedirectToAction("Index", "Diamonds");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
-                return View("CreateOrder", cart);
-            }
-        }
+        //        return RedirectToAction("Index", "Diamonds");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
+        //        return View("CreateOrder", cart);
+        //    }
+        //}
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
@@ -222,22 +224,19 @@ namespace ProjectDiamondShop.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string address, string phone, string Cancel = null)
+        public ActionResult PaymentWithPaypal(string address, string phone, int? voucherID, string Cancel = null)
         {
-            // Store address and phone in session   
-            // Getting the APIContext
+            // Store address, phone, and voucherID in session
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
             {
                 string payerId = Request.Params["PayerID"];
                 if (string.IsNullOrEmpty(payerId))
                 {
-                    // Generate a new base URL without address and phone parameters
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/order/PaymentWithPayPal?";
                     var guid = Convert.ToString((new Random()).Next(100000));
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, voucherID);
 
-                    // Get the links returned from PayPal in response to the Create function call
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
                     while (links.MoveNext())
@@ -249,16 +248,14 @@ namespace ProjectDiamondShop.Controllers
                         }
                     }
 
-                    // Save the payment ID in the session
                     Session.Add(guid, createdPayment.id);
                     TempData["Address"] = address;
                     TempData["Phone"] = phone;
+                    TempData["VoucherID"] = voucherID; // Save voucherID to TempData
                     return Redirect(paypalRedirectUrl);
                 }
                 else
                 {
-                    // This section is executed when the user is redirected back from PayPal after approving the payment
-
                     var guid = Request.Params["guid"];
                     var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
                     if (executedPayment.state.ToLower() != "approved")
@@ -271,20 +268,25 @@ namespace ProjectDiamondShop.Controllers
             {
                 return View("FailureView");
             }
+
             address = TempData["Address"] as string;
             phone = TempData["Phone"] as string;
+            voucherID = TempData["VoucherID"] as int?; // Retrieve voucherID from TempData
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
-            decimal totalMoney = cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice));
-            decimal paidAmount = totalMoney * discountPercentage;
+
+            // Retrieve voucher discount
+            decimal voucherDiscount = GetVoucherDiscount(voucherID);
+
+            decimal totalMoney = cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice)) - cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice)) * voucherDiscount;
+            //decimal discountedTotalMoney = totalMoney * (1 - discountPercentage - voucherDiscount);
+            decimal discountedTotalMoney = totalMoney * (1 - discountPercentage);
+            decimal paidAmount = discountedTotalMoney;
             decimal remainingAmount = totalMoney - paidAmount;
 
             try
             {
-                // Retrieve address and phone from session
-                var deliveryStaffID = orderServices.GetDeliveryStaffID();
-
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
+                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
@@ -294,14 +296,13 @@ namespace ProjectDiamondShop.Controllers
             {
                 ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
             }
+
             CartHelper.ClearCart(HttpContext, userID);
             return View("SuccessView");
         }
 
-
-
-
         private PayPal.Api.Payment payment;
+
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
             var paymentExecution = new PaymentExecution()
@@ -314,11 +315,15 @@ namespace ProjectDiamondShop.Controllers
             };
             return this.payment.Execute(apiContext, paymentExecution);
         }
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, int? voucherID)
         {
-            // Create item list and add item objects to it  
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
+
+            // Retrieve voucher discount
+            decimal voucherDiscount = GetVoucherDiscount(voucherID);
+
             var itemList = new ItemList()
             {
                 items = new List<Item>()
@@ -326,7 +331,7 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
-                decimal discountedPrice = (item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage);
+                decimal discountedPrice = (item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage - voucherDiscount);
                 itemList.items.Add(new Item()
                 {
                     name = item.decription,
@@ -336,6 +341,7 @@ namespace ProjectDiamondShop.Controllers
                     sku = item.diamondID.ToString()
                 });
             }
+
             var payer = new Payer()
             {
                 payment_method = "paypal"
@@ -347,7 +353,9 @@ namespace ProjectDiamondShop.Controllers
                 return_url = redirectUrl
             };
 
-            decimal discountedSubtotal = cart.ToatalCartMoney() * (1 - discountPercentage);
+            decimal totalMoney = cart.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent);
+            decimal discountAmount = totalMoney * voucherDiscount;
+            decimal discountedSubtotal = totalMoney * (1 - discountPercentage) - discountAmount;
             var details = new Details()
             {
                 subtotal = discountedSubtotal.ToString("F2")
@@ -379,6 +387,9 @@ namespace ProjectDiamondShop.Controllers
                 redirect_urls = redirUrls
             };
 
+            // Log the payment request
+            Debug.WriteLine("Payment Request: " + payment.ConvertToJson());
+
             try
             {
                 return payment.Create(apiContext);
@@ -386,26 +397,43 @@ namespace ProjectDiamondShop.Controllers
             catch (PayPalException ex)
             {
                 // Log detailed error message
-                Console.WriteLine("PayPalException: " + ex.Message);
+                Debug.WriteLine("PayPalException: " + ex.Message);
 
                 // Log details if available
                 if (ex.InnerException != null)
                 {
-                    Console.WriteLine("InnerException: " + ex.InnerException.Message);
+                    Debug.WriteLine("InnerException: " + ex.InnerException.Message);
                 }
 
                 // Log PayPal error response details
                 if (ex is PaymentsException pe && pe.Details != null)
                 {
                     var error = pe.Details;
-                    Console.WriteLine("Name: " + error.name);
-                    Console.WriteLine("Message: " + error.message);
-                    Console.WriteLine("InformationLink: " + error.information_link);
-                    Console.WriteLine("DebugId: " + error.debug_id);
+                    Debug.WriteLine("Name: " + error.name);
+                    Debug.WriteLine("Message: " + error.message);
+                    Debug.WriteLine("InformationLink: " + error.information_link);
+                    Debug.WriteLine("DebugId: " + error.debug_id);
                 }
 
                 throw new Exception(ex.Message);
             }
+        }
+
+        // This method retrieves the discount for the voucher
+        private decimal GetVoucherDiscount(int? voucherID)
+        {
+            if (voucherID == null)
+            {
+                return 0;
+            }
+
+            var voucher = db.tblVouchers.SingleOrDefault(v => v.voucherID == voucherID);
+            if (voucher != null && voucher.quantity > 0)
+            {
+                return (decimal)voucher.discount / 100;
+            }
+
+            return 0;
         }
     }
 }

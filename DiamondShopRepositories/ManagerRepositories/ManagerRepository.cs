@@ -71,5 +71,18 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             _managerDAO.AddUser(user);
         }
+        public void AddVoucher(tblVoucher voucher)
+        {
+            _managerDAO.AddVoucher(voucher);
+        }
+
+        public void SaveVoucherChanges()
+        {
+            _managerDAO.SaveVoucherChanges();
+        }
+        public List<tblVoucher> GetVouchers()
+        {
+            return _managerDAO.GetVouchers();
+        }
     }
 }

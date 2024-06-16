@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using PayPal.Api;
@@ -17,6 +18,8 @@ namespace ProjectDiamondShop.Models.Payments
             var config = GetConfig();
             ClientId = config["clientId"];
             ClientSecret = config["clientSecret"];
+            Debug.WriteLine("ClientId: " + ClientId);  // Thêm dòng này
+            Debug.WriteLine("ClientSecret: " + ClientSecret);  // Thêm dòng này
         }
         // getting properties from the web.config  
         public static Dictionary<string, string> GetConfig()

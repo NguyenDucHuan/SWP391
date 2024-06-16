@@ -71,5 +71,18 @@ namespace DiamondShopServices.ManagerServices
         {
             _managerRepository.AddUser(user);
         }
+        public void AddVoucher(tblVoucher voucher)
+        {
+            _managerRepository.AddVoucher(voucher);
+        }
+
+        public void SaveVoucherChanges()
+        {
+            _managerRepository.SaveVoucherChanges();
+        }
+        public List<tblVoucher> GetVouchers()
+        {
+            return _managerRepository.GetVouchers();
+        }
     }
 }

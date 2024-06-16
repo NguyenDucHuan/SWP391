@@ -1,42 +1,78 @@
-﻿@model ProjectDiamondShop.Models.Voucher
-
-@{
+﻿@{
     ViewBag.Title = "Create Voucher";
 }
 
-<h2>Create Voucher</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .form-container {
+            padding: 20px;
+            margin-top: 10px;
+            max-width: 600px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mt-4">Create Voucher</h2>
 
-@using (Html.BeginForm("CreateVoucher", "Manager", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.StartTime, "Start Time")
-        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+        <div class="form-container">
+            @using (Html.BeginForm("CreateVoucher", "Manager", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="datetime-local" class="form-control" id="startTime" name="startTime" required />
+                </div>
+                <div class="form-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="datetime-local" class="form-control" id="endTime" name="endTime" required />
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount (%):</label>
+                    <input type="number" class="form-control" id="discount" name="discount" min="0" max="100" required />
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" min="1" required />
+                </div>
+                <div class="form-group">
+                    <label for="targetUserID">Target User:</label>
+                    <select class="form-control" id="targetUserID" name="targetUserID" required>
+                        <option value="All">All</option>
+                        @foreach (var user in ViewBag.Users as SelectList)
+                        {
+                            <option value="@user.Value">@user.Text</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Voucher</button>
+            }
+        </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.EndTime, "End Time")
-        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Discount, "Discount")
-        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Quantity, "Quantity")
-        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        <label for="assignTo">Assign to</label>
-        <select id="assignTo" name="assignTo" class="form-control">
-            <option value="all">All Users</option>
-            @* You can add options for specific users dynamically *@
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create Voucher</button>
-}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

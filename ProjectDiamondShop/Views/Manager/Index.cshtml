@@ -130,6 +130,7 @@
         <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
         <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
 
+
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('orders')">Orders</button>
             <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('diamonds')">Diamonds</button>
@@ -140,7 +141,6 @@
                 <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('users')">Users</button>
                 <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('createAccount')">Create Account</button>
             }
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="window.location.href='@Url.Action("AddDiamond", "Diamonds")'">Add Diamond</button>
             <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Create Voucher</a>
             <a href="@Url.Action("Logout", "Login")" class="btn btn-danger col-12 col-sm-6 col-md-4 col-lg-2 m-1">Logout</a>
         </div>

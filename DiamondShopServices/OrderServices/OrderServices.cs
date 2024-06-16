@@ -14,9 +14,9 @@ namespace DiamondShopServices.OrderServices
             orderRepository = new OrderRepository();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status)
+        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
         {
-            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status);
+            return orderRepository.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status, voucherID);
         }
 
         public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
@@ -48,6 +48,14 @@ namespace DiamondShopServices.OrderServices
         public string GetDeliveryStaffID()
         {
             return orderRepository.GetDeliveryStaffID();
+        }
+        public List<tblVoucher> GetAvailableVouchers(string userID)
+        {
+            return orderRepository.GetAvailableVouchers(userID);
+        }
+        public tblVoucher ValidateVoucher(int voucherID, string userID)
+        {
+            return orderRepository.ValidateVoucher(voucherID, userID);
         }
 
     }
