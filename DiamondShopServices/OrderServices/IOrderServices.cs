@@ -5,7 +5,8 @@ namespace DiamondShopServices.OrderServices
 {
     public interface IOrderServices
     {
-        tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID);
+        tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID);
+
         List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false);
         tblOrder GetOrderById(string orderId);
         List<tblOrderItem> GetOrderItems(string orderId);

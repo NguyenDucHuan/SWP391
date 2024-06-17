@@ -20,7 +20,7 @@ namespace DiamondShopDAOs.DAOs
                 diamondShopManagementEntities = new DiamondShopManagementEntities();
             }
         }
-        public void CreateOrderItem(string orderID, int itemID, decimal salePrice)
+        public void CreateOrderItem(string orderID, int itemID, decimal salePrice, string warrantyCode)
         {
             try
             {
@@ -44,6 +44,7 @@ namespace DiamondShopDAOs.DAOs
                         ItemID = itemID,
                         orderID = orderID,
                         salePriceItem = salePrice,
+                        warrantyCode = warrantyCode,
                         tblItem = item,
                         tblOrder = order
                     };

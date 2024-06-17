@@ -1,0 +1,232 @@
+﻿@model DiamondShopBOs.WarrantyDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+    h2 {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 0.9em;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .cart-item img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+
+    .cart-item-details {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-item-info {
+        flex: 1;
+    }
+
+    .cart-item-actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .remove-btn {
+        font-size: 1.5em;
+        color: #ff0000;
+        cursor: pointer;
+    }
+
+    .cart-summary {
+        text-align: right;
+        font-weight: bold;
+        margin-top: 20px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .cart-item:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .cart-item:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    #warrantyForm {
+        display: none;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+
+    .panel {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .panel-heading {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .form-control[readonly] {
+        background-color: #f9f9f9;
+        color: #555;
+    }
+</style>
+
+<h2>Your Warranty</h2>
+
+<div class="container">
+    <div>
+        <h4>Enter Warranty Code</h4>
+        @using (Html.BeginForm("SearchWarranty", "Warranty", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.Label("Warranty Code")
+                @Html.TextBox("warrantyCode", null, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        }
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="cart-item">
+            <img src="@Model.ImagePath.Split('|')[0]" alt="Product Image" />
+            <div class="cart-item-details">
+                <div class="cart-item-info">
+                    <h5>Diamond Name: @Model.DiamondName</h5>
+                    <p>Diamond Price: $@(Model.DiamondPrice)</p>
+                    <p>Setting Name: @Model.SettingName</p>
+                    <p>Setting Price: $@Model.SettingPrice</p>
+                    <p>Accent Stone: @Model.AccentStoneName</p>
+                    <p>Accent Stone Price: $@Model.AccentStonePrice</p>
+                    <p>Accent Stone Quantity: @Model.AccentStoneQuantity</p>
+                    <p>Warranty Start Date: @Model.WarrantyStartDate.ToString("yyyy-MM-dd")</p>
+                    <p>Warranty End Date: @Model.WarrantyEndDate.ToString("yyyy-MM-dd")</p>
+                </div>
+                <div class="cart-item-actions">
+                    <button type="button" class="btn btn-primary" id="showWarrantyForm">Warranty</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="warrantyDetailsContainer" class="warranty-details-container" style="display: none;">
+            <table class="table">
+                <tr>
+                    <th>Full Name</th>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <td>@Model.CustomerName</td>
+                </tr>
+                <tr>
+                    <th>Diamond Name</th>
+                    <td>@Model.DiamondName</td>
+                </tr>
+                <tr>
+                    <th>Diamond Price</th>
+                    <td>@Model.DiamondPrice</td>
+                </tr>
+                <tr>
+                    <th>Setting Name</th>
+                    <td>@Model.SettingName</td>
+                </tr>
+                <tr>
+                    <th>Setting Price</th>
+                    <td>@Model.SettingPrice</td>
+                </tr>
+                <tr>
+                    <th>Accent Stone</th>
+                    <td>@Model.AccentStoneName</td>
+                </tr>
+                <tr>
+                    <th>Accent Stone Price</th>
+                    <td>@Model.AccentStonePrice</td>
+                </tr>
+                <tr>
+                    <th>Accent Stone Quantity</th>
+                    <td>@Model.AccentStoneQuantity</td>
+                </tr>
+                <tr>
+                    <th>Warranty Start Date</th>
+                    <td>@Model.WarrantyStartDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+                <tr>
+                    <th>Warranty End Date</th>
+                    <td>@Model.WarrantyEndDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            </table>
+
+            <div>
+                <h4>Warranty Details</h4>
+                @using (Html.BeginForm("SendWarranty", "Warranty", FormMethod.Post))
+                {
+                    @Html.HiddenFor(model => model.WarrantyCode)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WarrantyDetails)
+                        @Html.TextAreaFor(model => model.WarrantyDetails, new { @class = "form-control", rows = 5 })
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                }
+            </div>
+        </div>
+    }
+
+    <div class="cart-summary">
+        <div class="button-group">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-default">Back to Home</a>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#showWarrantyForm').click(function () {
+                $('.cart-item').hide();
+                $('#warrantyDetailsContainer').show();
+            });
+        });
+    </script>
+}

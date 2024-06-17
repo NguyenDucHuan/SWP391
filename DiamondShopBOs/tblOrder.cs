@@ -35,6 +35,7 @@ namespace DiamondShopBOs
         public string phone { get; set; }
         public System.DateTime saleDate { get; set; }
         public Nullable<int> voucherID { get; set; }
+        public string customerName { get; set; }
     
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }

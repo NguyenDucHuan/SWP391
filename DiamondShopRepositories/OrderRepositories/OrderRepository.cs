@@ -13,10 +13,11 @@ namespace DiamondShopRepositories.OrderRepositories
             orderDAO = new OrderDAO();
         }
 
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
+        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
         {
-            return orderDAO.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, status, voucherID);
+            return orderDAO.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, status, voucherID);
         }
+
 
         public List<tblOrder> GetOrdersByStatus(string userID, string[] statuses, bool isHistory = false)
         {

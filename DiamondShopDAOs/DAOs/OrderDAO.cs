@@ -13,12 +13,13 @@ namespace DiamondShopDAOs
         {
             _context = new DiamondShopManagementEntities();
         }
-        public tblOrder CreateOrder(string userID, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
+        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
         {
             var order = new tblOrder
             {
                 orderID = GenerateNextOrderId(),
                 customerID = userID,
+                customerName = customerName, // Thêm dòng này
                 saleStaffID = null,
                 totalMoney = (double)totalMoney,
                 paidAmount = (double)paidAmount,
@@ -28,7 +29,7 @@ namespace DiamondShopDAOs
                 saleDate = DateTime.Now,
                 status = status,
                 paymentStatus = "Pending",
-                voucherID = voucherID // Ensure this line assigns the voucherID
+                voucherID = voucherID
             };
 
             _context.tblOrders.Add(order);
@@ -41,7 +42,7 @@ namespace DiamondShopDAOs
                     voucher.quantity -= 1;
                     if (voucher.quantity < 0)
                     {
-                        voucher.quantity = 0; // Ensure quantity does not go negative
+                        voucher.quantity = 0;
                     }
                 }
             }
@@ -49,6 +50,7 @@ namespace DiamondShopDAOs
             _context.SaveChanges();
             return order;
         }
+
 
         public string GenerateNextOrderId()
         {

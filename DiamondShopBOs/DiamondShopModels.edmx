@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccentStones">
           <Key>
             <PropertyRef Name="accentStoneID" />
@@ -110,15 +110,18 @@
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="saleDate" Type="datetime" Nullable="false" />
           <Property Name="voucherID" Type="int" />
+          <Property Name="customerName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
             <PropertyRef Name="orderID" />
             <PropertyRef Name="ItemID" />
+            <PropertyRef Name="warrantyCode" />
           </Key>
           <Property Name="orderID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ItemID" Type="int" Nullable="false" />
           <Property Name="salePriceItem" Type="money" Nullable="false" />
+          <Property Name="warrantyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tblOrderStatusUpdates">
           <Key>
@@ -206,6 +209,7 @@
           <Property Name="warrantyStartDate" Type="datetime" Nullable="false" />
           <Property Name="warrantyEndDate" Type="datetime" Nullable="false" />
           <Property Name="warrantyDetails" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="warrantyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblCertificate_tblDiamonds">
           <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
@@ -474,10 +478,12 @@
             <Principal Role="tblOrderItem">
               <PropertyRef Name="orderID" />
               <PropertyRef Name="ItemID" />
+              <PropertyRef Name="warrantyCode" />
             </Principal>
             <Dependent Role="tblWarranty">
               <PropertyRef Name="orderID" />
               <PropertyRef Name="ItemID" />
+              <PropertyRef Name="warrantyCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -584,7 +590,8 @@
             <End Role="tblWarranty" EntitySet="tblWarranty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -593,6 +600,7 @@
             <PropertyRef Name="accentStoneID" />
           </Key>
           <Property Name="accentStoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accentStonesName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="shape" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="caratWeight" Type="Double" Nullable="false" />
           <Property Name="clarity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -602,7 +610,6 @@
           <Property Name="imagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblAccentStones" FromRole="tblAccentStones" ToRole="tblItem" />
-          <Property Name="accentStonesName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblCertificate">
           <Key>
@@ -706,22 +713,25 @@
           <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="saleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="voucherID" Type="Int32" />
+          <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblUser2" Relationship="Self.FK_tblOrder_tblUsers_3" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblOrderItems" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrder" ToRole="tblOrderItem" />
           <NavigationProperty Name="tblOrderStatusUpdates" Relationship="Self.FK_tblOrderStatusUpdates_tblOrder" FromRole="tblOrder" ToRole="tblOrderStatusUpdates" />
           <NavigationProperty Name="tblTransactions" Relationship="Self.FK_tblTransaction_tblOrder" FromRole="tblOrder" ToRole="tblTransaction" />
-          <Property Name="voucherID" Type="Int32" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
             <PropertyRef Name="orderID" />
             <PropertyRef Name="ItemID" />
+            <PropertyRef Name="warrantyCode" />
           </Key>
           <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ItemID" Type="Int32" Nullable="false" />
           <Property Name="salePriceItem" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="warrantyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tblItem" Relationship="Self.FK_tblOrderItem_tblItem" FromRole="tblOrderItem" ToRole="tblItem" />
           <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrderItem" ToRole="tblOrder" />
           <NavigationProperty Name="tblWarranties" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblOrderItem" ToRole="tblWarranty" />
@@ -801,14 +811,14 @@
           <Key>
             <PropertyRef Name="voucherID" />
           </Key>
-          <Property Name="voucherID" Type="Int32" Nullable="false" />
+          <Property Name="voucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="startTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="endTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="discount" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
+          <Property Name="targetUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="tblUsers" Relationship="Self.tblVoucherCatch" FromRole="tblVoucher" ToRole="tblUsers" />
-          <Property Name="targetUserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblWarranty">
           <Key>
@@ -820,6 +830,7 @@
           <Property Name="warrantyStartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="warrantyEndDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="warrantyDetails" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="warrantyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tblOrderItem" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblWarranty" ToRole="tblOrderItem" />
         </EntityType>
         <Association Name="FK_tblItem_tblAccentStones">
@@ -1037,10 +1048,12 @@
             <Principal Role="tblOrderItem">
               <PropertyRef Name="orderID" />
               <PropertyRef Name="ItemID" />
+              <PropertyRef Name="warrantyCode" />
             </Principal>
             <Dependent Role="tblWarranty">
               <PropertyRef Name="orderID" />
               <PropertyRef Name="ItemID" />
+              <PropertyRef Name="warrantyCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1183,8 +1196,8 @@
           <EntitySetMapping Name="tblAccentStones">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblAccentStone">
               <MappingFragment StoreEntitySet="tblAccentStones">
-                <ScalarProperty Name="accentStonesName" ColumnName="accentStonesName" />
                 <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
+                <ScalarProperty Name="accentStonesName" ColumnName="accentStonesName" />
                 <ScalarProperty Name="shape" ColumnName="shape" />
                 <ScalarProperty Name="caratWeight" ColumnName="caratWeight" />
                 <ScalarProperty Name="clarity" ColumnName="clarity" />
@@ -1276,7 +1289,6 @@
           <EntitySetMapping Name="tblOrders">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
-                <ScalarProperty Name="voucherID" ColumnName="voucherID" />
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="customerID" ColumnName="customerID" />
                 <ScalarProperty Name="deliveryStaffID" ColumnName="deliveryStaffID" />
@@ -1289,6 +1301,8 @@
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="saleDate" ColumnName="saleDate" />
+                <ScalarProperty Name="voucherID" ColumnName="voucherID" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1298,6 +1312,7 @@
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="salePriceItem" ColumnName="salePriceItem" />
+                <ScalarProperty Name="warrantyCode" ColumnName="warrantyCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1365,12 +1380,12 @@
           <EntitySetMapping Name="tblVouchers">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblVoucher">
               <MappingFragment StoreEntitySet="tblVoucher">
-                <ScalarProperty Name="targetUserID" ColumnName="targetUserID" />
                 <ScalarProperty Name="voucherID" ColumnName="voucherID" />
                 <ScalarProperty Name="startTime" ColumnName="startTime" />
                 <ScalarProperty Name="endTime" ColumnName="endTime" />
                 <ScalarProperty Name="discount" ColumnName="discount" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="targetUserID" ColumnName="targetUserID" />
                 <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1384,6 +1399,7 @@
                 <ScalarProperty Name="warrantyStartDate" ColumnName="warrantyStartDate" />
                 <ScalarProperty Name="warrantyEndDate" ColumnName="warrantyEndDate" />
                 <ScalarProperty Name="warrantyDetails" ColumnName="warrantyDetails" />
+                <ScalarProperty Name="warrantyCode" ColumnName="warrantyCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

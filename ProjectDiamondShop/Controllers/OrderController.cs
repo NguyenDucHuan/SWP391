@@ -224,7 +224,7 @@ namespace ProjectDiamondShop.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string address, string phone, int? voucherID, string Cancel = null)
+        public ActionResult PaymentWithPaypal(string customerName, string address, string phone, int? voucherID, string Cancel = null)
         {
             // Store address, phone, and voucherID in session
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -249,6 +249,7 @@ namespace ProjectDiamondShop.Controllers
                     }
 
                     Session.Add(guid, createdPayment.id);
+                    TempData["CustomerName"] = customerName;
                     TempData["Address"] = address;
                     TempData["Phone"] = phone;
                     TempData["VoucherID"] = voucherID; // Save voucherID to TempData
@@ -269,6 +270,7 @@ namespace ProjectDiamondShop.Controllers
                 return View("FailureView");
             }
 
+            customerName = TempData["CustomerName"] as string;
             address = TempData["Address"] as string;
             phone = TempData["Phone"] as string;
             voucherID = TempData["VoucherID"] as int?; // Retrieve voucherID from TempData
@@ -286,8 +288,8 @@ namespace ProjectDiamondShop.Controllers
 
             try
             {
-                tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
-                foreach (var item in cart.Items)
+                tblOrder newOrder = orderServices.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
+                    foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
                 }

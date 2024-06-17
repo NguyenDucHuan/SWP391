@@ -23,6 +23,7 @@ namespace DiamondShopBOs
         public string orderID { get; set; }
         public int ItemID { get; set; }
         public decimal salePriceItem { get; set; }
+        public string warrantyCode { get; set; }
     
         public virtual tblItem tblItem { get; set; }
         public virtual tblOrder tblOrder { get; set; }

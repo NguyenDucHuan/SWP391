@@ -25,8 +25,8 @@ namespace DiamondShopBOs
         public System.DateTime endTime { get; set; }
         public Nullable<int> discount { get; set; }
         public Nullable<int> quantity { get; set; }
-        public Nullable<bool> status { get; set; }
         public string targetUserID { get; set; }
+        public Nullable<bool> status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUser> tblUsers { get; set; }

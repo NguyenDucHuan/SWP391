@@ -5,6 +5,7 @@
       <PropertyRef Name="accentStoneID" />
     </Key>
     <Property Name="accentStoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accentStonesName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="shape" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="caratWeight" Type="Double" Nullable="false" />
     <Property Name="clarity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -117,6 +118,8 @@
     <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="saleDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="voucherID" Type="Int32" />
+    <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblOrder" ToRole="tblUsers" />
     <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblOrder" ToRole="tblUsers" />
     <NavigationProperty Name="tblUser2" Relationship="Self.FK_tblOrder_tblUsers_3" FromRole="tblOrder" ToRole="tblUsers" />
@@ -128,10 +131,12 @@
     <Key>
       <PropertyRef Name="orderID" />
       <PropertyRef Name="ItemID" />
+      <PropertyRef Name="warrantyCode" />
     </Key>
     <Property Name="orderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ItemID" Type="Int32" Nullable="false" />
     <Property Name="salePriceItem" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="warrantyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="tblItem" Relationship="Self.FK_tblOrderItem_tblItem" FromRole="tblOrderItem" ToRole="tblItem" />
     <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderItem_tblOrder" FromRole="tblOrderItem" ToRole="tblOrder" />
     <NavigationProperty Name="tblWarranties" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblOrderItem" ToRole="tblWarranty" />
@@ -211,11 +216,12 @@
     <Key>
       <PropertyRef Name="voucherID" />
     </Key>
-    <Property Name="voucherID" Type="Int32" Nullable="false" />
+    <Property Name="voucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="startTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="endTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="discount" Type="Int32" />
     <Property Name="quantity" Type="Int32" />
+    <Property Name="targetUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="status" Type="Boolean" />
     <NavigationProperty Name="tblUsers" Relationship="Self.tblVoucherCatch" FromRole="tblVoucher" ToRole="tblUsers" />
   </EntityType>
@@ -229,6 +235,7 @@
     <Property Name="warrantyStartDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="warrantyEndDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="warrantyDetails" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="warrantyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="tblOrderItem" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblWarranty" ToRole="tblOrderItem" />
   </EntityType>
   <Association Name="FK_tblItem_tblAccentStones">
@@ -446,10 +453,12 @@
       <Principal Role="tblOrderItem">
         <PropertyRef Name="orderID" />
         <PropertyRef Name="ItemID" />
+        <PropertyRef Name="warrantyCode" />
       </Principal>
       <Dependent Role="tblWarranty">
         <PropertyRef Name="orderID" />
         <PropertyRef Name="ItemID" />
+        <PropertyRef Name="warrantyCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

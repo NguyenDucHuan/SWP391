@@ -1,17 +1,17 @@
---USE master;
+ï»¿USE master;
 
---CREATE DATABASE [DiamondShopManagement] 
+CREATE DATABASE [DiamondShopManagement] 
 
 USE [DiamondShopManagement] 
 
--- B?ng vai trò
+-- B?ng vai trÃ²
 CREATE TABLE [dbo].[tblRole](
     [roleID] INT NOT NULL,
     [roleName] NVARCHAR(20) NOT NULL,
     CONSTRAINT [PK_tblRole] PRIMARY KEY CLUSTERED ([roleID] ASC)
 );
 
--- B?ng ng??i dùng
+-- B?ng ng??i dÃ¹ng
 CREATE TABLE [dbo].[tblUsers](
     [userID] NVARCHAR(50) NOT NULL,
     [userName] NVARCHAR(50) NOT NULL UNIQUE,
@@ -22,24 +22,23 @@ CREATE TABLE [dbo].[tblUsers](
     [status] BIT DEFAULT 1,
     [resetCode] NVARCHAR(10),
     [bonusPoint] INT NULL,
+	createDate DATETIME NOT NULL DEFAULT GETDATE(),
     CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED ([userID] ASC),
     CONSTRAINT [FK_tblUsers_tblRole] FOREIGN KEY ([roleID]) REFERENCES dbo.tblRole ([roleID]) ON DELETE CASCADE
 );
-ALTER TABLE tblUsers
-ADD createDate DATETIME NOT NULL DEFAULT GETDATE();
-
-
 
 -- B?ng voucher
 CREATE TABLE [dbo].[tblVoucher](
-    [voucherID] INT NOT NULL,
+    [voucherID] INT IDENTITY(1,1) NOT NULL,
     [startTime] DATETIME NOT NULL,
     [endTime] DATETIME NOT NULL,
     [discount] INT,
     [quantity] INT,
+	[targetUserID] NVARCHAR(50) NOT NULL,
     [status] BIT DEFAULT 1,
     CONSTRAINT [PK_tblVoucher] PRIMARY KEY CLUSTERED ([voucherID] ASC)
 );
+
 
 -- B?ng s? h?u voucher
 CREATE TABLE [dbo].[tblVoucherCatch](
@@ -62,7 +61,7 @@ CREATE TABLE [dbo].[tblChat](
     CONSTRAINT [FK_tblChat_tblUsers_receiver] FOREIGN KEY ([receiverID]) REFERENCES dbo.tblUsers ([userID])
 );
 
--- B?ng thông báo
+-- B?ng thÃ´ng bÃ¡o
 CREATE TABLE [dbo].[tblNotification](
     [notificationID] NVARCHAR(50) NOT NULL,
     [userID] NVARCHAR(50),
@@ -102,7 +101,7 @@ CREATE TABLE [dbo].[tblCertificate](
     CONSTRAINT [FK_tblCertificate_tblDiamonds] FOREIGN KEY ([diamondID]) REFERENCES dbo.tblDiamonds ([diamondID]) ON DELETE CASCADE
 );
 
--- B?ng bình lu?n
+-- B?ng bÃ¬nh lu?n
 CREATE TABLE [dbo].[tblComment](
     [commentID] NVARCHAR(50) NOT NULL,
     [userID] NVARCHAR(50) NOT NULL,
@@ -114,7 +113,7 @@ CREATE TABLE [dbo].[tblComment](
     CONSTRAINT [FK_tblComment_tblDiamonds] FOREIGN KEY ([diamondID]) REFERENCES dbo.tblDiamonds ([diamondID]) ON DELETE CASCADE
 );
 
--- B?ng ??n hàng
+-- B?ng ??n hÃ ng
 CREATE TABLE [dbo].[tblOrder](
     [orderID] NVARCHAR(50) NOT NULL,
     [customerID] NVARCHAR(50) NOT NULL,
@@ -134,8 +133,16 @@ CREATE TABLE [dbo].[tblOrder](
     CONSTRAINT [FK_tblOrder_tblUsers_3] FOREIGN KEY ([saleStaffID]) REFERENCES dbo.tblUsers ([userID])
 );
 
+ALTER TABLE [dbo].[tblOrder]
+ADD [customerName] NVARCHAR(50) NULL;
+
+
+-- ThÃªm cá»™t voucherID vÃ o báº£ng tblOrder
+ALTER TABLE [dbo].[tblOrder]
+ADD [voucherID] INT NULL;
+
 -- B?ng giao d?ch
-CREATE TABLE [dbo].[tblTransaction](
+   CREATE TABLE [dbo].[tblTransaction](
     [transactionID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NULL,
     [userID] NVARCHAR(50) NOT NULL,
@@ -164,6 +171,7 @@ CREATE TABLE [dbo].[tblSettings](
 -- B?ng kim c??ng ph?
 CREATE TABLE [dbo].[tblAccentStones](
     [accentStoneID] INT IDENTITY(1,1) NOT NULL,
+	[accentStonesName] NVARCHAR(250) NOT NULL,
     [shape] NVARCHAR(50) NOT NULL,
     [caratWeight] FLOAT NOT NULL,
     [clarity] NVARCHAR(20) NOT NULL,
@@ -174,6 +182,8 @@ CREATE TABLE [dbo].[tblAccentStones](
     [status] BIT DEFAULT 1,
     CONSTRAINT [PK_tblAccentStones] PRIMARY KEY CLUSTERED ([accentStoneID] ASC)
 );
+
+
 -- B?ng l?u s? l??ng kim c??ng ph? c?n thi?t cho m?i v? kim c??ng
 CREATE TABLE [dbo].[tblItem](
     [ItemID] INT IDENTITY(1,1) NOT NULL,
@@ -189,28 +199,32 @@ CREATE TABLE [dbo].[tblItem](
 	CONSTRAINT [FK_tblItem_tblDiamond] FOREIGN KEY ([diamondID]) REFERENCES [dbo].[tblDiamonds]([diamondID]),
     CONSTRAINT [FK_tblItem_tblAccentStones] FOREIGN KEY ([accentStoneID]) REFERENCES [dbo].[tblAccentStones]([accentStoneID])
 );
--- B?ng chi ti?t ??n hàng
+-- B?ng chi ti?t ??n hÃ ng
 CREATE TABLE [dbo].[tblOrderItem](
     [orderID] NVARCHAR(50) NOT NULL,
-	[ItemID] INT NOT NULL,
+    [ItemID] INT NOT NULL,
     [salePriceItem] MONEY NOT NULL,
-	CONSTRAINT [PK_tblOrderItem] PRIMARY KEY CLUSTERED ([orderID], [ItemID]),
+    [warrantyCode] NVARCHAR(50) NOT NULL,
+    CONSTRAINT [PK_tblOrderItem] PRIMARY KEY CLUSTERED ([orderID], [ItemID], [warrantyCode]),
     CONSTRAINT [FK_tblOrderItem_tblOrder] FOREIGN KEY ([orderID]) REFERENCES dbo.tblOrder ([orderID]) ON DELETE CASCADE,
-	CONSTRAINT [FK_tblOrderItem_tblItem] FOREIGN KEY ([ItemID]) REFERENCES dbo.tblItem ([ItemID]) ON DELETE CASCADE
+    CONSTRAINT [FK_tblOrderItem_tblItem] FOREIGN KEY ([ItemID]) REFERENCES dbo.tblItem ([ItemID]) ON DELETE CASCADE
 );
--- B?ng b?o hành
+
+-- Warranty table
 CREATE TABLE [dbo].[tblWarranty](
     [warrantyID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NOT NULL,
     [ItemID] INT NOT NULL,
     [warrantyStartDate] DATETIME NOT NULL,
     [warrantyEndDate] DATETIME NOT NULL,
-    [warrantyDetails] NVARCHAR(512) NOT NULL,
+    [warrantyDetails] NVARCHAR(512),
+    [warrantyCode] NVARCHAR(50) NOT NULL,
     CONSTRAINT [PK_tblWarranty] PRIMARY KEY CLUSTERED ([warrantyID] ASC),
-    CONSTRAINT [FK_tblWarranty_tblOrderItem] FOREIGN KEY ([orderID], [ItemID]) REFERENCES [dbo].[tblOrderItem]([orderID], [ItemID]) ON DELETE CASCADE,
-    CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [ItemID])
+    CONSTRAINT [FK_tblWarranty_tblOrderItem] FOREIGN KEY ([orderID], [ItemID], [warrantyCode]) REFERENCES [dbo].[tblOrderItem]([orderID], [ItemID], [warrantyCode]) ON DELETE CASCADE,
+    CONSTRAINT [UQ_tblWarranty_tblOrderItem] UNIQUE ([orderID], [ItemID], [warrantyCode])
 );
--- B?ng c?p nh?t tr?ng thái ??n hàng
+
+-- B?ng c?p nh?t tr?ng thÃ¡i ??n hÃ ng
 CREATE TABLE [dbo].[tblOrderStatusUpdates](
     [updateID] INT IDENTITY(1,1) NOT NULL,
     [orderID] NVARCHAR(50) NOT NULL,
@@ -221,7 +235,7 @@ CREATE TABLE [dbo].[tblOrderStatusUpdates](
 );
 
 
--- Thêm d? li?u m?u vào b?ng tblRole
+-- ThÃªm d? li?u m?u vÃ o b?ng tblRole
 INSERT INTO [dbo].[tblRole] ([roleID], [roleName]) VALUES 
 (1, 'user'),
 (2, 'admin'),
@@ -229,17 +243,17 @@ INSERT INTO [dbo].[tblRole] ([roleID], [roleName]) VALUES
 (4, 'deliverystaff'),
 (5, 'salestaff');
 
--- Thêm d? li?u m?u vào b?ng tblSettings
+-- ThÃªm d? li?u m?u vÃ o b?ng tblSettings
 INSERT INTO [dbo].[tblSettings] ([settingType], [material],[priceTax],[quantityStones] , [description], [imagePath]) VALUES 
 ('Ring', 'Gold', 500, 10, 'Gold ring setting', '/images/settings/ring_gold.png'),
 ('Necklace', 'Silver', 300, 15, 'Silver necklace setting', '/images/settings/necklace_silver.png');
 
--- Thêm d? li?u m?u vào b?ng tblAccentStones
-INSERT INTO [dbo].[tblAccentStones] ([shape], [caratWeight], [clarity], [color], [price], [quantity], [imagePath]) VALUES 
-('Round', 0.25, 'VS2', 'H', 200, 50, '/images/accentStones/round_0.25.png'),
-('Princess', 0.2, 'VS1', 'G', 180, 40, '/images/accentStones/princess_0.2.png');
+-- ThÃªm d? li?u m?u vÃ o b?ng tblAccentStones
+INSERT INTO [dbo].[tblAccentStones] ([shape], [caratWeight], [clarity], [color], [price], [quantity], [imagePath], [accentStonesName]) VALUES 
+('Round', 0.25, 'VS2', 'H', 200, 50, '/images/accentStones/round_0.25.png', 'Round Diamond'),
+('Princess', 0.2, 'VS1', 'G', 180, 40, '/images/accentStones/princess_0.2.png', 'Princess Diamond');
 
--- Thêm d? li?u m?u vào b?ng tblDiamonds
+-- ThÃªm d? li?u m?u vÃ o b?ng tblDiamonds
 INSERT INTO [dbo].[tblDiamonds] 
     ([diamondName], [diamondPrice], [diamondDescription], [caratWeight], [clarityID], [cutID], [colorID], [shapeID], [diamondImagePath], [status]) 
 VALUES 

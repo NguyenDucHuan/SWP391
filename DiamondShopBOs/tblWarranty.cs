@@ -20,6 +20,7 @@ namespace DiamondShopBOs
         public System.DateTime warrantyStartDate { get; set; }
         public System.DateTime warrantyEndDate { get; set; }
         public string warrantyDetails { get; set; }
+        public string warrantyCode { get; set; }
     
         public virtual tblOrderItem tblOrderItem { get; set; }
     }

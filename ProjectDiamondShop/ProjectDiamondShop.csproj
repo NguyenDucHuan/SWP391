@@ -376,6 +376,7 @@
     <Compile Include="Controllers\SaleStaffController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\ViewProfileController.cs" />
+    <Compile Include="Controllers\WarrantyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -434,6 +435,7 @@
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <Content Include="Views\Diamonds\AddDiamond.cshtml" />
+    <Content Include="Views\Warranty\WarrantyDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

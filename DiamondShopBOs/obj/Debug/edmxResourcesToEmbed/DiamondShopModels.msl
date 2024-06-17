@@ -5,6 +5,7 @@
       <EntityTypeMapping TypeName="DiamondShopManagementModel.tblAccentStone">
         <MappingFragment StoreEntitySet="tblAccentStones">
           <ScalarProperty Name="accentStoneID" ColumnName="accentStoneID" />
+          <ScalarProperty Name="accentStonesName" ColumnName="accentStonesName" />
           <ScalarProperty Name="shape" ColumnName="shape" />
           <ScalarProperty Name="caratWeight" ColumnName="caratWeight" />
           <ScalarProperty Name="clarity" ColumnName="clarity" />
@@ -108,6 +109,8 @@
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="saleDate" ColumnName="saleDate" />
+          <ScalarProperty Name="voucherID" ColumnName="voucherID" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -117,6 +120,7 @@
           <ScalarProperty Name="orderID" ColumnName="orderID" />
           <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="salePriceItem" ColumnName="salePriceItem" />
+          <ScalarProperty Name="warrantyCode" ColumnName="warrantyCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -189,6 +193,7 @@
           <ScalarProperty Name="endTime" ColumnName="endTime" />
           <ScalarProperty Name="discount" ColumnName="discount" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="targetUserID" ColumnName="targetUserID" />
           <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -202,6 +207,7 @@
           <ScalarProperty Name="warrantyStartDate" ColumnName="warrantyStartDate" />
           <ScalarProperty Name="warrantyEndDate" ColumnName="warrantyEndDate" />
           <ScalarProperty Name="warrantyDetails" ColumnName="warrantyDetails" />
+          <ScalarProperty Name="warrantyCode" ColumnName="warrantyCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

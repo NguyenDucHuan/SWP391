@@ -62,6 +62,8 @@
     <Compile Include="StaffRepositories\StaffRepository.cs" />
     <Compile Include="UserRepository\UserRepository.cs" />
     <Compile Include="UserRepository\IUserRepository.cs" />
+    <Compile Include="WarrantyRepository\IWarrantyRepository.cs" />
+    <Compile Include="WarrantyRepository\WarrantyRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiamondShopBOs\DiamondShopBOs.csproj">

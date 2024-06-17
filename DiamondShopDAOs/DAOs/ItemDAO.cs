@@ -1,25 +1,25 @@
 ﻿using DiamondShopBOs;
 using DiamondShopDAOs.DAOs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace DiamondShopDAOs
 {
     public class ItemDAO
     {
         private readonly DiamondShopManagementEntities entities = null;
+        private readonly WarrantyDAO _warrantyDAO;
+
         public ItemDAO()
         {
             if (entities == null)
             {
                 entities = new DiamondShopManagementEntities();
             }
+
+            _warrantyDAO = new WarrantyDAO();
         }
-        public void CreateItem(string OrderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice)
+
+        public void CreateItem(string orderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice)
         {
             tblItem tblItem = new tblItem();
             if (settingID == 0)
@@ -52,13 +52,17 @@ namespace DiamondShopDAOs
             {
                 entities.tblItems.Add(tblItem);
                 entities.SaveChanges();
+
+                string warrantyCode = _warrantyDAO.GenerateWarrantyCode();
+                OrderItemDAO orderItemDAO = new OrderItemDAO();
+                orderItemDAO.CreateOrderItem(orderId, tblItem.ItemID, ((decimal)diamondPrice + (decimal)accentPrice * (decimal)quantityAccent + (decimal)settingPrice), warrantyCode);
+
+                _warrantyDAO.CreateWarranty(orderId, tblItem.ItemID, warrantyCode);
             }
             catch (Exception ex)
             {
                 throw new Exception("Add Item ERROR");
             }
-            OrderItemDAO orderItemDAO = new OrderItemDAO();
-            orderItemDAO.CreateOrderItem(OrderId, tblItem.ItemID, ((decimal)diamondPrice + (decimal)accentPrice * (decimal)quantityAccent + (decimal)settingPrice));
         }
     }
 }
