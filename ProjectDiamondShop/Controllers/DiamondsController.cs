@@ -93,7 +93,7 @@ namespace ProjectDiamondShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Fillter(string sortBy, int page = 1, int pageSize = 12)
+        public ActionResult Filter(string sortBy, int page = 1, int pageSize = 12)
         {
             string searchTerm = Request.Form["SearchTerm"];
             string clarity = Request.Form["Clarity"];
@@ -108,23 +108,24 @@ namespace ProjectDiamondShop.Controllers
             if (decimal.TryParse(Request.Form["MinPrice"], out decimal minPriceValue))
             {
                 minPrice = minPriceValue;
-                ViewBag.minPrice = minPrice;
+                ViewBag.MinPrice = minPrice;
             }
             if (decimal.TryParse(Request.Form["MaxPrice"], out decimal maxPriceValue))
             {
                 maxPrice = maxPriceValue;
-                ViewBag.maxPrice = maxPrice;
+                ViewBag.MaxPrice = maxPrice;
             }
             if (float.TryParse(Request.Form["MinCaratWeight"], out float minCaratWeightValue))
             {
                 minCaratWeight = minCaratWeightValue;
-                ViewBag.minCaratWeight = minCaratWeight;
+                ViewBag.MinCaratWeight = minCaratWeight;
             }
             if (float.TryParse(Request.Form["MaxCaratWeight"], out float maxCaratWeightValue))
             {
                 maxCaratWeight = maxCaratWeightValue;
-                ViewBag.maxCaratWeight = maxCaratWeight;
+                ViewBag.MaxCaratWeight = maxCaratWeight;
             }
+
             ViewBag.SelectedShape = shape;
             ViewBag.SelectedColor = color;
             ViewBag.SelectedCut = cut;
@@ -141,6 +142,7 @@ namespace ProjectDiamondShop.Controllers
 
             return View("Diamonds", diamondsForPage);
         }
+
 
         public ActionResult ViewDiamond(int id)
         {

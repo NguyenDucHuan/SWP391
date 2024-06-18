@@ -1,321 +1,300 @@
-﻿
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>The Diamond Shop</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
-        .container {
-            width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-            .row.decription {
-                margin-top: 10px;
-            }
-
-        .col-md-4 {
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        h3 {
-            margin-top: 0;
-            color: black;
-            font-size: 18px;
-        }
-
-        ul {
-            list-style-type: none;
+        /* General Styles */
+        * {
+            margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        li {
-            margin-bottom: 5px;
-        }
-
-        .dropdown-menu {
-            max-width: 10px;
-        }
-
-            .dropdown-menu li a {
-                font-size: 12px;
-            }
-
-            .dropdown-menu h3 {
-                font-size: 14px;
-                margin-bottom: 2px;
-            }
-
-            .dropdown-menu .col-md-3 {
-                border-right: 1px solid #ddd;
-                padding-right: 10px;
-            }
-
-                .dropdown-menu .col-md-3:last-child {
-                    border-right: none;
-                }
-
-            .dropdown-menu .divider {
-                margin-top: 2px;
-                margin-bottom: 2px;
-            }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .navbar-brand span:first-child {
-                margin-right: 10px;
-            }
-
-        .slide-content {
-            position: relative;
-            text-align: center;
-        }
-
-            .slide-content p {
-                position: absolute;
-                top: 75%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-
-        .col-md-3 {
+        body {
+            background-color: #E9F2EB;
+            color: #333;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
         }
 
-        .diamond-search-icons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
+        main {
+            flex: 1;
         }
 
-            .diamond-search-icons figure {
-                margin: 0;
+        .navbar {
+            background: #fff !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            transition: top 0.3s;
+            margin: 0 auto;
+            max-width: 95%;
+        }
+
+            .navbar .navbar-brand {
+                color: #28a745 !important;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
             }
 
-                .diamond-search-icons figure img {
-                    width: 50px;
-                    height: 50px;
+                .navbar .navbar-brand img {
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 10px;
                 }
 
-            .diamond-search-icons figcaption {
-                font-size: 11px;
-                margin-top: 5px;
+            .navbar .nav-link {
+                color: #333 !important;
+                font-weight: bold;
+                margin-right: 20px;
+                position: relative;
             }
 
-        .search-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            color: azure;
+                .navbar .nav-link:hover,
+                .navbar .nav-link.active {
+                    color: #000 !important;
+                }
+
+                .navbar .nav-link:not(.dropdown-toggle)::after {
+                    content: '';
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    background: #28a745;
+                    transition: width .3s;
+                    position: absolute;
+                    bottom: 0; /* Position it at the bottom of the nav link */
+                    left: 0;
+                }
+
+                .navbar .nav-link:not(.dropdown-toggle):hover::after,
+                .navbar .nav-link:not(.dropdown-toggle).active::after {
+                    width: 100%;
+                }
+
+            .navbar .login-btn {
+                background: #28a745;
+                color: #fff !important;
+                border-radius: 50px;
+                padding: 0.5rem 1rem;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+                .navbar .login-btn:hover {
+                    background: #218838;
+                }
+
+        .navbar-toggler {
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: 10px;
-            font-weight: bold;
         }
 
-            .search-button:hover {
-                background-color: #0056b3;
+            .navbar-toggler:focus {
+                outline: none;
             }
 
-        .slide-wrapper {
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 70px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-indicators li::before {
+            content: none;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
             position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0;
-        }
-
-            .carousel-control .glyphicon {
-                color: crimson;
+            .footer a {
+                color: #00509e;
+                text-decoration: none;
+                margin: 0 10px;
             }
 
-        .left.carousel-control {
-            left: 10px;
-        }
+                .footer a:hover {
+                    color: #003f7d;
+                    text-decoration: underline;
+                }
 
-        .right.carousel-control {
-            right: 10px;
-        }
+        /* Media Queries for Responsive Design */
+        @@media (max-width: 992px) {
+            .navbar-collapse {
+                justify-content: flex-start;
+            }
 
-        .decription {
-            text-align: justify;
-        }
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                text-align: right;
+            }
 
-        .spacer {
-            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
-        }
+            .navbar .nav-link {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
 
-        .content.decription p {
-            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
-            text-align: justify;
-        }
-
-        .custom-list li {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-
-        .container center img {
-            text-align: justify;
-        }
-
-        .navbar-nav > li > .dropdown-menu {
-            display: none;
-        }
-
-        .navbar-nav > li:hover > .dropdown-menu {
-            display: block;
+            .navbar .login-btn {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
-
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container ">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-
-                        </button>
-
-                        <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                            <span>
-                                <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                            </span>
-                            <span>The Diamond Shop</span>
-                        </a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li><a href="@Url.Action("About", "Home")">About</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
-                            <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
-                            @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                            {
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                        <li><a href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                        <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                                    </ul>
-                                </li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                                <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="spacer"></div>
-            <h2 class="text-center" style="margin-top: 48px;">Princess Diamond Story</h2>
-
-            <div class="container center">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                    </ol>
-
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="slide-wrapper">
-                                <a href="#">
-                                    <img src="~/Image/SlideDiamond/princessring.jpg" alt="Destination 1" style="width: 100%;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="slide-wrapper">
-                                <a href="#">
-                                    <img src="~/Image/SlideDiamond/princessring1.jpg" alt="Destination 2" style="width: 100%;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="slide-wrapper">
-                                <a href="#">
-                                    <img src="~/Image/SlideDiamond/princessring2.jpg" alt="Destination 3" style="width: 100%;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="slide-wrapper">
-                                <a href="#">
-                                    <img src="~/Image/SlideDiamond/princessring3.jpg" alt="Destination 4" style="width: 100%;">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
+                <span>The Diamond Shop</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
+                    </li>
+                    @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCart" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                                <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link login-btn" href="@Url.Action("Index", "Login")">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <!--Code thêm phần bài viết ở đây-->
-        <div class="container center ">
-            <div class="row ">
-                <p class="decription">
+    <div class="spacer"></div> <!-- This is the spacer div -->
+
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/princessring.jpg" alt="Destination 1" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/princessring1.jpg" alt="Destination 2" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/princessring2.jpg" alt="Destination 3" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/princessring3.jpg" alt="Destination 4" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+
+        <h2 class="text-center" style="margin-top: 48px;">Princess Diamond Story</h2>
+
+        <div class="container center">
+            <div class="row">
+                <p class="decription justify">
                     The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
                     Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
                     However, their distinct sharp corners necessitate protective settings.
@@ -323,13 +302,31 @@
                     Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
                     If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
                 </p>
+
+                <h1>What is a Princess Diamond?</h1>
+                <p class="decription justify">
+                    The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
+                    Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
+                    However, their distinct sharp corners necessitate protective settings.
+                </p>
+                <p class="decription justify">
+                    If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
+                    Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
+                    If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
+                </p>
+                <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 100%; margin:auto" />
+                <h2 class="wp-block-heading">The Princess Cut – A Modern Classic</h2>
+                <p class="decription justify">
+                    While the princess cut is not as old as other diamond cuts, it has quickly gained popularity and is now the second most popular diamond shape.
+                    Its versatility and modern appeal make it a favorite among those seeking a balance between tradition and contemporary style.
+                </p>
                 <h2 class="wp-block-heading" id="Princess-Diamond-Engagement-Rings---Becoming-More-Popular">Princess Diamond Engagement Rings – Becoming More Popular</h2>
                 <p class="decription justify">
                     More and more people are choosing a princess cut over a round brilliant for their engagement rings.
                     According to Wikipedia’s article on diamond cut, the modern princess cut was first introduced in 1960 by A.
                     Nagy of London.
                 </p>
-                <img src="~/Image/Introlmage/Princess.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
                 <p class="decription justify">
                     The princess cut is universally regarded as the runner-up to the round brilliant in today’s market.
                     According to the chart from Jogia Diamonds’ blog that we refer to in our article about <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, a full 23% of searches on their site are for princess cuts.
@@ -339,9 +336,9 @@
                     The princess cut is squarely in 2nd place.
                 </p>
                 <h2 class="wp-block-heading" id="How-to-Choose-the-Best-Diamond-for-a-Princess-Cut-Engagement-Ring">How to Choose the Best Diamond for a Princess Cut Engagement Ring</h2>
-                <img src="~/Image/Introlmage/Princess1.png" alt="Destination 4" style="width: 30%;margin:auto" />
+                <img src="~/Image/Introlmage/Princess1.png" alt="Princess Diamond" style="width: 100%; margin:auto" />
                 <p class="decription justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
-                <p class="decription justify">o find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
+                <p class="decription justify">To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
                 <p class="decription justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
                 <h2 class="wp-block-heading">The Right Price for a Princess Diamond Ring</h2>
                 <p class="decription justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
@@ -357,38 +354,68 @@
                     A solitaire setting allows the princess cut to take center stage and the maximum light to enter.
                     This classic solitaire from James Allen is a prime example of a princess cut engagement ring that makes a statement.
                 </p>
-                <img src="~/Image/Introlmage/princess2.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/princess2.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
                 <p class="decription justify">
                     <b>Channel Set</b><br />
                     A channel setting offers security to princess cuts. If you are looking for a beautiful choice, this 1/4 carat channel engagement ring from Blue Nile.
                 </p>
-                <img src="~/Image/Introlmage/princess3.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
-
+                <img src="~/Image/Introlmage/princess3.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
                 <p class="decription justify">
                     <b>Halo</b><br />
                     Halo engagement rings feature smaller diamonds that surround the center stone, making it appear even larger. Here is a platinum petite halo ring from James Allen.
                 </p>
-                <img src="~/Image/Introlmage/princess4.jpg" alt="Destination 4" style="width: 50%;margin:auto" />
+                <img src="~/Image/Introlmage/princess4.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
                 <p>
                     <b>Vintage </b><br />
                     Antique style rings have more ornate, unique features, like this regal frame princess cut ring from James Allen.
                 </p>
-                <img src="~/Image/Introlmage/princess5.jpg" alt="Destination 4" style="width: 50%; margin: auto" />
+                <img src="~/Image/Introlmage/princess5.jpg" alt="Princess Diamond" style="width: 50%; margin: auto" />
             </div>
         </div>
-        <footer>
-            <hr />
-            <div class="container text-center">
-                <p><a href="#">Back To Top</a></p>
-                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                <p>
-                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
-                </p>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+            <p><a href="#">Back To Top</a></p>
+            <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+            </p>
+        </div>
+    </footer>
 
-            </div>
-        </footer>
-    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var successMessage = '@ViewBag.SuccessMessage';
+            var userName = '@ViewBag.UserName';
+            if (successMessage) {
+                $('#userName').text(userName);
+                $('#loginSuccessModal').modal('show');
+                $('#modalOkButton').click(function () {
+                    window.location.href = '#';
+                });
+            }
+
+            // Hide and show navbar on scroll
+            var lastScrollTop = 0;
+            $(window).scroll(function () {
+                var st = $(this).scrollTop();
+                if (st > lastScrollTop) {
+                    // Scroll Down
+                    $('.navbar').css('top', '-80px');
+                } else {
+                    // Scroll Up
+                    $('.navbar').css('top', '0');
+                }
+                lastScrollTop = st;
+            });
+        });
+
+        $('.close').click(function () {
+            $('#loginSuccessModal').modal('hide');
+        });
+    </script>
 </body>
 </html>
-
-

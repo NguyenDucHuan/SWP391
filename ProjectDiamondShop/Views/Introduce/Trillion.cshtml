@@ -1,320 +1,299 @@
-﻿
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>The Diamond Shop</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
-        .container {
-            width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-            .row.decription {
-                margin-top: 10px;
-            }
-
-        .col-md-4 {
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-
-        h3 {
-            margin-top: 0;
-            color: black;
-            font-size: 18px;
-        }
-
-        ul {
-            list-style-type: none;
+        /* General Styles */
+        * {
+            margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        li {
-            margin-bottom: 5px;
-        }
-
-        .dropdown-menu {
-            max-width: 10px;
-        }
-
-            .dropdown-menu li a {
-                font-size: 12px;
-            }
-
-            .dropdown-menu h3 {
-                font-size: 14px;
-                margin-bottom: 2px;
-            }
-
-            .dropdown-menu .col-md-3 {
-                border-right: 1px solid #ddd;
-                padding-right: 10px;
-            }
-
-                .dropdown-menu .col-md-3:last-child {
-                    border-right: none;
-                }
-
-            .dropdown-menu .divider {
-                margin-top: 2px;
-                margin-bottom: 2px;
-            }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .navbar-brand span:first-child {
-                margin-right: 10px;
-            }
-
-        .slide-content {
-            position: relative;
-            text-align: center;
-        }
-
-            .slide-content p {
-                position: absolute;
-                top: 75%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-
-        .col-md-3 {
+        body {
+            background-color: #E9F2EB;
+            color: #333;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
         }
 
-        .diamond-search-icons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
+        main {
+            flex: 1;
         }
 
-            .diamond-search-icons figure {
-                margin: 0;
+        .navbar {
+            background: #fff !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            transition: top 0.3s;
+            margin: 0 auto;
+            max-width: 95%;
+        }
+
+            .navbar .navbar-brand {
+                color: #28a745 !important;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
             }
 
-                .diamond-search-icons figure img {
-                    width: 50px;
-                    height: 50px;
+                .navbar .navbar-brand img {
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 10px;
                 }
 
-            .diamond-search-icons figcaption {
-                font-size: 11px;
-                margin-top: 5px;
+            .navbar .nav-link {
+                color: #333 !important;
+                font-weight: bold;
+                margin-right: 20px;
+                position: relative;
             }
 
-        .search-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: black;
-            color: azure;
+                .navbar .nav-link:hover,
+                .navbar .nav-link.active {
+                    color: #000 !important;
+                }
+
+                .navbar .nav-link:not(.dropdown-toggle)::after {
+                    content: '';
+                    display: block;
+                    width: 0;
+                    height: 2px;
+                    background: #28a745;
+                    transition: width .3s;
+                    position: absolute;
+                    bottom: 0; /* Position it at the bottom of the nav link */
+                    left: 0;
+                }
+
+                .navbar .nav-link:not(.dropdown-toggle):hover::after,
+                .navbar .nav-link:not(.dropdown-toggle).active::after {
+                    width: 100%;
+                }
+
+            .navbar .login-btn {
+                background: #28a745;
+                color: #fff !important;
+                border-radius: 50px;
+                padding: 0.5rem 1rem;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+                .navbar .login-btn:hover {
+                    background: #218838;
+                }
+
+        .navbar-toggler {
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: 10px;
-            font-weight: bold;
         }
 
-            .search-button:hover {
-                background-color: #0056b3;
+            .navbar-toggler:focus {
+                outline: none;
             }
 
-        .slide-wrapper {
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 70px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(100%);
+        }
+
+        .carousel-indicators li::before {
+            content: none;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
             position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0;
-        }
-
-            .carousel-control .glyphicon {
-                color: crimson;
+            .footer a {
+                color: #00509e;
+                text-decoration: none;
+                margin: 0 10px;
             }
 
-        .left.carousel-control {
-            left: 10px;
-        }
+                .footer a:hover {
+                    color: #003f7d;
+                    text-decoration: underline;
+                }
 
-        .right.carousel-control {
-            right: 10px;
-        }
+        /* Media Queries for Responsive Design */
+        @@media (max-width: 992px) {
+            .navbar-collapse {
+                justify-content: flex-start;
+            }
 
-        .decription {
-            text-align: justify;
-        }
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                text-align: right;
+            }
 
-        .spacer {
-            height: 30px; /* Điều chỉnh chiều cao theo nhu cầu */
-        }
+            .navbar .nav-link {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
 
-        .content.decription p {
-            font: 400 18px / 28px 'Roboto', Helvetica, Arial, sans-serif;
-            text-align: justify;
-        }
-
-        .custom-list li {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-
-        .container center img {
-            text-align: justify;
-        }
-
-        .navbar-nav > li > .dropdown-menu {
-            display: none;
-        }
-
-        .navbar-nav > li:hover > .dropdown-menu {
-            display: block;
+            .navbar .login-btn {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
-
 <body>
-    <form id="form1" runat="server">
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container ">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-
-                    </button>
-
-                    <a class="navbar-brand text-center" href="@Url.Action("Index", "Home")">
-                        <span>
-                            <img src="/Image/HomePage/Logo/SafeIcon.jpg" alt="TheDiamondShop" height="40" />
-                        </span>
-                        <span>The Diamond Shop</span>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                        <li><a href="@Url.Action("About", "Home")">About</a></li>
-                        <li><a href="@Url.Action("Contact", "Home")">Contact US</a></li>
-                        <li><a href="@Url.Action("Index", "Diamonds")">Shop</a></li>
-                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
-                        {
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                    <li><a href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                    <li><a href="@Url.Action("Logout", "Login")">Logout</a></li>
-                                </ul>
-                            </li>
-                        }
-                        else
-                        {
-                            <li><a href="@Url.Action("Index", "SignUp")">Sign Up</a></li>
-                            <li><a href="@Url.Action("Index", "Login")">Login</a></li>
-                        }
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
+                <span>The Diamond Shop</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
+                    </li>
+                    @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCart" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                                <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link login-btn" href="@Url.Action("Index", "Login")">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <div class="spacer"></div>
+    <div class="spacer"></div> <!-- This is the spacer div -->
+
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring.jpg" alt="Destination 1" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring1.jpg" alt="Destination 2" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring2.jpg" alt="Destination 3" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring3.jpg" alt="Destination 4" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+
         <h2 class="text-center" style="margin-top: 48px;">Trillion Diamond Story</h2>
 
         <div class="container center">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring.jpg" alt="Destination 1" style="width: 100%;" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring1.jpg" alt="Destination 2" style="width: 100%;" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring2.jpg" alt="Destination 3" style="width: 100%;" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring3.jpg" alt="Destination 4" style="width: 100%;">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-
-
-        <!--Code thêm phần bài viết ở đây-->
-        <div class="container center ">
-            <div class="row ">
+            <div class="row">
                 <p class="decription justify">
                     The Trillion Cut Diamond is triangular shape with rounded or pointed corners and features between 31 to 50 facets.
                     Originally designed to make the most out of flawed or irregularly-shaped rough diamonds, the Trillion Cut has evolved into a highly sought-after style for those looking to make a unique and modern statement.
@@ -325,8 +304,7 @@
                     However, this cut has less brilliance compared to round or princess cuts, and its pointed edges can be prone to chipping if not set correctly.
                 </p>
                 <p class="decription justify">
-                    <b>Bottom Line Recommendation:&nbsp;</b>
-                    Trillion cut diamonds are uncommon as the center stone in an engagement ring but can look stunning as diamond accents in a three-stone diamond ring.
+                    <b>Bottom Line Recommendation:</b> Trillion cut diamonds are uncommon as the center stone in an engagement ring but can look stunning as diamond accents in a three-stone diamond ring.
                     Because trillion cut diamonds are typically accent diamonds, there’s less of a need to focus on cut, clarity and color than with a center diamond.
                     In general, it’s best to look for diamonds that are eye-clean and appear colorless in relation to their setting.
                 </p>
@@ -337,9 +315,9 @@
                 <h2 class="wp-block-heading" id="h-what-is-a-trillion-cut-diamond">What is a Trillion Cut Diamond?</h2>
                 <p class="decription justify">
                     A trillion cut diamond, also referred to as a trilliant cut, is a diamond that’s cut into a triangular shape.
-                    A typical trillion cut diamond will have three sides of equal length, with a flat table at its surface.&nbsp;
+                    A typical trillion cut diamond will have three sides of equal length, with a flat table at its surface.
                 </p>
-                <p class="decription justify">The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.&nbsp;</p>
+                <p class="decription justify">The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.</p>
                 <p class="decription justify">Unlike most diamond shapes, the trillion cut is more commonly used for side-stone diamonds than for center stones. For example, <a href="https://rapaport.com/news/18ct-diamond-smashes-estimate-at-bonhams/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">this incredible 18.04 carat diamond ring sold by Bonhams</a> featured trillion cut diamond accents, further enhancing the beauty of the center diamond.</p>
                 <p class="decription justify">
                     However, although trillion cut diamonds are popular as side stones, you can also find engagement rings that feature a trillion cut diamond as the center stone.
@@ -350,29 +328,29 @@
 
                 <p class="decription justify">
                     <div class="container center">
-                        <img src="~/Image/Introlmage/Trillion.png" alt="Destination 4" style="width: 100%;margin:auto;" />
+                        <img src="~/Image/Introlmage/Trillion.png" alt="Trillion Cut Diamond" style="width: 100%;margin:auto;" />
                     </div>
 
                 </p>
                 <p class="decription justify">
                     The trillion cut diamond is triangular, with three equal sides. Like the round brilliant cut, a trillion cut diamond has a flat table.
-                    The trillion cut is known for having impressive brilliance, great fire and an eye-catching, modern appearance.&nbsp;
+                    The trillion cut is known for having impressive brilliance, great fire and an eye-catching, modern appearance.
                 </p>
                 <p class="decription justify">
                     Like other diamonds derived from the brilliant, trillion cut diamonds do a good job of hiding color and inclusions.
-                    When cut to a high standard, a trillion cut diamond can look absolutely stunning, either as a center stone or as an accent diamond.&nbsp;
+                    When cut to a high standard, a trillion cut diamond can look absolutely stunning, either as a center stone or as an accent diamond.
                 </p>
                 <p class="decription justify">Trillion cut diamonds can differ in cut and shape depending on whether they’re intended for use as center or accent stones.</p>
                 <p class="decription justify">
                     When a trillion cut diamond is intended to be used as a center diamond in a solitaire ring, it will typically be cut to have 50 facets.
                     Center trillion diamonds will also usually have a light curve or convex shape to maximize the diamond’s perceived size.
                 </p>
-                <p class="decription justify">When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.&nbsp;</p>
+                <p class="decription justify">When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.</p>
                 <p>
                     Thanks to its long sides, a trillion cut diamond can often appear to be larger than its true carat weight.
                     The trillion cut, as we know it today, was trademarked by the Henry Meyer Diamond Company of New York in the 1960s as the “trilliant” cut. However, early trillion cut diamonds are believed to have been cut in Amsterdam as long ago as the 19th century.
                 </p>
-                <img src="~/Image/Introlmage/trillion1.png" alt="Destination 4" style="width: 40%;margin:auto;" />
+                <img src="~/Image/Introlmage/trillion1.png" alt="Trillion Cut Diamond" style="width: 40%;margin:auto;" />
                 <p class="decription justify">
                     The trilliant name comes from the diamond’s shape — a combination of the words “triangle” and “brilliant.”
                     Over the years, numerous variations of the trillion cut have been produced, often with different shapes and facet counts.
@@ -391,19 +369,50 @@
                 </p>
             </div>
         </div>
-        <footer>
-            <hr />
-            <div class="container text-center">
-                <p><a href="#">Back To Top</a></p>
-                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                <p>
-                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
-                </p>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+            <p><a href="#">Back To Top</a></p>
+            <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+            </p>
+        </div>
+    </footer>
 
-            </div>
-        </footer>
-    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var successMessage = '@ViewBag.SuccessMessage';
+            var userName = '@ViewBag.UserName';
+            if (successMessage) {
+                $('#userName').text(userName);
+                $('#loginSuccessModal').modal('show');
+                $('#modalOkButton').click(function () {
+                    window.location.href = '#';
+                });
+            }
+
+            // Hide and show navbar on scroll
+            var lastScrollTop = 0;
+            $(window).scroll(function () {
+                var st = $(this).scrollTop();
+                if (st > lastScrollTop) {
+                    // Scroll Down
+                    $('.navbar').css('top', '-80px');
+                } else {
+                    // Scroll Up
+                    $('.navbar').css('top', '0');
+                }
+                lastScrollTop = st;
+            });
+        });
+
+        $('.close').click(function () {
+            $('#loginSuccessModal').modal('hide');
+        });
+    </script>
 </body>
 </html>
-
-
