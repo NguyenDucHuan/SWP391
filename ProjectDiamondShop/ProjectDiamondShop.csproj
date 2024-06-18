@@ -118,6 +118,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custome.css" />
+    <Content Include="Content\noUiSlider\jquery.nouislider.css" />
     <Content Include="Content\ProductCss\animate.css" />
     <Content Include="Content\ProductCss\bootstrap.min.css" />
     <Content Include="Content\ProductCss\font-awesome.min.css" />
@@ -176,6 +177,7 @@
     <Content Include="Image\DiamondDTO\Diamonds\dia6A.png" />
     <Content Include="Image\DiamondDTO\Diamonds\dia6B.png" />
     <Content Include="Image\DiamondDTO\Diamonds\dia6C.png" />
+    <Content Include="Image\HomePage\Logo\Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" />
     <Content Include="Image\Introlmage\1.55-ratio-pear-1.jpg" />
     <Content Include="Image\Introlmage\1.89-ratio-pear.jpg" />
     <Content Include="Image\Introlmage\Baguette1.png" />
@@ -348,12 +350,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.nouislider.js" />
     <Content Include="Scripts\ProductJs\bootstrap.min.js" />
     <Content Include="Scripts\ProductJs\custom.js" />
     <Content Include="Scripts\ProductJs\feather.min.js" />
     <Content Include="Scripts\ProductJs\SliderMaxMin.js" />
     <Content Include="Scripts\ProductJs\jquery.js" />
-    <Content Include="Views\SignUp\css\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\HomePage.cshtml">
       <BrowseToURL>~/home/index</BrowseToURL>
@@ -397,9 +399,6 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\SignUp\SignUpPage.cshtml">
-      <BrowseToURL>~/signup/index</BrowseToURL>
-    </Content>
     <Content Include="Views\Login\LoginPage.cshtml">
       <BrowseToURL>~/Login/index</BrowseToURL>
     </Content>
