@@ -8,7 +8,6 @@ namespace DiamondShopServices.OrderServices
     public class OrderServices : IOrderServices
     {
         private readonly IOrderRepository orderRepository;
-        private readonly DiamondShopManagementEntities _context;
         public OrderServices()
         {
             orderRepository = new OrderRepository();
@@ -59,5 +58,9 @@ namespace DiamondShopServices.OrderServices
             return orderRepository.ValidateVoucher(voucherID, userID);
         }
 
+        public decimal GetVoucherDiscount(int? voucherID)
+        {
+            return orderRepository.GetVoucherDiscount(voucherID);
+        }
     }
 }

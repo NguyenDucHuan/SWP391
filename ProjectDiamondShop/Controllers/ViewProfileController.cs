@@ -12,7 +12,6 @@ namespace ProjectDiamondShop.Controllers
 {
     public class ViewProfileController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private readonly IUserService service = null;
         private bool IsAdmin()
         {
@@ -58,7 +57,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.OriginalUserID = Session["UserID"] as string;
             ViewBag.UserName = Session["UserName"] as string; // Lấy UserName gốc từ Session
 
-            return View( user);
+            return View(user);
         }
 
         [HttpPost]
@@ -114,34 +113,6 @@ namespace ProjectDiamondShop.Controllers
             }
 
             return View(user);
-        }
-
-        private User GetUserById(string userId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand getUser = new SqlCommand("SELECT * FROM tblUsers WHERE userID = @UserID", conn);
-                getUser.Parameters.AddWithValue("@UserID", userId);
-                using (SqlDataReader reader = getUser.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        return new User
-                        {
-                            UserID = reader["userID"].ToString(),
-                            UserName = reader["userName"].ToString(),
-                            FullName = reader["fullName"].ToString(),
-                            Email = reader["email"].ToString(),
-                            Password = reader["password"].ToString(),
-                            RoleID = int.Parse(reader["roleID"].ToString()),
-                            Status = bool.Parse(reader["status"].ToString()),
-                            BonusPoint = reader["bonusPoint"] as int?
-                        };
-                    }
-                }
-            }
-            return null;
         }
 
         private void UpdateUser(tblUser user)

@@ -146,8 +146,22 @@ namespace DiamondShopDAOs
         }
         public tblVoucher ValidateVoucher(int voucherID, string userID)
         {
-            return _context.tblVouchers
-                .FirstOrDefault(v => v.voucherID == voucherID && v.status == true && (v.targetUserID == "All" || v.targetUserID == userID));
+            return _context.tblVouchers.FirstOrDefault(v => v.voucherID == voucherID && v.status == true && (v.targetUserID == "All" || v.targetUserID == userID));
+        }
+        public decimal GetVoucherDiscount(int? voucherID)
+        {
+            if (voucherID == null)
+            {
+                return 0;
+            }
+
+            var voucher = _context.tblVouchers.SingleOrDefault(v => v.voucherID == voucherID);
+            if (voucher != null && voucher.quantity > 0)
+            {
+                return (decimal)voucher.discount / 100;
+            }
+
+            return 0;
         }
     }
 }

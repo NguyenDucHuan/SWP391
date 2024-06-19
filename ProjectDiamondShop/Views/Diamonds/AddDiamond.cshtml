@@ -1,8 +1,7 @@
-﻿﻿@model DiamondShopBOs.tblDiamond
+﻿@model DiamondShopBOs.tblDiamond
 @{
     ViewBag.Title = "AddDiamond";
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +37,10 @@
             border-color: #007bff;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
 
         .custom-file-label::after {
             content: "Browse";
@@ -133,15 +132,15 @@
                 </div>
                 <div class="form-group">
                     @Html.Label("Certificate Number")
-                    <input type="text" name="CertificateNumber" class="form-control" placeholder="Enter certificate number" />
+                    <input type="text" name="certificateNumber" class="form-control" placeholder="Enter certificate number" />
                 </div>
                 <div class="form-group">
                     @Html.Label("Issue Date")
-                    <input type="date" name="IssueDate" class="form-control" />
+                    <input type="date" name="issueDate" class="form-control" />
                 </div>
                 <div class="form-group">
                     @Html.Label("Certifying Authority")
-                    <input type="text" name="CertifyingAuthority" class="form-control" placeholder="Enter certifying authority" />
+                    <input type="text" name="certifyingAuthority" class="form-control" placeholder="Enter certifying authority" />
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Add Diamond</button>
@@ -157,7 +156,6 @@
         {
             <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary floating-btn">Back to Admin Board</a>
         }
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -176,4 +174,3 @@
     </script>
 </body>
 </html>
-

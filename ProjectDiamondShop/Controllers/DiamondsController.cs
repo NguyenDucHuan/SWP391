@@ -219,7 +219,7 @@ namespace ProjectDiamondShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
+        public ActionResult AddDiamond(tblDiamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage, string certificateNumber, DateTime? issueDate, string certifyingAuthority)
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
             {
@@ -283,14 +283,14 @@ namespace ProjectDiamondShop.Controllers
                     shapeID = model.shapeID,
                     diamondImagePath = diamondImagePaths,
                     status = true,
-                    quantity = 1 
+                    quantity = 1
                 };
 
                 tblCertificate newCertificate = new tblCertificate
                 {
-                    certificateNumber = model.CertificateNumber,
-                    issueDate = model.IssueDate,
-                    certifyingAuthority = model.CertifyingAuthority,
+                    certificateNumber = certificateNumber,
+                    issueDate = issueDate ?? DateTime.Now,
+                    certifyingAuthority = certifyingAuthority,
                     cerImagePath = certificateImagePath
                 };
 

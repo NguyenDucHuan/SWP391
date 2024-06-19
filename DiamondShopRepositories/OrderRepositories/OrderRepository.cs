@@ -42,7 +42,7 @@ namespace DiamondShopRepositories.OrderRepositories
         public List<tblOrderStatusUpdate> GetOrderStatusUpdates(string orderId)
         {
             return orderDAO.GetOrderStatusUpdates(orderId);
-        }      
+        }
 
         public string GetDeliveryStaffID()
         {
@@ -55,6 +55,11 @@ namespace DiamondShopRepositories.OrderRepositories
         public tblVoucher ValidateVoucher(int voucherID, string userID)
         {
             return orderDAO.ValidateVoucher(voucherID, userID);
+        }
+
+        public decimal GetVoucherDiscount(int? voucherID)
+        {
+            return orderDAO.GetVoucherDiscount(voucherID);
         }
     }
 }
