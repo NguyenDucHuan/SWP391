@@ -245,13 +245,13 @@ INSERT INTO [dbo].[tblRole] ([roleID], [roleName]) VALUES
 
 -- Thêm d? li?u m?u vào b?ng tblSettings
 INSERT INTO [dbo].[tblSettings] ([settingType], [material],[priceTax],[quantityStones] , [description], [imagePath]) VALUES 
-('Ring', 'Gold', 500, 10, 'Gold ring setting', '/images/settings/ring_gold.png'),
-('Necklace', 'Silver', 300, 15, 'Silver necklace setting', '/images/settings/necklace_silver.png');
+('Ring', 'Gold', 500, 10, 'Gold ring setting', '/Image/Settings/ring_gold.png'),
+('Necklace', 'Silver', 300, 15, 'Silver necklace setting', '/Image/Settings/necklace_silver.png');
 
 -- Thêm d? li?u m?u vào b?ng tblAccentStones
 INSERT INTO [dbo].[tblAccentStones] ([shape], [caratWeight], [clarity], [color], [price], [quantity], [imagePath], [accentStonesName]) VALUES 
-('Round', 0.25, 'VS2', 'H', 200, 50, '/images/accentStones/round_0.25.png', 'Round Diamond'),
-('Princess', 0.2, 'VS1', 'G', 180, 40, '/images/accentStones/princess_0.2.png', 'Princess Diamond');
+('Round', 0.25, 'VS2', 'H', 200, 50, '/Image/AccentStones/round_25.png', 'Round Diamond'),
+('Princess', 0.2, 'VS1', 'G', 180, 40, '/Image/AccentStones/princess_2.png', 'Princess Diamond');
 
 -- Thêm d? li?u m?u vào b?ng tblDiamonds
 INSERT INTO [dbo].[tblDiamonds] 
