@@ -69,5 +69,7 @@ namespace DiamondShopDAOs.DAOs
                 throw new Exception("Failed to add order item: " + ex.Message, ex);
             }
         }
+
+
     }
 }

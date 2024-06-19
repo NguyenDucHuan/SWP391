@@ -12,7 +12,6 @@ namespace ProjectDiamondShop.Controllers
 {
     public class ForgotPasswordController : Controller
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private readonly IUserService userService = null;
         private bool IsAdmin()
         {
