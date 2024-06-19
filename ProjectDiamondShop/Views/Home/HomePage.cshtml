@@ -292,7 +292,6 @@
                 margin-bottom: 10px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -501,7 +500,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="color: black">
                     <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left: auto; border: none; background: none;">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -526,7 +525,7 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '#';
+                    window.location.href = ' ';
                 });
             }
 
@@ -549,6 +548,12 @@
             console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
+
+            $('#modalOkButton').click(function () {
+                console.log('OK button clicked');
+                $('#loginSuccessModal').modal('hide');
+            });
+
     </script>
 </body>
 </html>

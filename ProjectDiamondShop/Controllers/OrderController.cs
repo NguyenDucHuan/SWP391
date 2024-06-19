@@ -325,7 +325,7 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
-                decimal discountedPrice = (item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage - voucherDiscount);
+                decimal discountedPrice = ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage))- ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage)*voucherDiscount);
                 itemList.items.Add(new Item()
                 {
                     name = item.decription,
@@ -349,7 +349,7 @@ namespace ProjectDiamondShop.Controllers
 
             decimal totalMoney = cart.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent);
             decimal discountAmount = totalMoney * voucherDiscount;
-            decimal discountedSubtotal = totalMoney * (1 - discountPercentage) - discountAmount;
+            decimal discountedSubtotal = (totalMoney - discountAmount) * (1 - discountPercentage);
             var details = new Details()
             {
                 subtotal = discountedSubtotal.ToString("F2")
