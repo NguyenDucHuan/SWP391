@@ -16,8 +16,8 @@
         }
 
         body {
-            background-color: #E9F2EB;
-            color: #333;
+            background-color: #222;
+            color: #e0e0e0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -28,14 +28,12 @@
         }
 
         .navbar {
-            background: #fff !important;
+            background: #333 !important;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 0.5rem 1rem;
-            border-radius: 30px;
             margin-bottom: 20px;
             transition: top 0.3s;
             margin: 0 auto;
-            max-width: 95%;
         }
 
             .navbar .navbar-brand {
@@ -52,7 +50,7 @@
                 }
 
             .navbar .nav-link {
-                color: #333 !important;
+                color: #fff !important;
                 font-weight: bold;
                 margin-right: 20px;
                 position: relative;
@@ -60,7 +58,7 @@
 
                 .navbar .nav-link:hover,
                 .navbar .nav-link.active {
-                    color: #000 !important;
+                    color: #ddd !important;
                 }
 
                 .navbar .nav-link:not(.dropdown-toggle)::after {
@@ -71,7 +69,7 @@
                     background: #28a745;
                     transition: width .3s;
                     position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
+                    bottom: 0;
                     left: 0;
                 }
 
@@ -121,42 +119,42 @@
             content: none;
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
         .container {
             flex: 1;
         }
 
         .footer {
-            background-color: #fff;
+            background-color: #333;
             padding: 20px 0;
             text-align: center;
-            color: #333;
+            color: #FFD700;
             box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
             width: 100%;
             margin-top: 10px;
         }
 
             .footer a {
-                color: #00509e;
+                color: #FFD700;
                 text-decoration: none;
                 margin: 0 10px;
             }
 
                 .footer a:hover {
-                    color: #003f7d;
+                    color: #FFF;
                     text-decoration: underline;
                 }
+
+        /* Centering Images */
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+            .image-container img {
+                display: inline-block;
+                max-width: 100%;
+                height: auto;
+            }
 
         /* Media Queries for Responsive Design */
         @@media (max-width: 992px) {
@@ -294,7 +292,7 @@
 
         <div class="container center">
             <div class="row">
-                <p class="decription justify">
+                <p class="description justify">
                     The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
                     Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
                     However, their distinct sharp corners necessitate protective settings.
@@ -304,72 +302,86 @@
                 </p>
 
                 <h1>What is a Princess Diamond?</h1>
-                <p class="decription justify">
+                <p class="description justify">
                     The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
                     Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
                     However, their distinct sharp corners necessitate protective settings.
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
                     Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
                     If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
                 </p>
-                <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 100%; margin:auto" />
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 100%; margin:auto" />
+                </div>
                 <h2 class="wp-block-heading">The Princess Cut – A Modern Classic</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     While the princess cut is not as old as other diamond cuts, it has quickly gained popularity and is now the second most popular diamond shape.
                     Its versatility and modern appeal make it a favorite among those seeking a balance between tradition and contemporary style.
                 </p>
                 <h2 class="wp-block-heading" id="Princess-Diamond-Engagement-Rings---Becoming-More-Popular">Princess Diamond Engagement Rings – Becoming More Popular</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     More and more people are choosing a princess cut over a round brilliant for their engagement rings.
                     According to Wikipedia’s article on diamond cut, the modern princess cut was first introduced in 1960 by A.
                     Nagy of London.
                 </p>
-                <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                </div>
+                <p class="description justify">
                     The princess cut is universally regarded as the runner-up to the round brilliant in today’s market.
                     According to the chart from Jogia Diamonds’ blog that we refer to in our article about <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, a full 23% of searches on their site are for princess cuts.
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     That’s still a far cry from the 64% for round brilliants, but consider that the second runner-up was the emerald cut with only 3% of searches.
                     The princess cut is squarely in 2nd place.
                 </p>
                 <h2 class="wp-block-heading" id="How-to-Choose-the-Best-Diamond-for-a-Princess-Cut-Engagement-Ring">How to Choose the Best Diamond for a Princess Cut Engagement Ring</h2>
-                <img src="~/Image/Introlmage/Princess1.png" alt="Princess Diamond" style="width: 100%; margin:auto" />
-                <p class="decription justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
-                <p class="decription justify">To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
-                <p class="decription justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Princess1.png" alt="Princess Diamond" style="width: 100%; margin:auto" />
+                </div>
+                <p class="description justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
+                <p class="description justify">To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
+                <p class="description justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
                 <h2 class="wp-block-heading">The Right Price for a Princess Diamond Ring</h2>
-                <p class="decription justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
+                <p class="description justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
                 <h2 class="wp-block-heading" id="Best-Setting-for-a-Princess-Diamond-Ring">Best Setting for a Princess Diamond Ring</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     The best ring settings for princess diamond rings are the channel and four-prong settings—such as a solitaire or three-stone ring.
                     With a princess cut’s pointed edges, it’s important to ensure the corners don’t get chipped or damaged.
                     A channel set or four-prong offers protection without masking the diamond’s beauty.
                 </p>
-                <p class="decription justify">Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
-                <p class="decription justify">
+                <p class="description justify">Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
+                <p class="description justify">
                     <b>Solitaire</b><br />
                     A solitaire setting allows the princess cut to take center stage and the maximum light to enter.
                     This classic solitaire from James Allen is a prime example of a princess cut engagement ring that makes a statement.
                 </p>
-                <img src="~/Image/Introlmage/princess2.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/princess2.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                </div>
+                <p class="description justify">
                     <b>Channel Set</b><br />
                     A channel setting offers security to princess cuts. If you are looking for a beautiful choice, this 1/4 carat channel engagement ring from Blue Nile.
                 </p>
-                <img src="~/Image/Introlmage/princess3.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/princess3.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                </div>
+                <p class="description justify">
                     <b>Halo</b><br />
                     Halo engagement rings feature smaller diamonds that surround the center stone, making it appear even larger. Here is a platinum petite halo ring from James Allen.
                 </p>
-                <img src="~/Image/Introlmage/princess4.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/princess4.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                </div>
                 <p>
                     <b>Vintage </b><br />
                     Antique style rings have more ornate, unique features, like this regal frame princess cut ring from James Allen.
                 </p>
-                <img src="~/Image/Introlmage/princess5.jpg" alt="Princess Diamond" style="width: 50%; margin: auto" />
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/princess5.jpg" alt="Princess Diamond" style="width: 50%; margin: auto" />
+                </div>
             </div>
         </div>
     </div>
@@ -378,7 +390,9 @@
             <p><a href="#">Back To Top</a></p>
             <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
             <p>
-                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                <a href="#">Terms of Service</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Refund Policy</a>
             </p>
         </div>
     </footer>
