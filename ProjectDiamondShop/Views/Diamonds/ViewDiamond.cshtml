@@ -24,7 +24,7 @@
             <div id="mainImageContainer" style="width: 100%; max-width: 500px; height: 400px; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #f8f8f8; margin-bottom: 20px;">
                 <img id="mainImage" src="@Model.diamondImagePath.Split('|')[0]" alt="@Model.diamondName" class="img-responsive" style="max-width: 100%; max-height: 100%;">
             </div>
-            <div class="thumbnail-container" style="display: flex;  flex-wrap: wrap;">
+            <div class="thumbnail-container" style="display: flex; flex-wrap: wrap;">
                 @foreach (var imagePath in Model.diamondImagePath.Split('|').Select((value, index) => new { value, index }))
                 {
                     <button class="thumbnail-button" data-image="@imagePath.value" style="border:none; background:none; margin: 5px; padding: 0;">
