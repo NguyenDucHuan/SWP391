@@ -21,7 +21,6 @@ namespace DiamondShopBOs
         public System.DateTime warrantyEndDate { get; set; }
         public string warrantyDetails { get; set; }
         public string warrantyCode { get; set; }
-        public string status { get; set; }
     
         public virtual tblOrderItem tblOrderItem { get; set; }
     }

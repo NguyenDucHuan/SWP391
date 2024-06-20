@@ -279,8 +279,6 @@
     <Content Include="Content\ProductCss\Linearicons-Free.woff" />
     <Content Include="Content\ProductCss\Linearicons-Free.woff2" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Image\AccentStones\princess_2.png" />
-    <Content Include="Image\AccentStones\round_25.png" />
     <Content Include="Image\DiamondDTO\Certificates\CER01.jpg" />
     <Content Include="Image\DiamondDTO\Certificates\CER02.jpg" />
     <Content Include="Image\DiamondDTO\Certificates\CER03.jpg" />
@@ -376,8 +374,6 @@
     <Content Include="Image\HomePage\DiamondShape\Round.png" />
     <Content Include="Image\HomePage\DiamondShape\Trillion.png" />
     <Content Include="Image\HomePage\Logo\SafeIcon.jpg" />
-    <Content Include="Image\Settings\necklace_silver.png" />
-    <Content Include="Image\Settings\ring_gold.png" />
     <Content Include="Image\SlideDiamond\asscher.jpg" />
     <Content Include="Image\SlideDiamond\asscher1.jpg" />
     <Content Include="Image\SlideDiamond\asscher2.jpg" />
@@ -556,8 +552,6 @@
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <Content Include="Views\Warranty\WarrantyDetails.cshtml" />
     <Content Include="Views\Diamonds\AddDiamond.cshtml" />
-    <Content Include="Views\Warranty\CustomerWarranties.cshtml" />
-    <Content Include="Views\Warranty\ViewWarranty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

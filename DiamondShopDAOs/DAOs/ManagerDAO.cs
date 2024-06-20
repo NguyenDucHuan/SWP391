@@ -1,7 +1,6 @@
 ﻿using DiamondShopBOs;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace DiamondShopDAOs
@@ -139,51 +138,5 @@ namespace DiamondShopDAOs
             _context.SaveChanges();
         }
 
-        public List<RevenueData> GetRevenueDataByDay(DateTime date)
-        {
-            var data = _context.tblOrders
-                .Where(o => System.Data.Entity.DbFunctions.TruncateTime(o.saleDate) == date.Date)
-                .GroupBy(o => System.Data.Entity.DbFunctions.TruncateTime(o.saleDate))
-                .Select(g => new
-                {
-                    Date = g.Key,
-                    Revenue = g.Sum(o => (double?)o.totalMoney) ?? 0
-                })
-                .OrderBy(r => r.Date)
-                .ToList()
-                .Select(x => new RevenueData
-                {
-                    Date = x.Date.Value.ToString("yyyy-MM-dd"),
-                    Revenue = x.Revenue
-                }).ToList();
-
-            return data;
-        }
-
-        public List<RegistrationData> GetRegistrationDataByDay(DateTime date)
-        {
-            var rawData = _context.tblUsers
-                .Where(u => System.Data.Entity.DbFunctions.TruncateTime(u.createDate) == date.Date && u.roleID == 1)
-                .GroupBy(u => new { u.createDate.Year, u.createDate.Month, u.createDate.Day })
-                .Select(g => new
-                {
-                    Year = g.Key.Year,
-                    Month = g.Key.Month,
-                    Day = g.Key.Day,
-                    Count = g.Count()
-                })
-                .OrderBy(r => r.Year)
-                .ThenBy(r => r.Month)
-                .ThenBy(r => r.Day)
-                .ToList();
-
-            var registrationData = rawData.Select(x => new RegistrationData
-            {
-                Date = $"{x.Year}-{x.Month.ToString().PadLeft(2, '0')}-{x.Day.ToString().PadLeft(2, '0')}",
-                Registrations = x.Count
-            }).ToList();
-
-            return registrationData;
-        }
     }
 }

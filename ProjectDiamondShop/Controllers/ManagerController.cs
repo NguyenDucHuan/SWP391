@@ -55,6 +55,8 @@ namespace ProjectDiamondShop.Controllers
                 return Json(new { success = false, message = "Permission Denied." });
             }
 
+            bool isAdmin = (int)Session["RoleID"] == 2;
+
             foreach (var update in orderUpdates)
             {
                 var order = _managerService.GetOrderById(update.OrderID);
@@ -67,8 +69,7 @@ namespace ProjectDiamondShop.Controllers
                     {
                         string currentStatus = order.status;
 
-                        // Check for valid status transition for both Admin and Manager
-                        if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
+                        if (!isAdmin && currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
                         {
                             return Json(new { success = false, message = $"Update Error: Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
                         }
@@ -93,23 +94,20 @@ namespace ProjectDiamondShop.Controllers
         private bool IsValidStatusTransition(string currentStatus, string newStatus)
         {
             var statusOrder = new List<string>
-    {
-        "Order Placed",
-        "Preparing Goods",
-        "Shipped to Carrier",
-        "In Delivery",
-        "Delivered",
-        "Paid"
-    };
+            {
+                "Order Placed",
+                "Preparing Goods",
+                "Shipped to Carrier",
+                "In Delivery",
+                "Delivered",
+                "Paid"
+            };
 
             var currentIndex = statusOrder.IndexOf(currentStatus);
             var newIndex = statusOrder.IndexOf(newStatus);
 
-            // Ensure that status can only move to the next status in the list
-            return newIndex > currentIndex && newIndex == currentIndex + 1;
+            return newIndex > currentIndex;
         }
-
-
 
         [HttpPost]
         public JsonResult ToggleUserStatus(string userId, bool status)
@@ -344,26 +342,5 @@ namespace ProjectDiamondShop.Controllers
 
             return RedirectToAction("Index");
         }
-        public JsonResult GetChartData(string date)
-        {
-            DateTime selectedDate;
-            if (!DateTime.TryParse(date, out selectedDate))
-            {
-                return Json(new { success = false, message = "Invalid date format" }, JsonRequestBehavior.AllowGet);
-            }
-
-            var revenueData = _managerService.GetRevenueDataByDay(selectedDate);
-            var registrationData = _managerService.GetRegistrationDataByDay(selectedDate);
-
-            return Json(new
-            {
-                success = true,
-                RevenueLabels = revenueData.Select(r => r.Date).ToList(),
-                RevenueData = revenueData.Select(r => r.Revenue).ToList(),
-                RegistrationLabels = registrationData.Select(r => r.Date).ToList(),
-                RegistrationData = registrationData.Select(r => r.Registrations).ToList()
-            }, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }

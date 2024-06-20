@@ -3,7 +3,6 @@ using DiamondShopDAOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -85,15 +84,5 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             return _managerDAO.GetVouchers();
         }
-        public List<RevenueData> GetRevenueDataByDay(DateTime date)
-        {
-            return _managerDAO.GetRevenueDataByDay(date);
-        }
-
-        public List<RegistrationData> GetRegistrationDataByDay(DateTime date)
-        {
-            return _managerDAO.GetRegistrationDataByDay(date);
-        }
-
     }
 }

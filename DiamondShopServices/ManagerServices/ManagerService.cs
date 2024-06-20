@@ -84,15 +84,5 @@ namespace DiamondShopServices.ManagerServices
         {
             return _managerRepository.GetVouchers();
         }
-        public List<RevenueData> GetRevenueDataByDay(DateTime date)
-        {
-            return _managerRepository.GetRevenueDataByDay(date);
-        }
-
-        public List<RegistrationData> GetRegistrationDataByDay(DateTime date)
-        {
-            return _managerRepository.GetRegistrationDataByDay(date);
-        }
-
     }
 }

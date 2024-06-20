@@ -1,7 +1,5 @@
 ﻿using DiamondShopBOs;
 using DiamondShopDAOs;
-using System.Collections.Generic;
-using System.Runtime.Remoting.Contexts;
 
 namespace DiamondShopRepositories.WarrantyRepository
 {
@@ -22,18 +20,6 @@ namespace DiamondShopRepositories.WarrantyRepository
         public void UpdateWarrantyDetails(string warrantyCode, string details)
         {
             _warrantyDAO.UpdateWarrantyDetails(warrantyCode, details);
-        }
-        public void CreateWarranty(tblWarranty warranty)
-        {
-            _warrantyDAO.CreateWarranty(warranty.orderID, warranty.ItemID, warranty.warrantyCode, warranty.warrantyDetails);
-        }
-        public List<tblWarranty> GetNonValidWarrantiesByCustomer(string customerId)
-        {
-            return _warrantyDAO.GetNonValidWarrantiesByCustomer(customerId);
-        }
-        public tblWarranty GetWarrantyByID(int warrantyID)
-        {
-            return _warrantyDAO.GetWarrantyByID(warrantyID);
         }
     }
 }

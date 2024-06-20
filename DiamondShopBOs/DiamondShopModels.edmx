@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccentStones">
           <Key>
             <PropertyRef Name="accentStoneID" />
@@ -210,7 +210,6 @@
           <Property Name="warrantyEndDate" Type="datetime" Nullable="false" />
           <Property Name="warrantyDetails" Type="nvarchar" MaxLength="512" Nullable="false" />
           <Property Name="warrantyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_tblCertificate_tblDiamonds">
           <End Role="tblDiamonds" Type="Self.tblDiamonds" Multiplicity="1">
@@ -591,7 +590,8 @@
             <End Role="tblWarranty" EntitySet="tblWarranty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -832,7 +832,6 @@
           <Property Name="warrantyDetails" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="warrantyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="tblOrderItem" Relationship="Self.FK_tblWarranty_tblOrderItem" FromRole="tblWarranty" ToRole="tblOrderItem" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblItem_tblAccentStones">
           <End Role="tblAccentStones" Type="Self.tblAccentStone" Multiplicity="0..1" />
@@ -1394,7 +1393,6 @@
           <EntitySetMapping Name="tblWarranties">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblWarranty">
               <MappingFragment StoreEntitySet="tblWarranty">
-                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="warrantyID" ColumnName="warrantyID" />
                 <ScalarProperty Name="orderID" ColumnName="orderID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />

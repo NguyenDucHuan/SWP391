@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
         * {
@@ -17,8 +16,8 @@
         }
 
         body {
-            background-color: #222; /* Darker background color */
-            color: #e0e0e0; /* Text color */
+            background-color: #E9F2EB;
+            color: #333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -29,18 +28,19 @@
         }
 
         .navbar {
-            background: #333 !important; /* Navbar background color */
+            background: #fff !important;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 0.5rem 1rem;
+            border-radius: 30px;
             margin-bottom: 20px;
             transition: top 0.3s;
             margin: 0 auto;
+            max-width: 95%;
         }
 
             .navbar .navbar-brand {
                 color: #28a745 !important;
                 font-weight: bold;
-                font-family: 'Playfair Display', serif;
                 display: flex;
                 align-items: center;
             }
@@ -52,7 +52,7 @@
                 }
 
             .navbar .nav-link {
-                color: #fff !important; /* Link text color */
+                color: #333 !important;
                 font-weight: bold;
                 margin-right: 20px;
                 position: relative;
@@ -60,7 +60,7 @@
 
                 .navbar .nav-link:hover,
                 .navbar .nav-link.active {
-                    color: #ddd !important; /* Link hover color */
+                    color: #000 !important;
                 }
 
                 .navbar .nav-link:not(.dropdown-toggle)::after {
@@ -71,7 +71,7 @@
                     background: #28a745;
                     transition: width .3s;
                     position: absolute;
-                    bottom: 0;
+                    bottom: 0; /* Position it at the bottom of the nav link */
                     left: 0;
                 }
 
@@ -136,34 +136,27 @@
         }
 
         .footer {
-            background-color: #333;
+            background-color: #fff;
             padding: 20px 0;
             text-align: center;
-            color: #FFD700;
+            color: #333;
             box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 10px;
         }
 
             .footer a {
-                color: #FFD700;
+                color: #00509e;
                 text-decoration: none;
                 margin: 0 10px;
             }
 
                 .footer a:hover {
-                    color: #FFF;
+                    color: #003f7d;
                     text-decoration: underline;
                 }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-            .image-container img {
-                max-width: 100%;
-                height: auto;
-            }
 
         /* Media Queries for Responsive Design */
         @@media (max-width: 992px) {
@@ -302,9 +295,9 @@
 
         <h2 class="text-center" style="margin-top: 48px;">Cushion Diamond Story</h2>
 
-        <div class="container center">
-            <div class="row">
-                <p class="description justify">
+        <div class="container center ">
+            <div class="row ">
+                <p class="decription justify">
                     The cushion cut diamond, gaining immense popularity over recent years, characterized by its soft square or rectangular shape with rounded edges, reminiscent of a pillow.
                     Understanding the nuances between standard and modified cushion cuts, as well as their distinct appearances, is crucial for an informed purchase.
                     When shopping for a cushion cut diamond, a general guideline is to stick with a depth and table under 70%.
@@ -313,7 +306,7 @@
                     We’ll discuss all the nuances of cushion cut diamonds and how to navigate the 4 Cs to find the perfect balance of quality and value.
                 </p>
                 <h1>What is a Cushion Cut Diamond?</h1>
-                <p class="description justify">
+                <p class="decription justify">
                     A cushion cut diamond is a combination of a more modern and round brilliant cut pattern diamond with a classic, old mine facet pattern diamond cut.
                     This type of diamond typically has a soft square or even rectangular shape, all with curved edges.
                     Simply put, a cushion cut diamond combines a square cut with rounded corners, giving it an appearance similar to a pillow.
@@ -326,7 +319,7 @@
                 </p>
                 <img src="~/Image/Introlmage/cushion-compare.jpg" alt="Cushion Diamond" style="width: 40%;margin:auto" />
                 <h2 class="wp-block-heading">Key Features of a Cushion Cut Diamond</h2>
-                <p class="description">
+                <p class="decription">
                     Here are some of the distinctive features that you’ll notice from a cushion cut diamond.
                 </p>
                 <ul class="custom-list">
@@ -338,11 +331,11 @@
                 </ul>
                 <img src="~/Image/Introlmage/cushion2.png" alt="Cushion Diamond" style="width: 50%;margin:auto" />
                 <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">How to Choose a Cushion Cut Diamond</h2>
-                <p class="description">
+                <p class="decription">
                     Looking for a cushion cut? Below, I’ve covered the key factors to look for when buying or comparing cushion cut diamonds, from color to clarity.
                 </p>
                 <h3 class="wp-block-heading">Cushion Diamond Color</h3>
-                <p class="description justify">
+                <p class="decription justify ">
                     Cushion cuts are one of the worst shapes when it comes to retaining <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color</a>
                     (or one of the best, if you’re a manufacturer of fancy color diamonds). Cushion cuts are one of the worst shapes when it comes to retaining diamond color (or one of the best, if you’re a manufacturer of fancy color diamonds).
                     Cushions and radiants are the two most common diamond shapes in the fancy color diamond market. These shapes are on the opposite end of the spectrum from rounds, which are the best at masking their color.
@@ -351,7 +344,7 @@
                     Although H diamonds aren’t completely colorless, they are “near colorless” and only have a very slight yellow tint. Almost no one will notice this difference, especially if the diamond is set in rose or yellow gold.
                 </p>
                 <h3 class="wp-block-heading">Cushion Diamond Clarity</h3>
-                <p class="description justify">
+                <p class="decription justify ">
                     Regarding <a href="https://www.diamonds.pro/education/clarity/" data-wpel-link="internal">diamond clarity</a>, a cushion cut can be a bit tricky.
                     Firstly, it’s important to note whether you’re looking to buy a crushed-ice cushion or an “antique” cushion.
                     The reason is simply that the crushed-ice look, in any shape diamond, is generally a very good hider of inclusions.
@@ -409,7 +402,6 @@
                     window.location.href = '#';
                 });
             }
-
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
             $(window).scroll(function () {

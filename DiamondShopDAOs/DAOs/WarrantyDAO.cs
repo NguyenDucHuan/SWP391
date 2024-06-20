@@ -1,6 +1,5 @@
 ﻿using DiamondShopBOs;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DiamondShopDAOs
@@ -21,7 +20,7 @@ namespace DiamondShopDAOs
             return new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public void CreateWarranty(string orderId, int itemId, string warrantyCode, string warrantyDetails)
+        public void CreateWarranty(string orderId, int itemId, string warrantyCode)
         {
             var warranty = new tblWarranty
             {
@@ -30,8 +29,7 @@ namespace DiamondShopDAOs
                 warrantyCode = warrantyCode,
                 warrantyStartDate = DateTime.Now,
                 warrantyEndDate = DateTime.Now.AddMonths(3),
-                warrantyDetails = "No Detail",
-                status = "Valid" // Đặt trạng thái ban đầu là "Valid"
+                warrantyDetails = "No Detail"
             };
 
             _context.tblWarranties.Add(warranty);
@@ -42,43 +40,15 @@ namespace DiamondShopDAOs
         {
             return _context.tblWarranties.FirstOrDefault(w => w.warrantyCode == warrantyCode);
         }
-        public tblWarranty GetWarrantyByID(int warrantyID)
-        {
-            return _context.tblWarranties.FirstOrDefault(w => w.warrantyID == warrantyID);
-        }
 
-        public void UpdateWarrantyDetails(string warrantyCode, string newDetails)
+        public void UpdateWarrantyDetails(string warrantyCode, string details)
         {
-            var existingWarranty = _context.tblWarranties.FirstOrDefault(w => w.warrantyCode == warrantyCode);
-
-            if (existingWarranty != null)
+            var warranty = _context.tblWarranties.FirstOrDefault(w => w.warrantyCode == warrantyCode);
+            if (warranty != null)
             {
-                // Tạo mới warranty với nội dung giống cái cũ và chỉ thay đổi warrantyDetails
-                var newWarranty = new tblWarranty
-                {
-                    orderID = existingWarranty.orderID,
-                    ItemID = existingWarranty.ItemID,
-                    warrantyCode = existingWarranty.warrantyCode,
-                    warrantyStartDate = existingWarranty.warrantyStartDate,
-                    warrantyEndDate = existingWarranty.warrantyEndDate,
-                    warrantyDetails = newDetails,
-                    status = "No Process"
-                };
-
-                _context.tblWarranties.Add(newWarranty);
+                warranty.warrantyDetails = details;
                 _context.SaveChanges();
             }
         }
-        public List<tblWarranty> GetNonValidWarrantiesByCustomer(string userID)
-        {
-            var warranties = _context.tblWarranties
-                                    .Where(w => w.tblOrderItem.tblOrder.customerID == userID && w.status != "Valid")
-                                    .ToList();
-            System.Diagnostics.Debug.WriteLine($"Found {warranties.Count} warranties for customer {userID} with non-valid status.");
-            return warranties;
-        }
-
-
-
     }
 }

@@ -145,12 +145,6 @@
             <a href="@Url.Action("AddDiamond", "Diamonds")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Create Voucher</a>
             <a href="@Url.Action("Logout", "Login")" class="btn btn-danger col-12 col-sm-6 col-md-4 col-lg-2 m-1">Logout</a>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <label for="specificDate">Select Date:</label>
-                <input type="date" id="specificDate" class="form-control">
-            </div>
-        </div>
 
         <div id="chart" class="section" style="display:block;">
             @if ((int)Session["RoleID"] == 3)
@@ -488,7 +482,7 @@
             }
         }
 
-                $(document).ready(function () {
+        $(document).ready(function () {
             if ('@TempData["SuccessMessage"]'.length > 0) {
                 $('#updateSuccessMessage').show().delay(3000).fadeOut();
             }
@@ -568,7 +562,7 @@
             if (roleId == 2) { // Admin
                 var ctx = document.getElementById('revenueChart').getContext('2d');
                 var revenueChart = new Chart(ctx, {
-                    type: 'bar',  // Sử dụng biểu đồ pie cho admin
+                    type: 'pie',  // Sử dụng biểu đồ pie cho admin
                     data: {
                         labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
                         datasets: [{
@@ -590,7 +584,7 @@
 
                 var ctx2 = document.getElementById('registrationChart').getContext('2d');
                 var registrationChart = new Chart(ctx2, {
-                    type: 'bar',
+                    type: 'pie',
                     data: {
                         labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationLabels)),
                         datasets: [{
@@ -633,36 +627,6 @@
                 });
             }
         });
-        $(document).ready(function () {
-            $('#specificDate').change(function () {
-                var selectedDate = $(this).val();
-                updateCharts(selectedDate);
-            });
-
-            function updateCharts(date) {
-                $.ajax({
-                    url: '@Url.Action("GetChartData", "Manager")',
-                    type: 'GET',
-                    data: {
-                        date: date
-                    },
-                    success: function (data) {
-                        if (data.success) {
-                            revenueChart.data.labels = data.RevenueLabels;
-                            revenueChart.data.datasets[0].data = data.RevenueData;
-                            revenueChart.update();
-
-                            registrationChart.data.labels = data.RegistrationLabels;
-                            registrationChart.data.datasets[0].data = data.RegistrationData;
-                            registrationChart.update();
-                        } else {
-                            alert(data.message);
-                        }
-                    }
-                });
-            }
-        });
-
 
         function updateOrders() {
             $('#updateSuccessMessage').hide();
