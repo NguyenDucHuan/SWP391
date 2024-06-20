@@ -228,6 +228,8 @@
         document.getElementById("DiscountAmount").innerText = discountAmount.toFixed(2);
         document.getElementById("DiscountedTotal").innerText = discountedTotal.toFixed(2);
 
+        document.getElementById("Total").value = "$" + discountedTotal.toFixed(2); // Update the Total field
+
         document.getElementById("discountSection").style.display = "block";
     }
 
@@ -270,6 +272,7 @@
         document.getElementById("hiddenAddress").value = address;
         document.getElementById("hiddenPhone").value = phone;
         document.getElementById("hiddenVoucherID").value = voucherID;
+
 
         // Submit the hidden form
         document.getElementById("paymentForm").submit();
