@@ -55,8 +55,6 @@ namespace ProjectDiamondShop.Controllers
                 return Json(new { success = false, message = "Permission Denied." });
             }
 
-            bool isAdmin = (int)Session["RoleID"] == 2;
-
             foreach (var update in orderUpdates)
             {
                 var order = _managerService.GetOrderById(update.OrderID);
@@ -69,7 +67,8 @@ namespace ProjectDiamondShop.Controllers
                     {
                         string currentStatus = order.status;
 
-                        if (!isAdmin && currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
+                        // Check for valid status transition for both Admin and Manager
+                        if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
                         {
                             return Json(new { success = false, message = $"Update Error: Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
                         }
@@ -106,7 +105,8 @@ namespace ProjectDiamondShop.Controllers
             var currentIndex = statusOrder.IndexOf(currentStatus);
             var newIndex = statusOrder.IndexOf(newStatus);
 
-            return newIndex > currentIndex;
+            // Ensure that status can only move to the next status in the list
+            return newIndex > currentIndex && newIndex == currentIndex + 1;
         }
 
         [HttpPost]

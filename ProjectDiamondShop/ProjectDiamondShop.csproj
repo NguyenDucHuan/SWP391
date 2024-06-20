@@ -552,6 +552,8 @@
     <Content Include="Views\ForgotPassword\EnterResetCode.cshtml" />
     <Content Include="Views\Warranty\WarrantyDetails.cshtml" />
     <Content Include="Views\Diamonds\AddDiamond.cshtml" />
+    <Content Include="Views\Warranty\ViewWarranty.cshtml" />
+    <Content Include="Views\Warranty\CustomerWarranties.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

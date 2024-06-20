@@ -326,7 +326,6 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -335,7 +334,9 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewWarranty", "Warranty")">View Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
                         </li>
