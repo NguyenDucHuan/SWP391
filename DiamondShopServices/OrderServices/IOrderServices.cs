@@ -12,10 +12,9 @@ namespace DiamondShopServices.OrderServices
         List<tblOrderItem> GetOrderItems(string orderId);
         void UpdateOrderStatus(string orderId, string status);
         List<tblOrderStatusUpdate> GetOrderStatusUpdates(string orderId);
- 
-
         string GetDeliveryStaffID();
         List<tblVoucher> GetAvailableVouchers(string userID);
         tblVoucher ValidateVoucher(int voucherID, string userID);
+        decimal GetVoucherDiscount(int? voucherID);
     }
 }

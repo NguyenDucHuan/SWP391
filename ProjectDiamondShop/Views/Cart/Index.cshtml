@@ -3,11 +3,9 @@
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
 <style>
     h2 {
-        margin-top: 50px;
+        margin: 40px 20px 40px 20px;
         text-align: center;
     }
 
@@ -15,19 +13,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px; /* giảm padding */
+        padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
-        margin-bottom: 10px; /* giảm margin */
-        font-size: 0.9em; /* giảm kích thước chữ */
-        max-width: 800px; /* thêm chiều rộng tối đa */
+        margin-bottom: 10px;
+        font-size: 0.9em;
+        max-width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
 
         .cart-item img {
-            max-width: 100px; /* giảm kích thước hình ảnh */
-            margin-right: 10px; /* giảm khoảng cách */
+            max-width: 100px;
+            margin-right: 10px;
         }
 
     .cart-item-details {
@@ -47,7 +45,7 @@
     }
 
         .cart-item-actions input {
-            width: 40px; /* giảm chiều rộng input */
+            width: 40px;
             text-align: center;
             margin: 0 5px;
         }
@@ -68,7 +66,7 @@
         text-align: right;
         font-weight: bold;
         margin-top: 20px;
-        max-width: 800px; /* thêm chiều rộng tối đa */
+        max-width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -85,13 +83,19 @@
 
     .cart-item:nth-child(odd) {
         background-color: #fff;
-    } background-color: #fff;
+    }
+
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border-radius: 15px;
     }
 </style>
 
-<h2>Your Cart</h2>
-
-<div class="container">
+<div class="container shadow-sm p-3 mb-5 bg-white rounded">
+    <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
     @foreach (var item in Model.Items.Select((value, index) => new { value, index }))
     {
         <div class="cart-item @(item.index % 2 == 0 ? "even" : "odd")">
@@ -118,7 +122,7 @@
                     {
                         @Html.Hidden("diamondID", item.value.diamondID)
                         <button type="submit" class="btn btn-link remove-btn">
-                            <i class="glyphicon glyphicon-trash"></i>
+                            <i class="fas fa-trash-alt"></i>
                         </button>
                     }
                 </div>
@@ -141,14 +145,12 @@
     </div>
 </div>
 
-<div class="modal fade" id="emptyCartModal" tabindex="-1" role="dialog" aria-labelledby="emptyCartModalLabel" aria-hidden="true">
+<div class="modal fade" id="emptyCartModal" tabindex="-1" aria-labelledby="emptyCartModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="emptyCartModalLabel">Cart is Empty</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Your cart is empty. Please add items to your cart.</p>
@@ -162,7 +164,7 @@
 
 @section Scripts {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
             var itemCount = @Model.Items?.Count ?? 0;

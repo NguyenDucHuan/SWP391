@@ -24,7 +24,6 @@ namespace ProjectDiamondShop.Controllers
         private const decimal discountPercentage = 0.8m;
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
-        private readonly DiamondShopManagementEntities db = new DiamondShopManagementEntities(); // Entity Framework DbContext
 
         public OrderController()
         {
@@ -108,7 +107,7 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            var order = orderServices.GetOrderById(orderId);
 
             // Check if the order exists and if the current user is the customer, sale staff, or delivery staff of the order
             if (order == null ||
@@ -120,8 +119,8 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var orderItems = db.tblOrderItems.Where(oi => oi.orderID == orderId).ToList();
-            var statusUpdates = db.tblOrderStatusUpdates.Where(su => su.orderID == orderId).OrderBy(su => su.updateTime).ToList();
+            var orderItems = orderServices.GetOrderItems(userID);
+            var statusUpdates = orderServices.GetOrderStatusUpdates(userID);
 
             ViewBag.Order = order;
             ViewBag.Items = orderItems;
@@ -152,7 +151,7 @@ namespace ProjectDiamondShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Order ID and Status are required");
             }
 
-            var order = db.tblOrders.SingleOrDefault(o => o.orderID == orderId);
+            var order = orderServices.GetOrderById(orderId);
             if (order == null)
             {
                 TempData["UpdateMessage"] = "Order not found.";
@@ -201,16 +200,8 @@ namespace ProjectDiamondShop.Controllers
             }
 
             order.status = status;
+            orderServices.UpdateOrderStatus(orderId, status);
 
-            var orderStatusUpdate = new tblOrderStatusUpdate
-            {
-                orderID = orderId,
-                status = status,
-                updateTime = DateTime.Now
-            };
-
-            db.tblOrderStatusUpdates.Add(orderStatusUpdate);
-            db.SaveChanges();
 
             TempData["UpdateMessage"] = "Order updated successfully.";
             return RedirectToAction("UpdateOrderDetails", new { orderId });
@@ -267,6 +258,7 @@ namespace ProjectDiamondShop.Controllers
             }
             catch (Exception ex)
             {
+
                 return View("FailureView");
             }
 
@@ -278,7 +270,7 @@ namespace ProjectDiamondShop.Controllers
             var cart = CartHelper.GetCart(HttpContext, userID);
 
             // Retrieve voucher discount
-            decimal voucherDiscount = GetVoucherDiscount(voucherID);
+            decimal voucherDiscount = orderServices.GetVoucherDiscount(voucherID);
 
             decimal totalMoney = cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice)) - cart.Items.Sum(i => ((decimal)i.diamondPrice + ((decimal)i.accentStonePrice * (decimal)i.quantityAccent) + (decimal)i.settingPrice)) * voucherDiscount;
             //decimal discountedTotalMoney = totalMoney * (1 - discountPercentage - voucherDiscount);
@@ -289,7 +281,7 @@ namespace ProjectDiamondShop.Controllers
             try
             {
                 tblOrder newOrder = orderServices.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
-                    foreach (var item in cart.Items)
+                foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
                 }
@@ -297,8 +289,8 @@ namespace ProjectDiamondShop.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
+                return View("FailureView");
             }
-
             CartHelper.ClearCart(HttpContext, userID);
             return View("SuccessView");
         }
@@ -324,7 +316,7 @@ namespace ProjectDiamondShop.Controllers
             var cart = CartHelper.GetCart(HttpContext, userID);
 
             // Retrieve voucher discount
-            decimal voucherDiscount = GetVoucherDiscount(voucherID);
+            decimal voucherDiscount = orderServices.GetVoucherDiscount(voucherID);
 
             var itemList = new ItemList()
             {
@@ -333,7 +325,7 @@ namespace ProjectDiamondShop.Controllers
 
             foreach (var item in cart.Items)
             {
-                decimal discountedPrice = (item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage - voucherDiscount);
+                decimal discountedPrice = ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage))- ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage)*voucherDiscount);
                 itemList.items.Add(new Item()
                 {
                     name = item.decription,
@@ -357,7 +349,7 @@ namespace ProjectDiamondShop.Controllers
 
             decimal totalMoney = cart.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent);
             decimal discountAmount = totalMoney * voucherDiscount;
-            decimal discountedSubtotal = totalMoney * (1 - discountPercentage) - discountAmount;
+            decimal discountedSubtotal = (totalMoney - discountAmount) * (1 - discountPercentage);
             var details = new Details()
             {
                 subtotal = discountedSubtotal.ToString("F2")
@@ -421,21 +413,5 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
-        // This method retrieves the discount for the voucher
-        private decimal GetVoucherDiscount(int? voucherID)
-        {
-            if (voucherID == null)
-            {
-                return 0;
-            }
-
-            var voucher = db.tblVouchers.SingleOrDefault(v => v.voucherID == voucherID);
-            if (voucher != null && voucher.quantity > 0)
-            {
-                return (decimal)voucher.discount / 100;
-            }
-
-            return 0;
-        }
     }
 }

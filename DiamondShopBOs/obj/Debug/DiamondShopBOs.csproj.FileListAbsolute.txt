@@ -166,3 +166,197 @@ C:\Users\thinh\OneDrive\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.c
 C:\Users\thinh\OneDrive\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
 C:\Users\thinh\OneDrive\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
 C:\Users\thinh\OneDrive\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\tnqt3\Desktop\Clone5\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\EntityFramework.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\EntityFramework.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Common.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Core.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebSockets.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Buffers.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.IO.Pipelines.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Memory.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Threading.Channels.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Common.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Core.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebSockets.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Microsoft.Net.Http.Headers.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\Newtonsoft.Json.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Buffers.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.IO.Pipelines.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Memory.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Threading.Channels.xml
+C:\Users\huyh6\OneDrive\Desktop\Clone 3\DiamondShopBOs\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll.config
+D:\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.dll
+D:\Clone\DiamondShopBOs\bin\Debug\DiamondShopBOs.pdb
+D:\Clone\DiamondShopBOs\bin\Debug\EntityFramework.dll
+D:\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Common.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Core.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebSockets.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Net.Http.Headers.dll
+D:\Clone\DiamondShopBOs\bin\Debug\Newtonsoft.Json.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Buffers.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.IO.Pipelines.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Memory.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Net.WebSockets.WebSocketProtocol.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Numerics.Vectors.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Security.Principal.Windows.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Text.Encodings.Web.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Threading.Channels.dll
+D:\Clone\DiamondShopBOs\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Clone\DiamondShopBOs\bin\Debug\EntityFramework.xml
+D:\Clone\DiamondShopBOs\bin\Debug\EntityFramework.SqlServer.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Common.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Core.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebSockets.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Options.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Microsoft.Net.Http.Headers.xml
+D:\Clone\DiamondShopBOs\bin\Debug\Newtonsoft.Json.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Buffers.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.IO.Pipelines.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Memory.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Numerics.Vectors.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Text.Encodings.Web.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Threading.Channels.xml
+D:\Clone\DiamondShopBOs\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.AssemblyReference.cache
+D:\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.csproj.CoreCompileInputs.cache
+D:\Clone\DiamondShopBOs\obj\Debug\DiamondS.13513E85.Up2Date
+D:\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.dll
+D:\Clone\DiamondShopBOs\obj\Debug\DiamondShopBOs.pdb

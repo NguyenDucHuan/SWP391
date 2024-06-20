@@ -79,7 +79,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.SelectedColor = "";
             ViewBag.SelectedCut = "";
             ViewBag.SelectedClarity = "";
-            ViewBag.SelectedSort = "";
+            ViewBag.SelectedSort = "Price (Low to High)";
 
             List<tblDiamond> diamonds = diamondService.Filter("", "", "", "", "", null, null, null, null, "Price (Low to High)");
 
@@ -93,13 +93,14 @@ namespace ProjectDiamondShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Filter(string sortBy, int page = 1, int pageSize = 12)
+        public ActionResult Filter( int page = 1, int pageSize = 12)
         {
             string searchTerm = Request.Form["SearchTerm"];
             string clarity = Request.Form["Clarity"];
             string cut = Request.Form["Cut"];
             string color = Request.Form["Color"];
             string shape = Request.Form["Shape"];
+            string sortBy = Request.Form["sortBy"];
             decimal? minPrice = null;
             decimal? maxPrice = null;
             float? minCaratWeight = null;
@@ -219,7 +220,7 @@ namespace ProjectDiamondShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDiamond(Diamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage)
+        public ActionResult AddDiamond(tblDiamond model, HttpPostedFileBase diamondImageA, HttpPostedFileBase diamondImageB, HttpPostedFileBase diamondImageC, HttpPostedFileBase certificateImage, string certificateNumber, DateTime? issueDate, string certifyingAuthority)
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
             {
@@ -283,14 +284,14 @@ namespace ProjectDiamondShop.Controllers
                     shapeID = model.shapeID,
                     diamondImagePath = diamondImagePaths,
                     status = true,
-                    quantity = 1 
+                    quantity = 1
                 };
 
                 tblCertificate newCertificate = new tblCertificate
                 {
-                    certificateNumber = model.CertificateNumber,
-                    issueDate = model.IssueDate,
-                    certifyingAuthority = model.CertifyingAuthority,
+                    certificateNumber = certificateNumber,
+                    issueDate = issueDate ?? DateTime.Now,
+                    certifyingAuthority = certifyingAuthority,
                     cerImagePath = certificateImagePath
                 };
 

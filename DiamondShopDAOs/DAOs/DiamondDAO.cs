@@ -108,7 +108,7 @@ namespace DiamondShopDAOs
                     query = query.OrderByDescending(d => d.caratWeight);
                     break;
                 default:
-                    query = query.OrderBy(d => d.diamondID); // Default sorting by ID
+                    query = query.OrderBy(d => d.diamondPrice); // Default sorting by ID
                     break;
             }
             return query.ToList();

@@ -3,7 +3,15 @@
     ViewBag.Title = "Diamond Details";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
+<style>
+    .select2-container {
+        z-index: 1050; /* Same as .modal */
+    }
 
+    .select2-dropdown {
+        z-index: 1060; /* Above .modal */
+    }
+</style>
 <link href="~/Content/ProductCss/linearicons.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
@@ -67,15 +75,15 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="accentStone">Accent Stone</label>
-                    <select id="accentStone" class="form-control select2">
-                        <option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="setting">Setting</label>
                     <select id="setting" class="form-control select2">
                         <option value="0" data-image="/path/to/default-image.jpg">No setting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="accentStone">Accent Stone</label>
+                    <select id="accentStone" class="form-control select2" disabled>
+                        <option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>
                     </select>
                 </div>
             </div>
@@ -95,7 +103,8 @@
         $(document).ready(function () {
             $('.select2').select2({
                 templateResult: formatState,
-                templateSelection: formatState
+                templateSelection: formatState,
+                dropdownParent: $('#selectionModal')
             });
 
             // Function to format the select2 option with image
@@ -135,6 +144,16 @@
                         settingsSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No setting</option>');
                         $.each(data, function (i, setting) {
                             settingsSelect.append('<option value="' + setting.settingID + '" data-image="' + setting.imagePath + '">' + setting.settingType + ' - ' + setting.material + '</option>');
+                        });
+
+                        // Enable the accent stone select only if a setting is selected
+                        settingsSelect.on('change', function () {
+                            if ($(this).val() != "0") {
+                                $('#accentStone').prop('disabled', false);
+                            } else {
+                                $('#accentStone').prop('disabled', true);
+                                $('#accentStone').val("0").trigger('change'); // Reset accent stone if setting is deselected
+                            }
                         });
                     }
                 });
