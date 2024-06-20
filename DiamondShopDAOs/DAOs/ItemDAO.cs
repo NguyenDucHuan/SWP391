@@ -57,7 +57,7 @@ namespace DiamondShopDAOs
                 OrderItemDAO orderItemDAO = new OrderItemDAO();
                 orderItemDAO.CreateOrderItem(orderId, tblItem.ItemID, ((decimal)diamondPrice + (decimal)accentPrice * (decimal)quantityAccent + (decimal)settingPrice), warrantyCode);
 
-                _warrantyDAO.CreateWarranty(orderId, tblItem.ItemID, warrantyCode);
+                _warrantyDAO.CreateWarranty(orderId, tblItem.ItemID, warrantyCode, "Valid");
             }
             catch (Exception ex)
             {

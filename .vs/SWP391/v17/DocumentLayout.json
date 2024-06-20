@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< Updated upstream
   "WorkspaceRootPath": "D:\\LOL\\SWP391\\",
   "Documents": [
     {
@@ -89,6 +90,41 @@
     {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|D:\\LOL\\SWP391\\projectdiamondshop\\views\\manager\\createvoucher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\manager\\createvoucher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+  "WorkspaceRootPath": "D:\\Clone\\SWP391\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\clone\\swp391\\projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\manager\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\clone\\swp391\\projectdiamondshop\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|d:\\clone\\swp391\\diamondshopdaos\\daos\\managerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\managerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB2D25C1-4BD9-4B54-87A0-7C52983F53D2}|DiamondShopServices\\DiamondShopServices.csproj|d:\\clone\\swp391\\diamondshopservices\\managerservices\\managerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB2D25C1-4BD9-4B54-87A0-7C52983F53D2}|DiamondShopServices\\DiamondShopServices.csproj|solutionrelative:diamondshopservices\\managerservices\\managerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB2D25C1-4BD9-4B54-87A0-7C52983F53D2}|DiamondShopServices\\DiamondShopServices.csproj|d:\\clone\\swp391\\diamondshopservices\\managerservices\\imanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB2D25C1-4BD9-4B54-87A0-7C52983F53D2}|DiamondShopServices\\DiamondShopServices.csproj|solutionrelative:diamondshopservices\\managerservices\\imanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|d:\\clone\\swp391\\diamondshoprepositories\\managerrepositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|solutionrelative:diamondshoprepositories\\managerrepositories\\managerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|d:\\clone\\swp391\\diamondshoprepositories\\managerrepositories\\imanagerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A02E85-EE25-4370-8C4D-8D206F88B8FB}|DiamondShopRepositories\\DiamondShopRepositories.csproj|solutionrelative:diamondshoprepositories\\managerrepositories\\imanagerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\clone\\swp391\\projectdiamondshop\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -98,19 +134,77 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManagerService.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\DiamondShopServices\\ManagerServices\\ManagerService.cs",
+              "RelativeDocumentMoniker": "DiamondShopServices\\ManagerServices\\ManagerService.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\DiamondShopServices\\ManagerServices\\ManagerService.cs",
+              "RelativeToolTip": "DiamondShopServices\\ManagerServices\\ManagerService.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAA+wF4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T11:39:02.999Z",
+              "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IManagerService.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\DiamondShopServices\\ManagerServices\\IManagerService.cs",
+              "RelativeDocumentMoniker": "DiamondShopServices\\ManagerServices\\IManagerService.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\DiamondShopServices\\ManagerServices\\IManagerService.cs",
+              "RelativeToolTip": "DiamondShopServices\\ManagerServices\\IManagerService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAA8wBoAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T11:38:40.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ManagerRepository.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\DiamondShopRepositories\\ManagerRepositories\\ManagerRepository.cs",
+              "RelativeDocumentMoniker": "DiamondShopRepositories\\ManagerRepositories\\ManagerRepository.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\DiamondShopRepositories\\ManagerRepositories\\ManagerRepository.cs",
+              "RelativeToolTip": "DiamondShopRepositories\\ManagerRepositories\\ManagerRepository.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAA+wF8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T11:38:23.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IManagerRepository.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\DiamondShopRepositories\\ManagerRepositories\\IManagerRepository.cs",
+              "RelativeDocumentMoniker": "DiamondShopRepositories\\ManagerRepositories\\IManagerRepository.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\DiamondShopRepositories\\ManagerRepositories\\IManagerRepository.cs",
+              "RelativeToolTip": "DiamondShopRepositories\\ManagerRepositories\\IManagerRepository.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAA5wBkAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T11:38:00.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManagerDAO.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\DiamondShopDAOs\\DAOs\\ManagerDAO.cs",
+              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\ManagerDAO.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\DiamondShopDAOs\\DAOs\\ManagerDAO.cs",
+              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\ManagerDAO.cs",
+              "ViewState": "AQIAAIMAAAAAAAAAAAAqwIsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T11:37:14.919Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< Updated upstream
               "Title": "Diamonds.cshtml",
               "DocumentMoniker": "D:\\LOL\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
@@ -119,10 +213,34 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-20T11:52:02.756Z",
+=======
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "ToolTip": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
+              "ViewState": "AQIAAIICAAAAAAAAAAAowJcCAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-20T10:48:51.082Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManagerController.cs",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "ToolTip": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\ManagerController.cs",
+              "ViewState": "AQIAADkBAAAAAAAAAAAuwG0BAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T10:48:43.284Z",
+>>>>>>> Stashed changes
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 6,
               "Title": "Oval.cshtml",
               "DocumentMoniker": "D:\\LOL\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Oval.cshtml",
@@ -372,6 +490,18 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-20T02:47:17.209Z"
+=======
+              "DocumentIndex": 7,
+              "Title": "HomePage.cshtml",
+              "DocumentMoniker": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "ToolTip": "D:\\Clone\\SWP391\\ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "ViewState": "AQIAAEEBAAAAAAAAAAAowFIBAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-20T10:45:57.311Z",
+              "EditorCaption": ""
+>>>>>>> Stashed changes
             }
           ]
         }

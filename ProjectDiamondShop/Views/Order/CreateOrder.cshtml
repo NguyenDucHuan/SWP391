@@ -4,119 +4,21 @@
     ViewBag.Title = "Create Order";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     h2 {
         margin-top: 50px;
         text-align: center;
     }
-
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        background-color: #ffffff;
-        margin-top: 100px;
-        margin-bottom: 60px;
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-
-        .table th, .table td {
-            padding: 10px;
-            border: none;
-        }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .btn-primary, .btn-voucher {
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 50px;
-        margin: 5px;
-        flex: 1;
-        color: #fff;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    .btn-primary {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
-
-    .btn-voucher {
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-    }
-
-        .btn-primary:hover, .btn-voucher:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-voucher:hover {
-            background-color: #138496;
-            border-color: #117a8b;
-        }
-
-        .btn-primary:focus, .btn-voucher:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
-        }
-
-    .alert-info {
-        color: #004085;
-        background-color: #cce5ff;
-        border-color: #b8daff;
-        text-align: center;
-    }
-
-        .alert-info strong {
-            font-weight: bold;
-        }
-
-    .no-border-table td {
-        border: none !important;
-    }
-
-    .button-group {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-
-    /*   .footer {
-        text-align: center;
-        padding: 20px 0;
-        color: #333;
-    }
-
-        .footer a {
-            color: #00509e;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-            .footer a:hover {
-                color: #003f7d;
-                text-decoration: underline;
-            }*/
 </style>
 
-<h2><i class="fas fa-shopping-cart"></i> Create Order</h2>
+<h2 style="text-align:center;">Create Order</h2>
 
-<div class="container">
-    <div id="noteSection" style="display: none;" class="alert alert-info" role="alert">
+<div class="container" style="max-width: 500px; margin: 0 auto; border: 1px solid black; padding: 20px;">
+    <div id="noteSection" style="display: none;" class="alert alert-info" role="alert" style="text-align: center;">
         <strong>Please note:</strong> You will need to pay a 20% deposit before placing your order. Deposit amount: <span id="depositAmount"></span>
     </div>
 
-    <table class="table table-bordered no-border-table">
+    <table class="table table-bordered">
         <tbody>
             @foreach (var item in Model.Items)
             {
@@ -124,12 +26,10 @@
                 {
                     string[] imagepart = item.imagePath.Split('|');
                     <tr>
+                        <td>@item.DiamondName</td>
                         <td>
-                            <strong>Diamond Name:</strong> @item.DiamondName <br />
-                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:50px;" />
-                        </td>
-                        <td>
-                            <strong>Total Price:</strong> $@item.diamondPrice
+                            <strong>Total Price:</strong> @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:30px;" />
                         </td>
                     </tr>
                 }
@@ -137,26 +37,30 @@
                 {
                     string[] imagepart = item.imagePath.Split('|');
                     <tr>
+                        <td>@item.decription</td>
                         <td>
                             <strong>Diamond Name:</strong> @item.DiamondName <br />
-                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:50px;" />
+                            <img src="@imagepart[0]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
+                    </tr>
+                    <tr>
+                        <td>Item Price:</td>
+                        <td>@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</td>
+                    </tr>
+                    <tr>
+                        <td>Accent Stone Details:</td>
                         <td>
-                            <strong>Setting Name:</strong> @item.decription <br />
-                            <strong>Setting Price:</strong> $@item.settingPrice
+                            Accent Stone ID: @item.accentStoneID <br />
+                            Quantity: @item.quantityAccent <br />
+                            Price: @item.accentStonePrice
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <strong>Accent Stone:</strong> @item.accentStoneID <br />
-                            <strong>Accent Stone Price:</strong> $@item.accentStonePrice <br />
-                            <strong>Accent Stone Quantity:</strong> @item.quantityAccent
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <strong>Diamond Price:</strong> $@item.diamondPrice <br />
-                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:50px;" />
+                        <td>Diamond Details:</td>
+                        <td>
+                            Name: @item.DiamondName <br />
+                            Price: @item.diamondPrice <br />
+                            <img src="@imagepart[1]" alt="Diamond Image" style="max-height:40px;" />
                         </td>
                     </tr>
                 }
@@ -178,6 +82,7 @@
         <p>You will get a discount of: $<span id="DiscountAmount"></span></p>
         <p>Total after discount: $<span id="DiscountedTotal"></span></p>
     </div>
+    <button type="button" class="btn btn-primary" onclick="applyVoucher()">Add Voucher</button>
 
     <div class="form-group">
         <label for="CustomerName">Customer Name:</label>
@@ -200,10 +105,7 @@
         <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)))" disabled />
     </div>
 
-    <div class="button-group">
-        <button type="button" class="btn btn-voucher" onclick="applyVoucher()">Add Voucher</button>
-        <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
-    </div>
+    <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
 
     <form id="paymentForm" action="/order/PaymentWithPayPal" method="post" style="display:none;">
         <input type="hidden" id="hiddenCustomerName" name="customerName" />
@@ -212,8 +114,6 @@
         <input type="hidden" id="hiddenVoucherID" name="voucherID" />
     </form>
 </div>
-
-
 
 <script>
     function applyVoucher() {
@@ -227,6 +127,8 @@
 
         document.getElementById("DiscountAmount").innerText = discountAmount.toFixed(2);
         document.getElementById("DiscountedTotal").innerText = discountedTotal.toFixed(2);
+
+        document.getElementById("Total").value = "$" + discountedTotal.toFixed(2); // Update the Total field
 
         document.getElementById("discountSection").style.display = "block";
     }

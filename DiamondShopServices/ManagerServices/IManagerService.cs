@@ -23,5 +23,7 @@ namespace DiamondShopServices.ManagerServices
         void AddVoucher(tblVoucher voucher);
         void SaveVoucherChanges();
         List<tblVoucher> GetVouchers();
+        List<RevenueData> GetRevenueDataByDay(DateTime date);
+        List<RegistrationData> GetRegistrationDataByDay(DateTime date);
     }
 }
