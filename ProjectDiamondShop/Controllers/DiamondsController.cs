@@ -96,6 +96,10 @@ namespace ProjectDiamondShop.Controllers
         public ActionResult Filter( int page = 1, int pageSize = 12)
         {
             string searchTerm = Request.Form["SearchTerm"];
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = searchTerm.Trim();
+            }
             string clarity = Request.Form["Clarity"];
             string cut = Request.Form["Cut"];
             string color = Request.Form["Color"];

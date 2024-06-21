@@ -547,3 +547,199 @@ D:\Clone\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.CoreCom
 D:\Clone\SWP391\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
 D:\Clone\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.dll
 D:\Clone\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.pdb
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.dll.config
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.pdb
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Common.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Core.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebSockets.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Net.Http.Headers.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Newtonsoft.Json.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Buffers.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.IO.Pipelines.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Memory.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Net.WebSockets.WebSocketProtocol.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Numerics.Vectors.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Security.Principal.Windows.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Text.Encodings.Web.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Threading.Channels.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\EntityFramework.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.pdb
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll.config
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.pdb
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll.config
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Common.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Core.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebSockets.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Options.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Microsoft.Net.Http.Headers.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\Newtonsoft.Json.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Buffers.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.IO.Pipelines.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Memory.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Numerics.Vectors.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Text.Encodings.Web.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Threading.Channels.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\EntityFramework.xml
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.pdb
+D:\Huy 3\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll.config
+D:\Huy 3\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.AssemblyReference.cache
+D:\Huy 3\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.CoreCompileInputs.cache
+D:\Huy 3\SWP391\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
+D:\Huy 3\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.dll
+D:\Huy 3\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.pdb
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.dll.config
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopServices.pdb
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Common.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Core.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebSockets.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.ObjectPool.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Net.Http.Headers.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Newtonsoft.Json.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Buffers.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.IO.Pipelines.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Memory.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Net.WebSockets.WebSocketProtocol.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Numerics.Vectors.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Security.Principal.Windows.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Text.Encodings.Web.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Threading.Channels.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\EntityFramework.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.pdb
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopBOs.dll.config
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.pdb
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopRepositories.dll.config
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Authorization.Policy.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Connections.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Connections.Common.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Common.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Core.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.SignalR.Protocols.Json.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebSockets.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.AspNetCore.WebUtilities.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.ObjectPool.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Options.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Microsoft.Net.Http.Headers.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\Newtonsoft.Json.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Buffers.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.IO.Pipelines.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Memory.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Numerics.Vectors.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Text.Encodings.Web.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Threading.Channels.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\EntityFramework.xml
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.pdb
+D:\Clone\SWP391\SWP391\DiamondShopServices\bin\Debug\DiamondShopDAOs.dll.config
+D:\Clone\SWP391\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.AssemblyReference.cache
+D:\Clone\SWP391\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.csproj.CoreCompileInputs.cache
+D:\Clone\SWP391\SWP391\DiamondShopServices\obj\Debug\DiamondS.390AC305.Up2Date
+D:\Clone\SWP391\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.dll
+D:\Clone\SWP391\SWP391\DiamondShopServices\obj\Debug\DiamondShopServices.pdb

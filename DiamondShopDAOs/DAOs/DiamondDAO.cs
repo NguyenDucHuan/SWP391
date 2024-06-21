@@ -59,6 +59,7 @@ namespace DiamondShopDAOs
 
             if (!String.IsNullOrEmpty(searchTerm))
             {
+                searchTerm = searchTerm.Trim();
                 query = query.Where(d => d.diamondName.Contains(searchTerm));
             }
             if (!String.IsNullOrEmpty(clarity))
