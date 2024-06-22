@@ -28,6 +28,7 @@ namespace DiamondShopBOs
         public decimal diamondPrice { get; set; }
         public decimal settingPrice { get; set; }
         public Nullable<decimal> accentStonePrice { get; set; }
+        public Nullable<int> settingSize { get; set; }
     
         public virtual tblAccentStone tblAccentStone { get; set; }
         public virtual tblDiamond tblDiamond { get; set; }

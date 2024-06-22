@@ -55,6 +55,7 @@
                 @Html.Hidden("diamondID", Model.diamondID)
                 @Html.Hidden("accentStoneID", "0", new { id = "accentStoneID" })
                 @Html.Hidden("settingID", "0", new { id = "settingID" })
+                @Html.Hidden("settingSize", "0", new { id = "settingSize" })
                 <button type="button" id="add-to-cart-button" class="transparent-button">
                     <span class="lnr lnr-cart" style="color: #f0f0f0;"></span>Add to Cart
                 </button>
@@ -79,6 +80,10 @@
                     <select id="setting" class="form-control select2">
                         <option value="0" data-image="/path/to/default-image.jpg">No setting</option>
                     </select>
+                </div>
+                <div class="form-group" id="settingSizeGroup" style="display:none;">
+                    <label for="settingSize">Setting Size</label>
+                    <input type="number" id="settingSizeInput" class="form-control" placeholder="Enter setting size" required>
                 </div>
                 <div class="form-group">
                     <label for="accentStone">Accent Stone</label>
@@ -107,7 +112,6 @@
                 dropdownParent: $('#selectionModal')
             });
 
-            // Function to format the select2 option with image
             function formatState(state) {
                 if (!state.id) {
                     return state.text;
@@ -118,22 +122,18 @@
                 return $state;
             }
 
-            // Change main image when thumbnail is clicked
             $(".thumbnail-button").click(function () {
                 var newImage = $(this).data('image');
                 $("#mainImage").attr('src', newImage);
             });
 
-            // Open modal when add to cart button is clicked
             $("#add-to-cart-button").click(function () {
-                // Load settings and accent stones
                 loadSettings();
                 loadAccentStones();
 
                 $('#selectionModal').modal('show');
             });
 
-            // Load settings
             function loadSettings() {
                 $.ajax({
                     url: '@Url.Action("GetSettings", "Diamonds")',
@@ -146,20 +146,21 @@
                             settingsSelect.append('<option value="' + setting.settingID + '" data-image="' + setting.imagePath + '">' + setting.settingType + ' - ' + setting.material + '</option>');
                         });
 
-                        // Enable the accent stone select only if a setting is selected
                         settingsSelect.on('change', function () {
                             if ($(this).val() != "0") {
                                 $('#accentStone').prop('disabled', false);
+                                $('#settingSizeGroup').show(); // Hiện ô nhập kích thước vỏ kim cương
                             } else {
                                 $('#accentStone').prop('disabled', true);
-                                $('#accentStone').val("0").trigger('change'); // Reset accent stone if setting is deselected
+                                $('#settingSizeGroup').hide(); // Ẩn ô nhập kích thước vỏ kim cương
+                                $('#settingSizeInput').val(''); // Xóa giá trị ô nhập kích thước vỏ kim cương
+                                $('#accentStone').val("0").trigger('change');
                             }
                         });
                     }
                 });
             }
 
-            // Load accent stones
             function loadAccentStones() {
                 $.ajax({
                     url: '@Url.Action("GetAccentStones", "Diamonds")',
@@ -175,12 +176,20 @@
                 });
             }
 
-            // Confirm selection
             $("#confirm-selection").click(function () {
                 var selectedAccentStoneId = $("#accentStone").val();
                 var selectedSettingId = $("#setting").val();
+                var settingSize = $("#settingSizeInput").val();
+
+                if (selectedSettingId != "0" && settingSize.trim() === "") {
+                    alert("Please enter the setting size.");
+                    return;
+                }
+
                 $("#accentStoneID").val(selectedAccentStoneId);
                 $("#settingID").val(selectedSettingId);
+                $("#settingSize").val(settingSize);
+
                 $('#selectionModal').modal('hide');
                 $("#add-to-cart-form").submit();
             });

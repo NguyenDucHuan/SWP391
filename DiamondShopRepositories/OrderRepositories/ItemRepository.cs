@@ -17,9 +17,9 @@ namespace DiamondShopRepositories.OrderRepositories
                 itemDAO = new ItemDAO();
             }
         }
-        public void CreateItem(string OrderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice)
+        public void CreateItem(string OrderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice, int? settingSize)
         {
-            itemDAO.CreateItem(OrderId, settingID, accentStoneID, quantityAccent, diamondID, diamondPrice, settingPrice, accentPrice);
+            itemDAO.CreateItem(OrderId, settingID, accentStoneID, quantityAccent, diamondID, diamondPrice, settingPrice, accentPrice, settingSize);
         }
     }
 }
