@@ -59,14 +59,14 @@ public class CartController : Controller
     }
 
     [HttpPost]
-    public ActionResult AddToCart(int settingID, int accentStoneID, int diamondID)
+    public ActionResult AddToCart(int settingID, int accentStoneID, int diamondID, int? settingSize)
     {
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
             return RedirectToAction("Index", "Login");
         }
-        var cartItem = new ItemCartDAO(settingID, accentStoneID, diamondID);
+        var cartItem = new ItemCartDAO(settingID, accentStoneID, diamondID, settingSize);
         CartHelper.AddToCart(HttpContext, userID, cartItem);
         return RedirectToAction("Index", "Diamonds");
     }
