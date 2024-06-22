@@ -2,6 +2,6 @@
 {
     public interface IItemService
     {
-        void CreateItem(string orderID, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice);
+        void CreateItem(string orderID, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice, int? settingSize);
     }
 }

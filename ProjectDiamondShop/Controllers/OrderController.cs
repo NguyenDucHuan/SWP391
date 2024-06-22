@@ -283,7 +283,7 @@ namespace ProjectDiamondShop.Controllers
                 tblOrder newOrder = orderServices.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
                 foreach (var item in cart.Items)
                 {
-                    itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
+                    itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice, item.settingSize);
                 }
             }
             catch (Exception ex)

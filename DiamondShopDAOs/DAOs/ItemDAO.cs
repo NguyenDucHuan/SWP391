@@ -23,7 +23,7 @@ namespace DiamondShopDAOs
             _warrantyDAO = new WarrantyDAO();
         }
 
-        public void CreateItem(string orderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice)
+        public void CreateItem(string orderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice, int? settingSize)
         {
             tblItem tblItem = new tblItem();
             if (settingID == 0)
@@ -36,7 +36,8 @@ namespace DiamondShopDAOs
                     diamondID = diamondID,
                     diamondPrice = diamondPrice,
                     accentStonePrice = 0,
-                    settingPrice = 0
+                    settingPrice = 0,
+                    settingSize = null
                 };
             }
             else
@@ -49,7 +50,8 @@ namespace DiamondShopDAOs
                     diamondID = diamondID,
                     diamondPrice = diamondPrice,
                     accentStonePrice = accentPrice,
-                    settingPrice = settingPrice
+                    settingPrice = settingPrice,
+                    settingSize = settingSize
                 };
             }
             try
