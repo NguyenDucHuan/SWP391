@@ -23,6 +23,7 @@ namespace DiamondShopDAOs.CookieCartDAO
         public string DiamondName { get; set; }
         public string imagePath { get; set; }
         public string decription { get; set; }
+        public int? settingSize { get; set; }
         public ItemCartDAO()
         {
             if (diamondDAO == null)
@@ -39,7 +40,7 @@ namespace DiamondShopDAOs.CookieCartDAO
             }
         }
 
-        public ItemCartDAO(int settingID, int accentStoneID, int diamondID) : this()
+        public ItemCartDAO(int settingID, int accentStoneID, int diamondID, int? settingSize) : this()
         {
             this.diamondID = diamondID;
             var diamond = diamondDAO.GetDiamondById(diamondID);
@@ -63,6 +64,7 @@ namespace DiamondShopDAOs.CookieCartDAO
                     this.quantityAccent = tblSetting.quantityStones;
                     this.imagePath = tblSetting.imagePath + "|" + diamond.diamondImagePath;
                     this.decription = tblSetting.description;
+                    this.settingSize = settingSize;
                 }
                 else
                 {
@@ -89,7 +91,10 @@ namespace DiamondShopDAOs.CookieCartDAO
                 this.accentStonePrice = 0;
                 imagePath = diamond.diamondImagePath;
                 decription = diamond.diamondDescription;
+                this.settingSize = settingSize;
             }
+
+
         }
     }
 }
