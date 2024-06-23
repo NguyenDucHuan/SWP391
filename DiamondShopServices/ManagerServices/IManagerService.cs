@@ -19,9 +19,13 @@ namespace DiamondShopServices.ManagerServices
         tblOrder GetOrderById(string orderId);
         void SaveChanges();
         tblUser GetUserById(string userId);
+        tblAccentStone GetAccentStoneById(int accentStoneId);
+        tblSetting GetSettingById(int settingId);
         void AddUser(tblUser user);
         void AddVoucher(tblVoucher voucher);
         void SaveVoucherChanges();
         List<tblVoucher> GetVouchers();
+        List<tblAccentStone> GetAccentStones();
+        List<tblSetting> GetSettings();
     }
 }
