@@ -66,6 +66,15 @@ namespace DiamondShopServices.ManagerServices
         {
             return _managerRepository.GetUserById(userId);
         }
+        public tblAccentStone GetAccentStoneById(int accentStoneId)
+        {
+            return _managerRepository.GetAccentStoneById(accentStoneId);
+        }
+
+        public tblSetting GetSettingById(int settingId)
+        {
+            return _managerRepository.GetSettingById(settingId);
+        }
 
         public void AddUser(tblUser user)
         {
@@ -84,5 +93,15 @@ namespace DiamondShopServices.ManagerServices
         {
             return _managerRepository.GetVouchers();
         }
+        public List<tblAccentStone> GetAccentStones()
+        {
+            return _managerRepository.GetAccentStones();
+        }
+
+        public List<tblSetting> GetSettings()
+        {
+            return _managerRepository.GetSettings();
+        }
+
     }
 }

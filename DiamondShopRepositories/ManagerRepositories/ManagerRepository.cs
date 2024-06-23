@@ -66,6 +66,15 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             return _managerDAO.GetUserById(userId);
         }
+        public tblAccentStone GetAccentStoneById(int accentStoneId)
+        {
+            return _managerDAO.GetAccentStoneById(accentStoneId);
+        }
+
+        public tblSetting GetSettingById(int settingId)
+        {
+            return _managerDAO.GetSettingById(settingId);
+        }
 
         public void AddUser(tblUser user)
         {
@@ -84,5 +93,15 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             return _managerDAO.GetVouchers();
         }
+        public List<tblAccentStone> GetAccentStones()
+        {
+            return _managerDAO.GetAccentStones();
+        }
+
+        public List<tblSetting> GetSettings()
+        {
+            return _managerDAO.GetSettings();
+        }
+
     }
 }

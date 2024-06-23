@@ -31,6 +31,8 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.Diamonds = _managerService.GetDiamonds();
             ViewBag.SaleStaff = _managerService.GetUsersByRole(5);
             ViewBag.DeliveryStaff = _managerService.GetUsersByRole(4);
+            ViewBag.AccentStones = _managerService.GetAccentStones();
+            ViewBag.Settings = _managerService.GetSettings();
             ViewBag.Users = (int)Session["RoleID"] == 2 ? _managerService.GetUsers() : null;
 
             var revenueData = _managerService.GetRevenueData();
@@ -118,6 +120,45 @@ namespace ProjectDiamondShop.Controllers
                 if (user != null)
                 {
                     user.status = status;
+                    _managerService.SaveChanges();
+                }
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+        [HttpPost]
+        public JsonResult ToggleAccentStoneStatus(int accentStoneId, bool status)
+        {
+            try
+            {
+                var accentStone = _managerService.GetAccentStoneById(accentStoneId);
+                if (accentStone != null)
+                {
+                    accentStone.status = status;
+                    _managerService.SaveChanges();
+                }
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult ToggleSettingStatus(int settingId, bool status)
+        {
+            try
+            {
+                var setting = _managerService.GetSettingById(settingId);
+                if (setting != null)
+                {
+                    setting.status = status;
                     _managerService.SaveChanges();
                 }
 

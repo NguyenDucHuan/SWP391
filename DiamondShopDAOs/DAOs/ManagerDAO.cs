@@ -101,6 +101,15 @@ namespace DiamondShopDAOs
         {
             return _context.tblUsers.FirstOrDefault(u => u.userID == userId);
         }
+        public tblAccentStone GetAccentStoneById(int accentStoneId)
+        {
+            return _context.tblAccentStones.FirstOrDefault(a => a.accentStoneID == accentStoneId);
+        }
+
+        public tblSetting GetSettingById(int settingId)
+        {
+            return _context.tblSettings.FirstOrDefault(s => s.settingID == settingId);
+        }
 
         public void AddUser(tblUser user)
         {
@@ -136,6 +145,15 @@ namespace DiamondShopDAOs
         public void SaveVoucherChanges()
         {
             _context.SaveChanges();
+        }
+        public List<tblAccentStone> GetAccentStones()
+        {
+            return _context.tblAccentStones.ToList();
+        }
+
+        public List<tblSetting> GetSettings()
+        {
+            return _context.tblSettings.ToList();
         }
 
     }
