@@ -155,6 +155,16 @@ namespace DiamondShopDAOs
         {
             return _context.tblSettings.ToList();
         }
+        public void AddSetting(tblSetting setting)
+        {
+            _context.tblSettings.Add(setting);
+            _context.SaveChanges();
+        }
+        public void AddAccentStone(tblAccentStone accentStone)
+        {
+            _context.tblAccentStones.Add(accentStone);
+            _context.SaveChanges();
+        }
 
     }
 }

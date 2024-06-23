@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Data.Entity.Validation;
 using DiamondShopBOs;
 using DiamondShopServices.ManagerServices;
+using System.IO;
+using System.Web;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -382,6 +384,121 @@ namespace ProjectDiamondShop.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        public ActionResult AddSetting()
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddSetting(tblSetting setting, HttpPostedFileBase settingImage)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                string imagePath = "";
+                string folderPath = Server.MapPath("~/Images/Settings");
+
+                // Check if the folder exists, if not, create it
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Save setting image
+                if (settingImage != null && settingImage.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(settingImage.FileName);
+                    string path = Path.Combine(folderPath, fileName);
+                    settingImage.SaveAs(path);
+                    imagePath = $"/Images/Settings/{fileName}";
+                }
+
+                // Create Setting object
+                tblSetting newSetting = new tblSetting
+                {
+                    settingType = setting.settingType,
+                    material = setting.material,
+                    priceTax = setting.priceTax,
+                    quantityStones = setting.quantityStones,
+                    description = setting.description,
+                    imagePath = imagePath,
+                    status = true
+                };
+
+                _managerService.AddSetting(newSetting);
+
+                TempData["SuccessMessage"] = "Setting added successfully!";
+                return RedirectToAction("AddSetting");
+            }
+
+            return View(setting);
+        }
+
+        public ActionResult AddAccentStone()
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddAccentStone(tblAccentStone accentStone, HttpPostedFileBase accentStoneImage)
+        {
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                string imagePath = "";
+                string folderPath = Server.MapPath("~/Images/AccentStones");
+
+                // Check if the folder exists, if not, create it
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Save accent stone image
+                if (accentStoneImage != null && accentStoneImage.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(accentStoneImage.FileName);
+                    string path = Path.Combine(folderPath, fileName);
+                    accentStoneImage.SaveAs(path);
+                    imagePath = $"/Images/AccentStones/{fileName}";
+                }
+
+                // Create Accent Stone object
+                tblAccentStone newAccentStone = new tblAccentStone
+                {
+                    accentStonesName = accentStone.accentStonesName,
+                    shape = accentStone.shape,
+                    caratWeight = accentStone.caratWeight,
+                    clarity = accentStone.clarity,
+                    color = accentStone.color,
+                    price = accentStone.price,
+                    quantity = accentStone.quantity,
+                    imagePath = imagePath,
+                    status = true
+                };
+
+                _managerService.AddAccentStone(newAccentStone);
+
+                TempData["SuccessMessage"] = "Accent Stone added successfully!";
+                return RedirectToAction("AddAccentStone");
+            }
+
+            return View(accentStone);
         }
     }
 }

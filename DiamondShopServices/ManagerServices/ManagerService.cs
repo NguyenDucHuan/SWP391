@@ -102,6 +102,13 @@ namespace DiamondShopServices.ManagerServices
         {
             return _managerRepository.GetSettings();
         }
-
+        public void AddSetting(tblSetting setting)
+        {
+            _managerRepository.AddSetting(setting);
+        }
+        public void AddAccentStone(tblAccentStone accentStone)
+        {
+            _managerRepository.AddAccentStone(accentStone);
+        }
     }
 }

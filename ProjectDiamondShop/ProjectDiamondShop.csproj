@@ -536,6 +536,8 @@
     <Content Include="Views\Diamonds\AddDiamond.cshtml" />
     <Content Include="Views\Warranty\ViewWarranty.cshtml" />
     <Content Include="Views\Warranty\CustomerWarranties.cshtml" />
+    <Content Include="Views\Manager\AddAccentStone.cshtml" />
+    <Content Include="Views\Manager\AddSetting.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
