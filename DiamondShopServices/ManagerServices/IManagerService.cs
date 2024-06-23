@@ -27,5 +27,7 @@ namespace DiamondShopServices.ManagerServices
         List<tblVoucher> GetVouchers();
         List<tblAccentStone> GetAccentStones();
         List<tblSetting> GetSettings();
+        void AddSetting(tblSetting setting);
+        void AddAccentStone(tblAccentStone accentStone);
     }
 }

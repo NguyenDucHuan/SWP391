@@ -102,6 +102,13 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             return _managerDAO.GetSettings();
         }
-
+        public void AddSetting(tblSetting setting)
+        {
+            _managerDAO.AddSetting(setting);
+        }
+        public void AddAccentStone(tblAccentStone accentStone)
+        {
+            _managerDAO.AddAccentStone(accentStone);
+        }
     }
 }
