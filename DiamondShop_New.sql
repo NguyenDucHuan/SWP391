@@ -365,3 +365,5 @@ INSERT INTO [dbo].[tblCertificate] ([diamondID], [certificateNumber], [issueDate
 	(48, 'CERT000048', '2024-04-30', 'GIA', '/Image/DiamondDTO/Certificates/CER48.jpg'),
 	(49, 'CERT000049', '2024-04-30', 'GIA', '/Image/DiamondDTO/Certificates/CER49.jpg'),
 	(50, 'CERT000049', '2024-04-30', 'GIA', '/Image/DiamondDTO/Certificates/CER50.jpg');
+	ALTER TABLE [dbo].[tblItem]
+ADD [settingSize] Int NULL;
