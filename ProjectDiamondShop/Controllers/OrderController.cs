@@ -343,7 +343,7 @@ namespace ProjectDiamondShop.Controllers
 
             var redirUrls = new RedirectUrls()
             {
-                cancel_url = redirectUrl + "&Cancel=true",
+                cancel_url = Request.Url.Scheme + "://" + Request.Url.Authority + "/Diamonds/Index",
                 return_url = redirectUrl
             };
 
