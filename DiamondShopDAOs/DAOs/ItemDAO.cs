@@ -53,12 +53,17 @@ namespace DiamondShopDAOs
                     settingPrice = settingPrice,
                     settingSize = settingSize
                 };
+
             }
             try
             {
-                entities.tblItems.Add(tblItem);
-                entities.SaveChanges();
-
+                using (var diamondShop = new DiamondShopManagementEntities())
+                {
+                    diamondShop.tblItems.Add(tblItem);
+                    diamondShop.SaveChanges();
+                }
+                AccentStoneDAO accentStoneDAO = new AccentStoneDAO();
+                accentStoneDAO.UpdateAccentStoneQuatity(quantityAccent, accentStoneID);
                 string warrantyCode = _warrantyDAO.GenerateWarrantyCode();
                 OrderItemDAO orderItemDAO = new OrderItemDAO();
                 orderItemDAO.CreateOrderItem(orderId, tblItem.ItemID, ((decimal)diamondPrice + (decimal)accentPrice * (decimal)quantityAccent + (decimal)settingPrice), warrantyCode);

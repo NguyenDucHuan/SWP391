@@ -181,7 +181,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CookieCartDAO\ItemCartDAOSimple.cs" />
     <Compile Include="DAOs\AccentStoneDAO.cs" />
     <Compile Include="CookieCartDAO\CartDao.cs" />
     <Compile Include="CookieCartDAO\ItemCartDAO.cs" />
