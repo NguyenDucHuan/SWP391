@@ -3,16 +3,148 @@
   "WorkspaceRootPath": "D:\\TERM\\SWP391\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\diamonds\\viewdiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\diamonds\\viewdiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|d:\\term\\swp391\\diamondshopdaos\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\heart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\heart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\heart.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\heart.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\marquise.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\marquise.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\emerald.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\emerald.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\emerald.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\emerald.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM\\SWP391\\diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\diamondscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\cushion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\cushion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\baguette.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\baguette.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\introduce\\asscher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\introduce\\asscher.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\cushion.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\cushion.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\baguette.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\baguette.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\asscher.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\asscher.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\introduce\\asscher.css||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\introduce\\asscher.css||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\home\\vieworder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\home\\homepage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\forgotpassword\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\forgotpassword\\enterresetcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\enterresetcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\forgotpassword\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\forgotpassword\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\diamonds\\diamonds.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\diamonds\\diamonds.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\diamonds\\adddiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\diamonds\\adddiamond.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\deliverystaff\\deliverystaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\deliverystaff\\deliverystaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\vieworder.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\vieworder.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\loginpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\loginpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\homepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\homepage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\deliverystaff.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\deliverystaff.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\cart.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\cart.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\forgotpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\forgotpassword.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\diamonds\\diamonds.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\diamonds\\diamonds.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\content\\diamonds\\adddiamond.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\content\\diamonds\\adddiamond.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|d:\\term\\swp391\\projectdiamondshop\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|D:\\TERM\\SWP391\\projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44515726-340D-4799-A8CB-8C6844246D65}|ProjectDiamondShop\\ProjectDiamondShop.csproj|solutionrelative:projectdiamondshop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM\\SWP391\\diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|solutionrelative:diamondshopdaos\\daos\\itemdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A0226AF6-0F27-485C-9526-2F4E132C27DE}|DiamondShopDAOs\\DiamondShopDAOs.csproj|D:\\TERM\\SWP391\\diamondshopdaos\\cookiecartdao\\itemcartdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,11 +202,453 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Heart.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Heart.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Heart.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Heart.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Heart.css",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAuwK0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:50:33.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Heart.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Heart.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Heart.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Heart.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Heart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:46:01.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\UserDAO.cs",
+              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\UserDAO.cs",
+              "ToolTip": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\UserDAO.cs",
+              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\UserDAO.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAIwC0AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T04:36:28.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ViewDiamond.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Diamonds\\ViewDiamond.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:11.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Marquise.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Marquise.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Marquise.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Marquise.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Marquise.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:46:00.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Emerald.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Emerald.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Emerald.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Emerald.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Emerald.css",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAuwLgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:45:02.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ItemDAO.cs",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "ToolTip": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T03:25:43.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Emerald.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Emerald.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Emerald.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Emerald.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Emerald.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:30:58.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAwwFMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T04:34:48.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DiamondsController.cs",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "RelativeToolTip": "ProjectDiamondShop\\Controllers\\DiamondsController.cs",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAAwLEAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T04:32:32.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cushion.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Cushion.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Cushion.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Cushion.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Cushion.cshtml",
+              "ViewState": "AQIAANQAAAAAAAAAAAAAAPIAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:30:29.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Baguette.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Baguette.cshtml",
+              "ViewState": "AQIAAO8AAAAAAAAAAAAmwBsBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:30:28.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Asscher.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Introduce\\Asscher.cshtml",
+              "ViewState": "AQIAAOoAAAAAAAAAAAAmwBYBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:30:20.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Asscher.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "ViewState": "AQIAAI4AAAAAAAAAAAAqwLoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:29:41.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cushion.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Cushion.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Cushion.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Cushion.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Cushion.css",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAmwK0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:29:28.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Baguette.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Baguette.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Baguette.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Baguette.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Baguette.css",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAqwLgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:29:17.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Asscher.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Introduce\\Asscher.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAALoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T04:28:39.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ViewOrder.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Home\\ViewOrder.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:27:43.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "HomePage.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Home\\HomePage.cshtml",
+              "ViewState": "AQIAAOYAAAAAAAAAAAAmwBIBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:27:34.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\ResetPassword.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:50.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\ForgotPassword.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\ForgotPassword.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\ForgotPassword.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:39.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EnterResetCode.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\ForgotPassword\\EnterResetCode.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:26.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Diamonds.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Diamonds\\Diamonds.cshtml",
+              "ViewState": "AQIAAKYBAAAAAAAAAAAqwNIBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:09.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AddDiamond.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Diamonds\\AddDiamond.cshtml",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAmwIYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:26:03.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "DeliveryStaff.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\DeliveryStaff\\DeliveryStaff.cshtml",
+              "ViewState": "AQIAABcAAAAAAAAAAAAmwEMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:25:20.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "ProjectDiamondShop\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T04:25:00.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ViewOrder.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\ViewOrder.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\ViewOrder.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\ViewOrder.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\ViewOrder.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:33:40.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "LoginPage.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\LoginPage.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\LoginPage.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\LoginPage.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\LoginPage.css",
+              "ViewState": "AQIAAEMBAAAAAAAAAAAmwG8BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:33:13.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "HomePage.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\HomePage.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\HomePage.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\HomePage.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\HomePage.css",
+              "ViewState": "AQIAAO8AAAAAAAAAAAAqwBsBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:33:01.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DeliveryStaff.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\DeliveryStaff.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\DeliveryStaff.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\DeliveryStaff.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\DeliveryStaff.css",
+              "ViewState": "AQIAACcAAAAAAAAAAAAqwFMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:32:44.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Cart.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Cart.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Cart.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Cart.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Cart.css",
+              "ViewState": "AQIAACwAAAAAAAAAAAAqwFgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:32:27.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ForgotPassword.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\ForgotPassword.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\ForgotPassword.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\ForgotPassword.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\ForgotPassword.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:31:57.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Diamonds.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Diamonds\\Diamonds.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Diamonds\\Diamonds.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Diamonds\\Diamonds.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Diamonds\\Diamonds.css",
+              "ViewState": "AQIAACIBAAAAAAAAAAAqwE4BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:31:39.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "AddDiamond.css",
+              "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Diamonds\\AddDiamond.css",
+              "RelativeDocumentMoniker": "ProjectDiamondShop\\Content\\Diamonds\\AddDiamond.css",
+              "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Content\\Diamonds\\AddDiamond.css",
+              "RelativeToolTip": "ProjectDiamondShop\\Content\\Diamonds\\AddDiamond.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-25T03:31:07.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
               "Title": "ItemCartDAOSimple.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopDAOs\\CookieCartDAO\\ItemCartDAOSimple.cs",
               "RelativeDocumentMoniker": "DiamondShopDAOs\\CookieCartDAO\\ItemCartDAOSimple.cs",
@@ -86,20 +660,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 34,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Web.config",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Web.config",
               "ToolTip": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Web.config",
               "RelativeToolTip": "ProjectDiamondShop\\Web.config",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAAACIAAACLAAAA",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAAACIAAACLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-06-22T03:23:38.872Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 35,
               "Title": "OrderController.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\OrderController.cs",
@@ -111,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 45,
               "Title": "AddAccentStone.cshtml",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Manager\\AddAccentStone.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\AddAccentStone.cshtml",
@@ -123,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 41,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\Index.cshtml",
@@ -135,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 42,
               "Title": "ManagerController.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Controllers\\ManagerController.cs",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Controllers\\ManagerController.cs",
@@ -147,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 43,
               "Title": "ManagerService.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopServices\\ManagerServices\\ManagerService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\ManagerServices\\ManagerService.cs",
@@ -159,7 +733,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 44,
               "Title": "AddSetting.cshtml",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Manager\\AddSetting.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Manager\\AddSetting.cshtml",
@@ -171,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 36,
               "Title": "ItemCartDAO.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopDAOs\\CookieCartDAO\\ItemCartDAO.cs",
               "RelativeDocumentMoniker": "DiamondShopDAOs\\CookieCartDAO\\ItemCartDAO.cs",
@@ -183,19 +757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ItemDAO.cs",
-              "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "RelativeDocumentMoniker": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "ToolTip": "D:\\TERM\\SWP391\\DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "RelativeToolTip": "DiamondShopDAOs\\DAOs\\ItemDAO.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAswEYAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T03:25:43.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 40,
               "Title": "UpdateOrderDetails.cshtml",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\Order\\UpdateOrderDetails.cshtml",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\Order\\UpdateOrderDetails.cshtml",
@@ -207,7 +769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 39,
               "Title": "App.Config",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopBOs\\App.Config",
               "RelativeDocumentMoniker": "DiamondShopBOs\\App.Config",
@@ -219,7 +781,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 38,
               "Title": "web.config",
               "DocumentMoniker": "D:\\TERM\\SWP391\\ProjectDiamondShop\\Views\\web.config",
               "RelativeDocumentMoniker": "ProjectDiamondShop\\Views\\web.config",
@@ -231,7 +793,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 46,
               "Title": "IItemRepository.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopRepositories\\OrderRepositories\\IItemRepository.cs",
               "RelativeDocumentMoniker": "DiamondShopRepositories\\OrderRepositories\\IItemRepository.cs",
@@ -243,7 +805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 47,
               "Title": "ItemService.cs",
               "DocumentMoniker": "D:\\TERM\\SWP391\\DiamondShopServices\\OrderServices\\ItemService.cs",
               "RelativeDocumentMoniker": "DiamondShopServices\\OrderServices\\ItemService.cs",

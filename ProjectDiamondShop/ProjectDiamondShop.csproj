@@ -243,9 +243,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Cart.css" />
     <Content Include="Content\Custome.css" />
+    <Content Include="Content\DeliveryStaff.css" />
+    <Content Include="Content\Diamonds\AddDiamond.css" />
+    <Content Include="Content\Diamonds\Diamonds.css" />
+    <Content Include="Content\ForgotPassword.css" />
+    <Content Include="Content\HomePage.css" />
+    <Content Include="Content\Introduce\Baguette.css" />
+    <Content Include="Content\Introduce\Cushion.css" />
+    <Content Include="Content\Introduce\Emerald.css" />
+    <Content Include="Content\Introduce\Heart.css" />
+    <Content Include="Content\LoginPage.css" />
     <Content Include="Content\noUiSlider\jquery.nouislider.css" />
     <Content Include="Content\ProductCss\StyleSheet1.css" />
+    <Content Include="Content\ViewOrder.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -474,6 +486,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Introduce\Asscher.css" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DeliveryStaffController.cs" />
     <Compile Include="Controllers\DiamondsController.cs" />

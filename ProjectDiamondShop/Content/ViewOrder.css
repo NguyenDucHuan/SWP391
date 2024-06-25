@@ -1,0 +1,44 @@
+﻿.container {
+	margin-top: 50px;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+}
+
+	.table th, .table td {
+		padding: 10px;
+		border: 1px solid black;
+		text-align: center;
+	}
+
+.btn-info {
+	color: white;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+
+	.btn-info:hover {
+		color: white;
+		background-color: #31b0d5;
+		border-color: #269abc;
+	}
+
+.nav-buttons {
+	margin-bottom: 20px;
+}
+
+	.nav-buttons .btn-group {
+		display: flex;
+		justify-content: center;
+	}
+
+.section {
+	display: none;
+}
+
+	.section.active {
+		display: block;
+	}

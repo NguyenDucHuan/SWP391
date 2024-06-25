@@ -68,7 +68,11 @@ namespace DiamondShopDAOs
             }
             catch (Exception ex)
             {
-                throw new Exception("Add Item ERROR");
+                {
+                    // Log chi tiết lỗi
+                    Console.WriteLine("Error occurred: " + ex.ToString());
+                    throw new Exception("Add Item ERROR: " + ex.Message);
+                }
             }
         }
         private void SendWarrantyEmail(string orderId, string warrantyCode)

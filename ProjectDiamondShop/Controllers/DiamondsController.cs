@@ -93,7 +93,7 @@ namespace ProjectDiamondShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Filter( int page = 1, int pageSize = 12)
+        public ActionResult Filter(int page = 1, int pageSize = 12)
         {
             string searchTerm = Request.Form["SearchTerm"];
             if (!String.IsNullOrEmpty(searchTerm))
@@ -170,10 +170,12 @@ namespace ProjectDiamondShop.Controllers
             tblDiamond diamond = diamondService.GetDiamondById(id);
             List<tblAccentStone> accentStones = accentStoneService.GetAllStones();
             List<tblSetting> settings = jewelrySettingService.GetSettingAllList();
+            List<tblCertificate> certificates =
+                 diamondService.GetCertificatesByDiamondId(id);
 
             ViewBag.AccentStones = accentStones;
             ViewBag.Settings = settings;
-
+            ViewBag.Certificates = certificates;
             return View(diamond);
         }
 

@@ -3,96 +3,9 @@
 @{
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-<style>
-    h2 {
-        margin: 40px 20px 40px 20px;
-        text-align: center;
-    }
 
-    .cart-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        font-size: 0.9em;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-        .cart-item img {
-            max-width: 100px;
-            margin-right: 10px;
-        }
-
-    .cart-item-details {
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .cart-item-info {
-        flex: 1;
-    }
-
-    .cart-item-actions {
-        display: flex;
-        align-items: center;
-    }
-
-        .cart-item-actions input {
-            width: 40px;
-            text-align: center;
-            margin: 0 5px;
-        }
-
-        .cart-item-actions button {
-            background: none;
-            border: none;
-            font-size: 1.2em;
-        }
-
-    .remove-btn {
-        font-size: 1.5em;
-        color: #ff0000;
-        cursor: pointer;
-    }
-
-    .cart-summary {
-        text-align: right;
-        font-weight: bold;
-        margin-top: 20px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .button-group {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .cart-item:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .cart-item:nth-child(odd) {
-        background-color: #fff;
-    }
-
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        margin-top: 60px;
-        margin-bottom: 60px;
-        border-radius: 15px;
-    }
-</style>
+<link rel="stylesheet" href="~/Content/Cart.css">
 
 <div class="container shadow-sm p-3 mb-5 bg-white rounded">
     <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
