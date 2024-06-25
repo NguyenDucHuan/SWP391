@@ -1,4 +1,5 @@
 ﻿using DiamondShopBOs;
+using DiamondShopDAOs.CookieCartDAO;
 using DiamondShopServices.OrderServices;
 using PayPal;
 using PayPal.Api;
@@ -95,38 +96,34 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
-            var userID = GetUserID();
-            if (string.IsNullOrEmpty(userID))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-
-            if (string.IsNullOrEmpty(orderId))
-            {
-                TempData["ErrorMessage"] = "Order ID is required";
-                return RedirectToAction("Index", "Home");
-            }
-
+            // Lấy thông tin đơn hàng từ database
             var order = orderServices.GetOrderById(orderId);
 
-            // Check if the order exists and if the current user is the customer, sale staff, or delivery staff of the order
-            if (order == null ||
-                (order.customerID != userID &&
-                order.saleStaffID != userID &&
-                order.deliveryStaffID != userID))
+            // Lấy thông tin các mặt hàng trong đơn hàng từ database
+            var orderItems = orderServices.GetOrderItems(orderId);
+
+            // Map tblOrderItem to ItemCartDAOSimple
+            var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
-                TempData["ErrorMessage"] = "You are not authorized to view this order";
-                return RedirectToAction("Index", "Home");
-            }
+                diamondID = item.tblItem.diamondID ?? 0,
+                diamondPrice = item.tblItem.diamondPrice,
+                DiamondName = item.tblItem.tblDiamond.diamondName,
+                imagePath = item.tblItem.tblDiamond.diamondImagePath,
+                decription = item.tblItem.tblDiamond.diamondDescription,
+                settingID = item.tblItem.settingID ?? 0,
+                settingPrice = item.tblItem.settingPrice,
+                accentStoneID = item.tblItem.accentStoneID ?? 0,
+                accentStonePrice = item.tblItem.accentStonePrice ?? 0m,
+                quantityAccent = item.tblItem.quantityAccent ?? 0,
+                settingSize = item.tblItem.settingSize ?? 0
+            }).ToList();
 
-            var orderItems = orderServices.GetOrderItems(userID);
-            var statusUpdates = orderServices.GetOrderStatusUpdates(userID);
-
+            // Truyền dữ liệu vào ViewBag
             ViewBag.Order = order;
-            ViewBag.Items = orderItems;
-            ViewBag.StatusUpdates = statusUpdates;
+            ViewBag.OrderItems = orderItemViewModels;
+            ViewBag.StatusUpdates = orderServices.GetOrderStatusUpdates(orderId);
 
-            return View("UpdateOrderDetails");
+            return View();
         }
 
 

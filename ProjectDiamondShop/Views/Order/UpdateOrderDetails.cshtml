@@ -1,6 +1,6 @@
 ﻿@{
     var order = ViewBag.Order as DiamondShopBOs.tblOrder;
-    var orderItems = ViewBag.Items as List<DiamondShopBOs.tblOrderItem>;
+    var orderItems = ViewBag.OrderItems as List<DiamondShopDAOs.CookieCartDAO.ItemCartDAOSimple>;
     var statusUpdates = ViewBag.StatusUpdates as List<DiamondShopBOs.tblOrderStatusUpdate>;
     int roleId = (int)Session["RoleID"];
 }
@@ -153,13 +153,97 @@
             .back-button button:hover {
                 background-color: darkgreen;
             }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            .cart-item img {
+                max-width: 100px;
+                margin-right: 10px;
+            }
+
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+            .cart-item-actions input {
+                width: 40px;
+                text-align: center;
+                margin: 0 5px;
+            }
+
+            .cart-item-actions button {
+                background: none;
+                border: none;
+                font-size: 1.2em;
+            }
+
+        .remove-btn {
+            font-size: 1.5em;
+            color: #ff0000;
+            cursor: pointer;
+        }
+
+        .cart-summary {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-item:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .cart-item:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border-radius: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         @if (TempData["UpdateMessage"] != null)
         {
-            <div class="alert alert-info">
+            <div class="alert alert-success">
                 @TempData["UpdateMessage"]
             </div>
         }
@@ -244,83 +328,49 @@
             </div>
         </div>
 
-        <div class="flex-container">
-            <div class="box" style="width: 45%;">
-                <h2>Order Items</h2>
-                @foreach (var item in orderItems)
+        <div class="box">
+            <h2>Order Items</h2>
+            @foreach (var item in orderItems)
+            {
+                <div class="cart-item">
+                    <img src="@item.imagePath.Split('|')[item.settingID == 0 ? 0 : 1]" alt="Product Image" />
+                    <div class="cart-item-details">
+                        <div class="cart-item-info">
+                            <h5>Diamond Name: @item.DiamondName</h5>
+                            <p>Diamond Price: $@(item.diamondPrice)</p>
+                            @if (item.settingID != 0)
+                            {
+                                <p>Setting Name: @item.decription</p>
+                                <p>Setting Price: $@item.settingPrice</p>
+                            }
+                            @if (item.accentStoneID != 0)
+                            {
+                                <p>Accent Stone: @item.accentStoneID</p>
+                                <p>Accent Stone Price: $@item.accentStonePrice</p>
+                                <p>Accent Stone Quantity: @item.quantityAccent</p>
+                            }
+                            <strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="cart-summary">
+                <p>Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Date Update Status</h2>
+            <ul class="timeline">
+                @foreach (var statusUpdate in statusUpdates)
                 {
-                    <div class="form-group">
-                        <label>Item ID:</label>
-                        <p>@item.ItemID</p>
-                    </div>
-                    <div class="form-group">
-                        <label>Sale Price Item:</label>
-                        <p>@item.salePriceItem</p>
-                    </div>
+                    <li>
+                        <strong>@statusUpdate.status</strong>
+                        <p>@statusUpdate.updateTime.ToString("g")</p>
+                    </li>
                 }
-            </div>
-
-            <div class="box" style="width: 45%;">
-                <h2>Order Details</h2>
-                <div class="form-group">
-                    <label for="orderID">Order ID</label>
-                    <p id="orderID">@order.orderID</p>
-                </div>
-                <div class="form-group">
-                    <label for="customerID">Customer ID</label>
-                    <p id="customerID">@order.customerID</p>
-                </div>
-                <div class="form-group">
-                    <label for="deliveryStaffID">Delivery Staff ID</label>
-                    <p id="deliveryStaffID">@order.deliveryStaffID</p>
-                </div>
-                <div class="form-group">
-                    <label for="saleStaffID">Sale Staff ID</label>
-                    <p id="saleStaffID">@order.saleStaffID</p>
-                </div>
-                <div class="form-group">
-                    <label for="totalMoney">Total Money</label>
-                    <p id="totalMoney">@order.totalMoney</p>
-                </div>
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <p id="status">@order.status</p>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <p id="address">@order.address</p>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <p id="phone">@order.phone</p>
-                </div>
-                <div class="form-group">
-                    <label for="saleDate">Sale Date</label>
-                    <p id="saleDate">@order.saleDate</p>
-                </div>
-            </div>
-
-            <div class="box" style="width: 45%;">
-                <h2>Date Update Status</h2>
-                <ul class="timeline">
-                    @if (statusUpdates != null)
-                    {
-                        foreach (var update in statusUpdates)
-                        {
-                            <li>
-                                <p><strong>@update.status:</strong> @update.updateTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        <li>
-                            <p>No updates available</p>
-                        </li>
-                    }
-                </ul>
-            </div>
-
+            </ul>
         </div>
     </div>
 </body>
