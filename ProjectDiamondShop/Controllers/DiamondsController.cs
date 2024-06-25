@@ -86,7 +86,7 @@ namespace ProjectDiamondShop.Controllers
             int totalDiamonds = diamonds.Count;
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
 
-            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Where(i => i.status != false).ToList().Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }
@@ -143,7 +143,7 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.NumOfPage = (int)Math.Ceiling((double)totalDiamonds / pageSize);
             ViewBag.CurrentPage = page;
 
-            List<tblDiamond> diamondsForPage = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            List<tblDiamond> diamondsForPage = diamonds.Where(i => i.status != false).ToList().Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             return View("Diamonds", diamondsForPage);
         }

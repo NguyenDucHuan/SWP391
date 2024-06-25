@@ -12,19 +12,19 @@ namespace DiamondShopBOs
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class DiamondShopManagementEntities : DbContext
     {
         public DiamondShopManagementEntities()
             : base("name=DiamondShopManagementEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<tblAccentStone> tblAccentStones { get; set; }
         public virtual DbSet<tblCertificate> tblCertificates { get; set; }
         public virtual DbSet<tblChat> tblChats { get; set; }

@@ -21,7 +21,6 @@ namespace ProjectDiamondShop.Controllers
     public class OrderController : Controller
     {
         private const string DEFAULT_ORDER_STATUS = "Order Placed";
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         private const decimal discountPercentage = 0.8m;
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
@@ -59,40 +58,6 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.Vouchers = orderServices.GetAvailableVouchers(userID);
             return View("CreateOrder", cart);
         }
-        //public ActionResult SaveOrder(string address, string phone)
-        //{
-        //    var userID = GetUserID();
-        //    if (string.IsNullOrEmpty(userID))
-        //    {
-        //        return RedirectToAction("Index", "Login");
-        //    }
-        //    var cart = CartHelper.GetCart(HttpContext, userID);
-        //    decimal totalMoney = cart.Items.Sum(i => i.diamondPrice);
-        //    decimal paidAmount = totalMoney * discountPercentage;
-        //    decimal remainingAmount = totalMoney - paidAmount;
-
-        //    // Lấy ID của nhân viên giao hàng có RoleID = 4
-        //    var deliveryStaffID = orderServices.GetDeliveryStaffID();
-
-        //    try
-        //    {
-        //        tblOrder newOrder = orderServices.CreateOrder(userID, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS);
-        //        foreach (var item in cart.Items)
-        //        {
-        //            itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice);
-        //        }
-
-        //        // Clear the cart after order creation
-        //        CartHelper.ClearCart(HttpContext, userID);
-
-        //        return RedirectToAction("Index", "Diamonds");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
-        //        return View("CreateOrder", cart);
-        //    }
-        //}
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
@@ -103,7 +68,7 @@ namespace ProjectDiamondShop.Controllers
             var orderItems = orderServices.GetOrderItems(orderId);
 
             // Map tblOrderItem to ItemCartDAOSimple
-            var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
+            var orderItemViewModels = orderItems.Select(item => new
             {
                 diamondID = item.tblItem.diamondID ?? 0,
                 diamondPrice = item.tblItem.diamondPrice,
@@ -223,7 +188,7 @@ namespace ProjectDiamondShop.Controllers
                 {
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/order/PaymentWithPayPal?";
                     var guid = Convert.ToString((new Random()).Next(100000));
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, voucherID);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, voucherID, customerName);
 
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
@@ -307,22 +272,33 @@ namespace ProjectDiamondShop.Controllers
             return this.payment.Execute(apiContext, paymentExecution);
         }
 
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl, int? voucherID)
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, int? voucherID, string name)
         {
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
 
             // Retrieve voucher discount
             decimal voucherDiscount = orderServices.GetVoucherDiscount(voucherID);
-
+            var shipping_address = new ShippingAddress
+            {
+                recipient_name = name,
+                line1 = "Vĩnh Lộc A",
+                line2 = "Bình Chánh",
+                city = "Ho Chi Minh",
+                state = "Ho Chi Minh",
+                postal_code = "700000",
+                country_code = "VN",
+                phone = "0908892160",
+            };
             var itemList = new ItemList()
             {
-                items = new List<Item>()
+                items = new List<Item>(),
+                shipping_address = shipping_address
             };
 
             foreach (var item in cart.Items)
             {
-                decimal discountedPrice = ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage))- ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage)*voucherDiscount);
+                decimal discountedPrice = ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage)) - ((item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent) * (1 - discountPercentage) * voucherDiscount);
                 itemList.items.Add(new Item()
                 {
                     name = item.decription,
@@ -332,7 +308,6 @@ namespace ProjectDiamondShop.Controllers
                     sku = item.diamondID.ToString()
                 });
             }
-
             var payer = new Payer()
             {
                 payment_method = "paypal"
