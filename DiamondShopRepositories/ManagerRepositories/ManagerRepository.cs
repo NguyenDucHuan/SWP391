@@ -110,5 +110,6 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             _managerDAO.AddAccentStone(accentStone);
         }
+        public List<RevenueData> GetChartData(int month, int year) => _managerDAO.GetChartData(month, year); 
     }
 }

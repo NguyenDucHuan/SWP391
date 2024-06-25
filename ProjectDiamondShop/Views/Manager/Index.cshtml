@@ -12,13 +12,46 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+            .sidebar a {
+                padding: 15px 8px 15px 32px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #f8f9fa;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .sidebar a:hover {
+                    background-color: #575d63;
+                }
+
+                .sidebar a .fa {
+                    margin-right: 10px;
+                }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
         .section {
-            margin-top: 20px;
             display: none;
         }
 
         .table-container {
-            max-height: 400px;
+            max-height: 1000px;
             overflow-y: auto;
         }
 
@@ -27,16 +60,6 @@
             position: sticky;
             top: 0;
             z-index: 1;
-        }
-
-        .btn-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .wide-column {
-            min-width: 150px;
         }
 
         .spinner-border {
@@ -49,20 +72,6 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1050;
-        }
-
-        #updateSuccessMessage {
-            display: none;
-            color: green;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        #updateErrorMessage {
-            display: none;
-            color: red;
-            font-weight: bold;
-            margin-top: 20px;
         }
 
         .signup-container {
@@ -120,37 +129,37 @@
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="sidebar">
         @if ((int)Session["RoleID"] == 3)
         {
-            <h2 class="mt-4">Manager Dashboard</h2>
+            <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
+            <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
+            <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
+            <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
+            <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
+            <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
         }
         @if ((int)Session["RoleID"] == 2)
         {
-            <h2 class="mt-4">Admin Dashboard</h2>
+            <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
+            <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
+            <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
+            <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
+            <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
+            <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
+            <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
+            <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> Create Account</a>
         }
+        <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> Create Voucher</a>
+        <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> Add New Diamonds</a>
+        <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> Add New Settings</a>
+        <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> Add New Accent Stones</a>
+        <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
 
+    <div class="main-content">
         <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
         <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
-
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('orders')">Orders</button>
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('diamonds')">Diamonds</button>
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('saleStaff')">Sale Staff</button>
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('deliveryStaff')">Delivery Staff</button>
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('accentStones')">Accent Stones</button>
-            <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('settings')">Settings</button>
-            @if ((int)Session["RoleID"] == 2)
-            {
-                <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('users')">Users</button>
-                <button type="button" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1" onclick="showSection('createAccount')">Create Account</button>
-            }
-            <a href="@Url.Action("CreateVoucher", "Manager")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Create Voucher</a>
-            <a href="@Url.Action("AddDiamond", "Diamonds")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Add New Diamonds</a>
-            <a href="@Url.Action("AddSetting", "Manager")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Add New Settings</a>
-            <a href="@Url.Action("AddAccentStone", "Manager")" class="btn btn-primary col-12 col-sm-6 col-md-4 col-lg-2 m-1">Add New AccentStones</a>
-            <a href="@Url.Action("Logout", "Login")" class="btn btn-danger col-12 col-sm-6 col-md-4 col-lg-2 m-1">Logout</a>
-        </div>
 
         <div id="chart" class="section" style="display:block;">
             @if ((int)Session["RoleID"] == 3)
@@ -160,19 +169,17 @@
                     <canvas id="revenueChart" class="w-100"></canvas>
                 </div>
             }
-            <div class="">
-                @if ((int)Session["RoleID"] == 2)
-                {
-                    <div class="">
-                        <h3>Revenue Chart</h3>
-                        <canvas id="revenueChart" class="w-100"></canvas>
-                    </div>
-                    <div class="">
-                        <h3>Registration Chart</h3>
-                        <canvas id="registrationChart" class="w-100"></canvas>
-                    </div>
-                }
-            </div>
+            @if ((int)Session["RoleID"] == 2)
+            {
+                <div>
+                    <h3>Revenue Chart</h3>
+                    <canvas id="revenueChart" class="w-100"></canvas>
+                </div>
+                <div>
+                    <h3>Registration Chart</h3>
+                    <canvas id="registrationChart" class="w-100"></canvas>
+                </div>
+            }
         </div>
 
         <div id="orders" class="section">
@@ -280,6 +287,7 @@
                 </table>
             </div>
         </div>
+
         <div id="accentStones" class="section">
             <h3>Accent Stones</h3>
             <input type="text" id="searchAccentStones" class="form-control mb-3" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones by StoneID..">
@@ -311,7 +319,7 @@
                                 <td>@stone.price</td>
                                 <td>@stone.quantity</td>
                                 <td>
-                                    @if ((int)Session["RoleID"] == 2)
+                                    @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
                                     {
                                         <button class="btn btn-status @(stone.status ? "btn-success" : "btn-danger")" onclick="toggleAccentStoneStatus('@stone.accentStoneID', @stone.status)">
                                             @(stone.status ? "Enable" : "Disable")
@@ -358,7 +366,7 @@
                                 <td>@setting.description</td>
                                 <td><img src="@setting.imagePath" alt="Image" width="50"></td>
                                 <td>
-                                    @if ((int)Session["RoleID"] == 2)
+                                    @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
                                     {
                                         <button class="btn btn-status @(setting.status ? "btn-success" : "btn-danger")" onclick="toggleSettingStatus('@setting.settingID', @setting.status)">
                                             @(setting.status ? "Enable" : "Disable")
@@ -594,29 +602,29 @@
 
             var roleId = @Html.Raw(Session["RoleID"]);
 
-            if (roleId == 2) { // Admin
-                var ctx = document.getElementById('revenueChart').getContext('2d');
-                var revenueChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
-                        datasets: [{
-                            label: 'Revenue',
-                            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
+            var ctx = document.getElementById('revenueChart').getContext('2d');
+            var revenueChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
+                    datasets: [{
+                        label: 'Revenue',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
                     }
-                });
+                }
+            });
 
+            if (roleId == 2) { // Admin
                 var ctx2 = document.getElementById('registrationChart').getContext('2d');
                 var registrationChart = new Chart(ctx2, {
                     type: 'bar',
@@ -627,28 +635,6 @@
                             data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationData)),
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            } else if (roleId == 3) { // Manager
-                var ctx = document.getElementById('revenueChart').getContext('2d');
-                var revenueChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
-                        datasets: [{
-                            label: 'Revenue',
-                            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderWidth: 1
                         }]
                     },
@@ -742,55 +728,54 @@
                 }
             });
         }
+
         function toggleAccentStoneStatus(accentStoneId, currentStatus) {
-    var newStatus = !currentStatus;
+            var newStatus = !currentStatus;
 
-    $.ajax({
-        url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ accentStoneId: accentStoneId, status: newStatus }),
-        success: function (response) {
-            if (response.success) {
-                var btn = $("#accentStone-row-" + accentStoneId + " button");
-                btn.toggleClass('btn-danger btn-success')
-                    .text(newStatus ? "Enable" : "Disable")
-                    .attr("onclick", "toggleAccentStoneStatus(" + accentStoneId + ", " + newStatus + ")");
-            } else {
-                $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
-            }
-        },
-        error: function (xhr, status, error) {
-            $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+            $.ajax({
+                url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ accentStoneId: accentStoneId, status: newStatus }),
+                success: function (response) {
+                    if (response.success) {
+                        var btn = $("#accentStone-row-" + accentStoneId + " button");
+                        btn.toggleClass('btn-danger btn-success')
+                            .text(newStatus ? "Enable" : "Disable")
+                            .attr("onclick", "toggleAccentStoneStatus(" + accentStoneId + ", " + newStatus + ")");
+                    } else {
+                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+                }
+            });
         }
-    });
-}
 
-function toggleSettingStatus(settingId, currentStatus) {
-    var newStatus = !currentStatus;
+        function toggleSettingStatus(settingId, currentStatus) {
+            var newStatus = !currentStatus;
 
-    $.ajax({
-        url: '@Url.Action("ToggleSettingStatus", "Manager")',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ settingId: settingId, status: newStatus }),
-        success: function (response) {
-            if (response.success) {
-                var btn = $("#setting-row-" + settingId + " button");
-                btn.toggleClass('btn-danger btn-success')
-                    .text(newStatus ? "Enable" : "Disable")
-                    .attr("onclick", "toggleSettingStatus(" + settingId + ", " + newStatus + ")");
-            } else {
-                $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
-            }
-        },
-        error: function (xhr, status, error) {
-            $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+            $.ajax({
+                url: '@Url.Action("ToggleSettingStatus", "Manager")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ settingId: settingId, status: newStatus }),
+                success: function (response) {
+                    if (response.success) {
+                        var btn = $("#setting-row-" + settingId + " button");
+                        btn.toggleClass('btn-danger btn-success')
+                            .text(newStatus ? "Enable" : "Disable")
+                            .attr("onclick", "toggleSettingStatus(" + settingId + ", " + newStatus + ")");
+                    } else {
+                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+                }
+            });
         }
-    });
-}
-
-
 
         $('.toggle-password').click(function () {
             $(this).toggleClass('fa-eye fa-eye-slash');

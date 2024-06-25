@@ -30,5 +30,6 @@ namespace DiamondShopRepositories.ManagerRepositories
         List<tblSetting> GetSettings();
         void AddSetting(tblSetting setting);
         void AddAccentStone(tblAccentStone accentStone);
+        List<RevenueData> GetChartData(int month, int year);
     }
 }

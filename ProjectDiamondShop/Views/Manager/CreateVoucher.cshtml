@@ -69,7 +69,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Create Voucher</button>
             }
+
         </div>
+        @if ((int)Session["RoleID"] == 3)
+        {
+            <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary floating-btn">Back to Manage Board</a>
+        }
+        @if ((int)Session["RoleID"] == 2)
+        {
+            <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary floating-btn">Back to Admin Board</a>
+        }
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

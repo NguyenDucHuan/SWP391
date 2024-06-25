@@ -1,15 +1,15 @@
-﻿using System;
+﻿using DiamondShopBOs;
+using DiamondShopServices.ManagerServices;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Mvc;
-using System.Data.Entity.Validation;
-using DiamondShopBOs;
-using DiamondShopServices.ManagerServices;
-using System.IO;
+using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -132,6 +132,7 @@ namespace ProjectDiamondShop.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+
         [HttpPost]
         public JsonResult ToggleAccentStoneStatus(int accentStoneId, bool status)
         {
@@ -317,9 +318,10 @@ namespace ProjectDiamondShop.Controllers
             return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
         public ActionResult CreateVoucher()
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -333,7 +335,7 @@ namespace ProjectDiamondShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateVoucher(DateTime startTime, DateTime endTime, int discount, int quantity, string targetUserID)
         {
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2)
+            if (Session["RoleID"] == null || (int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3)
             {
                 TempData["ErrorMessage"] = "Unauthorized access.";
                 return RedirectToAction("Index");
@@ -385,6 +387,7 @@ namespace ProjectDiamondShop.Controllers
 
             return RedirectToAction("Index");
         }
+
         public ActionResult AddSetting()
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2)
@@ -393,6 +396,7 @@ namespace ProjectDiamondShop.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public ActionResult AddSetting(tblSetting setting, HttpPostedFileBase settingImage)
         {
@@ -450,6 +454,7 @@ namespace ProjectDiamondShop.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public ActionResult AddAccentStone(tblAccentStone accentStone, HttpPostedFileBase accentStoneImage)
         {
@@ -500,5 +505,25 @@ namespace ProjectDiamondShop.Controllers
 
             return View(accentStone);
         }
+
+        [HttpGet]
+        public JsonResult GetChartData(string viewType, int? month, int? year)
+        {
+            // Fetch and process data based on viewType, month, and year parameters.
+            // This is a placeholder implementation and should be modified to match your actual data retrieval logic.
+            var revenueData = _managerService.GetRevenueData(); // Modify this method to accept viewType, month, year
+            var registrationData = _managerService.GetRegistrationData(); // Modify this method to accept viewType, month, year
+
+            var response = new
+            {
+                revenueLabels = revenueData.Select(d => d.Date).ToArray(),
+                revenueData = revenueData.Select(d => d.Revenue).ToArray(),
+                registrationLabels = registrationData.Select(d => d.Date).ToArray(),
+                registrationData = registrationData.Select(d => d.Registrations).ToArray()
+            };
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

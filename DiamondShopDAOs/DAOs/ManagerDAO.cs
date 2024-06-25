@@ -165,6 +165,18 @@ namespace DiamondShopDAOs
             _context.tblAccentStones.Add(accentStone);
             _context.SaveChanges();
         }
-
+        public List<RevenueData> GetChartData(int month, int year) // New method
+        {
+            var data = _context.tblOrders
+                .Where(o => o.saleDate.Month == month && o.saleDate.Year == year)
+                .GroupBy(o => o.saleDate.Day)
+                .Select(g => new RevenueData
+                {
+                    Date = g.Key.ToString(),
+                    Revenue = g.Sum(o => o.totalMoney)
+                })
+                .ToList();
+            return data;
+        }
     }
 }
