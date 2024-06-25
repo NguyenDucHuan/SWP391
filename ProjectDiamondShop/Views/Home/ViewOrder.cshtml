@@ -1,4 +1,4 @@
-﻿﻿@model DiamondShopBOs.OrderViewModel
+﻿@model DiamondShopBOs.OrderViewModel
 
 @{
     ViewBag.Title = "View Orders";
@@ -10,61 +10,7 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="/Content/bootstrap.min.css" />
-    <style>
-        .container {
-            margin-top: 50px;
-        }
-
-        .table {
-            width: 100%;
-            margin-bottom: 20px;
-            border-collapse: collapse;
-        }
-
-            .table th, .table td {
-                padding: 10px;
-                border: 1px solid black;
-                text-align: center;
-            }
-
-        .btn-info {
-            color: white;
-            background-color: #5bc0de;
-            border-color: #46b8da;
-        }
-
-            .btn-info:hover {
-                color: white;
-                background-color: #31b0d5;
-                border-color: #269abc;
-            }
-
-        .nav-buttons {
-            margin-bottom: 20px;
-        }
-
-            .nav-buttons .btn-group {
-                display: flex;
-                justify-content: center;
-            }
-
-        .section {
-            display: none;
-        }
-
-            .section.active {
-                display: block;
-            }
-    </style>
-    <script>
-        function showSection(sectionId) {
-            var sections = document.getElementsByClassName('section');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].classList.remove('active');
-            }
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
+    <link rel="stylesheet" href="~/Content/ViewOrder.css" />
 </head>
 <body>
     <div class="container text-center">
@@ -159,6 +105,14 @@
     </div>
 
     <script>
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            document.getElementById(sectionId).classList.add('active');
+        }
+
         function searchTable(tableId, searchId, columnIndex) {
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById(searchId);

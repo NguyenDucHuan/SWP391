@@ -70,7 +70,14 @@ namespace ProjectDiamondShop.Controllers
             }
             catch (ArgumentException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                if (ex.Message == "User account is inactive.")
+                {
+                    ViewBag.Message = "Your account has been disabled, please contact customer service for more details!!!";
+                }
+                else
+                {
+                    ViewBag.Message = ex.Message;
+                }
                 ViewBag.UserName = userName;
                 ViewBag.Password = password;
                 return View("LoginPage");

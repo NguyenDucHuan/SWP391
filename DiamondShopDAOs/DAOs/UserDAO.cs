@@ -34,13 +34,20 @@ namespace DiamondShopDAOs
             tblUser user = diamondShopManagementEntities.tblUsers.FirstOrDefault(d => d.userName.Contains(userName));
             if (user != null)
             {
-                if (user.password == passWord)
+                if (user.status == true)
                 {
-                    return user;
+                    if (user.password == passWord)
+                    {
+                        return user;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Password Incorrect!!");
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("Password Incorrect!!");
+                    throw new ArgumentException("User account is inactive.");
                 }
             }
             else

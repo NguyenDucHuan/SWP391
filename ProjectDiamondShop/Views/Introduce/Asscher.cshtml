@@ -6,181 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .navbar {
-            background: #fff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            transition: top 0.3s;
-            margin: 0 auto;
-            max-width: 95%;
-        }
-
-            .navbar .navbar-brand {
-                color: #28a745 !important;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-            }
-
-                .navbar .navbar-brand img {
-                    height: 40px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                }
-
-            .navbar .nav-link {
-                color: #333 !important;
-                font-weight: bold;
-                margin-right: 20px;
-                position: relative;
-            }
-
-                .navbar .nav-link:hover,
-                .navbar .nav-link.active {
-                    color: #000 !important;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle)::after {
-                    content: '';
-                    display: block;
-                    width: 0;
-                    height: 2px;
-                    background: #28a745;
-                    transition: width .3s;
-                    position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
-                    left: 0;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle):hover::after,
-                .navbar .nav-link:not(.dropdown-toggle).active::after {
-                    width: 100%;
-                }
-
-            .navbar .login-btn {
-                background: #28a745;
-                color: #fff !important;
-                border-radius: 50px;
-                padding: 0.5rem 1rem;
-                font-weight: bold;
-                transition: background-color 0.3s;
-            }
-
-                .navbar .login-btn:hover {
-                    background: #218838;
-                }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-            .navbar-toggler:focus {
-                outline: none;
-            }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 70px;
-        }
-
-        .carousel-indicators [data-bs-target] {
-            background-color: #000;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            filter: invert(100%);
-        }
-
-        .carousel-indicators li::before {
-            content: none;
-        }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-            .footer a {
-                color: #00509e;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-                .footer a:hover {
-                    color: #003f7d;
-                    text-decoration: underline;
-                }
-
-        /* Media Queries for Responsive Design */
-        @@media (max-width: 992px) {
-            .navbar-collapse {
-                justify-content: flex-start;
-            }
-
-            .navbar-nav {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                text-align: right;
-            }
-
-            .navbar .nav-link {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar .login-btn {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="~/Content/Introduce/Asscher.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -255,28 +81,28 @@
                 <div class="carousel-item active">
                     <div class="slide-wrapper">
                         <a href="#">
-                            <img src="~/Image/SlideDiamond/asscherring.jpg" alt="Destination 1" />
+                            <img src="~/Image/SlideDiamond/baguette.jpg" alt="Destination 1" />
                         </a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slide-wrapper">
                         <a href="#">
-                            <img src="~/Image/SlideDiamond/asscherring1.jpg" alt="Destination 2" />
+                            <img src="~/Image/SlideDiamond/baguette1.jpg" alt="Destination 2" />
                         </a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slide-wrapper">
                         <a href="#">
-                            <img src="~/Image/SlideDiamond/asscherring2.jpg" alt="Destination 3" />
+                            <img src="~/Image/SlideDiamond/baguette2.jpg" alt="Destination 3" />
                         </a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="slide-wrapper">
                         <a href="#">
-                            <img src="~/Image/SlideDiamond/asscherring3.jpg" alt="Destination 4" />
+                            <img src="~/Image/SlideDiamond/baguette3.jpg" alt="Destination 4" />
                         </a>
                     </div>
                 </div>
@@ -293,62 +119,91 @@
             </a>
         </div>
 
-        <h2 class="text-center" style="margin-top: 48px;">Asscher Diamond Story</h2>
+        <h2 class="text-center" style="margin-top: 48px;">Baguette Diamond Story</h2>
 
         <div class="container center ">
-            <div class="row ">
+            <div class="row">
                 <p class="decription justify">
-                    The Asscher cut diamond is a distinctive choice, characterized by its square shape with deep, layered facets.
-                    While it shares some similarities with the emerald cut, its unique octagonal design sets it apart.
-                    There are two primary variations: the standard Asscher and the Royal Asscher.
-                    Asscher cuts tend to reveal imperfections more than other shapes, so you may opt for a higher clarity grade to ensure your diamond is eye-clean.
-                    Since the majority of the rough stone is maintained in the cutting process, the Asscher cut is generally less expensive than other fancy-shaped diamonds.
-                    A one carat asscher cut will cost you $3,800 if you follow our guidelines.
-                    Below we discuss everything you need to find yourself the perfect asscher cut diamond.
+                    A Baguette diamond is a thin, elongated, rectangular-shaped diamond.
+                    Baguettes can be almost square in shape, but are more commonly long and thin, often around 5:1 in length to width.
+                    Baguette diamonds can have straight edges in a perfect rectangle, or tapered edges that angle in.
+                    These are referred to as “straight” or “tapered” baguettes.
+                    The corners are perfectly square, which is the biggest difference between baguettes and similar cuts, like the emerald cut.
+                    Baguettes have 14 facets, much less than traditional diamond cuts, which will usually have more than 50.
+                    They are usually small, and thus often used as side stones for engagement rings, or for eternity rings or wedding rings.
                 </p>
-                <h1>What is an Asscher Cut Diamond?</h1>
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/baguettes.png" alt="Baguette Diamonds" />
+                </div>
+                <h2 class="wp-block-heading" id="h-what-are-baguette-diamonds">What Are Baguette Diamonds?</h2>
                 <p class="decription justify">
-                    <b>Unique Features of Asscher Diamonds</b>
-                    The straight-edged facets of the asscher diamond (like <a href="https://www.jamesallen.com/loose-diamonds/asscher-cut/1.01-carat-h-color-vvs2-clarity-sku-11345403?a_aid=dmnd1357&amp;data1=1665" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this gorgeous 1ct from James Allen</a>) give it a unique, clean look.
-                    Sometimes referred to as a “square emerald”, both shapes carry a signature point of difference to brilliant cuts, with their features reminiscent of the Art Deco era.
-                    Asscher diamonds usually have 58 facets, the same as a round brilliant. The arrangement of these facets however gives its uniquely vintage appearance, and a “hall of mirrors” look.
+                    Baguettes are part of the step cut family, which also includes emerald and asscher cuts.
+                    One of the distinguishing features of step cut diamonds is the straight, clearly-defined facets.
+                    This gives diamonds like baguettes a very different appearance to round cut diamonds, with less sparkle and brilliance.
                 </p>
-                <img src="~/Image/Introlmage/cushion2.png" alt="Destination 4" style="width: 50%;margin:auto" />
-                <h2 class="wp-block-heading">Key Features of a Cushion Cut Diamond</h2>
-                <p class="decription">
-                    Here are some of the distinctive features that you’ll notice from a cushion cut diamond.
-                </p>
-                <ul class="custom-list">
-                    <li>Square or rectangular shape</li>
-                    <li>Rounded edges</li>
-                    <li>Brilliant cut style (similar to round brilliant and princess cut diamonds)</li>
-                    <li>Vintage, antique look and feel</li>
-                    <li>Numerous style choices (square vs. rectangular, standard vs. modified, “chunky” vs. “crushed ice”)</li>
-                </ul>
-                <img src="~/Image/Introlmage/cushion.png" alt="Destination 4" style="width: 50%;margin:auto" />
-                <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">How to Choose a Cushion Cut Diamond</h2>
+                <p class="decription justify">While almost all baguettes are step cuts, it is possible to get hybrid brilliant cut baguettes. These have more facets and as a result, have much more dazzling brilliance, as you can see from <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/tapered-brilliant-baguette-diamond-engagement-ring-in-platinum-1-2-ct-tw-item-194281?a_aid=dmnd1357&amp;data1=42026" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this tapered brilliant baguette three-stone ring on Blue Nile</a>.&nbsp;</p>
+                <p class="decription justify">A ring set with brilliant-cut baguettes will come at a much higher price, due not only to the baguette itself, but the higher quality center stone needed to draw attention.</p>
+                <h2 class="wp-block-heading" id="h-baguette-vs-emerald-cut-diamond">Baguette vs. Emerald Cut Diamond</h2>
+                <p class="decription justify">The difference between baguette and emerald cut diamonds is the number of facets and a small difference in shape.</p>
+                <p class="decription justify">Baguette cuts have 14 facets, while an Emerald cut has 58 facets.</p>
                 <p class="decription justify">
-                    Looking for a cushion cut? Below, I’ve covered the key factors to look for when buying or comparing cushion cut diamonds, from color to clarity.
+                    While both cuts can have a similar elongated, rectangular shape, baguette cuts have square corners, while emerald cuts have diagonal corners.
+                    Baguettes are longer and narrower than emerald cuts.
                 </p>
-                <h3 class="wp-block-heading">Cushion Diamond Color</h3>
+                <p class="decription justify">Typically baguette cuts will be sold in lower carat weights than emerald cuts, as they are not often used as center stones, like the emerald or <a href="https://www.diamonds.pro/education/asscher-cut/" data-wpel-link="internal">asscher cut</a>. Jewelry utilizing smaller diamonds like mellee or baguettes have surged in popularity lately. “Most luxury brands seem to be confident that sales [of diamond bands] will be good, and have already placed orders for mellee diamonds for the coming six months” as&nbsp;<a href="https://rapaport.com/analysis/in-shaky-market-small-diamonds-are-winning/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">reported by Rapaport</a> referring to smaller diamond sales.</p>
                 <p class="decription justify">
-                    Cushion cuts are one of the worst shapes when it comes to retaining <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color</a>
-                    (or one of the best, if you’re a manufacturer of fancy color diamonds).Cushion cuts are one of the worst shapes when it comes to retaining diamond color (or one of the best, if you’re a manufacturer of fancy color diamonds).
-                    Cushions and radiants are the two most common diamond shapes in the fancy color diamond market. These shapes are on the opposite end of the spectrum from rounds, which are the best at masking their color.
-                    For this reason, I recommend my readers sticking with H or better when buying a cushion cut unless it will be set in yellow or rose gold (in which case, you can go down to J or K).
-                    <a href="https://www.diamonds.pro/education/h-color-diamonds/" data-wpel-link="internal">H color diamond</a> is a good value option. It’s also one of the more popular choices thanks to its balance in price when compared to the natural diamond color. You’ll notice a significant price jump between each color grade, with H falling somewhere in the middle.
-                    Although H diamonds aren’t completely colorless, they are “near colorless” and only have a very slight yellow tint. Almost no one will notice this difference, especially if the diamond is set in rose or yellow gold.
+                    The lower number of facets on a baguette means they provide much less shine than an emerald, and imperfections on the diamond are easier to notice.
+                    This is why they’re preferred as smaller, “accent” diamonds, used to complement a center stone of <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">any shape</a>.
                 </p>
-                <h3 class="wp-block-heading">Cushion Diamond Clarity</h3>
+                <h2 class="wp-block-heading" id="h-baguette-engagement-ring-settings">Baguette Engagement Ring Settings</h2>
                 <p class="decription justify">
-                    Regarding <a href="https://www.diamonds.pro/education/clarity/" data-wpel-link="internal">diamond clarity</a>, a cushion cut can be a bit tricky.
-                    Firstly, it’s important to note whether you’re looking to buy a crushed-ice cushion or an “antique” cushion.
-                    The reason is simply that the crushed-ice look, in any shape diamond, is generally a very good hider of inclusions.
-                    Additionally, if you’re looking to buy a marquise or pear shape diamond, it’s always best if the inclusions are in the corners as they’ll be very heavily masked by the crushed-ice that’s typically found in the corners of these shapes.
-                    Of course, you’ll only know what kind of cushion look you’ll be buying if you can see a picture of the diamond in question – so it’s already a given that you’d be able to inspect the diamond’s clarity as well.
-                    Therefore, like always, shoot for the lowest clarity you can find that’s still eye-clean.
+                    Baguette diamonds make great choices for side stones in a <a href="https://www.diamonds.pro/education/three-stone-diamond-rings/" data-wpel-link="internal">three-stone setting</a>.
+                    The perfect stone and setting will accentuate the center stone and produce a beautiful engagement ring.
                 </p>
-                <img src="~/Image/Introlmage/cushion1.png" alt="Destination 4" style="width: 50%;margin:auto" />
+                <p>
+                    Most rings that feature baguette diamonds have them set horizontally, one baguette on each side drawing attention to a center stone.
+                    It’s also common for tapered baguettes used in this style of ring, with the narrow end pointing away from the center stone.
+                </p>
+                <h3 class="wp-block-heading" id="h-three-stone-baguette-rings">Three-Stone Baguette Rings</h3>
+                <p class="decription justify">
+                    A tapered baguette diamond is a beautiful way to add extra shine to a ring without taking away from the center stone. <br />
+                    <br />One of the most popular styles is a three-stone setting with tapered baguettes next to an emerald cut.
+                    Rings such as <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/tapered-baguette-diamond-engagement-ring-in-14k-rose-gold-1-6-ct-tw-item-192868?a_aid=dmnd1357&amp;data1=42026" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">this</a>
+                    feature perfectly matched step cut diamonds in the emerald and baguette cuts that complement each other beautifully.
+                </p>
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Baguette1.png" alt="Three-Stone Baguette Rings" />
+                </div>
+                <h3 class="wp-block-heading" id="h-channel-set-baguette-rings">Channel Set Baguette Rings</h3>
+                <p>
+                    Baguette diamonds make perfect accents for channel set rings.
+                    This setting, with small diamonds set into the metal leading up to the center stone, is a clean and sophisticated look.
+                    As an example, see this channel set ring from James Allen with straight baguettes set end-to-end halfway along the band, which gives a brilliant overall shine.
+                </p>
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Baguette2.png" alt="Channel Set Baguette Rings" />
+                </div>
+                <h3 class="wp-block-heading" id="h-vintage-baguette-rings">Vintage Baguette Rings</h3>
+                <p class="decription justify">
+                    Baguettes are great additions to extravagant vintage settings.
+                    For rings with a lot of round diamonds, baguettes add variety and can take the ring to a new level.
+                    See this hexagon baguette ring from Blue Nile, with a collection of straight baguettes surrounding the center diamond.
+                </p>
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/Baguette3.png" alt="Vintage Baguette Rings" />
+                </div>
+                <p class="decription justify">
+                    Even more extravagant is this stunning baguette halo ring from Blue Nile.
+                    Baguettes are set around the center stone, punctuated by round accent diamonds, for a show-stopping look.
+                </p>
+                <h2 class="wp-block-heading" id="h-are-baguette-diamonds-expensive">Are Baguette Diamonds Expensive</h2>
+                <p class="decription justify">
+                    Baguette diamonds are often less expensive than other diamond cuts.
+                    The price per carat for a baguette diamond is likely to be less than, say, a round brilliant, or an emerald cut, as lower-quality cuts are used.
+                    Baguettes are graded on the 4 C’s, as with any diamond. So prices can vary depending on a stone’s grade.
+                    It is possible to get high-grade baguette diamonds, in which case the price per carat will be similar to more common cuts, if not more due to the increased scarcity of high-quality baguettes.
+                    However, baguette diamonds are almost always a lower carat weight, so individually they are not as expensive as other diamonds.
+                </p>
             </div>
         </div>
     </div>
