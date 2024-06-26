@@ -254,6 +254,13 @@
     <Content Include="Content\Introduce\Cushion.css" />
     <Content Include="Content\Introduce\Emerald.css" />
     <Content Include="Content\Introduce\Heart.css" />
+    <Content Include="Content\Introduce\Marquise.css" />
+    <Content Include="Content\Introduce\Oval.css" />
+    <Content Include="Content\Introduce\Pear.css" />
+    <Content Include="Content\Introduce\Princess.css" />
+    <Content Include="Content\Introduce\Radiant.css" />
+    <Content Include="Content\Introduce\Round.css" />
+    <Content Include="Content\Introduce\Trillion.css" />
     <Content Include="Content\LoginPage.css" />
     <Content Include="Content\noUiSlider\jquery.nouislider.css" />
     <Content Include="Content\ProductCss\StyleSheet1.css" />

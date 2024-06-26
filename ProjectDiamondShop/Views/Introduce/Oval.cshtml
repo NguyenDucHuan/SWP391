@@ -6,193 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .navbar {
-            background: #fff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            transition: top 0.3s;
-            margin: 0 auto;
-            max-width: 95%;
-        }
-
-            .navbar .navbar-brand {
-                color: #28a745 !important;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-            }
-
-                .navbar .navbar-brand img {
-                    height: 40px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                }
-
-            .navbar .nav-link {
-                color: #333 !important;
-                font-weight: bold;
-                margin-right: 20px;
-                position: relative;
-            }
-
-                .navbar .nav-link:hover,
-                .navbar .nav-link.active {
-                    color: #000 !important;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle)::after {
-                    content: '';
-                    display: block;
-                    width: 0;
-                    height: 2px;
-                    background: #28a745;
-                    transition: width .3s;
-                    position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
-                    left: 0;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle):hover::after,
-                .navbar .nav-link:not(.dropdown-toggle).active::after {
-                    width: 100%;
-                }
-
-            .navbar .login-btn {
-                background: #28a745;
-                color: #fff !important;
-                border-radius: 50px;
-                padding: 0.5rem 1rem;
-                font-weight: bold;
-                transition: background-color 0.3s;
-            }
-
-                .navbar .login-btn:hover {
-                    background: #218838;
-                }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-            .navbar-toggler:focus {
-                outline: none;
-            }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 70px;
-        }
-
-        .carousel-indicators [data-bs-target] {
-            background-color: #000;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            filter: invert(100%);
-        }
-
-        .carousel-indicators li::before {
-            content: none;
-        }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-            .footer a {
-                color: #00509e;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-                .footer a:hover {
-                    color: #003f7d;
-                    text-decoration: underline;
-                }
-
-        /* Centering Images */
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-            .image-container img {
-                display: inline-block;
-                max-width: 100%;
-                height: auto;
-            }
-
-        /* Media Queries for Responsive Design */
-        @@media (max-width: 992px) {
-            .navbar-collapse {
-                justify-content: flex-start;
-            }
-
-            .navbar-nav {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                text-align: right;
-            }
-
-            .navbar .nav-link {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar .login-btn {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+ES:wght@100..400&display=swap" rel="stylesheet">
+    <link href="~/Content/Introduce/Oval.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -309,7 +124,7 @@
 
         <div class="container center">
             <div class="row">
-                <p class="decription justify">
+                <p class="description justify">
                     An oval cut diamond provides excellent brilliance, durability and style.
                     We recommend an H color or better and an SI1 or SI2 for clarity for this diamond shape.
                     However, it’s crucial to be mindful of the ‘bowtie effect’ in oval diamonds, a potential dark area in the diamond’s center.
@@ -322,7 +137,7 @@
                 </p>
 
                 <h1>The Oval Cut Diamond</h1>
-                <p class="decription justify">
+                <p class="description justify">
                     Bursting with brilliance and fire, an oval cut diamond is exquisite and unique. The oval is considered a “fancy” shape; the elongated design makes it appear larger than other shapes of the same carat weight.
                     For example, a 1ct oval cut looks quite large in a halo setting. But a <a href="https://www.diamonds.pro/education/1-carat-diamond-ring/" data-wpel-link="internal">1 carat</a> round diamond in a similar setting would look slightly smaller.
                     The slender body of the oval diamond creates a beautiful, elongated look. It often makes the hand and fingers appear slimmer. The diamond’s shape has no sharp corners, so it’s less prone to chipping.
@@ -332,7 +147,7 @@
                     <img src="~/Image/Introlmage/oval1.jpg" alt="The Oval Cut Diamond">
                 </div>
                 <h2 class="wp-block-heading">History of the Oval Cut Diamond</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     Oval shaped diamonds have been popular for centuries.
                     The earliest oval diamonds date back to the 1300s, though they aren’t described by name in literature until the 1800s.
                     According to <a href="https://www.diamonds.net/News/NewsItem.aspx?ArticleID=2309&amp;ArticleTitle=Fancy+Shape+Series--Oval" data-wpel-link="external" target="_blank" rel="external noopener">Rapaport</a>, in the early 1960’s, a Russian diamond cutter named <a href="https://www.ehudlaniado.com/home/index.php/news/entry/the-amazing-story-of" data-wpel-link="external" target="_blank" rel="external noopener">Lazare Kaplan</a> perfected the oval cut process.
@@ -342,14 +157,14 @@
                 </p>
             </div>
             <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Oval Cut Diamond – Color</h2>
-            <p class="decription justify">
+            <p class="description justify">
                 Color is graded by the GIA on a <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color scale</a> from D to Z.
                 When a diamond has a Z Color grade, it means the diamond contains an easily noticeable brown or yellow tint.
                 On the other end of the scale, the D grade represents the most colorless a diamond can be.
                 While it’s usually impossible to see <a href="https://www.jamesallen.com/education/diamonds/4cs-color/?a_aid=dmnd1357&amp;data1=19382" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">the difference between two color grades</a>, the difference in price can be significant.
                 As it is difficult to notice the differences between color grades with the naked eye, we recommend focusing on how the color appears to you.
             </p>
-            <p class="decription justify">
+            <p class="description justify">
                 As a general guideline, we recommend an H color or better for oval cut diamonds.
                 This ensures your stone will look white in a <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">white gold or platinum</a> setting.
                 If you’re setting your diamond in <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">yellow gold or rose gold</a>, feel free to drop down to a J or K to save money or to buy a larger stone.
@@ -359,13 +174,14 @@
                 <img src="~/Image/Introlmage/oval2.jpg" alt="Oval Cut Diamond – Color" style="width: 50%;">
             </div>
         </div>
-        <footer>
-            <hr />
+        <footer class="footer">
             <div class="container text-center">
                 <p><a href="#">Back To Top</a></p>
                 <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
                 <p>
-                    <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                    <a href="#">Terms of Service</a> |
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Refund Policy</a>
                 </p>
             </div>
         </footer>
@@ -387,12 +203,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
         $(document).ready(function () {
             var successMessage = '@ViewBag.SuccessMessage';
             var userName = '@ViewBag.UserName';
@@ -423,6 +238,6 @@
             console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
-    </script>
+        </script>
 </body>
 </html>

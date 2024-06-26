@@ -6,181 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .navbar {
-            background: #fff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            transition: top 0.3s;
-            margin: 0 auto;
-            max-width: 95%;
-        }
-
-            .navbar .navbar-brand {
-                color: #28a745 !important;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-            }
-
-                .navbar .navbar-brand img {
-                    height: 40px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                }
-
-            .navbar .nav-link {
-                color: #333 !important;
-                font-weight: bold;
-                margin-right: 20px;
-                position: relative;
-            }
-
-                .navbar .nav-link:hover,
-                .navbar .nav-link.active {
-                    color: #000 !important;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle)::after {
-                    content: '';
-                    display: block;
-                    width: 0;
-                    height: 2px;
-                    background: #28a745;
-                    transition: width .3s;
-                    position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
-                    left: 0;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle):hover::after,
-                .navbar .nav-link:not(.dropdown-toggle).active::after {
-                    width: 100%;
-                }
-
-            .navbar .login-btn {
-                background: #28a745;
-                color: #fff !important;
-                border-radius: 50px;
-                padding: 0.5rem 1rem;
-                font-weight: bold;
-                transition: background-color 0.3s;
-            }
-
-                .navbar .login-btn:hover {
-                    background: #218838;
-                }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-            .navbar-toggler:focus {
-                outline: none;
-            }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 70px;
-        }
-
-        .carousel-indicators [data-bs-target] {
-            background-color: #000;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            filter: invert(100%);
-        }
-
-        .carousel-indicators li::before {
-            content: none;
-        }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-            .footer a {
-                color: #00509e;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-                .footer a:hover {
-                    color: #003f7d;
-                    text-decoration: underline;
-                }
-
-        /* Media Queries for Responsive Design */
-        @@media (max-width: 992px) {
-            .navbar-collapse {
-                justify-content: flex-start;
-            }
-
-            .navbar-nav {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                text-align: right;
-            }
-
-            .navbar .nav-link {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar .login-btn {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+ES:wght@100..400&display=swap" rel="stylesheet">
+    <link href="~/Content/Introduce/Radiant.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -294,7 +121,7 @@
 
         <div class="container center">
             <div class="row">
-                <p class="decription justify">
+                <p class="description justify">
                     The radiant cut diamond is a dazzling choice, known for its brilliant sparkle compared to other square/rectangular cuts.
                     Its unique design not only provides a larger appearance compared to its actual carat weight but also ensures durability.
                     When considering a radiant cut, it’s vital to focus on its quality and proportions to truly capture its radiant essence.
@@ -305,7 +132,7 @@
                 </p>
 
                 <h1>What is a Radiant Cut Diamond?</h1>
-                <p class="decription justify">
+                <p class="description justify">
                     Popular since the 1980s, the radiant cut diamond lives up to its name: it is impressively radiant and brilliant.
                     Henry Grossbard designed the radiant cut in 1977 in pursuit of combining the finest elements of the round brilliant cut and the emerald cut.
                     The radiant cut diamond owes its brilliance to the 70 facets found in its pavilion and crown.
@@ -317,7 +144,7 @@
                 </p>
                 <img src="~/Image/Introlmage/radiant.jpg" alt="Radiant Diamond" style="width: 100%; margin:auto" />
                 <h2 class="wp-block-heading">Radiant Cut Diamonds: Pros and Cons</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     Like other <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, radiant cut diamonds have their own unique range of advantages and disadvantages.
                     It is a unique cut that puts a little flair on your traditional ring.
                     Even some celebrities have chosen to go the radiant cut route, such as Christina Haack’s stunner as <a href="https://hollywoodlife.com/2021/09/20/christina-haack-engaged-joshua-hall-diamond-ring-photo/" data-wpel-link="external" target="_blank" rel="external noopener">reported by Hollywood Life</a>
@@ -326,13 +153,13 @@
                     <b>Pros</b>
                     of the radiant cut include the following:
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     <b>Excellent brilliance, fire and sparkle</b>
                     Although the radiant cut isn’t quite as brilliant as the round brilliant cut, it’s not very far behind.
                     Because of the 70 facets in its pavilion and crown, the radiant cut offers impressive brilliance and fire.
                     This makes the radiant cut a great choice if you want a non-round diamond with a beautiful sparkle.
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     <b>Larger perceived size than other diamond shapes</b>
                     The radiant cut is well known for looking larger than most of the other diamonds of the same carat weight, giving it some extra presence on your fiancé-to-be’s finger.
                     The face-up area of the radiant cut is actually slightly smaller than that of a round brilliant cut diamond of an equal carat weight.
@@ -342,7 +169,7 @@
 
                 <h2 class="wp-block-heading" id="Radiant-Cut-Diamond---Quality">Radiant Cut Diamond – Quality</h2>
                 <img src="~/Image/Introlmage/Radiant4.png" alt="Radiant Diamond" style="width: 100%; margin:auto;" />
-                <p class="decription justify">
+                <p class="description justify">
                     Radiant diamonds are created with a modified brilliant cut facet pattern for both the pavilion and crown, giving this diamond its high level of brilliance (the amount of white light reflected back to the eye or ‘sparkle’).
                     Because <a href="https://www.diamonds.pro/education/cuts/" data-wpel-link="internal">diamond cut</a> is vital to any diamond’s beauty, especially the radiant diamond, a careful eye must be used when considering stones for purchase.
                     The <a href="https://www.diamonds.pro/education/gia-certification/" data-wpel-link="internal">GIA</a> only grades cut quality for round brilliant diamonds.
@@ -352,7 +179,7 @@
                 </p>
                 <h3 class="wp-block-heading">Radiant Cut Diamond – Cut Guide</h3>
                 <img src="~/Image/Introlmage/radiant5.jpg" alt="Radiant Diamond" style="width: 100%; margin:auto;" />
-                <p class="decription justify">
+                <p class="description justify">
                     Be sure to also look at the corners of a radiant, ensuring they are even and not too wide—or too narrow.
                     The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty
                 </p>
@@ -364,7 +191,9 @@
             <p><a href="#">Back To Top</a></p>
             <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
             <p>
-                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                <a href="#">Terms of Service</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Refund Policy</a>
             </p>
         </div>
     </footer>

@@ -5,7 +5,7 @@
     List<string> cuts = new List<string>() { "Excellent", "Very Good", "Good", "Fair", "Poor", "Ideal" };
     List<string> colors = new List<string>() { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
     List<string> shapes = new List<string>() { "Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear" };
-    List<string> sortOptions = new List<string>() { "Price (Low to High)", "Price (High to Low)", "Carat Weight (Low to High)", "Carat Weight (High to Low)" };
+    List<string> sortOptions = new List<string>() { "-- All --", "Price (Low to High)", "Price (High to Low)", "Carat Weight (Low to High)", "Carat Weight (High to Low)" };
     ViewBag.Clarities = clarities;
     ViewBag.Cuts = cuts;
     ViewBag.Colors = colors;
@@ -21,6 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+ES:wght@100..400&display=swap" rel="stylesheet">
     <link href="~/Content/Diamonds/Diamonds.css" rel="stylesheet" />
 </head>
 <body>
@@ -55,7 +57,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -64,9 +66,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewWarranty", "Warranty")">View Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
                         </li>
@@ -176,31 +176,27 @@
                 }
             </div>
         </div>
-        <section>
+        <section id="new-arrivals" class="new-arrivals">
             <div class="container">
-                <div class="row">
-                    @foreach (var item in Model)
-                    {
-                        string[] imagepart = item.diamondImagePath.Split('|');
-                        <div class="col-md-3 col-sm-6" style="margin-top: 20px;">
-                            <div class="product-grid6">
-                                <div class="product-image6">
-                                    <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
-                                        <img class="pic-1" src="@imagepart[0]">
-                                    </a>
-                                    <ul class="social">
-                                        <li><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })" data-tip="View More"><i class="fa fa-search"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h3>
-                                    <div class="priceD" data-price="@item.diamondPrice">
-                                        @item.diamondPrice
+                <div class="new-arrivals-content">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            string[] imagepart = item.diamondImagePath.Split('|');
+                            <div class="col-md-3 col-sm-4 mb-4">
+                                <a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">
+                                    <div class="single-new-arrival">
+                                        <div class="single-new-arrival-bg">
+                                            <img src="@imagepart[0]" alt="new-arrivals images" style="width:100%">
+                                            <div class="single-new-arrival-bg-overlay"></div>
+                                        </div>
+                                        <h4 class="mt-2"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
+                                        <p class="arrival-product-price">$@item.diamondPrice</p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
         </section>
@@ -253,14 +249,6 @@
                 document.getElementById("pageNumber").value = page;
                 document.getElementById("paginationForm").submit();
             }
-            document.addEventListener('DOMContentLoaded', (event) => {
-                const prices = document.querySelectorAll('.priceD');
-
-                prices.forEach(priceElement => {
-                    const priceValue = parseFloat(priceElement.getAttribute('data-price'));
-                    priceElement.innerHTML = `$${priceValue.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 3 })}`;
-                });
-            });
         </script>
 
         @Html.Hidden("CurrentPage", (int)ViewBag.CurrentPage)

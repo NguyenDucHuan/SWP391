@@ -1,16 +1,14 @@
-﻿/* introduce.css */
-
+﻿
 /* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    background-color: #fff;
-    color: #333;
+    background-color: #222; /* Màu nền chính */
+    color: #e0e0e0; /* Màu chữ */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -21,19 +19,18 @@ main {
 }
 
 .navbar {
-    background: #fff !important;
+    background: #333 !important; /* Màu nền thanh điều hướng */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
-    border-radius: 30px;
     margin-bottom: 20px;
     transition: top 0.3s;
     margin: 0 auto;
-    max-width: 95%;
 }
 
     .navbar .navbar-brand {
-        color: #28a745 !important;
+        color: #FFFF99 !important;
         font-weight: bold;
+        font-family: "Playwrite ES Deco", cursive;
         display: flex;
         align-items: center;
     }
@@ -45,7 +42,7 @@ main {
         }
 
     .navbar .nav-link {
-        color: #333 !important;
+        color: #fff !important; /* Màu chữ của liên kết */
         font-weight: bold;
         margin-right: 20px;
         position: relative;
@@ -53,7 +50,7 @@ main {
 
         .navbar .nav-link:hover,
         .navbar .nav-link.active {
-            color: #000 !important;
+            color: #ddd !important; /* Màu chữ khi hover */
         }
 
         .navbar .nav-link:not(.dropdown-toggle)::after {
@@ -64,7 +61,7 @@ main {
             background: #28a745;
             transition: width .3s;
             position: absolute;
-            bottom: 0; /* Position it at the bottom of the nav link */
+            bottom: 0;
             left: 0;
         }
 
@@ -94,6 +91,32 @@ main {
         outline: none;
     }
 
+.nav-item .dropdown-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    transform: translate3d(0px, 0px, 0px);
+    border: none;
+    background: none;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0.5rem;
+    vertical-align: 0.1em;
+}
+
+.navbar .nav-item.dropdown .dropdown-menu {
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    background-color: #FDF4F3;
+    min-width: 150%;
+}
+
 .carousel-item img {
     width: 100%;
     height: auto;
@@ -101,69 +124,143 @@ main {
     margin-top: 70px;
 }
 
-.carousel-indicators [data-bs-target] {
-    background-color: #000;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(100%);
-}
-
-.carousel-indicators li::before {
-    content: none;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
+.diamond-section {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #444; /* Màu nền của phần tử kim cương */
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+    text-align: center;
+    height: 100%;
+    max-width: 420px;
+    color: #fff;
 }
 
-.container {
-    flex: 1;
+    .diamond-section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .diamond-section img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 2px solid #fff; /* Màu viền hình ảnh */
+    }
+
+    .diamond-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        font-family: 'Playfair Display', serif;
+        color: #FFD700;
+    }
+
+    .diamond-section .description {
+        text-align: justify;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        color: #e0e0e0;
+    }
+
+    .diamond-section .view-more {
+        font-weight: bold;
+        background-color: #FFD700;
+        color: #333;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        .diamond-section .view-more:hover {
+            background-color: #FFC700;
+            color: #1c1c3c;
+        }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-lg-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .footer {
-    background-color: #fff;
+    background-color: #333;
     padding: 20px 0;
     text-align: center;
-    color: #333;
+    color: #FFD700;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: 10px;
 }
 
     .footer a {
-        color: #00509e;
+        color: #FFD700;
         text-decoration: none;
         margin: 0 10px;
     }
 
         .footer a:hover {
-            color: #003f7d;
+            color: #FFF;
             text-decoration: underline;
         }
 
-.image-container {
+/* Custom CSS for Diamond Search icons */
+.diamond-search-icons {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-    .image-container img {
-        max-width: 100%;
-        height: auto;
+    .diamond-search-icons figure {
+        margin: 0;
+        text-align: center;
+    }
+
+        .diamond-search-icons figure img {
+            width: 70px;
+            height: 70px;
+        }
+
+    .diamond-search-icons figcaption {
+        font-size: 11px;
+        margin-top: 5px;
+        color: #FFD700;
+    }
+
+/* Custom CSS for Search button */
+.search-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: #000033;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+    .search-button:hover {
+        background-color: #FFC700;
+        color: #000033;
     }
 
 /* Media Queries for Responsive Design */
-@media (max-width: 992px) {
+@@media (max-width: 992px) {
     .navbar-collapse {
         justify-content: flex-start;
     }

@@ -1,5 +1,4 @@
-﻿
-/* General Styles */
+﻿/* General Styles */
 * {
 	margin: 0;
 	padding: 0;
@@ -111,16 +110,6 @@ main {
 	content: none;
 }
 
-html, body {
-	height: 100%;
-	margin: 0;
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-}
-
 .container {
 	flex: 1;
 }
@@ -131,8 +120,6 @@ body {
 	text-align: center;
 	color: #FFD700;
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-	position: relative;
-	bottom: 0;
 	width: 100%;
 	margin-top: 10px;
 }
@@ -147,6 +134,18 @@ body {
 			color: #FFF;
 			text-decoration: underline;
 		}
+
+/* Centering Images */
+.image-container {
+	text-align: center;
+	margin: 20px 0;
+}
+
+	.image-container img {
+		display: inline-block;
+		max-width: 100%;
+		height: auto;
+	}
 
 /* Media Queries for Responsive Design */
 @@media (max-width: 992px) {

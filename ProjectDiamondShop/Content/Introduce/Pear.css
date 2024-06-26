@@ -1,5 +1,4 @@
-﻿
-/* General Styles */
+﻿/* General Styles */
 * {
 	margin: 0;
 	padding: 0;
@@ -148,6 +147,18 @@ body {
 			text-decoration: underline;
 		}
 
+/* Centering Images */
+.image-container {
+	text-align: center;
+	margin: 20px 0;
+}
+
+	.image-container img {
+		display: inline-block;
+		max-width: 100%;
+		height: auto;
+	}
+
 /* Media Queries for Responsive Design */
 @@media (max-width: 992px) {
 	.navbar-collapse {
@@ -170,3 +181,4 @@ body {
 		margin-bottom: 10px;
 	}
 }
+
