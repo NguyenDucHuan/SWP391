@@ -1,0 +1,301 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.navbar {
+	background: #333 !important;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 0.5rem 1rem;
+	margin-bottom: 20px;
+	transition: top 0.3s;
+	margin: 0 auto;
+}
+
+	.navbar .navbar-brand {
+		color: #FFFF99 !important;
+		font-weight: bold;
+		font-family: "Playwrite ES Deco", cursive;
+		display: flex;
+		align-items: center;
+	}
+
+		.navbar .navbar-brand img {
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+
+	.navbar .nav-link {
+		color: #fff !important;
+		font-weight: bold;
+		margin-right: 20px;
+		position: relative;
+	}
+
+		.navbar .nav-link:hover,
+		.navbar .nav-link.active {
+			color: #ddd !important;
+		}
+
+		.navbar .nav-link:not(.dropdown-toggle)::after {
+			content: '';
+			display: block;
+			width: 0;
+			height: 2px;
+			background: #28a745;
+			transition: width .3s;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		.navbar .nav-link:not(.dropdown-toggle):hover::after,
+		.navbar .nav-link:not(.dropdown-toggle).active::after {
+			width: 100%;
+		}
+
+	.navbar .login-btn {
+		background: #28a745;
+		color: #fff !important;
+		border-radius: 50px;
+		padding: 0.5rem 1rem;
+		font-weight: bold;
+		transition: background-color 0.3s;
+	}
+
+		.navbar .login-btn:hover {
+			background: #218838;
+		}
+
+.navbar-toggler {
+	border: none;
+}
+
+	.navbar-toggler:focus {
+		outline: none;
+	}
+
+.nav-item .dropdown-toggle {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.dropdown-menu {
+	position: absolute;
+	transform: translate3d(0px, 0px, 0px);
+	border: none;
+	background: none;
+}
+
+.dropdown-toggle::after {
+	margin-left: 0.5rem;
+	vertical-align: 0.1em;
+}
+
+.navbar .nav-item.dropdown .dropdown-menu {
+	top: 100%;
+	left: 0;
+	margin-top: 0.5rem;
+	background-color: #FDF4F3;
+	min-width: 150%;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: #222;
+	color: #fff;
+}
+
+.container {
+	flex: 1;
+}
+
+.footer {
+	background-color: #333;
+	padding: 20px 0;
+	text-align: center;
+	color: #fff;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+
+	.footer a {
+		color: #FFD700;
+		text-decoration: none;
+		margin: 0 10px;
+		position: relative;
+	}
+
+		.footer a:hover {
+			color: #218838;
+			text-decoration: underline;
+		}
+
+.glow {
+	color: #28a745;
+	text-decoration: none;
+	position: relative;
+	display: inline-block;
+}
+
+	.glow:before,
+	.glow:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: inherit;
+		z-index: -1;
+		filter: blur(5px);
+		opacity: 0.6;
+	}
+
+	.glow:before {
+		filter: blur(10px);
+	}
+
+@media (max-width: 992px) {
+	.navbar-collapse {
+		justify-content: flex-start;
+	}
+
+	.navbar-nav {
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+		text-align: right;
+	}
+
+	.navbar .nav-link {
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+
+	.navbar .login-btn {
+		margin-bottom: 10px;
+	}
+}
+
+.warranty-container {
+	background-color: #333;
+	padding: 20px;
+	border-radius: 10px;
+	max-width: 800px;
+	margin: 20px auto;
+	margin-top: 84px;
+}
+
+h2 {
+	text-align: center;
+	color: #FFFF99;
+	margin: 0;
+	padding: 20px;
+	position: relative;
+}
+
+.panel {
+	background-color: #555555;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.panel-heading {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	color: #fff;
+}
+
+.form-control[readonly] {
+	background-color: #f9f9f9;
+	color: #555;
+}
+
+.cart-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 0.9em;
+	background-color: #555555;
+	margin-top: 50px;
+}
+
+	.cart-item img {
+		max-width: 100px;
+		margin-right: 10px;
+	}
+
+.cart-item-details {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cart-item-info {
+	flex: 1;
+}
+
+.cart-item-actions {
+	display: flex;
+	align-items: center;
+}
+
+.cart-summary {
+	text-align: right;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.warranty-details-container {
+	margin-top: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+	.warranty-details-container table {
+		width: 100%;
+		border-collapse: separate;
+		border-spacing: 0;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.warranty-details-container th, .warranty-details-container td {
+		padding: 10px;
+		border: 1px solid #ddd;
+		background-color: #555555;
+		color: #fff;
+	}
+
+.icon-warranty {
+	color: #28a745;
+	margin-right: 8px;
+}
+
+.header-content {
+	text-align: center;
+}
