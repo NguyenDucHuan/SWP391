@@ -6,181 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .navbar {
-            background: #fff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            transition: top 0.3s;
-            margin: 0 auto;
-            max-width: 95%;
-        }
-
-            .navbar .navbar-brand {
-                color: #28a745 !important;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-            }
-
-                .navbar .navbar-brand img {
-                    height: 40px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                }
-
-            .navbar .nav-link {
-                color: #333 !important;
-                font-weight: bold;
-                margin-right: 20px;
-                position: relative;
-            }
-
-                .navbar .nav-link:hover,
-                .navbar .nav-link.active {
-                    color: #000 !important;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle)::after {
-                    content: '';
-                    display: block;
-                    width: 0;
-                    height: 2px;
-                    background: #28a745;
-                    transition: width .3s;
-                    position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
-                    left: 0;
-                }
-
-                .navbar .nav-link:not(.dropdown-toggle):hover::after,
-                .navbar .nav-link:not(.dropdown-toggle).active::after {
-                    width: 100%;
-                }
-
-            .navbar .login-btn {
-                background: #28a745;
-                color: #fff !important;
-                border-radius: 50px;
-                padding: 0.5rem 1rem;
-                font-weight: bold;
-                transition: background-color 0.3s;
-            }
-
-                .navbar .login-btn:hover {
-                    background: #218838;
-                }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-            .navbar-toggler:focus {
-                outline: none;
-            }
-
-        .carousel-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 70px;
-        }
-
-        .carousel-indicators [data-bs-target] {
-            background-color: #000;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            filter: invert(100%);
-        }
-
-        .carousel-indicators li::before {
-            content: none;
-        }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-            .footer a {
-                color: #00509e;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-                .footer a:hover {
-                    color: #003f7d;
-                    text-decoration: underline;
-                }
-
-        /* Media Queries for Responsive Design */
-        @@media (max-width: 992px) {
-            .navbar-collapse {
-                justify-content: flex-start;
-            }
-
-            .navbar-nav {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                text-align: right;
-            }
-
-            .navbar .nav-link {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar .login-btn {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+ES:wght@100..400&display=swap" rel="stylesheet">
+    <link href="~/Content/Introduce/Pear.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -294,7 +121,7 @@
 
         <div class="container center">
             <div class="row">
-                <p class="decription justify">
+                <p class="description justify">
                     The pear-shaped diamond, often referred to as a teardrop, combines the best of both round and marquise diamond shapes. When choosing a pear-shaped diamond, it’s essential to consider its length-to-width ratio and be mindful of the “bow-tie” effect, which can appear in the center of the diamond. Pear shaped diamonds are less expensive than popular diamond shapes like round or princess cuts and have more visible surface area than many other shapes, which lets you save by purchasing a lower-carat diamond without sacrificing visible size.
                     A one carat pear shaped (based on our recommendations) will cost about $3,600 which is cheaper than a 1 carat round diamond but will look larger once set.
                     Its unique silhouette, reminiscent of a droplet, offers a blend of elegance and brilliance.
@@ -303,21 +130,23 @@
                 </p>
 
                 <h1>What is a Pear Shaped Diamond?</h1>
-                <p class="decription justify">
+                <p class="description justify">
                     A pear shaped diamond, also commonly called pear cut diamond or teardrop diamond, is a brilliant-cut diamond, cut in the shape of a pear or teardrop (hence the name).
                     Pear cut or pear shaped diamonds have an elongated shape, much like a marquise or oval cut.
                     In a pear cut diamond, one end is rounded (like an oval cut), and the other ends in a point (like a marquise diamond).
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     This results in pear shaped diamonds’ unique appearance, making for one-of-a-kind engagement rings, or other pieces of jewelry.
                     Engagement rings set with pear shape diamonds are great for making the wearer’s finger appear longer and slimmer.
                     A pear shaped diamond can vary in its exact shape. Some pear shapes are more elongated, while others are shorter and stubbier.
                     The length to width ratio of a pear shaped diamond generally falls between 1.5 and 2.0.
                     Each person may have their own preference for L/W ratio in a pear shape diamond, however the optimal ratio is usually somewhere between 1.55 and 1.75.
                 </p>
-                <img src="~/Image/Introlmage/pear.jpg" alt="Pear Shaped Diamond" style="width: 100%; margin:auto" />
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/pear.jpg" alt="Pear Shaped Diamond" style="width: 100%; margin:auto" />
+                </div>
                 <h2 class="wp-block-heading">The Pear Shape – A Classic Beauty</h2>
-                <p class="decription justify">
+                <p class="description justify">
                     While pear shapes are certainly not among the most popular shapes these days, I must confess that I am personally a lover of this shape.
                     I can’t put my finger on the particular aspect of this shape that I love, but I have a feeling I know what it is.
                     You see, the <b>vast</b> majority of pear shapes out there are absolute junk.
@@ -327,38 +156,46 @@
                     It’s just a matter of picking the right cut and setting, which we’ll help you within this article.
                 </p>
                 <h2 class="wp-block-heading" id="Pear-Shape-Length-to-Width-Ratio">Pear Shape: Length to Width Ratio</h2>
-                <img src="~/Image/Introlmage/pear-shape-ratios.png" alt="Pear Shape Ratios" style="width: 100%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/pear-shape-ratios.png" alt="Pear Shape Ratios" style="width: 100%; margin:auto" />
+                </div>
+                <p class="description justify">
                     One of the most common ways pear shapes are miscut is with an out of balance length to width ratio.
                     Most people find that they prefer pear shapes with a length to width ratio of about 1.55 to about 1.75.
                     As you can see in the diagram to the right, both of these ratios look natural for the shape whereas the stone that has a 2.0 L/W ratio looks out of whack.
                     Where you fall between 1.55 and 1.75 is really a matter of personal preference.
                     Lets take a look at some real life examples:
                 </p>
-                <img src="~/Image/Introlmage/pear1.png" alt="Pear Shape Examples" style="width: 100%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/pear1.png" alt="Pear Shape Examples" style="width: 100%; margin:auto" />
+                </div>
+                <p class="description justify">
                     <b>Unbecoming Ratios</b><br />
                     As you can see in the picture above, an L/W ratio of 1.47 already looks way too short and stubby for a pear shape.
                     This stone looks like a slightly stretched out round shape – not what you’d like to see in a pear.
                 </p>
-                <img src="~/Image/Introlmage/1.89-ratio-pear.jpg" alt="Unbecoming Ratios" style="width: 100%; margin:auto" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/1.89-ratio-pear.jpg" alt="Unbecoming Ratios" style="width: 100%; margin:auto" />
+                </div>
+                <p class="description justify">
                     In the picture here, you can see the opposite extreme. This stone has an L/W ratio of 1.89 which is way too long for a pear shape.
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     <b>Beautiful Examples</b><br />
                     And finally, Goldilocks, we’ve come to the stones that fit just right.
                     To the left and right you can see beautiful examples of stones that are at opposite ends of the acceptable range of L/W.
                     Where your preferences lie between these two boundaries is just a matter of what shape speaks to your tastes.
                 </p>
-                <img src="~/Image/Introlmage/1.55-ratio-pear-1.jpg" alt="Beautiful Examples" style="width: 60%; display: block; margin: auto;" />
-                <p class="decription justify">
+                <div class="image-container">
+                    <img src="~/Image/Introlmage/1.55-ratio-pear-1.jpg" alt="Beautiful Examples" style="width: 60%; display: block; margin: auto;" />
+                </div>
+                <p class="description justify">
                     <b>Straight vs. Curvy Pear Shapes</b><br />
                     While the length-to-width ratio is something that you can calculate yourself by viewing the diamond’s measurements on the certificate, the silhouette of the stone is not something you can figure out on paper alone.
                     How the diamond is shaped, strictly in 2-dimensional terms, is really one of the most important aspects of a pear shape.
                     This is the case, particularly with pear shapes (and perhaps heart shapes as well), over and above all other shapes.
                 </p>
-                <p class="decription justify">
+                <p class="description justify">
                     <b>Unique Asymmetry</b><br />
                     The reason is simply that the pear shape’s silhouette is its signature.
                     Think about it – every other shape is a basic symmetrical geometric shape.
@@ -373,7 +210,9 @@
             <p><a href="#">Back To Top</a></p>
             <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
             <p>
-                <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Refund Policy</a>
+                <a href="#">Terms of Service</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Refund Policy</a>
             </p>
         </div>
     </footer>

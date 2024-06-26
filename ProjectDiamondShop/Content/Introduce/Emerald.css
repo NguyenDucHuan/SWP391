@@ -1,14 +1,14 @@
-﻿/* General Styles */
+﻿
+/* General Styles */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Montserrat', sans-serif;
 }
 
 body {
-	background-color: #fff;
-	color: #333;
+	background-color: #222; /* Màu nền chính */
+	color: #e0e0e0; /* Màu chữ */
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -19,19 +19,18 @@ main {
 }
 
 .navbar {
-	background: #fff !important;
+	background: #333 !important; /* Màu nền thanh điều hướng */
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	padding: 0.5rem 1rem;
-	border-radius: 30px;
 	margin-bottom: 20px;
 	transition: top 0.3s;
 	margin: 0 auto;
-	max-width: 95%;
 }
 
 	.navbar .navbar-brand {
-		color: #28a745 !important;
+		color: #FFFF99 !important; /* Màu chữ thương hiệu */
 		font-weight: bold;
+		font-family: "Playwrite ES Deco", cursive;
 		display: flex;
 		align-items: center;
 	}
@@ -43,7 +42,7 @@ main {
 		}
 
 	.navbar .nav-link {
-		color: #333 !important;
+		color: #fff !important; /* Màu chữ của liên kết */
 		font-weight: bold;
 		margin-right: 20px;
 		position: relative;
@@ -51,7 +50,7 @@ main {
 
 		.navbar .nav-link:hover,
 		.navbar .nav-link.active {
-			color: #000 !important;
+			color: #ddd !important; /* Màu chữ khi hover */
 		}
 
 		.navbar .nav-link:not(.dropdown-toggle)::after {
@@ -73,7 +72,7 @@ main {
 
 	.navbar .login-btn {
 		background: #28a745;
-		color: #fff !important;
+		color: #333 !important;
 		border-radius: 50px;
 		padding: 0.5rem 1rem;
 		font-weight: bold;
@@ -81,7 +80,7 @@ main {
 	}
 
 		.navbar .login-btn:hover {
-			background: #218838;
+			background: #28a745;
 		}
 
 .navbar-toggler {
@@ -100,7 +99,7 @@ main {
 }
 
 .carousel-indicators [data-bs-target] {
-	background-color: #000;
+	background-color: #28a745;
 }
 
 .carousel-control-prev-icon,
@@ -127,10 +126,10 @@ body {
 }
 
 .footer {
-	background-color: #fff;
+	background-color: #333;
 	padding: 20px 0;
 	text-align: center;
-	color: #333;
+	color: #FFD700;
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 	position: relative;
 	bottom: 0;
@@ -139,13 +138,13 @@ body {
 }
 
 	.footer a {
-		color: #00509e;
+		color: #FFD700;
 		text-decoration: none;
 		margin: 0 10px;
 	}
 
 		.footer a:hover {
-			color: #003f7d;
+			color: #FFF;
 			text-decoration: underline;
 		}
 

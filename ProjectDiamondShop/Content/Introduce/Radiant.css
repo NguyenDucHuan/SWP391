@@ -1,5 +1,4 @@
-﻿
-/* General Styles */
+﻿/* General Styles */
 * {
 	margin: 0;
 	padding: 0;
@@ -30,9 +29,9 @@ main {
 	.navbar .navbar-brand {
 		color: #FFFF99 !important;
 		font-weight: bold;
-		font-family: "Playwrite ES Deco", cursive;
 		display: flex;
 		align-items: center;
+		font-family: "Playwrite ES Deco", cursive;
 	}
 
 		.navbar .navbar-brand img {
@@ -170,3 +169,4 @@ body {
 		margin-bottom: 10px;
 	}
 }
+
