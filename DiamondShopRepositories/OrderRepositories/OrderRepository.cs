@@ -61,5 +61,10 @@ namespace DiamondShopRepositories.OrderRepositories
         {
             return orderDAO.GetVoucherDiscount(voucherID);
         }
+        public void UpdateOrder(tblOrder order)
+        {
+            orderDAO.Update(order);
+            orderDAO.SaveChanges();
+        }
     }
 }

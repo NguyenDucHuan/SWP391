@@ -189,6 +189,7 @@
     <Compile Include="DAOs\ItemDAO.cs" />
     <Compile Include="DAOs\JewelrySettingDAO.cs" />
     <Compile Include="DAOs\ManagerDAO.cs" />
+    <Compile Include="DAOs\NotificationDAO.cs" />
     <Compile Include="DAOs\OrderDAO.cs" />
     <Compile Include="DAOs\OrderItemDAO.cs" />
     <Compile Include="DAOs\StaffDAO.cs" />

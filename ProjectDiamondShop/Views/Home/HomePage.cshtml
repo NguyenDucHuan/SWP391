@@ -44,7 +44,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -57,6 +57,14 @@
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item dropdown notification-dropdown">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                            <div class="notification-list" id="notificationList">
+                                <!-- Notifications will be appended here -->
+                            </div>
                         </li>
                     }
                     else
@@ -247,6 +255,34 @@
                     window.location.href = ' ';
                 });
             }
+
+            // Handle bell icon click
+$('#notificationBell').click(function () {
+    $.ajax({
+        url: '@Url.Action("GetNotifications", "Notification")',
+        type: 'GET',
+        success: function (response) {
+            if (response.success) {
+                var notificationList = $('#notificationList');
+                notificationList.empty();
+                response.notifications.forEach(function (notification) {
+                    var item = '<div class="notification-item">' +
+                                   '<strong>' + notification.date + ':</strong> ' +
+                                   notification.detail +
+                               '</div>';
+                    notificationList.append(item);
+                });
+                notificationList.toggleClass('show');
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function () {
+            alert('Error retrieving notifications.');
+        }
+    });
+});
+
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;

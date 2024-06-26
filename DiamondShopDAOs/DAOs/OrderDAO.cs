@@ -163,5 +163,20 @@ namespace DiamondShopDAOs
 
             return 0;
         }
+        public void Update(tblOrder order)
+        {
+            var existingOrder = _context.tblOrders.Find(order.orderID);
+            if (existingOrder != null)
+            {
+                existingOrder.status = order.status;
+                existingOrder.totalMoney = order.totalMoney;
+                // Cập nhật các thuộc tính khác của đơn hàng
+            }
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

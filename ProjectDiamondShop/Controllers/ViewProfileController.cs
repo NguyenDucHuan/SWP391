@@ -1,4 +1,5 @@
 ﻿using DiamondShopBOs;
+using DiamondShopServices.NotificationService;
 using DiamondShopServices.UserService;
 using ProjectDiamondShop.Models;
 using System;
@@ -13,6 +14,8 @@ namespace ProjectDiamondShop.Controllers
     public class ViewProfileController : Controller
     {
         private readonly IUserService service = null;
+        private readonly INotificationService _notificationService;
+
         private bool IsAdmin()
         {
             return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
@@ -32,6 +35,7 @@ namespace ProjectDiamondShop.Controllers
         public ViewProfileController()
         {
             service = new UserService();
+            _notificationService = new NotificationService();
         }
         [HttpGet]
         public ActionResult EditProfile()
@@ -81,7 +85,8 @@ namespace ProjectDiamondShop.Controllers
                 return HttpNotFound("User not found");
             }
 
-            // Check old password if new password is provided
+            bool passwordChanged = false;
+
             if (!string.IsNullOrEmpty(newPassword))
             {
                 if (string.IsNullOrEmpty(oldPassword) || !ValidateOldPassword(userId, oldPassword))
@@ -90,9 +95,9 @@ namespace ProjectDiamondShop.Controllers
                     return View(model);
                 }
                 user.password = HashPassword(newPassword);
+                passwordChanged = true;
             }
 
-            // Update fields if they have changed
             if (!string.IsNullOrEmpty(model.fullName) && model.fullName != user.fullName)
             {
                 user.fullName = model.fullName;
@@ -102,18 +107,32 @@ namespace ProjectDiamondShop.Controllers
             {
                 user.email = model.email;
             }
+
             try
             {
                 service.UpdateUser(userId, user);
                 ViewBag.SuccessMessage = "Profile updated successfully!";
                 ViewBag.UserName = Session["UserName"] as string;
+
+                if (passwordChanged)
+                {
+                    _notificationService.AddNotification(new tblNotification
+                    {
+                        userID = userId,
+                        date = DateTime.Now,
+                        detail = "Your password has been changed successfully.",
+                        status = true
+                    });
+                }
             }
             catch (Exception ex)
             {
+                ViewBag.ErrorMessage = "An error occurred while updating the profile.";
             }
 
             return View(user);
         }
+
 
         private void UpdateUser(tblUser user)
         {

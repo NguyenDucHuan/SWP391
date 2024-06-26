@@ -21,5 +21,7 @@ namespace DiamondShopBOs
 
         public string FullName { get; set; }
         public string CustomerName { get; set; }
+        public string OrderID { get; set; }
+        public string UserID { get; set; }
     }
 }

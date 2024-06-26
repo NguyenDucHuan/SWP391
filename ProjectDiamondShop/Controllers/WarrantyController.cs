@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using DiamondShopBOs;
+using DiamondShopServices.NotificationService;
+using DiamondShopServices.OrderServices;
 using DiamondShopServices.WarrantyServices;
 
 namespace ProjectDiamondShop.Controllers
@@ -8,10 +11,14 @@ namespace ProjectDiamondShop.Controllers
     public class WarrantyController : Controller
     {
         private readonly IWarrantyService _warrantyService;
+        private readonly INotificationService _notificationService;
+        private readonly IOrderServices orderServices = null;
 
         public WarrantyController()
         {
             _warrantyService = new WarrantyService();
+            _notificationService = new NotificationService();
+            orderServices = new OrderServices();
         }
 
         [HttpGet]
@@ -39,6 +46,23 @@ namespace ProjectDiamondShop.Controllers
             if (ModelState.IsValid)
             {
                 _warrantyService.UpdateWarrantyDetails(model.WarrantyCode, model.WarrantyDetails);
+
+                // Get the logged-in user's ID from the session
+                var userID = Session["UserID"]?.ToString();
+                if (string.IsNullOrEmpty(userID))
+                {
+                    ViewBag.ErrorMessage = "User is not logged in.";
+                    return View("WarrantyDetails", model);
+                }
+
+                _notificationService.AddNotification(new tblNotification
+                {
+                    userID = userID, // Use the logged-in user's ID
+                    date = DateTime.Now,
+                    detail = "Your warranty request has been submitted.",
+                    status = true
+                });
+
                 ViewBag.SuccessMessage = "Warranty details updated successfully.";
             }
             else
@@ -49,6 +73,8 @@ namespace ProjectDiamondShop.Controllers
             var warranty = _warrantyService.GetWarrantyByCode(model.WarrantyCode);
             return View("WarrantyDetails", warranty);
         }
+
+
         public ActionResult ViewWarranty()
         {
             var userID = Session["UserID"]?.ToString();
@@ -69,6 +95,7 @@ namespace ProjectDiamondShop.Controllers
             }
             return View("CustomerWarranties", warranties);
         }
+
         public ActionResult ViewWarrantyDetail(int warrantyID)
         {
             var warranty = _warrantyService.GetWarrantyByID(warrantyID);
@@ -81,7 +108,43 @@ namespace ProjectDiamondShop.Controllers
             return View("ViewWarranty", warranty);
         }
 
+        [HttpPost]
+        public ActionResult SubmitWarranty(tblWarranty warranty)
+        {
+            _warrantyService.SubmitWarranty(warranty);
 
+            var order = orderServices.GetOrderById(warranty.orderID);
+            var customerId = order.customerID;
 
+            _notificationService.AddNotification(new tblNotification
+            {
+                userID = customerId,
+                date = DateTime.Now,
+                detail = "Your warranty request has been submitted.",
+                status = true
+            });
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ProcessWarranty(int warrantyId)
+        {
+            _warrantyService.ProcessWarranty(warrantyId);
+
+            var warranty = _warrantyService.GetWarrantyByID(warrantyId);
+            var order = orderServices.GetOrderById(warranty.OrderID);
+            var customerId = order.customerID;
+
+            _notificationService.AddNotification(new tblNotification
+            {
+                userID = customerId,
+                date = DateTime.Now,
+                detail = "Your warranty request is being processed.",
+                status = true
+            });
+
+            return RedirectToAction("Index");
+        }
     }
 }
