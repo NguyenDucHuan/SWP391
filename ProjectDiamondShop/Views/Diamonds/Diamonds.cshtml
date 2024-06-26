@@ -44,7 +44,7 @@
                         <a class="nav-link" href="@Url.Action("About","Home")">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                        <a class="nav-link" href="https://www.facebook.com/profile.php?id=61561345894731" target="_blank">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
@@ -57,7 +57,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -66,6 +66,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
@@ -191,7 +192,7 @@
                                             <div class="single-new-arrival-bg-overlay"></div>
                                         </div>
                                         <h4 class="mt-2"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
-                                        <p class="arrival-product-price">$@item.diamondPrice</p>
+                                        <p class="arrival-product-price">$@String.Format("{0:0.##}", item.diamondPrice)</p>
                                     </div>
                                 </a>
                             </div>
@@ -259,7 +260,7 @@
     <footer class="footer">
         <div class="container text-center">
             <p><a href="#">Back To Top</a></p>
-            <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p style="color: #FFD700 ">&copy; 2024 The Diamond Shop. All rights reserved.</p>
             <p>
                 <a href="#">Terms of Service</a> |
                 <a href="#">Privacy Policy</a> |
@@ -298,6 +299,10 @@
             slideMaxCarat();
         };
 
+        function formatValue(value) {
+            return parseFloat(value).toString();
+        }
+
         // Price Slider
         const minPriceVal = document.querySelector(".min-val.price");
         const maxPriceVal = document.querySelector(".max-val.price");
@@ -315,7 +320,7 @@
             if (gap < minGapPrice) {
                 minPriceVal.value = parseInt(maxPriceVal.value) - minGapPrice;
             }
-            priceInputMin.value = minPriceVal.value;
+            priceInputMin.value = formatValue(minPriceVal.value);
             setAreaPrice();
         }
 
@@ -324,7 +329,7 @@
             if (gap < minGapPrice) {
                 maxPriceVal.value = parseInt(minPriceVal.value) + minGapPrice;
             }
-            priceInputMax.value = maxPriceVal.value;
+            priceInputMax.value = formatValue(maxPriceVal.value);
             setAreaPrice();
         }
 
@@ -379,7 +384,7 @@
             if (gap < minGapCarat) {
                 minCaratVal.value = parseFloat(maxCaratVal.value) - minGapCarat;
             }
-            caratInputMin.value = minCaratVal.value;
+            caratInputMin.value = formatValue(minCaratVal.value);
             setAreaCarat();
         }
 
@@ -388,7 +393,7 @@
             if (gap < minGapCarat) {
                 maxCaratVal.value = parseFloat(minCaratVal.value) + minGapCarat;
             }
-            caratInputMax.value = maxCaratVal.value;
+            caratInputMax.value = formatValue(maxCaratVal.value);
             setAreaCarat();
         }
 

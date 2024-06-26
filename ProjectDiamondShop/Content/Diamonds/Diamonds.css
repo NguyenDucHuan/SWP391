@@ -244,9 +244,10 @@ main {
 		text-decoration: none;
 		margin: 0 10px;
 	}
+	
 
 		.footer a:hover {
-			color: #FFF;
+			color: #FFD700;
 			text-decoration: underline;
 		}
 
@@ -325,7 +326,7 @@ a {
 }
 
 p {
-	color: #A8741A;
+	color: #FFD700;
 	font-size: 1em; /* Ensure same font size */
 	margin-top: 5px; /* Add some space between name and price */
 }

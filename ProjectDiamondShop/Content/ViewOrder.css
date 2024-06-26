@@ -1,39 +1,67 @@
-﻿.container {
-	margin-top: 50px;
+﻿body {
+	background-color: #222222;
+	color: #fff;
 }
 
-.table {
-	width: 100%;
-	margin-bottom: 20px;
-	border-collapse: collapse;
+.container-custom {
+	margin-top: 85px;
 }
 
-	.table th, .table td {
-		padding: 10px;
-		border: 1px solid black;
-		text-align: center;
+.diamond-title {
+	color: #FFFF99;
+	font-size: 39px;
+	font-family: Cambria, Geneva, Verdana, sans-serif;
+}
+
+.table-container {
+	background-color: #444;
+	padding: 20px;
+	border-radius: 8px;
+}
+
+.table-dark th, .table-dark td, .table-dark thead th {
+	border-color: #555;
+}
+
+.table-dark {
+	color: #fff;
+	background-color: #333;
+}
+
+	.table-dark thead th {
+		color: #fff;
+		background-color: #444;
+	}
+
+	.table-dark tbody tr:nth-of-type(odd) {
+		background-color: #3a3a3a;
+	}
+
+	.table-dark tbody tr:nth-of-type(even) {
+		background-color: #444;
+	}
+
+.btn-primary {
+	background-color: #4CAF50;
+	border: none;
+}
+
+	.btn-primary:hover {
+		background-color: #45a049;
 	}
 
 .btn-info {
-	color: white;
-	background-color: #5bc0de;
-	border-color: #46b8da;
+	background-color: #2196F3;
+	border: none;
 }
 
 	.btn-info:hover {
-		color: white;
-		background-color: #31b0d5;
-		border-color: #269abc;
+		background-color: #0b7dda;
 	}
 
-.nav-buttons {
-	margin-bottom: 20px;
+.nav-buttons .btn-group .btn {
+	margin: 5px;
 }
-
-	.nav-buttons .btn-group {
-		display: flex;
-		justify-content: center;
-	}
 
 .section {
 	display: none;

@@ -4,98 +4,9 @@
     ViewBag.Title = "UserProfile";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-<style>
-    .container-profile {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        border-radius: 15px;
-        background-color: #ffff;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+<link href="~/Content/EditProfile.css" rel="stylesheet" />
 
-    .fa {
-        margin-top: 10px;
-        margin-left: 5px;
-    }
-
-    .profile-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: -10px;
-        margin-top: -70px;
-    }
-
-        .profile-header img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-right: 20px;
-        }
-
-        .profile-header h2 {
-            font-size: 24px;
-            margin: 0;
-        }
-
-    .profile-section {
-        margin-bottom: 20px;
-    }
-
-        .profile-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .profile-section .form-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-            .profile-section .form-group label {
-                font-weight: bold;
-            }
-
-            .profile-section .form-group input,
-            .profile-section .form-group select {
-                width: 100%;
-                padding-left: 40px; /* Adjust padding to make room for the icon */
-                border: 1px solid #ccc;
-                border-radius: 25px; /* Bo tròn các thanh điền */
-                font-size: 16px;
-                height: 40px;
-                box-sizing: border-box; /* Ensure padding and border are included in the width */
-            }
-
-            .profile-section .form-group i {
-                position: absolute;
-                left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 18px;
-                color: #888;
-            }
-
-    .btn-edit-profile-spacing {
-        margin-top: 20px;
-        background-color: #ffcc00;
-        border: none;
-        color: #fff;
-        font-size: 18px;
-        height: 50px;
-        border-radius: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        width: 100%;
-    }
-</style>
-
-<div class="container-profile" >
+<div class="container-profile">
     <div>
         <img src="~/Image/HomePage/BannerSlider/ViewProfile.jpg" alt="Destination 1" style="width: 100%;" />
     </div>
@@ -107,17 +18,7 @@
         @Html.AntiForgeryToken()
 
         <div class="profile-section">
-            <h3>User Information</h3>
-            <div class="form-group">
-                <label for="UserID">User ID</label>
-                <i class="fa fa-id-badge"></i>
-                <input type="text" id="UserID" class="form-control" value="@ViewBag.OriginalUserID" readonly />
-            </div>
-            <div class="form-group">
-                <label for="UserName">User Name</label>
-                <i class="fa fa-user"></i>
-                <input type="text" id="UserName" class="form-control" value="@ViewBag.UserName" readonly />
-            </div>
+            <h4 class="text-center">User Information</h4>
             <div class="form-group">
                 <label for="FullName">Full Name</label>
                 <i class="fa fa-user"></i>
@@ -129,7 +30,6 @@
                 @Html.TextBoxFor(m => m.email, new { @class = "form-control", @type = "email", @readonly = "readonly", @id = "Email", @placeholder = "E-Mail" })
             </div>
         </div>
-
 
         <div class="profile-section">
             <h3>Change Password</h3>
@@ -155,11 +55,10 @@
 <script>
     $(document).ready(function() {
         var successMessage = '@ViewBag.SuccessMessage';
-        var userName = '@ViewBag.UserName';
         if (successMessage) {
             $('#updateSuccessModal').modal('show');
-            $('#modalOkButton').click(function() {
-                window.location.href = '@Url.Action("Index", "Home")';
+            $('#updateSuccessModal').on('hidden.bs.modal', function () {
+                location.reload();
             });
         }
     });
@@ -179,7 +78,7 @@
                 <p>Your profile has been updated successfully!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                <button type="button" class="btn btn-primary" id="modalOkButton" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
