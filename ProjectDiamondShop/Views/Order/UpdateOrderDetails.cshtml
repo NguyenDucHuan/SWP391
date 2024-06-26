@@ -330,45 +330,59 @@
 
         <div class="box">
             <h2>Order Items</h2>
-            @foreach (var item in orderItems)
+            @if (orderItems != null && orderItems.Any())
             {
-                <div class="cart-item">
-                    <img src="@item.imagePath.Split('|')[item.settingID == 0 ? 0 : 1]" alt="Product Image" />
-                    <div class="cart-item-details">
-                        <div class="cart-item-info">
-                            <h5>Diamond Name: @item.DiamondName</h5>
-                            <p>Diamond Price: $@(item.diamondPrice)</p>
-                            @if (item.settingID != 0)
-                            {
-                                <p>Setting Name: @item.decription</p>
-                                <p>Setting Price: $@item.settingPrice</p>
-                            }
-                            @if (item.accentStoneID != 0)
-                            {
-                                <p>Accent Stone: @item.accentStoneID</p>
-                                <p>Accent Stone Price: $@item.accentStonePrice</p>
-                                <p>Accent Stone Quantity: @item.quantityAccent</p>
-                            }
-                            <strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong>
+                foreach (var item in orderItems)
+                {
+                    <div class="cart-item">
+                        <img src="@item.imagePath.Split('|')[0]" alt="Product Image" />
+                        <div class="cart-item-details">
+                            <div class="cart-item-info">
+                                <h5>Diamond Name: @item.DiamondName</h5>
+                                <p>Diamond Price: $@(item.diamondPrice)</p>
+                                @if (item.settingID != 0)
+                                {
+                                    <p>Setting Name: @item.decription</p>
+                                    <p>Setting Price: $@item.settingPrice</p>
+                                }
+                                @if (item.accentStoneID != 0)
+                                {
+                                    <p>Accent Stone: @item.accentStoneID</p>
+                                    <p>Accent Stone Price: $@item.accentStonePrice</p>
+                                    <p>Accent Stone Quantity: @item.quantityAccent</p>
+                                }
+                                <strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong>
+                            </div>
                         </div>
                     </div>
+                }
+
+                <div class="cart-summary">
+                    <p>Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
                 </div>
             }
-
-            <div class="cart-summary">
-                <p>Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
-            </div>
+            else
+            {
+                <p>No items found in the order.</p>
+            }
         </div>
 
         <div class="box">
             <h2>Date Update Status</h2>
             <ul class="timeline">
-                @foreach (var statusUpdate in statusUpdates)
+                @if (statusUpdates != null && statusUpdates.Any())
                 {
-                    <li>
-                        <strong>@statusUpdate.status</strong>
-                        <p>@statusUpdate.updateTime.ToString("g")</p>
-                    </li>
+                    foreach (var statusUpdate in statusUpdates)
+                    {
+                        <li>
+                            <strong>@statusUpdate.status</strong>
+                            <p>@statusUpdate.updateTime.ToString("g")</p>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p>No status updates found.</p>
                 }
             </ul>
         </div>

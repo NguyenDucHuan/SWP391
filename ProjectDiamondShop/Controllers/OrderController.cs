@@ -61,14 +61,17 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
-            // Lấy thông tin đơn hàng từ database
             var order = orderServices.GetOrderById(orderId);
 
-            // Lấy thông tin các mặt hàng trong đơn hàng từ database
+            if (order == null)
+            {
+                TempData["UpdateMessage"] = "Order not found.";
+                return RedirectToAction("Index", "Home");
+            }
+
             var orderItems = orderServices.GetOrderItems(orderId);
 
-            // Map tblOrderItem to ItemCartDAOSimple
-            var orderItemViewModels = orderItems.Select(item => new
+            var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
                 diamondID = item.tblItem.diamondID ?? 0,
                 diamondPrice = item.tblItem.diamondPrice,
@@ -83,13 +86,13 @@ namespace ProjectDiamondShop.Controllers
                 settingSize = item.tblItem.settingSize ?? 0
             }).ToList();
 
-            // Truyền dữ liệu vào ViewBag
             ViewBag.Order = order;
             ViewBag.OrderItems = orderItemViewModels;
             ViewBag.StatusUpdates = orderServices.GetOrderStatusUpdates(orderId);
 
             return View();
         }
+
 
 
 
