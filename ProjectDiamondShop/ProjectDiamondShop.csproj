@@ -270,6 +270,7 @@
     <Content Include="Content\SaleStaff.css" />
     <Content Include="Content\ViewOrder.css" />
     <Content Include="Content\WarrantyDetail.css" />
+    <Content Include="Content\Warrantys\Warranty.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
