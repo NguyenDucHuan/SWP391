@@ -62,5 +62,9 @@ namespace DiamondShopServices.OrderServices
         {
             return orderRepository.GetVoucherDiscount(voucherID);
         }
+        public void UpdateOrder(tblOrder order)
+        {
+            orderRepository.UpdateOrder(order);
+        }
     }
 }

@@ -179,6 +179,8 @@
     <Compile Include="JewelrySettingService\JewelrySettingService.cs" />
     <Compile Include="ManagerServices\IManagerService.cs" />
     <Compile Include="ManagerServices\ManagerService.cs" />
+    <Compile Include="NotificationService\INotificationService.cs" />
+    <Compile Include="NotificationService\NotificationService.cs" />
     <Compile Include="OrderServices\IItemService.cs" />
     <Compile Include="OrderServices\IOrderServices.cs" />
     <Compile Include="OrderServices\ItemService.cs" />

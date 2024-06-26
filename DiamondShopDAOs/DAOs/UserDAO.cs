@@ -225,5 +225,9 @@ namespace DiamondShopDAOs
 
             }
         }
+        public List<tblUser> GetAllUsers()
+        {
+            return diamondShopManagementEntities.tblUsers.ToList();
+        }
     }
 }

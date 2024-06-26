@@ -78,7 +78,22 @@ namespace DiamondShopDAOs
             return warranties;
         }
 
+        public tblWarranty GetWarrantyById(int warrantyId)
+        {
+            return _context.tblWarranties.Find(warrantyId);
+        }
 
+        public void ProcessWarranty(tblWarranty warranty)
+        {
+            warranty.status = "Processed";
+            _context.SaveChanges();
+        }
+
+        public void SubmitWarranty(tblWarranty warranty)
+        {
+            _context.tblWarranties.Add(warranty);
+            _context.SaveChanges();
+        }
 
     }
 }

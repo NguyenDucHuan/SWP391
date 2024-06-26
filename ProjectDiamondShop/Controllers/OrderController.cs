@@ -1,5 +1,6 @@
 ﻿using DiamondShopBOs;
 using DiamondShopDAOs.CookieCartDAO;
+using DiamondShopServices.NotificationService;
 using DiamondShopServices.OrderServices;
 using PayPal;
 using PayPal.Api;
@@ -24,7 +25,7 @@ namespace ProjectDiamondShop.Controllers
         private const decimal discountPercentage = 0.8m;
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
-
+        private readonly INotificationService _notificationService;
         public OrderController()
         {
             if (orderServices == null)
@@ -34,6 +35,10 @@ namespace ProjectDiamondShop.Controllers
             if (itemService == null)
             {
                 itemService = new ItemService();
+            }
+            if (_notificationService == null)
+            {
+                _notificationService = new NotificationService();
             }
         }
         private string GetUserID()
@@ -167,6 +172,14 @@ namespace ProjectDiamondShop.Controllers
             order.status = status;
             orderServices.UpdateOrderStatus(orderId, status);
 
+            //Notification
+            _notificationService.AddNotification(new tblNotification
+            {
+                userID = order.customerID,
+                date = DateTime.Now,
+                detail = $"Your order status has been updated to {status}.",
+                status = true
+            });
 
             TempData["UpdateMessage"] = "Order updated successfully.";
             return RedirectToAction("UpdateOrderDetails", new { orderId });
@@ -250,6 +263,14 @@ namespace ProjectDiamondShop.Controllers
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice, item.settingSize);
                 }
+                //Notification
+                _notificationService.AddNotification(new tblNotification
+                {
+                    userID = userID,
+                    date = DateTime.Now,
+                    detail = "Your payment via PayPal was successful.",
+                    status = true
+                });
             }
             catch (Exception ex)
             {

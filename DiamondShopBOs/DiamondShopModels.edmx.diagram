@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9f06ebf6afd41cd860aa83dbbb48dbf" Name="Diagram1" ZoomLevel="43">
+      <Diagram DiagramId="7c754377bc334d9e90649ecfae928ba7" Name="Diagram1">
         <EntityTypeShape EntityType="DiamondShopManagementModel.tblAccentStone" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DiamondShopManagementModel.tblCertificate" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DiamondShopManagementModel.tblChat" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />

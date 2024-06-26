@@ -11,6 +11,8 @@ using DiamondShopServices.AccentStoneService;
 using ProjectDiamondShop.Models;
 using System.IO;
 using System.Web;
+using DiamondShopServices.NotificationService;
+using DiamondShopServices.UserService;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -19,6 +21,8 @@ namespace ProjectDiamondShop.Controllers
         private readonly IDiamondService diamondService = null;
         private readonly IAccentStoneService accentStoneService = null;
         private readonly IJewelrySettingService jewelrySettingService = null;
+        private readonly IUserService _userService;
+        private readonly INotificationService _notificationService;
         private bool IsAdmin()
         {
             return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
@@ -48,6 +52,14 @@ namespace ProjectDiamondShop.Controllers
             if (accentStoneService == null)
             {
                 accentStoneService = new AccentStoneService();
+            }
+            if (_userService == null)
+            {
+                _userService = new UserService();
+            }
+            if (_notificationService == null)
+            {
+                _notificationService = new NotificationService();
             }
         }
 
@@ -302,6 +314,19 @@ namespace ProjectDiamondShop.Controllers
                 };
 
                 diamondService.AddNewDiamond(newDiamond, newCertificate);
+
+                //Notification
+                var users = _userService.GetAllUser();
+                foreach (var user in users)
+                {
+                    _notificationService.AddNotification(new tblNotification
+                    {
+                        userID = user.userID,
+                        date = DateTime.Now,
+                        detail = "A new diamond has been added.",
+                        status = true
+                    });
+                }
 
                 TempData["SuccessMessage"] = "Diamond added successfully!";
                 return RedirectToAction("AddDiamond");

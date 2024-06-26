@@ -35,5 +35,18 @@ namespace DiamondShopRepositories.WarrantyRepository
         {
             return _warrantyDAO.GetWarrantyByID(warrantyID);
         }
+        public void ProcessWarranty(int warrantyId)
+        {
+            var warranty = _warrantyDAO.GetWarrantyById(warrantyId);
+            if (warranty != null)
+            {
+                _warrantyDAO.ProcessWarranty(warranty);
+            }
+        }
+
+        public void SubmitWarranty(tblWarranty warranty)
+        {
+            _warrantyDAO.SubmitWarranty(warranty);
+        }
     }
 }

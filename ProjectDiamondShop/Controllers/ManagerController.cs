@@ -10,12 +10,16 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using DiamondShopServices.NotificationService;
+using DiamondShopServices.UserService;
 
 namespace ProjectDiamondShop.Controllers
 {
     public class ManagerController : Controller
     {
         private readonly IManagerService _managerService;
+        private readonly IUserService _userService;
+        private readonly INotificationService _notificationService;
 
         public ManagerController()
         {
@@ -84,6 +88,14 @@ namespace ProjectDiamondShop.Controllers
                             orderID = order.orderID,
                             status = update.Status,
                             updateTime = DateTime.Now
+                        });
+                        //Notification
+                        _notificationService.AddNotification(new tblNotification
+                        {
+                            userID = order.customerID,
+                            date = DateTime.Now,
+                            detail = $"Your order status has been updated to {update.Status}.",
+                            status = true
                         });
                     }
                 }
@@ -369,6 +381,31 @@ namespace ProjectDiamondShop.Controllers
                 _managerService.AddVoucher(voucher);
                 _managerService.SaveChanges();
                 TempData["SuccessMessage"] = "Voucher created successfully.";
+                //Notification
+                if (voucher.targetUserID == "All")
+                {
+                    var users = _userService.GetAllUser();
+                    foreach (var user in users)
+                    {
+                        _notificationService.AddNotification(new tblNotification
+                        {
+                            userID = user.userID,
+                            date = DateTime.Now,
+                            detail = "A new voucher is available.",
+                            status = true
+                        });
+                    }
+                }
+                else
+                {
+                    _notificationService.AddNotification(new tblNotification
+                    {
+                        userID = voucher.targetUserID,
+                        date = DateTime.Now,
+                        detail = "You have received a new voucher.",
+                        status = true
+                    });
+                }
             }
             catch (DbEntityValidationException ex)
             {

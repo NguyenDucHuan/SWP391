@@ -83,5 +83,14 @@ namespace DiamondShopServices.WarrantyServices
 
             return viewModel;
         }
+        public void ProcessWarranty(int warrantyId)
+        {
+            _warrantyRepository.ProcessWarranty(warrantyId);
+        }
+
+        public void SubmitWarranty(tblWarranty warranty)
+        {
+            _warrantyRepository.SubmitWarranty(warranty);
+        }
     }
 }

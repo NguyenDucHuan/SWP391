@@ -181,6 +181,8 @@
     <Compile Include="IDiamondRepository.cs" />
     <Compile Include="ManagerRepositories\IManagerRepository.cs" />
     <Compile Include="ManagerRepositories\ManagerRepository.cs" />
+    <Compile Include="NotificationRepository\INotificationRepository.cs" />
+    <Compile Include="NotificationRepository\NotificationRepository.cs" />
     <Compile Include="OrderRepositories\IOrderRepository.cs" />
     <Compile Include="OrderRepositories\ItemRepository.cs" />
     <Compile Include="OrderRepositories\IItemRepository.cs" />
@@ -209,5 +211,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
