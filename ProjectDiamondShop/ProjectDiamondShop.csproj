@@ -248,6 +248,8 @@
     <Content Include="Content\DeliveryStaff.css" />
     <Content Include="Content\Diamonds\AddDiamond.css" />
     <Content Include="Content\Diamonds\Diamonds.css" />
+    <Content Include="Content\Diamonds\ViewDiamond.css" />
+    <Content Include="Content\EditProfile.css" />
     <Content Include="Content\ForgotPassword.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\Introduce\Baguette.css" />
@@ -263,8 +265,11 @@
     <Content Include="Content\Introduce\Trillion.css" />
     <Content Include="Content\LoginPage.css" />
     <Content Include="Content\noUiSlider\jquery.nouislider.css" />
+    <Content Include="Content\Order\CreateOrder.css" />
     <Content Include="Content\ProductCss\StyleSheet1.css" />
+    <Content Include="Content\SaleStaff.css" />
     <Content Include="Content\ViewOrder.css" />
+    <Content Include="Content\WarrantyDetail.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -487,7 +492,6 @@
     <Content Include="Views\Home\HomePage.cshtml">
       <BrowseToURL>~/home/index</BrowseToURL>
     </Content>
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>

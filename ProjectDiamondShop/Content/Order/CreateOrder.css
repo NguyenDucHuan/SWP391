@@ -1,0 +1,92 @@
+﻿h2 {
+	margin-top: 150px;
+	text-align: center;
+}
+
+.container1 {
+	border-radius: 30px;
+	justify-content: center;
+	max-width: 800px;
+	padding: 20px;
+	background-color: #ffffff;
+	color: #333;
+	margin-top: 30px;
+	margin-bottom: 60px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+}
+
+	.table th, .table td {
+		padding: 10px;
+		border: none;
+	}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.btn-primary, .btn-voucher {
+	font-size: 16px;
+	padding: 10px 20px;
+	border-radius: 50px;
+	margin: 5px;
+	flex: 1;
+	color: #fff;
+	transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary {
+	background-color: #28a745;
+	border-color: #28a745;
+}
+
+.btn-voucher {
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+	.btn-primary:hover, .btn-voucher:hover {
+		background-color: #218838;
+		border-color: #1e7e34;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-voucher:hover {
+		background-color: #138496;
+		border-color: #117a8b;
+	}
+
+	.btn-primary:focus, .btn-voucher:focus {
+		box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+	}
+
+.alert-info {
+	color: #004085;
+	background-color: #cce5ff;
+	border-color: #b8daff;
+	text-align: center;
+}
+
+	.alert-info strong {
+		font-weight: bold;
+	}
+
+.no-border-table td {
+	border: none !important;
+}
+
+.button-group {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+.modal{
+	color:#333;
+}

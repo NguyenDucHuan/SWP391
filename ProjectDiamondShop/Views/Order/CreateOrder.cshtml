@@ -6,112 +6,11 @@
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-    h2 {
-        margin-top: 50px;
-        text-align: center;
-    }
-
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        background-color: #ffffff;
-        margin-top: 100px;
-        margin-bottom: 60px;
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-
-        .table th, .table td {
-            padding: 10px;
-            border: none;
-        }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .btn-primary, .btn-voucher {
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 50px;
-        margin: 5px;
-        flex: 1;
-        color: #fff;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    .btn-primary {
-        background-color: #28a745;
-        border-color: #28a745;
-    }
-
-    .btn-voucher {
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-    }
-
-        .btn-primary:hover, .btn-voucher:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-voucher:hover {
-            background-color: #138496;
-            border-color: #117a8b;
-        }
-
-        .btn-primary:focus, .btn-voucher:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
-        }
-
-    .alert-info {
-        color: #004085;
-        background-color: #cce5ff;
-        border-color: #b8daff;
-        text-align: center;
-    }
-
-        .alert-info strong {
-            font-weight: bold;
-        }
-
-    .no-border-table td {
-        border: none !important;
-    }
-
-    .button-group {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-
-    /*   .footer {
-        text-align: center;
-        padding: 20px 0;
-        color: #333;
-    }
-
-        .footer a {
-            color: #00509e;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-            .footer a:hover {
-                color: #003f7d;
-                text-decoration: underline;
-            }*/
-</style>
+<link href="~/Content/Order/CreateOrder.css" rel="stylesheet" />
 
 <h2><i class="fas fa-shopping-cart"></i> Create Order</h2>
 
-<div class="container">
+<div class="container1"style="border-radius: 30px;">
     <div id="noteSection" style="display: none;" class="alert alert-info" role="alert">
         <strong>Please note:</strong> You will need to pay a 20% deposit before placing your order. Deposit amount: <span id="depositAmount"></span>
     </div>
@@ -202,7 +101,7 @@
 
     <div class="button-group">
         <button type="button" class="btn btn-voucher" onclick="applyVoucher()">Add Voucher</button>
-        <button type="submit" class="btn btn-primary" onclick="return validateForm()">Create Order</button>
+        <button type="button" class="btn btn-primary" onclick="showPolicyModal()">Create Order</button>
     </div>
 
     <form id="paymentForm" action="/order/PaymentWithPayPal" method="post" style="display:none;">
@@ -213,7 +112,28 @@
     </form>
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="policyModal" tabindex="-1" role="dialog" aria-labelledby="policyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="policyModalLabel">Order Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: auto;"></button>
+            </div>
+            <div class="modal-body">
+                <p>Our shop will require payment in advance and cannot cancel orders. If there is a problem, please contact us. Our shop requires 20% payment in advance and when you receive the goods, 80% will be paid. Please think carefully before choosing</p>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="acceptPolicy">
+                    <label class="form-check-label" for="acceptPolicy">I accept the policy</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="confirmPolicy()">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     function applyVoucher() {
@@ -233,13 +153,28 @@
         document.getElementById("discountSection").style.display = "block";
     }
 
+    function showPolicyModal() {
+        var policyModal = new bootstrap.Modal(document.getElementById('policyModal'));
+        policyModal.show();
+    }
+
+    function confirmPolicy() {
+        var acceptPolicy = document.getElementById("acceptPolicy").checked;
+        if (acceptPolicy) {
+            var policyModal = bootstrap.Modal.getInstance(document.getElementById('policyModal'));
+            policyModal.hide();
+            validateForm();
+        } else {
+            alert("You must accept the policy to continue.");
+        }
+    }
+
     function validateForm() {
         var customerName = document.getElementById("CustomerName").value;
         var address = document.getElementById("Address").value;
         var phone = document.getElementById("Phone").value;
         var voucherID = document.getElementById("VoucherID").value;
 
-        // Kiểm tra xem customerName, address và phone có được điền đầy đủ hay không
         if (customerName.trim() === "") {
             document.getElementById("customerNameError").style.display = "block";
             return false;
@@ -261,21 +196,20 @@
         }
 
         var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", ""));
-        var depositAmount = totalPrice * 0.2; // Tính toán số tiền cần đặt cọc (20%)
+        var depositAmount = totalPrice * 0.2;
         document.getElementById("depositAmount").innerText = "$" + depositAmount.toFixed(2);
 
-        // Hiển thị phần note khi nhấp vào nút "Create Order"
         document.getElementById("noteSection").style.display = "block";
 
-        // Set hidden form fields
         document.getElementById("hiddenCustomerName").value = customerName;
         document.getElementById("hiddenAddress").value = address;
         document.getElementById("hiddenPhone").value = phone;
         document.getElementById("hiddenVoucherID").value = voucherID;
 
-
-        // Submit the hidden form
         document.getElementById("paymentForm").submit();
-        return false;
     }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+

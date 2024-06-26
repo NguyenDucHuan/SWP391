@@ -138,7 +138,7 @@
             background-color: #333;
             padding: 20px 0;
             text-align: center;
-            color: #fff;
+            color: #FFD700;
             box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
             position: relative;
             bottom: 0;
@@ -146,13 +146,16 @@
         }
 
             .footer a {
-                color: #28a745;
+                color: #FFD700;
                 text-decoration: none;
                 margin: 0 10px;
             }
+            .footer p {
+                color: #FFD700;
+            }
 
                 .footer a:hover {
-                    color: #218838;
+                    color: #FFD700;
                     text-decoration: underline;
                 }
 
@@ -199,7 +202,7 @@
                         <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                        <a class="nav-link" href="https://www.facebook.com/profile.php?id=61561345894731" target="_blank">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
@@ -212,7 +215,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -221,6 +224,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
