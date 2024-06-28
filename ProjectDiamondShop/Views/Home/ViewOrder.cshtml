@@ -52,9 +52,9 @@
                                     <td>@order.orderID</td>
                                     <td>@order.customerID</td>
                                     <td>@order.deliveryStaffID</td>
-                                    <td>@String.Format("{0:0.##}", order.paidAmount)</td>
-                                    <td>@String.Format("{0:0.##}", order.remainingAmount)</td>
-                                    <td>@String.Format("{0:0.##}", order.totalMoney)</td>
+                                    <td>@String.Format("{0:N0}", order.paidAmount)</td>
+                                    <td>@String.Format("{0:N0}", order.remainingAmount)</td>
+                                    <td>@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>@order.status</td>
                                     <td>
                                         <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
@@ -91,9 +91,9 @@
                                 <td>@order.orderID</td>
                                 <td>@order.customerID</td>
                                 <td>@order.deliveryStaffID</td>
-                                <td>@String.Format("{0:0.##}", order.paidAmount)</td>
-                                <td>@String.Format("{0:0.##}", order.remainingAmount)</td>
-                                <td>@String.Format("{0:0.##}", order.totalMoney)</td>
+                                <td>@String.Format("{0:N0}", order.paidAmount)</td>
+                                <td>@String.Format("{0:N0}", order.remainingAmount)</td>
+                                <td>@String.Format("{0:N0}", order.totalMoney)</td>
                                 <td>@order.status</td>
                                 <td>
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>

@@ -3,7 +3,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">    
 
 <head>
     <meta charset="utf-8" />
@@ -273,7 +273,7 @@
                             <tr>
                                 <td>@diamond.diamondID</td>
                                 <td>@diamond.diamondName</td>
-                                <td>@diamond.diamondPrice</td>
+                                <td>@String.Format("{0:N0}", diamond.diamondPrice)</td>
                                 <td>@diamond.diamondDescription</td>
                                 <td>@diamond.caratWeight</td>
                                 <td>@diamond.clarityID</td>
@@ -316,7 +316,7 @@
                                 <td>@stone.caratWeight</td>
                                 <td>@stone.clarity</td>
                                 <td>@stone.color</td>
-                                <td>@stone.price</td>
+                                <td>@String.Format("{0:N0}", stone.price)</td>
                                 <td>@stone.quantity</td>
                                 <td>
                                     @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
@@ -361,7 +361,7 @@
                                 <td>@setting.settingID</td>
                                 <td>@setting.settingType</td>
                                 <td>@setting.material</td>
-                                <td>@setting.priceTax</td>
+                                <td>@String.Format("{0:N0}", setting.priceTax)</td>
                                 <td>@setting.quantityStones</td>
                                 <td>@setting.description</td>
                                 <td><img src="@setting.imagePath" alt="Image" width="50"></td>

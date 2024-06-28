@@ -14,11 +14,11 @@ namespace DiamondShopBOs
     
     public partial class tblNotification
     {
-        public int notificationID { get; set; }
         public string userID { get; set; }
         public System.DateTime date { get; set; }
         public string detail { get; set; }
         public Nullable<bool> status { get; set; }
+        public int notificationID { get; set; }
     
         public virtual tblUser tblUser { get; set; }
     }

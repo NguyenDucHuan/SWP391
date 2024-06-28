@@ -192,7 +192,7 @@
                                             <div class="single-new-arrival-bg-overlay"></div>
                                         </div>
                                         <h4 class="mt-2"><a href="@Url.Action("ViewDiamond", "Diamonds", new { id = item.diamondID })">@item.diamondName</a></h4>
-                                        <p class="arrival-product-price">$@String.Format("{0:0.##}", item.diamondPrice)</p>
+                                        <p class="arrival-product-price">$@String.Format("{0:N0}", item.diamondPrice)</p>
                                     </div>
                                 </a>
                             </div>

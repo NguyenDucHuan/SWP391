@@ -38,7 +38,7 @@
         <div class="col-md-6">
             <h2 class="diamond-title">@Model.diamondName</h2>
             <p>@Model.diamondDescription</p>
-            <p><strong>Price:</strong> $@String.Format("{0:0.##}", @Model.diamondPrice)</p>
+            <p><strong>Price:</strong> $@String.Format("{0:N0}", @Model.diamondPrice)</p>
             <div class="action-buttons">
                 @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "add-to-cart-form" }))
                 {

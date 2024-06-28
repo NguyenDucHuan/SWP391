@@ -28,7 +28,7 @@
                             <img src="@imagepart[1]" alt="Diamond Image" style="max-height:50px;" />
                         </td>
                         <td>
-                            <strong>Total Price:</strong> $@item.diamondPrice
+                            <strong>Total Price:</strong> $@String.Format("{0:N0}", item.diamondPrice)
                         </td>
                     </tr>
                 }
@@ -42,19 +42,19 @@
                         </td>
                         <td>
                             <strong>Setting Name:</strong> @item.decription <br />
-                            <strong>Setting Price:</strong> $@item.settingPrice
+                            <strong>Setting Price:</strong> $@String.Format("{0:N0}", item.settingPrice)
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <strong>Accent Stone:</strong> @item.accentStoneID <br />
-                            <strong>Accent Stone Price:</strong> $@item.accentStonePrice <br />
+                            <strong>Accent Stone Price:</strong> $@String.Format("{0:N0}", item.accentStonePrice) <br />
                             <strong>Accent Stone Quantity:</strong> @item.quantityAccent
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <strong>Diamond Price:</strong> $@item.diamondPrice <br />
+                            <strong>Diamond Price:</strong> $@String.Format("{0:N0}", item.diamondPrice)<br />
                             <img src="@imagepart[1]" alt="Diamond Image" style="max-height:50px;" />
                         </td>
                     </tr>
@@ -96,7 +96,7 @@
     </div>
     <div class="form-group">
         <label for="Total">Total:</label>
-        <input type="text" class="form-control" id="Total" value="$@Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)))" disabled />
+        <input type="text" class="form-control" id="Total" value="$@String.Format("{0:N0}",Model.Items.Sum(i => (i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent))))" disabled />
     </div>
 
     <div class="button-group">
