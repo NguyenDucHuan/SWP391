@@ -23,9 +23,15 @@ namespace DiamondShopRepositories.NotificationRepository
             return _notificationDAO.GetNotificationsByUserId(userId);
         }
 
-        public void MarkAsRead(string notificationID)
+        public int GetUnreadNotificationCountByUserId(string userId)
         {
-            _notificationDAO.MarkAsRead(notificationID);
+            return _notificationDAO.GetUnreadNotificationCountByUserId(userId);
         }
+
+        public void MarkAllAsRead(string userId)
+        {
+            _notificationDAO.MarkAllAsRead(userId);
+        }
+
     }
 }

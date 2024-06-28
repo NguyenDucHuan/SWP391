@@ -15,17 +15,26 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult Index()
         {
-            var userId = User.Identity.Name; // Hoặc cách lấy user ID phù hợp khác
+            var userId = User.Identity.Name; // Or another way to get the user ID
             var notifications = _notificationService.GetNotificationsByUserId(userId);
             return View(notifications);
         }
 
         [HttpPost]
-        public ActionResult MarkAsRead(string notificationID)
+        public JsonResult MarkAllAsRead()
         {
-            _notificationService.MarkAsRead(notificationID);
-            return RedirectToAction("Index");
+            string userId = Session["UserID"] as string;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Json(new { success = false, message = "User not authenticated." });
+            }
+
+            _notificationService.MarkAllAsRead(userId);
+            return Json(new { success = true });
         }
+
+
+
         public JsonResult GetNotifications()
         {
             string userId = Session["UserID"] as string;
@@ -45,5 +54,18 @@ namespace ProjectDiamondShop.Controllers
 
             return Json(new { success = true, notifications }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetUnreadNotificationCount()
+        {
+            string userId = Session["UserID"] as string;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Json(new { success = false, message = "User not authenticated." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var unreadCount = _notificationService.GetUnreadNotificationCountByUserId(userId);
+            return Json(new { success = true, unreadCount }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

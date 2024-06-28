@@ -71,6 +71,29 @@ CREATE TABLE [dbo].[tblNotification](
     CONSTRAINT [PK_tblNotification] PRIMARY KEY CLUSTERED ([notificationID] ASC),
     CONSTRAINT [FK_tblNotification_tblUsers] FOREIGN KEY ([userID]) REFERENCES dbo.tblUsers ([userID])
 );
+-- Bước 1: Tạo cột tạm thời để lưu notificationID hiện tại (nếu cần)
+ALTER TABLE tblNotification ADD tempNotificationID NVARCHAR(50);
+
+-- Bước 2: Sao chép dữ liệu từ cột notificationID hiện tại vào cột tạm thời
+UPDATE tblNotification SET tempNotificationID = notificationID;
+
+-- Bước 3: Xóa ràng buộc khóa chính hiện tại
+ALTER TABLE tblNotification DROP CONSTRAINT PK_tblNotification;
+
+-- Bước 4: Xóa cột notificationID hiện tại
+ALTER TABLE tblNotification DROP COLUMN notificationID;
+
+-- Bước 5: Thêm cột notificationID mới với kiểu INT IDENTITY(1,1) và đặt làm khóa chính
+ALTER TABLE tblNotification ADD notificationID INT IDENTITY(1,1) PRIMARY KEY;
+
+-- Bước 6: Nếu cần, sao chép lại dữ liệu từ cột tạm thời vào cột mới (nếu có dữ liệu cũ cần lưu trữ)
+
+-- Bước 7: Xóa cột tạm thời
+ALTER TABLE tblNotification DROP COLUMN tempNotificationID;
+
+-- Bước 8: Tạo lại ràng buộc khóa ngoại (nếu cần)
+-- ALTER TABLE tblNotification ADD CONSTRAINT FK_tblNotification_tblUsers FOREIGN KEY (userID) REFERENCES dbo.tblUsers (userID);
+
 
 -- B?ng kim c??ng
 CREATE TABLE [dbo].[tblDiamonds](
