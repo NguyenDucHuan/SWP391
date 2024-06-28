@@ -24,14 +24,21 @@ namespace DiamondShopDAOs.DAOs
             return _context.tblNotifications.Where(n => n.userID == userId).ToList();
         }
 
-        public void MarkAsRead(string notificationID)
+        public int GetUnreadNotificationCountByUserId(string userId)
         {
-            var notification = _context.tblNotifications.Find(notificationID);
-            if (notification != null)
-            {
-                notification.status = false; // Đánh dấu là đã đọc
-                _context.SaveChanges();
-            }
+            return _context.tblNotifications.Count(n => n.userID == userId && n.status == true);
         }
+
+
+        public void MarkAllAsRead(string userId)
+        {
+            var unreadNotifications = _context.tblNotifications.Where(n => n.userID == userId && n.status == true).ToList();
+            foreach (var notification in unreadNotifications)
+            {
+                notification.status = false;
+            }
+            _context.SaveChanges();
+        }
+
     }
 }

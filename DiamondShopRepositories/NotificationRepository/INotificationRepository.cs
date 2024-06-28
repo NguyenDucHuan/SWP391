@@ -7,6 +7,7 @@ namespace DiamondShopRepositories.NotificationRepository
     {
         void AddNotification(tblNotification notification);
         List<tblNotification> GetNotificationsByUserId(string userId);
-        void MarkAsRead(string notificationID);
+        int GetUnreadNotificationCountByUserId(string userId);
+        void MarkAllAsRead(string notificationID);
     }
 }
