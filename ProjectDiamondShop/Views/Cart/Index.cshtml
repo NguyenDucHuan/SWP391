@@ -16,19 +16,19 @@
             <div class="cart-item-details">
                 <div class="cart-item-info">
                     <h5>Diamond Name: @item.value.DiamondName</h5>
-                    <p>Diamond Price: $@(item.value.diamondPrice)</p>
+                    <p>Diamond Price: $@String.Format("{0:N0}", item.value.diamondPrice)</p>
                     @if (item.value.settingID != 0)
                     {
                         <p>Setting Name: @item.value.decription</p>
-                        <p>Setting Price: $@item.value.settingPrice</p>
+                        <p>Setting Price: $@String.Format("{0:N0}", item.value.settingPrice)</p>
                     }
                     @if (item.value.accentStoneID != 0)
                     {
                         <p>Accent Stone: @item.value.accentStoneID</p>
-                        <p>Accent Stone Price: $@item.value.accentStonePrice</p>
+                        <p>Accent Stone Price: $@String.Format("{0:N0}", item.value.accentStonePrice)</p>
                         <p>Accent Stone Quantity: @item.value.quantityAccent</p>
                     }
-                    <strong>Total Price: $@(item.value.diamondPrice + item.value.settingPrice + item.value.accentStonePrice * item.value.quantityAccent)</strong>
+                    <strong>Total Price: $@String.Format("{0:N0}", item.value.diamondPrice + item.value.settingPrice + item.value.accentStonePrice * item.value.quantityAccent)</strong>
                 </div>
                 <div class="cart-item-actions">
                     @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
@@ -44,7 +44,7 @@
     }
 
     <div class="cart-summary">
-        <p>Total: $@Model.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
+        <p>Total: $@String.Format("{0:N0}", Model.Items.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent))</p>
         <div class="button-group">
             @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
             {
