@@ -10,7 +10,8 @@ namespace DiamondShopServices.WarrantyServices
         void CreateWarranty(tblWarranty warranty);
         List<tblWarranty> GetNonValidWarrantiesByCustomer(string customerId);
         WarrantyDetailsViewModel GetWarrantyByID(int warrantyID);
-        void ProcessWarranty(int warrantyId);
+        bool ProcessWarranty(int warrantyID);
         void SubmitWarranty(tblWarranty warranty);
+        List<tblWarranty> GetNonValidWarranties();
     }
 }

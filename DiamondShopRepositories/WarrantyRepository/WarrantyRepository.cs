@@ -48,5 +48,13 @@ namespace DiamondShopRepositories.WarrantyRepository
         {
             _warrantyDAO.SubmitWarranty(warranty);
         }
+        public List<tblWarranty> GetNonValidWarranties()
+        {
+            return _warrantyDAO.GetNonValidWarranties();
+        }
+        public void UpdateWarranty(tblWarranty warranty) // Thêm phương thức này
+        {
+            _warrantyDAO.UpdateWarranty(warranty);
+        }
     }
 }

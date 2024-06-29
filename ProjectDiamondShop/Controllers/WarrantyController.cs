@@ -128,23 +128,26 @@ namespace ProjectDiamondShop.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProcessWarranty(int warrantyId)
+        public ActionResult ProcessWarranty(int warrantyID)
         {
-            _warrantyService.ProcessWarranty(warrantyId);
-
-            var warranty = _warrantyService.GetWarrantyByID(warrantyId);
-            var order = orderServices.GetOrderById(warranty.OrderID);
-            var customerId = order.customerID;
-
-            _notificationService.AddNotification(new tblNotification
+            try
             {
-                userID = customerId,
-                date = DateTime.Now,
-                detail = "Your warranty request is being processed.",
-                status = true
-            });
-
-            return RedirectToAction("Index");
+                var result = _warrantyService.ProcessWarranty(warrantyID);
+                if (result)
+                {
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Unable to process warranty." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
+
+
     }
 }
