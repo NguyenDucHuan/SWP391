@@ -94,6 +94,14 @@ namespace DiamondShopDAOs
             _context.tblWarranties.Add(warranty);
             _context.SaveChanges();
         }
-
+        public List<tblWarranty> GetNonValidWarranties()
+        {
+            return _context.tblWarranties.Where(w => w.status != "Valid").ToList();
+        }
+        public void UpdateWarranty(tblWarranty warranty)
+        {
+            _context.Entry(warranty).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }

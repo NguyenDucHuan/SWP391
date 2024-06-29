@@ -138,6 +138,7 @@
             <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
             <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
             <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
+            <a href="javascript:void(0)" onclick="showSection('warranties')"><i class="fas fa-shield-alt"></i> Warranties</a>
         }
         @if ((int)Session["RoleID"] == 2)
         {
@@ -149,6 +150,7 @@
             <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
             <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
             <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> Create Account</a>
+            <a href="javascript:void(0)" onclick="showSection('warranties')"><i class="fas fa-shield-alt"></i> Warranties</a>
         }
         <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> Create Voucher</a>
         <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> Add New Diamonds</a>
@@ -512,58 +514,101 @@
                 </div>
             </div>
         }
+        <div class="main-content">
+            <!-- Existing sections... -->
 
-        <div id="createAccount" class="section" style="display:none;">
-            <div class="signup-container">
-                <h3 class="center-text">Create System Account</h3>
-                @using (Html.BeginForm("CreateStaffAccount", "Manager", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <label for="txtUname">User Name:</label>
-                        <input type="text" class="form-control" id="txtUname" name="userName" placeholder="Enter Your User Name" value="@TempData["UserName"]" required />
-                    </div>
-                    <div class="form-group position-relative">
-                        <label for="txtPass">Password:</label>
-                        <input type="password" class="form-control" id="txtPass" name="password" placeholder="Enter Your Password" required />
-                        <span toggle="#txtPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    </div>
-                    <div class="form-group position-relative">
-                        <label for="txtCPass">Confirm Password:</label>
-                        <input type="password" class="form-control" id="txtCPass" name="confirmPassword" placeholder="Enter Your Confirm Password" required />
-                        <span toggle="#txtCPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName">Full Name:</label>
-                        <input type="text" class="form-control" id="txtName" name="fullName" placeholder="Enter Your Name" value="@TempData["FullName"]" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Email:</label>
-                        <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Your Email" value="@TempData["Email"]" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="roleId">Role:</label>
-                        <select class="form-control" id="roleId" name="roleId" required>
-                            <option value="3" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 3 ? "selected" : "")>Manager</option>
-                            <option value="5" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 5 ? "selected" : "")>Sale Staff</option>
-                            <option value="4" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 4 ? "selected" : "")>Delivery Staff</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-success">Sign Up</button>
-                }
+            <div id="warranties" class="section" style="display:none;">
+                <h3>Warranties</h3>
+                <input type="text" id="searchWarranties" class="form-control mb-3" onkeyup="searchTable('warrantiesTable', 'searchWarranties', 0)" placeholder="Search for warranties by Warranty ID..">
+                <div class="table-container">
+                    <table id="warrantiesTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Warranty ID</th>
+                                <th>Order ID</th>
+                                <th>Item ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Details</th>
+                                <th>Warranty Code</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var warranty in ViewBag.NonValidWarranties)
+                            {
+                                <tr>
+                                    <td>@warranty.warrantyID</td>
+                                    <td>@warranty.orderID</td>
+                                    <td>@warranty.ItemID</td>
+                                    <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyDetails</td>
+                                    <td>@warranty.warrantyCode</td>
+                                    <td>@warranty.status</td>
+                                    <td>
+                                        <button class="btn btn-primary process-btn" data-id="@warranty.warrantyID" @(warranty.status == "Processed" ? "disabled" : "")>
+                                            Process
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="createAccount" class="section" style="display:none;">
+                <div class="signup-container">
+                    <h3 class="center-text">Create System Account</h3>
+                    @using (Html.BeginForm("CreateStaffAccount", "Manager", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="txtUname">User Name:</label>
+                            <input type="text" class="form-control" id="txtUname" name="userName" placeholder="Enter Your User Name" value="@TempData["UserName"]" required />
+                        </div>
+                        <div class="form-group position-relative">
+                            <label for="txtPass">Password:</label>
+                            <input type="password" class="form-control" id="txtPass" name="password" placeholder="Enter Your Password" required />
+                            <span toggle="#txtPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group position-relative">
+                            <label for="txtCPass">Confirm Password:</label>
+                            <input type="password" class="form-control" id="txtCPass" name="confirmPassword" placeholder="Enter Your Confirm Password" required />
+                            <span toggle="#txtCPass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtName">Full Name:</label>
+                            <input type="text" class="form-control" id="txtName" name="fullName" placeholder="Enter Your Name" value="@TempData["FullName"]" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail">Email:</label>
+                            <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Enter Your Email" value="@TempData["Email"]" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="roleId">Role:</label>
+                            <select class="form-control" id="roleId" name="roleId" required>
+                                <option value="3" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 3 ? "selected" : "")>Manager</option>
+                                <option value="5" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 5 ? "selected" : "")>Sale Staff</option>
+                                <option value="4" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 4 ? "selected" : "")>Delivery Staff</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign Up</button>
+                    }
+                </div>
+            </div>
+
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
 
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <script>
         function showSection(sectionId) {
             var sections = document.getElementsByClassName('section');
             for (var i = 0; i < sections.length; i++) {
@@ -786,7 +831,28 @@
                 input.attr('type', 'password');
             }
         });
-    </script>
+        $(document).ready(function () {
+    $(".process-btn").click(function () {
+        var warrantyId = $(this).data("id");
+        $.ajax({
+            url: '@Url.Action("ProcessWarranty", "Warranty")',
+            type: 'POST',
+            data: { warrantyID: warrantyId },
+            success: function (response) {
+                if (response.success) {
+                    alert("Warranty processed successfully.");
+                    location.reload();
+                } else {
+                    alert("Failed to process warranty: " + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error: " + error);
+            }
+        });
+    });
+});
+        </script>
 </body>
 
 </html>

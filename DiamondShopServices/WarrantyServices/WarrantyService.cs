@@ -1,18 +1,22 @@
 ﻿using DiamondShopBOs;
 using DiamondShopRepositories.WarrantyRepository;
+using DiamondShopServices.NotificationService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 
 namespace DiamondShopServices.WarrantyServices
 {
     public class WarrantyService : IWarrantyService
     {
         private readonly IWarrantyRepository _warrantyRepository;
+        private readonly INotificationService _notificationService;
 
         public WarrantyService()
         {
             _warrantyRepository = new WarrantyRepository();
+            _notificationService = new DiamondShopServices.NotificationService.NotificationService();
         }
 
         public WarrantyDetailsViewModel GetWarrantyByCode(string warrantyCode)
@@ -83,14 +87,39 @@ namespace DiamondShopServices.WarrantyServices
 
             return viewModel;
         }
-        public void ProcessWarranty(int warrantyId)
+        public bool ProcessWarranty(int warrantyID)
         {
-            _warrantyRepository.ProcessWarranty(warrantyId);
+            var warranty = _warrantyRepository.GetWarrantyByID(warrantyID);
+            if (warranty != null && warranty.status != "Processed")
+            {
+                warranty.status = "Processed";
+                _warrantyRepository.UpdateWarranty(warranty);
+
+                // Create notification if needed
+                var notification = new tblNotification
+                {
+                    userID = warranty.tblOrderItem.tblOrder.customerID,
+                    date = DateTime.Now,
+                    detail = $"Your warranty (ID: {warrantyID}) has been processed.",
+                    status = true
+                };
+                _notificationService.AddNotification(notification);
+
+                return true;
+            }
+            return false;
         }
+
+
 
         public void SubmitWarranty(tblWarranty warranty)
         {
             _warrantyRepository.SubmitWarranty(warranty);
         }
+        public List<tblWarranty> GetNonValidWarranties()
+        {
+            return _warrantyRepository.GetNonValidWarranties();
+        }
+
     }
 }

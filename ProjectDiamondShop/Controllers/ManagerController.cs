@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using DiamondShopServices.NotificationService;
 using DiamondShopServices.UserService;
+using DiamondShopServices.WarrantyServices;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -20,10 +21,12 @@ namespace ProjectDiamondShop.Controllers
         private readonly IManagerService _managerService;
         private readonly IUserService _userService;
         private readonly INotificationService _notificationService;
+        private readonly IWarrantyService _warrantyService;
 
         public ManagerController()
         {
             _managerService = new ManagerService();
+            _warrantyService = new WarrantyService();
         }
 
         public ActionResult Index()
@@ -39,6 +42,8 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.DeliveryStaff = _managerService.GetUsersByRole(4);
             ViewBag.AccentStones = _managerService.GetAccentStones();
             ViewBag.Settings = _managerService.GetSettings();
+            var nonValidWarranties = _warrantyService.GetNonValidWarranties();
+            ViewBag.NonValidWarranties = nonValidWarranties;
             ViewBag.Users = (int)Session["RoleID"] == 2 ? _managerService.GetUsers() : null;
 
             var revenueData = _managerService.GetRevenueData();
