@@ -29,22 +29,29 @@ namespace ProjectDiamondShop.Controllers
             _warrantyService = new WarrantyService();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 30)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.userName = Session["UserName"];
+            ViewBag.roleName = Session["RoleName"];
 
             ViewBag.Orders = _managerService.GetOrders();
-            ViewBag.Diamonds = _managerService.GetDiamonds();
+
+            var diamonds = _managerService.GetDiamonds();
+            ViewBag.TotalDiamonds = diamonds.Count();
+            ViewBag.PageSize = pageSize;
+            ViewBag.CurrentPage = page;
+            ViewBag.Diamonds = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
             ViewBag.SaleStaff = _managerService.GetUsersByRole(5);
             ViewBag.DeliveryStaff = _managerService.GetUsersByRole(4);
             ViewBag.AccentStones = _managerService.GetAccentStones();
             ViewBag.Settings = _managerService.GetSettings();
-            var nonValidWarranties = _warrantyService.GetNonValidWarranties();
-            ViewBag.NonValidWarranties = nonValidWarranties;
             ViewBag.Users = (int)Session["RoleID"] == 2 ? _managerService.GetUsers() : null;
+            ViewBag.Vouchers = _managerService.GetVouchers();
 
             var revenueData = _managerService.GetRevenueData();
             ViewBag.RevenueLabels = revenueData.Select(r => r.Date).ToList();
@@ -254,8 +261,7 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-            string hashedUserName = HashString(userName);
-            if (_managerService.GetUsers().Any(u => u.userName == hashedUserName))
+            if (_managerService.GetUsers().Any(u => u.userName == userName))
             {
                 TempData["ErrorMessage"] = "User name already exists.";
                 hasErrors = true;
@@ -282,7 +288,7 @@ namespace ProjectDiamondShop.Controllers
             var newUser = new tblUser
             {
                 userID = userId,
-                userName = hashedUserName,
+                userName = userName,
                 fullName = fullName,
                 email = email,
                 password = hashedPassword,
@@ -565,6 +571,56 @@ namespace ProjectDiamondShop.Controllers
             };
 
             return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult ToggleDiamondStatus(int diamondId, bool status)
+        {
+            try
+            {
+                var diamond = _managerService.GetDiamondById(diamondId);
+                if (diamond != null)
+                {
+                    diamond.status = status;
+                    _managerService.SaveChanges();
+                }
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult ToggleVoucherStatus(int voucherId, bool status)
+        {
+            try
+            {
+                _managerService.ToggleVoucherStatus(voucherId, status);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+        public ActionResult UseVoucher(int voucherId)
+        {
+            try
+            {
+                var voucher = _managerService.GetVouchers().FirstOrDefault(v => v.voucherID == voucherId);
+                if (voucher != null && voucher.quantity > 0)
+                {
+                    voucher.quantity -= 1;
+                    _managerService.UpdateVoucherQuantity(voucherId, voucher.quantity);
+                }
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
 
     }

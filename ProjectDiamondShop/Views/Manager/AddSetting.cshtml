@@ -7,59 +7,100 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Content/Icons/diamond (1).png" />
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+        }
+
         .form-container {
+            padding: 40px;
             max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .form-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #333333;
-            text-align: center;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-                border-color: #0056b3;
+            .form-container h2 {
+                margin-bottom: 25px;
+                font-weight: bold;
+                color: #333;
+                text-align: center;
             }
 
-        .custom-file-label::after {
-            content: "Browse";
+            .form-container .form-label {
+                font-weight: bold;
+                color: #555;
+            }
+
+            .form-container .form-control, .form-container .form-select, .form-container .custom-file-input {
+                border-radius: 10px;
+                border: 1px solid #ddd;
+                margin-bottom: 15px;
+                padding: 10px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+            .form-container .custom-file-label {
+                border-radius: 10px;
+                padding: 10px;
+            }
+
+            .form-container .btn-container {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+
+            .form-container .btn-primary {
+                border-radius: 10px;
+                font-weight: bold;
+                padding: 5px 10px;
+                font-size: 14px;
+                background-color: #007bff;
+                border-color: #007bff;
+                color: white;
+            }
+
+            .form-container .btn-warning {
+                border-radius: 10px;
+                font-weight: bold;
+                padding: 5px 10px;
+                font-size: 14px;
+                background-color: #6c757d;
+                border-color: #6c757d;
+                color: white;
+            }
+
+        .back-to-admin {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
+            .back-to-admin a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .back-to-admin a:hover {
+                    text-decoration: underline;
+                }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="form-container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div class="form-title">Add New Setting</div>
-            </div>
+            <h2>Add New Setting</h2>
 
             @using (Html.BeginForm("AddSetting", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -70,51 +111,54 @@
                     </div>
                 }
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.settingType, "Setting Type")
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.settingType, "Setting Type", new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.settingType, new { @class = "form-control", placeholder = "Enter setting type" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.material, "Material")
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.material, "Material", new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.material, new { @class = "form-control", placeholder = "Enter material" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.priceTax, "Price")
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.priceTax, "Price", new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.priceTax, new { @class = "form-control", placeholder = "Enter price" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.quantityStones, "Quantity Stones")
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.quantityStones, "Quantity Stones", new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.quantityStones, new { @class = "form-control", placeholder = "Enter quantity of stones" })
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.description, "Description")
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.description, "Description", new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.description, new { @class = "form-control", placeholder = "Enter description" })
                 </div>
-                <div class="form-group">
-                    @Html.Label("Setting Image")
+                <div class="mb-3">
+                    @Html.Label("Setting Image", new { @class = "form-label" })
                     <div class="custom-file">
                         <input type="file" name="settingImage" class="custom-file-input" id="settingImage">
                         <label class="custom-file-label" for="settingImage">Choose file</label>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between">
+                <div class="btn-container">
                     <button type="submit" class="btn btn-primary">Add Setting</button>
                     <button type="button" class="btn btn-warning" onclick="clearForm()">Clear Form</button>
                 </div>
+
+                <div class="back-to-admin mt-4">
+                    @if ((int)Session["RoleID"] == 3)
+                    {
+                        <a href="@Url.Action("Index", "Manager")">Back to Manage Board</a>
+                    }
+                    @if ((int)Session["RoleID"] == 2)
+                    {
+                        <a href="@Url.Action("Index", "Manager")">Back to Admin Board</a>
+                    }
+                </div>
             }
         </div>
-        @if ((int)Session["RoleID"] == 3)
-        {
-            <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary floating-btn">Back to Manage Board</a>
-        }
-        @if ((int)Session["RoleID"] == 2)
-        {
-            <a href="@Url.Action("Index", "Manager")" class="btn btn-secondary floating-btn">Back to Admin Board</a>
-        }
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script>
         $(document).ready(function () {

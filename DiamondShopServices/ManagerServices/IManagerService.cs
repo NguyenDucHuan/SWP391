@@ -30,5 +30,8 @@ namespace DiamondShopServices.ManagerServices
         void AddSetting(tblSetting setting);
         void AddAccentStone(tblAccentStone accentStone);
         List<RevenueData> GetChartData(int month, int year);
+        tblDiamond GetDiamondById(int diamondID);
+        void ToggleVoucherStatus(int voucherId, bool status);
+        void UpdateVoucherQuantity(int voucherId, int? newQuantity);
     }
 }

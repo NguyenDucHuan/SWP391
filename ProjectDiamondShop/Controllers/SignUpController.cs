@@ -35,6 +35,7 @@ namespace ProjectDiamondShop.Controllers
             string fullName = Request.Form["txtName"];
             string email = Request.Form["txtEmail"];
             bool hasErrors = false;
+
             // Validate inputs
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
             {
@@ -74,6 +75,13 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
+            // Validate email format
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                ModelState.AddModelError("InvalidEmail", "Email is not in a correct format.");
+                hasErrors = true;
+            }
+
             // Check if user name already exists
             string hashedUserName = HashString(userName);
             if (userService.CheckDuplicateUserName(hashedUserName))
@@ -107,7 +115,7 @@ namespace ProjectDiamondShop.Controllers
                     ViewBag.ConfirmPassword = confirmPassword;
                 }
 
-                var prioritizedErrors = new[] { "RequiredFields", "PasswordRequired", "PasswordMismatch", "PasswordLowercase", "PasswordUppercase", "PasswordSpecialChar", "DuplicateUserName", "DuplicateEmail" };
+                var prioritizedErrors = new[] { "RequiredFields", "PasswordRequired", "PasswordMismatch", "PasswordLowercase", "PasswordUppercase", "PasswordSpecialChar", "DuplicateUserName", "DuplicateEmail", "InvalidEmail" };
                 foreach (var key in prioritizedErrors)
                 {
                     if (ModelState.ContainsKey(key) && ModelState[key].Errors.Count > 0)
@@ -151,7 +159,6 @@ namespace ProjectDiamondShop.Controllers
             // Redirect to login page after successful registration
             return RedirectToAction("Index", "Login");
         }
-
 
         private string HashString(string str)
         {

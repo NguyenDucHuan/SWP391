@@ -2,481 +2,374 @@
     ViewBag.Title = "Manager Dashboard";
 }
 
-<!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #343a40;
-            padding-top: 20px;
-            overflow-x: hidden;
-            transition: 0.5s;
-        }
-
-            .sidebar a {
-                padding: 15px 8px 15px 32px;
-                text-decoration: none;
-                font-size: 18px;
-                color: #f8f9fa;
-                display: block;
-                transition: 0.3s;
-            }
-
-                .sidebar a:hover {
-                    background-color: #575d63;
-                }
-
-                .sidebar a .fa {
-                    margin-right: 10px;
-                }
-
-        .main-content {
-            margin-left: 260px;
-            padding: 20px;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .table-container {
-            max-height: 1000px;
-            overflow-y: auto;
-        }
-
-        .table thead th {
-            background-color: #f8f9fa;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-
-        .spinner-border {
-            display: none;
-            width: 3rem;
-            height: 3rem;
-            border-width: .3rem;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1050;
-        }
-
-        .signup-container {
-            padding: 20px;
-            margin-top: 10px;
-            max-width: 400px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 2px solid #ccc;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            background-color: #d0e8f2;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-control {
-            width: 100%;
-        }
-
-        .center-text {
-            text-align: center;
-            color: #333;
-        }
-
-        .field-icon {
-            float: right;
-            margin-right: 10px;
-            margin-top: -25px;
-            position: relative;
-            z-index: 2;
-            cursor: pointer;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .btn-status {
-            width: 100px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/1hb5ZV5Z5x5s39D5p6CBt/b5L5l5+s5W6j15W5" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" integrity="sha384-jLKHWMHpbDwex0ilUmPO96Mc6A+K6sbckjXAM5c28Ik19a++q2y6t7L6zK3s7F2M" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="~/Content/Manager/Site.css?v=1.0" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Content/Icons/diamond (1).png" />
 </head>
 
 <body>
-    <div class="sidebar">
-        @if ((int)Session["RoleID"] == 3)
-        {
-            <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
-            <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
-            <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
-            <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
-            <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
-            <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
-            <a href="javascript:void(0)" onclick="showSection('warranties')"><i class="fas fa-shield-alt"></i> Warranties</a>
-        }
-        @if ((int)Session["RoleID"] == 2)
-        {
-            <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
-            <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
-            <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
-            <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
-            <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
-            <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
-            <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
-            <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> Create Account</a>
-            <a href="javascript:void(0)" onclick="showSection('warranties')"><i class="fas fa-shield-alt"></i> Warranties</a>
-        }
-        <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> Create Voucher</a>
-        <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> Add New Diamonds</a>
-        <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> Add New Settings</a>
-        <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> Add New Accent Stones</a>
-        <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    </div>
-
-    <div class="main-content">
-        <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
-        <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
-
-        <div id="chart" class="section" style="display:block;">
-            @if ((int)Session["RoleID"] == 3)
-            {
-                <div>
-                    <h3>Revenue Chart</h3>
-                    <canvas id="revenueChart" class="w-100"></canvas>
+    <div class="container">
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <h2>The Diamond<span class="danger">Shop</span></h2>
                 </div>
-            }
-            @if ((int)Session["RoleID"] == 2)
-            {
-                <div>
-                    <h3>Revenue Chart</h3>
-                    <canvas id="revenueChart" class="w-100"></canvas>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
                 </div>
-                <div>
-                    <h3>Registration Chart</h3>
-                    <canvas id="registrationChart" class="w-100"></canvas>
+            </div>
+            <div class="sidebar">
+                <a href="javascript:void(0)" onclick="showSection('dashboard')">
+                    <span class="material-icons-sharp">dashboard</span>
+                    Dashboard
+                </a>
+                @if ((int)Session["RoleID"] == 3)
+                {
+                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
+                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
+                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> View Voucher</a>
+                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
+                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
+                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
+                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
+                }
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
+                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
+                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> View Voucher</a>
+                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
+                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
+                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
+                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
+                    <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
+                    <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> Create Account</a>
+                }
+                <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> Create Voucher</a>
+                <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> Add New Diamonds</a>
+                <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> Add New Settings</a>
+                <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> Add New Accent Stones</a>
+                <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
+            <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
+
+            <div id="dashboard" class="section" style="display:block;">
+                @if ((int)Session["RoleID"] == 3)
+                {
+                    <div>
+                        <h3>Revenue Chart</h3>
+                        <canvas id="revenueChart" class="w-100"></canvas>
+                    </div>
+                }
+                @if ((int)Session["RoleID"] == 2)
+                {
+                    <div>
+                        <h3>Revenue Chart</h3>
+                        <canvas id="revenueChart" class="w-100"></canvas>
+                    </div>
+                    <div>
+                        <h3>Registration Chart</h3>
+                        <canvas id="registrationChart" class="w-100"></canvas>
+                    </div>
+                }
+            </div>
+
+            <div id="orders" class="section">
+                <h3>Orders</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchOrders" data-table="ordersTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
                 </div>
-            }
-        </div>
-
-        <div id="orders" class="section">
-            <h3>Orders</h3>
-            <input type="text" id="searchOrders" class="form-control mb-3" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
-            <div class="table-container">
-                <table id="ordersTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer ID</th>
-                            <th class="wide-column">Sale Staff</th>
-                            <th class="wide-column">Delivery Staff</th>
-                            <th>Total Money</th>
-                            <th class="wide-column">Status</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Sale Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < ViewBag.Orders.Count; i++)
-                        {
-                            var order = ViewBag.Orders[i];
-                            <tr>
-                                <td>@order.orderID</td>
-                                <td>@order.customerID</td>
-                                <td>
-                                    <select class="form-control saleStaff" name="orderUpdates[@i].SaleStaffID" data-original="@order.saleStaffID">
-                                        <option value="">Default</option>
-                                        @foreach (var staff in ViewBag.SaleStaff)
-                                        {
-                                            <option value="@staff.userID" @(order.saleStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
-                                        }
-                                    </select>
-                                    <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.orderID" />
-                                </td>
-                                <td>
-                                    <select class="form-control deliveryStaff" name="orderUpdates[@i].DeliveryStaffID" data-original="@order.deliveryStaffID">
-                                        <option value="">Default</option>
-                                        @foreach (var staff in ViewBag.DeliveryStaff)
-                                        {
-                                            <option value="@staff.userID" @(order.deliveryStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>@order.totalMoney</td>
-                                <td>
-                                    <select class="form-control status" name="orderUpdates[@i].Status" data-original="@order.status">
-                                        <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
-                                        <option value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
-                                        <option value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
-                                        <option value="In Delivery" @(order.status == "In Delivery" ? "selected" : "")>In Delivery</option>
-                                        <option value="Delivered" @(order.status == "Delivered" ? "selected" : "")>Delivered</option>
-                                        <option value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
-                                    </select>
-                                </td>
-                                <td>@order.address</td>
-                                <td>@order.phone</td>
-                                <td>@order.saleDate</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
-        </div>
-
-        <div id="diamonds" class="section">
-            <h3>Diamonds</h3>
-            <input type="text" id="searchDiamonds" class="form-control mb-3" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds by DiamondID..">
-            <div class="table-container">
-                <table id="diamondsTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Carat Weight</th>
-                            <th>Clarity</th>
-                            <th>Cut</th>
-                            <th>Color</th>
-                            <th>Shape</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var diamond in ViewBag.Diamonds)
-                        {
-                            <tr>
-                                <td>@diamond.diamondID</td>
-                                <td>@diamond.diamondName</td>
-                                <td>@String.Format("{0:N0}", diamond.diamondPrice)</td>
-                                <td>@diamond.diamondDescription</td>
-                                <td>@diamond.caratWeight</td>
-                                <td>@diamond.clarityID</td>
-                                <td>@diamond.cutID</td>
-                                <td>@diamond.colorID</td>
-                                <td>@diamond.shapeID</td>
-                                <td>@diamond.status</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="accentStones" class="section">
-            <h3>Accent Stones</h3>
-            <input type="text" id="searchAccentStones" class="form-control mb-3" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones by StoneID..">
-            <div class="table-container">
-                <table id="accentStonesTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Shape</th>
-                            <th>Carat Weight</th>
-                            <th>Clarity</th>
-                            <th>Color</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var stone in ViewBag.AccentStones)
-                        {
-                            <tr id="accentStone-row-@stone.accentStoneID">
-                                <td>@stone.accentStoneID</td>
-                                <td>@stone.accentStonesName</td>
-                                <td>@stone.shape</td>
-                                <td>@stone.caratWeight</td>
-                                <td>@stone.clarity</td>
-                                <td>@stone.color</td>
-                                <td>@String.Format("{0:N0}", stone.price)</td>
-                                <td>@stone.quantity</td>
-                                <td>
-                                    @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
-                                    {
-                                        <button class="btn btn-status @(stone.status ? "btn-success" : "btn-danger")" onclick="toggleAccentStoneStatus('@stone.accentStoneID', @stone.status)">
-                                            @(stone.status ? "Enable" : "Disable")
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        @stone.status
-                                    }
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="settings" class="section">
-            <h3>Settings</h3>
-            <input type="text" id="searchSettings" class="form-control mb-3" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings by SettingID..">
-            <div class="table-container">
-                <table id="settingsTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Type</th>
-                            <th>Material</th>
-                            <th>Price</th>
-                            <th>Quantity Stones</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var setting in ViewBag.Settings)
-                        {
-                            <tr id="setting-row-@setting.settingID">
-                                <td>@setting.settingID</td>
-                                <td>@setting.settingType</td>
-                                <td>@setting.material</td>
-                                <td>@String.Format("{0:N0}", setting.priceTax)</td>
-                                <td>@setting.quantityStones</td>
-                                <td>@setting.description</td>
-                                <td><img src="@setting.imagePath" alt="Image" width="50"></td>
-                                <td>
-                                    @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
-                                    {
-                                        <button class="btn btn-status @(setting.status ? "btn-success" : "btn-danger")" onclick="toggleSettingStatus('@setting.settingID', @setting.status)">
-                                            @(setting.status ? "Enable" : "Disable")
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        @setting.status
-                                    }
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="saleStaff" class="section">
-            <h3>Sale Staff</h3>
-            <input type="text" id="searchSaleStaff" class="form-control mb-3" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
-            <div class="table-container">
-                <table id="saleStaffTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>User Name</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var user in ViewBag.SaleStaff)
-                        {
-                            <tr id="user-row-@user.userID">
-                                <td>@user.userID</td>
-                                <td>@user.userName</td>
-                                <td>@user.fullName</td>
-                                <td>@user.email</td>
-                                <td>
-                                    @if ((int)Session["RoleID"] == 2)
-                                    {
-                                        <button class="btn btn-status @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
-                                            @(user.status ? "Enable" : "Disable")
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        @user.status
-                                    }
-                                </td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="deliveryStaff" class="section">
-            <h3>Delivery Staff</h3>
-            <input type="text" id="searchDeliveryStaff" class="form-control mb-3" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
-            <div class="table-container">
-                <table id="deliveryStaffTable" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>User Name</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var user in ViewBag.DeliveryStaff)
-                        {
-                            <tr id="user-row-@user.userID">
-                                <td>@user.userID</td>
-                                <td>@user.userName</td>
-                                <td>@user.fullName</td>
-                                <td>@user.email</td>
-                                <td>
-                                    @if ((int)Session["RoleID"] == 2)
-                                    {
-                                        <button class="btn btn-status @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
-                                            @(user.status ? "Enable" : "Disable")
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        @user.status
-                                    }
-                                </td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        @if ((int)Session["RoleID"] == 2)
-        {
-            <div id="users" class="section">
-                <h3>Users</h3>
-                <input type="text" id="searchUsers" class="form-control mb-3" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users by UserID..">
                 <div class="table-container">
-                    <table id="usersTable" class="table table-striped table-bordered">
+                    <table id="ordersTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer Name</th>
+                                <th class="wide-column">Sale Staff</th>
+                                <th class="wide-column">Delivery Staff</th>
+                                <th>Total Money</th>
+                                <th class="wide-column">Status</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Sale Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < ViewBag.Orders.Count; i++)
+                            {
+                                var order = ViewBag.Orders[i];
+                                <tr>
+                                    <td>@order.orderID</td>
+                                    <td>@order.customerName</td>
+                                    <td>
+                                        <select class="form-control saleStaff" name="orderUpdates[@i].SaleStaffID" data-original="@order.saleStaffID">
+                                            <option value="">Default</option>
+                                            @foreach (var staff in ViewBag.SaleStaff)
+                                            {
+                                                <option value="@staff.userID" @(order.saleStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
+                                            }
+                                        </select>
+                                        <input type="hidden" name="orderUpdates[@i].OrderID" value="@order.orderID" />
+                                    </td>
+                                    <td>
+                                        <select class="form-control deliveryStaff" name="orderUpdates[@i].DeliveryStaffID" data-original="@order.deliveryStaffID">
+                                            <option value="">Default</option>
+                                            @foreach (var staff in ViewBag.DeliveryStaff)
+                                            {
+                                                <option value="@staff.userID" @(order.deliveryStaffID == staff.userID ? "selected" : "")>@staff.fullName (@staff.userID)</option>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>@order.totalMoney</td>
+                                    <td>
+                                        <select class="form-control status" name="orderUpdates[@i].Status" data-original="@order.status">
+                                            <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
+                                            <option value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
+                                            <option value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
+                                            <option value="In Delivery" @(order.status == "In Delivery" ? "selected" : "")>In Delivery</option>
+                                            <option value="Delivered" @(order.status == "Delivered" ? "selected" : "")>Delivered</option>
+                                            <option value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
+                                        </select>
+                                    </td>
+                                    <td>@order.address</td>
+                                    <td>@order.phone</td>
+                                    <td>@order.saleDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
+            </div>
+
+            <div id="diamonds" class="section">
+                <h3>Diamonds</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchDiamonds" data-table="diamondsTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchDiamonds" class="form-control mb-3 search-input" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds by DiamondID..">
+                </div>
+
+                <div class="table-container" id="diamondsContent">
+                    <table id="diamondsTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Carat Weight</th>
+                                <th>Clarity</th>
+                                <th>Cut</th>
+                                <th>Color</th>
+                                <th>Shape</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var diamond in ViewBag.Diamonds)
+                            {
+                                <tr id="diamond-row-@diamond.diamondID">
+                                    <td>@diamond.diamondID</td>
+                                    <td>@diamond.diamondName</td>
+                                    <td>@String.Format("{0:N0}", diamond.diamondPrice)</td>
+                                    <td>@diamond.diamondDescription</td>
+                                    <td>@diamond.caratWeight</td>
+                                    <td>@diamond.clarityID</td>
+                                    <td>@diamond.cutID</td>
+                                    <td>@diamond.colorID</td>
+                                    <td>@diamond.shapeID</td>
+                                    <td>
+                                        @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+                                        {
+                                            <button class="btn btn-status @(diamond.status ? "btn-success" : "btn-danger")" onclick="toggleDiamondStatus('@diamond.diamondID', @diamond.status)">
+                                                @(diamond.status ? "Enable" : "Disable")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @diamond.status
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalDiamonds != null && ViewBag.PageSize != null)
+                        {
+                            int totalPages = (int)Math.Ceiling((double)ViewBag.TotalDiamonds / ViewBag.PageSize);
+                            for (int i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadDiamondsPage(@i, @ViewBag.PageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+            <div id="viewVoucher" class="section">
+                <h3>View Voucher</h3>
+                <div class="table-container">
+                    <table id="vouchersTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Voucher ID</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Discount</th>
+                                <th>Quantity</th>
+                                <th>Target User ID</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var voucher in ViewBag.Vouchers)
+                            {
+                                <tr id="voucher-row-@voucher.voucherID">
+                                    <td>@voucher.voucherID</td>
+                                    <td>@voucher.startTime</td>
+                                    <td>@voucher.endTime</td>
+                                    <td>@voucher.discount</td>
+                                    <td>@voucher.quantity</td>
+                                    <td>@voucher.targetUserID</td>
+                                    <td>
+                                        <button class="btn btn-status @(voucher.status == true ? "btn-success" : "btn-danger")" onclick="toggleVoucherStatus(@voucher.voucherID, @voucher.status)">
+                                            @(voucher.status == true ? "Enable" : "Disable")
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="accentStones" class="section">
+                <h3>Accent Stones</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchAccentStones" data-table="accentStonesTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones by StoneID..">
+                </div>
+                <div class="table-container">
+                    <table id="accentStonesTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Shape</th>
+                                <th>Carat Weight</th>
+                                <th>Clarity</th>
+                                <th>Color</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var stone in ViewBag.AccentStones)
+                            {
+                                <tr id="accentStone-row-@stone.accentStoneID">
+                                    <td>@stone.accentStoneID</td>
+                                    <td>@stone.accentStonesName</td>
+                                    <td>@stone.shape</td>
+                                    <td>@stone.caratWeight</td>
+                                    <td>@stone.clarity</td>
+                                    <td>@stone.color</td>
+                                    <td>@String.Format("{0:N0}", stone.price)</td>
+                                    <td>@stone.quantity</td>
+                                    <td>
+                                        @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+                                        {
+                                            <button class="btn btn-status @(stone.status ? "btn-success" : "btn-danger")" onclick="toggleAccentStoneStatus('@stone.accentStoneID', @stone.status)">
+                                                @(stone.status ? "Enable" : "Disable")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @stone.status
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="settings" class="section">
+                <h3>Settings</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchSettings" data-table="settingsTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings by SettingID..">
+                </div>
+                <div class="table-container">
+                    <table id="settingsTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Material</th>
+                                <th>Price</th>
+                                <th>Quantity Stones</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var setting in ViewBag.Settings)
+                            {
+                                <tr id="setting-row-@setting.settingID">
+                                    <td>@setting.settingID</td>
+                                    <td>@setting.settingType</td>
+                                    <td>@setting.material</td>
+                                    <td>@String.Format("{0:N0}", setting.priceTax)</td>
+                                    <td>@setting.quantityStones</td>
+                                    <td>@setting.description</td>
+                                    <td>
+                                        @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+                                        {
+                                            <button class="btn btn-status @(setting.status ? "btn-success" : "btn-danger")" onclick="toggleSettingStatus('@setting.settingID', @setting.status)">
+                                                @(setting.status ? "Enable" : "Disable")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @setting.status
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="saleStaff" class="section">
+                <h3>Sale Staff</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchSaleStaff" data-table="saleStaffTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchSaleStaff" class="form-control mb-3 search-input" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
+                </div>
+                <div class="table-container">
+                    <table id="saleStaffTable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -487,7 +380,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var user in ViewBag.Users)
+                            @foreach (var user in ViewBag.SaleStaff)
                             {
                                 <tr id="user-row-@user.userID">
                                     <td>@user.userID</td>
@@ -513,51 +406,93 @@
                     </table>
                 </div>
             </div>
-        }
-        <div class="main-content">
-            <!-- Existing sections... -->
 
-            <div id="warranties" class="section" style="display:none;">
-                <h3>Warranties</h3>
-                <input type="text" id="searchWarranties" class="form-control mb-3" onkeyup="searchTable('warrantiesTable', 'searchWarranties', 0)" placeholder="Search for warranties by Warranty ID..">
+            <div id="deliveryStaff" class="section">
+                <h3>Delivery Staff</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchDeliveryStaff" data-table="deliveryStaffTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchDeliveryStaff" class="form-control mb-3 search-input" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
+                </div>
                 <div class="table-container">
-                    <table id="warrantiesTable" class="table table-striped table-bordered">
+                    <table id="deliveryStaffTable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Warranty ID</th>
-                                <th>Order ID</th>
-                                <th>Item ID</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Details</th>
-                                <th>Warranty Code</th>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var warranty in ViewBag.NonValidWarranties)
+                            @foreach (var user in ViewBag.DeliveryStaff)
                             {
-                                <tr>
-                                    <td>@warranty.warrantyID</td>
-                                    <td>@warranty.orderID</td>
-                                    <td>@warranty.ItemID</td>
-                                    <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@warranty.warrantyDetails</td>
-                                    <td>@warranty.warrantyCode</td>
-                                    <td>@warranty.status</td>
+                                <tr id="user-row-@user.userID">
+                                    <td>@user.userID</td>
+                                    <td>@user.userName</td>
+                                    <td>@user.fullName</td>
+                                    <td>@user.email</td>
                                     <td>
-                                        <button class="btn btn-primary process-btn" data-id="@warranty.warrantyID" @(warranty.status == "Processed" ? "disabled" : "")>
-                                            Process
-                                        </button>
+                                        @if ((int)Session["RoleID"] == 2)
+                                        {
+                                            <button class="btn btn-status @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
+                                                @(user.status ? "Enable" : "Disable")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @user.status
+                                        }
                                     </td>
                                 </tr>
                             }
+
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            @if ((int)Session["RoleID"] == 2)
+            {
+                <div id="users" class="section" style="display:none;">
+                    <h3>Users</h3>
+                    <div class="search-container">
+                        <i class="fa fa-search search-icon" data-input="searchUsers" data-table="usersTable" data-column="0" onclick="toggleSearch(this)"></i>
+                        <input type="text" id="searchUsers" class="form-control mb-3 search-input" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users by UserID..">
+                    </div>
+                    <div class="table-container">
+                        <table id="usersTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>User Name</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in ViewBag.Users)
+                                {
+                                    <tr id="user-row-@user.userID">
+                                        <td>@user.userID</td>
+                                        <td>@user.userName</td>
+                                        <td>@user.fullName</td>
+                                        <td>@user.email</td>
+                                        <td>
+                                            <button class="btn btn-status @(user.status ? "btn-success" : "btn-danger")" onclick="toggleStatus('@user.userID', @user.status)">
+                                                @(user.status ? "Enable" : "Disable")
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
                     <h3 class="center-text">Create System Account</h3>
@@ -602,13 +537,69 @@
             <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div>
+        </main>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-        <script>
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>@ViewBag.userName</b></p>
+                        <small class="text-muted">@Session["RoleName"]</small>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="logo">
+                    <img src="~/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg">
+                    <h2>The Diamond Shop</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        const sideMenu = document.querySelector('aside');
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const darkMode = document.querySelector('.dark-mode');
+
+        menuBtn.addEventListener('click', () => {
+            sideMenu.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sideMenu.style.display = 'none';
+        });
+
+        darkMode.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode-variables');
+            darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
+            darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const paginationLinks = document.querySelectorAll('.pagination .btn-link');
+            paginationLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Loại bỏ lớp active từ tất cả các liên kết
+                    paginationLinks.forEach(link => link.parentElement.classList.remove('active'));
+                    // Thêm lớp active vào liên kết được nhấn
+                    this.parentElement.classList.add('active');
+                });
+            });
+        });
+
         function showSection(sectionId) {
             var sections = document.getElementsByClassName('section');
             for (var i = 0; i < sections.length; i++) {
@@ -617,23 +608,28 @@
             document.getElementById(sectionId).style.display = 'block';
         }
 
-        function searchTable(tableId, searchId, columnIndex) {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById(searchId);
-            filter = input.value.toUpperCase();
-            table = document.getElementById(tableId);
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 1; i < tr.length; i++) {
-                tr[i].style.display = "none";
-                td = tr[i].getElementsByTagName("td")[columnIndex];
+        function searchTable(tableId, inputId, columnIndex) {
+            var input = document.getElementById(inputId);
+            var filter = input.value.trim().toUpperCase();
+            var table = document.getElementById(tableId);
+            var tr = table.getElementsByTagName("tr");
+            for (var i = 1; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName("td")[columnIndex];
                 if (td) {
-                    txtValue = td.textContent || td.innerText;
+                    var txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
                     }
                 }
             }
+        }
+
+        function toggleSearch(icon) {
+            var inputId = $(icon).data("input");
+            var input = $("#" + inputId);
+            input.toggle();
         }
 
         $(document).ready(function () {
@@ -663,7 +659,21 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.raw + ' registrations';
+                                }
+                            }
                         }
                     }
                 }
@@ -686,35 +696,37 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value;
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.raw + ' registrations';
+                                    }
+                                }
                             }
                         }
                     }
                 });
             }
-
-            $('#viewTypeSelect, #monthSelect, #yearSelect').on('change', function () {
-                var viewType = $('#viewTypeSelect').val();
-                var month = $('#monthSelect').val();
-                var year = $('#yearSelect').val();
-
-                var url = '@Url.Action("Index", "Manager")' + '?viewType=' + viewType + '&month=' + month + '&year=' + year;
-                window.location.href = url;
-            });
         });
 
         function updateOrders() {
             $('#updateSuccessMessage').hide();
             $('#updateErrorMessage').hide();
-
             var orderUpdates = [];
-
             $('#ordersTable tbody tr').each(function () {
                 var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
                 var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
                 var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
                 var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
-
                 if (saleStaffId !== $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').data('original') ||
                     deliveryStaffId !== $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').data('original') ||
                     status !== $(this).find('select[name^="orderUpdates"][name$=".Status"]').data('original')) {
@@ -726,103 +738,217 @@
                     });
                 }
             });
-
             if (orderUpdates.length === 0) {
-                $('#updateErrorMessage').text('No changes to update.').show();
+                $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
                 return;
             }
-
             $.ajax({
-                url: '@Url.Action("UpdateOrders", "Manager")',
                 type: 'POST',
+                url: '@Url.Action("UpdateOrders", "Manager")',
                 contentType: 'application/json',
                 data: JSON.stringify(orderUpdates),
                 success: function (response) {
                     if (response.success) {
-                        $('#updateSuccessMessage').text(response.message).show().delay(3000).fadeOut();
+                        $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                            window.location.reload();
+                        });
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                        $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#updateErrorMessage').text('An error occurred while updating orders. Please try again.').show().delay(3000).fadeOut();
+                    console.error(error);
+                    $('#updateErrorMessage').text("An error occurred while updating orders.").show().delay(2000).fadeOut();
                 }
             });
         }
 
         function toggleStatus(userId, currentStatus) {
             var newStatus = !currentStatus;
-
             $.ajax({
-                url: '@Url.Action("ToggleUserStatus", "Manager")',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ userId: userId, status: newStatus }),
+                url: '@Url.Action("ToggleUserStatus", "Manager")',
+                data: {
+                    userId: userId,
+                    status: newStatus
+                },
                 success: function (response) {
                     if (response.success) {
-                        var btn = $("#user-row-" + userId + " button");
-                        btn.toggleClass('btn-danger btn-success')
-                            .text(newStatus ? "Enable" : "Disable")
-                            .attr("onclick", "toggleStatus('" + userId + "', " + newStatus + ")");
+                        $('#user-row-' + userId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                        $('#user-row-' + userId + ' button').attr('onclick', 'toggleStatus("' + userId + '", ' + newStatus + ')');
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                        alert(response.message);
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
+                }
+            });
+        }
+
+        function toggleDiamondStatus(diamondId, currentStatus) {
+            var newStatus = !currentStatus;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ToggleDiamondStatus", "Manager")',
+                data: {
+                    diamondId: diamondId,
+                    status: newStatus
+                },
+                success: function (response) {
+                    if (response.success) {
+                        var button = $('#diamond-row-' + diamondId + ' button');
+                        button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                        button.attr('onclick', 'toggleDiamondStatus("' + diamondId + '", ' + newStatus + ')');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
                 }
             });
         }
 
         function toggleAccentStoneStatus(accentStoneId, currentStatus) {
             var newStatus = !currentStatus;
-
             $.ajax({
-                url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ accentStoneId: accentStoneId, status: newStatus }),
+                url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
+                data: {
+                    accentStoneId: accentStoneId,
+                    status: newStatus
+                },
                 success: function (response) {
                     if (response.success) {
-                        var btn = $("#accentStone-row-" + accentStoneId + " button");
-                        btn.toggleClass('btn-danger btn-success')
-                            .text(newStatus ? "Enable" : "Disable")
-                            .attr("onclick", "toggleAccentStoneStatus(" + accentStoneId + ", " + newStatus + ")");
+                        $('#accentStone-row-' + accentStoneId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                        $('#accentStone-row-' + accentStoneId + ' button').attr('onclick', 'toggleAccentStoneStatus("' + accentStoneId + '", ' + newStatus + ')');
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                        alert(response.message);
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
                 }
             });
         }
 
         function toggleSettingStatus(settingId, currentStatus) {
             var newStatus = !currentStatus;
-
             $.ajax({
-                url: '@Url.Action("ToggleSettingStatus", "Manager")',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ settingId: settingId, status: newStatus }),
+                url: '@Url.Action("ToggleSettingStatus", "Manager")',
+                data: {
+                    settingId: settingId,
+                    status: newStatus
+                },
                 success: function (response) {
                     if (response.success) {
-                        var btn = $("#setting-row-" + settingId + " button");
-                        btn.toggleClass('btn-danger btn-success')
-                            .text(newStatus ? "Enable" : "Disable")
-                            .attr("onclick", "toggleSettingStatus(" + settingId + ", " + newStatus + ")");
+                        $('#setting-row-' + settingId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                        $('#setting-row-' + settingId + ' button').attr('onclick', 'toggleSettingStatus("' + settingId + '", ' + newStatus + ')');
                     } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                        alert(response.message);
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#updateErrorMessage').text('Failed to update status: ' + error).show().delay(3000).fadeOut();
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
                 }
             });
         }
 
-        $('.toggle-password').click(function () {
+       function toggleVoucherStatus(voucherId, currentStatus) {
+            var newStatus = !currentStatus;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ToggleVoucherStatus", "Manager")',
+                data: {
+                    voucherId: voucherId,
+                    status: newStatus
+                },
+                success: function (response) {
+                    if (response.success) {
+                        var button = $('#voucher-row-' + voucherId + ' button');
+                        button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                        button.attr('onclick', 'toggleVoucherStatus("' + voucherId + '", ' + newStatus + ')');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
+                }
+            });
+        }
+
+        function loadDiamondsPage(page, pageSize) {
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { page: page, pageSize: pageSize },
+                success: function (data) {
+                    $('#diamondsContent').html($(data).find('#diamondsContent').html());
+                    updatePagination(page, pageSize);
+                },
+                error: function () {
+                    alert('An error occurred while loading the page.');
+                }
+            });
+        }
+
+        function updatePagination(currentPage, pageSize) {
+            var totalPages = Math.ceil(@ViewBag.TotalDiamonds / pageSize);
+            var paginationHtml = '';
+            for (var i = 1; i <= totalPages; i++) {
+                paginationHtml += '<li class="page-item ' + (currentPage == i ? 'active' : '') + '"><a class="btn-link" href="javascript:void(0);" onclick="loadDiamondsPage(' + i + ', ' + pageSize + ')">' + i + '</a></li>';
+            }
+            $('.pagination ul').html(paginationHtml);
+            // Thêm sự kiện click cho các liên kết phân trang
+            document.querySelectorAll('.pagination .btn-link').forEach(link => {
+                link.addEventListener('click', function () {
+                    document.querySelectorAll('.pagination .page-item').forEach(link => link.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                });
+            });
+        }
+
+
+
+
+
+        function clearForm() {
+            $('input[type="text"], input[type="number"], input[type="file"], input[type="date"]').val('');
+            $('.custom-file-label').removeClass('selected').html('Choose file');
+        }
+
+        function submitAddDiamondForm() {
+            var formData = new FormData($('#addDiamondForm')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddDiamond", "Diamonds")',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        $('#addDiamondSuccessMessage').text(response.message).show().delay(3000).fadeOut();
+                        clearForm();
+                    } else {
+                        $('#addDiamondErrorMessage').text(response.message).show().delay(3000).fadeOut();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    $('#addDiamondErrorMessage').text("An error occurred while adding the diamond.").show().delay(3000).fadeOut();
+                }
+            });
+        }
+
+        $(document).on('click', '.toggle-password', function () {
             $(this).toggleClass('fa-eye fa-eye-slash');
             var input = $($(this).attr('toggle'));
             if (input.attr('type') == 'password') {
@@ -831,28 +957,16 @@
                 input.attr('type', 'password');
             }
         });
-        $(document).ready(function () {
-    $(".process-btn").click(function () {
-        var warrantyId = $(this).data("id");
-        $.ajax({
-            url: '@Url.Action("ProcessWarranty", "Warranty")',
-            type: 'POST',
-            data: { warrantyID: warrantyId },
-            success: function (response) {
-                if (response.success) {
-                    alert("Warranty processed successfully.");
-                    location.reload();
-                } else {
-                    alert("Failed to process warranty: " + response.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                alert("Error: " + error);
-            }
-        });
-    });
-});
-        </script>
-</body>
 
+        // Hiển thị tên file khi chọn file
+        $(document).on('change', '.custom-file-input', function () {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+        });
+
+        setTimeout(function () {
+            $('.alert').fadeOut('slow');
+        }, 3000);
+    </script>
+</body>
 </html>
