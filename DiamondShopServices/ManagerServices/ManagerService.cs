@@ -111,5 +111,17 @@ namespace DiamondShopServices.ManagerServices
             _managerRepository.AddAccentStone(accentStone);
         }
         public List<RevenueData> GetChartData(int month, int year) => _managerRepository.GetChartData(month, year); // New method
+        public tblDiamond GetDiamondById(int diamondID)
+        {
+            return _managerRepository.GetDiamondById(diamondID);
+        }
+        public void ToggleVoucherStatus(int voucherId, bool status)
+        {
+            _managerRepository.ToggleVoucherStatus(voucherId, status);
+        }
+        public void UpdateVoucherQuantity(int voucherId, int? newQuantity)
+        {
+            _managerRepository.UpdateVoucherQuantity(voucherId, newQuantity);
+        }
     }
 }

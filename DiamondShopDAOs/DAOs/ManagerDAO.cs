@@ -178,5 +178,30 @@ namespace DiamondShopDAOs
                 .ToList();
             return data;
         }
+        public tblDiamond GetDiamondById(int diamondID)
+        {
+            return _context.tblDiamonds.FirstOrDefault(d => d.diamondID == diamondID);
+        }
+
+
+        public void ToggleVoucherStatus(int voucherId, bool status)
+        {
+            var voucher = _context.tblVouchers.FirstOrDefault(v => v.voucherID == voucherId);
+            if (voucher != null)
+            {
+                voucher.status = status;
+                _context.SaveChanges();
+            }
+        }
+
+        public void UpdateVoucherQuantity(int voucherId, int? newQuantity)
+        {
+            var voucher = _context.tblVouchers.FirstOrDefault(v => v.voucherID == voucherId);
+            if (voucher != null)
+            {
+                voucher.quantity = newQuantity;
+                _context.SaveChanges();
+            }
+        }
     }
 }

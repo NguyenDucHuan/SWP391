@@ -110,6 +110,18 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             _managerDAO.AddAccentStone(accentStone);
         }
-        public List<RevenueData> GetChartData(int month, int year) => _managerDAO.GetChartData(month, year); 
+        public List<RevenueData> GetChartData(int month, int year) => _managerDAO.GetChartData(month, year);
+        public tblDiamond GetDiamondById(int diamondID)
+        {
+            return _managerDAO.GetDiamondById(diamondID);
+        }
+        public void ToggleVoucherStatus(int voucherId, bool status)
+        {
+            _managerDAO.ToggleVoucherStatus(voucherId, status);
+        }
+        public void UpdateVoucherQuantity(int voucherId, int? newQuantity)
+        {
+            _managerDAO.UpdateVoucherQuantity(voucherId, newQuantity);
+        }
     }
 }

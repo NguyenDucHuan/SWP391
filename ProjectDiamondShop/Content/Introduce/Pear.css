@@ -29,7 +29,10 @@ main {
 	.navbar .navbar-brand {
 		color: #FFFF99 !important;
 		font-weight: bold;
-		font-family: "Playwrite ES Deco", cursive;
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
 		display: flex;
 		align-items: center;
 	}
@@ -181,4 +184,7 @@ body {
 		margin-bottom: 10px;
 	}
 }
-
+.carousel-indicators li {
+	/*text-indent: -9999px !important;*/ /* Ẩn văn bản */
+	display: none;
+}
