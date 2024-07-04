@@ -3,6 +3,7 @@
     var orderItems = ViewBag.OrderItems as List<DiamondShopDAOs.CookieCartDAO.ItemCartDAOSimple>;
     var statusUpdates = ViewBag.StatusUpdates as List<DiamondShopBOs.tblOrderStatusUpdate>;
     int roleId = (int)Session["RoleID"];
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
 <!DOCTYPE html>
@@ -10,235 +11,9 @@
 <head>
     <meta charset="utf-8" />
     <title>Order Details and Update Status</title>
-    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
-    <link rel="icon" type="image/png" href="~/Content/Icons/diamond (1).png" />
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .box {
-            border: 1px solid black;
-            margin: 10px;
-            padding: 20px;
-            width: 80%;
-        }
-
-        .flex-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .status-progress {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-            .status-progress div {
-                text-align: center;
-                position: relative;
-            }
-
-                .status-progress div span {
-                    display: block;
-                }
-
-            .status-progress .circle {
-                width: 30px;
-                height: 30px;
-                background-color: lightgray;
-                border-radius: 50%;
-                margin: auto;
-            }
-
-            .status-progress .completed {
-                background-color: green;
-            }
-
-            .status-progress .line {
-                flex-grow: 1;
-                height: 5px;
-                background-color: lightgray;
-                margin: 0 10px;
-            }
-
-            .status-progress .completed-line {
-                background-color: green;
-            }
-
-        .timeline {
-            list-style-type: none;
-            position: relative;
-        }
-
-            .timeline:before {
-                content: '';
-                background: #d4d9df;
-                display: inline-block;
-                position: absolute;
-                left: 29px;
-                width: 2px;
-                height: 100%;
-                z-index: 400;
-            }
-
-            .timeline > li {
-                margin: 20px 0;
-                padding-left: 40px;
-            }
-
-                .timeline > li:before {
-                    content: '';
-                    background: white;
-                    border: 3px solid #22c0e8;
-                    display: inline-block;
-                    position: absolute;
-                    border-radius: 50%;
-                    left: 20px;
-                    width: 20px;
-                    height: 20px;
-                    z-index: 400;
-                }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-            .form-group label {
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-
-            .form-group p {
-                margin: 0;
-                padding: 8px;
-                background-color: #f7f7f7;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
-
-        .back-button {
-            margin-left: 10px;
-            text-align: center;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .back-button button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: green;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-            .back-button button:hover {
-                background-color: darkgreen;
-            }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 0.9em;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-            .cart-item img {
-                max-width: 100px;
-                margin-right: 10px;
-            }
-
-        .cart-item-details {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-        }
-
-            .cart-item-actions input {
-                width: 40px;
-                text-align: center;
-                margin: 0 5px;
-            }
-
-            .cart-item-actions button {
-                background: none;
-                border: none;
-                font-size: 1.2em;
-            }
-
-        .remove-btn {
-            font-size: 1.5em;
-            color: #ff0000;
-            cursor: pointer;
-        }
-
-        .cart-summary {
-            text-align: right;
-            font-weight: bold;
-            margin-top: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .cart-item:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .cart-item:nth-child(odd) {
-            background-color: #fff;
-        }
-
-        .container {
-            max-width: 800px;
-            padding: 20px;
-            margin-top: 60px;
-            margin-bottom: 60px;
-            border-radius: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/Order/UpdateOrderDetails.css" />
 </head>
 <body>
     <div class="container">
@@ -250,36 +25,42 @@
         }
 
         <div class="box">
-            <h2>Update Order Status</h2>
+            <h2> Update Order Status</h2>
             <div class="status-progress">
-                <div>
-                    <div class="circle @(order.status == "Order Placed" || order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
-                    <span>Order Placed</span>
+                @{
+                    var statuses = new List<string> { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery", "Delivered", "Paid" };
+                    string lastCompletedStatus = statuses.TakeWhile(s => s != order.status).LastOrDefault();
+                }
+
+                <div class="status-item @(lastCompletedStatus == "Order Placed" || order.status == "Order Placed" ? "completed" : "")">
+                    <i class="fas fa-shopping-cart icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">Order Placed</span>
                 </div>
-                <div class="line @(order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
-                <div>
-                    <div class="circle @(order.status == "Preparing Goods" || order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
-                    <span>Preparing Goods</span>
+                <div class="status-item @(lastCompletedStatus == "Preparing Goods" || order.status == "Preparing Goods" ? "completed" : "")">
+                    <i class="fas fa-box icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">Preparing Goods</span>
                 </div>
-                <div class="line @(order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
-                <div>
-                    <div class="circle @(order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
-                    <span>Shipped to Carrier</span>
+                <div class="status-item @(lastCompletedStatus == "Shipped to Carrier" || order.status == "Shipped to Carrier" ? "completed" : "")">
+                    <i class="fas fa-truck icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">Shipped to Carrier</span>
                 </div>
-                <div class="line @(order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
-                <div>
-                    <div class="circle @(order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
-                    <span>In Delivery</span>
+                <div class="status-item @(lastCompletedStatus == "In Delivery" || order.status == "In Delivery" ? "completed" : "")">
+                    <i class="fas fa-shipping-fast icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">In Delivery</span>
                 </div>
-                <div class="line @(order.status == "Delivered" || order.status == "Paid" ? "completed-line" : "")"></div>
-                <div>
-                    <div class="circle @(order.status == "Delivered" || order.status == "Paid" ? "completed" : "")"></div>
-                    <span>Delivered</span>
+                <div class="status-item @(lastCompletedStatus == "Delivered" || order.status == "Delivered" ? "completed" : "")">
+                    <i class="fas fa-box-open icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">Delivered</span>
                 </div>
-                <div class="line @(order.status == "Paid" ? "completed-line" : "")"></div>
-                <div>
-                    <div class="circle @(order.status == "Paid" ? "completed" : "")"></div>
-                    <span>Paid</span>
+                <div class="status-item @(lastCompletedStatus == "Paid" || order.status == "Paid" ? "completed" : "")">
+                    <i class="fas fa-receipt icon"></i>
+                    <div class="bar"></div>
+                    <span class="status-text">Paid</span>
                 </div>
             </div>
             @if (roleId == 4 || roleId == 5)
@@ -333,33 +114,37 @@
             <h2>Order Items</h2>
             @if (orderItems != null && orderItems.Any())
             {
-                foreach (var item in orderItems)
-                {
-                    <div class="cart-item">
-                        <img src="@item.imagePath.Split('|')[0]" alt="Product Image" />
-                        <div class="cart-item-details">
-                            <div class="cart-item-info">
-                                <h5>Diamond Name: @item.DiamondName</h5>
-                                <p>Diamond Price: $@(item.diamondPrice)</p>
-                                @if (item.settingID != 0)
-                                {
-                                    <p>Setting Name: @item.decription</p>
-                                    <p>Setting Price: $@item.settingPrice</p>
-                                }
-                                @if (item.accentStoneID != 0)
-                                {
-                                    <p>Accent Stone: @item.accentStoneID</p>
-                                    <p>Accent Stone Price: $@item.accentStonePrice</p>
-                                    <p>Accent Stone Quantity: @item.quantityAccent</p>
-                                }
-                                <strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong>
+                var itemCount = orderItems.Count;
+                <div class="row row-cols-1 g-4">
+                    @for (int i = 0; i < itemCount; i++)
+                    {
+                        var item = orderItems[i];
+                        var isLastOddItem = (itemCount % 2 == 1) && (i == itemCount - 1);
+                        <div class="col @(isLastOddItem ? "d-flex justify-content-center" : "")">
+                            <div class="card horizontal-card h-100">
+                                <img src="@item.imagePath.Split('|')[0]" class="card-img-top" alt="Product Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.DiamondName</h5>
+                                    <p class="card-text">Diamond Price: $@(item.diamondPrice)</p>
+                                    @if (item.settingID != 0)
+                                    {
+                                        <p class="card-text">Setting Name: @item.decription</p>
+                                        <p class="card-text">Setting Price: $@item.settingPrice</p>
+                                    }
+                                    @if (item.accentStoneID != 0)
+                                    {
+                                        <p class="card-text">Accent Stone: @item.accentStoneID</p>
+                                        <p class="card-text">Accent Stone Price: $@item.accentStonePrice</p>
+                                        <p class="card-text">Accent Stone Quantity: @item.quantityAccent</p>
+                                    }
+                                    <p class="card-text"><strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
-
-                <div class="cart-summary">
-                    <p>Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
+                    }
+                </div>
+                <div class="mt-4 text-end">
+                    <p class="h5">Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
                 </div>
             }
             else
