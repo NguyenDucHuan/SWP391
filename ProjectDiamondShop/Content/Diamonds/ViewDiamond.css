@@ -4,13 +4,20 @@
 }
 
 .container-custom {
-	margin-top: 85px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	background-color: #444444;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .back-to-gallery {
 	text-decoration: none;
-	color: #FFFF99;
+	color: #f4d35e;
 	padding-bottom: 5px;
+	font-weight: bold;
+	padding: 7px;
 }
 
 .row-custom {
@@ -27,6 +34,9 @@
 	justify-content: center;
 	background-color: #444;
 	margin-bottom: 20px;
+	background: #fff;
+	border-radius: 15px;
+	object-fit: contain;
 }
 
 .img-responsive {
@@ -61,15 +71,15 @@
 
 .additional-info {
 	background-color: #444;
-	margin-top: 20px;
 	padding: 20px;
 	border-radius: 8px;
+	margin-top: 100px;
+	margin-bottom: 50px;
 }
 
 .table-custom {
 	table-layout: fixed;
 	width: 100%;
-
 }
 
 	.table-custom td {
@@ -77,7 +87,7 @@
 		color: #ffff99;
 		border: 1px solid #555;
 	}
-	
+
 
 .quality-commitment,
 .purchase-instructions {
@@ -86,20 +96,20 @@
 }
 
 .btn-custom {
-	background-color: #4CAF50; /* Green */
+	background-color: #f4d35e; /* Button color similar to your image */
+	color: #2a1a5e; /* Text color */
+	font-size: 1em;
+	font-weight: bold;
 	border: none;
-	color: #fff;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
+	padding: 15px 40px;
+	border-radius: 15px;
+	position: relative;
 	cursor: pointer;
-	border-radius: 4px;
+	outline: none;
 }
 
 	.btn-custom:hover {
-		background-color: #45a049;
+		background-color: #f4d35e;
 	}
 
 .modal-content {
@@ -112,7 +122,61 @@
 	border: none;
 	background: none;
 }
+
+h3 {
+	justify-content: center;
+	display: flex;
+	/*color: bisque;*/
+	color: goldenrod;
+	font-family: fantasy;
+}
+
+p.price {
+	font-size: xx-large;
+}
+
+div.col-md-12 {
+	border-radius: 5px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	border-collapse: collapse;
+	padding: 10px 5px;
+	font-family: 'Pacifico', cursive;
+	color: #FFD700; /* Gold color */
+	text-align: center;
+	margin-bottom: 20px;
+	background-color: darkslategrey;
+}
+
+button.thumbnail-button-cert {
+	width: 105px;
+	height: 105px;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-top: 3px;
+}
+
+	button.thumbnail-button-cert img {
+		width: 70%;
+	}
+
+.carousel-item img {
+	width: 100%;
+	height: 400px;
+	object-fit: contain;
+}
+
+
+.carousel-control-next-icon {
+	color: #ffff99;
+}
+
+.carousel-control-prev-icon {
+	color: #ffff99;
+}
+
 .video-frame {
-	border-radius: 15px; /* Thay đổi giá trị 15px nếu bạn muốn bo góc nhiều hơn hoặc ít hơn */
-	overflow: hidden; /* Đảm bảo nội dung bên trong cũng được bo góc */
+	width: 100%;
+	height: 300px;
+	margin-top: 50px;
 }
