@@ -37,7 +37,14 @@ namespace DiamondShopDAOs.DAOs
                 ordersQuery = ordersQuery.Where(o => o.orderID.Contains(searchOrderId));
             }
 
-            return ordersQuery.ToList();
+            var orders = ordersQuery.ToList();
+            foreach (var order in orders)
+            {
+                order.customerName = _context.tblUsers.FirstOrDefault(u => u.userID == order.customerID)?.fullName;
+                order.deliveryStaffName = _context.tblUsers.FirstOrDefault(u => u.userID == order.deliveryStaffID)?.fullName;
+            }
+
+            return orders;
         }
 
         public tblOrder GetOrderById(string orderId)

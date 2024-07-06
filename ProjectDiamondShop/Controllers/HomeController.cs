@@ -118,7 +118,15 @@ namespace ProjectDiamondShop.Controllers
             var currentOrders = orderServices.GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
             var historyOrders = orderServices.GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);
             OrderViewModel orderViewModel = new OrderViewModel(currentOrders, historyOrders);
+
+            // Giả sử bạn lấy tên nhân viên giao hàng từ cơ sở dữ liệu hoặc từ danh sách đơn hàng
+            if (currentOrders.Any())
+            {
+                ViewBag.deliveryStaffName = currentOrders.FirstOrDefault()?.deliveryStaffName;
+            }
+
             return View("ViewOrder", orderViewModel);
         }
+
     }
 }

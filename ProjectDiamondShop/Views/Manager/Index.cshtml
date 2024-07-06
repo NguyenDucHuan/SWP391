@@ -29,35 +29,35 @@
             <div class="sidebar">
                 <a href="javascript:void(0)" onclick="showSection('dashboard')">
                     <span class="material-icons-sharp">dashboard</span>
-                    Dashboard
+                    <span class="sidebar-text">Dashboard</span>
                 </a>
                 @if ((int)Session["RoleID"] == 3)
                 {
-                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
-                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
-                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> View Voucher</a>
-                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
-                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
-                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
-                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
+                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> <span class="sidebar-text">Orders</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> <span class="sidebar-text">Diamonds</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> <span class="sidebar-text">View Voucher</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> <span class="sidebar-text">Sale Staff</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> <span class="sidebar-text">Delivery Staff</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> <span class="sidebar-text">Accent Stones</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
                 }
                 @if ((int)Session["RoleID"] == 2)
                 {
-                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> Orders</a>
-                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> Diamonds</a>
-                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> View Voucher</a>
-                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> Sale Staff</a>
-                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> Delivery Staff</a>
-                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> Accent Stones</a>
-                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> Settings</a>
-                    <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> Users</a>
-                    <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> Create Account</a>
+                    <a href="javascript:void(0)" onclick="showSection('orders')"><i class="fas fa-box"></i> <span class="sidebar-text">Orders</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('diamonds')"><i class="fas fa-gem"></i> <span class="sidebar-text">Diamonds</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('viewVoucher')"><i class="fas fa-eye"></i> <span class="sidebar-text">View Voucher</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('saleStaff')"><i class="fas fa-user-tie"></i> <span class="sidebar-text">Sale Staff</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> <span class="sidebar-text">Delivery Staff</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> <span class="sidebar-text">Accent Stones</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> <span class="sidebar-text">Users</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> <span class="sidebar-text">Create Account</span></a>
                 }
-                <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> Create Voucher</a>
-                <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> Add New Diamonds</a>
-                <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> Add New Settings</a>
-                <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> Add New Accent Stones</a>
-                <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> <span class="sidebar-text">Create Voucher</span></a>
+                <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> <span class="sidebar-text">Add New Diamonds</span></a>
+                <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> <span class="sidebar-text">Add New Settings</span></a>
+                <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> <span class="sidebar-text">Add New Accent Stones</span></a>
+                <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> <span class="sidebar-text">Logout</span></a>
             </div>
         </aside>
 
