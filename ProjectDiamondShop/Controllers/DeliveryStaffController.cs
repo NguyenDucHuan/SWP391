@@ -30,7 +30,7 @@ namespace ProjectDiamondShop.Controllers
         }
 
         // GET: DeliveryStaff
-        public ActionResult Index(string searchOrderId)
+        public ActionResult Index(string searchOrderId, int page = 1, int pageSize = 10)
         {
             if (IsAdmin())
             {
@@ -50,8 +50,18 @@ namespace ProjectDiamondShop.Controllers
             }
 
             string deliveryStaffID = Session["UserID"].ToString();
-            List<tblOrder> orders = _staffService.GetOrdersByStaffId(deliveryStaffID, 4, searchOrderId);
+            List<tblOrder> orders = string.IsNullOrEmpty(searchOrderId) ?
+                _staffService.GetOrdersByStaffId(deliveryStaffID, 4, null) :
+                _staffService.GetOrdersByStaffId(deliveryStaffID, 4, searchOrderId);
+
+            int totalOrders = orders.Count;
+            orders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
             ViewBag.Orders = orders;
+            ViewBag.SearchOrderId = searchOrderId;
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalOrders = totalOrders;
             return View("DeliveryStaff");
         }
     }

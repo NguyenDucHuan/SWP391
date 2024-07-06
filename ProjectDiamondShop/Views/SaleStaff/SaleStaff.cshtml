@@ -4,154 +4,293 @@
     <meta charset="utf-8" />
     <title>Sale Staff Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" href="~/Content/Icons/diamond (1).png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        body {
+            background-color: #EAE7D6;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
         .container {
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 20px;
+            border-radius: 30px;
+            background-color: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            margin-bottom: 20px;
+            background-color: #D7F9FA;
+            padding: 20px;
+            border-radius: 10px;
         }
 
             .header h2 {
-                flex-grow: 1;
-                text-align: center;
+                color: #5D7B6F;
+                margin: 0;
+                display: flex;
+                align-items: center;
             }
 
+                .header h2 .fa-chart-line {
+                    margin-right: 10px;
+                }
+
         .logout-button {
-            background-color: #4CAF50;
+            background-color: #dc3545;
             color: white;
             border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .logout-button:hover {
+                background-color: #c82333;
+            }
+
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .search-icon {
+            background-color: #A4C3A2;
+            border: none;
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-input {
+            border-radius: 0 5px 5px 0;
+            flex: 1;
+            padding: 7px;
+        }
+
+        .order-table-container {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+            .table thead {
+                color: rgba(0, 0, 0, 1);
+            }
+
+            .table th, .table td {
+                vertical-align: middle;
+                text-align: center;
+                word-wrap: break-word;
+                padding: 10px;
+                border: 1px solid black;
+                border-radius: 10px;
+            }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+        }
+
+        .btn-success {
+            border-radius: 0.25rem;
+        }
+
+        .no-orders {
+            text-align: center;
+            color: #999;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+            .pagination .page-item {
+                margin: 0 5px;
+                list-style: none;
+            }
+
+                .pagination .page-item .page-link {
+                    color: #007bff;
+                    text-decoration: none;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    border: 1px solid #dee2e6;
+                    transition: background-color 0.3s, color 0.3s;
+                }
+
+                    .pagination .page-item .page-link:hover {
+                        background-color: #f0f0f0;
+                        border-color: #007bff;
+                        color: #1c1c3c;
+                    }
+
+                .pagination .page-item.active .page-link {
+                    background-color: #007bff;
+                    color: white;
+                    border-color: #007bff;
+                }
+
+            .pagination .page-link.selected {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+        #paginationForm {
+            display: flex;
+        }
+
+        button.btn.btn-primary {
+            background-color: #00A3FF; /* Green */
+            border: none;
+            color: white;
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
-            cursor: pointer;
             border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-            .logout-button:hover {
-                background-color: #45a049;
+            button.btn.btn-primary:hover {
+                background-color: #00A3FF;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
-
-        .search-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-            .search-container input[type="text"] {
-                width: 100%;
-                max-width: 300px;
-                padding: 10px;
-                margin-right: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-            .search-container button {
-                padding: 10px 20px;
-                border: none;
-                background-color: #4CAF50;
-                color: white;
-                cursor: pointer;
-                border-radius: 4px;
-            }
-
-                .search-container button:hover {
-                    background-color: #45a049;
-                }
-
-        .order-table-container {
-            border: 1px solid #ddd;
-            padding: 20px;
-            width: 100%;
-            max-width: 1200px;
-            height: 400px; /* Set the height to a fixed value */
-            overflow-y: scroll; /* Enable vertical scrolling */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid black;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h2>Sale Staff Orders</h2>
+            <h2><i class="fa fa-chart-line"></i> Sale Staff Orders</h2>
             <form action="@Url.Action("Logout", "Login")" method="post" style="margin: 0;">
                 <button type="submit" class="logout-button">Logout</button>
             </form>
         </div>
         <div class="search-container">
-            <form action="@Url.Action("Index", "SaleStaff")" method="get" class="form-inline justify-content-center">
-                <input type="text" name="searchOrderId" class="form-control mb-2 mr-sm-2" placeholder="Search by Order ID" value="@Request.QueryString["searchOrderId"]" />
-                <button type="submit" class="btn btn-success mb-2">Search</button>
-            </form>
+            <button class="search-icon" onclick="toggleSearchForm()"><i class="fa fa-search"></i></button>
+            <input type="text" id="searchOrders" class="form-control search-input" placeholder="Search for orders by OrderID.." onkeypress="checkEnter(event)" value="@Request.QueryString["searchOrderId"]">
         </div>
-        <div class="order-table-container">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer ID</th>
-                        <th>Delivery Staff ID</th>
-                        <th>Total Money</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (ViewBag.Orders != null)
-                    {
-                        foreach (var order in ViewBag.Orders)
-                        {
+        <div id="ordersTableContainer">
+            @if (ViewBag.Orders != null && ViewBag.Orders.Count > 0)
+            {
+                <div class="order-table-container">
+                    <table class="table table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>@order.orderID</td>
-                                <td>@order.customerID</td>
-                                <td>@order.deliveryStaffID</td>
-                                <td>@order.totalMoney</td>
-                                <td>@order.status</td>
-                                <td>
-                                    <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="orderId" value="@order.orderID" />
-                                        <button type="submit" class="btn btn-warning" @(order.status != "Order Placed" ? "disabled" : "")>Process</button>
-                                    </form>
-                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
-                                </td>
+                                <th class="wide-column">Order ID</th>
+                                <th class="wide-column">Customer</th>
+                                <th class="wide-column">Delivery Staff</th>
+                                <th class="wide-column">Total Money</th>
+                                <th class="wide-column">Status</th>
+                                <th class="wide-column">Actions</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in ViewBag.Orders)
+                            {
+                                <tr>
+                                    <td>@order.orderID</td>
+                                    <td>@order.customerName</td>
+                                    <td>@order.deliveryStaffName</td>
+                                    <td>$@String.Format("{0:N0}", order.totalMoney)</td>
+                                    <td>@order.status</td>
+                                    <td>
+                                        <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="orderId" value="@order.orderID" />
+                                            <button type="submit" class="btn btn-warning" @(order.status != "Order Placed" ? "disabled" : "")>Process</button>
+                                        </form>
+                                        <button class="btn btn-primary" onclick="viewOrder('@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })')">View Order</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination">
+                        @if (ViewBag.TotalOrders != null && ViewBag.PageSize != null)
+                        {
+                            int totalPages = (int)Math.Ceiling((double)ViewBag.TotalOrders / (int)ViewBag.PageSize);
+                            for (int i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.Page == i ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize, searchOrderId = @Request.QueryString["searchOrderId"] })">@i</a>
+                                </li>
+                            }
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="6">No orders found.</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </ul>
+                </nav>
+            }
+            else
+            {
+                <div class="no-orders">
+                    No orders found.
+                </div>
+            }
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script>
+        function toggleSearchForm() {
+            var searchInput = document.getElementById("searchOrders");
+            if (searchInput.style.display === "none" || searchInput.style.display === '') {
+                searchInput.style.display = "block";
+            } else {
+                searchInput.style.display = "none";
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                searchOrders();
+            }
+        }
+
+        function searchOrders() {
+            var searchOrderId = $('#searchOrders').val();
+            window.location.href = '@Url.Action("Index", "SaleStaff")' + '?searchOrderId=' + searchOrderId;
+        }
+
+        function viewOrder(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
