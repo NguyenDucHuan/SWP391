@@ -42,13 +42,13 @@ namespace ProjectDiamondShop.Controllers
         {
             if (Session["IsAuthenticated"] == null || !(bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
 
             string userId = Session["UserID"] as string;
             if (userId == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");  
             }
 
             tblUser user = service.GetUserById(userId);
@@ -70,13 +70,13 @@ namespace ProjectDiamondShop.Controllers
         {
             if (Session["IsAuthenticated"] == null || !(bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
 
             string userId = Session["UserID"] as string;
             if (userId == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
 
             tblUser user = service.GetUserById(userId);

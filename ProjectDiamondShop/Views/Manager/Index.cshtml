@@ -57,7 +57,7 @@
                 <a href="@Url.Action("AddDiamond", "Diamonds")"><i class="fas fa-plus-circle"></i> <span class="sidebar-text">Add New Diamonds</span></a>
                 <a href="@Url.Action("AddSetting", "Manager")"><i class="fas fa-ring"></i> <span class="sidebar-text">Add New Settings</span></a>
                 <a href="@Url.Action("AddAccentStone", "Manager")"><i class="fas fa-gem"></i> <span class="sidebar-text">Add New Accent Stones</span></a>
-                <a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i> <span class="sidebar-text">Logout</span></a>
+                <a href="@Url.Action("Logout", "Account")"><i class="fas fa-sign-out-alt"></i> <span class="sidebar-text">Logout</span></a>
             </div>
         </aside>
 
@@ -649,7 +649,7 @@
                 data: {
                     labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
                     datasets: [{
-                        label: 'Revenue',
+                        label: 'Dollars',
                         data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
@@ -671,7 +671,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return context.raw + ' registrations';
+                                    return context.raw + ' dollars';
                                 }
                             }
                         }

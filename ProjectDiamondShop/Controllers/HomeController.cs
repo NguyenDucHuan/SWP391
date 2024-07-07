@@ -113,7 +113,7 @@ namespace ProjectDiamondShop.Controllers
             var userID = Session["UserID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             var currentOrders = orderServices.GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
             var historyOrders = orderServices.GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);

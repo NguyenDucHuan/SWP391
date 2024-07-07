@@ -4,25 +4,82 @@ using ProjectDiamondShop.Models;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace ProjectDiamondShop.Controllers
 {
-    public class SignUpController : Controller
+    public class AccountController : Controller
     {
         private readonly IUserService userService;
-        public SignUpController()
+
+        public AccountController()
         {
             userService = new UserService();
         }
-        // GET: Sign Up
+
+        // GET: Login/SignUp
         public ActionResult Index()
         {
-            return View("SignUpPage");
+            return View("AccountPage");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login()
+        {
+            string userName = Request.Form["username"];
+            string password = Request.Form["password"];
+            string hashedPassword = HashString(password);
+            string hashedUserName = HashString(userName);
+
+            try
+            {
+                tblUser loginUser = userService.LoginUser(hashedUserName, hashedPassword);
+                Session["UserID"] = loginUser.userID;
+                Session["UserName"] = loginUser.userName;
+                Session["RoleID"] = loginUser.roleID;
+                Session["IsAuthenticated"] = true;
+
+                if (loginUser.roleID == 5)
+                {
+                    return RedirectToAction("Index", "SaleStaff");
+                }
+                else if (loginUser.roleID == 4)
+                {
+                    return RedirectToAction("Index", "DeliveryStaff");
+                }
+                else if (loginUser.roleID == 3)
+                {
+                    return RedirectToAction("Index", "Manager");
+                }
+                else if (loginUser.roleID == 2)
+                {
+                    return RedirectToAction("Index", "Manager");
+                }
+                else
+                {
+                    TempData["SuccessMessage"] = "Login successful!";
+                    TempData["UserName"] = userName;
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                if (ex.Message == "User account is inactive.")
+                {
+                    ViewBag.Message = "Your account has been disabled, please contact customer service for more details!!!";
+                }
+                else
+                {
+                    ViewBag.Message = ex.Message;
+                }
+                ViewBag.UserName = userName;
+                ViewBag.Password = password;
+                return View("AccountPage");
+            }
         }
 
         [HttpPost]
@@ -36,7 +93,6 @@ namespace ProjectDiamondShop.Controllers
             string email = Request.Form["txtEmail"];
             bool hasErrors = false;
 
-            // Validate inputs
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
             {
                 ModelState.AddModelError("RequiredFields", "All fields are required.");
@@ -55,7 +111,6 @@ namespace ProjectDiamondShop.Controllers
             }
             else
             {
-                // Validate password strength
                 if (!Regex.IsMatch(password, @"[a-z]"))
                 {
                     ModelState.AddModelError("PasswordLowercase", "Password must contain at least one lowercase letter.");
@@ -75,14 +130,12 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-            // Validate email format
             if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 ModelState.AddModelError("InvalidEmail", "Email is not in a correct format.");
                 hasErrors = true;
             }
 
-            // Check if user name already exists
             string hashedUserName = HashString(userName);
             if (userService.CheckDuplicateUserName(hashedUserName))
             {
@@ -90,30 +143,17 @@ namespace ProjectDiamondShop.Controllers
                 hasErrors = true;
             }
 
-            // Check if email already exists
             if (userService.CheckDuplicateEmail(email))
             {
                 ModelState.AddModelError("DuplicateEmail", "Email already exists.");
                 hasErrors = true;
             }
 
-            // If any validation failed, return to the sign-up page with errors
             if (hasErrors)
             {
                 ViewBag.UserName = userName;
                 ViewBag.FullName = fullName;
                 ViewBag.Email = email;
-
-                // Only clear password fields if they have errors
-                if (!ModelState.IsValidField("PasswordRequired") &&
-                    !ModelState.IsValidField("PasswordMismatch") &&
-                    !ModelState.IsValidField("PasswordLowercase") &&
-                    !ModelState.IsValidField("PasswordUppercase") &&
-                    !ModelState.IsValidField("PasswordSpecialChar"))
-                {
-                    ViewBag.Password = password;
-                    ViewBag.ConfirmPassword = confirmPassword;
-                }
 
                 var prioritizedErrors = new[] { "RequiredFields", "PasswordRequired", "PasswordMismatch", "PasswordLowercase", "PasswordUppercase", "PasswordSpecialChar", "DuplicateUserName", "DuplicateEmail", "InvalidEmail" };
                 foreach (var key in prioritizedErrors)
@@ -124,15 +164,12 @@ namespace ProjectDiamondShop.Controllers
                         break;
                     }
                 }
-                return View("SignUpPage");
+                return View("AccountPage");
             }
 
-            // Hash password
             string hashedPassword = HashString(password);
-            // Create random userID
             string userId = GenerateNextUserId();
 
-            // Create new user
             tblUser newUser = new tblUser
             {
                 userID = userId,
@@ -145,7 +182,6 @@ namespace ProjectDiamondShop.Controllers
                 resetCode = ""
             };
 
-            // Add user to database
             try
             {
                 userService.AddUser(newUser);
@@ -153,11 +189,16 @@ namespace ProjectDiamondShop.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.ToString());
-                return View("SignUpPage");
+                return View("AccountPage");
             }
 
-            // Redirect to login page after successful registration
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         private string HashString(string str)
