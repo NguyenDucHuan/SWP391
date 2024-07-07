@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "Account Page";
+}
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>The Diamond Shop</title>
@@ -55,14 +59,14 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link login-btn" href="@Url.Action("Index", "Login")">Login</a>
+                            <a class="nav-link login-btn" href="@Url.Action("Index", "Account")">Login</a>
                         </li>
                     }
                 </ul>
@@ -72,7 +76,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form id="form2" method="post" action="@Url.Action("Register", "SignUp")">
+            <form id="form2" method="post" action="@Url.Action("Register", "Account")">
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -109,10 +113,9 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form id="form1" runat="server" method="post" action="@Url.Action("Authenticate", "Login")">
+            <form id="form1" runat="server" method="post" action="@Url.Action("Login", "Account")">
                 @Html.AntiForgeryToken()
 
-                <!-- Vùng thông báo lỗi -->
                 @if (!string.IsNullOrEmpty(ViewBag.Message))
                 {
                     <div class="glow-text" role="alert">

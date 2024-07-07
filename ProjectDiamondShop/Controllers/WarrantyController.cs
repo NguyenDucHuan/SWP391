@@ -80,7 +80,7 @@ namespace ProjectDiamondShop.Controllers
             var userID = Session["UserID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
 
             var warranties = _warrantyService.GetNonValidWarrantiesByCustomer(userID);

@@ -57,7 +57,7 @@ namespace ProjectDiamondShop.Controllers
             var userID = GetUserID();
             if (string.IsNullOrEmpty(userID))
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             var cart = CartHelper.GetCart(HttpContext, userID);
             ViewBag.Vouchers = orderServices.GetAvailableVouchers(userID);

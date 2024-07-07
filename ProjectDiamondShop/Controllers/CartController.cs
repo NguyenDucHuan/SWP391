@@ -52,7 +52,7 @@ public class CartController : Controller
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
         var cart = CartHelper.GetCart(HttpContext, userID);
         return View(cart);
@@ -64,7 +64,7 @@ public class CartController : Controller
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
         var cartItem = new ItemCartDAO(settingID, accentStoneID, diamondID, settingSize);
         CartHelper.AddToCart(HttpContext, userID, cartItem);
@@ -78,7 +78,7 @@ public class CartController : Controller
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
         CartHelper.RemoveFromCart(HttpContext, userID, diamondID);
         return RedirectToAction("Index");
@@ -90,7 +90,7 @@ public class CartController : Controller
         var userID = GetUserID();
         if (string.IsNullOrEmpty(userID))
         {
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Account");
         }
         CartHelper.ClearCart(HttpContext, userID);
         return RedirectToAction("Index");

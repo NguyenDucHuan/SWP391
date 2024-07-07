@@ -174,7 +174,7 @@ namespace ProjectDiamondShop.Controllers
             {
                 userService.ResetPassword(HashPassword(newPassword), email, code);
                 TempData["Message"] = "Password has been reset successfully. You can now log in with your new password.";
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Account");
             }
             catch (Exception ex)
             {
