@@ -33,5 +33,18 @@ namespace DiamondShopRepositories.NotificationRepository
             _notificationDAO.MarkAllAsRead(userId);
         }
 
+        public tblNotification GetNotificationById(int notificationID)
+        {
+            return _notificationDAO.GetNotificationById(notificationID);
+        }
+
+        public void UpdateNotification(tblNotification notification)
+        {
+            _notificationDAO.UpdateNotification(notification);
+        }
+        public IEnumerable<tblNotification> GetAll()
+        {
+            return _notificationDAO.GetAll();
+        }
     }
 }

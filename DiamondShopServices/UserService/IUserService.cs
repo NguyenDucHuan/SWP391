@@ -21,5 +21,6 @@ namespace DiamondShopServices.UserService
         string GenerateResetCode(String email);
         String GetResetCodeByEmail(String email);
         void ResetPassword(String newPassword, String email, String resetCode);
+        List<tblUser> GetUsersByRole(List<int> roleIDs);
     }
 }

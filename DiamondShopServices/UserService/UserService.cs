@@ -77,6 +77,9 @@ namespace DiamondShopServices.UserService
         {
             userRepository.UpdateUser(id, user);
         }
-
+        public List<tblUser> GetUsersByRole(List<int> roleIDs)
+        {
+            return userRepository.GetUsersByRole(roleIDs);
+        }
     }
 }

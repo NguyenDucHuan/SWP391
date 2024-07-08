@@ -564,6 +564,7 @@
     <Content Include="Views\Manager\AddAccentStone.cshtml" />
     <Content Include="Views\Manager\AddSetting.cshtml" />
     <Content Include="Views\Account\AccountPage.cshtml" />
+    <Content Include="Views\SaleStaff\Rebuy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

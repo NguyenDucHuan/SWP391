@@ -111,6 +111,12 @@ CREATE TABLE [dbo].[tblDiamonds](
     [quantity] INT NOT NULL DEFAULT 1,
     CONSTRAINT [PK_tblDiamonds] PRIMARY KEY CLUSTERED ([diamondID] ASC)
 );
+ALTER TABLE [dbo].[tblDiamonds]
+ADD [rebuyPrice] MONEY NULL,
+    [stillHaveCertification] BIT NULL;
+ALTER TABLE tblDiamonds ADD detailStatus NVARCHAR(50) DEFAULT 'To Receive';
+
+
 
 -- B?ng ch?ng ch?
 CREATE TABLE [dbo].[tblCertificate](
@@ -159,6 +165,8 @@ CREATE TABLE [dbo].[tblOrder](
 ALTER TABLE [dbo].[tblOrder]
 ADD [customerName] NVARCHAR(50) NULL;
 
+ALTER TABLE [dbo].[tblOrder]
+ADD [deliveryStaffName] NVARCHAR(250) NULL;
 
 -- Thêm cột voucherID vào bảng tblOrder
 ALTER TABLE [dbo].[tblOrder]

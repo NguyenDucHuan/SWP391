@@ -178,5 +178,14 @@ namespace DiamondShopDAOs
         {
             _context.SaveChanges();
         }
+        public tblOrder GetOrderByID(string orderID)
+        {
+            return _context.tblOrders.SingleOrDefault(o => o.orderID == orderID);
+        }
+
+        public tblOrderItem GetOrderItemByDiamondID(int diamondID)
+        {
+            return _context.tblOrderItems.SingleOrDefault(oi => oi.ItemID == diamondID);
+        }
     }
 }

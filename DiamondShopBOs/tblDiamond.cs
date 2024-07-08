@@ -34,6 +34,9 @@ namespace DiamondShopBOs
         public string diamondImagePath { get; set; }
         public Nullable<bool> status { get; set; }
         public int quantity { get; set; }
+        public Nullable<decimal> rebuyPrice { get; set; }
+        public Nullable<bool> stillHaveCertification { get; set; }
+        public string detailStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCertificate> tblCertificates { get; set; }

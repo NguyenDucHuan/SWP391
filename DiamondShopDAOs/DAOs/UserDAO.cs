@@ -229,5 +229,11 @@ namespace DiamondShopDAOs
         {
             return diamondShopManagementEntities.tblUsers.ToList();
         }
+        public List<tblUser> GetUsersByRole(List<int> roleIDs)
+        {
+            return diamondShopManagementEntities.tblUsers
+                .Where(u => roleIDs.Contains(u.roleID))
+                .ToList();
+        }
     }
 }

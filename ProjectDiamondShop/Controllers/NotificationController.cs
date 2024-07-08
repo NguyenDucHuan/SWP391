@@ -66,6 +66,11 @@ namespace ProjectDiamondShop.Controllers
             var unreadCount = _notificationService.GetUnreadNotificationCountByUserId(userId);
             return Json(new { success = true, unreadCount }, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Notifications()
+        {
+            var userId = User.Identity.Name; // Or another way to get the user ID
+            var notifications = _notificationService.GetNotificationsByUserId(userId);
+            return View(notifications);
+        }
     }
 }

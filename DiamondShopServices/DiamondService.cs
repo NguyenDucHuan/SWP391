@@ -55,6 +55,23 @@ namespace DiamondShopServices
         {
             return diamondRepository.GetCertificatesByDiamondId(diamondId);
         }
+        public void UpdateDiamond(tblDiamond diamond)
+        {
+            diamondRepository.UpdateDiamond(diamond);
+        }
 
+        public tblDiamond GetDiamondByID(int diamondID, bool status, string detailStatus)
+        {
+            return diamondRepository.GetDiamondByID(diamondID, status, detailStatus);
+        }
+
+        public tblDiamond GetDiamondBySearchTerm(string searchTerm)
+        {
+            if (int.TryParse(searchTerm, out int id))
+            {
+                return diamondRepository.GetDiamondByID(id, false, "Sold");
+            }
+            return diamondRepository.GetDiamondByWarrantyCode(searchTerm, false, "Sold");
+        }
     }
 }

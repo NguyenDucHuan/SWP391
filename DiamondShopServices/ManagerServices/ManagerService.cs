@@ -123,5 +123,14 @@ namespace DiamondShopServices.ManagerServices
         {
             _managerRepository.UpdateVoucherQuantity(voucherId, newQuantity);
         }
+        public void UpdateVoucher(tblVoucher voucher)
+        {
+            _managerRepository.UpdateVoucher(voucher);
+        }
+
+        public List<tblVoucher> GetAllVouchers()
+        {
+            return _managerRepository.GetAllVouchers();
+        }
     }
 }

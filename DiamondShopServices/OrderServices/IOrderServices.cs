@@ -17,5 +17,7 @@ namespace DiamondShopServices.OrderServices
         tblVoucher ValidateVoucher(int voucherID, string userID);
         decimal GetVoucherDiscount(int? voucherID);
         void UpdateOrder(tblOrder order);
+        tblOrder GetOrderByID(string orderID);
+        tblOrderItem GetOrderItemByDiamondID(int diamondID);
     }
 }

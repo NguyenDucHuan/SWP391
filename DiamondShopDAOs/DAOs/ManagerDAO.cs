@@ -203,5 +203,19 @@ namespace DiamondShopDAOs
                 _context.SaveChanges();
             }
         }
+        public void UpdateVoucher(tblVoucher voucher)
+        {
+            var existingVoucher = _context.tblVouchers.Find(voucher.voucherID);
+            if (existingVoucher != null)
+            {
+                existingVoucher.status = voucher.status;
+                _context.SaveChanges();
+            }
+        }
+
+        public List<tblVoucher> GetAllVouchers()
+        {
+            return _context.tblVouchers.ToList();
+        }
     }
 }

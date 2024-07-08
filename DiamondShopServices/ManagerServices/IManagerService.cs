@@ -33,5 +33,7 @@ namespace DiamondShopServices.ManagerServices
         tblDiamond GetDiamondById(int diamondID);
         void ToggleVoucherStatus(int voucherId, bool status);
         void UpdateVoucherQuantity(int voucherId, int? newQuantity);
+        void UpdateVoucher(tblVoucher voucher);
+        List<tblVoucher> GetAllVouchers();
     }
 }
