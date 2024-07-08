@@ -5,14 +5,14 @@
 }
 
 
-<link href="~/Content/Cart.css" rel="stylesheet"/>
+<link href="~/Content/Cart.css" rel="stylesheet" />
 
 <div class="container shadow-sm p-3 mb-5 bg-white rounded" style="color:#333">
-    <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>  
+    <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
     @foreach (var item in Model.Items.Select((value, index) => new { value, index }))
     {
         <div class="cart-item @(item.index % 2 == 0 ? "even" : "odd")">
-            <img src="@item.value.imagePath.Split('|')[item.value.settingID == 0 ? 0 : 1]" alt="Product Image" />
+            <img src="@item.value.imagePath.Split('|')[item.value.settingID == 0 ? 0 : 2]" alt="Product Image" />
             <div class="cart-item-details">
                 <div class="cart-item-info">
                     <h5>Diamond Name: @item.value.DiamondName</h5>

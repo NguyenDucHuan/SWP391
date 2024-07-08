@@ -45,7 +45,9 @@ namespace DiamondShopServices
         public void UpdateDiamondStatus(tblDiamond diamond, bool status)
         {
             diamond.status = status;
+            diamond.detailStatus = "Sold";
             diamondRepository.UpdateDiamond(diamond.diamondID, diamond);
+
         }
         public void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate)
         {
