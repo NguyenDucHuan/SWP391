@@ -59,7 +59,7 @@
         <div class="col-md-6">
             <h2 class="diamond-title">@Model.diamondName</h2>
             <p>@Model.diamondDescription</p>
-            <p class="price"><strong>Price:</strong> $@String.Format("{0:0.##}", @Model.diamondPrice)</p>
+            <p class="price"><strong>Price:</strong> $@String.Format("{0:N0}", @Model.diamondPrice)</p>
             <div class="action-buttons">
                 @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "add-to-cart-form" }))
                 {
@@ -73,7 +73,7 @@
                 }
             </div>
             <div class="video-container mt-3">
-                <iframe class="video-frame" src="https://www.youtube.com/embed/EjVKezPY5Vo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="video-frame" width="560" height="315" src="https://www.youtube.com/embed/EjVKezPY5Vo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>

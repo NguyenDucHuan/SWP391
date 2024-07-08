@@ -40,7 +40,7 @@
                     <a href="javascript:void(0)" onclick="showSection('deliveryStaff')"><i class="fas fa-shipping-fast"></i> <span class="sidebar-text">Delivery Staff</span></a>
                     <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> <span class="sidebar-text">Accent Stones</span></a>
                     <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
-                    <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> Notifications</a>
+                    <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> <span class="sidebar-text">Notifications</span></a>
                 }
                 @if ((int)Session["RoleID"] == 2)
                 {
@@ -52,7 +52,7 @@
                     <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> <span class="sidebar-text">Accent Stones</span></a>
                     <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
                     <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> <span class="sidebar-text">Users</span></a>
-                    <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> Notifications</a>
+                    <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> <span class="sidebar-text">Notifications</span></a>
                     <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> <span class="sidebar-text">Create Account</span></a>
                 }
                 <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> <span class="sidebar-text">Create Voucher</span></a>
@@ -135,7 +135,7 @@
                                             }
                                         </select>
                                     </td>
-                                    <td>@order.totalMoney</td>
+                                    <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>
                                         <select class="form-control status" name="orderUpdates[@i].Status" data-original="@order.status">
                                             <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
@@ -155,6 +155,20 @@
                     </table>
                 </div>
                 <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalOrders != null && ViewBag.OrderPageSize != null)
+                        {
+                            int totalOrderPages = (int)Math.Ceiling((double)ViewBag.TotalOrders / ViewBag.OrderPageSize);
+                            for (int i = 1; i <= totalOrderPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentOrderPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadOrdersPage(@i, @ViewBag.OrderPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
             <div id="diamonds" class="section">
@@ -186,7 +200,7 @@
                                 <tr id="diamond-row-@diamond.diamondID">
                                     <td>@diamond.diamondID</td>
                                     <td>@diamond.diamondName</td>
-                                    <td>@String.Format("{0:N0}", diamond.diamondPrice)</td>
+                                    <td>$@String.Format("{0:N0}", diamond.diamondPrice)</td>
                                     <td>@diamond.diamondDescription</td>
                                     <td>@diamond.caratWeight</td>
                                     <td>@diamond.clarityID</td>
@@ -262,6 +276,20 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalVouchers != null && ViewBag.VoucherPageSize != null)
+                        {
+                            int totalVoucherPages = (int)Math.Ceiling((double)ViewBag.TotalVouchers / ViewBag.VoucherPageSize);
+                            for (int i = 1; i <= totalVoucherPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentVoucherPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadVouchersPage(@i, @ViewBag.VoucherPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
             <div id="accentStones" class="section">
@@ -314,6 +342,20 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalAccentStones != null && ViewBag.AccentStonePageSize != null)
+                        {
+                            int totalAccentStonePages = (int)Math.Ceiling((double)ViewBag.TotalAccentStones / ViewBag.AccentStonePageSize);
+                            for (int i = 1; i <= totalAccentStonePages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentAccentStonePage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadAccentStonesPage(@i, @ViewBag.AccentStonePageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
             <div id="settings" class="section">
@@ -362,6 +404,20 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalSettings != null && ViewBag.SettingPageSize != null)
+                        {
+                            int totalSettingPages = (int)Math.Ceiling((double)ViewBag.TotalSettings / ViewBag.SettingPageSize);
+                            for (int i = 1; i <= totalSettingPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentSettingPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadSettingsPage(@i, @ViewBag.SettingPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
             <div id="saleStaff" class="section">
@@ -406,6 +462,20 @@
 
                         </tbody>
                     </table>
+                </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalSettings != null && ViewBag.SettingPageSize != null)
+                        {
+                            int totalSettingPages = (int)Math.Ceiling((double)ViewBag.TotalSettings / ViewBag.SettingPageSize);
+                            for (int i = 1; i <= totalSettingPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentSettingPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadSettingsPage(@i, @ViewBag.SettingPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
                 </div>
             </div>
 
@@ -452,6 +522,20 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalDeliveryStaff != null && ViewBag.DeliveryStaffPageSize != null)
+                        {
+                            int totalDeliveryStaffPages = (int)Math.Ceiling((double)ViewBag.TotalDeliveryStaff / ViewBag.DeliveryStaffPageSize);
+                            for (int i = 1; i <= totalDeliveryStaffPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentDeliveryStaffPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadDeliveryStaffPage(@i, @ViewBag.DeliveryStaffPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
             @if ((int)Session["RoleID"] == 2)
@@ -491,64 +575,88 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="pagination">
+                        <ul class="pagination">
+                            @if (ViewBag.TotalUsers != null && ViewBag.UserPageSize != null)
+                            {
+                                int totalUserPages = (int)Math.Ceiling((double)ViewBag.TotalUsers / ViewBag.UserPageSize);
+                                for (int i = 1; i <= totalUserPages; i++)
+                                {
+                                    <li class="page-item @(ViewBag.CurrentUserPage == i ? "active" : "")">
+                                        <a class="btn-link" href="javascript:void(0);" onclick="loadUsersPage(@i, @ViewBag.UserPageSize)">@i</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
                 </div>
             }
-            <div id="notifications" class="section">
-                <h3>Notifications</h3>
-                <div class="table-container">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>User ID</th>
-                                <th>Date</th>
-                                <th>Detail</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (ViewBag.Notifications != null && ViewBag.Notifications.Count > 0)
-                            {
-                                foreach (var notification in ViewBag.Notifications)
-                                {
-                                    <tr>
-                                        <td>@notification.notificationID</td>
-                                        <td>@notification.userID</td>
-                                        <td>@notification.date</td>
-                                        <td>@notification.detail</td>
-                                        <td>@notification.status</td>
-                                        <td>
-                                            @if (notification.detail.Contains("rebuy request for Diamond") && notification.status)
-                                            {
-                                                <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
-                                                    @Html.AntiForgeryToken()
-                                                    <input type="hidden" name="notificationID" value="@notification.notificationID" />
-                                                    <input type="hidden" name="isAccepted" value="true" />
-                                                    <button type="submit" class="btn btn-success">Accept</button>
-                                                </form>
-                                                <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
-                                                    @Html.AntiForgeryToken()
-                                                    <input type="hidden" name="notificationID" value="@notification.notificationID" />
-                                                    <input type="hidden" name="isAccepted" value="false" />
-                                                    <button type="submit" class="btn btn-danger">Reject</button>
-                                                </form>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-
-                            }
-                            else
+        <div id="notifications" class="section">
+            <h3>Notifications</h3>
+            <div class="table-container">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Detail</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Notifications != null && ViewBag.Notifications.Count > 0)
+                        {
+                            foreach (var notification in ViewBag.Notifications)
                             {
                                 <tr>
-                                    <td colspan="6">No notifications available.</td>
+                                    <td>@notification.notificationID</td>
+                                    <td>@notification.date</td>
+                                    <td>@notification.detail</td>
+                                    <td>
+                                        @if (notification.detail.Contains("rebuy request for Diamond") && notification.status)
+                                        {
+                                            <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="notificationID" value="@notification.notificationID" />
+                                                <input type="hidden" name="isAccepted" value="true" />
+                                                <button type="submit" class="btn btn-success">Accept</button>
+                                            </form>
+                                            <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="notificationID" value="@notification.notificationID" />
+                                                <input type="hidden" name="isAccepted" value="false" />
+                                                <button type="submit" class="btn btn-danger">Reject</button>
+                                            </form>
+                                        }
+                                    </td>
                                 </tr>
                             }
-                        </tbody>
-                    </table>
-                </div>
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6">No notifications available.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
+            <div class="pagination">
+                <ul class="pagination">
+                    @if (ViewBag.TotalNotifications != null && ViewBag.NotificationPageSize != null)
+                    {
+                        int totalNotificationPages = (int)Math.Ceiling((double)ViewBag.TotalNotifications / ViewBag.NotificationPageSize);
+                        for (int i = 1; i <= totalNotificationPages; i++)
+                        {
+                            <li class="page-item @(ViewBag.CurrentNotificationPage == i ? "active" : "")">
+                                <a class="btn-link" href="javascript:void(0);" onclick="loadNotificationsPage(@i, @ViewBag.NotificationPageSize)">@i</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
 
 
             <div id="createAccount" class="section" style="display:none;">
@@ -707,7 +815,7 @@
                 data: {
                     labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
                     datasets: [{
-                        label: 'Dollars',
+                        label: 'Revenue',
                         data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
@@ -720,7 +828,7 @@
                             beginAtZero: true,
                             ticks: {
                                 callback: function (value) {
-                                    return value;
+                                    return '$' + value.toLocaleString();
                                 }
                             }
                         }
@@ -729,7 +837,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return context.raw + ' dollars';
+                                    return '$' + context.raw.toLocaleString();
                                 }
                             }
                         }
@@ -958,6 +1066,120 @@
             });
         }
 
+        function loadOrdersPage(page, orderPageSize) {
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { page: page, orderPageSize: orderPageSize },
+                success: function (data) {
+                    $('#orders').html($(data).find('#orders').html());
+                },
+                error: function () {
+                    alert('An error occurred while loading the orders page.');
+                }
+            });
+        }
+
+        function loadVouchersPage(page, voucherPageSize) {
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { page: page, voucherPageSize: voucherPageSize },
+                success: function (data) {
+                    $('#viewVoucher').html($(data).find('#viewVoucher').html());
+                },
+                error: function () {
+                    alert('An error occurred while loading the vouchers page.');
+                }
+            });
+        }
+
+        function loadAccentStonesPage(page, accentStonePageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, accentStonePageSize: accentStonePageSize },
+            success: function (data) {
+                $('#accentStones').html($(data).find('#accentStones').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the accent stones page.');
+            }
+        });
+    }
+
+        function loadSettingsPage(page, settingPageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, settingPageSize: settingPageSize },
+            success: function (data) {
+                $('#settings').html($(data).find('#settings').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the settings page.');
+            }
+        });
+    }
+
+        function loadUsersPage(page, userPageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, userPageSize: userPageSize },
+            success: function (data) {
+                $('#users').html($(data).find('#users').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the users page.');
+            }
+        });
+    }
+
+        function loadDeliveryStaffPage(page, deliveryStaffPageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, deliveryStaffPageSize: deliveryStaffPageSize},
+            success: function (data) {
+                $('#deliveryStaff').html($(data).find('#deliveryStaff').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the delivery staff page.');
+            }
+        });
+    }
+
+        function loadSaleStaffPage(page, saleStaffPageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, saleStaffPageSize: saleStaffPageSize},
+            success: function (data) {
+                $('#saleStaff').html($(data).find('#saleStaff').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the sale staff page.');
+            }
+        });
+        }
+
+
+        function loadNotificationsPage(page, pageSize) {
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { page: page, notificationPageSize: pageSize },
+                success: function (data) {
+                    $('#notifications').html($(data).find('#notifications').html());
+                    updatePagination(page, pageSize);
+                },
+                error: function () {
+                    alert('An error occurred while loading the notifications page.');
+                }
+            });
+        }
+
         function updatePagination(currentPage, pageSize) {
             var totalPages = Math.ceil(@ViewBag.TotalDiamonds / pageSize);
             var paginationHtml = '';
@@ -973,10 +1195,6 @@
                 });
             });
         }
-
-
-
-
 
         function clearForm() {
             $('input[type="text"], input[type="number"], input[type="file"], input[type="date"]').val('');

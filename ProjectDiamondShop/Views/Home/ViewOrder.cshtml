@@ -22,7 +22,7 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-primary" onclick="showSection('currentOrders')">Current Orders</button>
                 <button type="button" class="btn btn-primary" onclick="showSection('orderHistory')">Order History</button>
-                
+
             </div>
         </div>
 
@@ -34,8 +34,8 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer ID</th>
-                            <th>Delivery Staff ID</th>
+                            <th>Customer</th>
+                            <th>Delivery Staff</th>
                             <th>Paid Money</th>
                             <th>Remaining Money</th>
                             <th>Total Money</th>
@@ -50,11 +50,11 @@
                             {
                                 <tr>
                                     <td>@order.orderID</td>
-                                    <td>@order.customerID</td>
-                                    <td>@order.deliveryStaffID</td>
-                                    <td>@String.Format("{0:N0}", order.paidAmount)</td>
-                                    <td>@String.Format("{0:N0}", order.remainingAmount)</td>
-                                    <td>@String.Format("{0:N0}", order.totalMoney)</td>
+                                    <td>@order.customerName</td>
+                                    <td>@order.deliveryStaffName</td>
+                                    <td>$@String.Format("{0:N0}", order.paidAmount)</td>
+                                    <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
+                                    <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>@order.status</td>
                                     <td>
                                         <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
@@ -75,8 +75,8 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer ID</th>
-                            <th>Delivery Staff ID</th>
+                            <th>Customer</th>
+                            <th>Delivery Staff</th>
                             <th>Paid Money</th>
                             <th>Remaining Money</th>
                             <th>Total Money</th>
@@ -89,11 +89,11 @@
                         {
                             <tr>
                                 <td>@order.orderID</td>
-                                <td>@order.customerID</td>
-                                <td>@order.deliveryStaffID</td>
-                                <td>@String.Format("{0:N0}", order.paidAmount)</td>
-                                <td>@String.Format("{0:N0}", order.remainingAmount)</td>
-                                <td>@String.Format("{0:N0}", order.totalMoney)</td>
+                                <td>@order.customerName</td>
+                                <td>@order.deliveryStaffName</td>
+                                <td>$@String.Format("{0:N0}", order.paidAmount)</td>
+                                <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
+                                <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                 <td>@order.status</td>
                                 <td>
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>

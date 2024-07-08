@@ -176,7 +176,6 @@ button.thumbnail-button-cert {
 }
 
 .video-frame {
-	width: 100%;
-	height: 300px;
-	margin-top: 50px;
+	border-radius: 15px; /* Thay đổi giá trị 15px nếu bạn muốn bo góc nhiều hơn hoặc ít hơn */
+	overflow: hidden; /* Đảm bảo nội dung bên trong cũng được bo góc */
 }

@@ -11,7 +11,7 @@ namespace DiamondShopBOs
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class tblOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,7 @@ namespace DiamondShopBOs
             this.tblOrderStatusUpdates = new HashSet<tblOrderStatusUpdate>();
             this.tblTransactions = new HashSet<tblTransaction>();
         }
-
+    
         public string orderID { get; set; }
         public string customerID { get; set; }
         public string deliveryStaffID { get; set; }
@@ -37,6 +37,7 @@ namespace DiamondShopBOs
         public string customerName { get; set; }
         public string deliveryStaffName { get; set; }
         public Nullable<int> voucherID { get; set; }
+    
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         public virtual tblUser tblUser2 { get; set; }
