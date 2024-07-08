@@ -27,43 +27,6 @@
 
         <div class="box">
             <h2> Update Order Status</h2>
-            @*<div class="status-progress">
-                    @{
-                        var statuses = new List<string> { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery", "Delivered", "Paid" };
-                        string lastCompletedStatus = statuses.TakeWhile(s => s != order.status).LastOrDefault();
-                    }
-
-                    <div class="status-item @(lastCompletedStatus == "Order Placed" || order.status == "Order Placed" ? "completed" : "")">
-                        <i class="fas fa-shopping-cart icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">Order Placed</span>
-                    </div>
-                    <div class="status-item @(lastCompletedStatus == "Preparing Goods" || order.status == "Preparing Goods" ? "completed" : "")">
-                        <i class="fas fa-box icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">Preparing Goods</span>
-                    </div>
-                    <div class="status-item @(lastCompletedStatus == "Shipped to Carrier" || order.status == "Shipped to Carrier" ? "completed" : "")">
-                        <i class="fas fa-truck icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">Shipped to Carrier</span>
-                    </div>
-                    <div class="status-item @(lastCompletedStatus == "In Delivery" || order.status == "In Delivery" ? "completed" : "")">
-                        <i class="fas fa-shipping-fast icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">In Delivery</span>
-                    </div>
-                    <div class="status-item @(lastCompletedStatus == "Delivered" || order.status == "Delivered" ? "completed" : "")">
-                        <i class="fas fa-box-open icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">Delivered</span>
-                    </div>
-                    <div class="status-item @(lastCompletedStatus == "Paid" || order.status == "Paid" ? "completed" : "")">
-                        <i class="fas fa-receipt icon"></i>
-                        <div class="bar"></div>
-                        <span class="status-text">Paid</span>
-                    </div>
-                </div>*@
 
             <div class="status-progress">
                 @{
@@ -170,26 +133,26 @@
                                 <img src="@item.imagePath.Split('|')[0]" class="card-img-top" alt="Product Image">
                                 <div class="card-body">
                                     <h5 class="card-title">@item.DiamondName</h5>
-                                    <p class="card-text">Diamond Price: $@String.Format("{0:N0}", item.diamondPrice)</p>
+                                    <p class="card-text">Diamond Price: $@(item.diamondPrice)</p>
                                     @if (item.settingID != 0)
                                     {
                                         <p class="card-text">Setting Name: @item.decription</p>
-                                        <p class="card-text">Setting Price: $@String.Format("{0:N0}", item.settingPrice)</p>
+                                        <p class="card-text">Setting Price: $@item.settingPrice</p>
                                     }
                                     @if (item.accentStoneID != 0)
                                     {
                                         <p class="card-text">Accent Stone: @item.accentStoneID</p>
-                                        <p class="card-text">Accent Stone Price: $@String.Format("{0:N0}", item.accentStonePrice)</p>
-                                        <p class="card-text">Accent Stone Quantity:$@String.Format("{0:N0}", item.quantityAccent)</p>
+                                        <p class="card-text">Accent Stone Price: $@item.accentStonePrice</p>
+                                        <p class="card-text">Accent Stone Quantity: @item.quantityAccent</p>
                                     }
-                                    <p class="card-text"><strong>Total Price: $@String.Format("{0:N0}", item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong></p>
+                                    <p class="card-text"><strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong></p>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
                 <div class="mt-4 text-end">
-                    <p class="h5">Total: $@String.Format("{0:N0}", orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent))</p>
+                    <p class="h5">Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
                 </div>
             }
             else

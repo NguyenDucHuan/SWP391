@@ -15,6 +15,7 @@ namespace DiamondShopDAOs.CookieCartDAO
         private readonly AccentStoneDAO accentStoneDAO = null;
         public int settingID { get; set; }
         public int accentStoneID { get; set; }
+        public string accentStonesName { get; set; }
         public int quantityAccent { get; set; }
         public int diamondID { get; set; }
         public decimal diamondPrice { get; set; }
@@ -56,15 +57,18 @@ namespace DiamondShopDAOs.CookieCartDAO
 
             if (settingID != 0 && accentStoneID != 0)
             {
+
                 this.settingID = settingID;
+                var tblAccenstone = accentStoneDAO.GetAccentStone(accentStoneID);
                 var tblSetting = jewelrySettingDAO.GetSettingByID(settingID);
                 if (tblSetting != null)
                 {
                     this.settingPrice = tblSetting.priceTax;
                     this.quantityAccent = tblSetting.quantityStones;
-                    this.imagePath = tblSetting.imagePath + "|" + diamond.diamondImagePath;
+                    this.imagePath = tblAccenstone.imagePath + "|" + tblSetting.imagePath + "|" + diamond.diamondImagePath;
                     this.decription = tblSetting.description;
                     this.settingSize = settingSize;
+                    this.accentStonesName = tblAccenstone.accentStonesName;
                 }
                 else
                 {
