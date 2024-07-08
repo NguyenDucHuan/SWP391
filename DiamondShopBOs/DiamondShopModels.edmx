@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccentStones">
           <Key>
             <PropertyRef Name="accentStoneID" />
@@ -114,6 +114,7 @@
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="saleDate" Type="datetime" Nullable="false" />
           <Property Name="customerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="deliveryStaffName" Type="nvarchar" MaxLength="250" />
           <Property Name="voucherID" Type="int" />
         </EntityType>
         <EntityType Name="tblOrderItem">
@@ -595,7 +596,8 @@
             <End Role="tblWarranty" EntitySet="tblWarranty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -669,12 +671,12 @@
           <Property Name="diamondImagePath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="status" Type="Boolean" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblCertificates" Relationship="Self.FK_tblCertificate_tblDiamonds" FromRole="tblDiamonds" ToRole="tblCertificate" />
-          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblDiamonds" FromRole="tblDiamonds" ToRole="tblComment" />
-          <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblDiamonds" ToRole="tblItem" />
           <Property Name="rebuyPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="stillHaveCertification" Type="Boolean" />
           <Property Name="detailStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCertificates" Relationship="Self.FK_tblCertificate_tblDiamonds" FromRole="tblDiamonds" ToRole="tblCertificate" />
+          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblDiamonds" FromRole="tblDiamonds" ToRole="tblComment" />
+          <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblDiamonds" ToRole="tblItem" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -722,6 +724,7 @@
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="saleDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deliveryStaffName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="voucherID" Type="Int32" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblOrder" ToRole="tblUsers" />
@@ -1255,9 +1258,6 @@
           <EntitySetMapping Name="tblDiamonds">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblDiamond">
               <MappingFragment StoreEntitySet="tblDiamonds">
-                <ScalarProperty Name="detailStatus" ColumnName="detailStatus" />
-                <ScalarProperty Name="stillHaveCertification" ColumnName="stillHaveCertification" />
-                <ScalarProperty Name="rebuyPrice" ColumnName="rebuyPrice" />
                 <ScalarProperty Name="diamondID" ColumnName="diamondID" />
                 <ScalarProperty Name="diamondName" ColumnName="diamondName" />
                 <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />
@@ -1270,6 +1270,9 @@
                 <ScalarProperty Name="diamondImagePath" ColumnName="diamondImagePath" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="rebuyPrice" ColumnName="rebuyPrice" />
+                <ScalarProperty Name="stillHaveCertification" ColumnName="stillHaveCertification" />
+                <ScalarProperty Name="detailStatus" ColumnName="detailStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1315,6 +1318,7 @@
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="saleDate" ColumnName="saleDate" />
                 <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="deliveryStaffName" ColumnName="deliveryStaffName" />
                 <ScalarProperty Name="voucherID" ColumnName="voucherID" />
               </MappingFragment>
             </EntityTypeMapping>

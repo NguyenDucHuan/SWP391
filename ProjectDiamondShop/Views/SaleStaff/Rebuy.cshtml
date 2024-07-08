@@ -10,73 +10,90 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" />
+    <link rel="icon" type="image/png" href="~/Content/Icons/diamond (1).png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        body {
+            background-color: #EAE7D6;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
         .container {
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 20px;
+            border-radius: 30px;
+            background-color: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            margin-bottom: 20px;
+            background-color: #D7F9FA;
+            padding: 20px;
+            border-radius: 10px;
         }
 
             .header h2 {
-                flex-grow: 1;
-                text-align: center;
+                color: #5D7B6F;
+                margin: 0;
+                display: flex;
+                align-items: center;
             }
 
+                .header h2 .fa-chart-line {
+                    margin-right: 10px;
+                }
+
         .logout-button {
-            background-color: #4CAF50;
+            background-color: #dc3545;
             color: white;
             border: none;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 12px;
+            margin-left: 20px;
         }
 
             .logout-button:hover {
-                background-color: #45a049;
+                background-color: #c82333;
             }
 
         .search-container {
-            text-align: center;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
         }
 
-            .search-container input[type="text"] {
-                width: 100%;
-                max-width: 300px;
-                padding: 10px;
-                margin-right: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
+        .search-icon {
+            background-color: #A4C3A2;
+            border: none;
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            .search-container button {
-                padding: 10px 20px;
-                border: none;
-                background-color: #4CAF50;
-                color: white;
-                cursor: pointer;
-                border-radius: 4px;
-            }
-
-                .search-container button:hover {
-                    background-color: #45a049;
-                }
+        .search-input {
+            border-radius: 0 5px 5px 0;
+            flex: 1;
+            padding: 7px;
+        }
 
         .diamond-info {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
             margin-top: 20px;
         }
 
@@ -85,36 +102,71 @@
             }
 
         .rebuy-container {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
             margin-top: 20px;
         }
+
+        .wide-column {
+            width: 20%;
+        }
+
+        .form-check-input {
+            margin-top: 10px;
+        }
+
+        .form-check-label {
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h2>Rebuy Diamond</h2>
+            <h2><i class="fa fa-chart-line"></i> Rebuy Diamond</h2>
             <form action="@Url.Action("Logout", "Account")" method="post" style="margin: 0;">
                 <button type="submit" class="logout-button">Logout</button>
             </form>
         </div>
         <div class="search-container">
-            <form action="@Url.Action("SearchRebuy", "SaleStaff")" method="get" class="form-inline justify-content-center">
-                <input type="text" name="searchTerm" class="form-control mb-2 mr-sm-2" placeholder="Search by ItemID or WarrantyCode" value="@Request.QueryString["searchTerm"]" />
-                <button type="submit" class="btn btn-success mb-2">Search</button>
-            </form>
+            <button class="search-icon" onclick="toggleSearchForm()"><i class="fa fa-search"></i></button>
+            <input type="text" id="searchTerm" class="form-control search-input" placeholder="Search by ItemID or WarrantyCode" onkeypress="checkEnter(event)" value="@Request.QueryString["searchTerm"]">
         </div>
         @if (Model != null)
         {
             <div class="diamond-info">
-                <div>Diamond ID: @Model.diamondID</div>
-                <div>Diamond Name: @Model.diamondName</div>
-                <div>Diamond Price: @Model.diamondPrice</div>
-                <div>Diamond Description: @Model.diamondDescription</div>
-                <div>Carat Weight: @Model.caratWeight</div>
-                <div>Clarity ID: @Model.clarityID</div>
-                <div>Cut ID: @Model.cutID</div>
-                <div>Color ID: @Model.colorID</div>
-                <div>Shape ID: @Model.shapeID</div>
+                <div class="wide-column">Diamond ID: @Model.diamondID</div>
+                <div class="wide-column">Diamond Name: @Model.diamondName</div>
+                <div class="wide-column">Diamond Price: $@String.Format("{0:N0}", Model.diamondPrice)</div>
+                <div class="wide-column">Diamond Description: @Model.diamondDescription</div>
+                <div class="wide-column">Carat Weight: @Model.caratWeight</div>
+                <div class="wide-column">Clarity ID: @Model.clarityID</div>
+                <div class="wide-column">Cut ID: @Model.cutID</div>
+                <div class="wide-column">Color ID: @Model.colorID</div>
+                <div class="wide-column">Shape ID: @Model.shapeID</div>
             </div>
             <div class="rebuy-container">
                 <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post">
@@ -138,6 +190,28 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script>
+        function toggleSearchForm() {
+            var searchInput = document.getElementById("searchTerm");
+            if (searchInput.style.display === "none" || searchInput.style.display === '') {
+                searchInput.style.display = "block";
+            } else {
+                searchInput.style.display = "none";
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                searchRebuy();
+            }
+        }
+
+        function searchRebuy() {
+            var searchTerm = $('#searchTerm').val();
+            window.location.href = '@Url.Action("SearchRebuy", "SaleStaff")' + '?searchTerm=' + searchTerm;
+        }
+    </script>
 </body>
 </html>

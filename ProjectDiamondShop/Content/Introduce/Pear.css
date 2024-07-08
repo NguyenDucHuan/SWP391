@@ -73,17 +73,10 @@ main {
 		}
 
 	.navbar .login-btn {
-		background: #28a745;
 		color: #fff !important;
-		border-radius: 50px;
 		padding: 0.5rem 1rem;
 		font-weight: bold;
-		transition: background-color 0.3s;
 	}
-
-		.navbar .login-btn:hover {
-			background: #218838;
-		}
 
 .navbar-toggler {
 	border: none;

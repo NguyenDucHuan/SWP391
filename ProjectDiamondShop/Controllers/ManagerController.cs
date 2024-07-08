@@ -38,27 +38,56 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Index(int page = 1, int pageSize = 30)
+        public ActionResult Index(int page = 1, int pageSize = 30, int orderPageSize = 10, int voucherPageSize = 10, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            var vouchers = _managerService.GetAllVouchers();
-            foreach (var voucher in vouchers)
-            {
-                if (voucher.endTime < DateTime.Now && voucher.status == true)
-                {
-                    voucher.status = false;
-                    _managerService.UpdateVoucher(voucher);
-                }
-            }
-
             ViewBag.userName = Session["UserName"];
             ViewBag.roleName = Session["RoleName"];
 
-            ViewBag.Orders = _managerService.GetOrders();
+            var orders = _managerService.GetOrders();
+            ViewBag.TotalOrders = orders.Count();
+            ViewBag.OrderPageSize = orderPageSize;
+            ViewBag.CurrentOrderPage = page;
+            ViewBag.Orders = orders.Skip((page - 1) * orderPageSize).Take(orderPageSize).ToList();
+
+            var vouchers = _managerService.GetVouchers();
+            ViewBag.TotalVouchers = vouchers.Count();
+            ViewBag.VoucherPageSize = voucherPageSize;
+            ViewBag.CurrentVoucherPage = page;
+            ViewBag.Vouchers = vouchers.Skip((page - 1) * voucherPageSize).Take(voucherPageSize).ToList();
+
+            var accentStones = _managerService.GetAccentStones();
+            ViewBag.TotalAccentStones = accentStones.Count();
+            ViewBag.AccentStonePageSize = accentStonePageSize;
+            ViewBag.CurrentAccentStonePage = page;
+            ViewBag.AccentStones = accentStones.Skip((page - 1) * accentStonePageSize).Take(accentStonePageSize).ToList();
+
+            var settings = _managerService.GetSettings();
+            ViewBag.TotalSettings = settings.Count();
+            ViewBag.SettingPageSize = settingPageSize;
+            ViewBag.CurrentSettingPage = page;
+            ViewBag.Settings = settings.Skip((page - 1) * settingPageSize).Take(settingPageSize).ToList();
+
+            var saleStaff = _managerService.GetUsersByRole(5);
+            ViewBag.TotalSaleStaff = saleStaff.Count();
+            ViewBag.SaleStaffPageSize = saleStaffPageSize;
+            ViewBag.CurrentSaleStaffPage = page;
+            ViewBag.SaleStaff = saleStaff.Skip((page - 1) * saleStaffPageSize).Take(saleStaffPageSize).ToList();
+
+            var deliveryStaff = _managerService.GetUsersByRole(4);
+            ViewBag.TotalDeliveryStaff = deliveryStaff.Count();
+            ViewBag.DeliveryStaffPageSize = deliveryStaffPageSize;
+            ViewBag.CurrentDeliveryStaffPage = page;
+            ViewBag.DeliveryStaff = deliveryStaff.Skip((page - 1) * deliveryStaffPageSize).Take(deliveryStaffPageSize).ToList();
+
+            var users = _managerService.GetUsers();
+            ViewBag.TotalUsers = users.Count();
+            ViewBag.UserPageSize = userPageSize;
+            ViewBag.CurrentUserPage = page;
+            ViewBag.Users = users.Skip((page - 1) * userPageSize).Take(userPageSize).ToList();
 
             var diamonds = _managerService.GetDiamonds();
             ViewBag.TotalDiamonds = diamonds.Count();
@@ -74,11 +103,11 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.Vouchers = _managerService.GetVouchers();
 
             var userId = Session["UserID"].ToString();
-            var notifications = _notificationService.GetAllNotifications()
-                .Where(n => n.userID == userId)
-                .ToList();
-
-            ViewBag.Notifications = notifications;
+            var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
+            ViewBag.TotalNotifications = notifications.Count();
+            ViewBag.NotificationPageSize = notificationPageSize;
+            ViewBag.CurrentNotificationPage = page;
+            ViewBag.Notifications = notifications.Skip((page - 1) * notificationPageSize).Take(notificationPageSize).ToList();
 
             var revenueData = _managerService.GetRevenueData();
             ViewBag.RevenueLabels = revenueData.Select(r => r.Date).ToList();
@@ -421,18 +450,14 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (endTime <= startTime)
+            // Check if end time is exactly one day after start time
+            if ((endTime - startTime).TotalDays != 1)
             {
-                TempData["ErrorMessage"] = "End time must be after start time.";
-                return RedirectToAction("CreateVoucher");
-            }
-            if (discount > 10)
-            {
-                TempData["ErrorMessage"] = "Discount cannot be greater than 10%.";
+                TempData["ErrorMessage"] = "End time must be exactly one day after start time.";
                 return RedirectToAction("CreateVoucher");
             }
 
-            // Đảm bảo targetUserID không null
+            // Ensure targetUserID is not null
             if (string.IsNullOrEmpty(targetUserID))
             {
                 TempData["ErrorMessage"] = "The targetUserID field is required.";
@@ -446,7 +471,7 @@ namespace ProjectDiamondShop.Controllers
                 discount = discount,
                 quantity = quantity,
                 status = true,
-                targetUserID = targetUserID // Đặt giá trị của targetUserID
+                targetUserID = targetUserID // Set the targetUserID value
             };
 
             try
@@ -454,7 +479,8 @@ namespace ProjectDiamondShop.Controllers
                 _managerService.AddVoucher(voucher);
                 _managerService.SaveChanges();
                 TempData["SuccessMessage"] = "Voucher created successfully.";
-                //Notification
+
+                // Notification
                 if (voucher.targetUserID == "All")
                 {
                     var users = _userService.GetAllUser();

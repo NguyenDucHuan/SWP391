@@ -74,17 +74,10 @@ main {
 		}
 
 	.navbar .login-btn {
-		background: #28a745;
-		color: #333 !important;
-		border-radius: 50px;
+		color: #fff !important;
 		padding: 0.5rem 1rem;
 		font-weight: bold;
-		transition: background-color 0.3s;
 	}
-
-		.navbar .login-btn:hover {
-			background: #28a745;
-		}
 
 .navbar-toggler {
 	border: none;
@@ -184,6 +177,7 @@ body {
 		margin-bottom: 10px;
 	}
 }
+
 .carousel-indicators li {
 	/*text-indent: -9999px !important;*/ /* Ẩn văn bản */
 	display: none;
