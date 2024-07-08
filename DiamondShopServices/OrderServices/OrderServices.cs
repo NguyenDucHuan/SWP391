@@ -66,5 +66,14 @@ namespace DiamondShopServices.OrderServices
         {
             orderRepository.UpdateOrder(order);
         }
+        public tblOrder GetOrderByID(string orderID)
+        {
+            return orderRepository.GetOrderByID(orderID);
+        }
+
+        public tblOrderItem GetOrderItemByDiamondID(int diamondID)
+        {
+            return orderRepository.GetOrderItemByDiamondID(diamondID);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DiamondShopBOs;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DiamondShopDAOs.DAOs
@@ -39,6 +40,19 @@ namespace DiamondShopDAOs.DAOs
             }
             _context.SaveChanges();
         }
+        public tblNotification GetNotificationById(int notificationID)
+        {
+            return _context.tblNotifications.SingleOrDefault(n => n.notificationID == notificationID);
+        }
 
+        public void UpdateNotification(tblNotification notification)
+        {
+            _context.Entry(notification).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+        public IEnumerable<tblNotification> GetAll()
+        {
+            return _context.tblNotifications.ToList();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DiamondShopBOs;
 using DiamondShopRepositories.NotificationRepository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiamondShopServices.NotificationService
 {
@@ -33,6 +34,18 @@ namespace DiamondShopServices.NotificationService
         {
             _notificationRepository.MarkAllAsRead(userId);
         }
+        public tblNotification GetNotificationById(int notificationID)
+        {
+            return _notificationRepository.GetNotificationById(notificationID);
+        }
 
+        public void UpdateNotification(tblNotification notification)
+        {
+            _notificationRepository.UpdateNotification(notification);
+        }
+        public List<tblNotification> GetAllNotifications()
+        {
+            return _notificationRepository.GetAll().ToList();
+        }
     }
 }

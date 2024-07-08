@@ -9,5 +9,8 @@ namespace DiamondShopRepositories.NotificationRepository
         List<tblNotification> GetNotificationsByUserId(string userId);
         int GetUnreadNotificationCountByUserId(string userId);
         void MarkAllAsRead(string notificationID);
+        tblNotification GetNotificationById(int notificationID);
+        void UpdateNotification(tblNotification notification);
+        IEnumerable<tblNotification> GetAll();
     }
 }

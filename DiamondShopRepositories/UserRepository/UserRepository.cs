@@ -75,5 +75,9 @@ namespace DiamondShopRepositories.UserRepository
         {
             userDAO.UpdateUser(id, user);
         }
+        public List<tblUser> GetUsersByRole(List<int> roleIDs)
+        {
+            return userDAO.GetUsersByRole(roleIDs);
+        }
     }
 }

@@ -13,6 +13,9 @@ using System.Web.Mvc;
 using DiamondShopServices.NotificationService;
 using DiamondShopServices.UserService;
 using DiamondShopServices.WarrantyServices;
+using DiamondShopServices.OrderServices;
+using DiamondShopServices;
+using System.Data.Entity.Infrastructure;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -22,11 +25,17 @@ namespace ProjectDiamondShop.Controllers
         private readonly IUserService _userService;
         private readonly INotificationService _notificationService;
         private readonly IWarrantyService _warrantyService;
+        private readonly IDiamondService _diamondService;
+        private readonly IOrderServices _orderServices;
 
         public ManagerController()
         {
             _managerService = new ManagerService();
             _warrantyService = new WarrantyService();
+            _diamondService = new DiamondService();
+            _orderServices = new OrderServices();
+            _notificationService = new NotificationService();
+            _userService = new UserService();
         }
 
         public ActionResult Index(int page = 1, int pageSize = 30)
@@ -35,6 +44,17 @@ namespace ProjectDiamondShop.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
+            var vouchers = _managerService.GetAllVouchers();
+            foreach (var voucher in vouchers)
+            {
+                if (voucher.endTime < DateTime.Now && voucher.status == true)
+                {
+                    voucher.status = false;
+                    _managerService.UpdateVoucher(voucher);
+                }
+            }
+
             ViewBag.userName = Session["UserName"];
             ViewBag.roleName = Session["RoleName"];
 
@@ -52,6 +72,13 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.Settings = _managerService.GetSettings();
             ViewBag.Users = (int)Session["RoleID"] == 2 ? _managerService.GetUsers() : null;
             ViewBag.Vouchers = _managerService.GetVouchers();
+
+            var userId = Session["UserID"].ToString();
+            var notifications = _notificationService.GetAllNotifications()
+                .Where(n => n.userID == userId)
+                .ToList();
+
+            ViewBag.Notifications = notifications;
 
             var revenueData = _managerService.GetRevenueData();
             ViewBag.RevenueLabels = revenueData.Select(r => r.Date).ToList();
@@ -137,7 +164,6 @@ namespace ProjectDiamondShop.Controllers
             return newIndex > currentIndex && newIndex == currentIndex + 1;
         }
 
-        [HttpPost]
         public JsonResult ToggleUserStatus(string userId, bool status)
         {
             try
@@ -151,9 +177,21 @@ namespace ProjectDiamondShop.Controllers
 
                 return Json(new { success = true });
             }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
+
+                var fullErrorMessage = string.Join("; ", errorMessages);
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                return Json(new { success = false, message = exceptionMessage });
+            }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = ex.Message });
+                var innerExceptionMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                return Json(new { success = false, message = "An error occurred while updating the entries: " + innerExceptionMessage });
             }
         }
 
@@ -283,7 +321,7 @@ namespace ProjectDiamondShop.Controllers
             }
 
             string hashedPassword = HashString(password);
-            string userId = GenerateRandomUserId();
+            string userId = GenerateNextUserId();
 
             var newUser = new tblUser
             {
@@ -302,6 +340,15 @@ namespace ProjectDiamondShop.Controllers
                 _managerService.AddUser(newUser);
                 _managerService.SaveChanges();
                 TempData["SuccessMessage"] = "Account created successfully.";
+            }
+            catch (DbUpdateException ex)
+            {
+                var innerExceptionMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                TempData["ErrorMessage"] = "An error occurred while updating the entries: " + innerExceptionMessage;
+
+                // Log the error details to debug output
+                System.Diagnostics.Debug.WriteLine("DbUpdateException: " + ex.ToString());
+                Console.WriteLine("DbUpdateException: " + ex.ToString());
             }
             catch (DbEntityValidationException ex)
             {
@@ -334,12 +381,22 @@ namespace ProjectDiamondShop.Controllers
             }
         }
 
-        private string GenerateRandomUserId()
+        private string GenerateNextUserId()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, 6)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            string currentId = _userService.GetTheLastestUserID();
+            if (string.IsNullOrEmpty(currentId))
+            {
+                return "ID0000001";
+            }
+
+            string numericPart = currentId.Substring(2);
+            if (!int.TryParse(numericPart, out int numericValue))
+            {
+                throw new ArgumentException("Invalid numeric part in ID");
+            }
+            numericValue++;
+            string newNumericPart = numericValue.ToString().PadLeft(numericPart.Length, '0');
+            return "ID" + newNumericPart;
         }
 
         public ActionResult CreateVoucher()
@@ -367,6 +424,11 @@ namespace ProjectDiamondShop.Controllers
             if (endTime <= startTime)
             {
                 TempData["ErrorMessage"] = "End time must be after start time.";
+                return RedirectToAction("CreateVoucher");
+            }
+            if (discount > 10)
+            {
+                TempData["ErrorMessage"] = "Discount cannot be greater than 10%.";
                 return RedirectToAction("CreateVoucher");
             }
 
@@ -622,6 +684,111 @@ namespace ProjectDiamondShop.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HandleRebuyRequest(int notificationID, bool isAccepted)
+        {
+            var notification = _notificationService.GetNotificationById(notificationID);
+            if (notification == null)
+            {
+                return HttpNotFound();
+            }
 
+            int diamondID = ExtractDiamondIDFromDetail(notification.detail);
+            var diamond = _diamondService.GetDiamondById(diamondID);
+            if (diamond == null)
+            {
+                return HttpNotFound();
+            }
+
+            string saleStaffID = ExtractSaleStaffIDFromNotification(notification.detail);
+
+            if (isAccepted)
+            {
+                diamond.status = true;
+                diamond.detailStatus = "Rebuy";
+                _diamondService.UpdateDiamond(diamond);
+                notification.status = false;
+                // Gửi thông báo đến Sale Staff
+                _notificationService.AddNotification(new tblNotification
+                {
+                    userID = saleStaffID,
+                    date = DateTime.Now,
+                    detail = $"Your rebuy request for Diamond {diamondID} has been accepted.",
+                    status = true
+                });
+                TempData["Message"] = "Rebuy request accepted successfully.";
+            }
+            else
+            {
+                diamond.status = false;
+                diamond.detailStatus = "Sold";
+                diamond.rebuyPrice = 0;
+                diamond.stillHaveCertification = null;
+                _diamondService.UpdateDiamond(diamond);
+                notification.status = false;
+                // Gửi thông báo đến Sale Staff
+                _notificationService.AddNotification(new tblNotification
+                {
+                    userID = saleStaffID,
+                    date = DateTime.Now,
+                    detail = $"Your rebuy request for Diamond {diamondID} has been rejected.",
+                    status = true
+                });
+                TempData["Message"] = "Rebuy request rejected.";
+            }
+
+            _notificationService.UpdateNotification(notification);
+            UpdateRelatedNotifications(saleStaffID, notificationID, diamondID);
+
+            return RedirectToAction("Index");
+        }
+        private void UpdateRelatedNotifications(string saleStaffID, int currentNotificationID, int diamondID)
+        {
+            var relatedNotifications = _notificationService.GetAllNotifications()
+                .Where(n => n.detail.Contains($"has ID: {saleStaffID}") && n.detail.Contains($"Diamond {diamondID}") && n.notificationID != currentNotificationID)
+                .ToList();
+
+            foreach (var relatedNotification in relatedNotifications)
+            {
+                relatedNotification.status = false;
+                _notificationService.UpdateNotification(relatedNotification);
+            }
+        }
+
+        private int ExtractDiamondIDFromDetail(string detail)
+        {
+            // Implement logic to extract diamondID from the detail string
+            var match = Regex.Match(detail, @"Diamond (\d+)");
+            if (match.Success)
+            {
+                return int.Parse(match.Groups[1].Value);
+            }
+            throw new InvalidOperationException("DiamondID not found in detail");
+        }
+        private string ExtractSaleStaffIDFromNotification(string detail)
+        {
+            var match = Regex.Match(detail, @"has ID: (\w+)");
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+            throw new InvalidOperationException("SaleStaffID not found in detail");
+        }
+
+        public ActionResult Notifications()
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userId = Session["UserID"].ToString();
+            var notifications = _notificationService.GetAllNotifications()
+                .Where(n => n.userID == userId)
+                .ToList();
+
+            return View(notifications);
+        }
     }
 }

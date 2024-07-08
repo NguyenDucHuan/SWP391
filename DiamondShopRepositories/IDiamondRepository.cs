@@ -17,5 +17,9 @@ namespace DiamondShopRepositories
         void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate);
 
         List<tblCertificate> GetCertificatesByDiamondId(int diamondId);
+        void UpdateDiamond(tblDiamond diamond);
+        tblDiamond GetDiamondBySearchTerm(string searchTerm);
+        tblDiamond GetDiamondByWarrantyCode(string warrantyCode, bool status, string detailStatus);
+        tblDiamond GetDiamondByID(int id, bool status, string detailStatus);
     }
 }

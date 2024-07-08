@@ -123,5 +123,14 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             _managerDAO.UpdateVoucherQuantity(voucherId, newQuantity);
         }
+        public void UpdateVoucher(tblVoucher voucher)
+        {
+            _managerDAO.UpdateVoucher(voucher);
+        }
+
+        public List<tblVoucher> GetAllVouchers()
+        {
+            return _managerDAO.GetAllVouchers();
+        }
     }
 }

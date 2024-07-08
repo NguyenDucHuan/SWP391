@@ -66,5 +66,14 @@ namespace DiamondShopRepositories.OrderRepositories
             orderDAO.Update(order);
             orderDAO.SaveChanges();
         }
+        public tblOrder GetOrderByID(string orderID)
+        {
+            return orderDAO.GetOrderByID(orderID);
+        }
+
+        public tblOrderItem GetOrderItemByDiamondID(int diamondID)
+        {
+            return orderDAO.GetOrderItemByDiamondID(diamondID);
+        }
     }
 }

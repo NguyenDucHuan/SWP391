@@ -141,6 +141,56 @@ namespace DiamondShopDAOs
             var certificates = diamondShopManagementEntities.tblCertificates.Where(c => c.diamondID == diamondId).ToList();
             return certificates;
         }
+        public void UpdateDiamond(tblDiamond diamond)
+        {
+            diamondShopManagementEntities.Entry(diamond).State = EntityState.Modified;
+            diamondShopManagementEntities.SaveChanges();
+        }
 
+        public tblDiamond GetDiamondBySearchTerm(string searchTerm)
+        {
+            int id;
+            if (int.TryParse(searchTerm, out id))
+            {
+                return diamondShopManagementEntities.tblDiamonds.SingleOrDefault(d => d.diamondID == id);
+            }
+
+            var orderItem = diamondShopManagementEntities.tblOrderItems.SingleOrDefault(oi => oi.warrantyCode == searchTerm);
+            if (orderItem != null)
+            {
+                return diamondShopManagementEntities.tblDiamonds.SingleOrDefault(d => d.diamondID == orderItem.ItemID);
+            }
+
+            var warranty = diamondShopManagementEntities.tblWarranties.SingleOrDefault(w => w.warrantyCode == searchTerm);
+            if (warranty != null)
+            {
+                return diamondShopManagementEntities.tblDiamonds.SingleOrDefault(d => d.diamondID == warranty.ItemID);
+            }
+
+            return null;
+        }
+        public tblDiamond GetDiamondByID(int id, bool status, string detailStatus)
+        {
+            return diamondShopManagementEntities.tblDiamonds.SingleOrDefault(d => d.diamondID == id && d.status == status && d.detailStatus == detailStatus);
+        }
+
+        public tblDiamond GetDiamondByWarrantyCode(string warrantyCode, bool status, string detailStatus)
+        {
+            var orderItem = diamondShopManagementEntities.tblOrderItems
+                .SingleOrDefault(oi => oi.warrantyCode == warrantyCode);
+
+            if (orderItem != null)
+            {
+                var item = diamondShopManagementEntities.tblItems
+                    .SingleOrDefault(i => i.ItemID == orderItem.ItemID);
+
+                if (item != null)
+                {
+                    return diamondShopManagementEntities.tblDiamonds
+                        .SingleOrDefault(d => d.diamondID == item.diamondID && d.status == status && d.detailStatus == detailStatus);
+                }
+            }
+            return null;
+        }
     }
 }

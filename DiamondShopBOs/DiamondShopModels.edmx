@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DiamondShopManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccentStones">
           <Key>
             <PropertyRef Name="accentStoneID" />
@@ -69,6 +69,9 @@
           <Property Name="diamondImagePath" Type="nvarchar" MaxLength="512" Nullable="false" />
           <Property Name="status" Type="bit" />
           <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="rebuyPrice" Type="money" />
+          <Property Name="stillHaveCertification" Type="bit" />
+          <Property Name="detailStatus" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -592,8 +595,7 @@
             <End Role="tblWarranty" EntitySet="tblWarranty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiamondShopManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -670,6 +672,9 @@
           <NavigationProperty Name="tblCertificates" Relationship="Self.FK_tblCertificate_tblDiamonds" FromRole="tblDiamonds" ToRole="tblCertificate" />
           <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComment_tblDiamonds" FromRole="tblDiamonds" ToRole="tblComment" />
           <NavigationProperty Name="tblItems" Relationship="Self.FK_tblItem_tblDiamond" FromRole="tblDiamonds" ToRole="tblItem" />
+          <Property Name="rebuyPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="stillHaveCertification" Type="Boolean" />
+          <Property Name="detailStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -1250,6 +1255,9 @@
           <EntitySetMapping Name="tblDiamonds">
             <EntityTypeMapping TypeName="DiamondShopManagementModel.tblDiamond">
               <MappingFragment StoreEntitySet="tblDiamonds">
+                <ScalarProperty Name="detailStatus" ColumnName="detailStatus" />
+                <ScalarProperty Name="stillHaveCertification" ColumnName="stillHaveCertification" />
+                <ScalarProperty Name="rebuyPrice" ColumnName="rebuyPrice" />
                 <ScalarProperty Name="diamondID" ColumnName="diamondID" />
                 <ScalarProperty Name="diamondName" ColumnName="diamondName" />
                 <ScalarProperty Name="diamondPrice" ColumnName="diamondPrice" />

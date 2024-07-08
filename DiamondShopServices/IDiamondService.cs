@@ -17,6 +17,9 @@ namespace DiamondShopServices
         void UpdateDiamondStatus(tblDiamond diamond, bool status);
         void AddNewDiamond(tblDiamond newDiamond, tblCertificate newCertificate);
         List<tblCertificate> GetCertificatesByDiamondId(int diamondId);
+        void UpdateDiamond(tblDiamond diamond);
+        tblDiamond GetDiamondBySearchTerm(string searchTerm);
+        tblDiamond GetDiamondByID(int diamondID, bool status, string detailStatus);
 
     }
 }

@@ -52,6 +52,24 @@ namespace DiamondShopRepositories
         {
             return diamondDAO.GetCertificatesByDiamondId(diamondId);
         }
+        public void UpdateDiamond(tblDiamond diamond)
+        {
+            diamondDAO.UpdateDiamond(diamond);
+        }
+
+        public tblDiamond GetDiamondBySearchTerm(string searchTerm)
+        {
+            return diamondDAO.GetDiamondBySearchTerm(searchTerm);
+        }
+        public tblDiamond GetDiamondByWarrantyCode(string warrantyCode, bool status, string detailStatus)
+        {
+            return diamondDAO.GetDiamondByWarrantyCode(warrantyCode, status, detailStatus);
+        }
+
+        public tblDiamond GetDiamondByID(int id, bool status, string detailStatus)
+        {
+            return diamondDAO.GetDiamondByID(id, status, detailStatus);
+        }
 
     }
 }
