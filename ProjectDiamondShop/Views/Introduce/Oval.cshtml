@@ -15,14 +15,14 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
                 <span>The Diamond Shop</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
@@ -55,6 +55,12 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item notification-bell">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-count" id="notificationCount">0</span>
+                            </a>
+                        </li>
                     }
                     else
                     {
@@ -67,149 +73,172 @@
         </div>
     </nav>
 
-    <div class="spacer"></div> <!-- This is the spacer div -->
+    <main role="main" class="pb-3">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+                </ol>
 
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-            </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/ovalring.jpg" alt="Destination 1" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/ovalring1.jpg" alt="Destination 2" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/ovalring2.jpg" alt="Destination 3" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/ovalring3.jpg" alt="Destination 4" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/ovalring.jpg" alt="Destination 1">
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/ovalring1.jpg" alt="Destination 2">
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/ovalring2.jpg" alt="Destination 3">
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/ovalring3.jpg" alt="Destination 4">
-                        </a>
-                    </div>
-                </div>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
             </div>
 
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
-        </div>
+            <h2 class="text-center" style="margin-top: 48px;">Oval Diamond Story</h2>
 
-        <h2 class="text-center" style="margin-top: 48px;">Oval Diamond Story</h2>
+            <div class="container center">
+                <div class="row">
+                    <p class="description justify">
+                        An oval cut diamond provides excellent brilliance, durability and style.
+                        We recommend an H color or better and an SI1 or SI2 for clarity for this diamond shape.
+                        However, it’s crucial to be mindful of the ‘bowtie effect’ in oval diamonds, a potential dark area in the diamond’s center.
+                        If you follow our recommendations laid out in this article, you will get the best oval cut diamond for your buck.
+                        For example, a nice one carat oval cut will cost you $3,200.
+                        Oval cut diamonds, with their elongated and graceful design, have surged in popularity, thanks in part to celebrities like Blake Lively and <a href="https://www.vogue.com.au/fashion/trends/the-biggest-celebrity-engagement-rings-ever/image-gallery/085da20117c110a218d7ba21bc404e78" data-wpel-link="external" target="_blank" rel="external noopener">Hailey Bieber</a>.
+                        Offering a unique blend of classic round brilliance and a distinctive shape, oval diamonds appear larger than their actual carat weight and often come at a more affordable price than round diamonds.
+                        Their elongated design not only enhances finger aesthetics but also provides a modern twist to traditional diamond cuts.
+                        This article will cover everything you need to know to find the perfect oval cut for whichever style you are looking for.
+                    </p>
 
-        <div class="container center">
-            <div class="row">
+                    <h1>The Oval Cut Diamond</h1>
+                    <p class="description justify">
+                        Bursting with brilliance and fire, an oval cut diamond is exquisite and unique. The oval is considered a “fancy” shape; the elongated design makes it appear larger than other shapes of the same carat weight.
+                        For example, a 1ct oval cut looks quite large in a halo setting. But a <a href="https://www.diamonds.pro/education/1-carat-diamond-ring/" data-wpel-link="internal">1 carat</a> round diamond in a similar setting would look slightly smaller.
+                        The slender body of the oval diamond creates a beautiful, elongated look. It often makes the hand and fingers appear slimmer. The diamond’s shape has no sharp corners, so it’s less prone to chipping.
+                        If you enjoy a rounded design but want a stone with more character, an oval diamond makes a stunning choice. In addition, oval diamonds are almost always priced lower than round brilliants.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/oval1.jpg" alt="The Oval Cut Diamond">
+                    </div>
+                    <h2 class="wp-block-heading">History of the Oval Cut Diamond</h2>
+                    <p class="description justify">
+                        Oval shaped diamonds have been popular for centuries.
+                        The earliest oval diamonds date back to the 1300s, though they aren’t described by name in literature until the 1800s.
+                        According to <a href="https://www.diamonds.net/News/NewsItem.aspx?ArticleID=2309&amp;ArticleTitle=Fancy+Shape+Series--Oval" data-wpel-link="external" target="_blank" rel="external noopener">Rapaport</a>, in the early 1960’s, a Russian diamond cutter named <a href="https://www.ehudlaniado.com/home/index.php/news/entry/the-amazing-story-of" data-wpel-link="external" target="_blank" rel="external noopener">Lazare Kaplan</a> perfected the oval cut process.
+                        He had a knack for turning undesirable rough stones into gorgeous diamonds. His technique significantly improved the brilliance of the oval diamond.
+                        The process that Kaplan pioneered is what diamond cutters use to create oval cut stones today.
+                        The <a href="https://www.jamesallen.com/diamond-rings/oval-cut-engagement-rings/1.01-carat-pave-engagement-ring-1888758?a_aid=dmnd1357&amp;data1=19382" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">oval diamond</a> consistently ranks as one of the most popular diamond shapes.
+                    </p>
+                </div>
+                <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Oval Cut Diamond – Color</h2>
                 <p class="description justify">
-                    An oval cut diamond provides excellent brilliance, durability and style.
-                    We recommend an H color or better and an SI1 or SI2 for clarity for this diamond shape.
-                    However, it’s crucial to be mindful of the ‘bowtie effect’ in oval diamonds, a potential dark area in the diamond’s center.
-                    If you follow our recommendations laid out in this article, you will get the best oval cut diamond for your buck.
-                    For example, a nice one carat oval cut will cost you $3,200.
-                    Oval cut diamonds, with their elongated and graceful design, have surged in popularity, thanks in part to celebrities like Blake Lively and <a href="https://www.vogue.com.au/fashion/trends/the-biggest-celebrity-engagement-rings-ever/image-gallery/085da20117c110a218d7ba21bc404e78" data-wpel-link="external" target="_blank" rel="external noopener">Hailey Bieber</a>.
-                    Offering a unique blend of classic round brilliance and a distinctive shape, oval diamonds appear larger than their actual carat weight and often come at a more affordable price than round diamonds.
-                    Their elongated design not only enhances finger aesthetics but also provides a modern twist to traditional diamond cuts.
-                    This article will cover everything you need to know to find the perfect oval cut for whichever style you are looking for.
+                    Color is graded by the GIA on a <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color scale</a> from D to Z.
+                    When a diamond has a Z Color grade, it means the diamond contains an easily noticeable brown or yellow tint.
+                    On the other end of the scale, the D grade represents the most colorless a diamond can be.
+                    While it’s usually impossible to see <a href="https://www.jamesallen.com/education/diamonds/4cs-color/?a_aid=dmnd1357&amp;data1=19382" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">the difference between two color grades</a>, the difference in price can be significant.
+                    As it is difficult to notice the differences between color grades with the naked eye, we recommend focusing on how the color appears to you.
                 </p>
-
-                <h1>The Oval Cut Diamond</h1>
                 <p class="description justify">
-                    Bursting with brilliance and fire, an oval cut diamond is exquisite and unique. The oval is considered a “fancy” shape; the elongated design makes it appear larger than other shapes of the same carat weight.
-                    For example, a 1ct oval cut looks quite large in a halo setting. But a <a href="https://www.diamonds.pro/education/1-carat-diamond-ring/" data-wpel-link="internal">1 carat</a> round diamond in a similar setting would look slightly smaller.
-                    The slender body of the oval diamond creates a beautiful, elongated look. It often makes the hand and fingers appear slimmer. The diamond’s shape has no sharp corners, so it’s less prone to chipping.
-                    If you enjoy a rounded design but want a stone with more character, an oval diamond makes a stunning choice. In addition, oval diamonds are almost always priced lower than round brilliants.
+                    As a general guideline, we recommend an H color or better for oval cut diamonds.
+                    This ensures your stone will look white in a <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">white gold or platinum</a> setting.
+                    If you’re setting your diamond in <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">yellow gold or rose gold</a>, feel free to drop down to a J or K to save money or to buy a larger stone.
+                    If you want to ensure you’re getting an oval diamond that appears clear to the naked eye and maintains an excellent price point, <a class="cta-ask-form" href="#">reach out to our experts</a> and we’ll be happy to help.
                 </p>
                 <div class="image-container">
-                    <img src="~/Image/Introlmage/oval1.jpg" alt="The Oval Cut Diamond">
-                </div>
-                <h2 class="wp-block-heading">History of the Oval Cut Diamond</h2>
-                <p class="description justify">
-                    Oval shaped diamonds have been popular for centuries.
-                    The earliest oval diamonds date back to the 1300s, though they aren’t described by name in literature until the 1800s.
-                    According to <a href="https://www.diamonds.net/News/NewsItem.aspx?ArticleID=2309&amp;ArticleTitle=Fancy+Shape+Series--Oval" data-wpel-link="external" target="_blank" rel="external noopener">Rapaport</a>, in the early 1960’s, a Russian diamond cutter named <a href="https://www.ehudlaniado.com/home/index.php/news/entry/the-amazing-story-of" data-wpel-link="external" target="_blank" rel="external noopener">Lazare Kaplan</a> perfected the oval cut process.
-                    He had a knack for turning undesirable rough stones into gorgeous diamonds. His technique significantly improved the brilliance of the oval diamond.
-                    The process that Kaplan pioneered is what diamond cutters use to create oval cut stones today.
-                    The <a href="https://www.jamesallen.com/diamond-rings/oval-cut-engagement-rings/1.01-carat-pave-engagement-ring-1888758?a_aid=dmnd1357&amp;data1=19382" target="_blank" rel="noreferrer noopener nofollow external sponsored" data-wpel-link="advanced" title="" class="external-link">oval diamond</a> consistently ranks as one of the most popular diamond shapes.
-                </p>
-            </div>
-            <h2 class="wp-block-heading" id="h-heart-shaped-diamond-color">Oval Cut Diamond – Color</h2>
-            <p class="description justify">
-                Color is graded by the GIA on a <a href="https://www.diamonds.pro/education/color/" data-wpel-link="internal">diamond color scale</a> from D to Z.
-                When a diamond has a Z Color grade, it means the diamond contains an easily noticeable brown or yellow tint.
-                On the other end of the scale, the D grade represents the most colorless a diamond can be.
-                While it’s usually impossible to see <a href="https://www.jamesallen.com/education/diamonds/4cs-color/?a_aid=dmnd1357&amp;data1=19382" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">the difference between two color grades</a>, the difference in price can be significant.
-                As it is difficult to notice the differences between color grades with the naked eye, we recommend focusing on how the color appears to you.
-            </p>
-            <p class="description justify">
-                As a general guideline, we recommend an H color or better for oval cut diamonds.
-                This ensures your stone will look white in a <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">white gold or platinum</a> setting.
-                If you’re setting your diamond in <a href="https://www.diamonds.pro/education/platinum-vs-gold/" data-wpel-link="internal">yellow gold or rose gold</a>, feel free to drop down to a J or K to save money or to buy a larger stone.
-                If you want to ensure you’re getting an oval diamond that appears clear to the naked eye and maintains an excellent price point, <a class="cta-ask-form" href="#">reach out to our experts</a> and we’ll be happy to help.
-            </p>
-            <div class="image-container">
-                <img src="~/Image/Introlmage/oval2.jpg" alt="Oval Cut Diamond – Color" style="width: 50%;">
-            </div>
-        </div>
-        <footer class="footer">
-            <div class="container text-center">
-                <p><a href="#">Back To Top</a></p>
-                <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
-                <p>
-                    <a href="#">Terms of Service</a> |
-                    <a href="#">Privacy Policy</a> |
-                    <a href="#">Refund Policy</a>
-                </p>
-            </div>
-        </footer>
-        <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" style="color: black">
-                        <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="color: black">
-                        <p>Welcome, <span id="userName"></span>!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
-                    </div>
+                    <img src="~/Image/Introlmage/oval2.jpg" alt="Oval Cut Diamond – Color" style="width: 50%;">
                 </div>
             </div>
         </div>
+    </main>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
+    <footer class="footer">
+        <div class="container text-center">
+            <p><a href="#">Back To Top</a></p>
+            <p>&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Refund Policy</a>
+            </p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color: black">
+                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <p>Welcome, <span id="userName"></span>!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
         $(document).ready(function () {
             var successMessage = '@ViewBag.SuccessMessage';
             var userName = '@ViewBag.UserName';
@@ -217,9 +246,98 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '#';
+                    window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
+
+            // Fetch notification count
+            function fetchNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationCount = response.unreadCount;
+                            if (notificationCount > 0) {
+                                $('#notificationCount').text(notificationCount);
+                            } else {
+                                $('#notificationCount').text('');
+                            }
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error retrieving notification count.');
+                    }
+                });
+            }
+
+            // Fetch notifications
+            function fetchNotifications() {
+                $.ajax({
+                    url: '@Url.Action("GetNotifications", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationList = $('#notificationList');
+                            notificationList.empty();
+                            response.notifications.forEach(function (notification) {
+                                var item = '<div class="notification-item ' +
+                                    (notification.important ? 'important' : '') + '">' +
+                                    '<i class="fas fa-exclamation-circle icon"></i>' +
+                                    '<div class="notification-content">' +
+                                    '<strong>' + notification.detail + '</strong>' +
+                                    '<small>' + notification.date + '</small>' +
+                                    '</div>' +
+                                    '</div>';
+                                notificationList.prepend(item);
+                            });
+                            $('#notificationsModal').modal('show');
+                            markAllNotificationsAsRead();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error retrieving notifications.');
+                    }
+                });
+            }
+
+            // Mark all notifications as read
+            function markAllNotificationsAsRead() {
+                $.ajax({
+                    url: '@Url.Action("MarkAllAsRead", "Notification")',
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            $('#notificationCount').text('');
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error marking notifications as read.');
+                    }
+                });
+            }
+
+            // Initial fetch
+            fetchNotificationCount();
+
+            // Handle bell icon click
+            $('#notificationBell').click(function () {
+                fetchNotifications();
+            });
+
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotificationCount, 60000);
+
+            // Handle modal close actions
+            $('#notificationsModal').on('hidden.bs.modal', function () {
+                markAllNotificationsAsRead();
+            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
@@ -240,6 +358,6 @@
             console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
-        </script>
+    </script>
 </body>
 </html>

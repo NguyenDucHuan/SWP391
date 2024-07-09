@@ -15,14 +15,14 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
                 <span>The Diamond Shop</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
@@ -55,6 +55,12 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item notification-bell">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-count" id="notificationCount">0</span>
+                            </a>
+                        </li>
                     }
                     else
                     {
@@ -67,153 +73,157 @@
         </div>
     </nav>
 
-    <div class="spacer"></div> <!-- This is the spacer div -->
+    <main role="main" class="pb-3">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+                </ol>
 
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-            </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/roundring.jpg" alt="Destination 1" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/roundring1.jpg" alt="Destination 2" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/roundring2.jpg" alt="Destination 3" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/roundring3.jpg" alt="Destination 4" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/roundring.jpg" alt="Destination 1" style="width: 100%;" />
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/roundring1.jpg" alt="Destination 2" style="width: 100%;" />
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/roundring2.jpg" alt="Destination 3" style="width: 100%;" />
-                        </a>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/roundring3.jpg" alt="Destination 4" style="width: 100%;" />
-                        </a>
-                    </div>
-                </div>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
-        </div>
 
-        <h2 class="text-center" style="margin-top: 48px;">Round Diamond Story</h2>
+            <h2 class="text-center" style="margin-top: 48px;">Round Diamond Story</h2>
 
-        <div class="container center">
-            <div class="row">
-                <p class="decription justify">
-                    The round-cut diamond is renowned for its unmatched brilliance and timeless appeal.
-                    Round brilliant cut diamonds have either 57 or 58 facets and the symmetrical design ensures maximum light reflection.
-                    This is why two-thirds of diamond shoppers select a round cut.
-                    Round diamonds are typically the most expensive diamond shape.
-                    When buying a round diamond focus on well cut H-J color and VS2-SI2 clarity to maximize value.
-                    For example, a one carat round diamond (H color, VS2 clarity) will cost $4,000.
-                </p>
-
-                <h1>What is a Round Cut Diamond?</h1>
-                <p class="decription justify">
-                    As the most popular diamond shape, the round cut diamond represents a large majority of all diamonds sold. In fact, data from diamond vendors suggests that around two thirds of consumers opt for the round cut when choosing a diamond.
-                    “Round-cut diamonds continue to be the most popular shape in most states, accounting for 66% of nationwide orders, [Blue Nile] said last week.” Rapaport.com
-                    The round brilliant cut boasts 58 facets (including the culet) and offers exceptional white light reflection, also known as brilliance. With a classic, timeless appearance, round brilliant cuts are often used in engagement rings, necklaces and other fine jewelry pieces. This 1 carat stone from James Allen is a stunning example of a round brilliant cut.
-                    In 1919, Marcel Tolkowsky created a surge of interest in the round cut diamond by publishing his work, “Diamond Design: A Study of the Reflection and Refraction of Light in Diamond” which highlighted the ideal cut aspects of a round brilliant. Since Tolkowsky’s influence, the round cut has remained the most common diamond cut.
-                </p>
-                <img src="~/Image/Introlmage/round.jpg" alt="Round Diamond" style="width: 100%; margin:auto" />
-                <h2 class="wp-block-heading">Key Features of a Round Cut Diamond</h2>
-                <p class="decription justify">
-                    Here are some of the most noticeable features of round cut diamonds, including the proportions of an excellent cut round diamond.
-                </p>
-                <ul class="custom-list">
-                    <li>58 facets</li>
-                    <li>Round, symmetrical shape (length-width ratio of 1-1.01)</li>
-                    <li>Table % of 55-59</li>
-                    <li>Depth % of 60.1-62.6</li>
-                    <li>Thin to slightly thick girdle</li>
-                    <li>No culet</li>
-                </ul>
-                <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">Why Are Round Diamond Engagement Rings So Popular?</h2>
-                <p class="decription justify">
-                    Round cut diamonds are the most popular diamond shape. In fact, they make up between two thirds and 75% of all diamonds sold, and about 60% of all engagement rings.
-                </p>
-                <p class="decription justify">Here are the main reasons round cut diamonds are highly sought after for engagement rings:</p>
-                <ul>
-                    <li>
-                        <h3>Beauty:</h3>
-                        <p class="decription justify">
-                            Round cut diamonds are exceptional.
-                            They’re cut with 58 facets that all reflect light back to your eyes.
-                            For over 100 years, diamond cutters have been perfecting the process for cutting round diamonds.
-                            The result: gorgeous gemstones with a classic appearance.
-                        </p>
-                        <br />
-                    </li>
-                    <li>
-                        <h3>Brilliance:</h3>
-                        <p class="decription justify">
-                            Brilliance is what makes a diamond sparkle. It’s the amount of white light that reflects off of the diamond’s table to your eyes.
-                            The ideal cut aspects of a round diamond provide more brilliance than any other shape.
-                            That’s why a well-cut round diamond, like the stone in
-                            this 1.50 carat solitaire ring from James Allen, is an absolute eye-catcher.
-                        </p>
-                        <br />
-                    </li>
-                    <li>
-                        <h3>Fire: </h3>
-                        <p class="decription justify">
-                            A diamond’s fire refers to the amount of colored light that is dispersed by the diamond.
-                            This colored reflection gives a diamond character and beauty.
-                            When a round diamond has an exceptional cut, it showcases a tremendous amount of fire.
-                        </p>
-                        <br />
-                    </li>
-                    <li>
-                        <h3>Versatility:</h3>
-                        <p class="decription justify">
-                            Because the round brilliant boasts a classic design, it complements many styles, from modern round cut diamond rings to vintage engagement rings.
-                            Round cut stones are often chosen for side stones as well, like a three-stone ring, or a pavé setting.
-                        </p>
-                        <br />
-                    </li>
-                    <li>
-                        <h3>Timeless Appearance:</h3>
-                        <p class="decription justify">
-                            Round-shaped diamonds have been in style for centuries.
-                            With their beautiful facets and elegance, a round cut ring is a classic choice that will be cherished and handed down for generations.
-                        </p>
-                    </li>
-                </ul>
-                <p class="decription justify">A large part of the beauty and brilliance of the round brilliant cut comes from its unique facet pattern, which provides incredible light performance. As the GIA explains:</p>
-                <div class="wp-block-ub-styled-box ub-styled-box ub-notification-box" id="ub-styled-box-74add2f2-143b-47b4-8d04-a80b5fee53a6">
-                    <p id="ub-styled-box-notification-content-" class="decription justify">
-                        “The crown facets, consisting of 8 bezels, 8 stars, and 16 upper halves, gather and disperse light to create brightness, fire, and a scintillating pattern of light and dark. The pavilion facets, consisting of 16 lower halves, 8 mains, and an optional culet, reflect the light back through the crown to the viewer’s eye. All of these facets work together creating each diamond’s unique appearance.”
-                        <a href="https://www.gia.edu/diamond-cut/diamond-cut-anatomy-round-brilliant" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Gemological Institute of America (GIA)</a>
+            <div class="container center">
+                <div class="row">
+                    <p class="description justify">
+                        The round-cut diamond is renowned for its unmatched brilliance and timeless appeal.
+                        Round brilliant cut diamonds have either 57 or 58 facets and the symmetrical design ensures maximum light reflection.
+                        This is why two-thirds of diamond shoppers select a round cut.
+                        Round diamonds are typically the most expensive diamond shape.
+                        When buying a round diamond focus on well cut H-J color and VS2-SI2 clarity to maximize value.
+                        For example, a one carat round diamond (H color, VS2 clarity) will cost $4,000.
                     </p>
+
+                    <h1>What is a Round Cut Diamond?</h1>
+                    <p class="description justify">
+                        As the most popular diamond shape, the round cut diamond represents a large majority of all diamonds sold. In fact, data from diamond vendors suggests that around two thirds of consumers opt for the round cut when choosing a diamond.
+                        “Round-cut diamonds continue to be the most popular shape in most states, accounting for 66% of nationwide orders, [Blue Nile] said last week.” Rapaport.com
+                        The round brilliant cut boasts 58 facets (including the culet) and offers exceptional white light reflection, also known as brilliance. With a classic, timeless appearance, round brilliant cuts are often used in engagement rings, necklaces and other fine jewelry pieces. This 1 carat stone from James Allen is a stunning example of a round brilliant cut.
+                        In 1919, Marcel Tolkowsky created a surge of interest in the round cut diamond by publishing his work, “Diamond Design: A Study of the Reflection and Refraction of Light in Diamond” which highlighted the ideal cut aspects of a round brilliant. Since Tolkowsky’s influence, the round cut has remained the most common diamond cut.
+                    </p>
+                    <img src="~/Image/Introlmage/round.jpg" alt="Round Diamond" style="width: 100%; margin:auto" />
+                    <h2 class="wp-block-heading">Key Features of a Round Cut Diamond</h2>
+                    <p class="description justify">
+                        Here are some of the most noticeable features of round cut diamonds, including the proportions of an excellent cut round diamond.
+                    </p>
+                    <ul class="custom-list">
+                        <li>58 facets</li>
+                        <li>Round, symmetrical shape (length-width ratio of 1-1.01)</li>
+                        <li>Table % of 55-59</li>
+                        <li>Depth % of 60.1-62.6</li>
+                        <li>Thin to slightly thick girdle</li>
+                        <li>No culet</li>
+                    </ul>
+                    <h2 class="wp-block-heading" id="Why-Are-Round-Diamond-Engagement-Rings-So-Popular?">Why Are Round Diamond Engagement Rings So Popular?</h2>
+                    <p class="description justify">
+                        Round cut diamonds are the most popular diamond shape. In fact, they make up between two thirds and 75% of all diamonds sold, and about 60% of all engagement rings.
+                    </p>
+                    <p class="description justify">Here are the main reasons round cut diamonds are highly sought after for engagement rings:</p>
+                    <ul>
+                        <li>
+                            <h3>Beauty:</h3>
+                            <p class="description justify">
+                                Round cut diamonds are exceptional.
+                                They’re cut with 58 facets that all reflect light back to your eyes.
+                                For over 100 years, diamond cutters have been perfecting the process for cutting round diamonds.
+                                The result: gorgeous gemstones with a classic appearance.
+                            </p>
+                            <br />
+                        </li>
+                        <li>
+                            <h3>Brilliance:</h3>
+                            <p class="description justify">
+                                Brilliance is what makes a diamond sparkle. It’s the amount of white light that reflects off of the diamond’s table to your eyes.
+                                The ideal cut aspects of a round diamond provide more brilliance than any other shape.
+                                That’s why a well-cut round diamond, like the stone in
+                                this 1.50 carat solitaire ring from James Allen, is an absolute eye-catcher.
+                            </p>
+                            <br />
+                        </li>
+                        <li>
+                            <h3>Fire: </h3>
+                            <p class="description justify">
+                                A diamond’s fire refers to the amount of colored light that is dispersed by the diamond.
+                                This colored reflection gives a diamond character and beauty.
+                                When a round diamond has an exceptional cut, it showcases a tremendous amount of fire.
+                            </p>
+                            <br />
+                        </li>
+                        <li>
+                            <h3>Versatility:</h3>
+                            <p class="description justify">
+                                Because the round brilliant boasts a classic design, it complements many styles, from modern round cut diamond rings to vintage engagement rings.
+                                Round cut stones are often chosen for side stones as well, like a three-stone ring, or a pavé setting.
+                            </p>
+                            <br />
+                        </li>
+                        <li>
+                            <h3>Timeless Appearance:</h3>
+                            <p class="description justify">
+                                Round-shaped diamonds have been in style for centuries.
+                                With their beautiful facets and elegance, a round cut ring is a classic choice that will be cherished and handed down for generations.
+                            </p>
+                        </li>
+                    </ul>
+                    <p class="description justify">A large part of the beauty and brilliance of the round brilliant cut comes from its unique facet pattern, which provides incredible light performance. As the GIA explains:</p>
+                    <div class="wp-block-ub-styled-box ub-styled-box ub-notification-box" id="ub-styled-box-74add2f2-143b-47b4-8d04-a80b5fee53a6">
+                        <p id="ub-styled-box-notification-content-" class="description justify">
+                            “The crown facets, consisting of 8 bezels, 8 stars, and 16 upper halves, gather and disperse light to create brightness, fire, and a scintillating pattern of light and dark. The pavilion facets, consisting of 16 lower halves, 8 mains, and an optional culet, reflect the light back through the crown to the viewer’s eye. All of these facets work together creating each diamond’s unique appearance.”
+                            <a href="https://www.gia.edu/diamond-cut/diamond-cut-anatomy-round-brilliant" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Gemological Institute of America (GIA)</a>
+                        </p>
+                    </div>
+                    <img src="~/Image/Introlmage/round.jpg" alt="Round Diamond" style="width: 100%; margin:auto" />
                 </div>
-                <img src="~/Image/Introlmage/round.jpg" alt="Round Diamond" style="width: 100%; margin:auto" />
             </div>
         </div>
-    </div>
+    </main>
+
     <footer class="footer">
         <div class="container text-center">
             <p><a href="#">Back To Top</a></p>
@@ -223,6 +233,45 @@
             </p>
         </div>
     </footer>
+
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color: black">
+                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <p>Welcome, <span id="userName"></span>!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
@@ -235,9 +284,98 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '#';
+                    window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
+
+            // Fetch notification count
+            function fetchNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationCount = response.unreadCount;
+                            if (notificationCount > 0) {
+                                $('#notificationCount').text(notificationCount);
+                            } else {
+                                $('#notificationCount').text('');
+                            }
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error retrieving notification count.');
+                    }
+                });
+            }
+
+            // Fetch notifications
+            function fetchNotifications() {
+                $.ajax({
+                    url: '@Url.Action("GetNotifications", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationList = $('#notificationList');
+                            notificationList.empty();
+                            response.notifications.forEach(function (notification) {
+                                var item = '<div class="notification-item ' +
+                                    (notification.important ? 'important' : '') + '">' +
+                                    '<i class="fas fa-exclamation-circle icon"></i>' +
+                                    '<div class="notification-content">' +
+                                    '<strong>' + notification.detail + '</strong>' +
+                                    '<small>' + notification.date + '</small>' +
+                                    '</div>' +
+                                    '</div>';
+                                notificationList.prepend(item);
+                            });
+                            $('#notificationsModal').modal('show');
+                            markAllNotificationsAsRead();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error retrieving notifications.');
+                    }
+                });
+            }
+
+            // Mark all notifications as read
+            function markAllNotificationsAsRead() {
+                $.ajax({
+                    url: '@Url.Action("MarkAllAsRead", "Notification")',
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            $('#notificationCount').text('');
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error marking notifications as read.');
+                    }
+                });
+            }
+
+            // Initial fetch
+            fetchNotificationCount();
+
+            // Handle bell icon click
+            $('#notificationBell').click(function () {
+                fetchNotifications();
+            });
+
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotificationCount, 60000);
+
+            // Handle modal close actions
+            $('#notificationsModal').on('hidden.bs.modal', function () {
+                markAllNotificationsAsRead();
+            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
@@ -255,6 +393,7 @@
         });
 
         $('.close').click(function () {
+            console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
     </script>

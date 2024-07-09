@@ -89,16 +89,23 @@
 
         .diamond-info {
             background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-height: 400px;
-            overflow-y: auto;
             margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(50px, auto);
+            border: 1px solid #ddd;
+            border-radius: 10px; /* Bo góc viền ngoài */
         }
 
             .diamond-info div {
-                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                border: 1px solid #ddd;
+                padding: 10px;
+                border-radius: 0px; /* Không bo góc từng thẻ */
             }
 
         .rebuy-container {
@@ -106,23 +113,38 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-height: 400px;
-            overflow-y: auto;
             margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .wide-column {
-            width: 20%;
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 30%;
         }
 
         .form-check-input {
-            margin-top: 10px;
+            margin-right: 10px;
         }
 
-        .form-check-label {
-            margin-top: 15px;
-            margin-left: 10px;
+        .form-group {
+            display: flex;
+            align-items: center;
+            width: 30%;
+            margin-bottom: 10px;
         }
+
+            .form-group label {
+                margin-bottom: 5px;
+                font-weight: bold;
+                width: 150px;
+            }
+
+            .form-group input {
+                width: 100%;
+            }
 
         .btn-primary {
             background-color: #007bff;
@@ -136,17 +158,61 @@
             margin: 4px 2px;
             border-radius: 12px;
             cursor: pointer;
+            align-self: flex-end;
         }
 
             .btn-primary:hover {
                 background-color: #0056b3;
             }
+
+        .back-button {
+            color: #A4C3A2;
+            border: none;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            font-size: 24px;
+            transition: transform 0.2s;
+        }
+
+            .back-button:hover {
+                color: #8DA78F;
+                transform: scale(1.2);
+            }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-right-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .rebuy-form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+            .rebuy-form .form-group {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
     </style>
 </head>
 <body>
+    <div class="top-right-buttons">
+        <a href="@Url.Action("Index", "SaleStaff")" class="back-button"><i class="fas fa-arrow-right"></i></a>
+    </div>
     <div class="container">
         <div class="header">
-            <h2><i class="fa fa-chart-line"></i> Rebuy Diamond</h2>
+            <div class="header-actions">
+                <h2><i class="fa fa-chart-line"></i> Rebuy Diamond</h2>
+            </div>
             <form action="@Url.Action("Logout", "Account")" method="post" style="margin: 0;">
                 <button type="submit" class="logout-button">Logout</button>
             </form>
@@ -158,19 +224,18 @@
         @if (Model != null)
         {
             <div class="diamond-info">
-                <div class="wide-column">Diamond ID: @Model.diamondID</div>
-                <div class="wide-column">Diamond Name: @Model.diamondName</div>
-                <div class="wide-column">Diamond Price: $@String.Format("{0:N0}", Model.diamondPrice)</div>
-                <div class="wide-column">Diamond Description: @Model.diamondDescription</div>
-                <div class="wide-column">Carat Weight: @Model.caratWeight</div>
-                <div class="wide-column">Clarity ID: @Model.clarityID</div>
-                <div class="wide-column">Cut ID: @Model.cutID</div>
-                <div class="wide-column">Color ID: @Model.colorID</div>
-                <div class="wide-column">Shape ID: @Model.shapeID</div>
+                <div>Diamond ID: @Model.diamondID</div>
+                <div>Diamond Name: @Model.diamondName</div>
+                <div>Diamond Price: $@String.Format("{0:N0}", Model.diamondPrice)</div>
+                <div>Diamond Description: @Model.diamondDescription</div>
+                <div>Carat Weight: @Model.caratWeight</div>
+                <div>Clarity ID: @Model.clarityID</div>
+                <div>Cut ID: @Model.cutID</div>
+                <div>Color ID: @Model.colorID</div>
+                <div>Shape ID: @Model.shapeID</div>
             </div>
             <div class="rebuy-container">
-                <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post">
-                    <input type="hidden" name="diamondID" value="@Model.diamondID" />
+                <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post" class="rebuy-form">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="stillHaveCertification" name="stillHaveCertification" value="true" />
                         <label class="form-check-label" for="stillHaveCertification">Still Have Certification</label>
@@ -179,13 +244,15 @@
                         <label for="rebuyPrice">Rebuy Price</label>
                         <input type="text" class="form-control" id="rebuyPrice" name="rebuyPrice" required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Rebuy Request</button>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit Rebuy Request</button>
+                    </div>
                 </form>
             </div>
         }
         else if (ViewBag.Message != null)
         {
-            <div class="alert alert-warning">@ViewBag.Message</div>
+            <div class="alert alert-warning" style="color: red;">@ViewBag.Message</div>
         }
     </div>
 

@@ -144,7 +144,7 @@ body {
 		}
 
 /* Media Queries for Responsive Design */
-@@media (max-width: 992px) {
+@media (max-width: 992px) {
 	.navbar-collapse {
 		justify-content: flex-start;
 	}
@@ -169,3 +169,73 @@ body {
 	/*text-indent: -9999px !important;*/ /* Ẩn văn bản */
 	display: none;
 }
+/* notifications.css */
+
+.notification-bell {
+	position: relative;
+}
+
+	.notification-bell .notification-count {
+		position: absolute;
+		top: -5px;
+		right: -5px;
+		background-color: red;
+		color: white;
+		border-radius: 50%;
+		padding: 2px 6px;
+		font-size: 12px;
+	}
+
+.notification-item {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #f1f1f1;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	margin: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+	.notification-item .icon {
+		font-size: 24px;
+		margin-right: 10px;
+		color: #007bff;
+	}
+
+	.notification-item .notification-content {
+		flex-grow: 1;
+	}
+
+		.notification-item .notification-content strong {
+			display: block;
+			font-size: 14px;
+			color: #333;
+		}
+
+		.notification-item .notification-content small {
+			color: #888;
+			font-size: 12px;
+		}
+
+	.notification-item.important {
+		background-color: #ffefef;
+		border-left: 5px solid #ff4d4d;
+	}
+
+.modal-body {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.modal-header .btn-close {
+		background: none;
+		border: none;
+		font-size: 20px;
+	}
