@@ -107,6 +107,12 @@
             <input type="text" id="Phone" name="phone" class="form-control" placeholder="Enter Phone" required />
             <div id="phoneError" class="error-message" style="display: none;">Please enter your phone number.</div>
         </div>
+
+        <div class="form-group">
+            <label for="Note">Note:</label>
+            <textarea id="Note" name="note" class="form-control" placeholder="Enter any notes here"></textarea>
+        </div>
+
         <div class="form-group">
             <label for="Total">Total:</label>
             <input type="text" class="form-control" id="Total" value="@Model.Items.Sum(i => i.diamondPrice + i.settingPrice + (i.accentStonePrice * i.quantityAccent)).ToString("C0")" disabled />
@@ -123,6 +129,7 @@
         <input type="hidden" id="hiddenAddress" name="address" />
         <input type="hidden" id="hiddenPhone" name="phone" />
         <input type="hidden" id="hiddenVoucherID" name="voucherID" />
+        <input type="hidden" id="hiddenNote" name="note" />
     </form>
 
     <!-- Modal -->
@@ -163,6 +170,7 @@
         var discount = parseFloat(selectedOption.getAttribute("data-discount")) || 0;
         var totalPriceElement = document.getElementById("Total");
         var totalPrice = parseFloat(totalPriceElement.value.replace("$", "").replace(",", ""));
+        var note = document.getElementById("Note").value;
 
         if (!isNaN(discount) && !isNaN(totalPrice)) {
             var discountAmount = totalPrice * (discount / 100);
@@ -239,7 +247,7 @@
         document.getElementById("hiddenAddress").value = address;
         document.getElementById("hiddenPhone").value = phone;
         document.getElementById("hiddenVoucherID").value = voucherID;
-
+        document.getElementById("hiddenNote").value = note;
         document.getElementById("paymentForm").submit();
     }
 

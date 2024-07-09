@@ -50,10 +50,6 @@ namespace ProjectDiamondShop.Controllers
             }
             return Session["UserID"].ToString();
         }
-        private bool IsUserAuthorizedToViewOrder(string userID, tblOrder order)
-        {
-            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
-        }
 
         [HttpPost]
         public ActionResult CreateOrder()
@@ -61,7 +57,7 @@ namespace ProjectDiamondShop.Controllers
             var userID = GetUserID();
             if (string.IsNullOrEmpty(userID))
             {
-                return RedirectToAction("Index", "Account");
+                return RedirectToAction("Index", "Login");
             }
             var cart = CartHelper.GetCart(HttpContext, userID);
             ViewBag.Vouchers = orderServices.GetAvailableVouchers(userID);
@@ -70,34 +66,16 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
-            var userID = GetUserID();
-            if (string.IsNullOrEmpty(userID))
-            {
-                return RedirectToAction("Index", "Account");
-            }
-
             var order = orderServices.GetOrderById(orderId);
+
             if (order == null)
             {
                 TempData["UpdateMessage"] = "Order not found.";
                 return RedirectToAction("Index", "Home");
             }
 
-            if (!IsUserAuthorizedToViewOrder(userID, order))
-            {
-                TempData["UpdateMessage"] = "You are not authorized to view this order.";
-                if (Request.UrlReferrer != null)
-                {
-                    return Redirect(Request.UrlReferrer.ToString());
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-
-
             var orderItems = orderServices.GetOrderItems(orderId);
+
             var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
                 diamondID = item.tblItem.diamondID ?? 0,

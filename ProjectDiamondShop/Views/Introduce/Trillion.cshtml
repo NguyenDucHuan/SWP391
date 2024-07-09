@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
                 <span>The Diamond Shop</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                        <a class="nav-link" href="https://www.facebook.com/profile.php?id=61561345894731" target="_blank">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
@@ -43,7 +43,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -52,20 +52,16 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item notification-bell">
-                            <a class="nav-link" href="#" id="notificationBell" role="button">
-                                <i class="fas fa-bell"></i>
-                                <span class="notification-count" id="notificationCount">0</span>
-                            </a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link login-btn" href="@Url.Action("Index", "Account")">Login</a>
+                            <a class="nav-link login-btn" href="@Url.Action("Index", "Login")">Login</a>
                         </li>
                     }
                 </ul>
@@ -73,142 +69,138 @@
         </div>
     </nav>
 
-    <main role="main" class="pb-3">
-        <div class="container">
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-                </ol>
+    <div class="spacer"></div> <!-- This is the spacer div -->
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring.jpg" alt="Destination 1" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring1.jpg" alt="Destination 2" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring2.jpg" alt="Destination 3" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/trillionring3.jpg" alt="Destination 4" />
-                            </a>
-                        </div>
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring.jpg" alt="Destination 1" style="width: 100%;" />
+                        </a>
                     </div>
                 </div>
-
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring1.jpg" alt="Destination 2" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring2.jpg" alt="Destination 3" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/trillionring3.jpg" alt="Destination 4" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
             </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
 
-            <h2 class="text-center" style="margin-top: 48px;">Trillion Diamond Story</h2>
+        <h1 class="text-center" style="margin-top: 48px;">Trillion Diamond Story</h1>
 
-            <div class="container center">
-                <div class="row">
-                    <p class="description justify">
-                        The Trillion Cut Diamond is triangular shape with rounded or pointed corners and features between 31 to 50 facets.
-                        Originally designed to make the most out of flawed or irregularly-shaped rough diamonds, the Trillion Cut has evolved into a highly sought-after style for those looking to make a unique and modern statement.
-                        The cut makes a dazzling choice for both solitaire settings and as side stones.
-                        When considering a Trillion Cut Diamond, be aware of both its advantages and disadvantages.
-                        On the plus side, the Trillion Cut offers a larger surface area compared to other diamond shapes of the same carat weight, giving you a bigger-looking stone for your money.
-                        The cut also works incredibly well in contemporary and innovative designs.
-                        However, this cut has less brilliance compared to round or princess cuts, and its pointed edges can be prone to chipping if not set correctly.
-                    </p>
-                    <p class="description justify">
-                        <b>Bottom Line Recommendation:</b> Trillion cut diamonds are uncommon as the center stone in an engagement ring but can look stunning as diamond accents in a three-stone diamond ring.
-                        Because trillion cut diamonds are typically accent diamonds, there’s less of a need to focus on cut, clarity and color than with a center diamond.
-                        In general, it’s best to look for diamonds that are eye-clean and appear colorless in relation to their setting.
-                    </p>
-                    <p class="description justify">
-                        As always, we recommend buying trillion cut diamond jewelry from a reputable vendor.
-                        <a href="https://www.jamesallen.com/?a_aid=dmnd1357&amp;data1=413785" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">James Allen</a> and <a href="https://www.leibish.com/#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">Leibish &amp; Co.</a> both stock a reasonable range of engagement ring settings with trillion cut diamonds, all with excellent images and very competitive pricing.
-                    </p>
-                    <h2 class="wp-block-heading" id="h-what-is-a-trillion-cut-diamond">What is a Trillion Cut Diamond?</h2>
-                    <p class="description justify">
-                        A trillion cut diamond, also referred to as a trilliant cut, is a diamond that’s cut into a triangular shape.
-                        A typical trillion cut diamond will have three sides of equal length, with a flat table at its surface.
-                    </p>
-                    <p class="description justify">The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.</p>
-                    <p class="description justify">Unlike most diamond shapes, the trillion cut is more commonly used for side-stone diamonds than for center stones. For example, <a href="https://rapaport.com/news/18ct-diamond-smashes-estimate-at-bonhams/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">this incredible 18.04 carat diamond ring sold by Bonhams</a> featured trillion cut diamond accents, further enhancing the beauty of the center diamond.</p>
-                    <p class="description justify">
-                        However, although trillion cut diamonds are popular as side stones, you can also find engagement rings that feature a trillion cut diamond as the center stone.
-                        Below, we’ve gone into more detail on the shape and appearance of the trillion cut, as well as the history of this diamond shape.
-                        We’ve also shared our recommendations for purchasing an engagement ring with trillion cut diamond accents.
-                    </p>
-                    <h2 class="wp-block-heading" id="h-trillion-cut-diamond-the-basics">Trillion Cut Diamond: The Basics</h2>
+        <div class="container center">
+            <div class="row">
+                <p class="decription justify">
+                    The Trillion Cut Diamond is triangular shape with rounded or pointed corners and features between 31 to 50 facets.
+                    Originally designed to make the most out of flawed or irregularly-shaped rough diamonds, the Trillion Cut has evolved into a highly sought-after style for those looking to make a unique and modern statement.
+                    The cut makes a dazzling choice for both solitaire settings and as side stones.
+                    When considering a Trillion Cut Diamond, be aware of both its advantages and disadvantages.
+                    On the plus side, the Trillion Cut offers a larger surface area compared to other diamond shapes of the same carat weight, giving you a bigger-looking stone for your money.
+                    The cut also works incredibly well in contemporary and innovative designs.
+                    However, this cut has less brilliance compared to round or princess cuts, and its pointed edges can be prone to chipping if not set correctly.
+                </p>
+                <p class="decription justify">
+                    <b>Bottom Line Recommendation:</b> Trillion cut diamonds are uncommon as the center stone in an engagement ring but can look stunning as diamond accents in a three-stone diamond ring.
+                    Because trillion cut diamonds are typically accent diamonds, there’s less of a need to focus on cut, clarity and color than with a center diamond.
+                    In general, it’s best to look for diamonds that are eye-clean and appear colorless in relation to their setting.
+                </p>
+                <p class="decription justify">
+                    As always, we recommend buying trillion cut diamond jewelry from a reputable vendor.
+                    <a href="https://www.jamesallen.com/?a_aid=dmnd1357&amp;data1=413785" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">James Allen</a> and <a href="https://www.leibish.com/#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">Leibish &amp; Co.</a> both stock a reasonable range of engagement ring settings with trillion cut diamonds, all with excellent images and very competitive pricing.
+                </p>
+                <h2 class="wp-block-heading" id="h-what-is-a-trillion-cut-diamond">What is a Trillion Cut Diamond?</h2>
+                <p class="decription justify">
+                    A trillion cut diamond, also referred to as a trilliant cut, is a diamond that’s cut into a triangular shape.
+                    A typical trillion cut diamond will have three sides of equal length, with a flat table at its surface.
+                </p>
+                <p class="decription justify">The trillion cut is a relatively contemporary diamond shape, with its modern history dating back to the 1960s. <a href="https://www.gia.edu/gia-museum-exhibit-trilliant-gems" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">Described by the GIA</a> as an “adventurous and provocative cut,” it has an eye-catching, contemporary look that certainly stands out from the crowd.</p>
+                <p class="decription justify">Unlike most diamond shapes, the trillion cut is more commonly used for side-stone diamonds than for center stones. For example, <a href="https://rapaport.com/news/18ct-diamond-smashes-estimate-at-bonhams/" target="_blank" rel="noreferrer noopener external" data-wpel-link="external">this incredible 18.04 carat diamond ring sold by Bonhams</a> featured trillion cut diamond accents, further enhancing the beauty of the center diamond.</p>
+                <p class="decription justify">
+                    However, although trillion cut diamonds are popular as side stones, you can also find engagement rings that feature a trillion cut diamond as the center stone.
+                    Below, we’ve gone into more detail on the shape and appearance of the trillion cut, as well as the history of this diamond shape.
+                    We’ve also shared our recommendations for purchasing an engagement ring with trillion cut diamond accents.
+                </p>
+                <h2 class="wp-block-heading" id="h-trillion-cut-diamond-the-basics">Trillion Cut Diamond: The Basics</h2>
 
-                    <p class="description justify">
-                        <div class="container center">
-                            <img src="~/Image/Introlmage/Trillion.png" alt="Trillion Cut Diamond" style="width: 100%;margin:auto;" />
-                        </div>
+                <p class="decription justify">
+                    <div class="container center">
+                        <img src="~/Image/SlideDiamond/trillion5.jpg" alt="Trillion Cut Diamond" style="width: 50%; margin: auto; justify-content: center; display: flex; " />
+                    </div>
 
-                    </p>
-                    <p class="description justify">
-                        The trillion cut diamond is triangular, with three equal sides. Like the round brilliant cut, a trillion cut diamond has a flat table.
-                        The trillion cut is known for having impressive brilliance, great fire and an eye-catching, modern appearance.
-                    </p>
-                    <p class="description justify">
-                        Like other diamonds derived from the brilliant, trillion cut diamonds do a good job of hiding color and inclusions.
-                        When cut to a high standard, a trillion cut diamond can look absolutely stunning, either as a center stone or as an accent diamond.
-                    </p>
-                    <p class="description justify">Trillion cut diamonds can differ in cut and shape depending on whether they’re intended for use as center or accent stones.</p>
-                    <p class="description justify">
-                        When a trillion cut diamond is intended to be used as a center diamond in a solitaire ring, it will typically be cut to have 50 facets.
-                        Center trillion diamonds will also usually have a light curve or convex shape to maximize the diamond’s perceived size.
-                    </p>
-                    <p class="description justify">When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.</p>
-                    <p>
-                        Thanks to its long sides, a trillion cut diamond can often appear to be larger than its true carat weight.
-                        The trillion cut, as we know it today, was trademarked by the Henry Meyer Diamond Company of New York in the 1960s as the “trilliant” cut. However, early trillion cut diamonds are believed to have been cut in Amsterdam as long ago as the 19th century.
-                    </p>
-                    <img src="~/Image/Introlmage/trillion1.png" alt="Trillion Cut Diamond" style="width: 40%;margin:auto;" />
-                    <p class="description justify">
-                        The trilliant name comes from the diamond’s shape — a combination of the words “triangle” and “brilliant.”
-                        Over the years, numerous variations of the trillion cut have been produced, often with different shapes and facet counts.
-                        Because of the variation in cut between different trillion cut diamonds, it’s important to pay close attention to photos when you’re comparing diamonds in this cut.
-                    </p>
-                    <h2 class="wp-block-heading" id="h-trillion-cut-diamonds-price">Trillion Cut Diamonds: Price</h2>
-                    <p class="description justify">
-                        Like other diamond shapes, trillion cut diamonds can vary hugely in price based on their color, clarity, cut quality and carat weight.
-                        Diamond prices increase exponentially with size, meaning you’ll pay significantly more per carat if you’re looking for a particularly large diamond.
-                        Since most trillion cut diamonds are part of a setting, the price can vary based on the type of setting, the number of diamonds and the total carat weight.
-                    </p>
-                    <h2 class="wp-block-heading" id="h-are-trillion-cut-diamonds-rare">Are Trillion Cut Diamonds Rare?</h2>
-                    <p class="description justify">
-                        Trillion cut diamonds are quite rare, especially as center stones.
-                        Few jewelry stores keep trillion cut diamonds in stock, with the notable exception of trillion cut diamonds used as accent stones in three-stone engagement rings.
-                    </p>
-                </div>
+                </p>
+                <p class="decription justify">
+                    The trillion cut diamond is triangular, with three equal sides. Like the round brilliant cut, a trillion cut diamond has a flat table.
+                    The trillion cut is known for having impressive brilliance, great fire and an eye-catching, modern appearance.
+                </p>
+                <p class="decription justify">
+                    Like other diamonds derived from the brilliant, trillion cut diamonds do a good job of hiding color and inclusions.
+                    When cut to a high standard, a trillion cut diamond can look absolutely stunning, either as a center stone or as an accent diamond.
+                </p>
+                <p class="decription justify">Trillion cut diamonds can differ in cut and shape depending on whether they’re intended for use as center or accent stones.</p>
+                <p class="decription justify">
+                    When a trillion cut diamond is intended to be used as a center diamond in a solitaire ring, it will typically be cut to have 50 facets.
+                    Center trillion diamonds will also usually have a light curve or convex shape to maximize the diamond’s perceived size.
+                </p>
+                <p class="decription justify">When a trillion cut diamond is intended to be used as an accent diamond — for example, as a side accent in a <a href="https://www.leibish.com/rings-jewelry/double-halo-ring-setting-with-yellow-diamonds-triangles-27292#a_aid=y" data-wpel-link="advanced" target="_blank" rel="nofollow noopener external sponsored" title="" class="external-link">three-stone engagement ring</a> — it will typically be cut with 31 facets and won’t have convex edges.</p>
+                <p>
+                    Thanks to its long sides, a trillion cut diamond can often appear to be larger than its true carat weight.
+                    The trillion cut, as we know it today, was trademarked by the Henry Meyer Diamond Company of New York in the 1960s as the “trilliant” cut. However, early trillion cut diamonds are believed to have been cut in Amsterdam as long ago as the 19th century.
+                </p>
+                <img src="~/Image/SlideDiamond/trillion6.jpg" alt="Trillion Cut Diamond" style="width: 40%;margin:auto;" />
+                <p class="decription justify">
+                    The trilliant name comes from the diamond’s shape — a combination of the words “triangle” and “brilliant.”
+                    Over the years, numerous variations of the trillion cut have been produced, often with different shapes and facet counts.
+                    Because of the variation in cut between different trillion cut diamonds, it’s important to pay close attention to photos when you’re comparing diamonds in this cut.
+                </p>
+                <h2 class="wp-block-heading" id="h-trillion-cut-diamonds-price">Trillion Cut Diamonds: Price</h2>
+                <p class="decription justify">
+                    Like other diamond shapes, trillion cut diamonds can vary hugely in price based on their color, clarity, cut quality and carat weight.
+                    Diamond prices increase exponentially with size, meaning you’ll pay significantly more per carat if you’re looking for a particularly large diamond.
+                    Since most trillion cut diamonds are part of a setting, the price can vary based on the type of setting, the number of diamonds and the total carat weight.
+                </p>
+                <h2 class="wp-block-heading" id="h-are-trillion-cut-diamonds-rare">Are Trillion Cut Diamonds Rare?</h2>
+                <p class="decription justify">
+                    Trillion cut diamonds are quite rare, especially as center stones.
+                    Few jewelry stores keep trillion cut diamonds in stock, with the notable exception of trillion cut diamonds used as accent stones in three-stone engagement rings.
+                </p>
             </div>
         </div>
-    </main>
-
+    </div>
     <footer class="footer">
         <div class="container text-center">
             <p><a href="#">Back To Top</a></p>
@@ -218,45 +210,6 @@
             </p>
         </div>
     </footer>
-
-    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="color: black">
-                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="color: black">
-                    <p>Welcome, <span id="userName"></span>!</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Modal -->
-    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="notificationList">
-                        <!-- Notifications will be appended here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
@@ -269,98 +222,9 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '@Url.Action("Index", "Home")';
+                    window.location.href = '#';
                 });
             }
-
-            // Fetch notification count
-            function fetchNotificationCount() {
-                $.ajax({
-                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
-                    type: 'GET',
-                    success: function (response) {
-                        if (response.success) {
-                            var notificationCount = response.unreadCount;
-                            if (notificationCount > 0) {
-                                $('#notificationCount').text(notificationCount);
-                            } else {
-                                $('#notificationCount').text('');
-                            }
-                        } else {
-                            console.log(response.message);
-                        }
-                    },
-                    error: function () {
-                        console.log('Error retrieving notification count.');
-                    }
-                });
-            }
-
-            // Fetch notifications
-            function fetchNotifications() {
-                $.ajax({
-                    url: '@Url.Action("GetNotifications", "Notification")',
-                    type: 'GET',
-                    success: function (response) {
-                        if (response.success) {
-                            var notificationList = $('#notificationList');
-                            notificationList.empty();
-                            response.notifications.forEach(function (notification) {
-                                var item = '<div class="notification-item ' +
-                                    (notification.important ? 'important' : '') + '">' +
-                                    '<i class="fas fa-exclamation-circle icon"></i>' +
-                                    '<div class="notification-content">' +
-                                    '<strong>' + notification.detail + '</strong>' +
-                                    '<small>' + notification.date + '</small>' +
-                                    '</div>' +
-                                    '</div>';
-                                notificationList.prepend(item);
-                            });
-                            $('#notificationsModal').modal('show');
-                            markAllNotificationsAsRead();
-                        } else {
-                            alert(response.message);
-                        }
-                    },
-                    error: function () {
-                        alert('Error retrieving notifications.');
-                    }
-                });
-            }
-
-            // Mark all notifications as read
-            function markAllNotificationsAsRead() {
-                $.ajax({
-                    url: '@Url.Action("MarkAllAsRead", "Notification")',
-                    type: 'POST',
-                    success: function (response) {
-                        if (response.success) {
-                            $('#notificationCount').text('');
-                        } else {
-                            console.log(response.message);
-                        }
-                    },
-                    error: function () {
-                        console.log('Error marking notifications as read.');
-                    }
-                });
-            }
-
-            // Initial fetch
-            fetchNotificationCount();
-
-            // Handle bell icon click
-            $('#notificationBell').click(function () {
-                fetchNotifications();
-            });
-
-            // Poll for new notifications every 60 seconds
-            setInterval(fetchNotificationCount, 60000);
-
-            // Handle modal close actions
-            $('#notificationsModal').on('hidden.bs.modal', function () {
-                markAllNotificationsAsRead();
-            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
@@ -378,7 +242,6 @@
         });
 
         $('.close').click(function () {
-            console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
     </script>

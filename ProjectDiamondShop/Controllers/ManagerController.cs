@@ -328,7 +328,8 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-            if (_managerService.GetUsers().Any(u => u.userName == userName))
+            string hashedUserName = HashString(userName);
+            if (_managerService.GetUsers().Any(u => u.userName == hashedUserName))
             {
                 TempData["ErrorMessage"] = "User name already exists.";
                 hasErrors = true;
@@ -355,7 +356,7 @@ namespace ProjectDiamondShop.Controllers
             var newUser = new tblUser
             {
                 userID = userId,
-                userName = userName,
+                userName = hashedUserName,
                 fullName = fullName,
                 email = email,
                 password = hashedPassword,
@@ -387,14 +388,24 @@ namespace ProjectDiamondShop.Controllers
 
                 var fullErrorMessage = string.Join("; ", errorMessages);
                 TempData["ErrorMessage"] = "Validation failed: " + fullErrorMessage;
+
+                // Log the error details to debug output
+                System.Diagnostics.Debug.WriteLine("DbEntityValidationException: " + ex.ToString());
+                Console.WriteLine("DbEntityValidationException: " + ex.ToString());
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
+                var innerExceptionMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                TempData["ErrorMessage"] = "An error occurred while updating the entries: " + innerExceptionMessage;
+
+                // Log the error details to debug output
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.ToString());
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
             return RedirectToAction("Index");
         }
+
 
         private string HashString(string str)
         {
@@ -427,7 +438,6 @@ namespace ProjectDiamondShop.Controllers
             string newNumericPart = numericValue.ToString().PadLeft(numericPart.Length, '0');
             return "ID" + newNumericPart;
         }
-
         public ActionResult CreateVoucher()
         {
             if (Session["RoleID"] == null || (int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3)

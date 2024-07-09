@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
                 <span>The Diamond Shop</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact Us</a>
+                        <a class="nav-link" href="https://www.facebook.com/profile.php?id=61561345894731" target="_blank">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
@@ -43,7 +43,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -52,20 +52,16 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
                                 <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")">Logout</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item notification-bell">
-                            <a class="nav-link" href="#" id="notificationBell" role="button">
-                                <i class="fas fa-bell"></i>
-                                <span class="notification-count" id="notificationCount">0</span>
-                            </a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link login-btn" href="@Url.Action("Index", "Account")">Login</a>
+                            <a class="nav-link login-btn" href="@Url.Action("Index", "Login")">Login</a>
                         </li>
                     }
                 </ul>
@@ -73,131 +69,127 @@
         </div>
     </nav>
 
-    <main role="main" class="pb-3">
-        <div class="container">
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-                </ol>
+    <div class="spacer"></div> <!-- This is the spacer div -->
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/radiantring.jpg" alt="Destination 1" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/radiantring1.jpg" alt="Destination 2" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/radiantring2.jpg" alt="Destination 3" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="slide-wrapper">
-                            <a href="#">
-                                <img src="~/Image/SlideDiamond/radiantring3.jpg" alt="Destination 4" />
-                            </a>
-                        </div>
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/radiantring.jpg" alt="Destination 1" style="width: 100%;" />
+                        </a>
                     </div>
                 </div>
-
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/radiantring1.jpg" alt="Destination 2" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/radiantring2.jpg" alt="Destination 3" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slide-wrapper">
+                        <a href="#">
+                            <img src="~/Image/SlideDiamond/radiantring3.jpg" alt="Destination 4" style="width: 100%;" />
+                        </a>
+                    </div>
+                </div>
             </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
 
-            <h2 class="text-center" style="margin-top: 48px;">Radiant Diamond Story</h2>
+        <h1 class="text-center" style="margin-top: 48px;">Radiant Diamond Story</h1>
 
-            <div class="container center">
-                <div class="row">
-                    <p class="description justify">
-                        The radiant cut diamond is a dazzling choice, known for its brilliant sparkle compared to other square/rectangular cuts.
-                        Its unique design not only provides a larger appearance compared to its actual carat weight but also ensures durability.
-                        When considering a radiant cut, it’s vital to focus on its quality and proportions to truly capture its radiant essence.
-                        Everything else being equal, a well-cut radiant can be almost as brilliant as a round diamond but cost significantly less.
-                        A radiant cut diamond offers outstanding brilliance and durability. For color, we recommend an H or better, and for clarity, we suggest an SI1 or an SI2.
-                        When it comes to cut quality and other diamond details, this article will answer all your radiant cut questions.
-                        If you follow our guidelines a one carat radiant cut will cost $2,900.
-                    </p>
+        <div class="container center">
+            <div class="row">
+                <p class="description justify">
+                    The radiant cut diamond is a dazzling choice, known for its brilliant sparkle compared to other square/rectangular cuts.
+                    Its unique design not only provides a larger appearance compared to its actual carat weight but also ensures durability.
+                    When considering a radiant cut, it’s vital to focus on its quality and proportions to truly capture its radiant essence.
+                    Everything else being equal, a well-cut radiant can be almost as brilliant as a round diamond but cost significantly less.
+                    A radiant cut diamond offers outstanding brilliance and durability. For color, we recommend an H or better, and for clarity, we suggest an SI1 or an SI2.
+                    When it comes to cut quality and other diamond details, this article will answer all your radiant cut questions.
+                    If you follow our guidelines a one carat radiant cut will cost $2,900.
+                </p>
 
-                    <h1>What is a Radiant Cut Diamond?</h1>
-                    <p class="description justify">
-                        Popular since the 1980s, the radiant cut diamond lives up to its name: it is impressively radiant and brilliant.
-                        Henry Grossbard designed the radiant cut in 1977 in pursuit of combining the finest elements of the round brilliant cut and the emerald cut.
-                        The radiant cut diamond owes its brilliance to the 70 facets found in its pavilion and crown.
-                        The precision of each facet offers immense brilliance and fire.
-                        The radiant cut’s brilliance is surpassed only by the round brilliant cut.
-                        This makes the radiant cut an excellent choice for an engagement ring that sparkles with brilliance and fire.
-                        With carefully beveled corners, Radiants have substantial durability against chips and breakage, making it an excellent choice for those with an active lifestyle.
-                        This feature also allows the Radiant to be paired alongside both square and rounded diamonds.
-                    </p>
-                    <img src="~/Image/Introlmage/radiant.jpg" alt="Radiant Diamond" style="width: 100%; margin:auto" />
-                    <h2 class="wp-block-heading">Radiant Cut Diamonds: Pros and Cons</h2>
-                    <p class="description justify">
-                        Like other <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, radiant cut diamonds have their own unique range of advantages and disadvantages.
-                        It is a unique cut that puts a little flair on your traditional ring.
-                        Even some celebrities have chosen to go the radiant cut route, such as Christina Haack’s stunner as <a href="https://hollywoodlife.com/2021/09/20/christina-haack-engaged-joshua-hall-diamond-ring-photo/" data-wpel-link="external" target="_blank" rel="external noopener">reported by Hollywood Life</a>
-                    </p>
-                    <p>
-                        <b>Pros</b>
-                        of the radiant cut include the following:
-                    </p>
-                    <p class="description justify">
-                        <b>Excellent brilliance, fire and sparkle</b>
-                        Although the radiant cut isn’t quite as brilliant as the round brilliant cut, it’s not very far behind.
-                        Because of the 70 facets in its pavilion and crown, the radiant cut offers impressive brilliance and fire.
-                        This makes the radiant cut a great choice if you want a non-round diamond with a beautiful sparkle.
-                    </p>
-                    <p class="description justify">
-                        <b>Larger perceived size than other diamond shapes</b>
-                        The radiant cut is well known for looking larger than most of the other diamonds of the same carat weight, giving it some extra presence on your fiancé-to-be’s finger.
-                        The face-up area of the radiant cut is actually slightly smaller than that of a round brilliant cut diamond of an equal carat weight.
-                        However, the radiant cut’s long diagonal measurement tricks the eye and makes it look larger than it really is.
-                    </p>
-                    <img src="~/Image/Introlmage/radiant3-blue.jpg" alt="Radiant Diamond" style="width: 100%; margin:auto;" />
+                <h1>What is a Radiant Cut Diamond?</h1>
+                <p class="description justify">
+                    Popular since the 1980s, the radiant cut diamond lives up to its name: it is impressively radiant and brilliant.
+                    Henry Grossbard designed the radiant cut in 1977 in pursuit of combining the finest elements of the round brilliant cut and the emerald cut.
+                    The radiant cut diamond owes its brilliance to the 70 facets found in its pavilion and crown.
+                    The precision of each facet offers immense brilliance and fire.
+                    The radiant cut’s brilliance is surpassed only by the round brilliant cut.
+                    This makes the radiant cut an excellent choice for an engagement ring that sparkles with brilliance and fire.
+                    With carefully beveled corners, Radiants have substantial durability against chips and breakage, making it an excellent choice for those with an active lifestyle.
+                    This feature also allows the Radiant to be paired alongside both square and rounded diamonds.
+                </p>
+                <img src="~/Image/Introlmage/radiant.jpg" alt="Radiant Diamond" style="width: 50%; margin:auto" />
+                <h2 class="wp-block-heading">Radiant Cut Diamonds: Pros and Cons</h2>
+                <p class="description justify">
+                    Like other <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, radiant cut diamonds have their own unique range of advantages and disadvantages.
+                    It is a unique cut that puts a little flair on your traditional ring.
+                    Even some celebrities have chosen to go the radiant cut route, such as Christina Haack’s stunner as <a href="https://hollywoodlife.com/2021/09/20/christina-haack-engaged-joshua-hall-diamond-ring-photo/" data-wpel-link="external" target="_blank" rel="external noopener">reported by Hollywood Life</a>
+                </p>
+                <p>
+                    <b>Pros</b>
+                    of the radiant cut include the following:
+                </p>
+                <p class="description justify">
+                    <b>Excellent brilliance, fire and sparkle</b>
+                    Although the radiant cut isn’t quite as brilliant as the round brilliant cut, it’s not very far behind.
+                    Because of the 70 facets in its pavilion and crown, the radiant cut offers impressive brilliance and fire.
+                    This makes the radiant cut a great choice if you want a non-round diamond with a beautiful sparkle.
+                </p>
+                <p class="description justify">
+                    <b>Larger perceived size than other diamond shapes</b>
+                    The radiant cut is well known for looking larger than most of the other diamonds of the same carat weight, giving it some extra presence on your fiancé-to-be’s finger.
+                    The face-up area of the radiant cut is actually slightly smaller than that of a round brilliant cut diamond of an equal carat weight.
+                    However, the radiant cut’s long diagonal measurement tricks the eye and makes it look larger than it really is.
+                </p>
+                <img src="~/Image/Introlmage/radiant3-blue.jpg" alt="Radiant Diamond" style="width: 50%; margin:auto;" />
 
-                    <h2 class="wp-block-heading" id="Radiant-Cut-Diamond---Quality">Radiant Cut Diamond – Quality</h2>
-                    <img src="~/Image/Introlmage/Radiant4.png" alt="Radiant Diamond" style="width: 100%; margin:auto;" />
-                    <p class="description justify">
-                        Radiant diamonds are created with a modified brilliant cut facet pattern for both the pavilion and crown, giving this diamond its high level of brilliance (the amount of white light reflected back to the eye or ‘sparkle’).
-                        Because <a href="https://www.diamonds.pro/education/cuts/" data-wpel-link="internal">diamond cut</a> is vital to any diamond’s beauty, especially the radiant diamond, a careful eye must be used when considering stones for purchase.
-                        The <a href="https://www.diamonds.pro/education/gia-certification/" data-wpel-link="internal">GIA</a> only grades cut quality for round brilliant diamonds.
-                        A GIA certificate for a radiant cut will not include a cut grade and is therefore not indicative of how the diamond truly looks.
-                        If you’re comparing loose radiant diamonds, make sure they’re evaluated carefully by your eyes and, ideally, <a class="cta-ask-form" href="#">the eyes of a professional.</a>
-                        As a rough guideline, we offer suggestions for evaluating a Radiant Diamond’s Cut.
-                    </p>
-                    <h3 class="wp-block-heading">Radiant Cut Diamond – Cut Guide</h3>
-                    <img src="~/Image/Introlmage/radiant5.jpg" alt="Radiant Diamond" style="width: 100%; margin:auto;" />
-                    <p class="description justify">
-                        Be sure to also look at the corners of a radiant, ensuring they are even and not too wide—or too narrow.
-                        The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty.
-                    </p>
-                </div>
+                <h2 class="wp-block-heading" id="Radiant-Cut-Diamond---Quality">Radiant Cut Diamond – Quality</h2>
+                <img src="~/Image/SlideDiamond/radiant2.jpg" alt="Radiant Diamond" style="width: 50%; margin:auto;" />
+                <p class="description justify">
+                    Radiant diamonds are created with a modified brilliant cut facet pattern for both the pavilion and crown, giving this diamond its high level of brilliance (the amount of white light reflected back to the eye or ‘sparkle’).
+                    Because <a href="https://www.diamonds.pro/education/cuts/" data-wpel-link="internal">diamond cut</a> is vital to any diamond’s beauty, especially the radiant diamond, a careful eye must be used when considering stones for purchase.
+                    The <a href="https://www.diamonds.pro/education/gia-certification/" data-wpel-link="internal">GIA</a> only grades cut quality for round brilliant diamonds.
+                    A GIA certificate for a radiant cut will not include a cut grade and is therefore not indicative of how the diamond truly looks.
+                    If you’re comparing loose radiant diamonds, make sure they’re evaluated carefully by your eyes and, ideally, <a class="cta-ask-form" href="#">the eyes of a professional.</a>
+                    As a rough guideline, we offer suggestions for evaluating a Radiant Diamond’s Cut.
+                </p>
+                <h3 class="wp-block-heading">Radiant Cut Diamond – Cut Guide</h3>
+                <img src="~/Image/SlideDiamond/radiant3.png" alt="Radiant Diamond" style="width: 50%; margin:auto;" />
+                <p class="description justify">
+                    Be sure to also look at the corners of a radiant, ensuring they are even and not too wide—or too narrow.
+                    The cropped corners of the Radiant give it stability, but also need to be symmetrical in order to maintain the overall beauty
+                </p>
             </div>
         </div>
-    </main>
-
+    </div>
     <footer class="footer">
         <div class="container text-center">
             <p><a href="#">Back To Top</a></p>
@@ -210,45 +202,6 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header" style="color: black">
-                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="color: black">
-                    <p>Welcome, <span id="userName"></span>!</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Modal -->
-    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="notificationList">
-                        <!-- Notifications will be appended here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -260,98 +213,9 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '@Url.Action("Index", "Home")';
+                    window.location.href = '#';
                 });
             }
-
-            // Fetch notification count
-            function fetchNotificationCount() {
-                $.ajax({
-                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
-                    type: 'GET',
-                    success: function (response) {
-                        if (response.success) {
-                            var notificationCount = response.unreadCount;
-                            if (notificationCount > 0) {
-                                $('#notificationCount').text(notificationCount);
-                            } else {
-                                $('#notificationCount').text('');
-                            }
-                        } else {
-                            console.log(response.message);
-                        }
-                    },
-                    error: function () {
-                        console.log('Error retrieving notification count.');
-                    }
-                });
-            }
-
-            // Fetch notifications
-            function fetchNotifications() {
-                $.ajax({
-                    url: '@Url.Action("GetNotifications", "Notification")',
-                    type: 'GET',
-                    success: function (response) {
-                        if (response.success) {
-                            var notificationList = $('#notificationList');
-                            notificationList.empty();
-                            response.notifications.forEach(function (notification) {
-                                var item = '<div class="notification-item ' +
-                                    (notification.important ? 'important' : '') + '">' +
-                                    '<i class="fas fa-exclamation-circle icon"></i>' +
-                                    '<div class="notification-content">' +
-                                    '<strong>' + notification.detail + '</strong>' +
-                                    '<small>' + notification.date + '</small>' +
-                                    '</div>' +
-                                    '</div>';
-                                notificationList.prepend(item);
-                            });
-                            $('#notificationsModal').modal('show');
-                            markAllNotificationsAsRead();
-                        } else {
-                            alert(response.message);
-                        }
-                    },
-                    error: function () {
-                        alert('Error retrieving notifications.');
-                    }
-                });
-            }
-
-            // Mark all notifications as read
-            function markAllNotificationsAsRead() {
-                $.ajax({
-                    url: '@Url.Action("MarkAllAsRead", "Notification")',
-                    type: 'POST',
-                    success: function (response) {
-                        if (response.success) {
-                            $('#notificationCount').text('');
-                        } else {
-                            console.log(response.message);
-                        }
-                    },
-                    error: function () {
-                        console.log('Error marking notifications as read.');
-                    }
-                });
-            }
-
-            // Initial fetch
-            fetchNotificationCount();
-
-            // Handle bell icon click
-            $('#notificationBell').click(function () {
-                fetchNotifications();
-            });
-
-            // Poll for new notifications every 60 seconds
-            setInterval(fetchNotificationCount, 60000);
-
-            // Handle modal close actions
-            $('#notificationsModal').on('hidden.bs.modal', function () {
-                markAllNotificationsAsRead();
-            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
@@ -369,7 +233,6 @@
         });
 
         $('.close').click(function () {
-            console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
     </script>

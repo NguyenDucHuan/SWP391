@@ -139,24 +139,39 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <div id="settingInfoContainer" style="display:none; padding: 10px; margin-top: 10px;">
+                <h5>Setting Information</h5>
+                <img id="settingImage" src="" style="width: 50px; height: 50px; margin-right: 10px;" />
+                <span id="settingDetails"></span>
+            </div>
+
             <div class="modal-body">
                 <div class="form-group">
                     <label for="setting">Setting</label>
                     <select id="setting" class="form-control select2">
-                        <option value="0" data-image="/path/to/default-image.jpg">No setting</option>
+                        @*<option value="0" data-image="/Image/Settings/ring_gold.png"> No setting</option>*@
                     </select>
                 </div>
                 <div class="form-group" id="settingSizeGroup" style="display:none;">
                     <label for="settingSize">Setting Size</label>
                     <input type="number" id="settingSizeInput" class="form-control" placeholder="Enter setting size" required>
                 </div>
+
+                <div id="accentStoneInfoContainer" style="display:none;  padding: 10px; margin-top: 10px;">
+                    <h5>Accent Stone Information</h5>
+                    <img id="accentStoneImage" src="" style="width: 50px; height: 50px; margin-right: 10px;" />
+                    <span id="accentStoneDetails"></span>
+                </div>
+
                 <div class="form-group">
                     <label for="accentStone">Accent Stone</label>
                     <select id="accentStone" class="form-control select2" disabled>
-                        <option value="0" data-image="\Image\DiamondDTO\AccentStone">No accent stone</option>
+                        <option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>
                     </select>
                 </div>
             </div>
+            <div id="info-box" class="info-box"></div>
             <div class="modal-footer">
                 <button type="button" id="confirm-selection" class="btn btn-primary">Confirm</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -164,6 +179,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Modal for displaying enlarged certification image -->
 <div id="certificationModal" class="modal fade" tabindex="-1" role="dialog">
@@ -198,101 +214,168 @@
                 return $state;
             }
 
-            // Initialize Bootstrap Carousel
-            var myCarousel = new bootstrap.Carousel('#imageCarousel', {
-                interval: 3000 // 3 seconds
+
+    // Initialize Bootstrap Carousel
+    var myCarousel = new bootstrap.Carousel('#imageCarousel', {
+        interval: 3000 // 3 seconds
+    });
+
+    $(".thumbnail-button").click(function () {
+        var newImage = $(this).data('image');
+        var index = $(this).index(); // Get the index of the clicked thumbnail
+
+        // Find the corresponding carousel item and set it as active
+        $('#imageCarousel .carousel-item').removeClass('active');
+        $('#imageCarousel .carousel-item').eq(index).addClass('active');
+
+        // Pause the carousel
+        myCarousel.pause();
+    });
+
+    $(".thumbnail-button-cert").click(function () {
+        var certImage = $(this).data('image');
+        $("#certificationImage").attr('src', certImage);
+        $('#certificationModal').modal('show');
+    });
+
+    $("#add-to-cart-button").click(function () {
+        loadSettings();
+        loadAccentStones();
+        $('#selectionModal').modal('show');
+    });
+
+    function loadSettings() {
+    $.ajax({
+        url: '@Url.Action("GetSettings", "Diamonds")',
+        type: 'GET',
+        success: function (data) {
+            var settingsSelect = $("#setting");
+            settingsSelect.empty();
+            settingsSelect.append('<option value="0" data-image="/Image/HomePage/Logo/DefaultImage.png" data-details="No setting selected">No setting</option>');
+            $.each(data, function (i, setting) {
+                settingsSelect.append('<option value="' + setting.settingID + '" data-image="' + setting.imagePath + '" data-details="' + setting.settingType + ' - ' + setting.material + '">' + setting.settingType + ' - ' + setting.material + '</option>');
             });
 
-            $(".thumbnail-button").click(function () {
-                var newImage = $(this).data('image');
-                var index = $(this).index(); // Get the index of the clicked thumbnail
+            settingsSelect.on('change', function () {
+                var selectedOption = $(this).find('option:selected');
+                var settingImage = selectedOption.data('image');
+                var settingDetails = selectedOption.data('details');
 
-                // Find the corresponding carousel item and set it as active
-                $('#imageCarousel .carousel-item').removeClass('active');
-                $('#imageCarousel .carousel-item').eq(index).addClass('active');
-
-                // Pause the carousel
-                myCarousel.pause();
-            });
-
-            $(".thumbnail-button-cert").click(function () {
-                var certImage = $(this).data('image');
-                $("#certificationImage").attr('src', certImage);
-                $('#certificationModal').modal('show');
-            });
-
-            $("#add-to-cart-button").click(function () {
-                loadSettings();
-                loadAccentStones();
-                $('#selectionModal').modal('show');
-            });
-
-            function loadSettings() {
-                $.ajax({
-                    url: '@Url.Action("GetSettings", "Diamonds")',
-                    type: 'GET',
-                    success: function (data) {
-                        var settingsSelect = $("#setting");
-                        settingsSelect.empty();
-                        settingsSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No setting</option>');
-                        $.each(data, function (i, setting) {
-                            settingsSelect.append('<option value="' + setting.settingID + '" data-image="' + setting.imagePath + '">' + setting.settingType + ' - ' + setting.material + '</option>');
-                        });
-
-                        settingsSelect.on('change', function () {
-                            if ($(this).val() != "0") {
-                                $('#accentStone').prop('disabled', false);
-                                $('#settingSizeGroup').show(); // Show setting size input
-                            } else {
-                                $('#accentStone').prop('disabled', true);
-                                $('#settingSizeGroup').hide(); // Hide setting size input
-                                $('#settingSizeInput').val(''); // Clear setting size input
-                                $('#accentStone').val("0").trigger('change');
-                            }
-                        });
-                    }
-                });
-            }
-
-            function loadAccentStones() {
-                $.ajax({
-                    url: '@Url.Action("GetAccentStones", "Diamonds")',
-                    type: 'GET',
-                    success: function (data) {
-                        var accentStoneSelect = $("#accentStone");
-                        accentStoneSelect.empty();
-                        accentStoneSelect.append('<option value="0" data-image="/path/to/default-image.jpg">No accent stone</option>');
-                        $.each(data, function (i, accentStone) {
-                            accentStoneSelect.append('<option value="' + accentStone.accentStoneID + '" data-image="' + accentStone.imagePath + '">' + accentStone.shape + ' - ' + accentStone.caratWeight + 'ct</option>');
-                        });
-                    }
-                });
-            }
-
-            $("#confirm-selection").click(function () {
-                var selectedAccentStoneId = $("#accentStone").val();
-                var selectedSettingId = $("#setting").val();
-                var settingSize = $("#settingSizeInput").val();
-
-                if (selectedSettingId != "0" && settingSize.trim() === "") {
-                    alert("Please enter the setting size.");
-                    return;
+                if ($(this).val() != "0") {
+                    $('#accentStone').prop('disabled', false);
+                    $('#settingSizeGroup').show(); // Show setting size input
+                } else {
+                    $('#accentStone').prop('disabled', true);
+                    $('#settingSizeGroup').hide(); // Hide setting size input
+                    $('#settingSizeInput').val(''); // Clear setting size input
+                    $('#accentStone').val("0").trigger('change');
                 }
 
-                $("#accentStoneID").val(selectedAccentStoneId);
-                $("#settingID").val(selectedSettingId);
-                $("#settingSize").val(settingSize);
+                // Display the selected setting information
+                $('#settingImage').attr('src', settingImage);
+                $('#settingDetails').text(settingDetails);
+                $('#settingInfoContainer').show();
+            });
+        }
+    });
+}
 
-                $('#selectionModal').modal('hide');
-                $("#add-to-cart-form").submit();
+
+   function loadAccentStones() {
+    $.ajax({
+        url: '@Url.Action("GetAccentStones", "Diamonds")',
+        type: 'GET',
+        success: function (data) {
+            var accentStoneSelect = $("#accentStone");
+            accentStoneSelect.empty();
+            accentStoneSelect.append('<option value="0" data-image="/Image/HomePage/Logo/DefaultImage.png" data-details="No accent stone selected">No accent stone</option>');
+            $.each(data, function (i, accentStone) {
+                accentStoneSelect.append('<option value="' + accentStone.accentStoneID + '" data-image="' + accentStone.imagePath + '" data-details="' + accentStone.shape + ' - ' + accentStone.caratWeight + 'ct">' + accentStone.shape + ' - ' + accentStone.caratWeight + 'ct</option>');
             });
 
-            // Handle modal close button click
-            $(".close, .btn-secondary").click(function() {
-                $('#selectionModal').modal('hide');
+            accentStoneSelect.on('change', function () {
+                var selectedOption = $(this).find('option:selected');
+                var accentStoneImage = selectedOption.data('image');
+                var accentStoneDetails = selectedOption.data('details');
+
+                // Display the selected accent stone information
+                $('#accentStoneImage').attr('src', accentStoneImage);
+                $('#accentStoneDetails').text(accentStoneDetails);
+                $('#accentStoneInfoContainer').show();
             });
+        }
+    });
+}
+
+    $("#confirm-selection").click(function () {
+        var selectedAccentStoneId = $("#accentStone").val();
+        var selectedSettingId = $("#setting").val();
+        var settingSize = $("#settingSizeInput").val();
+
+        if (selectedSettingId != "0" && settingSize.trim() === "") {
+            alert("Please enter the setting size.");
+            return;
+        }
+
+        $("#accentStoneID").val(selectedAccentStoneId);
+        $("#settingID").val(selectedSettingId);
+        $("#settingSize").val(settingSize);
+
+        $('#selectionModal').modal('hide');
+        $("#add-to-cart-form").submit();
+    });
+
+    // Handle modal close button click
+    $(".close, .btn-secondary").click(function() {
+        $('#selectionModal').modal('hide');
+    });
+
+    // Show info box on hover
+    $('#setting').on('select2:open', function() {
+        $('li.select2-results__option').on('mouseenter', function() {
+            var info = $(this).data('image');
+            if (info) {
+                var infoTable = '<table class="table table-bordered">';
+                infoTable += '<tr><td>Image:</td><td><img src="' + info + '" style="width:50px;height:50px;"></td></tr>';
+                infoTable += '<tr><td>Info:</td><td>Additional Info Here</td></tr>';
+                infoTable += '</table>';
+
+                $('#info-box').html(infoTable).show().css({
+                    top: $(this).offset().top,
+                    left: $(this).offset().left + $(this).outerWidth()
+                });
+            }
         });
+
+        $('li.select2-results__option').on('mouseleave', function() {
+            $('#info-box').hide();
+        });
+    });
+
+    $('#accentStone').on('select2:open', function() {
+        $('li.select2-results__option').on('mouseenter', function() {
+            var info = $(this).data('image');
+            if (info) {
+                var infoTable = '<table class="table table-bordered">';
+                infoTable += '<tr><td>Image:</td><td><img src="' + info + '" style="width:50px;height:50px;"></td></tr>';
+                infoTable += '<tr><td>Info:</td><td>Additional Info Here</td></tr>';
+                infoTable += '</table>';
+
+                $('#info-box').html(infoTable).show().css({
+                    top: $(this).offset().top,
+                    left: $(this).offset().left + $(this).outerWidth()
+                });
+            }
+        });
+
+        $('li.select2-results__option').on('mouseleave', function() {
+            $('#info-box').hide();
+        });
+    });
+
+});
     </script>
+
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 }
