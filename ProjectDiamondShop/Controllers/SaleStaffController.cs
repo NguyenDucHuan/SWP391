@@ -16,18 +16,6 @@ namespace ProjectDiamondShop.Controllers
         private readonly INotificationService _notificationService;
         private readonly IDiamondService _diamondService;
         private readonly IUserService _userService;
-        private bool IsAdmin()
-        {
-            return Session["RoleID"] != null && (int)Session["RoleID"] == 2;
-        }
-        private bool IsDelivery()
-        {
-            return Session["RoleID"] != null && (int)Session["RoleID"] == 4;
-        }
-        private bool IsManager()
-        {
-            return Session["RoleID"] != null && (int)Session["RoleID"] == 3;
-        }
 
         public SaleStaffController()
         {
@@ -37,27 +25,47 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        // GET: SaleStaff
-        public ActionResult Index(string searchOrderId, int page = 1, int pageSize = 10)
+        private bool IsSaleStaff()
         {
-            if (IsAdmin())
+            return Session["RoleID"] != null && (int)Session["RoleID"] == 5;
+        }
+
+        private string GetUserID()
+        {
+            if (Session["UserID"] == null)
             {
-                return RedirectToAction("Index", "Manager");
+                Session["ReturnUrl"] = Url.Action("Index", "SaleStaff");
+                return null;
             }
-            if (IsManager())
+            return Session["UserID"].ToString();
+        }
+
+        private ActionResult RedirectToPreviousPage()
+        {
+            if (Request.UrlReferrer != null)
             {
-                return RedirectToAction("Index", "Manager");
+                return Redirect(Request.UrlReferrer.ToString());
             }
-            if (IsDelivery())
-            {
-                return RedirectToAction("Index", "DeliveryStaff");
-            }
-            if (Session["RoleID"] == null || (int)Session["RoleID"] != 5)
+            else
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
 
-            string saleStaffID = Session["UserID"].ToString();
+        // GET: SaleStaff
+        public ActionResult Index(string searchOrderId, int page = 1, int pageSize = 10)
+        {
+            if (!IsSaleStaff())
+            {
+                return RedirectToPreviousPage();
+            }
+
+            string saleStaffID = GetUserID();
+            if (string.IsNullOrEmpty(saleStaffID))
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             List<tblOrder> orders = string.IsNullOrEmpty(searchOrderId) ?
                 _staffService.GetOrdersByStaffId(saleStaffID, 5, null) :
                 _staffService.GetOrdersByStaffId(saleStaffID, 5, searchOrderId);
@@ -77,18 +85,11 @@ namespace ProjectDiamondShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Process(string orderId)
         {
-            if (IsAdmin())
+            if (!IsSaleStaff())
             {
-                return RedirectToAction("Index", "Manager");
+                return RedirectToPreviousPage();
             }
-            if (IsManager())
-            {
-                return RedirectToAction("Index", "Manager");
-            }
-            if (IsDelivery())
-            {
-                return RedirectToAction("Index", "DeliveryStaff");
-            }
+
             if (string.IsNullOrEmpty(orderId))
             {
                 TempData["UpdateMessage"] = "Order ID is required.";
@@ -108,10 +109,16 @@ namespace ProjectDiamondShop.Controllers
 
             return RedirectToAction("Index");
         }
+
         // This method displays the initial Rebuy page with the search form
         [HttpGet]
         public ActionResult Rebuy()
         {
+            if (!IsSaleStaff())
+            {
+                return RedirectToPreviousPage();
+            }
+
             return View();
         }
 
@@ -119,6 +126,11 @@ namespace ProjectDiamondShop.Controllers
         [HttpGet]
         public ActionResult SearchRebuy(string searchTerm)
         {
+            if (!IsSaleStaff())
+            {
+                return RedirectToPreviousPage();
+            }
+
             if (string.IsNullOrEmpty(searchTerm))
             {
                 ViewBag.Message = "Please enter a search term.";
@@ -137,9 +149,14 @@ namespace ProjectDiamondShop.Controllers
         [HttpPost]
         public ActionResult SubmitRebuyRequest(int diamondID, bool? stillHaveCertification, decimal rebuyPrice)
         {
+            if (!IsSaleStaff())
+            {
+                return RedirectToPreviousPage();
+            }
+
             // Gán giá trị mặc định nếu stillHaveCertification là null
             bool certification = stillHaveCertification ?? false;
-            string saleStaffID = Session["UserID"]?.ToString();
+            string saleStaffID = GetUserID();
             if (string.IsNullOrEmpty(saleStaffID))
             {
                 TempData["Message"] = "Failed to submit rebuy request. Sale staff information is missing.";
