@@ -14,11 +14,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /*            font-family: 'Montserrat', sans-serif;*/
         }
 
         .navbar {
-            background: #333 !important; /* Thay đổi màu nền */
+            background: #333 !important;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 0.5rem 1rem;
             margin-bottom: 20px;
@@ -44,7 +43,7 @@
                 }
 
             .navbar .nav-link {
-                color: #fff !important; /* Thay đổi màu chữ */
+                color: #fff !important;
                 font-weight: bold;
                 margin-right: 20px;
                 position: relative;
@@ -52,7 +51,7 @@
 
                 .navbar .nav-link:hover,
                 .navbar .nav-link.active {
-                    color: #ddd !important; /* Thay đổi màu chữ khi hover */
+                    color: #ddd !important;
                 }
 
                 .navbar .nav-link:not(.dropdown-toggle)::after {
@@ -63,7 +62,7 @@
                     background: #28a745;
                     transition: width .3s;
                     position: absolute;
-                    bottom: 0; /* Position it at the bottom of the nav link */
+                    bottom: 0;
                     left: 0;
                 }
 
@@ -88,14 +87,12 @@
                 outline: none;
             }
 
-        /* Ensure the icon does not move when the dropdown is toggled */
         .nav-item .dropdown-toggle {
             position: relative;
             display: flex;
             align-items: center;
         }
 
-        /* Ensure the dropdown menu is positioned correctly */
         .dropdown-menu {
             position: absolute;
             transform: translate3d(0px, 0px, 0px);
@@ -108,11 +105,10 @@
             vertical-align: 0.1em;
         }
 
-        /* Prevent dropdown movement on click */
         .navbar .nav-item.dropdown .dropdown-menu {
-            top: 100%; /* Ensure it opens below the toggle */
+            top: 100%;
             left: 0;
-            margin-top: 0.5rem; /* Optional spacing */
+            margin-top: 0.5rem;
             background-color: #FDF4F3;
             min-width: 150%;
         }
@@ -125,8 +121,8 @@
         body {
             display: flex;
             flex-direction: column;
-            background-color: #222; /* Thay đổi màu nền */
-            color: #fff; /* Thay đổi màu chữ */
+            background-color: #222;
+            color: #fff;
         }
 
         .container {
@@ -159,7 +155,75 @@
                 text-decoration: underline;
             }
 
-        /* Media Queries for Responsive Design */
+        .notification-bell {
+            position: relative;
+        }
+
+            .notification-bell .notification-count {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                background-color: red;
+                color: white;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 12px;
+            }
+
+        .notification-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f1f1f1;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .notification-item .icon {
+                font-size: 24px;
+                margin-right: 10px;
+                color: #007bff;
+            }
+
+            .notification-item .notification-content {
+                flex-grow: 1;
+            }
+
+                .notification-item .notification-content strong {
+                    display: block;
+                    font-size: 14px;
+                    color: #333;
+                }
+
+                .notification-item .notification-content small {
+                    color: #888;
+                    font-size: 12px;
+                }
+
+            .notification-item.important {
+                background-color: #ffefef;
+                border-left: 5px solid #ff4d4d;
+            }
+
+        .modal-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .modal-header .btn-close {
+                background: none;
+                border: none;
+                font-size: 20px;
+            }
+
         @@media (max-width: 992px) {
             .navbar-collapse {
                 justify-content: flex-start;
@@ -215,7 +279,6 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
-                                
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -228,6 +291,12 @@
                                 <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item notification-bell">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-count" id="notificationCount">0</span>
+                            </a>
                         </li>
                     }
                     else
@@ -259,6 +328,26 @@
         </div>
     </footer>
 
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -273,20 +362,109 @@
                     window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
-        });
 
-        // Hide and show navbar on scroll
-        var lastScrollTop = 0;
-        $(window).scroll(function () {
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop) {
-                // Scroll Down
-                $('.navbar').css('top', '-80px');
-            } else {
-                // Scroll Up
-                $('.navbar').css('top', '0');
+            // Fetch notification count
+            function fetchNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationCount = response.unreadCount;
+                            if (notificationCount > 0) {
+                                $('#notificationCount').text(notificationCount);
+                            } else {
+                                $('#notificationCount').text('');
+                            }
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error retrieving notification count.');
+                    }
+                });
             }
-            lastScrollTop = st;
+
+            // Fetch notifications
+            function fetchNotifications() {
+                $.ajax({
+                    url: '@Url.Action("GetNotifications", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationList = $('#notificationList');
+                            notificationList.empty();
+                            response.notifications.forEach(function (notification) {
+                                var item = '<div class="notification-item ' +
+                                    (notification.important ? 'important' : '') + '">' +
+                                    '<i class="fas fa-exclamation-circle icon"></i>' +
+                                    '<div class="notification-content">' +
+                                    '<strong>' + notification.detail + '</strong>' +
+                                    '<small>' + notification.date + '</small>' +
+                                    '</div>' +
+                                    '</div>';
+                                notificationList.prepend(item);
+                            });
+                            $('#notificationsModal').modal('show');
+                            markAllNotificationsAsRead();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error retrieving notifications.');
+                    }
+                });
+            }
+
+            // Mark all notifications as read
+            function markAllNotificationsAsRead() {
+                $.ajax({
+                    url: '@Url.Action("MarkAllAsRead", "Notification")',
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            $('#notificationCount').text('');
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error marking notifications as read.');
+                    }
+                });
+            }
+
+            // Initial fetch
+            fetchNotificationCount();
+
+            // Handle bell icon click
+            $('#notificationBell').click(function () {
+                fetchNotifications();
+            });
+
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotificationCount, 60000);
+
+            // Handle modal close actions
+            $('#notificationsModal').on('hidden.bs.modal', function () {
+                markAllNotificationsAsRead();
+            });
+
+            // Hide and show navbar on scroll
+            var lastScrollTop = 0;
+            $(window).scroll(function () {
+                var st = $(this).scrollTop();
+                if (st > lastScrollTop) {
+                    // Scroll Down
+                    $('.navbar').css('top', '-80px');
+                } else {
+                    // Scroll Up
+                    $('.navbar').css('top', '0');
+                }
+                lastScrollTop = st;
+            });
         });
 
         $('.close').click(function () {

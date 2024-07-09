@@ -15,14 +15,14 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop">
+                <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
                 <span>The Diamond Shop</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
@@ -55,6 +55,12 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item notification-bell">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-count" id="notificationCount">0</span>
+                            </a>
+                        </li>
                     }
                     else
                     {
@@ -67,155 +73,159 @@
         </div>
     </nav>
 
-    <div class="spacer"></div> <!-- This is the spacer div -->
+    <main role="main" class="pb-3">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+                </ol>
 
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-            </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/princessring.jpg" alt="Destination 1" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/princessring1.jpg" alt="Destination 2" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/princessring2.jpg" alt="Destination 3" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="slide-wrapper">
+                            <a href="#">
+                                <img src="~/Image/SlideDiamond/princessring3.jpg" alt="Destination 4" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/princessring.jpg" alt="Destination 1" style="width: 100%;" />
-                        </a>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+
+            <h2 class="text-center" style="margin-top: 48px;">Princess Diamond Story</h2>
+
+            <div class="container center">
+                <div class="row">
+                    <p class="description justify">
+                        The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
+                        Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
+                        However, their distinct sharp corners necessitate protective settings.
+                        If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
+                        Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
+                        If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
+                    </p>
+
+                    <h1>What is a Princess Diamond?</h1>
+                    <p class="description justify">
+                        The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
+                        Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
+                        However, their distinct sharp corners necessitate protective settings.
+                    </p>
+                    <p class="description justify">
+                        If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
+                        Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
+                        If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 100%; margin:auto" />
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/princessring1.jpg" alt="Destination 2" style="width: 100%;" />
-                        </a>
+                    <h2 class="wp-block-heading">The Princess Cut – A Modern Classic</h2>
+                    <p class="description justify">
+                        While the princess cut is not as old as other diamond cuts, it has quickly gained popularity and is now the second most popular diamond shape.
+                        Its versatility and modern appeal make it a favorite among those seeking a balance between tradition and contemporary style.
+                    </p>
+                    <h2 class="wp-block-heading" id="Princess-Diamond-Engagement-Rings---Becoming-More-Popular">Princess Diamond Engagement Rings – Becoming More Popular</h2>
+                    <p class="description justify">
+                        More and more people are choosing a princess cut over a round brilliant for their engagement rings.
+                        According to Wikipedia’s article on diamond cut, the modern princess cut was first introduced in 1960 by A.
+                        Nagy of London.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/princessring2.jpg" alt="Destination 3" style="width: 100%;" />
-                        </a>
+                    <p class="description justify">
+                        The princess cut is universally regarded as the runner-up to the round brilliant in today’s market.
+                        According to the chart from Jogia Diamonds’ blog that we refer to in our article about <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, a full 23% of searches on their site are for princess cuts.
+                    </p>
+                    <p class="description justify">
+                        That’s still a far cry from the 64% for round brilliants, but consider that the second runner-up was the emerald cut with only 3% of searches.
+                        The princess cut is squarely in 2nd place.
+                    </p>
+                    <h2 class="wp-block-heading" id="How-to-Choose-the-Best-Diamond-for-a-Princess-Cut-Engagement-Ring">How to Choose the Best Diamond for a Princess Cut Engagement Ring</h2>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/Princess1.png" alt="Princess Diamond" style="width: 100%; margin:auto" />
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="slide-wrapper">
-                        <a href="#">
-                            <img src="~/Image/SlideDiamond/princessring3.jpg" alt="Destination 4" style="width: 100%;" />
-                        </a>
+                    <p class="description justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
+                    <p class="description justify">To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
+                    <p class="description justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
+                    <h2 class="wp-block-heading">The Right Price for a Princess Diamond Ring</h2>
+                    <p class="description justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
+                    <h2 class="wp-block-heading" id="Best-Setting-for-a-Princess-Diamond-Ring">Best Setting for a Princess Diamond Ring</h2>
+                    <p class="description justify">
+                        The best ring settings for princess diamond rings are the channel and four-prong settings—such as a solitaire or three-stone ring.
+                        With a princess cut’s pointed edges, it’s important to ensure the corners don’t get chipped or damaged.
+                        A channel set or four-prong offers protection without masking the diamond’s beauty.
+                    </p>
+                    <p class="description justify">Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
+                    <p class="description justify">
+                        <b>Solitaire</b><br />
+                        A solitaire setting allows the princess cut to take center stage and the maximum light to enter.
+                        This classic solitaire from James Allen is a prime example of a princess cut engagement ring that makes a statement.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/princess2.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                    </div>
+                    <p class="description justify">
+                        <b>Channel Set</b><br />
+                        A channel setting offers security to princess cuts. If you are looking for a beautiful choice, this 1/4 carat channel engagement ring from Blue Nile.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/princess3.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                    </div>
+                    <p class="description justify">
+                        <b>Halo</b><br />
+                        Halo engagement rings feature smaller diamonds that surround the center stone, making it appear even larger. Here is a platinum petite halo ring from James Allen.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/princess4.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
+                    </div>
+                    <p>
+                        <b>Vintage </b><br />
+                        Antique style rings have more ornate, unique features, like this regal frame princess cut ring from James Allen.
+                    </p>
+                    <div class="image-container">
+                        <img src="~/Image/Introlmage/princess5.jpg" alt="Princess Diamond" style="width: 50%; margin: auto" />
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
         </div>
+    </main>
 
-        <h2 class="text-center" style="margin-top: 48px;">Princess Diamond Story</h2>
-
-        <div class="container center">
-            <div class="row">
-                <p class="description justify">
-                    The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
-                    Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
-                    However, their distinct sharp corners necessitate protective settings.
-                    If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
-                    Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
-                    If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
-                </p>
-
-                <h1>What is a Princess Diamond?</h1>
-                <p class="description justify">
-                    The princess cut diamond, characterized by its square shape, is a great modern alternative to the classic round cut.
-                    Offering both fire and brilliance, princess cuts are typically more affordable due to efficient rough diamond utilization.
-                    However, their distinct sharp corners necessitate protective settings.
-                </p>
-                <p class="description justify">
-                    If you are considering purchasing a princess cut diamond, focus on H-I color and VS2-SI1 clarity to maximize value.
-                    Princess cut diamonds are a bit cheaper than round cuts with a typical price for a 1 carat princess cut being $3,700.
-                    If you follow our recommendations in this article, you will end up with a fantastic princess cut that is also an excellent value.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 100%; margin:auto" />
-                </div>
-                <h2 class="wp-block-heading">The Princess Cut – A Modern Classic</h2>
-                <p class="description justify">
-                    While the princess cut is not as old as other diamond cuts, it has quickly gained popularity and is now the second most popular diamond shape.
-                    Its versatility and modern appeal make it a favorite among those seeking a balance between tradition and contemporary style.
-                </p>
-                <h2 class="wp-block-heading" id="Princess-Diamond-Engagement-Rings---Becoming-More-Popular">Princess Diamond Engagement Rings – Becoming More Popular</h2>
-                <p class="description justify">
-                    More and more people are choosing a princess cut over a round brilliant for their engagement rings.
-                    According to Wikipedia’s article on diamond cut, the modern princess cut was first introduced in 1960 by A.
-                    Nagy of London.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/Princess.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                </div>
-                <p class="description justify">
-                    The princess cut is universally regarded as the runner-up to the round brilliant in today’s market.
-                    According to the chart from Jogia Diamonds’ blog that we refer to in our article about <a href="https://www.diamonds.pro/education/shapes/" data-wpel-link="internal">diamond shapes</a>, a full 23% of searches on their site are for princess cuts.
-                </p>
-                <p class="description justify">
-                    That’s still a far cry from the 64% for round brilliants, but consider that the second runner-up was the emerald cut with only 3% of searches.
-                    The princess cut is squarely in 2nd place.
-                </p>
-                <h2 class="wp-block-heading" id="How-to-Choose-the-Best-Diamond-for-a-Princess-Cut-Engagement-Ring">How to Choose the Best Diamond for a Princess Cut Engagement Ring</h2>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/Princess1.png" alt="Princess Diamond" style="width: 100%; margin:auto" />
-                </div>
-                <p class="description justify">Now that you’re more familiar with the background of the princess cut, let’s get right to the information that’s pertinent to the consumer.</p>
-                <p class="description justify">To find a truly stunning princess cut diamond ring, it’s important to have an understanding of the <a href="https://www.diamonds.pro/education/4cs-diamonds/" data-wpel-link="internal">4 C’s of diamonds</a> – cut, clarity, color and carat – and how they affect a diamond’s appearance.</p>
-                <p class="description justify">Prioritizing the right grades in the right areas will help you get the best value for money, as well as ensuring your princess cut diamond ring stands out.</p>
-                <h2 class="wp-block-heading">The Right Price for a Princess Diamond Ring</h2>
-                <p class="description justify">The price you pay for a princess cut diamond ring will vary greatly depending on the factors outlined above. Most notably, larger carat weights are more expensive. Your choice of color, clarity and cut grade will also influence the price, as will the <a href="https://www.diamonds.pro/education/ring-settings-styles/" data-wpel-link="internal">setting style</a> you choose for your ring.</p>
-                <h2 class="wp-block-heading" id="Best-Setting-for-a-Princess-Diamond-Ring">Best Setting for a Princess Diamond Ring</h2>
-                <p class="description justify">
-                    The best ring settings for princess diamond rings are the channel and four-prong settings—such as a solitaire or three-stone ring.
-                    With a princess cut’s pointed edges, it’s important to ensure the corners don’t get chipped or damaged.
-                    A channel set or four-prong offers protection without masking the diamond’s beauty.
-                </p>
-                <p class="description justify">Because princess cuts are quite versatile, there are several stunning setting options. Here’s the full list of the best settings for princess cut diamond rings.</p>
-                <p class="description justify">
-                    <b>Solitaire</b><br />
-                    A solitaire setting allows the princess cut to take center stage and the maximum light to enter.
-                    This classic solitaire from James Allen is a prime example of a princess cut engagement ring that makes a statement.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/princess2.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                </div>
-                <p class="description justify">
-                    <b>Channel Set</b><br />
-                    A channel setting offers security to princess cuts. If you are looking for a beautiful choice, this 1/4 carat channel engagement ring from Blue Nile.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/princess3.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                </div>
-                <p class="description justify">
-                    <b>Halo</b><br />
-                    Halo engagement rings feature smaller diamonds that surround the center stone, making it appear even larger. Here is a platinum petite halo ring from James Allen.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/princess4.jpg" alt="Princess Diamond" style="width: 50%; margin:auto" />
-                </div>
-                <p>
-                    <b>Vintage </b><br />
-                    Antique style rings have more ornate, unique features, like this regal frame princess cut ring from James Allen.
-                </p>
-                <div class="image-container">
-                    <img src="~/Image/Introlmage/princess5.jpg" alt="Princess Diamond" style="width: 50%; margin: auto" />
-                </div>
-            </div>
-        </div>
-    </div>
     <footer class="footer">
         <div class="container text-center">
             <p><a href="#">Back To Top</a></p>
@@ -228,6 +238,45 @@
         </div>
     </footer>
 
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color: black">
+                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <p>Welcome, <span id="userName"></span>!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -239,9 +288,98 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '#';
+                    window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
+
+            // Fetch notification count
+            function fetchNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationCount = response.unreadCount;
+                            if (notificationCount > 0) {
+                                $('#notificationCount').text(notificationCount);
+                            } else {
+                                $('#notificationCount').text('');
+                            }
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error retrieving notification count.');
+                    }
+                });
+            }
+
+            // Fetch notifications
+            function fetchNotifications() {
+                $.ajax({
+                    url: '@Url.Action("GetNotifications", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationList = $('#notificationList');
+                            notificationList.empty();
+                            response.notifications.forEach(function (notification) {
+                                var item = '<div class="notification-item ' +
+                                    (notification.important ? 'important' : '') + '">' +
+                                    '<i class="fas fa-exclamation-circle icon"></i>' +
+                                    '<div class="notification-content">' +
+                                    '<strong>' + notification.detail + '</strong>' +
+                                    '<small>' + notification.date + '</small>' +
+                                    '</div>' +
+                                    '</div>';
+                                notificationList.prepend(item);
+                            });
+                            $('#notificationsModal').modal('show');
+                            markAllNotificationsAsRead();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error retrieving notifications.');
+                    }
+                });
+            }
+
+            // Mark all notifications as read
+            function markAllNotificationsAsRead() {
+                $.ajax({
+                    url: '@Url.Action("MarkAllAsRead", "Notification")',
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            $('#notificationCount').text('');
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error marking notifications as read.');
+                    }
+                });
+            }
+
+            // Initial fetch
+            fetchNotificationCount();
+
+            // Handle bell icon click
+            $('#notificationBell').click(function () {
+                fetchNotifications();
+            });
+
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotificationCount, 60000);
+
+            // Handle modal close actions
+            $('#notificationsModal').on('hidden.bs.modal', function () {
+                markAllNotificationsAsRead();
+            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
@@ -259,6 +397,7 @@
         });
 
         $('.close').click(function () {
+            console.log('Close button clicked');
             $('#loginSuccessModal').modal('hide');
         });
     </script>

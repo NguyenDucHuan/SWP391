@@ -55,6 +55,12 @@
                                 <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item notification-bell">
+                            <a class="nav-link" href="#" id="notificationBell" role="button">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-count" id="notificationCount">0</span>
+                            </a>
+                        </li>
                     }
                     else
                     {
@@ -236,6 +242,26 @@
         </div>
     </div>
 
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -247,9 +273,98 @@
                 $('#userName').text(userName);
                 $('#loginSuccessModal').modal('show');
                 $('#modalOkButton').click(function () {
-                    window.location.href = '#';
+                    window.location.href = '@Url.Action("Index", "Home")';
                 });
             }
+
+            // Fetch notification count
+            function fetchNotificationCount() {
+                $.ajax({
+                    url: '@Url.Action("GetUnreadNotificationCount", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationCount = response.unreadCount;
+                            if (notificationCount > 0) {
+                                $('#notificationCount').text(notificationCount);
+                            } else {
+                                $('#notificationCount').text('');
+                            }
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error retrieving notification count.');
+                    }
+                });
+            }
+
+            // Fetch notifications
+            function fetchNotifications() {
+                $.ajax({
+                    url: '@Url.Action("GetNotifications", "Notification")',
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.success) {
+                            var notificationList = $('#notificationList');
+                            notificationList.empty();
+                            response.notifications.forEach(function (notification) {
+                                var item = '<div class="notification-item ' +
+                                    (notification.important ? 'important' : '') + '">' +
+                                    '<i class="fas fa-exclamation-circle icon"></i>' +
+                                    '<div class="notification-content">' +
+                                    '<strong>' + notification.detail + '</strong>' +
+                                    '<small>' + notification.date + '</small>' +
+                                    '</div>' +
+                                    '</div>';
+                                notificationList.prepend(item);
+                            });
+                            $('#notificationsModal').modal('show');
+                            markAllNotificationsAsRead();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Error retrieving notifications.');
+                    }
+                });
+            }
+
+            // Mark all notifications as read
+            function markAllNotificationsAsRead() {
+                $.ajax({
+                    url: '@Url.Action("MarkAllAsRead", "Notification")',
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            $('#notificationCount').text('');
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error marking notifications as read.');
+                    }
+                });
+            }
+
+            // Initial fetch
+            fetchNotificationCount();
+
+            // Handle bell icon click
+            $('#notificationBell').click(function () {
+                fetchNotifications();
+            });
+
+            // Poll for new notifications every 60 seconds
+            setInterval(fetchNotificationCount, 60000);
+
+            // Handle modal close actions
+            $('#notificationsModal').on('hidden.bs.modal', function () {
+                markAllNotificationsAsRead();
+            });
 
             // Hide and show navbar on scroll
             var lastScrollTop = 0;
