@@ -95,7 +95,7 @@
             grid-template-columns: repeat(3, 1fr);
             grid-auto-rows: minmax(50px, auto);
             border: 1px solid #ddd;
-            border-radius: 10px; /* Bo góc viền ngoài */
+            border-radius: 10px;
         }
 
             .diamond-info div {
@@ -105,7 +105,6 @@
                 font-weight: bold;
                 border: 1px solid #ddd;
                 padding: 10px;
-                border-radius: 0px; /* Không bo góc từng thẻ */
             }
 
         .rebuy-container {
@@ -236,6 +235,7 @@
             </div>
             <div class="rebuy-container">
                 <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post" class="rebuy-form">
+                    <input type="hidden" name="diamondID" value="@Model.diamondID" />
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="stillHaveCertification" name="stillHaveCertification" value="true" />
                         <label class="form-check-label" for="stillHaveCertification">Still Have Certification</label>

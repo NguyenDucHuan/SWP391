@@ -1,6 +1,12 @@
 ﻿@model DiamondShopBOs.tblAccentStone
 @{
     ViewBag.Title = "Add Accent Stone";
+    List<string> clarities = new List<string>() { "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "SI3", "I1", "I2", "I3" };
+    List<string> shapes = new List<string>() { "Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear" };
+    List<string> colors = new List<string>() { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    ViewBag.Clarities = clarities;
+    ViewBag.Shapes = shapes;
+    ViewBag.Colors = colors;
 }
 
 <!DOCTYPE html>
@@ -41,7 +47,7 @@
                 color: #555;
             }
 
-            .form-container .form-control, .form-container .form-select, .form-container .custom-file-input {
+            .form-container .form-control, .form-container .form-select, .custom-file-input {
                 border-radius: 10px;
                 border: 1px solid #ddd;
                 margin-bottom: 15px;
@@ -50,36 +56,36 @@
                 width: 100%;
             }
 
-            .form-container .custom-file-label {
-                border-radius: 10px;
-                padding: 10px;
-            }
+        .custom-file-label {
+            border-radius: 10px;
+            padding: 10px;
+        }
 
-            .form-container .btn-container {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
 
-            .form-container .btn-primary {
-                border-radius: 10px;
-                font-weight: bold;
-                padding: 5px 10px;
-                font-size: 14px;
-                background-color: #007bff;
-                border-color: #007bff;
-                color: white;
-            }
+        .btn-primary {
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
 
-            .form-container .btn-warning {
-                border-radius: 10px;
-                font-weight: bold;
-                padding: 5px 10px;
-                font-size: 14px;
-                background-color: #6c757d;
-                border-color: #6c757d;
-                color: white;
-            }
+        .btn-warning {
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: white;
+        }
 
         .back-to-admin {
             display: flex;
@@ -95,6 +101,18 @@
                 .back-to-admin a:hover {
                     text-decoration: underline;
                 }
+
+        .alert-neon-success {
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            margin-bottom: 7px;
+            margin-top: -20px;
+        }
+
+        .alert-neon-error {
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+            margin-bottom: 7px;
+            margin-top: -20px;
+        }
     </style>
 </head>
 <body>
@@ -106,8 +124,14 @@
             {
                 if (TempData["SuccessMessage"] != null)
                 {
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success alert-neon-success" role="alert">
                         @TempData["SuccessMessage"]
+                    </div>
+                }
+                if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-neon-error" role="alert">
+                        @TempData["ErrorMessage"]
                     </div>
                 }
 
@@ -117,7 +141,13 @@
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.shape, "Shape", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.shape, new { @class = "form-control", placeholder = "Enter shape" })
+                    <select name="shape" class="form-control">
+                        <option value="">Select Shape</option>
+                        @foreach (var shape in ViewBag.Shapes)
+                        {
+                            <option value="@shape">@shape</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.caratWeight, "Carat Weight", new { @class = "form-label" })
@@ -125,11 +155,23 @@
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.clarity, "Clarity", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.clarity, new { @class = "form-control", placeholder = "Enter clarity" })
+                    <select name="clarity" class="form-control">
+                        <option value="">Select Clarity</option>
+                        @foreach (var clarity in ViewBag.Clarities)
+                        {
+                            <option value="@clarity">@clarity</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.color, "Color", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.color, new { @class = "form-control", placeholder = "Enter color" })
+                    <select name="color" class="form-control">
+                        <option value="">Select Color</option>
+                        @foreach (var color in ViewBag.Colors)
+                        {
+                            <option value="@color">@color</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.price, "Price", new { @class = "form-label" })
