@@ -119,53 +119,33 @@ namespace ProjectDiamondShop.Controllers
         [HttpPost]
         public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
         {
-            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2))
+            try
             {
-                return Json(new { success = false, message = "Permission Denied." });
-            }
-
-            foreach (var update in orderUpdates)
-            {
-                var order = _managerService.GetOrderById(update.OrderID);
-                if (order != null)
+                foreach (var update in orderUpdates)
                 {
-                    order.saleStaffID = update.SaleStaffID;
-                    order.deliveryStaffID = update.DeliveryStaffID;
-
-                    if (!string.IsNullOrEmpty(update.Status))
+                    var existingOrder = _managerService.GetOrderById(update.OrderID);
+                    if (existingOrder != null)
                     {
-                        string currentStatus = order.status;
-
-                        // Check for valid status transition for both Admin and Manager
-                        if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
+                        if (existingOrder.deliveryStaffID != update.DeliveryStaffID)
                         {
-                            return Json(new { success = false, message = $"Update Error: Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
+                            _managerService.UpdateOrderDeliveryStaffName(update.OrderID, update.DeliveryStaffID);
                         }
 
-                        order.status = update.Status;
-
-                        _managerService.AddOrderStatusUpdate(new tblOrderStatusUpdate
-                        {
-                            orderID = order.orderID,
-                            status = update.Status,
-                            updateTime = DateTime.Now
-                        });
-                        //Notification
-                        _notificationService.AddNotification(new tblNotification
-                        {
-                            userID = order.customerID,
-                            date = DateTime.Now,
-                            detail = $"Your order status has been updated to {update.Status}.",
-                            status = true
-                        });
+                        existingOrder.deliveryStaffID = update.DeliveryStaffID;
+                        existingOrder.saleStaffID = update.SaleStaffID;
+                        existingOrder.status = update.Status;
                     }
                 }
+
+                _managerService.SaveChanges();
+                return Json(new { success = true, message = "Orders updated successfully." });
             }
-
-            _managerService.SaveChanges();
-
-            return Json(new { success = true, message = "Update Successful" });
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "An error occurred while updating orders: " + ex.Message });
+            }
         }
+
 
         private bool IsValidStatusTransition(string currentStatus, string newStatus)
         {
