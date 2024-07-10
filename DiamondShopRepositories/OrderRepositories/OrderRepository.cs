@@ -13,9 +13,9 @@ namespace DiamondShopRepositories.OrderRepositories
             orderDAO = new OrderDAO();
         }
 
-        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
+        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string note, string status, int? voucherID)
         {
-            return orderDAO.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, status, voucherID);
+            return orderDAO.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, note, status, voucherID);
         }
 
 

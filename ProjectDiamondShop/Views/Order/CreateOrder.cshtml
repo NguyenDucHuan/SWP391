@@ -216,6 +216,7 @@
         var address = document.getElementById("Address").value;
         var phone = document.getElementById("Phone").value;
         var voucherID = document.getElementById("VoucherID").value;
+        var note = document.getElementById("Note").value;
 
         if (customerName.trim() === "") {
             document.getElementById("customerNameError").style.display = "block";
@@ -237,9 +238,9 @@
             document.getElementById("phoneError").style.display = "none";
         }
 
-        var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", "").replace(",", ""));
+        var totalPrice = parseFloat(document.getElementById("Total").value.replace("$", ""));
         var depositAmount = totalPrice * 0.2;
-        document.getElementById("depositAmount").innerText = formatNumber(depositAmount);
+        document.getElementById("depositAmount").innerText = "$" + depositAmount.toFixed(2);
 
         document.getElementById("noteSection").style.display = "block";
 
@@ -248,6 +249,7 @@
         document.getElementById("hiddenPhone").value = phone;
         document.getElementById("hiddenVoucherID").value = voucherID;
         document.getElementById("hiddenNote").value = note;
+
         document.getElementById("paymentForm").submit();
     }
 

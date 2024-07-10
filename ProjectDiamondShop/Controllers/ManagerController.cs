@@ -547,7 +547,7 @@ namespace ProjectDiamondShop.Controllers
             if (ModelState.IsValid)
             {
                 string imagePath = "";
-                string folderPath = Server.MapPath("~/Images/Settings");
+                string folderPath = Server.MapPath("~/Image/Settings");
 
                 // Check if the folder exists, if not, create it
                 if (!Directory.Exists(folderPath))
@@ -561,7 +561,7 @@ namespace ProjectDiamondShop.Controllers
                     string fileName = Path.GetFileName(settingImage.FileName);
                     string path = Path.Combine(folderPath, fileName);
                     settingImage.SaveAs(path);
-                    imagePath = $"/Images/Settings/{fileName}";
+                    imagePath = $"/Image/Settings/{fileName}";
                 }
 
                 // Create Setting object
@@ -605,7 +605,7 @@ namespace ProjectDiamondShop.Controllers
             if (ModelState.IsValid)
             {
                 string imagePath = "";
-                string folderPath = Server.MapPath("~/Images/AccentStones");
+                string folderPath = Server.MapPath("~/Image/AccentStones");
 
                 // Check if the folder exists, if not, create it
                 if (!Directory.Exists(folderPath))
@@ -633,7 +633,7 @@ namespace ProjectDiamondShop.Controllers
                     string fileName = Path.GetFileName(accentStoneImage.FileName);
                     string path = Path.Combine(folderPath, fileName);
                     accentStoneImage.SaveAs(path);
-                    imagePath = $"/Images/AccentStones/{fileName}";
+                    imagePath = $"/Image/AccentStones/{fileName}";
                 }
 
                 // Create Accent Stone object

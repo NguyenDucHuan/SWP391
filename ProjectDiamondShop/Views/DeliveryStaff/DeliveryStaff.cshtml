@@ -215,6 +215,7 @@
                                 <th class="wide-column">Delivery Staff</th>
                                 <th class="wide-column">Total Money</th>
                                 <th class="wide-column">Status</th>
+                                <th class="wide-column">Note</th>
                                 <th class="wide-column">Actions</th>
                             </tr>
                         </thead>
@@ -227,6 +228,7 @@
                                     <td>@order.deliveryStaffName</td>
                                     <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>@order.status</td>
+                                    <td>@order.Note</td>
                                     <td>
                                         <button class="btn btn-primary" onclick="viewOrder('@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })')">View Order</button>
                                     </td>

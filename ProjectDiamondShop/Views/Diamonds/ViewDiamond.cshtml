@@ -155,7 +155,7 @@
                 </div>
                 <div class="form-group" id="settingSizeGroup" style="display:none;">
                     <label for="settingSize">Setting Size</label>
-                    <input type="number" id="settingSizeInput" class="form-control" placeholder="Enter setting size" required>
+                    <input type="number" id="settingSizeInput" class="form-control" placeholder="Enter setting size" min="0" required>
                 </div>
 
                 <div id="accentStoneInfoContainer" style="display:none;  padding: 10px; margin-top: 10px;">
@@ -312,8 +312,8 @@
         var selectedSettingId = $("#setting").val();
         var settingSize = $("#settingSizeInput").val();
 
-        if (selectedSettingId != "0" && settingSize.trim() === "") {
-            alert("Please enter the setting size.");
+        if (selectedSettingId != "0" && (settingSize.trim() === "" || settingSize < 0)) {
+            alert("Please enter a valid setting size (non-negative value).");
             return;
         }
 

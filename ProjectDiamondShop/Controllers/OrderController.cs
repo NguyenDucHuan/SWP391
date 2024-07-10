@@ -50,7 +50,10 @@ namespace ProjectDiamondShop.Controllers
             }
             return Session["UserID"].ToString();
         }
-
+        private bool IsUserAuthorizedToViewOrder(string userID, tblOrder order)
+        {
+            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
+        }
         [HttpPost]
         public ActionResult CreateOrder()
         {
@@ -66,16 +69,34 @@ namespace ProjectDiamondShop.Controllers
 
         public ActionResult UpdateOrderDetails(string orderId)
         {
-            var order = orderServices.GetOrderById(orderId);
+            var userID = GetUserID();
+            if (string.IsNullOrEmpty(userID))
+            {
+                return RedirectToAction("Index", "Account");
+            }
 
+            var order = orderServices.GetOrderById(orderId);
             if (order == null)
             {
                 TempData["UpdateMessage"] = "Order not found.";
                 return RedirectToAction("Index", "Home");
             }
 
-            var orderItems = orderServices.GetOrderItems(orderId);
+            if (!IsUserAuthorizedToViewOrder(userID, order))
+            {
+                TempData["UpdateMessage"] = "You are not authorized to view this order.";
+                if (Request.UrlReferrer != null)
+                {
+                    return Redirect(Request.UrlReferrer.ToString());
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
 
+
+            var orderItems = orderServices.GetOrderItems(orderId);
             var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
                 diamondID = item.tblItem.diamondID ?? 0,
@@ -193,7 +214,7 @@ namespace ProjectDiamondShop.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string customerName, string address, string phone, int? voucherID, string Cancel = null)
+        public ActionResult PaymentWithPaypal(string customerName, string address, string phone, string note, int? voucherID, string Cancel = null)
         {
             // Store address, phone, and voucherID in session
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -221,6 +242,7 @@ namespace ProjectDiamondShop.Controllers
                     TempData["CustomerName"] = customerName;
                     TempData["Address"] = address;
                     TempData["Phone"] = phone;
+                    TempData["Note"] = note;
                     TempData["VoucherID"] = voucherID; // Save voucherID to TempData
                     return Redirect(paypalRedirectUrl);
                 }
@@ -243,6 +265,7 @@ namespace ProjectDiamondShop.Controllers
             customerName = TempData["CustomerName"] as string;
             address = TempData["Address"] as string;
             phone = TempData["Phone"] as string;
+            note = TempData["Note"] as string;
             voucherID = TempData["VoucherID"] as int?; // Retrieve voucherID from TempData
             var userID = GetUserID();
             var cart = CartHelper.GetCart(HttpContext, userID);
@@ -258,7 +281,7 @@ namespace ProjectDiamondShop.Controllers
 
             try
             {
-                tblOrder newOrder = orderServices.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, DEFAULT_ORDER_STATUS, voucherID);
+                tblOrder newOrder = orderServices.CreateOrder(userID, customerName, totalMoney, paidAmount, remainingAmount, address, phone, note, DEFAULT_ORDER_STATUS, voucherID);
                 foreach (var item in cart.Items)
                 {
                     itemService.CreateItem(newOrder.orderID, item.settingID, item.accentStoneID, item.quantityAccent, item.diamondID, item.diamondPrice, (decimal)item.settingPrice, (decimal)item.accentStonePrice, item.settingSize);
