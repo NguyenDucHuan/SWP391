@@ -116,6 +116,7 @@
           <Property Name="customerName" Type="nvarchar" MaxLength="50" />
           <Property Name="deliveryStaffName" Type="nvarchar" MaxLength="250" />
           <Property Name="voucherID" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
@@ -726,6 +727,7 @@
           <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="deliveryStaffName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="voucherID" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrder_tblUsers_1" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblUser1" Relationship="Self.FK_tblOrder_tblUsers_2" FromRole="tblOrder" ToRole="tblUsers" />
           <NavigationProperty Name="tblUser2" Relationship="Self.FK_tblOrder_tblUsers_3" FromRole="tblOrder" ToRole="tblUsers" />
@@ -1320,6 +1322,7 @@
                 <ScalarProperty Name="customerName" ColumnName="customerName" />
                 <ScalarProperty Name="deliveryStaffName" ColumnName="deliveryStaffName" />
                 <ScalarProperty Name="voucherID" ColumnName="voucherID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

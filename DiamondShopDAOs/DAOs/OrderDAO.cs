@@ -13,7 +13,7 @@ namespace DiamondShopDAOs
         {
             _context = new DiamondShopManagementEntities();
         }
-        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string status, int? voucherID)
+        public tblOrder CreateOrder(string userID, string customerName, decimal totalMoney, decimal paidAmount, decimal remainingAmount, string address, string phone, string note, string status, int? voucherID)
         {
             var order = new tblOrder
             {
@@ -26,6 +26,7 @@ namespace DiamondShopDAOs
                 remainingAmount = (double)remainingAmount,
                 address = address,
                 phone = phone,
+                Note = note,
                 saleDate = DateTime.Now,
                 status = status,
                 paymentStatus = "Pending",

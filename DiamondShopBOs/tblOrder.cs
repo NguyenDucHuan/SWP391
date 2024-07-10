@@ -37,6 +37,7 @@ namespace DiamondShopBOs
         public string customerName { get; set; }
         public string deliveryStaffName { get; set; }
         public Nullable<int> voucherID { get; set; }
+        public string Note { get; set; }
     
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
