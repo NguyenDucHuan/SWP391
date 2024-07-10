@@ -132,5 +132,10 @@ namespace DiamondShopRepositories.ManagerRepositories
         {
             return _managerDAO.GetAllVouchers();
         }
+        public void UpdateOrderDeliveryStaffName(string orderId, string deliveryStaffId)
+        {
+            _managerDAO.UpdateOrderDeliveryStaffName(orderId, deliveryStaffId);
+        }
+
     }
 }

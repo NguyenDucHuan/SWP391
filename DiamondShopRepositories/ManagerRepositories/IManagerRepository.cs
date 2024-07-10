@@ -36,5 +36,6 @@ namespace DiamondShopRepositories.ManagerRepositories
         void UpdateVoucherQuantity(int voucherId, int? newQuantity);
         void UpdateVoucher(tblVoucher voucher);
         List<tblVoucher> GetAllVouchers();
+        void UpdateOrderDeliveryStaffName(string orderId, string deliveryStaffId);
     }
 }

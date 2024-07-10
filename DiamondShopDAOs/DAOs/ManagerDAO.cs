@@ -217,5 +217,19 @@ namespace DiamondShopDAOs
         {
             return _context.tblVouchers.ToList();
         }
+        public void UpdateOrderDeliveryStaffName(string orderId, string deliveryStaffId)
+        {
+            var order = _context.tblOrders.FirstOrDefault(o => o.orderID == orderId);
+            if (order != null)
+            {
+                var deliveryStaff = _context.tblUsers.FirstOrDefault(u => u.userID == deliveryStaffId);
+                if (deliveryStaff != null)
+                {
+                    order.deliveryStaffName = deliveryStaff.fullName;
+                    _context.SaveChanges();
+                }
+            }
+        }
+
     }
 }
