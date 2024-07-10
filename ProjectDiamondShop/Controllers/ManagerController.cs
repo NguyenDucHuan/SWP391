@@ -38,7 +38,7 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Index(int page = 1, int pageSize = 30, int orderPageSize = 10, int voucherPageSize = 10, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10, int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
@@ -62,8 +62,8 @@ namespace ProjectDiamondShop.Controllers
             var accentStones = _managerService.GetAccentStones();
             ViewBag.TotalAccentStones = accentStones.Count();
             ViewBag.AccentStonePageSize = accentStonePageSize;
-            ViewBag.CurrentAccentStonePage = page;
-            ViewBag.AccentStones = accentStones.Skip((page - 1) * accentStonePageSize).Take(accentStonePageSize).ToList();
+            ViewBag.CurrentAccentStonePage = accentStonePage;
+            ViewBag.AccentStones = accentStones.Skip((accentStonePage - 1) * accentStonePageSize).Take(accentStonePageSize).ToList();
 
             var settings = _managerService.GetSettings();
             ViewBag.TotalSettings = settings.Count();
@@ -94,13 +94,6 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.CurrentPage = page;
             ViewBag.Diamonds = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-            ViewBag.SaleStaff = _managerService.GetUsersByRole(5);
-            ViewBag.DeliveryStaff = _managerService.GetUsersByRole(4);
-            ViewBag.AccentStones = _managerService.GetAccentStones();
-            ViewBag.Settings = _managerService.GetSettings();
-            ViewBag.Users = (int)Session["RoleID"] == 2 ? _managerService.GetUsers() : null;
-            ViewBag.Vouchers = _managerService.GetVouchers();
 
             var userId = Session["UserID"].ToString();
             var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
@@ -620,6 +613,20 @@ namespace ProjectDiamondShop.Controllers
                     Directory.CreateDirectory(folderPath);
                 }
 
+                // Check for required fields
+                if (accentStoneImage == null || accentStoneImage.ContentLength == 0 ||
+                    string.IsNullOrEmpty(accentStone.accentStonesName) ||
+                    string.IsNullOrEmpty(accentStone.shape) ||
+                    string.IsNullOrEmpty(accentStone.clarity) ||
+                    string.IsNullOrEmpty(accentStone.color) ||
+                    accentStone.caratWeight <= 0 ||
+                    accentStone.price <= 0 ||
+                    accentStone.quantity <= 0)
+                {
+                    TempData["ErrorMessage"] = "Please fill in all required fields and upload an image.";
+                    return RedirectToAction("AddAccentStone");
+                }
+
                 // Save accent stone image
                 if (accentStoneImage != null && accentStoneImage.ContentLength > 0)
                 {
@@ -649,7 +656,8 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToAction("AddAccentStone");
             }
 
-            return View(accentStone);
+            TempData["ErrorMessage"] = "An error occurred. Please try again.";
+            return RedirectToAction("AddAccentStone");
         }
 
         [HttpGet]

@@ -100,23 +100,30 @@ namespace ProjectDiamondShop.Controllers
             return View();
         }
 
-        public ActionResult ViewOrders()
+        public ActionResult ViewOrders(int page = 1, int pageSize = 10)
         {
-            if (IsAdmin())
+            if (IsAdmin() || IsManager())
             {
                 return RedirectToAction("Index", "Manager");
             }
-            if (IsManager())
-            {
-                return RedirectToAction("Index", "Manager");
-            }
+
             var userID = Session["UserID"]?.ToString();
             if (string.IsNullOrEmpty(userID))
             {
                 return RedirectToAction("Index", "Account");
             }
-            var currentOrders = orderServices.GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
-            var historyOrders = orderServices.GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);
+
+            var allCurrentOrders = orderServices.GetOrdersByStatus(userID, new[] { "Order Placed", "Preparing Goods", "Shipped to Carrier", "In Delivery" });
+            var allHistoryOrders = orderServices.GetOrdersByStatus(userID, new[] { "Delivered", "Paid" }, true);
+
+            var currentOrders = allCurrentOrders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var historyOrders = allHistoryOrders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ViewBag.TotalCurrentOrders = allCurrentOrders.Count();
+            ViewBag.TotalHistoryOrders = allHistoryOrders.Count();
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+
             OrderViewModel orderViewModel = new OrderViewModel(currentOrders, historyOrders);
 
             // Giả sử bạn lấy tên nhân viên giao hàng từ cơ sở dữ liệu hoặc từ danh sách đơn hàng

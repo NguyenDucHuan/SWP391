@@ -95,7 +95,7 @@
                     <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
                 </div>
                 <div class="table-container">
-                    <table id="ordersTable" class="table table-striped table-bordered">
+                    <table id="ordersTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>Order ID</th>
@@ -171,6 +171,7 @@
                 </div>
             </div>
 
+
             <div id="diamonds" class="section">
                 <h3>Diamonds</h3>
                 <div class="search-container">
@@ -179,7 +180,7 @@
                 </div>
 
                 <div class="table-container" id="diamondsContent">
-                    <table id="diamondsTable" class="table table-striped table-bordered">
+                    <table id="diamondsTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -239,12 +240,10 @@
                     </ul>
                 </div>
             </div>
-
-
             <div id="viewVoucher" class="section">
                 <h3>View Voucher</h3>
                 <div class="table-container">
-                    <table id="vouchersTable" class="table table-striped table-bordered">
+                    <table id="vouchersTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>Voucher ID</th>
@@ -291,7 +290,6 @@
                     </ul>
                 </div>
             </div>
-
             <div id="accentStones" class="section">
                 <h3>Accent Stones</h3>
                 <div class="search-container">
@@ -299,7 +297,7 @@
                     <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones by StoneID..">
                 </div>
                 <div class="table-container">
-                    <table id="accentStonesTable" class="table table-striped table-bordered">
+                    <table id="accentStonesTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -323,7 +321,7 @@
                                     <td>@stone.caratWeight</td>
                                     <td>@stone.clarity</td>
                                     <td>@stone.color</td>
-                                    <td>@String.Format("{0:N0}", stone.price)</td>
+                                    <td>$@String.Format("{0:N0}", stone.price)</td>
                                     <td>@stone.quantity</td>
                                     <td>
                                         @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
@@ -365,7 +363,7 @@
                     <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings by SettingID..">
                 </div>
                 <div class="table-container">
-                    <table id="settingsTable" class="table table-striped table-bordered">
+                    <table id="settingsTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -384,7 +382,7 @@
                                     <td>@setting.settingID</td>
                                     <td>@setting.settingType</td>
                                     <td>@setting.material</td>
-                                    <td>@String.Format("{0:N0}", setting.priceTax)</td>
+                                    <td>$@String.Format("{0:N0}", setting.priceTax)</td>
                                     <td>@setting.quantityStones</td>
                                     <td>@setting.description</td>
                                     <td>
@@ -420,6 +418,7 @@
                 </div>
             </div>
 
+
             <div id="saleStaff" class="section">
                 <h3>Sale Staff</h3>
                 <div class="search-container">
@@ -427,7 +426,7 @@
                     <input type="text" id="searchSaleStaff" class="form-control mb-3 search-input" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
                 </div>
                 <div class="table-container">
-                    <table id="saleStaffTable" class="table table-striped table-bordered">
+                    <table id="saleStaffTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -479,6 +478,7 @@
                 </div>
             </div>
 
+
             <div id="deliveryStaff" class="section">
                 <h3>Delivery Staff</h3>
                 <div class="search-container">
@@ -486,7 +486,7 @@
                     <input type="text" id="searchDeliveryStaff" class="form-control mb-3 search-input" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
                 </div>
                 <div class="table-container">
-                    <table id="deliveryStaffTable" class="table table-striped table-bordered">
+                    <table id="deliveryStaffTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>User ID</th>
@@ -538,6 +538,7 @@
                 </div>
             </div>
 
+
             @if ((int)Session["RoleID"] == 2)
             {
                 <div id="users" class="section" style="display:none;">
@@ -547,7 +548,7 @@
                         <input type="text" id="searchUsers" class="form-control mb-3 search-input" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users by UserID..">
                     </div>
                     <div class="table-container">
-                        <table id="usersTable" class="table table-striped table-bordered">
+                        <table id="usersTable" class="table-excel">
                             <thead>
                                 <tr>
                                     <th>User ID</th>
@@ -591,73 +592,74 @@
                     </div>
                 </div>
             }
-        <div id="notifications" class="section">
-            <h3>Notifications</h3>
-            <div class="table-container">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Date</th>
-                            <th>Detail</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (ViewBag.Notifications != null && ViewBag.Notifications.Count > 0)
-                        {
-                            foreach (var notification in ViewBag.Notifications)
+
+            <div id="notifications" class="section">
+                <h3>Notifications</h3>
+                <div class="table-container">
+                    <table class="table-excel">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Detail</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.Notifications != null && ViewBag.Notifications.Count > 0)
+                            {
+                                foreach (var notification in ViewBag.Notifications)
+                                {
+                                    <tr>
+                                        <td>@notification.notificationID</td>
+                                        <td>@notification.date</td>
+                                        <td>@notification.detail</td>
+                                        <td>
+                                            @if (notification.detail.Contains("rebuy request for Diamond") && notification.status)
+                                            {
+                                                <div class="action-buttons">
+                                                    <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" name="notificationID" value="@notification.notificationID" />
+                                                        <input type="hidden" name="isAccepted" value="true" />
+                                                        <button type="submit" class="btn btn-success">Accept</button>
+                                                    </form>
+                                                    <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" name="notificationID" value="@notification.notificationID" />
+                                                        <input type="hidden" name="isAccepted" value="false" />
+                                                        <button type="submit" class="btn btn-danger">Reject</button>
+                                                    </form>
+                                                </div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
                             {
                                 <tr>
-                                    <td>@notification.notificationID</td>
-                                    <td>@notification.date</td>
-                                    <td>@notification.detail</td>
-                                    <td>
-                                        @if (notification.detail.Contains("rebuy request for Diamond") && notification.status)
-                                        {
-                                            <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
-                                                @Html.AntiForgeryToken()
-                                                <input type="hidden" name="notificationID" value="@notification.notificationID" />
-                                                <input type="hidden" name="isAccepted" value="true" />
-                                                <button type="submit" class="btn btn-success">Accept</button>
-                                            </form>
-                                            <form action="@Url.Action("HandleRebuyRequest", "Manager")" method="post" style="display:inline;">
-                                                @Html.AntiForgeryToken()
-                                                <input type="hidden" name="notificationID" value="@notification.notificationID" />
-                                                <input type="hidden" name="isAccepted" value="false" />
-                                                <button type="submit" class="btn btn-danger">Reject</button>
-                                            </form>
-                                        }
-                                    </td>
+                                    <td colspan="4">No notifications available.</td>
                                 </tr>
                             }
-
-                        }
-                        else
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalNotifications != null && ViewBag.NotificationPageSize != null)
                         {
-                            <tr>
-                                <td colspan="6">No notifications available.</td>
-                            </tr>
+                            int totalNotificationPages = (int)Math.Ceiling((double)ViewBag.TotalNotifications / ViewBag.NotificationPageSize);
+                            for (int i = 1; i <= totalNotificationPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentNotificationPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadNotificationsPage(@i, @ViewBag.NotificationPageSize)">@i</a>
+                                </li>
+                            }
                         }
-                    </tbody>
-                </table>
+                    </ul>
+                </div>
             </div>
-            <div class="pagination">
-                <ul class="pagination">
-                    @if (ViewBag.TotalNotifications != null && ViewBag.NotificationPageSize != null)
-                    {
-                        int totalNotificationPages = (int)Math.Ceiling((double)ViewBag.TotalNotifications / ViewBag.NotificationPageSize);
-                        for (int i = 1; i <= totalNotificationPages; i++)
-                        {
-                            <li class="page-item @(ViewBag.CurrentNotificationPage == i ? "active" : "")">
-                                <a class="btn-link" href="javascript:void(0);" onclick="loadNotificationsPage(@i, @ViewBag.NotificationPageSize)">@i</a>
-                            </li>
-                        }
-                    }
-                </ul>
-            </div>
-        </div>
-
 
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
@@ -1095,18 +1097,19 @@
         }
 
         function loadAccentStonesPage(page, accentStonePageSize) {
-        $.ajax({
-            url: '@Url.Action("Index", "Manager")',
-            type: 'GET',
-            data: { page: page, accentStonePageSize: accentStonePageSize },
-            success: function (data) {
-                $('#accentStones').html($(data).find('#accentStones').html());
-            },
-            error: function () {
-                alert('An error occurred while loading the accent stones page.');
-            }
-        });
-    }
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { accentStonePage: page, accentStonePageSize: accentStonePageSize },
+                success: function (data) {
+                    $('#accentStones').html($(data).find('#accentStones').html());
+                },
+                error: function () {
+                    alert('An error occurred while loading the accent stones page.');
+                }
+            });
+        }
+
 
         function loadSettingsPage(page, settingPageSize) {
         $.ajax({

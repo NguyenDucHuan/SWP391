@@ -133,26 +133,26 @@
                                 <img src="@item.imagePath.Split('|')[0]" class="card-img-top" alt="Product Image">
                                 <div class="card-body">
                                     <h5 class="card-title">@item.DiamondName</h5>
-                                    <p class="card-text">Diamond Price: $@(item.diamondPrice)</p>
+                                    <p class="card-text">Diamond Price: $@String.Format("{0:N0}", item.diamondPrice)</p>
                                     @if (item.settingID != 0)
                                     {
                                         <p class="card-text">Setting Name: @item.decription</p>
-                                        <p class="card-text">Setting Price: $@item.settingPrice</p>
+                                        <p class="card-text">Setting Price: $@String.Format("{0:N0}", item.settingPrice)</p>
                                     }
                                     @if (item.accentStoneID != 0)
                                     {
                                         <p class="card-text">Accent Stone: @item.accentStoneID</p>
-                                        <p class="card-text">Accent Stone Price: $@item.accentStonePrice</p>
+                                        <p class="card-text">Accent Stone Price: $@String.Format("{0:N0}", item.accentStonePrice)</p>
                                         <p class="card-text">Accent Stone Quantity: @item.quantityAccent</p>
                                     }
-                                    <p class="card-text"><strong>Total Price: $@(item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong></p>
+                                    <p class="card-text"><strong>Total Price: $@String.Format("{0:N0}", item.diamondPrice + item.settingPrice + item.accentStonePrice * item.quantityAccent)</strong></p>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
                 <div class="mt-4 text-end">
-                    <p class="h5">Total: $@orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent)</p>
+                    <p class="h5">Total: $@String.Format("{0:N0}", orderItems.Sum(i => i.diamondPrice + i.settingPrice + i.accentStonePrice * i.quantityAccent))</p>
                 </div>
             }
             else

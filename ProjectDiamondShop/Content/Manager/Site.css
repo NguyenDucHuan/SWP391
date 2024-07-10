@@ -352,10 +352,6 @@ main {
         font-family: system-ui;
     }
 
-    main table tbody tr:last-child td {
-        border: none;
-    }
-
     main .recent-orders a {
         text-align: center;
         display: block;
@@ -1113,3 +1109,41 @@ dark-mode .pagination .page-item .btn-link {
             color: white;
             border-color: #007bff;
         }
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.table-excel {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table-excel th, .table-excel td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .table-excel th {
+        background-color: #f2f2f2;
+        color: #333;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .table-excel tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table-excel tr:hover {
+        background-color: #f1f1f1;
+    }
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Add this */
+}

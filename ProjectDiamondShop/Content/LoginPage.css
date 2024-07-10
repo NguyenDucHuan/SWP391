@@ -3,7 +3,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/*           font-family: 'Playwrite US Trad', cursive;*/
 }
 
 body {
@@ -24,7 +23,7 @@ body {
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
-	min-height: 480px;
+	min-height: 520px;
 	color: #fff;
 }
 
@@ -369,7 +368,7 @@ body {
 	min-width: 150%;
 }
 
-@@media (max-width: 992px) {
+@media (max-width: 992px) {
 	.navbar-collapse {
 		justify-content: flex-start;
 	}
@@ -413,3 +412,11 @@ div.toggle-panel.toggle-left {
 	text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
+.text-danger {
+	color: #ff4d4d; /* Red color for error messages */
+	font-size: 13px;
+	margin-top: 5px;
+	display: block;
+	font-weight: bold;
+	text-shadow: 0 0 5px rgba(255, 77, 77, 0.5), 0 0 10px rgba(255, 77, 77, 0.5), 0 0 15px rgba(255, 77, 77, 0.5);
+}

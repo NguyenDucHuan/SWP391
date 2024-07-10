@@ -1,6 +1,14 @@
 ﻿@model DiamondShopBOs.tblDiamond
 @{
     ViewBag.Title = "Add Diamond";
+    List<string> clarities = new List<string>() { "IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "SI3", "I1", "I2", "I3" };
+    List<string> cuts = new List<string>() { "Excellent", "Very Good", "Good", "Fair", "Poor", "Ideal" };
+    List<string> colors = new List<string>() { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    List<string> shapes = new List<string>() { "Round", "Princess", "Cushion", "Emerald", "Oval", "Radiant", "Asscher", "Marquise", "Heart", "Pear" };
+    ViewBag.Clarities = clarities;
+    ViewBag.Cuts = cuts;
+    ViewBag.Colors = colors;
+    ViewBag.Shapes = shapes;
 }
 
 <!DOCTYPE html>
@@ -100,6 +108,18 @@
                 .back-to-admin a:hover {
                     text-decoration: underline;
                 }
+
+        .alert-neon-success {
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            margin-bottom: 7px;
+            margin-top: -20px;
+        }
+
+        .alert-neon-error {
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            margin-bottom: 7px;
+            margin-top: -20px;
+        }
     </style>
 </head>
 <body>
@@ -111,8 +131,15 @@
             {
                 if (TempData["SuccessMessage"] != null)
                 {
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-neon-success" role="alert">
                         @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-neon-error" role="alert">
+                        @TempData["ErrorMessage"]
                     </div>
                 }
 
@@ -134,19 +161,43 @@
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.clarityID, "Clarity", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.clarityID, new { @class = "form-control", placeholder = "Enter clarity" })
+                    <select name="clarityID" class="form-control">
+                        <option value="">Select Clarity</option>
+                        @foreach (var clarity in ViewBag.Clarities)
+                        {
+                            <option value="@clarity">@clarity</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.cutID, "Cut", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.cutID, new { @class = "form-control", placeholder = "Enter cut" })
+                    <select name="cutID" class="form-control">
+                        <option value="">Select Cut</option>
+                        @foreach (var cut in ViewBag.Cuts)
+                        {
+                            <option value="@cut">@cut</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.colorID, "Color", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.colorID, new { @class = "form-control", placeholder = "Enter color" })
+                    <select name="colorID" class="form-control">
+                        <option value="">Select Color</option>
+                        @foreach (var color in ViewBag.Colors)
+                        {
+                            <option value="@color">@color</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.LabelFor(m => m.shapeID, "Shape", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.shapeID, new { @class = "form-control", placeholder = "Enter shape" })
+                    <select name="shapeID" class="form-control">
+                        <option value="">Select Shape</option>
+                        @foreach (var shape in ViewBag.Shapes)
+                        {
+                            <option value="@shape">@shape</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     @Html.Label("Diamond Image A (Actual)", new { @class = "form-label" })
@@ -208,7 +259,7 @@
         function clearForm() {
             $('input[type="text"], input[type="date"], textarea').val('');
             $('input[type="file"]').val('');
-            $('.custom-file-label').text('Choose file');
+            $('.custom-file-label').text('Brown Diamonds');
         }
     </script>
 </body>

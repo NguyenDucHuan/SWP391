@@ -22,7 +22,6 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-primary" onclick="showSection('currentOrders')">Current Orders</button>
                 <button type="button" class="btn btn-primary" onclick="showSection('orderHistory')">Order History</button>
-
             </div>
         </div>
 
@@ -46,24 +45,31 @@
                     <tbody>
                         @foreach (var order in Model.currentOrders)
                         {
-                            if (order.status.Contains("Order Placed") || order.status.Contains("Preparing Goods") || order.status.Contains("Shipped to Carrier") || order.status.Contains("In Delivery"))
-                            {
-                                <tr>
-                                    <td>@order.orderID</td>
-                                    <td>@order.customerName</td>
-                                    <td>@order.deliveryStaffName</td>
-                                    <td>$@String.Format("{0:N0}", order.paidAmount)</td>
-                                    <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
-                                    <td>$@String.Format("{0:N0}", order.totalMoney)</td>
-                                    <td>@order.status</td>
-                                    <td>
-                                        <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
-                                    </td>
-                                </tr>
-                            }
+                            <tr>
+                                <td>@order.orderID</td>
+                                <td>@order.customerName</td>
+                                <td>@order.deliveryStaffName</td>
+                                <td>$@String.Format("{0:N0}", order.paidAmount)</td>
+                                <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
+                                <td>$@String.Format("{0:N0}", order.totalMoney)</td>
+                                <td>@order.status</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
+            </div>
+            <div class="pagination-container">
+                <ul class="pagination">
+                    @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalCurrentOrders / ViewBag.PageSize); i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("ViewOrders", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
 
@@ -102,6 +108,16 @@
                         }
                     </tbody>
                 </table>
+            </div>
+            <div class="pagination-container">
+                <ul class="pagination">
+                    @for (int i = 1; i <= Math.Ceiling((double)ViewBag.TotalHistoryOrders / ViewBag.PageSize); i++)
+                    {
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("ViewOrders", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
