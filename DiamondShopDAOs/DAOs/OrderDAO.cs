@@ -171,10 +171,10 @@ namespace DiamondShopDAOs
             {
                 existingOrder.status = order.status;
                 existingOrder.totalMoney = order.totalMoney;
+                existingOrder.paidAmount = order.paidAmount;
                 // Cập nhật các thuộc tính khác của đơn hàng
             }
         }
-
         public void SaveChanges()
         {
             _context.SaveChanges();
