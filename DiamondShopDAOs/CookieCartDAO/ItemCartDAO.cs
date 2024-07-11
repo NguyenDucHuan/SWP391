@@ -97,8 +97,18 @@ namespace DiamondShopDAOs.CookieCartDAO
                 decription = diamond.diamondDescription;
                 this.settingSize = settingSize;
             }
-
-
+        }
+        public tblOrderItem GetOrderItemByDiamondID(int diamondID)
+        {
+            using (var context = new DiamondShopManagementEntities())
+            {
+                var item = context.tblItems.FirstOrDefault(i => i.diamondID == diamondID);
+                if (item != null)
+                {
+                    return context.tblOrderItems.FirstOrDefault(oi => oi.ItemID == item.ItemID);
+                }
+                return null;
+            }
         }
     }
 }
