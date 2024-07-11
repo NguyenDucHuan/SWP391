@@ -3,7 +3,6 @@
     var orderItems = ViewBag.OrderItems as List<DiamondShopDAOs.CookieCartDAO.ItemCartDAOSimple>;
     var statusUpdates = ViewBag.StatusUpdates as List<DiamondShopBOs.tblOrderStatusUpdate>;
     int roleId = (int)Session["RoleID"];
-    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
 <!DOCTYPE html>
@@ -16,6 +15,73 @@
     <link rel="stylesheet" href="~/Content/Order/UpdateOrderDetails.css" />
 </head>
 <body>
+
+    @if (roleId != 4 && roleId != 5)
+    {
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">
+                    <img src="/Image/HomePage/Logo/Hand with crystal_ Mystical, esoteric, magic or healing crystal_.jpg" alt="The Diamond Shop" height="40">
+                    <span>The Diamond Shop</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/profile.php?id=61561345894731" target="_blank">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Diamonds")">Shop</a>
+                        </li>
+                        @if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCart" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownCart">
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Cart")">View Cart</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+                                    <li><a class="dropdown-item" href="@Url.Action("EditProfile", "ViewProfile")">View Profile</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("ViewOrders", "Home")">View Orders</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("WarrantyDetails", "Warranty")">Warranty</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Logout", "Account")">Logout</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item notification-bell">
+                                <a class="nav-link" href="#" id="notificationBell" role="button">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="notification-count" id="notificationCount">0</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link login-btn" href="@Url.Action("Index", "Account")">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+
     <div class="container">
         @if (TempData["UpdateMessage"] != null)
         {
@@ -181,5 +247,64 @@
             </ul>
         </div>
     </div>
+
+    <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color: black">
+                    <h5 class="modal-title" id="loginSuccessModalLabel">Login Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close" style="margin-left:auto;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <p>Welcome, <span id="userName"></span>!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notificationList">
+                        <!-- Notifications will be appended here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p><a href="#">Back To Top</a></p>
+            <p style="color: #FFD700 ">&copy; 2024 The Diamond Shop. All rights reserved.</p>
+            <p>
+                <a href="#">Terms of Service</a> |
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Refund Policy</a>
+            </p>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
