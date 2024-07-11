@@ -1,6 +1,8 @@
 ﻿using DiamondShopBOs;
+using DiamondShopDAOs.CookieCartDAO;
 using DiamondShopServices;
 using DiamondShopServices.NotificationService;
+using DiamondShopServices.OrderServices;
 using DiamondShopServices.StaffServices;
 using DiamondShopServices.UserService;
 using System;
@@ -16,6 +18,7 @@ namespace ProjectDiamondShop.Controllers
         private readonly INotificationService _notificationService;
         private readonly IDiamondService _diamondService;
         private readonly IUserService _userService;
+        private readonly IOrderServices _orderServices;
 
         public SaleStaffController()
         {
@@ -23,6 +26,7 @@ namespace ProjectDiamondShop.Controllers
             _notificationService = new NotificationService();
             _diamondService = new DiamondService();
             _userService = new UserService();
+            _orderServices = new OrderServices();
         }
 
         private bool IsSaleStaff()
@@ -147,6 +151,61 @@ namespace ProjectDiamondShop.Controllers
         }
 
         [HttpPost]
+        public ActionResult CalculateRebuyPrice(int diamondID, bool stillHaveCertification)
+        {
+            if (!IsSaleStaff())
+            {
+                return RedirectToPreviousPage();
+            }
+
+            var diamond = _diamondService.GetDiamondByID(diamondID, false, "Sold");
+            if (diamond == null)
+            {
+                return Json(new { success = false, message = "Diamond not found." });
+            }
+
+            var orderItem = new ItemCartDAO().GetOrderItemByDiamondID(diamondID);
+            if (orderItem == null)
+            {
+                return Json(new { success = false, message = "Order item not found." });
+            }
+
+            var order = _staffService.GetOrderById(orderItem.orderID);
+            if (order == null)
+            {
+                return Json(new { success = false, message = "Order not found." });
+            }
+
+            TimeSpan timeDifference = DateTime.Now - order.saleDate;
+            decimal rebuyPrice;
+
+            if (timeDifference.TotalDays <= 90)
+            {
+                if (stillHaveCertification)
+                {
+                    rebuyPrice = orderItem.salePriceItem * 0.80M;
+                }
+                else
+                {
+                    rebuyPrice = orderItem.salePriceItem * 0.75M;
+                }
+            }
+            else
+            {
+                if (stillHaveCertification)
+                {
+                    rebuyPrice = orderItem.salePriceItem * 0.70M;
+                }
+                else
+                {
+                    rebuyPrice = orderItem.salePriceItem * 0.60M;
+                }
+            }
+
+            return Json(new { success = true, rebuyPrice = rebuyPrice });
+        }
+
+        [HttpPost]
         public ActionResult SubmitRebuyRequest(int diamondID, bool? stillHaveCertification, decimal rebuyPrice)
         {
             if (!IsSaleStaff())
@@ -154,7 +213,6 @@ namespace ProjectDiamondShop.Controllers
                 return RedirectToPreviousPage();
             }
 
-            // Gán giá trị mặc định nếu stillHaveCertification là null
             bool certification = stillHaveCertification ?? false;
             string saleStaffID = GetUserID();
             if (string.IsNullOrEmpty(saleStaffID))
@@ -170,7 +228,6 @@ namespace ProjectDiamondShop.Controllers
             }
             string saleStaffName = saleStaff.fullName;
 
-            // Logic xử lý yêu cầu rebuy
             var diamond = _diamondService.GetDiamondByID(diamondID, false, "Sold");
             if (diamond != null)
             {
@@ -178,8 +235,7 @@ namespace ProjectDiamondShop.Controllers
                 diamond.rebuyPrice = rebuyPrice;
                 _diamondService.UpdateDiamond(diamond);
 
-                // Thêm thông báo cho Manager và Admin
-                var managersAndAdmins = _userService.GetUsersByRole(new List<int> { 2, 3 }); // 2: Admin, 3: Manager
+                var managersAndAdmins = _userService.GetUsersByRole(new List<int> { 2, 3 });
                 foreach (var user in managersAndAdmins)
                 {
                     _notificationService.AddNotification(new tblNotification

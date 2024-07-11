@@ -234,7 +234,7 @@
                 <div>Shape ID: @Model.shapeID</div>
             </div>
             <div class="rebuy-container">
-                <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post" class="rebuy-form">
+                <form action="@Url.Action("CalculateRebuyPrice", "SaleStaff")" method="post" class="rebuy-form">
                     <input type="hidden" name="diamondID" value="@Model.diamondID" />
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="stillHaveCertification" name="stillHaveCertification" value="true" />
@@ -242,9 +242,10 @@
                     </div>
                     <div class="form-group">
                         <label for="rebuyPrice">Rebuy Price</label>
-                        <input type="text" class="form-control" id="rebuyPrice" name="rebuyPrice" required />
+                        <input type="text" class="form-control" id="rebuyPrice" name="rebuyPrice" readonly />
                     </div>
                     <div>
+                        <button type="button" class="btn btn-primary" onclick="calculateRebuyPrice()">Calculate Rebuy Price</button>
                         <button type="submit" class="btn btn-primary">Submit Rebuy Request</button>
                     </div>
                 </form>
@@ -278,6 +279,18 @@
         function searchRebuy() {
             var searchTerm = $('#searchTerm').val();
             window.location.href = '@Url.Action("SearchRebuy", "SaleStaff")' + '?searchTerm=' + searchTerm;
+        }
+
+        function calculateRebuyPrice() {
+            var diamondID = $('input[name="diamondID"]').val();
+            var stillHaveCertification = $('#stillHaveCertification').is(':checked');
+
+            $.post('@Url.Action("CalculateRebuyPrice", "SaleStaff")', {
+                diamondID: diamondID,
+                stillHaveCertification: stillHaveCertification
+            }, function(data) {
+                $('#rebuyPrice').val(data.rebuyPrice);
+            });
         }
     </script>
 </body>

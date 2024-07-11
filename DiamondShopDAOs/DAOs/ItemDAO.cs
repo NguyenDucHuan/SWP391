@@ -24,7 +24,7 @@ namespace DiamondShopDAOs
         }
 
         public void CreateItem(string orderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice, int? settingSize)
-        {
+        { 
             tblItem tblItem = new tblItem();
             if (settingID == 0)
             {
