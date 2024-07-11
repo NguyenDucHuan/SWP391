@@ -269,15 +269,15 @@
                             {
 
                                 string backgroundColor;
-                                if (order.status == "Delivered")
+                                if (order.status == "Shipped to Carrier" || order.status == "In Delivery" || order.status == "Delivered" || order.status == "Paid" )
                                 {
                                     backgroundColor = "lightgreen";
                                 }
-                                else if (order.status == "In Delivery")
+                                else if ( order.status == "Preparing Goods" )
                                 {
                                     backgroundColor = "#eded3b";
                                 }
-                                else if (order.status == "Shipped to Carrier")
+                                else if (order.status == "Order Placed")
                                 {
                                     backgroundColor = "lightcoral";
                                 }
