@@ -100,6 +100,27 @@ namespace ProjectDiamondShop.Controllers
             return View();
         }
 
+        public ActionResult FAQ()
+        {
+            if (IsAdmin())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsManager())
+            {
+                return RedirectToAction("Index", "Manager");
+            }
+            if (IsSaleStaff())
+            {
+                return RedirectToAction("Index", "SaleStaff");
+            }
+            if (IsDelivery())
+            {
+                return RedirectToAction("Index", "DeliveryStaff");
+            }
+            return View();
+        }
+
         public ActionResult ViewOrders(int page = 1, int pageSize = 10)
         {
             if (IsAdmin() || IsManager())
