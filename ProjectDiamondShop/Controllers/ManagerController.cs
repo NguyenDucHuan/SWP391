@@ -38,8 +38,8 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10, 
-            int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, 
+        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10,
+            int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10,
             int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10, int warrantyPage = 1, int warrantyPageSize = 10)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
@@ -159,21 +159,28 @@ namespace ProjectDiamondShop.Controllers
         private bool IsValidStatusTransition(string currentStatus, string newStatus)
         {
             var statusOrder = new List<string>
-            {
-                "Order Placed",
-                "Preparing Goods",
-                "Shipped to Carrier",
-                "In Delivery",
-                "Delivered",
-                "Paid"
-            };
+    {
+        "Order Placed",
+        "Preparing Goods",
+        "Shipped to Carrier",
+        "In Delivery",
+        "Delivered",
+        "Paid"
+    };
 
             var currentIndex = statusOrder.IndexOf(currentStatus);
             var newIndex = statusOrder.IndexOf(newStatus);
 
+            // Special case: Allow transition from "Order Placed" to "Paid"
+            if (currentStatus == "Order Placed" && newStatus == "Paid")
+            {
+                return true;
+            }
+
             // Ensure that status can only move to the next status in the list
             return newIndex > currentIndex && newIndex == currentIndex + 1;
         }
+
 
         public JsonResult ToggleUserStatus(string userId, bool status)
         {
