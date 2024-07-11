@@ -259,6 +259,7 @@
                                 <th class="wide-column">Delivery Staff</th>
                                 <th class="wide-column">Total Money</th>
                                 <th class="wide-column">Status</th>
+                                <th class="wide-column">PaidStatus</th>
                                 <th class="wide-column">Note</th>
                                 <th class="wide-column">Actions</th>
                             </tr>
@@ -266,14 +267,33 @@
                         <tbody>
                             @foreach (var order in ViewBag.Orders)
                             {
+
+                                string backgroundColor;
+                                if (order.status == "Delivered")
+                                {
+                                    backgroundColor = "lightgreen";
+                                }
+                                else if (order.status == "In Delivery")
+                                {
+                                    backgroundColor = "#eded3b";
+                                }
+                                else if (order.status == "Shipped to Carrier")
+                                {
+                                    backgroundColor = "lightcoral";
+                                }
+                                else
+                                {
+                                    backgroundColor = "lightcoral";
+                                }
+
                                 <tr>
                                     <td>@order.orderID</td>
                                     <td>@order.customerName</td>
                                     <td>@order.deliveryStaffName</td>
                                     <td>$@String.Format("{0:N0}", order.totalMoney)</td>
-                                    <td>@order.status</td>
+                                    <td style="color: @backgroundColor; font-weight:900;">@order.status</td>
+                                    <td>@order.paymentStatus</td>
                                     <td>@order.Note</td>
-
                                     <td>
                                         <form action="@Url.Action("Process", "SaleStaff")" method="post" style="display:inline;">
                                             @Html.AntiForgeryToken()
