@@ -102,28 +102,26 @@
                             <tr>
                                 <th>
                                     Order ID
-                                    <button class="sort-button" onclick="sortTable(0, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable(0, 'desc')">▼</button>
                                 </th>
                                 <th>
                                     Customer Name
-                                    <button class="sort-button" onclick="sortTable(1, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable(1, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="1" data-direction="asc" onclick="sortTable('ordersTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="1" data-direction="desc" onclick="sortTable('ordersTable', 1, 'desc')">▼</button>
                                 </th>
                                 <th class="wide-column">Sale Staff</th>
                                 <th class="wide-column">Delivery Staff</th>
                                 <th>
                                     Total Money
-                                    <button class="sort-button" onclick="sortTable(4, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable(4, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="4" data-direction="asc" onclick="sortTable('ordersTable', 4, 'asc', true)">▲</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="4" data-direction="desc" onclick="sortTable('ordersTable', 4, 'desc', true)">▼</button>
                                 </th>
                                 <th class="wide-column">Status</th>
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>
                                     Sale Date
-                                    <button class="sort-button" onclick="sortTable(8, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable(8, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="8" data-direction="asc" onclick="sortTable('ordersTable', 8, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="ordersTable" data-column="8" data-direction="desc" onclick="sortTable('ordersTable', 8, 'desc')">▼</button>
                                 </th>
                                 <th>Note</th>
                             </tr>
@@ -204,24 +202,22 @@
                             <tr>
                                 <th>
                                     ID
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 0, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 0, 'desc')">▼</button>
                                 </th>
                                 <th>
                                     Name
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 1, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 1, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="1" data-direction="asc" onclick="sortTable('diamondsTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="1" data-direction="desc" onclick="sortTable('diamondsTable', 1, 'desc')">▼</button>
                                 </th>
                                 <th>
                                     Price
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 2, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 2, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="asc" onclick="sortTable('diamondsTable', 2, 'asc', true)">▲</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="desc" onclick="sortTable('diamondsTable', 2, 'desc', true)">▼</button>
                                 </th>
                                 <th>Description</th>
                                 <th>
                                     Carat Weight
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 4, 'asc')">▲</button>
-                                    <button class="sort-button" onclick="sortTable('diamondsTable', 4, 'desc')">▼</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="4" data-direction="asc" onclick="sortTable('diamondsTable', 4, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="4" data-direction="desc" onclick="sortTable('diamondsTable', 4, 'desc')">▼</button>
                                 </th>
                                 <th>Clarity</th>
                                 <th>Cut</th>
@@ -283,10 +279,26 @@
                         <thead>
                             <tr>
                                 <th>Voucher ID</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th>Discount</th>
-                                <th>Quantity</th>
+                                <th>
+                                    Start Time
+                                    <button class="sort-button" data-table="vouchersTable" data-column="1" data-direction="asc" onclick="sortTable('vouchersTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="vouchersTable" data-column="1" data-direction="desc" onclick="sortTable('vouchersTable', 1, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    End Time
+                                    <button class="sort-button" data-table="vouchersTable" data-column="2" data-direction="asc" onclick="sortTable('vouchersTable', 2, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="vouchersTable" data-column="2" data-direction="desc" onclick="sortTable('vouchersTable', 2, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Discount
+                                    <button class="sort-button" data-table="vouchersTable" data-column="3" data-direction="asc" onclick="sortTable('vouchersTable', 3, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="vouchersTable" data-column="3" data-direction="desc" onclick="sortTable('vouchersTable', 3, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Quantity
+                                    <button class="sort-button" data-table="vouchersTable" data-column="4" data-direction="asc" onclick="sortTable('vouchersTable', 4, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="vouchersTable" data-column="4" data-direction="desc" onclick="sortTable('vouchersTable', 4, 'desc')">▼</button>
+                                </th>
                                 <th>Target User ID</th>
                                 <th>Status</th>
                             </tr>
@@ -338,13 +350,37 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Shape</th>
-                                <th>Carat Weight</th>
-                                <th>Clarity</th>
-                                <th>Color</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
+                                <th>
+                                    Name
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="1" data-direction="asc" onclick="sortTable('accentStonesTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="1" data-direction="desc" onclick="sortTable('accentStonesTable', 1, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Shape
+                                </th>
+                                <th>
+                                    Carat Weight
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="3" data-direction="asc" onclick="sortTable('accentStonesTable', 3, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="3" data-direction="desc" onclick="sortTable('accentStonesTable', 3, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Clarity
+                                </th>
+                                <th>
+                                    Color
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="5" data-direction="asc" onclick="sortTable('accentStonesTable', 5, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="5" data-direction="desc" onclick="sortTable('accentStonesTable', 5, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Price
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="asc" onclick="sortTable('accentStonesTable', 6, 'asc', true)">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="desc" onclick="sortTable('accentStonesTable', 6, 'desc', true)">▼</button>
+                                </th>
+                                <th>
+                                    Quantity
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="7" data-direction="asc" onclick="sortTable('accentStonesTable', 7, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="7" data-direction="desc" onclick="sortTable('accentStonesTable', 7, 'desc')">▼</button>
+                                </th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -407,8 +443,16 @@
                                 <th>ID</th>
                                 <th>Type</th>
                                 <th>Material</th>
-                                <th>Price</th>
-                                <th>Quantity Stones</th>
+                                <th>
+                                    Price
+                                    <button class="sort-button" data-table="settingsTable" data-column="3" data-direction="asc" onclick="sortTable('settingsTable', 3, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="settingsTable" data-column="3" data-direction="desc" onclick="sortTable('settingsTable', 3, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Quantity Stones
+                                    <button class="sort-button" data-table="settingsTable" data-column="4" data-direction="asc" onclick="sortTable('settingsTable', 4, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="settingsTable" data-column="4" data-direction="desc" onclick="sortTable('settingsTable', 4, 'desc')">▼</button>
+                                </th>
                                 <th>Description</th>
                                 <th>Status</th>
                             </tr>
@@ -469,7 +513,11 @@
                             <tr>
                                 <th>User ID</th>
                                 <th>User Name</th>
-                                <th>Full Name</th>
+                                <th>
+                                    Full Name
+                                    <button class="sort-button" data-table="saleStaffTable" data-column="2" data-direction="asc" onclick="sortTable('saleStaffTable', 2, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="saleStaffTable" data-column="2" data-direction="desc" onclick="sortTable('saleStaffTable', 2, 'desc')">▼</button>
+                                </th>
                                 <th>Email</th>
                                 <th>Status</th>
                             </tr>
@@ -529,7 +577,11 @@
                             <tr>
                                 <th>User ID</th>
                                 <th>User Name</th>
-                                <th>Full Name</th>
+                                <th>
+                                    Full Name
+                                    <button class="sort-button" data-table="deliveryStaffTable" data-column="2" data-direction="asc" onclick="sortTable('deliveryStaffTable', 2, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="deliveryStaffTable" data-column="2" data-direction="desc" onclick="sortTable('deliveryStaffTable', 2, 'desc')">▼</button>
+                                </th>
                                 <th>Email</th>
                                 <th>Status</th>
                             </tr>
@@ -591,7 +643,11 @@
                                 <tr>
                                     <th>User ID</th>
                                     <th>User Name</th>
-                                    <th>Full Name</th>
+                                    <th>
+                                        Full Name
+                                        <button class="sort-button" data-table="usersTable" data-column="2" data-direction="asc" onclick="sortTable('usersTable', 2, 'asc')">▲</button>
+                                        <button class="sort-button" data-table="usersTable" data-column="2" data-direction="desc" onclick="sortTable('usersTable', 2, 'desc')">▼</button>
+                                    </th>
                                     <th>Email</th>
                                     <th>Status</th>
                                 </tr>
@@ -634,11 +690,15 @@
             <div id="notifications" class="section">
                 <h3>Notifications</h3>
                 <div class="table-container">
-                    <table class="table-excel">
+                    <table id="notificationsTable" class="table-excel">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Date</th>
+                                <th>
+                                    Date
+                                    <button class="sort-button" data-table="notificationsTable" data-column="1" data-direction="asc" onclick="sortTable('notificationsTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="notificationsTable" data-column="1" data-direction="desc" onclick="sortTable('notificationsTable', 1, 'desc')">▼</button>
+                                </th>
                                 <th>Detail</th>
                                 <th>Actions</th>
                             </tr>
@@ -712,8 +772,16 @@
                                 <th>Warranty ID</th>
                                 <th>Order ID</th>
                                 <th>Item ID</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>
+                                    Start Date
+                                    <button class="sort-button" data-table="warrantyTable" data-column="3" data-direction="asc" onclick="sortTable('warrantyTable', 3, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="warrantyTable" data-column="3" data-direction="desc" onclick="sortTable('warrantyTable', 3, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    End Date
+                                    <button class="sort-button" data-table="warrantyTable" data-column="4" data-direction="asc" onclick="sortTable('warrantyTable', 4, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="warrantyTable" data-column="4" data-direction="desc" onclick="sortTable('warrantyTable', 4, 'desc')">▼</button>
+                                </th>
                                 <th>Details</th>
                                 <th>Code</th>
                                 <th>Status</th>
@@ -1400,19 +1468,36 @@
 
         setTimeout(function () {
             $('.alert').fadeOut('slow');
-        }, 3000);   
+        }, 3000);
 
-        function sortTable(columnIndex, direction) {
+        function sortTable(tableId, columnIndex, direction, isCurrency = false) {
             var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
-            table = document.getElementById("ordersTable");
+            table = document.getElementById(tableId);
+            var tbody = table.querySelector('tbody');
+
+            // Check if the table is already sorted in the same direction
+            var isSorted = tbody.getAttribute('data-sorted-column') == columnIndex && tbody.getAttribute('data-sorted-direction') == direction;
+
+            if (isSorted) {
+                // Restore the original state of the table
+                tbody.innerHTML = tbody.getAttribute('data-original');
+                // Clear the sorted column and direction attributes
+                tbody.removeAttribute('data-sorted-column');
+                tbody.removeAttribute('data-sorted-direction');
+                // Remove active class from all sort buttons
+                var sortButtons = table.querySelectorAll('.sort-button');
+                sortButtons.forEach(button => button.classList.remove('active'));
+                return;
+            }
+
             switching = true;
 
             // Remove active class from all sort buttons
-            var sortButtons = document.querySelectorAll('.sort-button');
+            var sortButtons = table.querySelectorAll('.sort-button');
             sortButtons.forEach(button => button.classList.remove('active'));
 
             // Set active class to the clicked button
-            var activeButton = document.querySelector('.sort-button[onclick="sortTable(' + columnIndex + ', \'' + direction + '\')"]');
+            var activeButton = table.querySelector('.sort-button[data-table="' + tableId + '"][data-column="' + columnIndex + '"][data-direction="' + direction + '"]');
             activeButton.classList.add('active');
 
             // Set direction
@@ -1429,8 +1514,8 @@
                     var xContent = x.innerHTML.toLowerCase();
                     var yContent = y.innerHTML.toLowerCase();
 
-                    // Check if the column is the "Total Money" column
-                    if (columnIndex === 4) {
+                    // Check if the column contains currency
+                    if (isCurrency) {
                         xContent = parseFloat(xContent.replace(/[\$,]/g, '')) || 0;
                         yContent = parseFloat(yContent.replace(/[\$,]/g, '')) || 0;
                     }
@@ -1459,8 +1544,6 @@
                 }
             }
         }
-
-
     </script>
 </body>
 </html>

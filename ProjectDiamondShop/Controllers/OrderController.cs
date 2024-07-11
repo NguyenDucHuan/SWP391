@@ -154,11 +154,10 @@ namespace ProjectDiamondShop.Controllers
             // Define valid status transitions
             var validTransitions = new Dictionary<string, List<string>>
             {
-                { "Order Placed", new List<string> { "Preparing Goods" } },
+                { "Order Placed", new List<string> { "Preparing Goods","Paid" } },
                 { "Preparing Goods", new List<string> { "Shipped to Carrier" } },
                 { "Shipped to Carrier", new List<string> { "In Delivery" } },
-                { "In Delivery", new List<string> { "Delivered" } },
-                { "Delivered", new List<string> { "Paid" } }
+                { "In Delivery", new List<string> { "Delivered" } }
             };
 
             if (!validTransitions.ContainsKey(currentStatus) || !validTransitions[currentStatus].Contains(status))
