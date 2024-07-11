@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    @if (roleId != 4 && roleId != 5)
+    @if (roleId == 1)
     {
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container-fluid">
@@ -193,7 +193,16 @@
                             <th>Customer</th>
                             <th>Delivery Staff</th>
                             <th>Paid Money</th>
-                            <th>Remaining Money</th>
+                            @{
+                                if (order.remainingAmount != 0)
+                                {
+
+
+                                <th>Remaining Money</th>
+                                }
+                                else {<th>Payment Status</th> }
+                                }
+                            
                             <th>Total Money</th>
                             <th>Ship To</th>
                         </tr>
@@ -208,7 +217,7 @@
                                 @{
                                     if (order.remainingAmount == 0)
                                     {
-                                        @:complete
+                                        @order.paymentStatus
                                     }
                                     else
                                     {
