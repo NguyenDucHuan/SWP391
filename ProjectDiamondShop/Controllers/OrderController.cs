@@ -22,7 +22,7 @@ namespace ProjectDiamondShop.Controllers
     public class OrderController : Controller
     {
         private const string DEFAULT_ORDER_STATUS = "Order Placed";
-        private const decimal discountPercentage = 0.8m;
+        private const decimal discountPercentage = 0.2m;
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
         private readonly INotificationService _notificationService;
@@ -119,9 +119,6 @@ namespace ProjectDiamondShop.Controllers
             return View();
         }
 
-
-
-
         [HttpPost]
         public ActionResult UpdateStatus(string orderId, string status)
         {
@@ -169,6 +166,11 @@ namespace ProjectDiamondShop.Controllers
             // Role-specific status updates
             if (roleId == 4 && (status == "In Delivery" || status == "Delivered"))
             {
+                if (currentStatus == "In Delivery" && order.remainingAmount != 0)
+                {
+                    TempData["UpdateMessage"] = "The customer must complete the payment before you can update the order";
+                    return RedirectToAction("UpdateOrderDetails", new { orderId });
+                }
                 if (!validTransitions[currentStatus].Contains(status))
                 {
                     TempData["UpdateMessage"] = "Invalid status transition.";
@@ -302,9 +304,71 @@ namespace ProjectDiamondShop.Controllers
             CartHelper.ClearCart(HttpContext, userID);
             return View("SuccessView");
         }
+        public ActionResult PaymentWithPaypal2(string orderID, string Cancel = null)
+        {
+            // Store address, phone, and voucherID in session
+            APIContext apiContext = PaypalConfiguration.GetAPIContext();
+            try
+            {
+                if (TempData["OrderID"] != null)
+                {
+                    orderID = TempData["OrderID"].ToString();
+                }
+                TempData["OrderID"] = orderID;
+                tblOrder curOrder = orderServices.GetOrderByID(orderID);
+                string customerName = curOrder.customerName;
+                string payerId = Request.Params["PayerID"];
+                if (string.IsNullOrEmpty(payerId))
+                {
+                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/order/PaymentWithPayPal2?";
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createdPayment = this.CreatePayment2(apiContext, baseURI + "guid=" + guid, customerName, orderID);
 
+                    var links = createdPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = null;
+                    while (links.MoveNext())
+                    {
+                        Links lnk = links.Current;
+                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            paypalRedirectUrl = lnk.href;
+                        }
+                    }
+
+                    Session.Add(guid, createdPayment.id);
+                    TempData["OrderID"] = orderID;
+                    return Redirect(paypalRedirectUrl);
+                }
+                else
+                {
+                    var guid = Request.Params["guid"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+                    if (executedPayment.state.ToLower() != "approved")
+                    {
+                        return View("FailureView");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("FailureView");
+            }
+            try
+            {
+                string o2 = TempData["OrderID"].ToString();
+                var upOrder = orderServices.GetOrderById(o2);
+                upOrder.paidAmount += upOrder.remainingAmount;
+                upOrder.remainingAmount = 0;
+                orderServices.UpdateOrder(upOrder);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error occurred while saving order: " + ex.Message);
+                return View("FailureView");
+            }
+            return View("SuccessView");
+        }
         private PayPal.Api.Payment payment;
-
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
             var paymentExecution = new PaymentExecution()
@@ -430,6 +494,110 @@ namespace ProjectDiamondShop.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        private Payment CreatePayment2(APIContext apiContext, string redirectUrl, string name, string orderId)
+        {
+            var userID = GetUserID();
+            var Order = CartHelper.GetCart(HttpContext, userID);
+            var Ord = orderServices.GetOrderById(orderId);
+            var shipping_address = new ShippingAddress
+            {
+                recipient_name = name,
+                line1 = "Vĩnh Lộc A",
+                line2 = "Bình Chánh",
+                city = "Ho Chi Minh",
+                state = "Ho Chi Minh",
+                postal_code = "700000",
+                country_code = "VN",
+                phone = "0908892160",
+            };
+            var itemList = new ItemList()
+            {
+                items = new List<Item>(),
+                shipping_address = shipping_address
+            };
+            string decrip = Ord.orderID + " Remaining payment.";
+            decimal remainingPayment = (decimal)Ord.remainingAmount;
 
+            itemList.items.Add(new Item()
+            {
+                name = decrip,
+                currency = "USD",
+                price = remainingPayment.ToString("F2"), // Format price to 2 decimal places
+                quantity = "1",
+                sku = Ord.orderID
+            });
+
+            var payer = new Payer()
+            {
+                payment_method = "paypal"
+            };
+
+            var redirUrls = new RedirectUrls()
+            {
+                cancel_url = Request.Url.Scheme + "://" + Request.Url.Authority + "/Diamonds/Index",
+                return_url = redirectUrl
+            };
+            var details = new Details()
+            {
+                subtotal = remainingPayment.ToString("F2")
+            };
+
+            var amount = new Amount()
+            {
+                currency = "USD",
+                total = remainingPayment.ToString("F2"),
+                details = details
+            };
+
+            var transactionList = new List<Transaction>();
+
+            var paypalOrderId = DateTime.Now.Ticks;
+            transactionList.Add(new Transaction()
+            {
+                description = $"Invoice #{paypalOrderId}",
+                invoice_number = paypalOrderId.ToString(), // Generate a unique Invoice No
+                amount = amount,
+                item_list = itemList
+            });
+
+            var payment = new Payment()
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = redirUrls
+            };
+
+            // Log the payment request
+            Debug.WriteLine("Payment Request: " + payment.ConvertToJson());
+
+            try
+            {
+                return payment.Create(apiContext);
+            }
+            catch (PayPalException ex)
+            {
+                // Log detailed error message
+                Debug.WriteLine("PayPalException: " + ex.Message);
+
+                // Log details if available
+                if (ex.InnerException != null)
+                {
+                    Debug.WriteLine("InnerException: " + ex.InnerException.Message);
+                }
+
+                // Log PayPal error response details
+                if (ex is PaymentsException pe && pe.Details != null)
+                {
+                    var error = pe.Details;
+                    Debug.WriteLine("Name: " + error.name);
+                    Debug.WriteLine("Message: " + error.message);
+                    Debug.WriteLine("InformationLink: " + error.information_link);
+                    Debug.WriteLine("DebugId: " + error.debug_id);
+                }
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

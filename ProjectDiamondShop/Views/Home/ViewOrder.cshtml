@@ -38,6 +38,7 @@
                             <th>Paid Money</th>
                             <th>Remaining Money</th>
                             <th>Total Money</th>
+                            <th>Ship To</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -52,6 +53,7 @@
                                 <td>$@String.Format("{0:N0}", order.paidAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.totalMoney)</td>
+                                <td>@order.address</td>
                                 <td>@order.status</td>
                                 <td>
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
