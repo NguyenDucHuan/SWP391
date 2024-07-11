@@ -41,6 +41,7 @@
                     <a href="javascript:void(0)" onclick="showSection('accentStones')"><i class="fas fa-gem"></i> <span class="sidebar-text">Accent Stones</span></a>
                     <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
                     <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> <span class="sidebar-text">Notifications</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('warranty')"><i class="fas fa-shield-alt"></i> <span class="sidebar-text">Warranty</span></a>
                 }
                 @if ((int)Session["RoleID"] == 2)
                 {
@@ -53,6 +54,7 @@
                     <a href="javascript:void(0)" onclick="showSection('settings')"><i class="fas fa-cogs"></i> <span class="sidebar-text">Settings</span></a>
                     <a href="javascript:void(0)" onclick="showSection('users')"><i class="fas fa-users"></i> <span class="sidebar-text">Users</span></a>
                     <a href="javascript:void(0)" onclick="showSection('notifications')"><i class="fas fa-bell"></i> <span class="sidebar-text">Notifications</span></a>
+                    <a href="javascript:void(0)" onclick="showSection('warranty')"><i class="fas fa-shield-alt"></i> <span class="sidebar-text">Warranty</span></a>
                     <a href="javascript:void(0)" onclick="showSection('createAccount')"><i class="fas fa-user-plus"></i> <span class="sidebar-text">Create Account</span></a>
                 }
                 <a href="@Url.Action("CreateVoucher", "Manager")"><i class="fas fa-ticket-alt"></i> <span class="sidebar-text">Create Voucher</span></a>
@@ -67,7 +69,7 @@
             <div id="updateSuccessMessage" class="alert alert-success" style="display:none;">@TempData["SuccessMessage"]</div>
             <div id="updateErrorMessage" class="alert alert-danger" style="display:none;">@TempData["ErrorMessage"]</div>
 
-            <div id="dashboard" class="section" style="display:block;">
+            <div id="dashboard" class="section" style="display: block; overflow:auto;">
                 @if ((int)Session["RoleID"] == 3)
                 {
                     <div>
@@ -98,16 +100,32 @@
                     <table id="ordersTable" class="table-excel">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Customer Name</th>
+                                <th>
+                                    Order ID
+                                    <button class="sort-button" onclick="sortTable(0, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable(0, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Customer Name
+                                    <button class="sort-button" onclick="sortTable(1, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable(1, 'desc')">▼</button>
+                                </th>
                                 <th class="wide-column">Sale Staff</th>
                                 <th class="wide-column">Delivery Staff</th>
-                                <th>Total Money</th>
+                                <th>
+                                    Total Money
+                                    <button class="sort-button" onclick="sortTable(4, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable(4, 'desc')">▼</button>
+                                </th>
                                 <th class="wide-column">Status</th>
                                 <th>Address</th>
                                 <th>Phone</th>
+                                <th>
+                                    Sale Date
+                                    <button class="sort-button" onclick="sortTable(8, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable(8, 'desc')">▼</button>
+                                </th>
                                 <th>Note</th>
-                                <th>Sale Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -149,8 +167,8 @@
                                     </td>
                                     <td>@order.address</td>
                                     <td>@order.phone</td>
-                                    <td>@order.Note</td>
                                     <td>@order.saleDate</td>
+                                    <td>@order.Note</td>
                                 </tr>
                             }
                         </tbody>
@@ -173,7 +191,6 @@
                 </div>
             </div>
 
-
             <div id="diamonds" class="section">
                 <h3>Diamonds</h3>
                 <div class="search-container">
@@ -185,11 +202,27 @@
                     <table id="diamondsTable" class="table-excel">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
+                                <th>
+                                    ID
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 0, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 0, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Name
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 1, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 1, 'desc')">▼</button>
+                                </th>
+                                <th>
+                                    Price
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 2, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 2, 'desc')">▼</button>
+                                </th>
                                 <th>Description</th>
-                                <th>Carat Weight</th>
+                                <th>
+                                    Carat Weight
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 4, 'asc')">▲</button>
+                                    <button class="sort-button" onclick="sortTable('diamondsTable', 4, 'desc')">▼</button>
+                                </th>
                                 <th>Clarity</th>
                                 <th>Cut</th>
                                 <th>Color</th>
@@ -242,6 +275,7 @@
                     </ul>
                 </div>
             </div>
+
             <div id="viewVoucher" class="section">
                 <h3>View Voucher</h3>
                 <div class="table-container">
@@ -292,6 +326,7 @@
                     </ul>
                 </div>
             </div>
+
             <div id="accentStones" class="section">
                 <h3>Accent Stones</h3>
                 <div class="search-container">
@@ -357,6 +392,7 @@
                     </ul>
                 </div>
             </div>
+
 
             <div id="settings" class="section">
                 <h3>Settings</h3>
@@ -663,6 +699,69 @@
                 </div>
             </div>
 
+            <div id="warranty" class="section" style="display: none;">
+                <h3>Warranty</h3>
+                <div class="search-container">
+                    <i class="fa fa-search search-icon" data-input="searchWarranty" data-table="warrantyTable" data-column="0" onclick="toggleSearch(this)"></i>
+                    <input type="text" id="searchWarranty" class="form-control mb-3 search-input" onkeyup="searchTable('warrantyTable', 'searchWarranty', 0)" placeholder="Search for warranty by WarrantyID..">
+                </div>
+                <div class="table-container">
+                    <table id="warrantyTable" class="table-excel">
+                        <thead>
+                            <tr>
+                                <th>Warranty ID</th>
+                                <th>Order ID</th>
+                                <th>Item ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Details</th>
+                                <th>Code</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var warranty in ViewBag.Warranties)
+                            {
+                                <tr id="warranty-row-@warranty.warrantyID">
+                                    <td>@warranty.warrantyID</td>
+                                    <td>@warranty.orderID</td>
+                                    <td>@warranty.ItemID</td>
+                                    <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyDetails</td>
+                                    <td>@warranty.warrantyCode</td>
+                                    <td>
+                                        @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+                                        {
+                                            <button class="btn btn-status @(warranty.status == "Active" ? "btn-success" : "btn-danger")" onclick="toggleWarrantyStatus('@warranty.warrantyID', @warranty.status == " Active")">
+                                                @(warranty.status == "Active" ? "Active" : "Expired")
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            @warranty.status
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <ul class="pagination">
+                        @if (ViewBag.TotalWarranties != null && ViewBag.WarrantyPageSize != null)
+                        {
+                            int totalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / ViewBag.WarrantyPageSize);
+                            for (int i = 1; i <= totalWarrantyPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentWarrantyPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(@i, @ViewBag.WarrantyPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
                     <h3 class="center-text">Create System Account</h3>
@@ -699,7 +798,7 @@
                                 <option value="4" @(TempData["RoleID"] != null && (int)TempData["RoleID"] == 4 ? "selected" : "")>Delivery Staff</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">Sign Up</button>
+                        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
                     }
                 </div>
             </div>
@@ -1055,6 +1154,30 @@
             });
         }
 
+        function toggleWarrantyStatus(warrantyID, currentStatus) {
+            var newStatus = !currentStatus;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ToggleWarrantyStatus", "Manager")',
+                data: {
+                    warrantyID: warrantyID,
+                    status: newStatus
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $('#warranty-row-' + warrantyID + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Active' : 'Expired');
+                        $('#warranty-row-' + warrantyID + ' button').attr('onclick', 'toggleWarrantyStatus("' + warrantyID + '", ' + newStatus + ')');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert("An error occurred while updating the status.");
+                }
+            });
+        }
+
         function loadDiamondsPage(page, pageSize) {
             $.ajax({
                 url: '@Url.Action("Index", "Manager")',
@@ -1185,6 +1308,36 @@
             });
         }
 
+        function loadWarrantyPage(page, warrantyPageSize) {
+            $.ajax({
+                url: '@Url.Action("Index", "Manager")',
+                type: 'GET',
+                data: { warrantyPage: page, warrantyPageSize: warrantyPageSize },
+                success: function (data) {
+                    $('#warranty').html($(data).find('#warranty').html());
+                    updateWarrantyPagination(page, warrantyPageSize);
+                },
+                error: function () {
+                    alert('An error occurred while loading the warranty page.');
+                }
+            });
+        }
+
+        function updateWarrantyPagination(currentPage, pageSize) {
+            var totalPages = Math.ceil(@ViewBag.TotalWarranties / pageSize);
+            var paginationHtml = '';
+            for (var i = 1; i <= totalPages; i++) {
+                paginationHtml += '<li class="page-item ' + (currentPage == i ? 'active' : '') + '"><a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(' + i + ', ' + pageSize + ')">' + i + '</a></li>';
+            }
+            $('#warranty .pagination ul').html(paginationHtml);
+            document.querySelectorAll('.pagination .btn-link').forEach(link => {
+                link.addEventListener('click', function () {
+                    document.querySelectorAll('.pagination .page-item').forEach(link => link.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                });
+            });
+        }
+
         function updatePagination(currentPage, pageSize) {
             var totalPages = Math.ceil(@ViewBag.TotalDiamonds / pageSize);
             var paginationHtml = '';
@@ -1247,7 +1400,67 @@
 
         setTimeout(function () {
             $('.alert').fadeOut('slow');
-        }, 3000);
+        }, 3000);   
+
+        function sortTable(columnIndex, direction) {
+            var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
+            table = document.getElementById("ordersTable");
+            switching = true;
+
+            // Remove active class from all sort buttons
+            var sortButtons = document.querySelectorAll('.sort-button');
+            sortButtons.forEach(button => button.classList.remove('active'));
+
+            // Set active class to the clicked button
+            var activeButton = document.querySelector('.sort-button[onclick="sortTable(' + columnIndex + ', \'' + direction + '\')"]');
+            activeButton.classList.add('active');
+
+            // Set direction
+            var dir = direction;
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+
+                    var xContent = x.innerHTML.toLowerCase();
+                    var yContent = y.innerHTML.toLowerCase();
+
+                    // Check if the column is the "Total Money" column
+                    if (columnIndex === 4) {
+                        xContent = parseFloat(xContent.replace(/[\$,]/g, '')) || 0;
+                        yContent = parseFloat(yContent.replace(/[\$,]/g, '')) || 0;
+                    }
+
+                    if (dir == "asc") {
+                        if (xContent > yContent) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (xContent < yContent) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+
     </script>
 </body>
 </html>

@@ -38,7 +38,9 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10, int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10, 
+            int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10, 
+            int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10, int warrantyPage = 1, int warrantyPageSize = 10)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
@@ -112,6 +114,13 @@ namespace ProjectDiamondShop.Controllers
                 ViewBag.RegistrationLabels = registrationData.Select(r => r.Date).ToList();
                 ViewBag.RegistrationData = registrationData.Select(r => r.Registrations).ToList();
             }
+
+            // Thêm đoạn này để gán giá trị cho ViewBag.Warranties
+            var warranties = _managerService.GetWarranties();
+            ViewBag.TotalWarranties = warranties.Count();
+            ViewBag.WarrantyPageSize = warrantyPageSize;
+            ViewBag.CurrentWarrantyPage = warrantyPage;
+            ViewBag.Warranties = warranties.Skip((warrantyPage - 1) * warrantyPageSize).Take(warrantyPageSize).ToList();
 
             return View();
         }
@@ -814,5 +823,142 @@ namespace ProjectDiamondShop.Controllers
 
             return View(notifications);
         }
+        public ActionResult Warranties()
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var warranties = _managerService.GetWarranties();
+            return View(warranties);
+        }
+
+        public ActionResult AddWarranty()
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var orders = _managerService.GetOrders();
+            ViewBag.Orders = new SelectList(orders, "orderID", "orderID");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddWarranty(tblWarranty warranty)
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                TempData["ErrorMessage"] = "Unauthorized access.";
+                return RedirectToAction("Index");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _managerService.AddWarranty(warranty);
+                _managerService.SaveChanges();
+                TempData["SuccessMessage"] = "Warranty added successfully!";
+                return RedirectToAction("Warranties");
+            }
+
+            TempData["ErrorMessage"] = "An error occurred. Please try again.";
+            return View(warranty);
+        }
+
+        [HttpPost]
+        public JsonResult ToggleWarrantyStatus(int warrantyID, bool status)
+        {
+            try
+            {
+                _managerService.ToggleWarrantyStatus(warrantyID, status);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+        public ActionResult LoadData(string type, int page = 1, int pageSize = 10, string sortCriteria = null)
+        {
+            // Kiểm tra quyền truy cập
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.userName = Session["UserName"];
+            ViewBag.roleName = Session["RoleName"];
+
+            // Lấy danh sách dữ liệu dựa trên type
+            IEnumerable<object> data = null;
+            switch (type)
+            {
+                case "orders":
+                    data = _managerService.GetOrders();
+                    break;
+                case "diamonds":
+                    data = _managerService.GetDiamonds();
+                    break;
+                case "warranties":
+                    data = _managerService.GetWarranties();
+                    break;
+                // Thêm các loại khác nếu cần
+                default:
+                    return RedirectToAction("Index", "Home");
+            }
+
+            // Sắp xếp theo tiêu chí
+            switch (sortCriteria)
+            {
+                case "alphaAsc":
+                    data = data.OrderBy(d => GetPropertyValue(d, "customerName")).ToList();
+                    break;
+                case "alphaDesc":
+                    data = data.OrderByDescending(d => GetPropertyValue(d, "customerName")).ToList();
+                    break;
+                case "priceAsc":
+                    data = data.OrderBy(d => GetPropertyValue(d, "totalMoney")).ToList();
+                    break;
+                case "priceDesc":
+                    data = data.OrderByDescending(d => GetPropertyValue(d, "totalMoney")).ToList();
+                    break;
+                case "phoneAsc":
+                    data = data.OrderBy(d => GetPropertyValue(d, "phone")).ToList();
+                    break;
+                case "phoneDesc":
+                    data = data.OrderByDescending(d => GetPropertyValue(d, "phone")).ToList();
+                    break;
+                case "dateAsc":
+                    data = data.OrderBy(d => GetPropertyValue(d, "saleDate")).ToList();
+                    break;
+                case "dateDesc":
+                    data = data.OrderByDescending(d => GetPropertyValue(d, "saleDate")).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            // Phân trang
+            var totalItems = data.Count();
+            data = data.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            // Truyền dữ liệu vào ViewBag
+            ViewBag.Data = data;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.PageSize = pageSize;
+            ViewBag.CurrentPage = page;
+            ViewBag.Type = type;
+
+            return PartialView("_LoadData", ViewBag);
+        }
+
+        private object GetPropertyValue(object obj, string propertyName)
+        {
+            return obj.GetType().GetProperty(propertyName)?.GetValue(obj, null);
+        }
+
     }
 }
