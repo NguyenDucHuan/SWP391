@@ -172,6 +172,10 @@ namespace DiamondShopDAOs
                 existingOrder.status = order.status;
                 existingOrder.totalMoney = order.totalMoney;
                 existingOrder.paidAmount = order.paidAmount;
+                if (order.paidAmount == order.totalMoney)
+                {
+                    order.paymentStatus = "Complete";
+                }
                 // Cập nhật các thuộc tính khác của đơn hàng
             }
         }
