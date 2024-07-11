@@ -136,6 +136,26 @@ namespace DiamondShopServices.ManagerServices
         {
             _managerRepository.UpdateOrderDeliveryStaffName(orderId, deliveryStaffId);
         }
+        // Triển khai các phương thức bảo hành
+        public List<tblWarranty> GetWarranties()
+        {
+            return _managerRepository.GetWarranties();
+        }
+
+        public tblWarranty GetWarrantyById(int warrantyID)
+        {
+            return _managerRepository.GetWarrantyById(warrantyID);
+        }
+
+        public void AddWarranty(tblWarranty warranty)
+        {
+            _managerRepository.AddWarranty(warranty);
+        }
+
+        public void ToggleWarrantyStatus(int warrantyID, bool status)
+        {
+            _managerRepository.ToggleWarrantyStatus(warrantyID, status);
+        }
 
     }
 }

@@ -42,9 +42,9 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
     user-select: none;
-    overflow-x: hidden;
     color: var(--color-dark);
     background-color: var(--color-background);
+    overflow-x: hidden;
 }
 
 a {
@@ -89,7 +89,7 @@ b {
 }
 
 .primary {
-    color: var(--color-primary);
+    color: var (--color-primary);
 }
 
 .danger {
@@ -164,7 +164,7 @@ aside .sidebar {
     }
 
         aside .sidebar a span {
-            font-size: 0.9rem; /* Giảm kích thước chữ */
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -210,7 +210,11 @@ aside .sidebar {
     }
 
 main {
-    margin-top: 1.4rem;
+    margin-top: 0.4rem;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
     main .analyse {
@@ -295,7 +299,7 @@ main {
             padding: var(--card-padding);
             border-radius: var(--card-border-radius);
             margin-top: 1rem;
-            box-shadow: var(--box-shadow);
+            box-shadow: var (--box-shadow);
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -702,14 +706,18 @@ main {
 
 .table-container {
     width: 100%;
-    max-height: 78vh;
+    max-height: 70vh;
     overflow-y: auto;
-    margin-top: 39px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
+    flex-grow: 1;
 }
 
     .table thead th {
@@ -734,285 +742,6 @@ main {
         background-color: #f5f5f5;
     }
 
-.btn-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.wide-column {
-    min-width: 150px;
-}
-
-.spinner-border {
-    display: none;
-    width: 3rem;
-    height: 3rem;
-    border-width: .3rem;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1050;
-}
-
-#updateSuccessMessage {
-    display: none;
-    color: green;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-#updateErrorMessage {
-    display: none;
-    color: red;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.signup-container {
-    padding: 20px;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #333;
-    background-color: var(--color-white);
-    border-radius: 10px;
-    margin: auto; /* Center the container */
-    max-height: 90vh;
-}
-
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.form-control {
-    width: calc(100% - 20px);
-    box-sizing: border-box;
-}
-
-.center-text {
-    text-align: center;
-    color: #333;
-}
-
-.field-icon {
-    float: right;
-    margin-right: 10px;
-    margin-top: -25px;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--color-success);
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 56px); /* Adjust according to your header height */
-}
-
-h3.center-text {
-    margin-bottom: auto;
-    font-size: x-large;
-    color: var(--color-dark);
-}
-
-.search-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.search-icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-}
-
-.search-input {
-    width: 100%;
-    padding: 10px 10px 10px 40px;
-    display: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-    .search-input.active {
-        display: block;
-    }
-
-.form-container {
-    padding: 20px;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #333;
-    background-color: var(--color-white);
-    border-radius: 10px;
-    margin: auto; /* Center the container */
-}
-
-    .form-container h3 {
-        text-align: center;
-        color: darkblue;
-        margin-bottom: 20px;
-    }
-
-    .form-container label {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .form-container input[type="text"],
-    .form-container input[type="number"],
-    .form-container input[type="datetime-local"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .form-container button[type="submit"] {
-        background-color: green;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-@media (max-width: 768px) {
-    .form-container {
-        width: 100%;
-    }
-}
-
-.centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 56px); /* Adjust according to your header height */
-}
-
-.add-container {
-    padding: 20px;
-    width: 60%;
-    max-height: 80vh; /* Set the maximum height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #333;
-    background-color: var(--color-white);
-    border-radius: 10px;
-    overflow-y: auto; /* Add scrollbar */
-    margin: auto; /* Center the container */
-}
-
-.btn-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-    .btn-container .btn {
-        width: auto;
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-
-    .btn-container .add-btn {
-        background-color: #1B9C85; /* var(--color-success) */
-        border-color: #1B9C85;
-        color: #fff; /* var(--color-white) */
-    }
-
-    .btn-container .clear-btn {
-        background-color: #FF0060; /* var(--color-danger) */
-        border-color: #FF0060;
-        color: #fff; /* var(--color-white) */
-    }
-
-    .btn-container .add-btn:hover {
-        background-color: #157f6b; /* Darker shade of --color-success */
-        border-color: #157f6b;
-    }
-
-    .btn-container .clear-btn:hover {
-        background-color: #cc0050; /* Darker shade of --color-danger */
-        border-color: #cc0050;
-    }
-
-#addDiamondForm {
-    max-height: 75vh;
-}
-
-.show-password-toggle {
-    position: absolute;
-    top: 70%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #888;
-}
-
-    .show-password-toggle:hover {
-        color: #333;
-    }
-
-.position-relative {
-    position: relative;
-}
-
-.form-control {
-    padding-right: 30px;
-}
-
-.alert-message {
-    position: fixed;
-    top: 20px;
-    text-align: center;
-    z-index: 1050;
-    min-width: 200px;
-    max-width: 400px;
-    color: var(--color-dark);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5);
-}
-
 .pagination {
     display: flex;
     justify-content: center;
@@ -1023,7 +752,7 @@ h3.center-text {
 
     .pagination .page-item {
         margin: 0 5px;
-        list-style: none; /* Loại bỏ dấu chấm đen */
+        list-style: none;
     }
 
         .pagination .page-item .btn-link {
@@ -1053,20 +782,16 @@ h3.center-text {
         border-color: #007bff;
     }
 
-#paginationForm {
-    display: flex;
-}
-
-dark-mode .pagination .page-item .btn-link {
+.dark-mode .pagination .page-item .btn-link {
     color: #b3b3b3;
     border-color: #555;
 }
 
-.dark-mode .pagination .page-item .btn-link:hover {
-    background-color: #555;
-    color: #fff;
-    border-color: #007bff;
-}
+    .dark-mode .pagination .page-item .btn-link:hover {
+        background-color: #555;
+        color: #fff;
+        border-color: #007bff;
+    }
 
 .dark-mode .pagination .page-item.active .btn-link {
     background-color: #007bff;
@@ -1086,7 +811,7 @@ dark-mode .pagination .page-item .btn-link {
 
     .dark-mode .pagination .page-item {
         margin: 0 5px;
-        list-style: none; /* Loại bỏ dấu chấm đen trong chế độ dark mode */
+        list-style: none;
     }
 
         .dark-mode .pagination .page-item .btn-link {
@@ -1109,11 +834,6 @@ dark-mode .pagination .page-item .btn-link {
             color: white;
             border-color: #007bff;
         }
-.table-container {
-    overflow-x: auto;
-    max-width: 100%;
-    margin-bottom: 20px;
-}
 
 .table-excel {
     width: 100%;
@@ -1142,8 +862,199 @@ dark-mode .pagination .page-item .btn-link {
     .table-excel tr:hover {
         background-color: #f1f1f1;
     }
+
 .action-buttons {
     display: flex;
     gap: 10px;
-    justify-content: center; /* Add this */
+    justify-content: center;
 }
+
+.search-container {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%; /* Đẩy biểu tượng xuống */
+    left: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.search-input {
+    width: 40%;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/* Firefox Scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+    html::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    html::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 6px;
+    }
+
+        html::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-success:focus, .btn-success:active {
+        background-color: #1e7e34;
+        border-color: #1c7430;
+    }
+
+.btn-enable {
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-enable:hover {
+        background-color: #218838;
+    }
+
+.btn-disable {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-disable:hover {
+        background-color: #c82333;
+    }
+.center-text {
+    text-align: center;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+}
+
+    .signup-container .form-group {
+        margin-bottom: 15px;
+    }
+
+    .signup-container label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .signup-container .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius-1);
+        box-sizing: border-box;
+    }
+
+    .signup-container .btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: var(--border-radius-1);
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .signup-container .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .signup-container .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 67%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+.position-relative {
+    position: relative;
+}
+.sort-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+}
+
+    .sort-button.asc::after {
+        content: '▲';
+    }
+
+    .sort-button.desc::after {
+        content: '▼';
+    }
+
+    .sort-button.active {
+        font-weight: bold;
+    }

@@ -37,5 +37,9 @@ namespace DiamondShopRepositories.ManagerRepositories
         void UpdateVoucher(tblVoucher voucher);
         List<tblVoucher> GetAllVouchers();
         void UpdateOrderDeliveryStaffName(string orderId, string deliveryStaffId);
+        List<tblWarranty> GetWarranties();
+        tblWarranty GetWarrantyById(int warrantyID);
+        void AddWarranty(tblWarranty warranty);
+        void ToggleWarrantyStatus(int warrantyID, bool status);
     }
 }

@@ -137,5 +137,25 @@ namespace DiamondShopRepositories.ManagerRepositories
             _managerDAO.UpdateOrderDeliveryStaffName(orderId, deliveryStaffId);
         }
 
+        // Triển khai các phương thức bảo hành
+        public List<tblWarranty> GetWarranties()
+        {
+            return _managerDAO.GetWarranties();
+        }
+
+        public tblWarranty GetWarrantyById(int warrantyID)
+        {
+            return _managerDAO.GetWarrantyById(warrantyID);
+        }
+
+        public void AddWarranty(tblWarranty warranty)
+        {
+            _managerDAO.AddWarranty(warranty);
+        }
+
+        public void ToggleWarrantyStatus(int warrantyID, bool status)
+        {
+            _managerDAO.ToggleWarrantyStatus(warrantyID, status);
+        }
     }
 }

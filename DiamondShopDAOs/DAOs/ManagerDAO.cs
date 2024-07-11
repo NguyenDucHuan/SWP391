@@ -231,5 +231,40 @@ namespace DiamondShopDAOs
             }
         }
 
+        // Lấy danh sách bảo hành
+        public List<tblWarranty> GetWarranties()
+        {
+            return _context.tblWarranties.ToList();
+        }
+
+        // Lấy bảo hành theo ID
+        public tblWarranty GetWarrantyById(int warrantyID)
+        {
+            return _context.tblWarranties.FirstOrDefault(w => w.warrantyID == warrantyID);
+        }
+
+        // Thêm mới bảo hành
+        public void AddWarranty(tblWarranty warranty)
+        {
+            _context.tblWarranties.Add(warranty);
+            _context.SaveChanges();
+        }
+
+        // Thay đổi trạng thái bảo hành
+        public void ToggleWarrantyStatus(int warrantyID, bool status)
+        {
+            var warranty = _context.tblWarranties.FirstOrDefault(w => w.warrantyID == warrantyID);
+            if (warranty != null)
+            {
+                warranty.status = status ? "Active" : "Expired";
+                _context.SaveChanges();
+            }
+        }
+
+        // Lưu thay đổi (nếu có)
+        public void SaveWarrantyChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }
