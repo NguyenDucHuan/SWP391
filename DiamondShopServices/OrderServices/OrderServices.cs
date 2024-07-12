@@ -75,5 +75,10 @@ namespace DiamondShopServices.OrderServices
         {
             return orderRepository.GetOrderItemByDiamondID(diamondID);
         }
+        public List<tblWarranty> GetWarrantiesByOrderID(string orderId)
+        {
+            return orderRepository.GetWarrantiesByOrderID(orderId);
+        }
+
     }
 }

@@ -40,6 +40,7 @@
                             <th>Total Money</th>
                             <th>Ship To</th>
                             <th>Status</th>
+                            <th>Warranty Code</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -55,6 +56,13 @@
                                 <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                 <td>@order.address</td>
                                 <td>@order.status</td>
+                                <td>
+                                    @{
+                                        var warrantyCodes = ViewBag.Warranties[order.orderID];
+                                        var warrantyCodesStr = string.Join(" || ", warrantyCodes);
+                                    }
+                                    @warrantyCodesStr
+                                </td>
                                 <td>
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
                                 </td>
@@ -89,6 +97,7 @@
                             <th>Remaining Money</th>
                             <th>Total Money</th>
                             <th>Status</th>
+                            <th>Warranty Code</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -103,6 +112,13 @@
                                 <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                 <td>@order.status</td>
+                                <td>
+                                    @{
+                                        var warrantyCodes = ViewBag.Warranties[order.orderID];
+                                        var warrantyCodesStr = string.Join(" || ", warrantyCodes);
+                                    }
+                                    @warrantyCodesStr
+                                </td>
                                 <td>
                                     <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">View Order</a>
                                 </td>

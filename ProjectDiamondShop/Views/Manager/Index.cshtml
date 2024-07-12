@@ -123,6 +123,7 @@
                                     <button class="sort-button" data-table="ordersTable" data-column="8" data-direction="asc" onclick="sortTable('ordersTable', 8, 'asc')">▲</button>
                                     <button class="sort-button" data-table="ordersTable" data-column="8" data-direction="desc" onclick="sortTable('ordersTable', 8, 'desc')">▼</button>
                                 </th>
+                                <th>Warranty Code</th>
                                 <th>Note</th>
                             </tr>
                         </thead>
@@ -166,6 +167,20 @@
                                     <td>@order.address</td>
                                     <td>@order.phone</td>
                                     <td>@order.saleDate</td>
+                                    <td>
+                                        @{
+                                            var warrantyCodes = new List<string>();
+                                            foreach (var warranty in ViewBag.Warranties)
+                                            {
+                                                if (warranty.orderID == order.orderID)
+                                                {
+                                                    warrantyCodes.Add(warranty.warrantyCode);
+                                                }
+                                            }
+                                            var warrantyCodesStr = string.Join(" || ", warrantyCodes);
+                                        }
+                                        @warrantyCodesStr
+                                    </td>
                                     <td>@order.Note</td>
                                 </tr>
                             }

@@ -19,6 +19,7 @@ namespace DiamondShopRepositories.OrderRepositories
         void UpdateOrder(tblOrder order);
         tblOrder GetOrderByID(string orderID);
         tblOrderItem GetOrderItemByDiamondID(int diamondID);
+        List<tblWarranty> GetWarrantiesByOrderID(string orderId);
     }
 
 }

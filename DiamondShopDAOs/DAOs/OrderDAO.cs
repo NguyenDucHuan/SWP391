@@ -192,5 +192,10 @@ namespace DiamondShopDAOs
         {
             return _context.tblOrderItems.SingleOrDefault(oi => oi.ItemID == diamondID);
         }
+        public List<tblWarranty> GetWarrantiesByOrderID(string orderId)
+        {
+            return _context.tblWarranties.Where(w => w.orderID == orderId).ToList();
+        }
+
     }
 }
