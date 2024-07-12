@@ -190,7 +190,7 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer</th>
+                            <th>Receiver</th>
                             <th>Delivery Staff</th>
                             <th>Paid Money</th>
                             @{
@@ -205,6 +205,7 @@
                             
                             <th>Total Money</th>
                             <th>Ship To</th>
+                            <th>Phone Number</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -227,6 +228,7 @@
                             </td>
                             <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                             <td>@order.address</td>
+                            <td>@order.phone</td>
                         </tr>
                     </tbody>
                 </table>
