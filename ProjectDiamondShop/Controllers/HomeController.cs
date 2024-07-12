@@ -145,6 +145,15 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.CurrentPage = page;
             ViewBag.PageSize = pageSize;
 
+            var warranties = new Dictionary<string, List<string>>();
+            foreach (var order in currentOrders.Concat(historyOrders))
+            {
+                var orderWarranties = orderServices.GetWarrantiesByOrderID(order.orderID)
+                    .Select(w => w.warrantyCode).ToList();
+                warranties[order.orderID] = orderWarranties;
+            }
+            ViewBag.Warranties = warranties;
+
             OrderViewModel orderViewModel = new OrderViewModel(currentOrders, historyOrders);
 
             // Giả sử bạn lấy tên nhân viên giao hàng từ cơ sở dữ liệu hoặc từ danh sách đơn hàng
