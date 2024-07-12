@@ -77,6 +77,15 @@ namespace ProjectDiamondShop.Controllers
             int totalOrders = orders.Count;
             orders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
+            var warranties = new Dictionary<string, List<string>>();
+            foreach (var order in orders)
+            {
+                var orderWarranties = _orderServices.GetWarrantiesByOrderID(order.orderID)
+                    .Select(w => w.warrantyCode).ToList();
+                warranties[order.orderID] = orderWarranties;
+            }
+            ViewBag.Warranties = warranties;
+
             ViewBag.Orders = orders;
             ViewBag.SearchOrderId = searchOrderId;
             ViewBag.Page = page;
