@@ -16,6 +16,7 @@ using DiamondShopServices.WarrantyServices;
 using DiamondShopServices.OrderServices;
 using DiamondShopServices;
 using System.Data.Entity.Infrastructure;
+using DiamondShopDAOs.CookieCartDAO;
 
 namespace ProjectDiamondShop.Controllers
 {
@@ -38,7 +39,7 @@ namespace ProjectDiamondShop.Controllers
             _userService = new UserService();
         }
 
-        public ActionResult Index(int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10,
+        public ActionResult Index(string searchQuery = "", int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10,
             int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10,
             int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10, int warrantyPage = 1, int warrantyPageSize = 10)
         {
@@ -50,55 +51,73 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.roleName = Session["RoleName"];
 
             var orders = _managerService.GetOrders();
+            var vouchers = _managerService.GetVouchers();
+            var accentStones = _managerService.GetAccentStones();
+            var settings = _managerService.GetSettings();
+            var saleStaff = _managerService.GetUsersByRole(5);
+            var deliveryStaff = _managerService.GetUsersByRole(4);
+            var users = _managerService.GetUsers();
+            var diamonds = _managerService.GetDiamonds();
+            var userId = Session["UserID"].ToString();
+            var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
+            var warranties = _managerService.GetWarranties().Where(w => w.status == "No Process").ToList();
+
+            // Tìm kiếm
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                orders = orders.Where(o => o.customerName.Contains(searchQuery)).ToList(); // Thay customerName bằng tên thuộc tính bạn muốn tìm kiếm
+                vouchers = vouchers.Where(v => v.targetUserID.Contains(searchQuery)).ToList(); // Thay targetUserID bằng tên thuộc tính bạn muốn tìm kiếm
+                accentStones = accentStones.Where(a => a.accentStonesName.Contains(searchQuery)).ToList();
+                settings = settings.Where(s => s.settingType.Contains(searchQuery)).ToList(); // Thay settingType bằng tên thuộc tính bạn muốn tìm kiếm
+                saleStaff = saleStaff.Where(s => s.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
+                deliveryStaff = deliveryStaff.Where(d => d.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
+                users = users.Where(u => u.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
+                diamonds = diamonds.Where(d => d.diamondName.Contains(searchQuery)).ToList();
+                notifications = notifications.Where(n => n.detail.Contains(searchQuery)).ToList(); // Thay detail bằng tên thuộc tính bạn muốn tìm kiếm
+                warranties = warranties.Where(w => w.warrantyDetails.Contains(searchQuery)).ToList(); // Thay warrantyDetails bằng tên thuộc tính bạn muốn tìm kiếm
+            }
+
+            // Phân trang
             ViewBag.TotalOrders = orders.Count();
             ViewBag.OrderPageSize = orderPageSize;
             ViewBag.CurrentOrderPage = page;
             ViewBag.Orders = orders.Skip((page - 1) * orderPageSize).Take(orderPageSize).ToList();
 
-            var vouchers = _managerService.GetVouchers();
             ViewBag.TotalVouchers = vouchers.Count();
             ViewBag.VoucherPageSize = voucherPageSize;
             ViewBag.CurrentVoucherPage = page;
             ViewBag.Vouchers = vouchers.Skip((page - 1) * voucherPageSize).Take(voucherPageSize).ToList();
 
-            var accentStones = _managerService.GetAccentStones();
             ViewBag.TotalAccentStones = accentStones.Count();
             ViewBag.AccentStonePageSize = accentStonePageSize;
             ViewBag.CurrentAccentStonePage = accentStonePage;
             ViewBag.AccentStones = accentStones.Skip((accentStonePage - 1) * accentStonePageSize).Take(accentStonePageSize).ToList();
 
-            var settings = _managerService.GetSettings();
             ViewBag.TotalSettings = settings.Count();
             ViewBag.SettingPageSize = settingPageSize;
             ViewBag.CurrentSettingPage = page;
             ViewBag.Settings = settings.Skip((page - 1) * settingPageSize).Take(settingPageSize).ToList();
 
-            var saleStaff = _managerService.GetUsersByRole(5);
             ViewBag.TotalSaleStaff = saleStaff.Count();
             ViewBag.SaleStaffPageSize = saleStaffPageSize;
             ViewBag.CurrentSaleStaffPage = page;
             ViewBag.SaleStaff = saleStaff.Skip((page - 1) * saleStaffPageSize).Take(saleStaffPageSize).ToList();
 
-            var deliveryStaff = _managerService.GetUsersByRole(4);
             ViewBag.TotalDeliveryStaff = deliveryStaff.Count();
             ViewBag.DeliveryStaffPageSize = deliveryStaffPageSize;
             ViewBag.CurrentDeliveryStaffPage = page;
             ViewBag.DeliveryStaff = deliveryStaff.Skip((page - 1) * deliveryStaffPageSize).Take(deliveryStaffPageSize).ToList();
 
-            var users = _managerService.GetUsers();
             ViewBag.TotalUsers = users.Count();
             ViewBag.UserPageSize = userPageSize;
             ViewBag.CurrentUserPage = page;
             ViewBag.Users = users.Skip((page - 1) * userPageSize).Take(userPageSize).ToList();
 
-            var diamonds = _managerService.GetDiamonds();
             ViewBag.TotalDiamonds = diamonds.Count();
             ViewBag.PageSize = pageSize;
             ViewBag.CurrentPage = page;
             ViewBag.Diamonds = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            var userId = Session["UserID"].ToString();
-            var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
             ViewBag.TotalNotifications = notifications.Count();
             ViewBag.NotificationPageSize = notificationPageSize;
             ViewBag.CurrentNotificationPage = page;
@@ -115,12 +134,13 @@ namespace ProjectDiamondShop.Controllers
                 ViewBag.RegistrationData = registrationData.Select(r => r.Registrations).ToList();
             }
 
-            // Thêm đoạn này để gán giá trị cho ViewBag.Warranties
-            var warranties = _managerService.GetWarranties();
             ViewBag.TotalWarranties = warranties.Count();
             ViewBag.WarrantyPageSize = warrantyPageSize;
             ViewBag.CurrentWarrantyPage = warrantyPage;
             ViewBag.Warranties = warranties.Skip((warrantyPage - 1) * warrantyPageSize).Take(warrantyPageSize).ToList();
+
+            // Trả về toàn bộ danh sách kim cương
+            ViewBag.AllDiamonds = diamonds;
 
             return View();
         }
@@ -128,32 +148,54 @@ namespace ProjectDiamondShop.Controllers
         [HttpPost]
         public ActionResult UpdateOrders(List<OrderUpdateModel> orderUpdates)
         {
-            try
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 3 && (int)Session["RoleID"] != 2))
             {
-                foreach (var update in orderUpdates)
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            foreach (var update in orderUpdates)
+            {
+                var order = _managerService.GetOrderById(update.OrderID);
+                if (order != null)
                 {
-                    var existingOrder = _managerService.GetOrderById(update.OrderID);
-                    if (existingOrder != null)
+                    order.saleStaffID = update.SaleStaffID;
+                    order.deliveryStaffID = update.DeliveryStaffID;
+
+                    if (!string.IsNullOrEmpty(update.Status))
                     {
-                        if (existingOrder.deliveryStaffID != update.DeliveryStaffID)
+                        string currentStatus = order.status;
+
+                        // Check for valid status transition for both Admin and Manager
+                        if (currentStatus != update.Status && !IsValidStatusTransition(currentStatus, update.Status))
                         {
-                            _managerService.UpdateOrderDeliveryStaffName(update.OrderID, update.DeliveryStaffID);
+                            return Json(new { success = false, message = $"Update Error: Invalid status transition from {currentStatus} to {update.Status}. Please update again." });
                         }
 
-                        existingOrder.deliveryStaffID = update.DeliveryStaffID;
-                        existingOrder.saleStaffID = update.SaleStaffID;
-                        existingOrder.status = update.Status;
+                        order.status = update.Status;
+
+                        _managerService.AddOrderStatusUpdate(new tblOrderStatusUpdate
+                        {
+                            orderID = order.orderID,
+                            status = update.Status,
+                            updateTime = DateTime.Now
+                        });
+                        // Notification
+                        _notificationService.AddNotification(new tblNotification
+                        {
+                            userID = order.customerID,
+                            date = DateTime.Now,
+                            detail = $"Your order status has been updated to {update.Status}.",
+                            status = true
+                        });
                     }
                 }
+            }
 
-                _managerService.SaveChanges();
-                return Json(new { success = true, message = "Orders updated successfully." });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = "An error occurred while updating orders: " + ex.Message });
-            }
+            _managerService.SaveChanges();
+
+            return Json(new { success = true, message = "Update Successful" });
         }
+
 
 
         private bool IsValidStatusTransition(string currentStatus, string newStatus)
@@ -967,5 +1009,9 @@ namespace ProjectDiamondShop.Controllers
             return obj.GetType().GetProperty(propertyName)?.GetValue(obj, null);
         }
 
+        private string GetUserID()
+        {
+            return Session["UserID"]?.ToString();
+        }
     }
 }
