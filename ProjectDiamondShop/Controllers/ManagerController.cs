@@ -60,7 +60,7 @@ namespace ProjectDiamondShop.Controllers
             var diamonds = _managerService.GetDiamonds();
             var userId = Session["UserID"].ToString();
             var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
-            var warranties = _managerService.GetWarranties().Where(w => w.status == "No Process").ToList();
+            var warranties = _managerService.GetWarranties().Where(w => w.status != "Valid").ToList();
 
             // Tìm kiếm
             if (!string.IsNullOrEmpty(searchQuery))
@@ -206,8 +206,7 @@ namespace ProjectDiamondShop.Controllers
         "Preparing Goods",
         "Shipped to Carrier",
         "In Delivery",
-        "Delivered",
-        "Paid"
+        "Delivered"
     };
 
             var currentIndex = statusOrder.IndexOf(currentStatus);

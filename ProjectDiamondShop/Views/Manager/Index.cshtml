@@ -803,7 +803,6 @@
                                 </th>
                                 <th>Details</th>
                                 <th>Code</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -819,22 +818,14 @@
                                     <td>@warranty.warrantyDetails</td>
                                     <td>@warranty.warrantyCode</td>
                                     <td>
-                                        @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
+                                        @if (warranty.status != "Processed")
                                         {
-                                            <button class="btn btn-status @(warranty.status == "Active" ? "btn-success" : "btn-danger")" onclick="toggleWarrantyStatus('@warranty.warrantyID', @warranty.status == " Active")">
-                                                @(warranty.status == "Active" ? "Active" : "Expired")
-                                            </button>
+                                            <button class="btn btn-success btn-sm" id="process-button-@warranty.warrantyID" onclick="processWarranty('@warranty.warrantyID')">Process</button>
                                         }
                                         else
                                         {
-                                            @warranty.status
+                                            <button class="btn btn-secondary btn-sm" id="process-button-@warranty.warrantyID" disabled>Processed</button>
                                         }
-                                    </td>
-                                    <td>
-                                        <form action="@Url.Action("ProcessWarranty", "Warranty")" method="post" style="display:inline;">
-                                            <input type="hidden" name="warrantyID" value="@warranty.warrantyID" />
-                                            <button type="submit" class="btn btn-success btn-sm">Process</button>
-                                        </form>
                                     </td>
                                 </tr>
                             }
@@ -1598,6 +1589,29 @@
                 }
             }
         }
+      function processWarranty(warrantyID) {
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("ProcessWarranty", "Warranty")',
+        data: { warrantyID: warrantyID },
+        success: function(response) {
+            if (response.success) {
+                // Update the status text and disable the button
+                var button = $('#process-button-' + warrantyID);
+                button.text('Processed').removeClass('btn-success').addClass('btn-secondary').prop('disabled', true);
+                $('#status-' + warrantyID).text('Processed');
+                alert('Warranty has been processed successfully.');
+            } else {
+                alert('Failed to process the warranty. Please try again.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            alert('An error occurred while processing the warranty.');
+        }
+    });
+}
+
 
     </script>
 </body>

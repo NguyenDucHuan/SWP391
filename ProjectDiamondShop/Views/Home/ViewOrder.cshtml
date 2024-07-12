@@ -33,12 +33,13 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer</th>
+                            <th>Receiver</th>
                             <th>Delivery Staff</th>
                             <th>Paid Money</th>
                             <th>Remaining Money</th>
                             <th>Total Money</th>
                             <th>Ship To</th>
+                            <th>Phone Number</th>
                             <th>Status</th>
                             <th>Warranty Code</th>
                             <th>Actions</th>
@@ -55,6 +56,7 @@
                                 <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                 <td>@order.address</td>
+                                <td>@order.phone</td>
                                 <td>@order.status</td>
                                 <td>
                                     @{
@@ -91,11 +93,13 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer</th>
+                            <th>Receiver</th>
                             <th>Delivery Staff</th>
                             <th>Paid Money</th>
                             <th>Remaining Money</th>
                             <th>Total Money</th>
+                            <th>Ship To</th>
+                            <th>Phone Number</th>
                             <th>Status</th>
                             <th>Warranty Code</th>
                             <th>Actions</th>
@@ -111,6 +115,8 @@
                                 <td>$@String.Format("{0:N0}", order.paidAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.remainingAmount)</td>
                                 <td>$@String.Format("{0:N0}", order.totalMoney)</td>
+                                <td>@order.address</td>
+                                <td>@order.phone</td>
                                 <td>@order.status</td>
                                 <td>
                                     @{
