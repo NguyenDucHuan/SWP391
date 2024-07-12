@@ -201,6 +201,16 @@
                 margin-left: 20px;
                 margin-right: 20px;
             }
+
+        .date-info {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .time-difference {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -234,7 +244,7 @@
                 <div>Shape ID: @Model.shapeID</div>
             </div>
             <div class="rebuy-container">
-                <form action="@Url.Action("CalculateRebuyPrice", "SaleStaff")" method="post" class="rebuy-form">
+                <form action="@Url.Action("SubmitRebuyRequest", "SaleStaff")" method="post" class="rebuy-form">
                     <input type="hidden" name="diamondID" value="@Model.diamondID" />
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="stillHaveCertification" name="stillHaveCertification" value="true" />
@@ -250,6 +260,8 @@
                     </div>
                 </form>
             </div>
+            <div class="date-info" id="dateInfo"></div>
+            <div class="time-difference" id="timeDifferenceInfo"></div>
         }
         else if (ViewBag.Message != null)
         {
@@ -290,6 +302,8 @@
                 stillHaveCertification: stillHaveCertification
             }, function(data) {
                 $('#rebuyPrice').val(data.rebuyPrice);
+                $('#dateInfo').text('Sale Date: ' + data.saleDate);
+                $('#timeDifferenceInfo').text('Time Difference: ' + data.timeDifference + ' days');
             });
         }
     </script>

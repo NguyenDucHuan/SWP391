@@ -94,7 +94,7 @@
                 <h3>Orders</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchOrders" data-table="ordersTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders by OrderID..">
+                    <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders..">
                 </div>
                 <div class="table-container">
                     <table id="ordersTable" class="table-excel">
@@ -124,6 +124,7 @@
                                     <button class="sort-button" data-table="ordersTable" data-column="8" data-direction="desc" onclick="sortTable('ordersTable', 8, 'desc')">▼</button>
                                 </th>
                                 <th>Warranty Code</th>
+                                <th>Order details</th>
                                 <th>Note</th>
                             </tr>
                         </thead>
@@ -181,6 +182,9 @@
                                         }
                                         @warrantyCodesStr
                                     </td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })" class="btn btn-info">Order details</a>
+                                    </td>
                                     <td>@order.Note</td>
                                 </tr>
                             }
@@ -208,7 +212,7 @@
                 <h3>Diamonds</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchDiamonds" data-table="diamondsTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchDiamonds" class="form-control mb-3 search-input" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds by DiamondID..">
+                    <input type="text" id="searchDiamonds" class="form-control mb-3 search-input" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds..">
                 </div>
 
                 <div class="table-container" id="diamondsContent">
@@ -358,7 +362,7 @@
                 <h3>Accent Stones</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchAccentStones" data-table="accentStonesTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones by StoneID..">
+                    <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones..">
                 </div>
                 <div class="table-container">
                     <table id="accentStonesTable" class="table-excel">
@@ -449,7 +453,7 @@
                 <h3>Settings</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchSettings" data-table="settingsTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings by SettingID..">
+                    <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings..">
                 </div>
                 <div class="table-container">
                     <table id="settingsTable" class="table-excel">
@@ -520,7 +524,7 @@
                 <h3>Sale Staff</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchSaleStaff" data-table="saleStaffTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchSaleStaff" class="form-control mb-3 search-input" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff by UserID..">
+                    <input type="text" id="searchSaleStaff" class="form-control mb-3 search-input" onkeyup="searchTable('saleStaffTable', 'searchSaleStaff', 0)" placeholder="Search for sale staff..">
                 </div>
                 <div class="table-container">
                     <table id="saleStaffTable" class="table-excel">
@@ -584,7 +588,7 @@
                 <h3>Delivery Staff</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchDeliveryStaff" data-table="deliveryStaffTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchDeliveryStaff" class="form-control mb-3 search-input" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff by UserID..">
+                    <input type="text" id="searchDeliveryStaff" class="form-control mb-3 search-input" onkeyup="searchTable('deliveryStaffTable', 'searchDeliveryStaff', 0)" placeholder="Search for delivery staff..">
                 </div>
                 <div class="table-container">
                     <table id="deliveryStaffTable" class="table-excel">
@@ -650,7 +654,7 @@
                     <h3>Users</h3>
                     <div class="search-container">
                         <i class="fa fa-search search-icon" data-input="searchUsers" data-table="usersTable" data-column="0" onclick="toggleSearch(this)"></i>
-                        <input type="text" id="searchUsers" class="form-control mb-3 search-input" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users by UserID..">
+                        <input type="text" id="searchUsers" class="form-control mb-3 search-input" onkeyup="searchTable('usersTable', 'searchUsers', 0)" placeholder="Search for users..">
                     </div>
                     <div class="table-container">
                         <table id="usersTable" class="table-excel">
@@ -774,11 +778,11 @@
                 </div>
             </div>
 
-            <div id="warranty" class="section" style="display: none;">
+            <div id="warranty" class="section">
                 <h3>Warranty</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchWarranty" data-table="warrantyTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchWarranty" class="form-control mb-3 search-input" onkeyup="searchTable('warrantyTable', 'searchWarranty', 0)" placeholder="Search for warranty by WarrantyID..">
+                    <input type="text" id="searchWarranty" class="form-control mb-3 search-input" onkeyup="searchTable('warrantyTable', 'searchWarranty', 0)" placeholder="Search for warranty..">
                 </div>
                 <div class="table-container">
                     <table id="warrantyTable" class="table-excel">
@@ -800,6 +804,7 @@
                                 <th>Details</th>
                                 <th>Code</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -825,6 +830,12 @@
                                             @warranty.status
                                         }
                                     </td>
+                                    <td>
+                                        <form action="@Url.Action("ProcessWarranty", "Warranty")" method="post" style="display:inline;">
+                                            <input type="hidden" name="warrantyID" value="@warranty.warrantyID" />
+                                            <button type="submit" class="btn btn-success btn-sm">Process</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -845,6 +856,7 @@
                     </ul>
                 </div>
             </div>
+
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
                     <h3 class="center-text">Create System Account</h3>
@@ -960,20 +972,31 @@
             document.getElementById(sectionId).style.display = 'block';
         }
 
-        function searchTable(tableId, inputId, columnIndex) {
+        function searchTable(tableId, inputId) {
             var input = document.getElementById(inputId);
             var filter = input.value.trim().toUpperCase();
             var table = document.getElementById(tableId);
             var tr = table.getElementsByTagName("tr");
+
             for (var i = 1; i < tr.length; i++) {
-                var td = tr[i].getElementsByTagName("td")[columnIndex];
-                if (td) {
-                    var txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
+                var tds = tr[i].getElementsByTagName("td");
+                var match = false;
+
+                for (var j = 0; j < tds.length; j++) {
+                    var td = tds[j];
+                    if (td) {
+                        var txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
                     }
+                }
+
+                if (match) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
             }
         }
@@ -1485,10 +1508,20 @@
             $('.alert').fadeOut('slow');
         }, 3000);
 
-        function sortTable(tableId, columnIndex, direction, isCurrency = false) {
+        function sortTable(tableId, columnIndex, direction, isCurrency = false, isStatus = false) {
             var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
             table = document.getElementById(tableId);
             var tbody = table.querySelector('tbody');
+
+            // Status order mapping
+            var statusOrder = {
+                "order placed": 1,
+                "preparing goods": 2,
+                "shipped to carrier": 3,
+                "in delivery": 4,
+                "delivered": 5,
+                "paid": 6
+            };
 
             // Check if the table is already sorted in the same direction
             var isSorted = tbody.getAttribute('data-sorted-column') == columnIndex && tbody.getAttribute('data-sorted-direction') == direction;
@@ -1526,13 +1559,19 @@
                     x = rows[i].getElementsByTagName("TD")[columnIndex];
                     y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
 
-                    var xContent = x.innerHTML.toLowerCase();
-                    var yContent = y.innerHTML.toLowerCase();
+                    var xContent = x.innerHTML.toLowerCase().trim();
+                    var yContent = y.innerHTML.toLowerCase().trim();
 
                     // Check if the column contains currency
                     if (isCurrency) {
                         xContent = parseFloat(xContent.replace(/[\$,]/g, '')) || 0;
                         yContent = parseFloat(yContent.replace(/[\$,]/g, '')) || 0;
+                    }
+
+                    // Check if the column is a status
+                    if (isStatus) {
+                        xContent = statusOrder[xContent] || 0;
+                        yContent = statusOrder[yContent] || 0;
                     }
 
                     if (dir == "asc") {
@@ -1559,6 +1598,7 @@
                 }
             }
         }
+
     </script>
 </body>
 </html>

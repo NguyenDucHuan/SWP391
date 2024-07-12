@@ -211,7 +211,13 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-            return Json(new { success = true, rebuyPrice = rebuyPrice });
+            return Json(new
+            {
+                success = true,
+                rebuyPrice = rebuyPrice,
+                saleDate = order.saleDate.ToString("yyyy-MM-dd"),
+                timeDifference = timeDifference.TotalDays.ToString("0") // Converting to days and formatting as a whole number
+            });
         }
 
         [HttpPost]
