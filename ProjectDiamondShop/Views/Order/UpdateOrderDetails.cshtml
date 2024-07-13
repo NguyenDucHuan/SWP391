@@ -138,7 +138,7 @@
                     </div>
                 }
             </div>
-            @if (roleId == 4 || roleId == 5)
+            @if (roleId == 2 || roleId == 3 || roleId == 4 || roleId == 5)
             {
                 <form action="@Url.Action("UpdateStatus", "Order")" method="post">
                     @Html.AntiForgeryToken()
@@ -153,10 +153,19 @@
                                 <option value="Shipped to Carrier">Shipped to Carrier</option>
                                 <option value="Paid">Paid</option>
                             }
-                            else if (roleId == 4)
+                            @if (roleId == 4)
                             {
                                 <option value="In Delivery">In Delivery</option>
                                 <option value="Delivered">Delivered</option>
+                            }
+                            @if (roleId == 2 || roleId == 3)
+                            {
+                                <option value="Order Placed">Order Placed</option>
+                                <option value="Preparing Goods">Preparing Goods</option>
+                                <option value="Shipped to Carrier">Shipped to Carrier</option>
+                                <option value="In Delivery">In Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Paid">Paid</option>
                             }
                         </select>
                     </div>
@@ -182,6 +191,12 @@
                         <button type="submit" class="btn btn-success">Back to Sale Staff</button>
                     </form>
                 }
+                else if (roleId == 2 || roleId == 3)
+                {
+                    <form action="@Url.Action("Index", "Manager")" method="get">
+                        <button type="submit" class="btn btn-success">Back to Manager</button>
+                    </form>
+                }
             </div>
         </div>
 
@@ -197,8 +212,6 @@
                             @{
                                 if (order.remainingAmount != 0)
                                 {
-
-
                                     <th>Remaining Money</th>
                                 }
                                 else
@@ -241,15 +254,12 @@
                     {
                         if (order.remainingAmount != 0)
                         {
-
                             <button type="button" class="btn btn-success" onclick="showPolicyModal()">Complete the remaining amount of the order</button>
-
                         }
                         else
                         {
                             <h3 style="color: #F9F995;">You have complete payment!!</h3>
                         }
-
                     }
                 </div>
             </div>
@@ -317,9 +327,6 @@
             </ul>
         </div>
     </div>
-
-
-
 
     <div class="modal fade" id="loginSuccessModal" tabindex="-1" role="dialog" aria-labelledby="loginSuccessModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -395,10 +402,6 @@
             </p>
         </div>
     </footer>
-
-    
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>

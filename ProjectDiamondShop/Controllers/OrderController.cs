@@ -52,8 +52,10 @@ namespace ProjectDiamondShop.Controllers
         }
         private bool IsUserAuthorizedToViewOrder(string userID, tblOrder order)
         {
-            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
+            int roleId = (int)Session["RoleID"];
+            return roleId == 2 || roleId == 3 || userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
         }
+
         [HttpPost]
         public ActionResult CreateOrder()
         {
@@ -95,7 +97,6 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-
             var orderItems = orderServices.GetOrderItems(orderId);
             var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
@@ -128,7 +129,7 @@ namespace ProjectDiamondShop.Controllers
             }
 
             int roleId = (int)Session["RoleID"];
-            if (roleId != 4 && roleId != 5)
+            if (roleId != 2 && roleId != 3 && roleId != 4 && roleId != 5)
             {
                 TempData["UpdateMessage"] = "You are not authorized to update the status";
                 return RedirectToAction("UpdateOrderDetails", new { orderId });
@@ -150,12 +151,12 @@ namespace ProjectDiamondShop.Controllers
 
             // Define valid status transitions
             var validTransitions = new Dictionary<string, List<string>>
-            {
-                { "Order Placed", new List<string> { "Preparing Goods","Paid" } },
-                { "Preparing Goods", new List<string> { "Shipped to Carrier" } },
-                { "Shipped to Carrier", new List<string> { "In Delivery" } },
-                { "In Delivery", new List<string> { "Delivered" } }
-            };
+    {
+        { "Order Placed", new List<string> { "Preparing Goods", "Paid" } },
+        { "Preparing Goods", new List<string> { "Shipped to Carrier" } },
+        { "Shipped to Carrier", new List<string> { "In Delivery" } },
+        { "In Delivery", new List<string> { "Delivered" } }
+    };
 
             if (!validTransitions.ContainsKey(currentStatus) || !validTransitions[currentStatus].Contains(status))
             {
@@ -185,6 +186,10 @@ namespace ProjectDiamondShop.Controllers
                     return RedirectToAction("UpdateOrderDetails", new { orderId });
                 }
             }
+            else if ((roleId == 2 || roleId == 3) && validTransitions.ContainsKey(currentStatus) && validTransitions[currentStatus].Contains(status))
+            {
+                // Allow Manager (roleId 3) and Admin (roleId 2) to update statuses following valid transitions
+            }
             else
             {
                 TempData["UpdateMessage"] = "You are not authorized to update to this status.";
@@ -194,7 +199,7 @@ namespace ProjectDiamondShop.Controllers
             order.status = status;
             orderServices.UpdateOrderStatus(orderId, status);
 
-            //Notification
+            // Notification
             _notificationService.AddNotification(new tblNotification
             {
                 userID = order.customerID,
@@ -206,6 +211,7 @@ namespace ProjectDiamondShop.Controllers
             TempData["UpdateMessage"] = "Order updated successfully.";
             return RedirectToAction("UpdateOrderDetails", new { orderId });
         }
+
 
         public ActionResult FailureView()
         {
