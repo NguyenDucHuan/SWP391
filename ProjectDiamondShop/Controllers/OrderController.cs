@@ -599,5 +599,7 @@ namespace ProjectDiamondShop.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+
     }
 }

@@ -7,21 +7,24 @@
 }
 
 body {
-	margin-top: 100px;
 	color: #fff;
 	background-color: #333;
+	
 }
 
 .container {
+	margin-top: 70px;
+	margin-bottom: 70px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 20px;
 	width: 80%;
 	max-width: 1200px;
+	flex: 1;
 }
 
 .box {
+	
 	border: 1px solid #ddd;
 	margin: 10px;
 	padding: 30px;
@@ -61,15 +64,6 @@ body {
 		color: #ffd700;
 	}
 
-	/*.status-progress .bar {*/
-	/*width: 0%;
-		height: 5px;*/
-	/*background-color: lightgray;
-		position: absolute;
-		top: 50%;
-		z-index: 1;
-		margin-top: 30px;*/
-	/*}*/
 
 	.status-progress .completed .bar {
 		background-color: #ffd700;
@@ -235,48 +229,10 @@ body {
 }
 
 
-.status-circle {
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 5px;
-}
-
-.status-order-placed::before {
-	content: "🔸";
-	color: orange;
-	margin-right: 5px;
-}
-
-.status-preparing-goods::before {
-	content: "🔸";
-	color: green;
-	margin-right: 5px;
-}
-
-.status-shipped-to-carrier::before {
-	content: "🔸";
-	color: blue;
-	margin-right: 5px;
-}
-
-.status-in-delivery::before {
-	content: "🔸";
-	color: cyan;
-	margin-right: 5px;
-}
-
-.status-delivered::before {
-	content: "🔸";
-	color: red;
-	margin-right: 5px;
-}
-
-.status-paid::before {
-	content: "🔸";
-	color: purple;
-	margin-right: 5px;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .navbar {
@@ -306,11 +262,10 @@ body {
 		}
 
 	.navbar .nav-link {
-		color: #e0e0e0 !important;
+		color: #fff !important;
 		font-weight: bold;
 		margin-right: 20px;
 		position: relative;
-		padding-bottom: 5px;
 	}
 
 		.navbar .nav-link:hover,
@@ -334,11 +289,6 @@ body {
 		.navbar .nav-link:not(.dropdown-toggle).active::after {
 			width: 100%;
 		}
-
-	.navbar .nav-item .fa {
-		font-size: 20px;
-		color: #e0e0e0;
-	}
 
 	.navbar .login-btn {
 		color: #fff !important;
@@ -382,6 +332,115 @@ body {
 	min-width: 150%;
 }
 
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: #222;
+	color: #fff;
+}
+
+
+
+.footer {
+	background-color: #333;
+	padding: 20px 0;
+	text-align: center;
+	color: #FFD700;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+
+	.footer a {
+		color: #FFD700;
+		text-decoration: none;
+		margin: 0 10px;
+	}
+
+	.footer p {
+		color: #FFD700;
+	}
+
+	.footer a:hover {
+		color: #FFD700;
+		text-decoration: underline;
+	}
+
+.notification-bell {
+	position: relative;
+}
+
+	.notification-bell .notification-count {
+		position: absolute;
+		top: -5px;
+		right: -5px;
+		background-color: red;
+		color: white;
+		border-radius: 50%;
+		padding: 2px 6px;
+		font-size: 12px;
+	}
+
+.notification-item {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #f1f1f1;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	margin: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+	.notification-item .icon {
+		font-size: 24px;
+		margin-right: 10px;
+		color: #007bff;
+	}
+
+	.notification-item .notification-content {
+		flex-grow: 1;
+	}
+
+		.notification-item .notification-content strong {
+			display: block;
+			font-size: 14px;
+			color: #333;
+		}
+
+		.notification-item .notification-content small {
+			color: #888;
+			font-size: 12px;
+		}
+
+	.notification-item.important {
+		background-color: #ffefef;
+		border-left: 5px solid #ff4d4d;
+	}
+
+.modal-body {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.modal-header .btn-close {
+		background: none;
+		border: none;
+		font-size: 20px;
+	}
+
 @@media (max-width: 992px) {
 	.navbar-collapse {
 		justify-content: flex-start;
@@ -402,29 +461,4 @@ body {
 	.navbar .login-btn {
 		margin-bottom: 10px;
 	}
-
-	.navbar .nav-item.dropdown .nav-link {
-		margin-right: 0;
-		margin-bottom: 10px;
-	}
 }
-
-.footer {
-	background-color: #333;
-	padding: 20px 0;
-	text-align: center;
-	color: #FFD700;
-	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-	.footer a {
-		color: #FFD700;
-		text-decoration: none;
-		margin: 0 10px;
-	}
-
-
-		.footer a:hover {
-			color: #FFD700;
-			text-decoration: underline;
-		}
