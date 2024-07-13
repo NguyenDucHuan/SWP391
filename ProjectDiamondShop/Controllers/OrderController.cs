@@ -2,6 +2,7 @@
 using DiamondShopDAOs.CookieCartDAO;
 using DiamondShopServices.NotificationService;
 using DiamondShopServices.OrderServices;
+using DiamondShopServices.UserService;
 using PayPal;
 using PayPal.Api;
 using ProjectDiamondShop.Models;
@@ -26,6 +27,7 @@ namespace ProjectDiamondShop.Controllers
         private readonly IOrderServices orderServices = null;
         private readonly IItemService itemService = null;
         private readonly INotificationService _notificationService;
+        private readonly IUserService _userService = null;
         public OrderController()
         {
             if (orderServices == null)
@@ -52,7 +54,7 @@ namespace ProjectDiamondShop.Controllers
         }
         private bool IsUserAuthorizedToViewOrder(string userID, tblOrder order)
         {
-            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
+            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID || (int)Session["RoleID"] == 3 || (int)Session["RoleID"] == 2;
         }
         [HttpPost]
         public ActionResult CreateOrder()
@@ -95,7 +97,6 @@ namespace ProjectDiamondShop.Controllers
                 }
             }
 
-
             var orderItems = orderServices.GetOrderItems(orderId);
             var orderItemViewModels = orderItems.Select(item => new ItemCartDAOSimple
             {
@@ -111,11 +112,9 @@ namespace ProjectDiamondShop.Controllers
                 quantityAccent = item.tblItem.quantityAccent ?? 0,
                 settingSize = item.tblItem.settingSize ?? 0
             }).ToList();
-
             ViewBag.Order = order;
             ViewBag.OrderItems = orderItemViewModels;
             ViewBag.StatusUpdates = orderServices.GetOrderStatusUpdates(orderId);
-
             return View();
         }
 
