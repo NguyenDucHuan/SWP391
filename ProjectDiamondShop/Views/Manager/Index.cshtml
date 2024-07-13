@@ -809,44 +809,49 @@
                         <tbody>
                             @foreach (var warranty in ViewBag.Warranties)
                             {
-                                <tr id="warranty-row-@warranty.warrantyID">
-                                    <td>@warranty.warrantyID</td>
-                                    <td>@warranty.orderID</td>
-                                    <td>@warranty.ItemID</td>
-                                    <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@warranty.warrantyDetails</td>
-                                    <td>@warranty.warrantyCode</td>
-                                    <td>
-                                        @if (warranty.status != "Processed")
-                                        {
-                                            <button class="btn btn-success btn-sm" id="process-button-@warranty.warrantyID" onclick="processWarranty('@warranty.warrantyID')">Process</button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-secondary btn-sm" id="process-button-@warranty.warrantyID" disabled>Processed</button>
-                                        }
-                                    </td>
-                                </tr>
+                                if (warranty.status != "Valid")
+                                {
+                                    <tr id="warranty-row-@warranty.warrantyID">
+                                        <td>@warranty.warrantyID</td>
+                                        <td>@warranty.orderID</td>
+                                        <td>@warranty.ItemID</td>
+                                        <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@warranty.warrantyDetails</td>
+                                        <td>@warranty.warrantyCode</td>
+                                        <td>
+                                            @if (warranty.status != "Processed")
+                                            {
+                                                <button class="btn btn-success btn-sm" id="process-button-@warranty.warrantyID" onclick="processWarranty('@warranty.warrantyID')">Process</button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-secondary btn-sm" id="process-button-@warranty.warrantyID" disabled>Processed</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
                             }
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
-                    <ul class="pagination">
-                        @if (ViewBag.TotalWarranties != null && ViewBag.WarrantyPageSize != null)
-                        {
-                            int totalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / ViewBag.WarrantyPageSize);
-                            for (int i = 1; i <= totalWarrantyPages; i++)
-                            {
-                                <li class="page-item @(ViewBag.CurrentWarrantyPage == i ? "active" : "")">
-                                    <a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(@i, @ViewBag.WarrantyPageSize)">@i</a>
-                                </li>
-                            }
-                        }
-                    </ul>
-                </div>
             </div>
+
+            <div class="pagination">
+                <ul class="pagination">
+                    @if (ViewBag.TotalWarranties != null && ViewBag.WarrantyPageSize != null)
+                    {
+                        int totalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / ViewBag.WarrantyPageSize);
+                        for (int i = 1; i <= totalWarrantyPages; i++)
+                        {
+                            <li class="page-item @(ViewBag.CurrentWarrantyPage == i ? "active" : "")">
+                                <a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(@i, @ViewBag.WarrantyPageSize)">@i</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+</div>
 
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
