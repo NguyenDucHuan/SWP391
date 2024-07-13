@@ -1058,3 +1058,42 @@ html {
     .sort-button.active {
         font-weight: bold;
     }
+
+.status-order-placed, .status-preparing-goods, .status-shipped-to-carrier,
+.status-in-delivery, .status-delivered, .status-paid {
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    padding: 10px
+}
+
+/* Các màu sắc tương ứng */
+.status-order-placed {
+    background-color: orange;
+    color: white;
+}
+
+.status-preparing-goods {
+    background-color: green;
+    color: white;
+}
+
+.status-shipped-to-carrier {
+    background-color: #1E91CF;
+    color: white;
+}
+
+.status-in-delivery {
+    background-color: #54B7D3;
+    color: white;
+}
+
+.status-delivered {
+    background-color: #AB482C;
+    color: white;
+}
+
+.status-paid {
+    background-color: #E3503E;
+    color: white;
+}

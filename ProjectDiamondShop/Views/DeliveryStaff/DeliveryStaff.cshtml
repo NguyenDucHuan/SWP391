@@ -189,6 +189,45 @@
                 background-color: #00A3FF;
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
+
+        .status-order-placed, .status-preparing-goods, .status-shipped-to-carrier,
+        .status-in-delivery, .status-delivered, .status-paid {
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+            padding: 10px
+        }
+
+        /* Các màu sắc tương ứng */
+        .status-order-placed {
+            background-color: orange;
+            color: white;
+        }
+
+        .status-preparing-goods {
+            background-color: green;
+            color: white;
+        }
+
+        .status-shipped-to-carrier {
+            background-color: #1E91CF;
+            color: white;
+        }
+
+        .status-in-delivery {
+            background-color: #54B7D3;
+            color: white;
+        }
+
+        .status-delivered {
+            background-color: #AB482C;
+            color: white;
+        }
+
+        .status-paid {
+            background-color: #E3503E;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -226,22 +265,6 @@
                             @foreach (var order in ViewBag.Orders)
                             {
 
-                                string backgroundColor;
-                                if (order.status == "Delivered")
-                                {
-                                    backgroundColor = "lightgreen";
-                                }
-                                else if (order.status == "In Delivery")
-                                {
-                                    backgroundColor = "#eded3b";
-                                }
-                                else if (order.status == "Shipped to Carrier")
-                                {
-                                    backgroundColor = "lightcoral";
-                                }else
-                                {
-                                    backgroundColor = "lightcoral";
-                                }
                                 
                                 <tr>
                                     <td>@order.orderID</td>
@@ -249,8 +272,16 @@
                                     <td>@order.deliveryStaffName</td>
                                     <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>@order.address</td>
-                                    <td style="color: @backgroundColor; font-weight:900;">@order.status</td>
-                                    <td>@order.paymentStatus</td>
+                                    <td>
+                                        <span class="@(order.status == "Order Placed" ? "status-order-placed" :
+                                            order.status == "Preparing Goods" ? "status-preparing-goods" :
+                                            order.status == "Shipped to Carrier" ? "status-shipped-to-carrier" :
+                                            order.status == "In Delivery" ? "status-in-delivery" :
+                                            order.status == "Delivered" ? "status-delivered" :
+                                            order.status == "Paid" ? "status-paid" : "")">
+                                            @order.status
+                                        </span>
+                                    </td>                                    <td>@order.paymentStatus</td>
                                     <td>@order.Note</td>
                                     <td>
                                         <button class="btn btn-primary" onclick="viewOrder('@Url.Action("UpdateOrderDetails", "Order", new { orderId = order.orderID })')">View Order</button>

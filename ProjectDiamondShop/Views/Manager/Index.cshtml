@@ -156,13 +156,18 @@
                                     </td>
                                     <td>$@String.Format("{0:N0}", order.totalMoney)</td>
                                     <td>
-                                        <select class="form-control status" name="orderUpdates[@i].Status" data-original="@order.status">
-                                            <option value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
-                                            <option value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
-                                            <option value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
-                                            <option value="In Delivery" @(order.status == "In Delivery" ? "selected" : "")>In Delivery</option>
-                                            <option value="Delivered" @(order.status == "Delivered" ? "selected" : "")>Delivered</option>
-                                            <option value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
+                                        <select class="form-control status @(order.status == "Order Placed" ? "status-order-placed" :
+                                                order.status == "Preparing Goods" ? "status-preparing-goods" :
+                                                order.status == "Shipped to Carrier" ? "status-shipped-to-carrier" :
+                                                order.status == "In Delivery" ? "status-in-delivery" :
+                                                order.status == "Delivered" ? "status-delivered" :
+                                                order.status == "Paid" ? "status-paid" : "")" name="orderUpdates[@i].Status" data-original="@order.status">
+                                            <option class="status-order-placed" value="Order Placed" @(order.status == "Order Placed" ? "selected" : "")>Order Placed</option>
+                                            <option class="status-preparing-goods" value="Preparing Goods" @(order.status == "Preparing Goods" ? "selected" : "")>Preparing Goods</option>
+                                            <option class="status-shipped-to-carrier" value="Shipped to Carrier" @(order.status == "Shipped to Carrier" ? "selected" : "")>Shipped to Carrier</option>
+                                            <option class="status-in-delivery" value="In Delivery" @(order.status == "In Delivery" ? "selected" : "")>In Delivery</option>
+                                            <option class="status-delivered" value="Delivered" @(order.status == "Delivered" ? "selected" : "")>Delivered</option>
+                                            <option class="status-paid" value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
                                         </select>
                                     </td>
                                     <td>@order.address</td>
