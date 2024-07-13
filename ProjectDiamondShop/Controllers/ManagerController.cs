@@ -60,7 +60,7 @@ namespace ProjectDiamondShop.Controllers
             var diamonds = _managerService.GetDiamonds();
             var userId = Session["UserID"].ToString();
             var notifications = _notificationService.GetAllNotifications().Where(n => n.userID == userId).ToList();
-            var warranties = _managerService.GetWarranties().Where(w => w.status != "Valid").ToList();
+            var warranties = _managerService.GetWarranties().ToList();
 
             // Tìm kiếm
             if (!string.IsNullOrEmpty(searchQuery))
