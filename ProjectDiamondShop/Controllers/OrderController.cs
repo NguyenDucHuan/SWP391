@@ -52,7 +52,7 @@ namespace ProjectDiamondShop.Controllers
         }
         private bool IsUserAuthorizedToViewOrder(string userID, tblOrder order)
         {
-            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID;
+            return userID == order.customerID || userID == order.saleStaffID || userID == order.deliveryStaffID || (int)Session["RoleID"] == 3 || (int)Session["RoleID"] == 2;
         }
         [HttpPost]
         public ActionResult CreateOrder()

@@ -24,7 +24,7 @@ namespace DiamondShopDAOs
         }
 
         public void CreateItem(string orderId, int? settingID, int? accentStoneID, int? quantityAccent, int diamondID, decimal diamondPrice, decimal settingPrice, decimal accentPrice, int? settingSize)
-        { 
+        {
             tblItem tblItem = new tblItem();
             if (settingID == 0)
             {
@@ -85,7 +85,8 @@ namespace DiamondShopDAOs
             // Lấy thông tin khách hàng từ orderId
             var order = entities.tblOrders.FirstOrDefault(o => o.orderID == orderId);
             if (order == null) return;
-
+            var itemID = entities.tblWarranties.Where(o => o.orderID == orderId).FirstOrDefault().ItemID;
+            var certificareID = entities.tblCertificates.Where(o => o.diamondID == (entities.tblItems.Where(p => p.ItemID == itemID).FirstOrDefault().diamondID)).FirstOrDefault().certificateID;
             string customerName = order.tblUser.fullName;
             string customerEmail = order.tblUser.email;
 
@@ -101,7 +102,31 @@ namespace DiamondShopDAOs
         <h2 style='color: #4CAF50; text-align: center;'>Thank You for Your Purchase!</h2>
         <p>Dear <strong>{customerName}</strong>,</p>
         <p>We sincerely thank you for purchasing our product. At <strong>Diamond Shop</strong>, we are committed to providing you with the highest quality products and services. Your trust and satisfaction are our top priorities, and we hope our product meets all your expectations.</p>
-        <p>Your warranty code is: <strong style='color: #4CAF50; font-size: 18px;'>{warrantyCode}</strong>. Please keep this code safe as it is very important for any warranty services.</p>
+        <p>Your warranty code is: <strong style='color: #4CAF50; font-size: 18px;'>{warrantyCode}</strong>. Please keep this code safe as it is very important for any warranty services.</p>\
+        <table style='width: 100%;margin: 20px auto;table-layout: auto;  border-collapse: collapse;'>
+          <tr>
+            <th style=' padding: 10px;
+          border: solid 1px;
+          text-align: center;'>Order ID</th>
+            <th style=' padding: 10px;
+          border: solid 1px;
+          text-align: center;'>ItemID</th>
+            <th style='padding: 10px;
+          border: solid 1px;
+          text-align: center;'>Diamond Certificate ID</th>
+          </tr>
+          <tr>
+            <td style=' padding: 10px;
+          border: solid 1px;
+          text-align: center;'>{orderId}</td>
+            <td style=' padding: 10px;
+          border: solid 1px;
+          text-align: center;'>{itemID}</td>
+            <td style=' padding: 10px;
+          border: solid 1px;
+          text-align: center;'>{certificareID}</td>
+          </tr>
+        </table>
         <p style='color: #d9534f; font-weight: bold;'>Important:</p>
         <ul style='color: #d9534f;'>
             <li>Keep your warranty code safe. It is crucial for any warranty claims.</li>
