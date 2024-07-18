@@ -94,15 +94,13 @@
                 <h3>Orders</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchOrders" data-table="ordersTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders', 0)" placeholder="Search for orders..">
+                    <input type="text" id="searchOrders" class="form-control mb-3 search-input" onkeyup="searchTable('ordersTable', 'searchOrders')" placeholder="Search for orders..">
                 </div>
                 <div class="table-container">
                     <table id="ordersTable" class="table-excel">
                         <thead>
                             <tr>
-                                <th>
-                                    Order ID
-                                </th>
+                                <th>Order ID</th>
                                 <th>
                                     Customer Name
                                     <button class="sort-button" data-table="ordersTable" data-column="1" data-direction="asc" onclick="sortTable('ordersTable', 1, 'asc')">▲</button>
@@ -134,7 +132,7 @@
                                 var order = ViewBag.Orders[i];
                                 <tr>
                                     <td>@order.orderID</td>
-                                    <td>@order.customerName</td>
+                                    <td><input type="text" class="form-control" name="orderUpdates[@i].CustomerName" value="@order.customerName" /></td>
                                     <td>
                                         <select class="form-control saleStaff" name="orderUpdates[@i].SaleStaffID" data-original="@order.saleStaffID">
                                             <option value="">Default</option>
@@ -165,8 +163,8 @@
                                             <option value="Paid" @(order.status == "Paid" ? "selected" : "")>Paid</option>
                                         </select>
                                     </td>
-                                    <td>@order.address</td>
-                                    <td>@order.phone</td>
+                                    <td><input type="text" class="form-control" name="orderUpdates[@i].Address" value="@order.address" /></td>
+                                    <td><input type="text" class="form-control" name="orderUpdates[@i].Phone" value="@order.phone" /></td>
                                     <td>@order.saleDate</td>
                                     <td>
                                         @{
@@ -192,7 +190,7 @@
                     </table>
                 </div>
                 <button type="button" class="btn btn-primary mt-3" onclick="updateOrders()">Update Orders</button>
-                <div class="pagination">
+                <div class="pagination" id="ordersPagination">
                     <ul class="pagination">
                         @if (ViewBag.TotalOrders != null && ViewBag.OrderPageSize != null)
                         {
@@ -208,20 +206,20 @@
                 </div>
             </div>
 
+
+
             <div id="diamonds" class="section">
                 <h3>Diamonds</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchDiamonds" data-table="diamondsTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchDiamonds" class="form-control mb-3 search-input" onkeyup="searchTable('diamondsTable', 'searchDiamonds', 0)" placeholder="Search for diamonds..">
+                    <input type="text" id="searchDiamonds" class="form-control mb-3 search-input" onkeyup="searchTable('diamondsTable', 'searchDiamonds')" placeholder="Search for diamonds..">
                 </div>
 
                 <div class="table-container" id="diamondsContent">
                     <table id="diamondsTable" class="table-excel">
                         <thead>
                             <tr>
-                                <th>
-                                    ID
-                                </th>
+                                <th>ID</th>
                                 <th>
                                     Name
                                     <button class="sort-button" data-table="diamondsTable" data-column="1" data-direction="asc" onclick="sortTable('diamondsTable', 1, 'asc')">▲</button>
@@ -229,8 +227,8 @@
                                 </th>
                                 <th>
                                     Price
-                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="asc" onclick="sortTable('diamondsTable', 2, 'asc', true)">▲</button>
-                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="desc" onclick="sortTable('diamondsTable', 2, 'desc', true)">▼</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="asc" onclick="sortTable('diamondsTable', 2, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="diamondsTable" data-column="2" data-direction="desc" onclick="sortTable('diamondsTable', 2, 'desc')">▼</button>
                                 </th>
                                 <th>Description</th>
                                 <th>
@@ -250,10 +248,10 @@
                             {
                                 <tr id="diamond-row-@diamond.diamondID">
                                     <td>@diamond.diamondID</td>
-                                    <td>@diamond.diamondName</td>
-                                    <td>$@String.Format("{0:N0}", diamond.diamondPrice)</td>
-                                    <td>@diamond.diamondDescription</td>
-                                    <td>@diamond.caratWeight</td>
+                                    <td><input type="text" class="form-control" name="diamondUpdates[@diamond.diamondID].Name" value="@diamond.diamondName" /></td>
+                                    <td><input type="text" class="form-control" name="diamondUpdates[@diamond.diamondID].Price" value="$@String.Format("{0:N0}", diamond.diamondPrice)" /></td>
+                                    <td><input type="text" class="form-control" name="diamondUpdates[@diamond.diamondID].Description" value="@diamond.diamondDescription" /></td>
+                                    <td><input type="text" class="form-control" name="diamondUpdates[@diamond.diamondID].CaratWeight" value="@diamond.caratWeight" /></td>
                                     <td>@diamond.clarityID</td>
                                     <td>@diamond.cutID</td>
                                     <td>@diamond.colorID</td>
@@ -275,7 +273,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <button type="button" class="btn btn-primary mt-3" onclick="updateDiamonds()">Update Diamonds</button>
+                <div class="pagination" id="diamondsPagination">
                     <ul class="pagination">
                         @if (ViewBag.TotalDiamonds != null && ViewBag.PageSize != null)
                         {
@@ -290,6 +289,8 @@
                     </ul>
                 </div>
             </div>
+
+
 
             <div id="viewVoucher" class="section">
                 <h3>View Voucher</h3>
@@ -358,11 +359,12 @@
                 </div>
             </div>
 
+
             <div id="accentStones" class="section">
                 <h3>Accent Stones</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchAccentStones" data-table="accentStonesTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones', 0)" placeholder="Search for accent stones..">
+                    <input type="text" id="searchAccentStones" class="form-control mb-3 search-input" onkeyup="searchTable('accentStonesTable', 'searchAccentStones')" placeholder="Search for accent stones..">
                 </div>
                 <div class="table-container">
                     <table id="accentStonesTable" class="table-excel">
@@ -374,17 +376,13 @@
                                     <button class="sort-button" data-table="accentStonesTable" data-column="1" data-direction="asc" onclick="sortTable('accentStonesTable', 1, 'asc')">▲</button>
                                     <button class="sort-button" data-table="accentStonesTable" data-column="1" data-direction="desc" onclick="sortTable('accentStonesTable', 1, 'desc')">▼</button>
                                 </th>
-                                <th>
-                                    Shape
-                                </th>
+                                <th>Shape</th>
                                 <th>
                                     Carat Weight
                                     <button class="sort-button" data-table="accentStonesTable" data-column="3" data-direction="asc" onclick="sortTable('accentStonesTable', 3, 'asc')">▲</button>
                                     <button class="sort-button" data-table="accentStonesTable" data-column="3" data-direction="desc" onclick="sortTable('accentStonesTable', 3, 'desc')">▼</button>
                                 </th>
-                                <th>
-                                    Clarity
-                                </th>
+                                <th>Clarity</th>
                                 <th>
                                     Color
                                     <button class="sort-button" data-table="accentStonesTable" data-column="5" data-direction="asc" onclick="sortTable('accentStonesTable', 5, 'asc')">▲</button>
@@ -392,8 +390,8 @@
                                 </th>
                                 <th>
                                     Price
-                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="asc" onclick="sortTable('accentStonesTable', 6, 'asc', true)">▲</button>
-                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="desc" onclick="sortTable('accentStonesTable', 6, 'desc', true)">▼</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="asc" onclick="sortTable('accentStonesTable', 6, 'asc')">▲</button>
+                                    <button class="sort-button" data-table="accentStonesTable" data-column="6" data-direction="desc" onclick="sortTable('accentStonesTable', 6, 'desc')">▼</button>
                                 </th>
                                 <th>
                                     Quantity
@@ -408,13 +406,13 @@
                             {
                                 <tr id="accentStone-row-@stone.accentStoneID">
                                     <td>@stone.accentStoneID</td>
-                                    <td>@stone.accentStonesName</td>
+                                    <td><input type="text" class="form-control" name="accentStoneUpdates[@stone.accentStoneID].accentStonesName" value="@stone.accentStonesName" /></td>
                                     <td>@stone.shape</td>
-                                    <td>@stone.caratWeight</td>
+                                    <td><input type="number" class="form-control" name="accentStoneUpdates[@stone.accentStoneID].caratWeight" value="@stone.caratWeight" /></td>
                                     <td>@stone.clarity</td>
                                     <td>@stone.color</td>
-                                    <td>$@String.Format("{0:N0}", stone.price)</td>
-                                    <td>@stone.quantity</td>
+                                    <td><input type="text" class="form-control" name="accentStoneUpdates[@stone.accentStoneID].price" value="$@String.Format("{0:N0}", stone.price)" /></td>
+                                    <td><input type="number" class="form-control" name="accentStoneUpdates[@stone.accentStoneID].quantity" value="@stone.quantity" /></td>
                                     <td>
                                         @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
                                         {
@@ -432,7 +430,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <button type="button" class="btn btn-primary mt-3" onclick="updateAccentStones()">Update Accent Stones</button>
+                <div class="pagination" id="accentStonesPagination">
                     <ul class="pagination">
                         @if (ViewBag.TotalAccentStones != null && ViewBag.AccentStonePageSize != null)
                         {
@@ -449,11 +448,12 @@
             </div>
 
 
+
             <div id="settings" class="section">
                 <h3>Settings</h3>
                 <div class="search-container">
                     <i class="fa fa-search search-icon" data-input="searchSettings" data-table="settingsTable" data-column="0" onclick="toggleSearch(this)"></i>
-                    <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings', 0)" placeholder="Search for settings..">
+                    <input type="text" id="searchSettings" class="form-control mb-3 search-input" onkeyup="searchTable('settingsTable', 'searchSettings')" placeholder="Search for settings..">
                 </div>
                 <div class="table-container">
                     <table id="settingsTable" class="table-excel">
@@ -481,11 +481,11 @@
                             {
                                 <tr id="setting-row-@setting.settingID">
                                     <td>@setting.settingID</td>
-                                    <td>@setting.settingType</td>
-                                    <td>@setting.material</td>
-                                    <td>$@String.Format("{0:N0}", setting.priceTax)</td>
-                                    <td>@setting.quantityStones</td>
-                                    <td>@setting.description</td>
+                                    <td><input type="text" class="form-control" name="settingUpdates[@setting.settingID].settingType" value="@setting.settingType" /></td>
+                                    <td><input type="text" class="form-control" name="settingUpdates[@setting.settingID].material" value="@setting.material" /></td>
+                                    <td><input type="text" class="form-control" name="settingUpdates[@setting.settingID].priceTax" value="$@String.Format("{0:N0}", setting.priceTax)" /></td>
+                                    <td><input type="number" class="form-control" name="settingUpdates[@setting.settingID].quantityStones" value="@setting.quantityStones" min="0" /></td>
+                                    <td><input type="text" class="form-control" name="settingUpdates[@setting.settingID].description" value="@setting.description" /></td>
                                     <td>
                                         @if ((int)Session["RoleID"] == 2 || (int)Session["RoleID"] == 3)
                                         {
@@ -503,7 +503,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <button type="button" class="btn btn-primary mt-3" onclick="updateSettings()">Update Settings</button>
+                <div class="pagination" id="settingsPagination">
                     <ul class="pagination">
                         @if (ViewBag.TotalSettings != null && ViewBag.SettingPageSize != null)
                         {
@@ -806,52 +807,48 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="warrantyTableBody">
                             @foreach (var warranty in ViewBag.Warranties)
                             {
-                                if (warranty.status != "Valid")
-                                {
-                                    <tr id="warranty-row-@warranty.warrantyID">
-                                        <td>@warranty.warrantyID</td>
-                                        <td>@warranty.orderID</td>
-                                        <td>@warranty.ItemID</td>
-                                        <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
-                                        <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
-                                        <td>@warranty.warrantyDetails</td>
-                                        <td>@warranty.warrantyCode</td>
-                                        <td>
-                                            @if (warranty.status != "Processed")
-                                            {
-                                                <button class="btn btn-success btn-sm" id="process-button-@warranty.warrantyID" onclick="processWarranty('@warranty.warrantyID')">Process</button>
-                                            }
-                                            else
-                                            {
-                                                <button class="btn btn-secondary btn-sm" id="process-button-@warranty.warrantyID" disabled>Processed</button>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
+                                <tr id="warranty-row-@warranty.warrantyID">
+                                    <td>@warranty.warrantyID</td>
+                                    <td>@warranty.orderID</td>
+                                    <td>@warranty.ItemID</td>
+                                    <td>@warranty.warrantyStartDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyEndDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@warranty.warrantyDetails</td>
+                                    <td>@warranty.warrantyCode</td>
+                                    <td>
+                                        @if (warranty.status != "Processed")
+                                        {
+                                            <button class="btn btn-success btn-sm" id="process-button-@warranty.warrantyID" onclick="processWarranty('@warranty.warrantyID')">Process</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-secondary btn-sm" id="process-button-@warranty.warrantyID" disabled>Processed</button>
+                                        }
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination">
+                    <ul class="pagination" id="warrantyPagination">
+                        @if (ViewBag.TotalWarranties != null && ViewBag.WarrantyPageSize != null)
+                        {
+                            int totalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / ViewBag.WarrantyPageSize);
+                            for (int i = 1; i <= totalWarrantyPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentWarrantyPage == i ? "active" : "")">
+                                    <a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(@i, @ViewBag.WarrantyPageSize)">@i</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
             </div>
 
-            <div class="pagination">
-                <ul class="pagination">
-                    @if (ViewBag.TotalWarranties != null && ViewBag.WarrantyPageSize != null)
-                    {
-                        int totalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / ViewBag.WarrantyPageSize);
-                        for (int i = 1; i <= totalWarrantyPages; i++)
-                        {
-                            <li class="page-item @(ViewBag.CurrentWarrantyPage == i ? "active" : "")">
-                                <a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(@i, @ViewBag.WarrantyPageSize)">@i</a>
-                            </li>
-                        }
-                    }
-                </ul>
-            </div>
-</div>
 
             <div id="createAccount" class="section" style="display:none;">
                 <div class="signup-container">
@@ -910,7 +907,6 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>@ViewBag.userName</b></p>
                         <small class="text-muted">@Session["RoleName"]</small>
                     </div>
                 </div>
@@ -929,44 +925,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script>
-        const sideMenu = document.querySelector('aside');
-        const menuBtn = document.getElementById('menu-btn');
-        const closeBtn = document.getElementById('close-btn');
-        const darkMode = document.querySelector('.dark-mode');
+    const sideMenu = document.querySelector('aside');
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const darkMode = document.querySelector('.dark-mode');
 
-        menuBtn.addEventListener('click', () => {
-            sideMenu.style.display = 'block';
-        });
+    menuBtn.addEventListener('click', () => {
+        sideMenu.style.display = 'block';
+    });
 
-        closeBtn.addEventListener('click', () => {
-            sideMenu.style.display = 'none';
-        });
+    closeBtn.addEventListener('click', () => {
+        sideMenu.style.display = 'none';
+    });
 
-        darkMode.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode-variables');
-            darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
-            darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
-        });
+    darkMode.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode-variables');
+        darkMode.querySelector('span:nth-child(1)').classList.toggle('active');
+        darkMode.querySelector('span:nth-child(2)').classList.toggle('active');
+    });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const paginationLinks = document.querySelectorAll('.pagination .btn-link');
-            paginationLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    // Loại bỏ lớp active từ tất cả các liên kết
-                    paginationLinks.forEach(link => link.parentElement.classList.remove('active'));
-                    // Thêm lớp active vào liên kết được nhấn
-                    this.parentElement.classList.add('active');
-                });
+    document.addEventListener("DOMContentLoaded", function () {
+        const paginationLinks = document.querySelectorAll('.pagination .btn-link');
+        paginationLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // Loại bỏ lớp active từ tất cả các liên kết
+                paginationLinks.forEach(link => link.parentElement.classList.remove('active'));
+                // Thêm lớp active vào liên kết được nhấn
+                this.parentElement.classList.add('active');
             });
         });
+    });
 
-        function showSection(sectionId) {
-            var sections = document.getElementsByClassName('section');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-            }
-            document.getElementById(sectionId).style.display = 'block';
+    function showSection(sectionId) {
+        var sections = document.getElementsByClassName('section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = 'none';
         }
+        document.getElementById(sectionId).style.display = 'block';
+    }
 
         function searchTable(tableId, inputId) {
             var input = document.getElementById(inputId);
@@ -1003,7 +999,7 @@
             input.toggle();
         }
 
-        $(document).ready(function () {
+            $(document).ready(function () {
             if ('@TempData["SuccessMessage"]'.length > 0) {
                 $('#updateSuccessMessage').show().delay(3000).fadeOut();
             }
@@ -1089,247 +1085,583 @@
             }
         });
 
-        function updateOrders() {
-            $('#updateSuccessMessage').hide();
-            $('#updateErrorMessage').hide();
-            var orderUpdates = [];
-            $('#ordersTable tbody tr').each(function () {
-                var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
-                var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
-                var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
-                var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
-                if (saleStaffId !== $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').data('original') ||
-                    deliveryStaffId !== $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').data('original') ||
-                    status !== $(this).find('select[name^="orderUpdates"][name$=".Status"]').data('original')) {
-                    orderUpdates.push({
-                        OrderID: orderId,
-                        SaleStaffID: saleStaffId,
-                        DeliveryStaffID: deliveryStaffId,
-                        Status: status
-                    });
+    $(document).ready(function () {
+        if ('@TempData["SuccessMessage"]'.length > 0) {
+            $('#updateSuccessMessage').show().delay(3000).fadeOut();
+        }
+
+        if ('@TempData["ErrorMessage"]'.length > 0) {
+            $('#updateErrorMessage').show().delay(3000).fadeOut();
+        }
+
+        var roleId = @Html.Raw(Session["RoleID"]);
+
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueLabels)),
+                datasets: [{
+                    label: 'Revenue',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RevenueData)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return '$' + context.raw.toLocaleString();
+                            }
+                        }
+                    }
                 }
-            });
-            if (orderUpdates.length === 0) {
-                $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
-                return;
             }
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("UpdateOrders", "Manager")',
-                contentType: 'application/json',
-                data: JSON.stringify(orderUpdates),
-                success: function (response) {
-                    if (response.success) {
-                        $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
-                            window.location.reload();
-                        });
-                    } else {
-                        $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    $('#updateErrorMessage').text("An error occurred while updating orders.").show().delay(2000).fadeOut();
-                }
-            });
-        }
+        });
 
-        function toggleStatus(userId, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleUserStatus", "Manager")',
+        if (roleId == 2) { // Admin
+            var ctx2 = document.getElementById('registrationChart').getContext('2d');
+            var registrationChart = new Chart(ctx2, {
+                type: 'bar',
                 data: {
-                    userId: userId,
-                    status: newStatus
+                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationLabels)),
+                    datasets: [{
+                        label: 'Registrations',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RegistrationData)),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
                 },
-                success: function (response) {
-                    if (response.success) {
-                        $('#user-row-' + userId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
-                        $('#user-row-' + userId + ' button').attr('onclick', 'toggleStatus("' + userId + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return value;
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.raw + ' registrations';
+                                    }
+                                }
+                            }
+                        }
                     }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
                 }
             });
         }
+    });
 
-        function toggleDiamondStatus(diamondId, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleDiamondStatus", "Manager")',
-                data: {
-                    diamondId: diamondId,
-                    status: newStatus
-                },
-                success: function (response) {
-                    if (response.success) {
-                        var button = $('#diamond-row-' + diamondId + ' button');
-                        button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
-                        button.attr('onclick', 'toggleDiamondStatus("' + diamondId + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
-                }
-            });
+    $(document).ready(function () {
+        $('#ordersTable tbody tr').each(function () {
+            $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').data('original', $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val());
+            $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').data('original', $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val());
+            $(this).find('select[name^="orderUpdates"][name$=".Status"]').data('original', $(this).find('select[name^="orderUpdates"][name$=".Status"]').val());
+            $(this).find('input[name^="orderUpdates"][name$=".CustomerName"]').data('original', $(this).find('input[name^="orderUpdates"][name$=".CustomerName"]').val());
+            $(this).find('input[name^="orderUpdates"][name$=".Address"]').data('original', $(this).find('input[name^="orderUpdates"][name$=".Address"]').val());
+            $(this).find('input[name^="orderUpdates"][name$=".Phone"]').data('original', $(this).find('input[name^="orderUpdates"][name$=".Phone"]').val());
+        });
+    });
+
+    function updateOrders() {
+        $('#updateSuccessMessage').hide();
+        $('#updateErrorMessage').hide();
+        var orderUpdates = [];
+        $('#ordersTable tbody tr').each(function () {
+            var orderId = $(this).find('input[name^="orderUpdates"][name$=".OrderID"]').val();
+            var saleStaffId = $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').val();
+            var deliveryStaffId = $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').val();
+            var status = $(this).find('select[name^="orderUpdates"][name$=".Status"]').val();
+            var customerName = $(this).find('input[name^="orderUpdates"][name$=".CustomerName"]').val();
+            var address = $(this).find('input[name^="orderUpdates"][name$=".Address"]').val();
+            var phone = $(this).find('input[name^="orderUpdates"][name$=".Phone"]').val();
+
+            if (saleStaffId !== $(this).find('select[name^="orderUpdates"][name$=".SaleStaffID"]').data('original') ||
+                deliveryStaffId !== $(this).find('select[name^="orderUpdates"][name$=".DeliveryStaffID"]').data('original') ||
+                status !== $(this).find('select[name^="orderUpdates"][name$=".Status"]').data('original') ||
+                customerName !== $(this).find('input[name^="orderUpdates"][name$=".CustomerName"]').data('original') ||
+                address !== $(this).find('input[name^="orderUpdates"][name$=".Address"]').data('original') ||
+                phone !== $(this).find('input[name^="orderUpdates"][name$=".Phone"]').data('original')) {
+                orderUpdates.push({
+                    OrderID: orderId,
+                    SaleStaffID: saleStaffId,
+                    DeliveryStaffID: deliveryStaffId,
+                    Status: status,
+                    CustomerName: customerName,
+                    Address: address,
+                    Phone: phone
+                });
+            }
+        });
+
+        if (orderUpdates.length === 0) {
+            $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
+            return;
         }
 
-        function toggleAccentStoneStatus(accentStoneId, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
-                data: {
-                    accentStoneId: accentStoneId,
-                    status: newStatus
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $('#accentStone-row-' + accentStoneId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
-                        $('#accentStone-row-' + accentStoneId + ' button').attr('onclick', 'toggleAccentStoneStatus("' + accentStoneId + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateOrders", "Manager")',
+            contentType: 'application/json',
+            data: JSON.stringify(orderUpdates),
+            success: function (response) {
+                if (response.success) {
+                    $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                        window.location.reload();
+                    });
+                } else {
+                    $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
                 }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                $('#updateErrorMessage').text("An error occurred while updating orders.").show().delay(2000).fadeOut();
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#diamondsTable tbody tr').each(function () {
+            $(this).find('input').each(function() {
+                $(this).data('original', $(this).val());
             });
+        });
+    });
+
+    function updateDiamonds() {
+        $('#updateSuccessMessage').hide();
+        $('#updateErrorMessage').hide();
+        var diamondUpdates = [];
+        $('#diamondsTable tbody tr').each(function () {
+            var diamondID = $(this).attr('id').split('-')[2];
+            var diamondName = $(this).find('input[name^="diamondUpdates"][name$=".Name"]').val();
+            var diamondPrice = $(this).find('input[name^="diamondUpdates"][name$=".Price"]').val().replace('$', '').replace(',', '');
+            var diamondDescription = $(this).find('input[name^="diamondUpdates"][name$=".Description"]').val();
+            var caratWeight = $(this).find('input[name^="diamondUpdates"][name$=".CaratWeight"]').val();
+
+            if (parseFloat(diamondPrice) < 0 || parseInt(caratWeight) < 0) {
+                hasNegativeValues = true;
+                return false;  // Break the loop if negative value found
+            }
+
+            if (diamondName !== $(this).find('input[name^="diamondUpdates"][name$=".Name"]').data('original') ||
+                diamondPrice !== $(this).find('input[name^="diamondUpdates"][name$=".Price"]').data('original') ||
+                diamondDescription !== $(this).find('input[name^="diamondUpdates"][name$=".Description"]').data('original') ||
+                caratWeight !== $(this).find('input[name^="diamondUpdates"][name$=".CaratWeight"]').data('original')) {
+                diamondUpdates.push({
+                    diamondID: diamondID,
+                    diamondName: diamondName,
+                    diamondPrice: parseFloat(diamondPrice),
+                    diamondDescription: diamondDescription,
+                    caratWeight: parseFloat(caratWeight)
+                });
+            }
+        });
+
+        if (hasNegativeValues) {
+            $('#updateErrorMessage').text("Price and Quantity cannot be negative.").show().delay(2000).fadeOut();
+            return;
         }
 
-        function toggleSettingStatus(settingId, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleSettingStatus", "Manager")',
-                data: {
-                    settingId: settingId,
-                    status: newStatus
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $('#setting-row-' + settingId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
-                        $('#setting-row-' + settingId + ' button').attr('onclick', 'toggleSettingStatus("' + settingId + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
-                }
-            });
+        if (diamondUpdates.length === 0) {
+            $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
+            return;
         }
 
-       function toggleVoucherStatus(voucherId, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleVoucherStatus", "Manager")',
-                data: {
-                    voucherId: voucherId,
-                    status: newStatus
-                },
-                success: function (response) {
-                    if (response.success) {
-                        var button = $('#voucher-row-' + voucherId + ' button');
-                        button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
-                        button.attr('onclick', 'toggleVoucherStatus("' + voucherId + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateDiamonds", "Manager")',
+            contentType: 'application/json',
+            data: JSON.stringify(diamondUpdates),
+            success: function (response) {
+                if (response.success) {
+                    $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                        window.location.reload();
+                    });
+                } else {
+                    $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
                 }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                $('#updateErrorMessage').text("An error occurred while updating diamonds.").show().delay(2000).fadeOut();
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#settingsTable tbody tr').each(function () {
+            $(this).find('input').each(function() {
+                $(this).data('original', $(this).val());
             });
+        });
+    });
+
+    function updateSettings() {
+        $('#updateSuccessMessage').hide();
+        $('#updateErrorMessage').hide();
+        var settingUpdates = [];
+        var hasNegativeValues = false;
+
+        $('#settingsTable tbody tr').each(function () {
+            var settingID = $(this).attr('id').split('-')[2];
+            var settingType = $(this).find('input[name^="settingUpdates"][name$=".settingType"]').val();
+            var material = $(this).find('input[name^="settingUpdates"][name$=".material"]').val();
+            var priceTax = $(this).find('input[name^="settingUpdates"][name$=".priceTax"]').val();
+            var quantityStones = $(this).find('input[name^="settingUpdates"][name$=".quantityStones"]').val();
+            var description = $(this).find('input[name^="settingUpdates"][name$=".description"]').val();
+
+            if (parseFloat(priceTax) < 0 || parseInt(quantityStones) < 0) {
+                hasNegativeValues = true;
+                return false;  // Break the loop if negative value found
+            }
+
+            if (settingType !== $(this).find('input[name^="settingUpdates"][name$=".settingType"]').data('original') ||
+                material !== $(this).find('input[name^="settingUpdates"][name$=".material"]').data('original') ||
+                priceTax !== $(this).find('input[name^="settingUpdates"][name$=".priceTax"]').data('original') ||
+                quantityStones !== $(this).find('input[name^="settingUpdates"][name$=".quantityStones"]').data('original') ||
+                description !== $(this).find('input[name^="settingUpdates"][name$=".description"]').data('original')) {
+                settingUpdates.push({
+                    settingID: settingID,
+                    settingType: settingType,
+                    material: material,
+                    priceTax: parseFloat(priceTax),
+                    quantityStones: parseInt(quantityStones),
+                    description: description
+                });
+            }
+        });
+
+        if (hasNegativeValues) {
+            $('#updateErrorMessage').text("Price and Quantity cannot be negative.").show().delay(2000).fadeOut();
+            return;
         }
 
-        function toggleWarrantyStatus(warrantyID, currentStatus) {
-            var newStatus = !currentStatus;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("ToggleWarrantyStatus", "Manager")',
-                data: {
-                    warrantyID: warrantyID,
-                    status: newStatus
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $('#warranty-row-' + warrantyID + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Active' : 'Expired');
-                        $('#warranty-row-' + warrantyID + ' button').attr('onclick', 'toggleWarrantyStatus("' + warrantyID + '", ' + newStatus + ')');
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred while updating the status.");
-                }
-            });
+        if (settingUpdates.length === 0) {
+            $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
+            return;
         }
 
-        function loadDiamondsPage(page, pageSize) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateSettings", "Manager")',
+            contentType: 'application/json',
+            data: JSON.stringify(settingUpdates),
+            success: function (response) {
+                if (response.success) {
+                    $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                        window.location.reload();
+                    });
+                } else {
+                    $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                $('#updateErrorMessage').text("An error occurred while updating settings.").show().delay(2000).fadeOut();
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#accentStonesTable tbody tr').each(function () {
+            $(this).find('input').each(function() {
+                $(this).data('original', $(this).val());
+            });
+        });
+    });
+
+    function updateAccentStones() {
+        $('#updateSuccessMessage').hide();
+        $('#updateErrorMessage').hide();
+        var accentStoneUpdates = [];
+        var hasNegativeValues = false;
+
+        $('#accentStonesTable tbody tr').each(function () {
+            var accentStoneID = $(this).attr('id').split('-')[2];
+            var accentStonesName = $(this).find('input[name^="accentStoneUpdates"][name$=".accentStonesName"]').val();
+            var caratWeight = $(this).find('input[name^="accentStoneUpdates"][name$=".caratWeight"]').val();
+            var price = $(this).find('input[name^="accentStoneUpdates"][name$=".price"]').val();
+            var quantity = $(this).find('input[name^="accentStoneUpdates"][name$=".quantity"]').val();
+
+            if (parseFloat(caratWeight) < 0 || parseFloat(price) < 0 || parseInt(quantity) < 0) {
+                hasNegativeValues = true;
+                return false;  // Ngắt vòng lặp nếu tìm thấy giá trị âm
+            }
+
+            if (accentStonesName !== $(this).find('input[name^="accentStoneUpdates"][name$=".accentStonesName"]').data('original') ||
+                caratWeight !== $(this).find('input[name^="accentStoneUpdates"][name$=".caratWeight"]').data('original') ||
+                price !== $(this).find('input[name^="accentStoneUpdates"][name$=".price"]').data('original') ||
+                quantity !== $(this).find('input[name^="accentStoneUpdates"][name$=".quantity"]').data('original')) {
+                accentStoneUpdates.push({
+                    accentStoneID: accentStoneID,
+                    accentStonesName: accentStonesName,
+                    caratWeight: parseFloat(caratWeight),
+                    price: parseFloat(price),
+                    quantity: parseInt(quantity)
+                });
+            }
+        });
+
+        if (hasNegativeValues) {
+            $('#updateErrorMessage').text("Carat Weight, Price, and Quantity cannot be negative.").show().delay(2000).fadeOut();
+            return;
+        }
+
+        if (accentStoneUpdates.length === 0) {
+            $('#updateErrorMessage').text("No changes detected.").show().delay(2000).fadeOut();
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateAccentStones", "Manager")',
+            contentType: 'application/json',
+            data: JSON.stringify(accentStoneUpdates),
+            success: function (response) {
+                if (response.success) {
+                    $('#updateSuccessMessage').text(response.message).show().delay(2000).fadeOut(function () {
+                        window.location.reload();
+                    });
+                } else {
+                    $('#updateErrorMessage').text(response.message).show().delay(2000).fadeOut();
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                $('#updateErrorMessage').text("An error occurred while updating accent stones.").show().delay(2000).fadeOut();
+            }
+        });
+    }
+
+    function toggleStatus(userId, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleUserStatus", "Manager")',
+            data: {
+                userId: userId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('#user-row-' + userId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                    $('#user-row-' + userId + ' button').attr('onclick', 'toggleStatus("' + userId + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function toggleDiamondStatus(diamondId, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleDiamondStatus", "Manager")',
+            data: {
+                diamondId: diamondId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    var button = $('#diamond-row-' + diamondId + ' button');
+                    button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                    button.attr('onclick', 'toggleDiamondStatus("' + diamondId + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function toggleAccentStoneStatus(accentStoneId, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleAccentStoneStatus", "Manager")',
+            data: {
+                accentStoneId: accentStoneId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('#accentStone-row-' + accentStoneId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                    $('#accentStone-row-' + accentStoneId + ' button').attr('onclick', 'toggleAccentStoneStatus("' + accentStoneId + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function toggleSettingStatus(settingId, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleSettingStatus", "Manager")',
+            data: {
+                settingId: settingId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('#setting-row-' + settingId + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                    $('#setting-row-' + settingId + ' button').attr('onclick', 'toggleSettingStatus("' + settingId + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function toggleVoucherStatus(voucherId, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleVoucherStatus", "Manager")',
+            data: {
+                voucherId: voucherId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    var button = $('#voucher-row-' + voucherId + ' button');
+                    button.toggleClass('btn-success btn-danger').text(newStatus ? 'Enable' : 'Disable');
+                    button.attr('onclick', 'toggleVoucherStatus("' + voucherId + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function toggleWarrantyStatus(warrantyID, currentStatus) {
+        var newStatus = !currentStatus;
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleWarrantyStatus", "Manager")',
+            data: {
+                warrantyID: warrantyID,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('#warranty-row-' + warrantyID + ' button').toggleClass('btn-success btn-danger').text(newStatus ? 'Active' : 'Expired');
+                    $('#warranty-row-' + warrantyID + ' button').attr('onclick', 'toggleWarrantyStatus("' + warrantyID + '", ' + newStatus + ')');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("An error occurred while updating the status.");
+            }
+        });
+    }
+
+    function loadDiamondsPage(page, pageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: {
+                page: page,
+                pageSize: pageSize,
+                searchQuery: $('#searchDiamonds').val()
+            },
+            success: function (data) {
+                $('#diamondsContent').html($(data).find('#diamondsContent').html());
+                updatePagination('#diamondsPagination', page, pageSize, @ViewBag.TotalDiamondPages, loadDiamondsPage);
+            },
+            error: function () {
+                alert('An error occurred while loading the diamonds page.');
+            }
+        });
+    }
+
+    function loadOrdersPage(page, pageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, pageSize: pageSize },
+            success: function (data) {
+                $('#orders').html($(data).find('#orders').html());
+                updatePagination('#ordersPagination', page, pageSize, @ViewBag.TotalOrderPages, loadOrdersPage);
+            },
+            error: function () {
+                alert('An error occurred while loading the orders page.');
+            }
+        });
+    }
+
+
+    function loadVouchersPage(page, voucherPageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, voucherPageSize: voucherPageSize },
+            success: function (data) {
+                $('#viewVoucher').html($(data).find('#viewVoucher').html());
+            },
+            error: function () {
+                alert('An error occurred while loading the vouchers page.');
+            }
+        });
+    }
+
+        function loadAccentStonesPage(page, pageSize) {
             $.ajax({
                 url: '@Url.Action("Index", "Manager")',
                 type: 'GET',
-                data: { page: page, pageSize: pageSize },
-                success: function (data) {
-                    $('#diamondsContent').html($(data).find('#diamondsContent').html());
-                    updatePagination(page, pageSize);
+                data: {
+                    accentStonePage: page,
+                    accentStonePageSize: pageSize,
+                    searchQuery: $('#searchAccentStones').val()
                 },
-                error: function () {
-                    alert('An error occurred while loading the page.');
-                }
-            });
-        }
-
-        function loadOrdersPage(page, orderPageSize) {
-            $.ajax({
-                url: '@Url.Action("Index", "Manager")',
-                type: 'GET',
-                data: { page: page, orderPageSize: orderPageSize },
                 success: function (data) {
-                    $('#orders').html($(data).find('#orders').html());
-                },
-                error: function () {
-                    alert('An error occurred while loading the orders page.');
-                }
-            });
-        }
-
-        function loadVouchersPage(page, voucherPageSize) {
-            $.ajax({
-                url: '@Url.Action("Index", "Manager")',
-                type: 'GET',
-                data: { page: page, voucherPageSize: voucherPageSize },
-                success: function (data) {
-                    $('#viewVoucher').html($(data).find('#viewVoucher').html());
-                },
-                error: function () {
-                    alert('An error occurred while loading the vouchers page.');
-                }
-            });
-        }
-
-        function loadAccentStonesPage(page, accentStonePageSize) {
-            $.ajax({
-                url: '@Url.Action("Index", "Manager")',
-                type: 'GET',
-                data: { accentStonePage: page, accentStonePageSize: accentStonePageSize },
-                success: function (data) {
-                    $('#accentStones').html($(data).find('#accentStones').html());
+                    var newContent = $(data).find('#accentStonesTable tbody').html();
+                    $('#accentStonesTable tbody').html(newContent);
+                    var newPagination = $(data).find('#accentStonesPagination').html();
+                    $('#accentStonesPagination').html(newPagination);
                 },
                 error: function () {
                     alert('An error occurred while loading the accent stones page.');
@@ -1338,13 +1670,14 @@
         }
 
 
-        function loadSettingsPage(page, settingPageSize) {
+    function loadSettingsPage(page, pageSize) {
         $.ajax({
             url: '@Url.Action("Index", "Manager")',
             type: 'GET',
-            data: { page: page, settingPageSize: settingPageSize },
+            data: { page: page, pageSize: pageSize, tab: 'Settings' },
             success: function (data) {
-                $('#settings').html($(data).find('#settings').html());
+                $('#settingsContent').html($(data).find('#settingsContent').html());
+                updatePagination('#settingsPagination', page, pageSize, @ViewBag.TotalSettingPages, loadSettingsPage);
             },
             error: function () {
                 alert('An error occurred while loading the settings page.');
@@ -1352,7 +1685,7 @@
         });
     }
 
-        function loadUsersPage(page, userPageSize) {
+    function loadUsersPage(page, userPageSize) {
         $.ajax({
             url: '@Url.Action("Index", "Manager")',
             type: 'GET',
@@ -1366,7 +1699,7 @@
         });
     }
 
-        function loadDeliveryStaffPage(page, deliveryStaffPageSize) {
+    function loadDeliveryStaffPage(page, deliveryStaffPageSize) {
         $.ajax({
             url: '@Url.Action("Index", "Manager")',
             type: 'GET',
@@ -1380,7 +1713,7 @@
         });
     }
 
-        function loadSaleStaffPage(page, saleStaffPageSize) {
+    function loadSaleStaffPage(page, saleStaffPageSize) {
         $.ajax({
             url: '@Url.Action("Index", "Manager")',
             type: 'GET',
@@ -1392,32 +1725,34 @@
                 alert('An error occurred while loading the sale staff page.');
             }
         });
-        }
+    }
 
+    function loadNotificationsPage(page, pageSize) {
+        $.ajax({
+            url: '@Url.Action("Index", "Manager")',
+            type: 'GET',
+            data: { page: page, notificationPageSize: pageSize },
+            success: function (data) {
+                $('#notifications').html($(data).find('#notifications').html());
+                updatePagination(page, pageSize);
+            },
+            error: function () {
+                alert('An error occurred while loading the notifications page.');
+            }
+        });
+    }
 
-        function loadNotificationsPage(page, pageSize) {
+       function loadWarrantyPage(page, pageSize) {
             $.ajax({
                 url: '@Url.Action("Index", "Manager")',
                 type: 'GET',
-                data: { page: page, notificationPageSize: pageSize },
-                success: function (data) {
-                    $('#notifications').html($(data).find('#notifications').html());
-                    updatePagination(page, pageSize);
+                data: {
+                    warrantyPage: page,
+                    warrantyPageSize: pageSize
                 },
-                error: function () {
-                    alert('An error occurred while loading the notifications page.');
-                }
-            });
-        }
-
-        function loadWarrantyPage(page, warrantyPageSize) {
-            $.ajax({
-                url: '@Url.Action("Index", "Manager")',
-                type: 'GET',
-                data: { warrantyPage: page, warrantyPageSize: warrantyPageSize },
                 success: function (data) {
-                    $('#warranty').html($(data).find('#warranty').html());
-                    updateWarrantyPagination(page, warrantyPageSize);
+                    $('#warrantyTableBody').html($(data).find('#warrantyTableBody').html());
+                    $('#warrantyPagination').html($(data).find('#warrantyPagination').html());
                 },
                 error: function () {
                     alert('An error occurred while loading the warranty page.');
@@ -1425,199 +1760,193 @@
             });
         }
 
-        function updateWarrantyPagination(currentPage, pageSize) {
-            var totalPages = Math.ceil(@ViewBag.TotalWarranties / pageSize);
+
+    function updateWarrantyPagination(currentPage, pageSize) {
+        var totalPages = Math.ceil(@ViewBag.TotalWarranties / pageSize);
+        var paginationHtml = '';
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (currentPage == i ? 'active' : '') + '"><a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(' + i + ', ' + pageSize + ')">' + i + '</a></li>';
+        }
+        $('#warranty .pagination ul').html(paginationHtml);
+        document.querySelectorAll('.pagination .btn-link').forEach(link => {
+            link.addEventListener('click', function () {
+                document.querySelectorAll('.pagination .page-item').forEach(link => link.classList.remove('active'));
+                this.parentElement.classList.add('active');
+            });
+        });
+    }
+        function updatePagination(paginationContainer, currentPage, pageSize, totalPages, loadPageFunction) {
             var paginationHtml = '';
             for (var i = 1; i <= totalPages; i++) {
-                paginationHtml += '<li class="page-item ' + (currentPage == i ? 'active' : '') + '"><a class="btn-link" href="javascript:void(0);" onclick="loadWarrantyPage(' + i + ', ' + pageSize + ')">' + i + '</a></li>';
+                paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+                paginationHtml += '<a class="btn-link" href="javascript:void(0);" onclick="' + loadPageFunction.name + '(' + i + ', ' + pageSize + ')">' + i + '</a>';
+                paginationHtml += '</li>';
             }
-            $('#warranty .pagination ul').html(paginationHtml);
-            document.querySelectorAll('.pagination .btn-link').forEach(link => {
-                link.addEventListener('click', function () {
-                    document.querySelectorAll('.pagination .page-item').forEach(link => link.classList.remove('active'));
-                    this.parentElement.classList.add('active');
-                });
-            });
+            $(paginationContainer).html(paginationHtml);
         }
 
-        function updatePagination(currentPage, pageSize) {
-            var totalPages = Math.ceil(@ViewBag.TotalDiamonds / pageSize);
-            var paginationHtml = '';
-            for (var i = 1; i <= totalPages; i++) {
-                paginationHtml += '<li class="page-item ' + (currentPage == i ? 'active' : '') + '"><a class="btn-link" href="javascript:void(0);" onclick="loadDiamondsPage(' + i + ', ' + pageSize + ')">' + i + '</a></li>';
-            }
-            $('.pagination ul').html(paginationHtml);
-            // Thêm sự kiện click cho các liên kết phân trang
-            document.querySelectorAll('.pagination .btn-link').forEach(link => {
-                link.addEventListener('click', function () {
-                    document.querySelectorAll('.pagination .page-item').forEach(link => link.classList.remove('active'));
-                    this.parentElement.classList.add('active');
-                });
-            });
-        }
+    function clearForm() {
+        $('input[type="text"], input[type="number"], input[type="file"], input[type="date"]').val('');
+        $('.custom-file-label').removeClass('selected').html('Choose file');
+    }
 
-        function clearForm() {
-            $('input[type="text"], input[type="number"], input[type="file"], input[type="date"]').val('');
-            $('.custom-file-label').removeClass('selected').html('Choose file');
-        }
-
-        function submitAddDiamondForm() {
-            var formData = new FormData($('#addDiamondForm')[0]);
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("AddDiamond", "Diamonds")',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    if (response.success) {
-                        $('#addDiamondSuccessMessage').text(response.message).show().delay(3000).fadeOut();
-                        clearForm();
-                    } else {
-                        $('#addDiamondErrorMessage').text(response.message).show().delay(3000).fadeOut();
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    $('#addDiamondErrorMessage').text("An error occurred while adding the diamond.").show().delay(3000).fadeOut();
+    function submitAddDiamondForm() {
+        var formData = new FormData($('#addDiamondForm')[0]);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddDiamond", "Diamonds")',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    $('#addDiamondSuccessMessage').text(response.message).show().delay(3000).fadeOut();
+                    clearForm();
+                } else {
+                    $('#addDiamondErrorMessage').text(response.message).show().delay(3000).fadeOut();
                 }
-            });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                $('#addDiamondErrorMessage').text("An error occurred while adding the diamond.").show().delay(3000).fadeOut();
+            }
+        });
+    }
+
+    $(document).on('click', '.toggle-password', function () {
+        $(this).toggleClass('fa-eye fa-eye-slash');
+        var input = $($(this).attr('toggle'));
+        if (input.attr('type') == 'password') {
+            input.attr('type', 'text');
+        } else {
+            input.attr('type', 'password');
         }
+    });
 
-        $(document).on('click', '.toggle-password', function () {
-            $(this).toggleClass('fa-eye fa-eye-slash');
-            var input = $($(this).attr('toggle'));
-            if (input.attr('type') == 'password') {
-                input.attr('type', 'text');
-            } else {
-                input.attr('type', 'password');
-            }
-        });
+    // Hiển thị tên file khi chọn file
+    $(document).on('change', '.custom-file-input', function () {
+        var fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+    });
 
-        // Hiển thị tên file khi chọn file
-        $(document).on('change', '.custom-file-input', function () {
-            var fileName = $(this).val().split('\\').pop();
-            $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
-        });
+    setTimeout(function () {
+        $('.alert').fadeOut('slow');
+    }, 3000);
 
-        setTimeout(function () {
-            $('.alert').fadeOut('slow');
-        }, 3000);
+    function sortTable(tableId, columnIndex, direction, isCurrency = false, isStatus = false) {
+        var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
+        table = document.getElementById(tableId);
+        var tbody = table.querySelector('tbody');
 
-        function sortTable(tableId, columnIndex, direction, isCurrency = false, isStatus = false) {
-            var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
-            table = document.getElementById(tableId);
-            var tbody = table.querySelector('tbody');
+        // Status order mapping
+        var statusOrder = {
+            "order placed": 1,
+            "preparing goods": 2,
+            "shipped to carrier": 3,
+            "in delivery": 4,
+            "delivered": 5,
+            "paid": 6
+        };
 
-            // Status order mapping
-            var statusOrder = {
-                "order placed": 1,
-                "preparing goods": 2,
-                "shipped to carrier": 3,
-                "in delivery": 4,
-                "delivered": 5,
-                "paid": 6
-            };
+        // Check if the table is already sorted in the same direction
+        var isSorted = tbody.getAttribute('data-sorted-column') == columnIndex && tbody.getAttribute('data-sorted-direction') == direction;
 
-            // Check if the table is already sorted in the same direction
-            var isSorted = tbody.getAttribute('data-sorted-column') == columnIndex && tbody.getAttribute('data-sorted-direction') == direction;
-
-            if (isSorted) {
-                // Restore the original state of the table
-                tbody.innerHTML = tbody.getAttribute('data-original');
-                // Clear the sorted column and direction attributes
-                tbody.removeAttribute('data-sorted-column');
-                tbody.removeAttribute('data-sorted-direction');
-                // Remove active class from all sort buttons
-                var sortButtons = table.querySelectorAll('.sort-button');
-                sortButtons.forEach(button => button.classList.remove('active'));
-                return;
-            }
-
-            switching = true;
-
+        if (isSorted) {
+            // Restore the original state of the table
+            tbody.innerHTML = tbody.getAttribute('data-original');
+            // Clear the sorted column and direction attributes
+            tbody.removeAttribute('data-sorted-column');
+            tbody.removeAttribute('data-sorted-direction');
             // Remove active class from all sort buttons
             var sortButtons = table.querySelectorAll('.sort-button');
             sortButtons.forEach(button => button.classList.remove('active'));
+            return;
+        }
 
-            // Set active class to the clicked button
-            var activeButton = table.querySelector('.sort-button[data-table="' + tableId + '"][data-column="' + columnIndex + '"][data-direction="' + direction + '"]');
-            activeButton.classList.add('active');
+        switching = true;
 
-            // Set direction
-            var dir = direction;
+        // Remove active class from all sort buttons
+        var sortButtons = table.querySelectorAll('.sort-button');
+        sortButtons.forEach(button => button.classList.remove('active'));
 
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[columnIndex];
-                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+        // Set active class to the clicked button
+        var activeButton = table.querySelector('.sort-button[data-table="' + tableId + '"][data-column="' + columnIndex + '"][data-direction="' + direction + '"]');
+        activeButton.classList.add('active');
 
-                    var xContent = x.innerHTML.toLowerCase().trim();
-                    var yContent = y.innerHTML.toLowerCase().trim();
+        // Set direction
+        var dir = direction;
 
-                    // Check if the column contains currency
-                    if (isCurrency) {
-                        xContent = parseFloat(xContent.replace(/[\$,]/g, '')) || 0;
-                        yContent = parseFloat(yContent.replace(/[\$,]/g, '')) || 0;
-                    }
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[columnIndex];
+                y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
 
-                    // Check if the column is a status
-                    if (isStatus) {
-                        xContent = statusOrder[xContent] || 0;
-                        yContent = statusOrder[yContent] || 0;
-                    }
+                var xContent = x.innerHTML.toLowerCase().trim();
+                var yContent = y.innerHTML.toLowerCase().trim();
 
-                    if (dir == "asc") {
-                        if (xContent > yContent) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (xContent < yContent) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
+                // Check if the column contains currency
+                if (isCurrency) {
+                    xContent = parseFloat(xContent.replace(/[\$,]/g, '')) || 0;
+                    yContent = parseFloat(yContent.replace(/[\$,]/g, '')) || 0;
                 }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    switchcount++;
-                } else {
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
+
+                // Check if the column is a status
+                if (isStatus) {
+                    xContent = statusOrder[xContent] || 0;
+                    yContent = statusOrder[yContent] || 0;
+                }
+
+                if (dir == "asc") {
+                    if (xContent > yContent) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (xContent < yContent) {
+                        shouldSwitch = true;
+                        break;
                     }
                 }
             }
-        }
-      function processWarranty(warrantyID) {
-    $.ajax({
-        type: 'POST',
-        url: '@Url.Action("ProcessWarranty", "Warranty")',
-        data: { warrantyID: warrantyID },
-        success: function(response) {
-            if (response.success) {
-                // Update the status text and disable the button
-                var button = $('#process-button-' + warrantyID);
-                button.text('Processed').removeClass('btn-success').addClass('btn-secondary').prop('disabled', true);
-                $('#status-' + warrantyID).text('Processed');
-                alert('Warranty has been processed successfully.');
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
             } else {
-                alert('Failed to process the warranty. Please try again.');
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
             }
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-            alert('An error occurred while processing the warranty.');
         }
-    });
-}
+    }
 
-
+    function processWarranty(warrantyID) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ProcessWarranty", "Warranty")',
+            data: { warrantyID: warrantyID },
+            success: function(response) {
+                if (response.success) {
+                    // Update the status text and disable the button
+                    var button = $('#process-button-' + warrantyID);
+                    button.text('Processed').removeClass('btn-success').addClass('btn-secondary').prop('disabled', true);
+                    $('#status-' + warrantyID).text('Processed');
+                    alert('Warranty has been processed successfully.');
+                } else {
+                    alert('Failed to process the warranty. Please try again.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                alert('An error occurred while processing the warranty.');
+            }
+        });
+        }
     </script>
+
 </body>
 </html>

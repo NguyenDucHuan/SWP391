@@ -19,9 +19,11 @@
 .dark-mode-variables {
     --color-background: #181a1e;
     --color-white: #202528;
-    --color-dark: #edeffd;
+    --color-dark: #e0e0e0; /* Changed for better readability */
     --color-dark-variant: #a3bdcc;
     --box-shadow: 0 2rem 3rem var(--color-light);
+    --color-table-background: #2e2e2e; /* New variable for table background in dark mode */
+    --color-table-text: #e0e0e0; /* New variable for table text in dark mode */
 }
 
 * {
@@ -46,6 +48,11 @@ body {
     background-color: var(--color-background);
     overflow-x: hidden;
 }
+
+    body.dark-mode {
+        background-color: var(--color-background);
+        color: var(--color-dark);
+    }
 
 a {
     color: var(--color-dark);
@@ -148,66 +155,70 @@ aside .sidebar {
     overflow-y: auto;
 }
 
-    aside .sidebar:hover {
-        box-shadow: none;
-    }
+body.dark-mode aside .sidebar {
+    background-color: var(--color-dark);
+}
 
-    aside .sidebar a {
-        display: flex;
-        align-items: center;
-        color: var(--color-info-dark);
-        height: 4.7rem;
-        gap: 1rem;
-        position: relative;
-        margin-left: 2rem;
+aside .sidebar:hover {
+    box-shadow: none;
+}
+
+aside .sidebar a {
+    display: flex;
+    align-items: center;
+    color: var(--color-info-dark);
+    height: 4.7rem;
+    gap: 1rem;
+    position: relative;
+    margin-left: 2rem;
+    transition: all 0.3s ease;
+}
+
+    aside .sidebar a span {
+        font-size: 0.9rem;
         transition: all 0.3s ease;
     }
 
-        aside .sidebar a span {
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        aside .sidebar a:last-child {
-            margin-top: auto;
-            margin-bottom: 1rem;
-            width: calc(100% - 2rem);
-        }
-
-        aside .sidebar a.active {
-            width: 100%;
-            color: var(--color-primary);
-            background-color: var(--color-light);
-            margin-left: 0;
-        }
-
-            aside .sidebar a.active::before {
-                content: '';
-                width: 6px;
-                height: 18px;
-                background-color: var(--color-primary);
-            }
-
-            aside .sidebar a.active span {
-                color: var(--color-primary);
-                margin-left: calc(1rem - 3px);
-            }
-
-        aside .sidebar a:hover {
-            color: var(--color-primary);
-        }
-
-            aside .sidebar a:hover span {
-                margin-left: 0.6rem;
-            }
-
-    aside .sidebar .message-count {
-        background-color: var(--color-danger);
-        padding: 2px 6px;
-        color: var(--color-white);
-        font-size: 11px;
-        border-radius: var(--border-radius-1);
+    aside .sidebar a:last-child {
+        margin-top: auto;
+        margin-bottom: 1rem;
+        width: calc(100% - 2rem);
     }
+
+    aside .sidebar a.active {
+        width: 100%;
+        color: var(--color-primary);
+        background-color: var(--color-light);
+        margin-left: 0;
+    }
+
+        aside .sidebar a.active::before {
+            content: '';
+            width: 6px;
+            height: 18px;
+            background-color: var(--color-primary);
+        }
+
+        aside .sidebar a.active span {
+            color: var(--color-primary);
+            margin-left: calc(1rem - 3px);
+        }
+
+    aside .sidebar a:hover {
+        color: var(--color-primary);
+    }
+
+        aside .sidebar a:hover span {
+            margin-left: 0.6rem;
+        }
+
+aside .sidebar .message-count {
+    background-color: var(--color-danger);
+    padding: 2px 6px;
+    color: var(--color-white);
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
+}
 
 main {
     margin-top: 0.4rem;
@@ -233,135 +244,151 @@ main {
             transition: all 0.3s ease;
         }
 
-            main .analyse > div:hover {
-                box-shadow: none;
-            }
+body.dark-mode main .analyse > div {
+    background-color: var(--color-dark);
+}
 
-            main .analyse > div .status {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
+main .analyse > div:hover {
+    box-shadow: none;
+}
 
-        main .analyse h3 {
-            margin-left: 0.6rem;
-            font-size: 1rem;
-        }
+main .analyse > div .status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        main .analyse .progresss {
-            position: relative;
-            width: 92px;
-            height: 92px;
-            border-radius: 50%;
-        }
+main .analyse h3 {
+    margin-left: 0.6rem;
+    font-size: 1rem;
+}
 
-        main .analyse svg {
-            width: 7rem;
-            height: 7rem;
-        }
+main .analyse .progresss {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
 
-            main .analyse svg circle {
-                fill: none;
-                stroke-width: 10;
-                stroke-linecap: round;
-                transform: translate(5px, 5px);
-            }
+main .analyse svg {
+    width: 7rem;
+    height: 7rem;
+}
 
-        main .analyse .sales svg circle {
-            stroke: var(--color-success);
-            stroke-dashoffset: -30;
-            stroke-dasharray: 200;
-        }
-
-        main .analyse .visits svg circle {
-            stroke: var(--color-danger);
-            stroke-dashoffset: -30;
-            stroke-dasharray: 200;
-        }
-
-        main .analyse .progresss .percentage {
-            position: absolute;
-            top: -3px;
-            left: -1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-        }
-
-    main .new-users {
-        margin-top: 1.3rem;
+    main .analyse svg circle {
+        fill: none;
+        stroke-width: 10;
+        stroke-linecap: round;
+        transform: translate(5px, 5px);
     }
 
-        main .new-users .user-list {
-            background-color: var(--color-white);
-            padding: var(--card-padding);
-            border-radius: var(--card-border-radius);
-            margin-top: 1rem;
-            box-shadow: var (--box-shadow);
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 1.4rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+main .analyse .sales svg circle {
+    stroke: var(--color-success);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
 
-            main .new-users .user-list:hover {
-                box-shadow: none;
-            }
+main .analyse .visits svg circle {
+    stroke: var(--color-danger);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
 
-            main .new-users .user-list .user {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
+main .analyse .progresss .percentage {
+    position: absolute;
+    top: -3px;
+    left: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
 
-                main .new-users .user-list .user img {
-                    width: 5rem;
-                    height: 5rem;
-                    margin-bottom: 0.4rem;
-                    border-radius: 50%;
-                }
+main .new-users {
+    margin-top: 1.3rem;
+}
 
-    main .recent-orders {
-        margin-top: 1.3rem;
+    main .new-users .user-list {
+        background-color: var(--color-white);
+        padding: var(--card-padding);
+        border-radius: var(--card-border-radius);
+        margin-top: 1rem;
+        box-shadow: var (--box-shadow);
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 1.4rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-        main .recent-orders h2 {
-            margin-bottom: 0.8rem;
-        }
+body.dark-mode main .new-users .user-list {
+    background-color: var(--color-dark);
+}
 
-        main .recent-orders table {
-            background-color: var(--color-white);
-            width: 100%;
-            padding: var(--card-padding);
-            text-align: center;
-            box-shadow: var(--box-shadow);
-            border-radius: var(--card-border-radius);
-            transition: all 0.3s ease;
-        }
+main .new-users .user-list:hover {
+    box-shadow: none;
+}
 
-            main .recent-orders table:hover {
-                box-shadow: none;
-            }
+main .new-users .user-list .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    main table tbody td {
-        height: 2.8rem;
-        border-bottom: 1px solid var(--color-light);
-        color: var(--color-dark-variant);
+    main .new-users .user-list .user img {
+        width: 5rem;
+        height: 5rem;
+        margin-bottom: 0.4rem;
+        border-radius: 50%;
+    }
+
+main .recent-orders {
+    margin-top: 1.3rem;
+}
+
+    main .recent-orders h2 {
+        margin-bottom: 0.8rem;
+    }
+
+    main .recent-orders table {
+        background-color: var(--color-white);
+        width: 100%;
+        padding: var(--card-padding);
         text-align: center;
-        font-family: system-ui;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--card-border-radius);
+        transition: all 0.3s ease;
     }
 
-    main .recent-orders a {
-        text-align: center;
-        display: block;
-        margin: 1rem auto;
-        color: var(--color-primary);
-    }
+body.dark-mode main .recent-orders table {
+    background-color: var(--color-table-background);
+}
+
+main table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+    text-align: center;
+    font-family: system-ui;
+}
+
+body.dark-mode main table tbody td {
+    color: var(--color-table-text);
+}
+
+main .recent-orders a {
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+
+body.dark-mode main .recent-orders a {
+    color: var(--color-primary);
+}
 
 .right-section {
     margin-top: 1.4rem;
@@ -429,96 +456,108 @@ main {
         transition: all 0.3s ease;
     }
 
-        .right-section .user-profile:hover {
-            box-shadow: none;
-        }
+body.dark-mode .right-section .user-profile {
+    background-color: var(--color-dark);
+}
 
-        .right-section .user-profile img {
-            width: 11rem;
-            height: auto;
-            margin-bottom: 0.8rem;
+.right-section .user-profile:hover {
+    box-shadow: none;
+}
+
+.right-section .user-profile img {
+    width: 11rem;
+    height: auto;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+}
+
+.right-section .user-profile h2 {
+    margin-bottom: 0.2rem;
+}
+
+.right-section .reminders {
+    margin-top: 2rem;
+}
+
+    .right-section .reminders .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+    }
+
+        .right-section .reminders .header span {
+            padding: 10px;
+            box-shadow: var(--box-shadow);
+            background-color: var(--color-white);
             border-radius: 50%;
         }
 
-        .right-section .user-profile h2 {
-            margin-bottom: 0.2rem;
-        }
-
-    .right-section .reminders {
-        margin-top: 2rem;
+    .right-section .reminders .notification {
+        background-color: var(--color-white);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.7rem;
+        padding: 1.4rem var(--card-padding);
+        border-radius: var(--border-radius-2);
+        box-shadow: var(--box-shadow);
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-        .right-section .reminders .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-        }
+body.dark-mode .right-section .reminders .notification {
+    background-color: var(--color-dark);
+}
 
-            .right-section .reminders .header span {
-                padding: 10px;
-                box-shadow: var(--box-shadow);
-                background-color: var(--color-white);
-                border-radius: 50%;
-            }
+.right-section .reminders .notification:hover {
+    box-shadow: none;
+}
 
-        .right-section .reminders .notification {
-            background-color: var(--color-white);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.7rem;
-            padding: 1.4rem var(--card-padding);
-            border-radius: var(--border-radius-2);
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.right-section .reminders .notification .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
 
-            .right-section .reminders .notification:hover {
-                box-shadow: none;
-            }
+.right-section .reminders .notification .icon {
+    padding: 0.6rem;
+    color: var(--color-white);
+    background-color: var(--color-success);
+    border-radius: 20%;
+    display: flex;
+}
 
-            .right-section .reminders .notification .content {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin: 0;
-                width: 100%;
-            }
+.right-section .reminders .notification.deactive .icon {
+    background-color: var(--color-danger);
+}
 
-            .right-section .reminders .notification .icon {
-                padding: 0.6rem;
-                color: var(--color-white);
-                background-color: var(--color-success);
-                border-radius: 20%;
-                display: flex;
-            }
+.right-section .reminders .add-reminder {
+    background-color: var(--color-white);
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
 
-            .right-section .reminders .notification.deactive .icon {
-                background-color: var(--color-danger);
-            }
+body.dark-mode .right-section .reminders .add-reminder {
+    background-color: var(--color-dark);
+}
 
-        .right-section .reminders .add-reminder {
-            background-color: var(--color-white);
-            border: 2px dashed var(--color-primary);
-            color: var(--color-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
+.right-section .reminders .add-reminder:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
 
-            .right-section .reminders .add-reminder:hover {
-                background-color: var(--color-primary);
-                color: white;
-            }
-
-            .right-section .reminders .add-reminder div {
-                display: flex;
-                align-items: center;
-                gap: 0.6rem;
-            }
+.right-section .reminders .add-reminder div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
 
 @media screen and (max-width: 1200px) {
     .container {
@@ -599,6 +638,10 @@ main {
         animation: showMenu 0.4s ease forwards;
     }
 
+    body.dark-mode aside {
+        background-color: var(--color-dark);
+    }
+
     @keyframes showMenu {
         to {
             left: 0;
@@ -675,32 +718,40 @@ main {
             margin: 0;
         }
 
-            .right-section .nav .dark-mode {
-                width: 4.4rem;
-                position: absolute;
-                left: 66%;
-            }
+    body.dark-mode .right-section .nav {
+        background-color: var(--color-dark);
+    }
 
-        .right-section .profile .info {
-            display: none;
+    .right-section .nav .dark-mode {
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+    }
+
+    .right-section .profile .info {
+        display: none;
+    }
+
+    .right-section .nav button {
+        display: inline-block;
+        background-color: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem;
+    }
+
+        .right-section .nav button span {
+            font-size: 2rem;
         }
 
-        .right-section .nav button {
-            display: inline-block;
-            background-color: transparent;
-            cursor: pointer;
-            color: var(--color-dark);
-            position: absolute;
-            left: 1rem;
-        }
-
-            .right-section .nav button span {
-                font-size: 2rem;
-            }
+    .body.dark-mode .right-section .nav button {
+        color: var(--color-dark);
+    }
 }
 
 .section {
-    margin-top: 56px;
+    margin-top: 48px;
     display: none;
 }
 
@@ -733,21 +784,30 @@ main {
         backdrop-filter: blur(20px);
     }
 
-    .table tbody td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #ddd;
-    }
+body.dark-mode .table thead th {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
 
-    .table tbody tr:hover {
-        background-color: #f5f5f5;
-    }
+.table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+body.dark-mode .table tbody tr:hover {
+    background-color: #2e2e2e;
+}
 
 .pagination {
     display: flex;
     justify-content: center;
     list-style: none;
     padding: 0;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
     .pagination .page-item {
@@ -764,76 +824,34 @@ main {
             transition: background-color 0.3s, color 0.3s;
         }
 
-            .pagination .page-item .btn-link:hover {
-                background-color: #f0f0f0;
-                border-color: #007bff;
-                color: #1c1c3c;
-            }
-
-        .pagination .page-item.active .btn-link {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-
-    .pagination .btn-link.selected {
-        background-color: #007bff;
-        color: white;
-        border-color: #007bff;
-    }
-
-.dark-mode .pagination .page-item .btn-link {
+body.dark-mode .pagination .page-item .btn-link {
     color: #b3b3b3;
     border-color: #555;
 }
 
-    .dark-mode .pagination .page-item .btn-link:hover {
+    body.dark-mode .pagination .page-item .btn-link:hover {
         background-color: #555;
         color: #fff;
         border-color: #007bff;
     }
 
-.dark-mode .pagination .page-item.active .btn-link {
+.pagination .page-item.active .btn-link {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
 }
 
-.pagination .page-item::before {
-    content: none;
+.pagination .btn-link.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
 }
 
-.dark-mode .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+body.dark-mode .pagination .btn-link.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
 }
-
-    .dark-mode .pagination .page-item {
-        margin: 0 5px;
-        list-style: none;
-    }
-
-        .dark-mode .pagination .page-item .btn-link {
-            color: #b3b3b3;
-            text-decoration: none;
-            padding: 5px 10px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-            .dark-mode .pagination .page-item .btn-link:hover {
-                background-color: #555;
-                color: #fff;
-                border-color: #007bff;
-            }
-
-        .dark-mode .pagination .page-item.active .btn-link {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
 
 .table-excel {
     width: 100%;
@@ -855,13 +873,22 @@ main {
         z-index: 2;
     }
 
-    .table-excel tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+body.dark-mode .table-excel th {
+    background-color: #2e2e2e;
+    color: var(--color-white);
+}
 
-    .table-excel tr:hover {
-        background-color: #f1f1f1;
-    }
+body.dark-mode .table-excel tr:nth-child(even) {
+    background-color: #2e2e2e;
+}
+
+.table-excel tr:hover {
+    background-color: #f1f1f1;
+}
+
+body.dark-mode .table-excel tr:hover {
+    background-color: #3e3e3e;
+}
 
 .action-buttons {
     display: flex;
@@ -891,6 +918,12 @@ main {
     font-size: 1rem;
     display: flex;
     align-items: center;
+}
+
+body.dark-mode .search-input {
+    background-color: #2e2e2e;
+    color: var(--color-white);
+    border: 1px solid #555;
 }
 
 /* Custom Scrollbar Styling */
@@ -937,7 +970,31 @@ html {
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    background-color: #28a745;
+    border-color: #28a745;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
+
+    .btn.btn-info {
+        padding: 5px 10px;
+    }
+
+    .btn:hover {
+        background-color: #218838; /* Màu khi di chuột vào */
+        border-color: #1e7e34;
+    }
+
+    .btn:active {
+        background-color: #1e7e34; /* Màu khi nhấn vào */
+        border-color: #1c7430;
+        box-shadow: 0 5px #666; /* Tạo hiệu ứng bóng đổ */
+        transform: translateY(4px); /* Hiệu ứng ấn xuống */
+    }
+
+    .btn:focus, .btn:active {
+        outline: none; /* Bỏ viền outline khi nhấn hoặc focus */
+    }
 
 .btn-success {
     background-color: #28a745;
@@ -982,6 +1039,7 @@ html {
     .btn-disable:hover {
         background-color: #c82333;
     }
+
 .center-text {
     text-align: center;
 }
@@ -996,49 +1054,64 @@ html {
     box-shadow: var(--box-shadow);
 }
 
-    .signup-container .form-group {
-        margin-bottom: 15px;
-    }
+body.dark-mode .signup-container {
+    background-color: var(--color-dark);
+}
 
-    .signup-container label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
+.signup-container .form-group {
+    margin-bottom: 15px;
+}
 
-    .signup-container .form-control {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: var(--border-radius-1);
-        box-sizing: border-box;
-    }
+.signup-container label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
 
-    .signup-container .btn {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: var(--border-radius-1);
-        font-size: 16px;
-        cursor: pointer;
-    }
+body.dark-mode .signup-container label {
+    color: var(--color-white);
+}
 
-    .signup-container .btn-block {
-        display: block;
-        width: 100%;
-    }
+.signup-container .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-1);
+    box-sizing: border-box;
+}
 
-    .signup-container .toggle-password {
-        position: absolute;
-        right: 10px;
-        top: 67%;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+body.dark-mode .signup-container .form-control {
+    background-color: var(--color-table-background);
+    color: var(--color-white);
+    border: 1px solid #555;
+}
+
+.signup-container .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius-1);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signup-container .btn-block {
+    display: block;
+    width: 100%;
+}
+
+.signup-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 67%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
 
 .position-relative {
     position: relative;
 }
+
 .sort-button {
     border: none;
     background: none;
@@ -1073,9 +1146,17 @@ html {
     color: white;
 }
 
+body.dark-mode .status-order-placed {
+    background-color: #FFA500;
+}
+
 .status-preparing-goods {
     background-color: green;
     color: white;
+}
+
+body.dark-mode .status-preparing-goods {
+    background-color: #32CD32;
 }
 
 .status-shipped-to-carrier {
@@ -1083,9 +1164,17 @@ html {
     color: white;
 }
 
+body.dark-mode .status-shipped-to-carrier {
+    background-color: #1E90FF;
+}
+
 .status-in-delivery {
     background-color: #54B7D3;
     color: white;
+}
+
+body.dark-mode .status-in-delivery {
+    background-color: #00CED1;
 }
 
 .status-delivered {
@@ -1093,7 +1182,15 @@ html {
     color: white;
 }
 
+body.dark-mode .status-delivered {
+    background-color: #8B0000;
+}
+
 .status-paid {
     background-color: #E3503E;
     color: white;
+}
+
+body.dark-mode .status-paid {
+    background-color: #FF4500;
 }

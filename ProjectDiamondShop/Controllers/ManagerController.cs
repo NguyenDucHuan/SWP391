@@ -40,8 +40,8 @@ namespace ProjectDiamondShop.Controllers
         }
 
         public ActionResult Index(string searchQuery = "", int page = 1, int pageSize = 10, int orderPageSize = 10, int voucherPageSize = 10,
-            int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10,
-            int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10, int warrantyPage = 1, int warrantyPageSize = 10)
+                        int accentStonePage = 1, int accentStonePageSize = 10, int settingPageSize = 10, int saleStaffPageSize = 10,
+                        int deliveryStaffPageSize = 10, int userPageSize = 10, int notificationPageSize = 10, int warrantyPage = 1, int warrantyPageSize = 10)
         {
             if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
             {
@@ -65,16 +65,16 @@ namespace ProjectDiamondShop.Controllers
             // Tìm kiếm
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                orders = orders.Where(o => o.customerName.Contains(searchQuery)).ToList(); // Thay customerName bằng tên thuộc tính bạn muốn tìm kiếm
-                vouchers = vouchers.Where(v => v.targetUserID.Contains(searchQuery)).ToList(); // Thay targetUserID bằng tên thuộc tính bạn muốn tìm kiếm
-                accentStones = accentStones.Where(a => a.accentStonesName.Contains(searchQuery)).ToList();
-                settings = settings.Where(s => s.settingType.Contains(searchQuery)).ToList(); // Thay settingType bằng tên thuộc tính bạn muốn tìm kiếm
-                saleStaff = saleStaff.Where(s => s.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
-                deliveryStaff = deliveryStaff.Where(d => d.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
-                users = users.Where(u => u.userName.Contains(searchQuery)).ToList(); // Thay userName bằng tên thuộc tính bạn muốn tìm kiếm
-                diamonds = diamonds.Where(d => d.diamondName.Contains(searchQuery)).ToList();
-                notifications = notifications.Where(n => n.detail.Contains(searchQuery)).ToList(); // Thay detail bằng tên thuộc tính bạn muốn tìm kiếm
-                warranties = warranties.Where(w => w.warrantyDetails.Contains(searchQuery)).ToList(); // Thay warrantyDetails bằng tên thuộc tính bạn muốn tìm kiếm
+                orders = orders.Where(o => o.customerName.Contains(searchQuery) || o.orderID.Contains(searchQuery)).ToList();
+                vouchers = vouchers.Where(v => v.targetUserID.Contains(searchQuery) || v.voucherID.ToString().Contains(searchQuery)).ToList();
+                accentStones = accentStones.Where(a => a.accentStonesName.Contains(searchQuery) || a.accentStoneID.ToString().Contains(searchQuery)).ToList();
+                settings = settings.Where(s => s.settingType.Contains(searchQuery) || s.settingID.ToString().Contains(searchQuery)).ToList();
+                saleStaff = saleStaff.Where(s => s.userName.Contains(searchQuery) || s.userID.ToString().Contains(searchQuery)).ToList();
+                deliveryStaff = deliveryStaff.Where(d => d.userName.Contains(searchQuery) || d.userID.ToString().Contains(searchQuery)).ToList();
+                users = users.Where(u => u.userName.Contains(searchQuery) || u.userID.ToString().Contains(searchQuery)).ToList();
+                diamonds = diamonds.Where(d => d.diamondName.Contains(searchQuery) || d.diamondID.ToString().Contains(searchQuery) ||
+                                                d.diamondPrice.ToString().Contains(searchQuery) || d.caratWeight.ToString().Contains(searchQuery)).ToList();
+                warranties = warranties.Where(w => w.warrantyDetails.Contains(searchQuery) || w.warrantyID.ToString().Contains(searchQuery)).ToList();
             }
 
             // Phân trang
@@ -82,46 +82,55 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.OrderPageSize = orderPageSize;
             ViewBag.CurrentOrderPage = page;
             ViewBag.Orders = orders.Skip((page - 1) * orderPageSize).Take(orderPageSize).ToList();
+            ViewBag.TotalOrderPages = (int)Math.Ceiling((double)ViewBag.TotalOrders / orderPageSize);
 
             ViewBag.TotalVouchers = vouchers.Count();
             ViewBag.VoucherPageSize = voucherPageSize;
             ViewBag.CurrentVoucherPage = page;
             ViewBag.Vouchers = vouchers.Skip((page - 1) * voucherPageSize).Take(voucherPageSize).ToList();
+            ViewBag.TotalVoucherPages = (int)Math.Ceiling((double)ViewBag.TotalVouchers / voucherPageSize);
 
             ViewBag.TotalAccentStones = accentStones.Count();
             ViewBag.AccentStonePageSize = accentStonePageSize;
             ViewBag.CurrentAccentStonePage = accentStonePage;
             ViewBag.AccentStones = accentStones.Skip((accentStonePage - 1) * accentStonePageSize).Take(accentStonePageSize).ToList();
+            ViewBag.TotalAccentStonePages = (int)Math.Ceiling((double)ViewBag.TotalAccentStones / accentStonePageSize);
 
             ViewBag.TotalSettings = settings.Count();
             ViewBag.SettingPageSize = settingPageSize;
             ViewBag.CurrentSettingPage = page;
             ViewBag.Settings = settings.Skip((page - 1) * settingPageSize).Take(settingPageSize).ToList();
+            ViewBag.TotalSettingPages = (int)Math.Ceiling((double)ViewBag.TotalSettings / settingPageSize);
 
             ViewBag.TotalSaleStaff = saleStaff.Count();
             ViewBag.SaleStaffPageSize = saleStaffPageSize;
             ViewBag.CurrentSaleStaffPage = page;
             ViewBag.SaleStaff = saleStaff.Skip((page - 1) * saleStaffPageSize).Take(saleStaffPageSize).ToList();
+            ViewBag.TotalSaleStaffPages = (int)Math.Ceiling((double)ViewBag.TotalSaleStaff / saleStaffPageSize);
 
             ViewBag.TotalDeliveryStaff = deliveryStaff.Count();
             ViewBag.DeliveryStaffPageSize = deliveryStaffPageSize;
             ViewBag.CurrentDeliveryStaffPage = page;
             ViewBag.DeliveryStaff = deliveryStaff.Skip((page - 1) * deliveryStaffPageSize).Take(deliveryStaffPageSize).ToList();
+            ViewBag.TotalDeliveryStaffPages = (int)Math.Ceiling((double)ViewBag.TotalDeliveryStaff / deliveryStaffPageSize);
 
             ViewBag.TotalUsers = users.Count();
             ViewBag.UserPageSize = userPageSize;
             ViewBag.CurrentUserPage = page;
             ViewBag.Users = users.Skip((page - 1) * userPageSize).Take(userPageSize).ToList();
+            ViewBag.TotalUserPages = (int)Math.Ceiling((double)ViewBag.TotalUsers / userPageSize);
 
             ViewBag.TotalDiamonds = diamonds.Count();
             ViewBag.PageSize = pageSize;
             ViewBag.CurrentPage = page;
             ViewBag.Diamonds = diamonds.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            ViewBag.TotalDiamondPages = (int)Math.Ceiling((double)ViewBag.TotalDiamonds / pageSize);
 
             ViewBag.TotalNotifications = notifications.Count();
             ViewBag.NotificationPageSize = notificationPageSize;
             ViewBag.CurrentNotificationPage = page;
             ViewBag.Notifications = notifications.Skip((page - 1) * notificationPageSize).Take(notificationPageSize).ToList();
+            ViewBag.TotalNotificationPages = (int)Math.Ceiling((double)ViewBag.TotalNotifications / notificationPageSize);
 
             var revenueData = _managerService.GetRevenueData();
             ViewBag.RevenueLabels = revenueData.Select(r => r.Date).ToList();
@@ -138,9 +147,14 @@ namespace ProjectDiamondShop.Controllers
             ViewBag.WarrantyPageSize = warrantyPageSize;
             ViewBag.CurrentWarrantyPage = warrantyPage;
             ViewBag.Warranties = warranties.Skip((warrantyPage - 1) * warrantyPageSize).Take(warrantyPageSize).ToList();
+            ViewBag.TotalWarrantyPages = (int)Math.Ceiling((double)ViewBag.TotalWarranties / warrantyPageSize);
 
             // Trả về toàn bộ danh sách kim cương
             ViewBag.AllDiamonds = diamonds;
+
+            // Add ViewBag data for dropdowns
+            ViewBag.SaleStaff = saleStaff;
+            ViewBag.DeliveryStaff = deliveryStaff;
 
             return View();
         }
@@ -188,6 +202,87 @@ namespace ProjectDiamondShop.Controllers
                             status = true
                         });
                     }
+
+                    order.customerName = update.CustomerName;
+                    order.address = update.Address;
+                    order.phone = update.Phone;
+                }
+            }
+
+            _managerService.SaveChanges();
+
+            return Json(new { success = true, message = "Update Successful" });
+        }
+
+        [HttpPost]
+        public ActionResult UpdateDiamonds(List<DiamondUpdateModel> diamondUpdates)
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            foreach (var update in diamondUpdates)
+            {
+                var diamond = _managerService.GetDiamondById(update.diamondID);
+                if (diamond != null)
+                {
+                    diamond.diamondName = update.diamondName;
+                    diamond.diamondPrice = update.diamondPrice;
+                    diamond.diamondDescription = update.diamondDescription;
+                    diamond.caratWeight = update.caratWeight;
+                }
+            }
+
+            _managerService.SaveChanges();
+
+            return Json(new { success = true, message = "Update Successful" });
+        }
+
+
+        [HttpPost]
+        public ActionResult UpdateAccentStones(List<AccentStoneUpdateModel> accentStoneUpdates)
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            foreach (var update in accentStoneUpdates)
+            {
+                var accentStone = _managerService.GetAccentStoneById(update.accentStoneID);
+                if (accentStone != null)
+                {
+                    accentStone.accentStonesName = update.accentStonesName;
+                    accentStone.caratWeight = update.caratWeight;
+                    accentStone.price = update.price;
+                    accentStone.quantity = update.quantity;
+                }
+            }
+
+            _managerService.SaveChanges();
+
+            return Json(new { success = true, message = "Update Successful" });
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSettings(List<SettingUpdateModel> settingUpdates)
+        {
+            if (Session["RoleID"] == null || ((int)Session["RoleID"] != 2 && (int)Session["RoleID"] != 3))
+            {
+                return Json(new { success = false, message = "Permission Denied." });
+            }
+
+            foreach (var update in settingUpdates)
+            {
+                var setting = _managerService.GetSettingById(update.settingID);
+                if (setting != null)
+                {
+                    setting.settingType = update.settingType;
+                    setting.material = update.material;
+                    setting.priceTax = update.priceTax;
+                    setting.quantityStones = update.quantityStones;
+                    setting.description = update.description;
                 }
             }
 
