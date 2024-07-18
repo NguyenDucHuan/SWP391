@@ -179,6 +179,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccentStoneUpdateModel.cs" />
     <Compile Include="DiamondShopModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,11 +195,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DiamondShopModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DiamondUpdateModel.cs" />
     <Compile Include="OrderUpdateModel.cs" />
     <Compile Include="OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationData.cs" />
     <Compile Include="RevenueData.cs" />
+    <Compile Include="SettingUpdateModel.cs" />
     <Compile Include="tblAccentStone.cs">
       <DependentUpon>DiamondShopModels.tt</DependentUpon>
     </Compile>
